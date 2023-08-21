@@ -5,7 +5,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.sartyro.pubber.ui.MainFragment"
+        android:name="com.overmighties.pubber.ui.MainFragment"
         android:label="activity_choice"
         tools:layout="@layout/choice" >
         <action
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/searcherScreen"
-        android:name="com.sartyro.pubber.ui.SearcherFragment"
+        android:name="com.overmighties.pubber.ui.SearcherFragment"
         android:label="searcher"
         tools:layout="@layout/searcher">
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/filtrationScreen"
-        android:name="com.sartyro.pubber.ui.FiltrationFragment"
+        android:name="com.overmighties.pubber.ui.FiltrationFragment"
         android:label="filtration"
         tools:layout="@layout/filtration">
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailScreen"
-        android:name="com.sartyro.pubber.ui.DetailFragment"
+        android:name="com.overmighties.pubber.ui.DetailFragment"
         android:label="detail"
         tools:layout="@layout/detail" />
 </navigation>

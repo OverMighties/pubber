@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.sartyro.pubber'
+    namespace 'com.overmighties.pubber'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.sartyro.pubber"
+        applicationId "com.overmighties.pubber"
         minSdk 30//minSdk 29
         targetSdk 33
         versionCode 1
