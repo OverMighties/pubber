@@ -37,7 +37,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
     private ListPubAdapter adapter;
 
     private SearchView searchview;
-    private ArrayList<PubData> lista=new ArrayList<>();
 
     public SearcherFragment() {
         super(R.layout.searcher);
@@ -57,8 +56,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
         final Observer<List<PubData>> name= sorting->{
             if(AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue()!=null) {
-
-
                 adapter = new ListPubAdapter(AppContainer.getInstance().getPubSearchingContainer().getListOfSortedPubs().getValue(), this);
                 recyclerView.setAdapter(adapter);
             }
@@ -90,37 +87,25 @@ public class SearcherFragment extends Fragment implements SelectListener {
         });
         NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
         initSearchView();
-       chiplisteners();
+        chipListeners();
 
 
 
     }
 
-    private void chiplisteners()
+    private void chipListeners()
     {
-        ((Chip)requireView().findViewById(R.id.sort)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInofmation().setValue(1);
-                ((Chip)requireView().findViewById(R.id.sort)).setChecked(true);
-            }
+        ((Chip)requireView().findViewById(R.id.sort)).setOnClickListener(v -> {
+            AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(1);
+            ((Chip)requireView().findViewById(R.id.sort)).setChecked(true);
         });
 
-        ((Chip)requireView().findViewById(R.id.rating)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInofmation().setValue(2);
-                ((Chip)requireView().findViewById(R.id.rating)).setChecked(true);
+        ((Chip)requireView().findViewById(R.id.rating)).setOnClickListener(v -> {
+            AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(2);
+            ((Chip)requireView().findViewById(R.id.rating)).setChecked(true);
 
-            }
         });
-        ((Chip)requireView().findViewById(R.id.distance)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInofmation().setValue(3);
-
-            }
-        });
+        ((Chip)requireView().findViewById(R.id.distance)).setOnClickListener(v -> AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(3));
         ((Chip)requireView().findViewById(R.id.open)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,7 +183,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
 
     @Override
-    public void OnResume() {
+    public void onResume() {
         super.onResume();
         if(getActivity().findViewById(R.id.nav_view).getVisibility()==View.GONE)
             NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));

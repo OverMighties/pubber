@@ -17,11 +17,11 @@ public class PubSearchingContainer {
     @Getter
     private final MutableLiveData<Integer> position=new MutableLiveData<>();
     @Getter
-    private final MutableLiveData<String> savedlist=new MutableLiveData<>();
+    private final MutableLiveData<String> savedList =new MutableLiveData<>();
     @Getter
     private final MutableLiveData<FiltrationData> filtrationOfPubs=new MutableLiveData<>();
     @Getter
-    private final MutableLiveData<Integer> popupInofmation=new MutableLiveData<>();
+    private final MutableLiveData<Integer> popupInformation =new MutableLiveData<>();
     @Getter
     private final MutableLiveData<List<PubData>> listOfSortedPubs=new MutableLiveData<>();
     public PubSearchingContainer()
@@ -30,8 +30,8 @@ public class PubSearchingContainer {
         listOfFiltratedPubs.setValue(null);
         filtrationOfPubs.setValue(null);
         position.setValue(null);
-        savedlist.setValue("");
-        popupInofmation.setValue(0);
+        savedList.setValue("");
+        popupInformation.setValue(0);
         listOfSortedPubs.setValue(null);
 
     }

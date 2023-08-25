@@ -25,8 +25,6 @@ public class SavedFragment extends Fragment implements SelectListener {
     private ArrayList<PubData> list=new ArrayList<>();
     private String saved;
     private  RecyclerView save;
-    private int l;
-
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
@@ -34,31 +32,26 @@ public class SavedFragment extends Fragment implements SelectListener {
         list.clear();
         save=(RecyclerView) requireView().findViewById(R.id.savelist);
         setup();
-
     }
     @Override
-    public void OnResume()
+    public void onResume()
     {
         super.onResume();
         list.clear();
         setup();
-
-
     }
 
     private void setup()
     {
-        saved=AppContainer.getInstance().getPubSearchingContainer().getSavedlist().getValue();
-        l=0;
+        saved=AppContainer.getInstance().getPubSearchingContainer().getSavedList().getValue();
+        int helper=0;
         Log.d("tak",saved);
         if(saved!=null)
         {
-            while(l<saved.length()-1)
+            while(helper<saved.length()-1)
             {
-
-
-                list.add(TestData.getPubDataList().get(Integer.parseInt(saved.substring(l,l+1))-1));
-                l++;
+                list.add(TestData.getPubDataList().get(Integer.parseInt(saved.substring(helper,helper+1))-1));
+                helper++;
             }
 
             adapter = new ListPubAdapter(list, this);

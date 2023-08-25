@@ -53,7 +53,7 @@ public class TestData {
 
         pubDataList.add(new PubData("amber ",
                 "2", R.drawable.zdjecie1,
-                3.1f, 4.1f, 4.4f,4.4f,4.4f,
+                3.1f, 4.0f, 4.4f,4.4f,4.4f,
                 4.7f,"otwarte",
                 breweriesSet2,drinksSet2,"$$$"));
 

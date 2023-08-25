@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.NavigationBar;
-import com.overmighties.pubber.data.SliderItem;
 import com.overmighties.pubber.util.SliderAdapter;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class DetailFragment extends Fragment
     private ViewPager2 viewPager;
 
 
-    public DetailFragment() {super(R.layout.detail);}
+    public DetailFragment() {super(R.layout.details);}
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
@@ -28,12 +27,12 @@ public class DetailFragment extends Fragment
         NavigationBar.smoothHide(getActivity().findViewById(R.id.nav_view));
 
         viewPager=requireView().findViewById(R.id.viewPager);
-        List<SliderItem> slideritems=new ArrayList<>();
-        slideritems.add(new SliderItem(R.drawable.zdjecie1));
-        slideritems.add(new SliderItem(R.drawable.zdjecie3));
-        slideritems.add(new SliderItem(R.drawable.zdjecie1));
-        slideritems.add(new SliderItem(R.drawable.zdjecie3));
-        viewPager.setAdapter(new SliderAdapter(slideritems,viewPager));
+        List<Integer> sliderItemIds=new ArrayList<>();
+        sliderItemIds.add(R.drawable.zdjecie1);
+        sliderItemIds.add(R.drawable.zdjecie3);
+        sliderItemIds.add(R.drawable.zdjecie1);
+        sliderItemIds.add(R.drawable.zdjecie3);
+        viewPager.setAdapter(new SliderAdapter(sliderItemIds,viewPager));
         invisibleDetails();
 
     }

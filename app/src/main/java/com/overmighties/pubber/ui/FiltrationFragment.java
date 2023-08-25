@@ -26,10 +26,10 @@ import java.util.List;
 public class FiltrationFragment extends Fragment {
 
     public static final String TAG="FiltrationFragment";
-    public boolean moreBeers =false;
+    public boolean moreBeers;
     private List<String> drinks=new ArrayList<>();;
     private List<String> breweries=new ArrayList<>();
-    private boolean open=false;
+    private boolean open;
 
     public String price=FiltrationConstants.BASE_PRICE;
     private FiltrationData filtrationData;

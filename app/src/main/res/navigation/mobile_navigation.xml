@@ -37,5 +37,5 @@
         android:id="@+id/detailScreen"
         android:name="com.overmighties.pubber.ui.DetailFragment"
         android:label="detail"
-        tools:layout="@layout/detail" />
+        tools:layout="@layout/details" />
 </navigation>

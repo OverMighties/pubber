@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.data.SliderItem;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
@@ -17,11 +16,11 @@ import java.util.List;
 public class SliderAdapter extends  RecyclerView.Adapter<SliderAdapter.SliderViewHolder>
 {
 
-    private List<SliderItem> sliderItems;
+    private List<Integer> sliderItemIds;
     private ViewPager2 viewPager2;
 
-    public SliderAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
-        this.sliderItems = sliderItems;
+    public SliderAdapter(List<Integer> sliderItems, ViewPager2 viewPager2) {
+        this.sliderItemIds = sliderItems;
         this.viewPager2 = viewPager2;
     }
 
@@ -38,12 +37,12 @@ public class SliderAdapter extends  RecyclerView.Adapter<SliderAdapter.SliderVie
 
     @Override
     public void onBindViewHolder( SliderViewHolder holder, int position) {
-        holder.setImageView(sliderItems.get(position));
+        holder.setImageView(sliderItemIds.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return sliderItems.size();
+        return sliderItemIds.size();
     }
 
     class SliderViewHolder extends RecyclerView.ViewHolder
@@ -55,9 +54,9 @@ public class SliderAdapter extends  RecyclerView.Adapter<SliderAdapter.SliderVie
             imageView =itemView.findViewById(R.id.imageSlide);
         }
 
-        void setImageView(SliderItem sliderItem)
+        void setImageView(Integer sliderItemId)
         {
-            imageView.setImageResource(sliderItem.getImage());
+            imageView.setImageResource(sliderItemId);
         }
     }
 }
