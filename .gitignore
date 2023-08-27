@@ -25,3 +25,6 @@ render.experimental.xml
 # Gradle
 .gradle/
 **/.gradle/
+/gradle/
+/.idea/
+/.gradle/
