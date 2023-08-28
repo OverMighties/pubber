@@ -87,39 +87,26 @@ public class SearcherFragment extends Fragment implements SelectListener {
         });
         NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
         initSearchView();
-        chipListeners();
+        listeners();
 
 
 
     }
-
-    private void chipListeners()
+    private void listeners()
     {
-        ((Chip)requireView().findViewById(R.id.sort)).setOnClickListener(v -> {
-            AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(1);
-            ((Chip)requireView().findViewById(R.id.sort)).setChecked(true);
-        });
-
-        ((Chip)requireView().findViewById(R.id.rating)).setOnClickListener(v -> {
-            AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(2);
-            ((Chip)requireView().findViewById(R.id.rating)).setChecked(true);
-
-        });
-        ((Chip)requireView().findViewById(R.id.distance)).setOnClickListener(v -> AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(3));
-        ((Chip)requireView().findViewById(R.id.open)).setOnClickListener(new View.OnClickListener() {
+        ((TextView)requireView().findViewById(R.id.sorttext)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.open)).isChecked())
-                {
-                }
-                else
-                {
-
-                }
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
+            }
+        });
+        ((ImageView)requireView().findViewById(R.id.sortimage)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
 
             }
         });
-
     }
 
 

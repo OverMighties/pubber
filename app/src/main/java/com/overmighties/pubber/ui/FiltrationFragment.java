@@ -48,8 +48,40 @@ public class FiltrationFragment extends Fragment {
         });
         NavigationBar.smoothHide(nav_bar);
         requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
+        listeners();
 
 
+    }
+
+    private void listeners()
+    {
+        requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
+        requireView().findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(((Slider)requireView().findViewById(R.id.rangeRating)).isShown())
+                {
+                    ((Slider)requireView().findViewById(R.id.rangeRating)).setVisibility(View.GONE);
+                }
+                else
+                {
+                    ((Slider)requireView().findViewById(R.id.rangeRating)).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        requireView().findViewById(R.id.imageView2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(((Slider)requireView().findViewById(R.id.odleglosc)).isShown())
+                {
+                    ((Slider)requireView().findViewById(R.id.odleglosc)).setVisibility(View.GONE);
+                }
+                else
+                {
+                    ((Slider)requireView().findViewById(R.id.odleglosc)).setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     public void filtration(View view)

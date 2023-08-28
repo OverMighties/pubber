@@ -6,9 +6,11 @@ import com.overmighties.pubber.data.PubData;
 import java.util.Comparator;
 import java.util.List;
 
+import lombok.Getter;
+
 public class SortUtil
 {
-    public static void sortPubs(int sorting)
+    public static void sortUtli(int sorting)
     {
         List<PubData> pubDataList = AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue();
         switch(sorting)
