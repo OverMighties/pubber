@@ -81,10 +81,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
             Navigation.findNavController(v).navigate(SearcherFragmentDirections.searcherToFiltration());
 
         });
-        ((TextView) requireView().findViewById(R.id.wiecej)).setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(SearcherFragmentDirections.searcherToFiltration());
-
-        });
         NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
         initSearchView();
         listeners();

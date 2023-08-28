@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -56,8 +55,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="408dp"
-        android:layout_height="659dp"
+        android:layout_width="417dp"
+        android:layout_height="620dp"
         android:layout_marginBottom="2dp"
         android:background="#2C2828"
         android:fillViewport="true"
@@ -65,32 +64,25 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
         tools:context=".ui.FiltrationFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0.7dp"
-                android:background="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="62dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Ocena"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -110,7 +102,7 @@
                 android:stepSize="0.5"
                 android:valueFrom="0"
                 android:valueTo="5"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.351"
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Odległość"
                 android:textColor="#FFFFFF"
@@ -154,6 +146,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView3" />
 
             <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
                 android:src="@drawable/arrowwhite"
@@ -161,6 +154,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView8" />
 
             <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
                 android:src="@drawable/arrowwhite"
@@ -170,12 +164,13 @@
             <com.google.android.material.slider.Slider
                 android:id="@+id/odleglosc"
                 android:layout_width="377dp"
-                android:layout_height="50dp"
+                android:layout_height="47dp"
                 android:layout_marginTop="4dp"
                 android:stepSize="0.5"
                 android:value="5"
                 android:valueFrom="0"
                 android:valueTo="5"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.549"
                 app:layout_constraintStart_toStartOf="parent"
@@ -214,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Cena"
                 android:textColor="#FFFFFF"
@@ -260,7 +255,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Godziny otwarcia"
                 android:textColor="#FFFFFF"
@@ -703,20 +698,6 @@
             </com.google.android.material.chip.ChipGroup>
 
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="161dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:text="Filtry"
-                android:textColor="#FFFFFF"
-                android:textSize="40sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
@@ -745,4 +726,33 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="411dp"
+        android:layout_height="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Filtry"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

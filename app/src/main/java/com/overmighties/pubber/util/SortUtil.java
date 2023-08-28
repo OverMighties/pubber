@@ -3,6 +3,7 @@ package com.overmighties.pubber.util;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.data.PubData;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -40,6 +41,12 @@ public class SortUtil
     }
     public static void sortByPubNameAlphabetical(List<PubData> list)
     {
-        list.sort(Comparator.comparing(PubData::getName));
+        //poprzednia wersja sortowania stawiała duże litery nad małymi
+        Collections.sort(list, new Comparator<PubData>() {
+            @Override
+            public int compare(final PubData object1, final PubData object2) {
+                return (((object1.getName()).toLowerCase())).compareTo((object2.getName().toLowerCase()));
+            }
+        });
     }
 }

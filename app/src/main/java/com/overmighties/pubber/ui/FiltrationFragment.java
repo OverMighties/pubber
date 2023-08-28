@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.chip.ChipGroup;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.NavigationBar;
@@ -79,6 +80,19 @@ public class FiltrationFragment extends Fragment {
                 else
                 {
                     ((Slider)requireView().findViewById(R.id.odleglosc)).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        requireView().findViewById(R.id.imageView3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(((ChipGroup)requireView().findViewById(R.id.cena)).isShown())
+                {
+                    ((ChipGroup)requireView().findViewById(R.id.cena)).setVisibility(View.GONE);
+                }
+                else
+                {
+                    ((ChipGroup)requireView().findViewById(R.id.cena)).setVisibility(View.VISIBLE);
                 }
             }
         });
