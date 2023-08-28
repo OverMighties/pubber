@@ -9,10 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.navigation.ui.AppBarConfiguration;
 
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         searcherFragment = new SearcherFragment();
-        savedFragment= new SavedFragment();
+        savedFragment = new SavedFragment();
         hotPubsFragment = new HotPubsFragment();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -76,135 +78,34 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Observer<Integer> name= sort->{
-            if(AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue()==1)
-            {
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Observer<String> name = sort -> {
+            if (AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue().equals("nie")) {}else{
                 NavigationBar.smoothHide(findViewById(R.id.nav_view));
-                LayoutInflater inflater=(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popUpView=inflater.inflate(R.layout.sort_pop_up,null);
-                PopupWindow popupWindow=new PopupWindow(popUpView,
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popUpView = inflater.inflate(R.layout.sort_pop_up, null);
+                PopupWindow popupWindow = new PopupWindow(popUpView,
                         WindowManager.LayoutParams.MATCH_PARENT,
-                        WindowManager.LayoutParams.MATCH_PARENT,true);
-                popupWindow.setOnDismissListener(() -> {
-                    NavigationBar.smoothPopUp(findViewById(R.id.nav_view));
-                    if (((Chip) popUpView.findViewById(R.id.relevance)).isChecked()) {
-                        SortUtil.sortPubs(1);
-                        ((Chip) (findViewById(R.id.sort))).setText("Trafność");
-                    } else if (((Chip) popUpView.findViewById(R.id.alphabetical)).isChecked()) {
-                        SortUtil.sortPubs(2);
-                        ((Chip) (findViewById(R.id.sort))).setText("Alfabetycznie");
+                        WindowManager.LayoutParams.MATCH_PARENT, true);
 
-                    } else if (((Chip) popUpView.findViewById(R.id.rate)).isChecked()) {
-                        SortUtil.sortPubs(3);
-                        ((Chip) (findViewById(R.id.sort))).setText("Najwyższa ocena");
-                    } else if (((Chip) popUpView.findViewById(R.id.distance)).isChecked()){
-                        SortUtil.sortPubs(4);
-                        ((Chip) (findViewById(R.id.sort))).setText("Najbliżej");
-                    }
-            });
-                chipslistener(popUpView,popupWindow);
+
+                listeners(popupWindow, popUpView);
+                //checking which one kind of sorting is selected
+                check(popUpView);
+
+
                 (findViewById(R.id.search)).post(new Runnable() {
                     @Override
                     public void run() {
-                        popupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM,0,0);
+
+
+                        popupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM, 0, 0);
                     }
                 });
             }
-            else
-            {
-                if(AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue()==2)
-                {
-                    NavigationBar.smoothHide(findViewById(R.id.nav_view));
-                    LayoutInflater inflater=(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popUpView=inflater.inflate(R.layout.popup2,null);
-                    PopupWindow poPupWindow=new PopupWindow(popUpView,
-                            WindowManager.LayoutParams.MATCH_PARENT,
-                            WindowManager.LayoutParams.MATCH_PARENT,true);
-                    ((TextView)popUpView.findViewById(R.id.PopUpTextView)).setText("Wybierz zakres ocen");
-                    poPupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                        @Override
-                        public void onDismiss() {
-                             ArrayList<PubData> pubDataArrayList=new ArrayList<>();
-                                RangeSlider slider=(RangeSlider)popUpView.findViewById(R.id.PopUpRanger);
-                                if(slider.getValues().get(0)==0 & slider.getValues().get(1)==5) {((Chip)findViewById(R.id.rating)).setChecked(false);}
-                                else
-                                {
-
-                                    for(PubData pub:AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue())
-                                    {
-                                        if(pub.getRatingOwn()>slider.getValues().get(0) & pub.getRatingOwn()<slider.getValues().get(1))
-                                        {
-                                            pubDataArrayList.add(pub);
-                                        }
-                                        AppContainer.getInstance().getPubSearchingContainer().getListOfSortedPubs().setValue(pubDataArrayList);
-                                    }
-
-
-                                }
-                        }
-                    });
-
-                    popUpView.findViewById(R.id.dismis).setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {poPupWindow.dismiss();}});
-                    (findViewById(R.id.search)).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            poPupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM,0,0);
-                        }
-                    });
-                }
-                else {
-                    if (AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue() == 3) {
-                        NavigationBar.smoothHide(findViewById(R.id.nav_view));
-                        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                        View popUpView = inflater.inflate(R.layout.popup2, null);
-                        PopupWindow poPupWindow = new PopupWindow(popUpView,
-                                WindowManager.LayoutParams.MATCH_PARENT,
-                                WindowManager.LayoutParams.MATCH_PARENT, true);
-                        ((TextView) popUpView.findViewById(R.id.PopUpTextView)).setText("Wybierz zakres odległości");
-                        poPupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                            @Override
-                            public void onDismiss() {
-                                ArrayList<PubData> pubDataArrayList=new ArrayList<>();
-                                RangeSlider slider = (RangeSlider) popUpView.findViewById(R.id.PopUpRanger);
-                                if (slider.getValues().get(0) == 0 & slider.getValues().get(1) == 5) {
-                                    ((Chip) findViewById(R.id.rating)).setChecked(false);
-                                } else {
-
-                                    for (PubData pub : AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue()) {
-                                        if (pub.getDistance() > slider.getValues().get(0) & pub.getDistance() < slider.getValues().get(1)) {
-                                            pubDataArrayList.add(pub);
-                                        }
-                                        AppContainer.getInstance().getPubSearchingContainer().getListOfSortedPubs().setValue(pubDataArrayList);
-                                    }
-
-
-                                }
-                            }
-                        });
-
-                        popUpView.findViewById(R.id.dismis).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                poPupWindow.dismiss();
-                            }
-                        });
-                        (findViewById(R.id.search)).post(new Runnable() {
-                            @Override
-                            public void run() {
-
-
-                                poPupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM, 0, 0);
-                            }
-                        });
-                    }
-                }
-            }
-
         };
 
 
-
-        AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().observe(this,name);
+        AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().observe(this, name);
         /*
         final Observer<String> name = save -> {
                 if((AppContainer.getInstance().getPubSearchingContainer().getSavedlist().getValue()).equals(""))
@@ -229,50 +130,101 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void chipslistener(View popUpView,PopupWindow popupWindow)
-    {
-        (popUpView.findViewById(R.id.alphabetical)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Chip)(popUpView.findViewById(R.id.relevance))).setChecked(false);
-                ((Chip)(popUpView.findViewById(R.id.rate))).setChecked(false);
-                ((Chip)(popUpView.findViewById(R.id.distance))).setChecked(false);
+    private void check(View popUpView) {
+        String word = ((TextView) findViewById(R.id.sorttext)).getText().toString();
+        if (word.equals(" Trafność")) {
+            ((RadioButton) popUpView.findViewById(R.id.trafnosc)).setChecked(true);
+        } else {
+            if (word.equals(" Alfabetycznie")) {
+                ((RadioButton) popUpView.findViewById(R.id.alfabetycznie)).setChecked(true);
+            } else {
+                if (word.equals(" Najwyżej oceniane")) {
+                    ((RadioButton) popUpView.findViewById(R.id.ocena)).setChecked(true);
+                } else {
+                    ((RadioButton) popUpView.findViewById(R.id.najodleglosc)).setChecked(true);
+                }
             }
-        });
+        }
+    }
 
-        (popUpView.findViewById(R.id.relevance)).setOnClickListener(new View.OnClickListener() {
+    private void listeners(PopupWindow popupWindow, View popupView) {
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
-            public void onClick(View v) {
-                ((Chip)popUpView.findViewById(R.id.alphabetical)).setChecked(false);
-                ((Chip)popUpView.findViewById(R.id.rate)).setChecked(false);
-                ((Chip)popUpView.findViewById(R.id.distance)).setChecked(false);
-            }
-        });
-        (popUpView.findViewById(R.id.distance)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Chip)popUpView.findViewById(R.id.alphabetical)).setChecked(false);
-                ((Chip)popUpView.findViewById(R.id.relevance)).setChecked(false);
-                ((Chip)popUpView.findViewById(R.id.rate)).setChecked(false);
-            }
-        });
-        (popUpView.findViewById(R.id.rate)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Chip)popUpView.findViewById(R.id.relevance)).setChecked(false);
-                ((Chip)popUpView.findViewById(R.id.distance)).setChecked(false);
-                ((Chip)popUpView.findViewById(R.id.alphabetical)).setChecked(false);
-            }
-        });
+            public void onDismiss() {
+                NavigationBar.smoothPopUp(findViewById(R.id.nav_view));
+                TextView text = findViewById(R.id.sorttext);
+                SortUtil sort = new SortUtil();
+                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
+                    text.setText(" Trafność");
+                    sort.sortUtli(1);
+                } else {
+                    if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
+                        text.setText(" Najwyżej oceniane");
+                        sort.sortUtli(3);
 
-        (popUpView.findViewById(R.id.dismiss)).setOnClickListener(new View.OnClickListener() {
+                    } else {
+                        if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
+                            text.setText(" Alfabetycznie");
+                            sort.sortUtli(2);
+                        } else {
+                            text.setText(" Najmniejsza Odległość");
+                            sort.sortUtli(4);
+                        }
+                    }
+                }
+
+
+            }
+        });
+        ((ConstraintLayout) popupView.findViewById(R.id.dismiss)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
             }
         });
-
+        ((RadioButton) popupView.findViewById(R.id.trafnosc)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
+                } else {
+                }
+            }
+        });
+        ((RadioButton) popupView.findViewById(R.id.ocena)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
+                } else {
+                }
+            }
+        });
+        ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.najodleglosc)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
+                } else {
+                }
+            }
+        });
+        ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
+                } else {
+                }
+            }
+        });
     }
-
-
 }

@@ -11,4 +11,11 @@
         <item name="android:windowBackground">#2C2828</item>
         <item name="colorPrimary">#2C2828</item>
     </style>
+    <style name="CustomNaviationBarContainer" parent="" >
+        <item name="colorContainer">@color/main</item>
+        <item name="colorOnPrimaryContainer">@color/main</item>
+        <item name="colorOnContainer">@color/main</item>
+        <item name="colorOnPrimary">@color/main</item>
+        <item name="colorControlHighlight">@color/main</item>
+    </style>
 </resources>
