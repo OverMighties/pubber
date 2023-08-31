@@ -4,7 +4,8 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>
 
-
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar"
+        />
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">8dp</item>
@@ -35,6 +36,7 @@
         <item name="cornerSizeTopLeft">10dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">10dp</item>
+
     </style>
     <style name="CustomChipSortRight" parent="">
         <item name="cornerFamily">rounded</item>

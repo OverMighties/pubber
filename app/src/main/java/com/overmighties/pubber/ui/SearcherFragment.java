@@ -93,13 +93,13 @@ public class SearcherFragment extends Fragment implements SelectListener {
         ((TextView)requireView().findViewById(R.id.sorttext)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");
             }
         });
         ((ImageView)requireView().findViewById(R.id.sortimage)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");
 
             }
         });
