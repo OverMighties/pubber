@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //Code for all of pop ups in the program
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Observer<String> name = sort -> {
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -138,13 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-        };
-
-
-        AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().observe(this, name);
-
-    }
 
     private void listenersmenutime(PopupWindow popupWindow, View popUpView)
     {
@@ -324,6 +318,40 @@ public class MainActivity extends AppCompatActivity {
                         text.setText(" Najwyżej oceniane");
                         sort.sortUtli(3);
 
+
+    private void check(View popUpView) {
+        String word = ((TextView) findViewById(R.id.sorttext)).getText().toString();
+        if (word.equals(" Trafność")) {
+            ((RadioButton) popUpView.findViewById(R.id.trafnosc)).setChecked(true);
+        } else {
+            if (word.equals(" Alfabetycznie")) {
+                ((RadioButton) popUpView.findViewById(R.id.alfabetycznie)).setChecked(true);
+            } else {
+                if (word.equals(" Najwyżej oceniane")) {
+                    ((RadioButton) popUpView.findViewById(R.id.ocena)).setChecked(true);
+                } else {
+                    ((RadioButton) popUpView.findViewById(R.id.najodleglosc)).setChecked(true);
+                }
+            }
+        }
+    }
+
+    private void listeners(PopupWindow popupWindow, View popupView) {
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                NavigationBar.smoothPopUp(findViewById(R.id.nav_view));
+                TextView text = findViewById(R.id.sorttext);
+                SortUtil sort = new SortUtil();
+                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
+                    text.setText(" Trafność");
+                    sort.sortUtli(1);
+                } else {
+                    if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
+                        text.setText(" Najwyżej oceniane");
+                        sort.sortUtli(3);
+
+
                     } else {
                         if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
                             text.setText(" Alfabetycznie");
@@ -346,6 +374,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         for(var id:SORT_POP_UP_IDS)
         {
             ((RadioButton) popupView.findViewById(id)).setOnClickListener(new View.OnClickListener() {
@@ -362,7 +391,15 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-    }
 
+        ((RadioButton) popupView.findViewById(R.id.trafnosc)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
+                } else {
+                }
 
 }

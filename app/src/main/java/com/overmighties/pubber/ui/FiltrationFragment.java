@@ -62,13 +62,14 @@ public class FiltrationFragment extends Fragment  {
         });
         NavigationBar.smoothHide(nav_bar);
         requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
+
         //setting listeners unfolding diffrent filtration settings
         listeners();
         //setting up dropdown menus with days and time
         dropdownmenus();
 
-
     }
+
 
     private void dropdownmenus()
     {
@@ -94,12 +95,15 @@ public class FiltrationFragment extends Fragment  {
     }
 
 
+
+
     private void listeners()
     {
         requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
         requireView().findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if((requireView().findViewById(R.id.rangeRating)).isShown())
                 {
                     (requireView().findViewById(R.id.rangeRating)).setVisibility(View.GONE);
@@ -109,7 +113,15 @@ public class FiltrationFragment extends Fragment  {
                 {
                     (requireView().findViewById(R.id.rangeRating)).setVisibility(View.VISIBLE);
                     ((ImageView)requireView().findViewById(R.id.imageView)).setImageResource(R.drawable.arrowwhiteup);
+
+                if(((Slider)requireView().findViewById(R.id.rangeRating)).isShown())
+                {
+                    ((Slider)requireView().findViewById(R.id.rangeRating)).setVisibility(View.GONE);
                 }
+                else
+                {
+                    ((Slider)requireView().findViewById(R.id.rangeRating)).setVisibility(View.VISIBLE);
+             }
             }
         });
         requireView().findViewById(R.id.imageView2).setOnClickListener(new View.OnClickListener() {
@@ -118,12 +130,17 @@ public class FiltrationFragment extends Fragment  {
                 if(((Slider)requireView().findViewById(R.id.odleglosc)).isShown())
                 {
                     ((Slider)requireView().findViewById(R.id.odleglosc)).setVisibility(View.GONE);
+
                     ((ImageView)requireView().findViewById(R.id.imageView2)).setImageResource(R.drawable.arrowwhite);
+
+
                 }
                 else
                 {
                     ((Slider)requireView().findViewById(R.id.odleglosc)).setVisibility(View.VISIBLE);
+
                     ((ImageView)requireView().findViewById(R.id.imageView2)).setImageResource(R.drawable.arrowwhiteup);
+
                 }
             }
         });
@@ -133,11 +150,14 @@ public class FiltrationFragment extends Fragment  {
                 if(((ChipGroup)requireView().findViewById(R.id.cena)).isShown())
                 {
                     ((ChipGroup)requireView().findViewById(R.id.cena)).setVisibility(View.GONE);
+
                     ((ImageView)requireView().findViewById(R.id.imageView3)).setImageResource(R.drawable.arrowwhite);
+
                 }
                 else
                 {
                     ((ChipGroup)requireView().findViewById(R.id.cena)).setVisibility(View.VISIBLE);
+
                     ((ImageView)requireView().findViewById(R.id.imageView3)).setImageResource(R.drawable.arrowwhiteup);
                 }
             }
@@ -249,6 +269,11 @@ public class FiltrationFragment extends Fragment  {
                 ((Chip)requireView().findViewById(R.id.dowolne)).performClick();
                 ((RangeSlider)requireView().findViewById(R.id.rangeRating)).setValues(0f,5f);
                 ((Slider)requireView().findViewById(R.id.odleglosc)).setValue(5f);
+            }
+        });
+
+
+                }
             }
         });
 

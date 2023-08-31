@@ -85,8 +85,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+
         android:layout_width="412dp"
         android:layout_height="567dp"
+
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

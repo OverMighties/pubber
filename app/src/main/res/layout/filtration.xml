@@ -9,16 +9,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
+
         android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
             android:background="#693D2B"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
 
         <Button
@@ -39,6 +42,7 @@
 
         <Button
             android:id="@+id/buttonreset"
+
             android:layout_width="170dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -46,6 +50,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="Wyczyść"
             android:textColor="#693D2B"
+
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +79,7 @@
 
             <TextView
                 android:id="@+id/textView"
+
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -83,6 +89,8 @@
                 android:text="Ocena"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
+
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,27 +106,35 @@
                 android:id="@+id/rangeRating"
                 android:layout_width="377dp"
                 android:layout_height="47dp"
+
                 android:layout_marginTop="0dp"
+
                 android:forceDarkAllowed="false"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
                 android:stepSize="0.5"
                 android:valueFrom="0"
                 android:valueTo="5"
+
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:thumbColor="#FFFFFF"
                 app:tickColor="#000000"
+
                 app:trackColorActive="#FFFFFF"
                 app:trackColorInactive="#736D6D"
+
                 app:values="@array/rangeRating" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
+
                 android:layout_marginTop="4dp"
+
 
                 android:background="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -131,12 +147,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
+
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
                 android:text="Odległość"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
@@ -164,6 +182,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toTopOf="@+id/textView4" />
 
+
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="28dp"
@@ -172,24 +191,31 @@
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="@+id/textView5" />
 
+
             <com.google.android.material.slider.Slider
                 android:id="@+id/odleglosc"
                 android:layout_width="377dp"
                 android:layout_height="47dp"
+
                 android:layout_marginTop="0dp"
+
                 android:stepSize="0.5"
                 android:value="5"
                 android:valueFrom="0"
                 android:valueTo="5"
+
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 app:thumbColor="#FFFFFF"
                 app:tickColor="#000000"
+
                 app:trackColorActive="#FFFFFF"
                 app:trackColorInactive="#736D6D" />
+
 
             <androidx.cardview.widget.CardView
 
@@ -207,6 +233,7 @@
             <androidx.cardview.widget.CardView
 
 
+
                 android:id="@+id/cardView9"
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
@@ -222,7 +249,9 @@
                 android:layout_width="match_parent"
 
                 android:layout_height="0.7dp"
+
                 android:layout_marginTop="4dp"
+
                 android:background="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -232,6 +261,7 @@
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
+
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
@@ -240,6 +270,7 @@
                 android:text="Cena"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
@@ -248,8 +279,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="57dp"
                 android:layout_marginStart="20dp"
+
                 android:layout_marginTop="4dp"
                 android:visibility="gone"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8"
                 app:singleSelection="true">
@@ -259,33 +292,40 @@
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="$"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/srednio"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="$$"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+3
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/duzo"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="$$$"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
+
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
@@ -294,15 +334,18 @@
                 android:text="Godziny otwarcia"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
             <androidx.cardview.widget.CardView
 
                 android:id="@+id/cardView5"
+
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="4dp"
+
                 android:background="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -315,12 +358,16 @@
                 android:id="@+id/cardView6"
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
+
                 android:layout_marginTop="1dp"
+
                 android:background="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/czyotwarte"
@@ -329,6 +376,7 @@
                 android:layout_height="55dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Teraz otwarte"
+
                 android:textAppearance="@style/CustomChipStyle"
                 android:visibility="gone"
                 app:chipBackgroundColor="@color/white"
@@ -338,9 +386,11 @@
                 app:layout_constraintStart_toEndOf="@+id/dowolne"
                 app:layout_constraintTop_toTopOf="@+id/dowolne" />
 
+
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
+
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
@@ -349,6 +399,7 @@
                 android:text="Piwa"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView6" />
 
@@ -357,7 +408,9 @@
                 android:layout_width="377dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+
                 android:visibility="gone"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.513"
                 app:layout_constraintStart_toStartOf="parent"
@@ -369,9 +422,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/AleBrowar"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Amber"
@@ -379,9 +434,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Amber"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Artezan"
@@ -389,18 +446,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Artezan"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Budweiser"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Budweiser"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Brokreacja"
@@ -408,9 +469,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Brokreacja"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Cieszyn"
@@ -418,9 +481,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Cieszyn"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Fortuna"
@@ -428,9 +493,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fortuna"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/FunkyFluids"
@@ -438,9 +505,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/FunkyFluids"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Grimbergen"
@@ -448,6 +517,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Grimbergen"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
@@ -458,18 +528,22 @@
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Grodziskie"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Grolsch"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Grolsch"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Kingpin"
@@ -477,9 +551,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Kingpin"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Komes"
@@ -487,9 +563,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Komes"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Komoran"
@@ -497,27 +575,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Komoran"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Kozel"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Kozel"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Książęce"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Książęce"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Miłosław"
@@ -525,9 +609,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Miłosław"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Moczybroda"
@@ -535,9 +621,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Moczybroda"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/NaJurze"
@@ -545,9 +633,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/NaJurze"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Nepomucen"
@@ -555,9 +645,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Nepomucen"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
 
                 <com.google.android.material.chip.Chip
@@ -565,27 +657,33 @@
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Paulaner"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/PilsnerUrquell"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/PilsenrUrquell"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Pinta"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Pinta"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Primator"
@@ -593,9 +691,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Primator"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Raduga"
@@ -603,9 +703,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Raduga"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Recraft"
@@ -613,9 +715,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Recraft"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
 
                 <com.google.android.material.chip.Chip
@@ -623,9 +727,11 @@
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/TrzechKumpli"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Zatecky"
@@ -633,9 +739,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Zatecky"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Zamiastem"
@@ -643,18 +751,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Zamiastem"
+
                     android:textAppearance="@style/CustomChipStyle"
                     android:visibility="gone"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Żywiec"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Żywiec"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -672,6 +784,7 @@
                 android:text="Więcej"
                 android:textColor="#DA7800"
                 android:textSize="14sp"
+
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/BrowaryLista" />
@@ -695,6 +808,7 @@
                 android:text="Drinki"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 
@@ -707,6 +821,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.66"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7">
 
@@ -715,142 +830,174 @@
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/BlackRussian"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/B52"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/B52"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Cosmopolitan"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Cosmopolitan"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/CubaLibre"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/CubaLibre"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Daiquiri"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Daiquiri"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Kamikaze"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Kamikaze"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/KrwawaMary"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/KrwawaMary"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LongIsland"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/LongIsland"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Margarita"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Margarita"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Martini"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Martini"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Mojito"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Mojito"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/PinaColada"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/PinaColada"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Sexonthebeach"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/Sexonthebeach"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/TequilaSunrise"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/TequilaSunrise"
                     android:textAppearance="@style/CustomChipStyle"
                     app:chipBackgroundColor="@color/white" />
+
             </com.google.android.material.chip.ChipGroup>
 
 
             <com.google.android.material.chip.Chip
+
                 android:id="@+id/dowolne"
+
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
+
                 android:checked="true"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Dowolne"
                 android:textAppearance="@style/CustomChipStyle"
                 android:visibility="gone"
                 app:chipBackgroundColor="@color/white"
+
                 app:chipStrokeColor="#2C2828"
                 app:chipStrokeWidth="1dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -858,6 +1005,7 @@
                 app:shapeAppearance="@style/CustomChipSortLeft" />
 
             <com.google.android.material.chip.Chip
+
                 android:id="@+id/niestandardowe"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
 
@@ -868,11 +1016,13 @@
                 android:textAppearance="@style/CustomChipStyle"
                 android:visibility="gone"
                 app:chipBackgroundColor="@color/white"
+
                 app:chipStrokeColor="#2C2828"
                 app:chipStrokeWidth="1dp"
                 app:layout_constraintStart_toEndOf="@+id/czyotwarte"
                 app:layout_constraintTop_toTopOf="@+id/czyotwarte"
                 app:shapeAppearance="@style/CustomChipSortRight" />
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
@@ -947,6 +1097,7 @@
                     app:srcCompat="@drawable/arrowblack" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -962,7 +1113,9 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+
             android:fontFamily="@font/roboto_medium"
+
             android:gravity="center"
             android:text="Filtry"
             android:textColor="#FFFFFF"
