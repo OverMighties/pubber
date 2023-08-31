@@ -94,9 +94,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
             @Override
             public void onClick(View v) {
 
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");
 
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");
 
             }
         });
@@ -104,11 +103,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
             @Override
             public void onClick(View v) {
 
+
                 AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");
-
-                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
-
-
             }
         });
     }

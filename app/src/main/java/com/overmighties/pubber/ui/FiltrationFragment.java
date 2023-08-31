@@ -104,26 +104,16 @@ public class FiltrationFragment extends Fragment  {
             @Override
             public void onClick(View v) {
 
-                if((requireView().findViewById(R.id.rangeRating)).isShown())
-                {
+                if ((requireView().findViewById(R.id.rangeRating)).isShown()) {
                     (requireView().findViewById(R.id.rangeRating)).setVisibility(View.GONE);
-                    ((ImageView)requireView().findViewById(R.id.imageView)).setImageResource(R.drawable.arrowwhite);
-                }
-                else
-                {
+                    ((ImageView) requireView().findViewById(R.id.imageView)).setImageResource(R.drawable.arrowwhite);
+                } else {
                     (requireView().findViewById(R.id.rangeRating)).setVisibility(View.VISIBLE);
-                    ((ImageView)requireView().findViewById(R.id.imageView)).setImageResource(R.drawable.arrowwhiteup);
-
-                if(((Slider)requireView().findViewById(R.id.rangeRating)).isShown())
-                {
-                    ((Slider)requireView().findViewById(R.id.rangeRating)).setVisibility(View.GONE);
+                    ((ImageView) requireView().findViewById(R.id.imageView)).setImageResource(R.drawable.arrowwhiteup);
                 }
-                else
-                {
-                    ((Slider)requireView().findViewById(R.id.rangeRating)).setVisibility(View.VISIBLE);
-             }
             }
         });
+
         requireView().findViewById(R.id.imageView2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,13 +261,11 @@ public class FiltrationFragment extends Fragment  {
                 ((Slider)requireView().findViewById(R.id.odleglosc)).setValue(5f);
             }
         });
-
-
-                }
-            }
-        });
-
     }
+
+
+
+
 
     public void filtration(View view)
     {

@@ -91,12 +91,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //Code for all of pop ups in the program
+    //Code for all of pop ups in the program
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Observer<String> name = sort -> {
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            switch (AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue())
-            {
+            Log.d("tak","takt");
+            switch (AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue()) {
 
                 case "days":
                     //Down Menus days in FilterFragment
@@ -106,10 +105,13 @@ public class MainActivity extends AppCompatActivity {
                             WindowManager.LayoutParams.MATCH_PARENT,
                             WindowManager.LayoutParams.MATCH_PARENT, true);
                     //Listeners For popup days in filtrarion screen
-                    listenersmenudays(popupWindow,popUpView);
+                    listenersmenudays(popupWindow, popUpView);
                     (findViewById(R.id.FiltrationScreen)).post(new Runnable() {
                         @Override
-                        public void run() {popupWindow.showAtLocation(findViewById(R.id.FiltrationScreen), Gravity.BOTTOM, 0, 0);}});
+                        public void run() {
+                            popupWindow.showAtLocation(findViewById(R.id.FiltrationScreen), Gravity.BOTTOM, 0, 0);
+                        }
+                    });
                     break;
                 case "time":
                     popUpView = inflater.inflate(R.layout.menu_pop_up_time, null);
@@ -117,10 +119,13 @@ public class MainActivity extends AppCompatActivity {
                             WindowManager.LayoutParams.MATCH_PARENT,
                             WindowManager.LayoutParams.MATCH_PARENT, true);
                     //Listeners For popup time in filtrarion screen
-                    listenersmenutime(popupWindow,popUpView);
+                    listenersmenutime(popupWindow, popUpView);
                     (findViewById(R.id.FiltrationScreen)).post(new Runnable() {
                         @Override
-                        public void run() {popupWindow.showAtLocation(findViewById(R.id.FiltrationScreen), Gravity.BOTTOM, 0, 0);}});
+                        public void run() {
+                            popupWindow.showAtLocation(findViewById(R.id.FiltrationScreen), Gravity.BOTTOM, 0, 0);
+                        }
+                    });
                     break;
                 case "sort":
                     NavigationBar.smoothHide(findViewById(R.id.nav_view));
@@ -134,10 +139,16 @@ public class MainActivity extends AppCompatActivity {
                     check(popUpView);
                     (findViewById(R.id.search)).post(new Runnable() {
                         @Override
-                        public void run() {popupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM, 0, 0);}});
+                        public void run() {
+                            popupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM, 0, 0);
+                        }
+                    });
                     break;
 
             }
+        };
+        AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().observe(this,name);
+    }
 
 
     private void listenersmenutime(PopupWindow popupWindow, View popUpView)
@@ -166,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     popupWindow.dismiss();
                     findViewById(R.id.view2).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
-                    ((ImageView)findViewById(R.id.imageView2)).setImageResource(R.drawable.arrowblack);
+                    ((ImageView)findViewById(R.id.imageView8)).setImageResource(R.drawable.arrowblack);
                 }
             });
 
@@ -303,7 +314,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void listeners(PopupWindow popupWindow, View popupView) {
+
+
+
+
+
+    private void listeners (PopupWindow popupWindow, View popupView){
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -317,41 +333,6 @@ public class MainActivity extends AppCompatActivity {
                     if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
                         text.setText(" Najwyżej oceniane");
                         sort.sortUtli(3);
-
-
-    private void check(View popUpView) {
-        String word = ((TextView) findViewById(R.id.sorttext)).getText().toString();
-        if (word.equals(" Trafność")) {
-            ((RadioButton) popUpView.findViewById(R.id.trafnosc)).setChecked(true);
-        } else {
-            if (word.equals(" Alfabetycznie")) {
-                ((RadioButton) popUpView.findViewById(R.id.alfabetycznie)).setChecked(true);
-            } else {
-                if (word.equals(" Najwyżej oceniane")) {
-                    ((RadioButton) popUpView.findViewById(R.id.ocena)).setChecked(true);
-                } else {
-                    ((RadioButton) popUpView.findViewById(R.id.najodleglosc)).setChecked(true);
-                }
-            }
-        }
-    }
-
-    private void listeners(PopupWindow popupWindow, View popupView) {
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                NavigationBar.smoothPopUp(findViewById(R.id.nav_view));
-                TextView text = findViewById(R.id.sorttext);
-                SortUtil sort = new SortUtil();
-                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
-                    text.setText(" Trafność");
-                    sort.sortUtli(1);
-                } else {
-                    if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
-                        text.setText(" Najwyżej oceniane");
-                        sort.sortUtli(3);
-
-
                     } else {
                         if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
                             text.setText(" Alfabetycznie");
@@ -362,21 +343,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
             }
         });
         ((ConstraintLayout) popupView.findViewById(R.id.dismiss)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popupWindow.dismiss();
-            }
+                                    popupWindow.dismiss();
+                                }
         });
-
-
-
-        for(var id:SORT_POP_UP_IDS)
-        {
+        for (var id : SORT_POP_UP_IDS) {
             ((RadioButton) popupView.findViewById(id)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -386,12 +361,11 @@ public class MainActivity extends AppCompatActivity {
                         ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
                         ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
                         ((RadioButton) popupView.findViewById(id)).setChecked(true);
-                    } else {}
+                    } else {
+                    }
                 }
             });
         }
-
-
         ((RadioButton) popupView.findViewById(R.id.trafnosc)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -436,6 +410,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
+
