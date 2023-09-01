@@ -44,9 +44,7 @@ public class FiltrationFragment extends Fragment  {
 
     public String price=FiltrationConstants.BASE_PRICE;
     private FiltrationData filtrationData;
-    String[] dnitygodnia={"Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"};
-    AutoCompleteTextView autoCompleteTextView;
-    ArrayAdapter<String> adapterItems;
+
 
     public FiltrationFragment()
     {

@@ -366,50 +366,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        ((RadioButton) popupView.findViewById(R.id.trafnosc)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
-                } else {
-                }
-            }
-        });
-        ((RadioButton) popupView.findViewById(R.id.ocena)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
-                } else {
-                }
-            }
-        });
-        ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.najodleglosc)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
-                } else {
-                }
-            }
-        });
-        ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
-                } else {
-                }
-            }
-        });
+
     }
 }
 
