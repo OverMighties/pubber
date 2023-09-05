@@ -1,54 +1,38 @@
 package com.overmighties.pubber.app;
 
-import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.data.PubData;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.overmighties.pubber.ui.HotPubsFragment;
-import com.overmighties.pubber.ui.SavedFragment;
-import com.overmighties.pubber.ui.SearcherFragment;
+import com.overmighties.pubber.feature.bookmarks.SavedFragment;
+import com.overmighties.pubber.feature.search.SearcherFragment;
+import com.overmighties.pubber.util.SortPubsBy;
 import com.overmighties.pubber.util.SortUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.slider.RangeSlider;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
     public static final String FILE_NAME = "saved.txt";
-
-    private HotPubsFragment hotPubsFragment;
-    private SavedFragment savedFragment;
-    private SearcherFragment searcherFragment;
-
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        searcherFragment = new SearcherFragment();
-        savedFragment = new SavedFragment();
-        hotPubsFragment = new HotPubsFragment();
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -58,122 +42,82 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_list, R.id.navigation_saved, R.id.navigation_hot_pubs)
                 .build();
-        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.navigation_list) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, searcherFragment).commit();
-                    return true;
-                } else {
-                    if (item.getItemId() == R.id.navigation_saved) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, savedFragment).commit();
-                        return true;
-                    } else {
-                        if (item.getItemId() == R.id.navigation_hot_pubs) {
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, hotPubsFragment).commit();
-                            return true;
-                        }
-                    }
-                }
-                return false;
+        navView.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.navigation_list) {
+                return replaceWithFragment( SearcherFragment.class);
+            } else if (item.getItemId() == R.id.navigation_saved) {
+                return replaceWithFragment( SavedFragment.class);
+            } else if(item.getItemId() == R.id.navigation_hot_pubs) {
+                return replaceWithFragment( HotPubsFragment.class);
             }
+            return false;
         });
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Observer<String> name = sort -> {
-            if (AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue().equals("nie")) {}else{
+         final Observer<String> name = sort -> {
+            if (!AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue().equals("nie")){
                 NavigationBar.smoothHide(findViewById(R.id.nav_view));
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popUpView = inflater.inflate(R.layout.sort_pop_up, null);
-                PopupWindow popupWindow = new PopupWindow(popUpView,
+                PopupWindow sortPubsPopUpWindow = new PopupWindow(popUpView,
                         WindowManager.LayoutParams.MATCH_PARENT,
                         WindowManager.LayoutParams.MATCH_PARENT, true);
-
-
-                listeners(popupWindow, popUpView);
+                listenersForSortingPopUpWindow(sortPubsPopUpWindow, popUpView);
                 //checking which one kind of sorting is selected
-                check(popUpView);
-
-
-                (findViewById(R.id.search)).post(new Runnable() {
-                    @Override
-                    public void run() {
-
-
-                        popupWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM, 0, 0);
-                    }
-                });
+                checkCurrentSortRadioButton(popUpView);
+                (findViewById(R.id.search)).post(() -> sortPubsPopUpWindow.showAtLocation(findViewById(R.id.search), Gravity.BOTTOM, 0, 0));
             }
         };
-
-
         AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().observe(this, name);
-        /*
-        final Observer<String> name = save -> {
-                if((AppContainer.getInstance().getPubSearchingContainer().getSavedlist().getValue()).equals(""))
-                {
-                    load();
-                    Log.d("tak",AppContainer.getInstance().getPubSearchingContainer().getSavedlist().getValue());
-                }
-                else
-                {
-                    try {
-                        Log.d("tak",AppContainer.getInstance().getPubSearchingContainer().getSavedlist().getValue());
-                        save(AppContainer.getInstance().getPubSearchingContainer().getSavedlist().getValue());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-        };
-        AppContainer.getInstance().getPubSearchingContainer().getSavedlist().observe(this, name);
-
-         */
-
+    }
+    private  <T extends Fragment> boolean  replaceWithFragment(Class<T> fragment)
+    {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainerView, fragment,null)
+                .commit();
+        return true;
+    }
+    private  String getStringById(int id)
+    {
+        return getResources().getString(id);
     }
 
-    private void check(View popUpView) {
-        String word = ((TextView) findViewById(R.id.sorttext)).getText().toString();
-        if (word.equals(" Trafność")) {
-            ((RadioButton) popUpView.findViewById(R.id.trafnosc)).setChecked(true);
-        } else {
-            if (word.equals(" Alfabetycznie")) {
-                ((RadioButton) popUpView.findViewById(R.id.alfabetycznie)).setChecked(true);
-            } else {
-                if (word.equals(" Najwyżej oceniane")) {
-                    ((RadioButton) popUpView.findViewById(R.id.ocena)).setChecked(true);
-                } else {
-                    ((RadioButton) popUpView.findViewById(R.id.najodleglosc)).setChecked(true);
-                }
-            }
+    private void checkCurrentSortRadioButton(View popupView) {
+        String word = ((TextView) findViewById(R.id.textViewSortType_searcher)).getText().toString();
+        if(getStringById(R.string.sort_relevance).equals(word)) {
+            ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(true);
         }
+        if(getStringById(R.string.sort_rating).equals(word)) {
+            ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(true);
+        }
+        if(getStringById(R.string.sort_alphabetical).equals(word)) {
+            ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(true);
+        }
+        if(getStringById(R.string.sort_distance).equals(word)) {
+            ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(true);
+        }
+
     }
 
-    private void listeners(PopupWindow popupWindow, View popupView) {
+    private void listenersForSortingPopUpWindow(PopupWindow popupWindow, View popupView) {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 NavigationBar.smoothPopUp(findViewById(R.id.nav_view));
-                TextView text = findViewById(R.id.sorttext);
-                SortUtil sort = new SortUtil();
-                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
-                    text.setText(" Trafność");
-                    sort.sortUtli(1);
-                } else {
-                    if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
-                        text.setText(" Najwyżej oceniane");
-                        sort.sortUtli(3);
-
-                    } else {
-                        if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
-                            text.setText(" Alfabetycznie");
-                            sort.sortUtli(2);
-                        } else {
-                            text.setText(" Najmniejsza Odległość");
-                            sort.sortUtli(4);
-                        }
-                    }
+                TextView text = findViewById(R.id.textViewSortType_searcher);
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                    text.setText( getStringById(R.string.sort_relevance));
+                    SortUtil.sortingPubData(SortPubsBy.RELEVANCE);
+                } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                    text.setText(getStringById(R.string.sort_rating));
+                    SortUtil.sortingPubData(SortPubsBy.RATING);
+                } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                    text.setText(getStringById(R.string.sort_alphabetical));
+                    SortUtil.sortingPubData(SortPubsBy.ALPHABETICAL);
+                } else{
+                    text.setText(getStringById(R.string.sort_distance));
+                    SortUtil.sortingPubData(SortPubsBy.DISTANCE);
                 }
-
-
             }
         });
         ((ConstraintLayout) popupView.findViewById(R.id.dismiss)).setOnClickListener(new View.OnClickListener() {
@@ -182,49 +126,48 @@ public class MainActivity extends AppCompatActivity {
                 popupWindow.dismiss();
             }
         });
-        ((RadioButton) popupView.findViewById(R.id.trafnosc)).setOnClickListener(new View.OnClickListener() {
+
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.trafnosc)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
-                } else {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
                 }
             }
         });
-        ((RadioButton) popupView.findViewById(R.id.ocena)).setOnClickListener(new View.OnClickListener() {
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.ocena)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
-                } else {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
                 }
             }
         });
-        ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setOnClickListener(new View.OnClickListener() {
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.najodleglosc)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setChecked(false);
-                } else {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
                 }
             }
         });
-        ((RadioButton) popupView.findViewById(R.id.alfabetycznie)).setOnClickListener(new View.OnClickListener() {
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((RadioButton) popupView.findViewById(R.id.alfabetycznie)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.ocena)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.najodleglosc)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.trafnosc)).setChecked(false);
-                } else {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
                 }
             }
         });
+
+
     }
 }

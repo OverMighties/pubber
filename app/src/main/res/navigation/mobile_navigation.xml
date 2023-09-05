@@ -7,14 +7,14 @@
         android:id="@+id/mainFragment"
         android:name="com.overmighties.pubber.ui.MainFragment"
         android:label="activity_choice"
-        tools:layout="@layout/choice" >
+        tools:layout="@layout/place_choice" >
         <action
             android:id="@+id/mainToSearcher"
             app:destination="@id/searcherScreen" />
     </fragment>
     <fragment
         android:id="@+id/searcherScreen"
-        android:name="com.overmighties.pubber.ui.SearcherFragment"
+        android:name="com.overmighties.pubber.feature.search.SearcherFragment"
         android:label="searcher"
         tools:layout="@layout/searcher">
         <action

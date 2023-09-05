@@ -1,50 +1,50 @@
 package com.overmighties.pubber.util;
 
 import com.overmighties.pubber.app.AppContainer;
-import com.overmighties.pubber.data.PubData;
+import com.overmighties.pubber.data.model.PubUiState;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import lombok.Getter;
+import lombok.NonNull;
 
 public class SortUtil
 {
-    public static void sortUtli(int sorting)
+    public static void sortingPubData(SortPubsBy sortingBy)
     {
-        List<PubData> pubDataList = AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue();
-        switch(sorting)
+        List<PubUiState> pubDataList = AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue();
+        switch(sortingBy)
         {
-            case 1:
+            case RELEVANCE:
                 break;
-            case 2:
+            case ALPHABETICAL:
                 sortByPubNameAlphabetical(pubDataList);
                 break;
-            case 3:
+            case RATING:
                 sortByRatingsDesc(pubDataList);
                 break;
-            case 4:
+            case DISTANCE:
                 sortByDistanceAsc(pubDataList);
                 break;
         }
         AppContainer.getInstance().getPubSearchingContainer().getListOfSortedPubs().setValue(pubDataList);
     }
 
-    public static  void sortByRatingsDesc(List<PubData> list)
+    public static  void sortByRatingsDesc( @NonNull List<PubUiState> list)
     {
-        list.sort(Comparator.comparingDouble(PubData::getRatingOwn).reversed());
+        list.sort(Comparator.comparingDouble(PubUiState::getRatingOwn).reversed());
     }
-    public static void sortByDistanceAsc(List<PubData> list)
+    public static void sortByDistanceAsc(@NonNull List<PubUiState> list)
     {
-        list.sort(Comparator.comparingDouble(PubData::getDistance).reversed());
+        list.sort(Comparator.comparingDouble(PubUiState::getDistance).reversed());
     }
-    public static void sortByPubNameAlphabetical(List<PubData> list)
+    public static void sortByPubNameAlphabetical(@NonNull List<PubUiState> list)
     {
         //poprzednia wersja sortowania stawiała duże litery nad małymi
-        Collections.sort(list, new Comparator<PubData>() {
+        Collections.sort(list, new Comparator<PubUiState>() {
             @Override
-            public int compare(final PubData object1, final PubData object2) {
+            public int compare(final PubUiState object1, final PubUiState object2) {
                 return (((object1.getName()).toLowerCase())).compareTo((object2.getName().toLowerCase()));
             }
         });

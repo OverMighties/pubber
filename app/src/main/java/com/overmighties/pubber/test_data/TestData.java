@@ -1,7 +1,7 @@
 package com.overmighties.pubber.test_data;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.data.PubData;
+import com.overmighties.pubber.data.model.PubUiState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class TestData {
     private static ArrayList<String> drinksSet2;
 
     @Getter
-    private static ArrayList<PubData> pubDataList;
+    private static ArrayList<PubUiState> pubDataList;
 
     /*
     *   Uzylem statycznych metod bys nie musial inicjaizowac za kazdym razem klasy
@@ -39,19 +39,19 @@ public class TestData {
          */
 
         pubDataList =new ArrayList<>();
-        pubDataList.add(new PubData("Pod Harpią",
+        pubDataList.add(new PubUiState("Pod Harpią",
                 "1", R.drawable.zdjecie1,
                 2, 2,
                 2,2,2,0.7f,"zamkniete",
                 breweriesSet1,drinksSet1,"$"));
-        pubDataList.add(new PubData("Cebularz ",
+        pubDataList.add(new PubUiState("Cebularz ",
                 "2", R.drawable.zdjecie1,
                 4.1f, 4.1f, 4.4f,4.4f,4.4f,
                 4.7f,"otwarte",
                 breweriesSet2,drinksSet2,"$$$"));
 
 
-        pubDataList.add(new PubData("amber ",
+        pubDataList.add(new PubUiState("amber ",
                 "2", R.drawable.zdjecie1,
                 3.1f, 4.0f, 4.4f,4.4f,4.4f,
                 4.7f,"otwarte",

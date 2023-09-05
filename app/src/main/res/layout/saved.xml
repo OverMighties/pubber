@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2A85604"
-    tools:context=".ui.SavedFragment">
+    android:background="@color/main"
+    tools:context=".feature.bookmarks.SavedFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/savelist"

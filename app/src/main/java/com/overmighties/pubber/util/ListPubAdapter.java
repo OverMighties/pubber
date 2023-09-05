@@ -11,10 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.overmighties.pubber.Interface.SelectListener;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
-import com.overmighties.pubber.data.PubData;
+import com.overmighties.pubber.data.model.PubUiState;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ import lombok.Getter;
 
 public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewHolder> {
 
-    private List<PubData> pubData;
+    private List<PubUiState> pubData;
     public SelectListener selectlistener;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
@@ -34,7 +33,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private TextView ocenaJakosc;
         private TextView ocenaKoszty;
         private TextView ocenaGoogle;
-        private ImageButton imageButton;
+        private ImageButton imageSaveButt;
         private ImageView imageIcon;
         private static final String FILE_NAME="saved.txt";
 
@@ -43,13 +42,12 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             nazwa=(TextView) itemView.findViewById(R.id.nazwaPubu);
             ocenaJakosc =(TextView) itemView.findViewById(R.id.ocenaJakosc);
             ocenaKoszty =(TextView) itemView.findViewById(R.id.ocenaKoszty);
-            czasOtwarcia=(TextView) itemView.findViewById(R.id.czasOtwarcia);
-            ocenaGoogle=(TextView) itemView.findViewById(R.id.ocenaGoogle);
+            czasOtwarcia=(TextView) itemView.findViewById(R.id.timeOpenToday_card_view_row);
+            ocenaGoogle=(TextView) itemView.findViewById(R.id.ocenaSredniaSerwisy);
             imageIcon =(ImageView) itemView.findViewById(R.id.PubImage);
             czasAuto =(TextView) itemView.findViewById(R.id.drogaAuto);
-            czasPieszo =(TextView) itemView.findViewById(R.id.drogaPieszo);
-            imageButton=(ImageButton)itemView.findViewById(R.id.heart);
-            imageButton.setTag(R.drawable.heartempty);
+            imageSaveButt =(ImageButton)itemView.findViewById(R.id.heart);
+            imageSaveButt.setTag(R.drawable.heartempty);
 
 
 
@@ -69,7 +67,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             });
         }
     }
-    public ListPubAdapter(List<PubData> pubData,SelectListener selectlistener) {this.pubData=pubData;this.selectlistener=selectlistener;}
+    public ListPubAdapter(List<PubUiState> pubData, SelectListener selectlistener) {this.pubData=pubData;this.selectlistener=selectlistener;}
     @NonNull
     @Override
     public PubViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -87,12 +85,12 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         holder.czasPieszo.setText(pubData.get(position).getPrice());
         holder.imageIcon.setImageResource(pubData.get(position).getImage());
 
-        holder.imageButton.setOnClickListener(v -> {
+        holder.imageSaveButt.setOnClickListener(v -> {
             String  load;
-            if((Integer)holder.imageButton.getTag()==R.drawable.heartempty)
+            if((Integer)holder.imageSaveButt.getTag()==R.drawable.heartempty)
             {
-                holder.imageButton.setImageResource(R.drawable.heartfull);
-                holder.imageButton.setTag(R.drawable.heartfull);
+                holder.imageSaveButt.setImageResource(R.drawable.heartfull);
+                holder.imageSaveButt.setTag(R.drawable.heartfull);
                 load=AppContainer.getInstance().getPubSearchingContainer().getSavedList().getValue();
                 if(load!=null)
                 {
@@ -101,8 +99,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             }else
             {
 
-                holder.imageButton.setImageResource(R.drawable.heartempty);
-                holder.imageButton.setTag(R.drawable.heartempty);
+                holder.imageSaveButt.setImageResource(R.drawable.heartempty);
+                holder.imageSaveButt.setTag(R.drawable.heartempty);
                 load=AppContainer.getInstance().getPubSearchingContainer().getSavedList().getValue();
                 load=load.replace(pubData.get(position).getId()+"-","");
             }
