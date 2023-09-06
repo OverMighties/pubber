@@ -15,6 +15,8 @@
     <fragment
         android:id="@+id/searcherScreen"
         android:name="com.overmighties.pubber.ui.SearcherFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation"
         android:label="searcher"
         tools:layout="@layout/searcher">
         <action
@@ -23,9 +25,18 @@
         <action
             android:id="@+id/searcherToDetail"
             app:destination="@id/detailScreen" />
+        <action
+            android:id="@+id/searcherToHotPubs"
+            app:destination="@id/hotPubsFragment" />
+        <action
+            android:id="@+id/searcherToSaved"
+            app:destination="@id/savedFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/filtrationScreen"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation"
         android:name="com.overmighties.pubber.ui.FiltrationFragment"
         android:label="filtration"
         tools:layout="@layout/filtration">
@@ -37,5 +48,29 @@
         android:id="@+id/detailScreen"
         android:name="com.overmighties.pubber.ui.DetailFragment"
         android:label="detail"
-        tools:layout="@layout/details" />
+        tools:layout="@layout/detail" />
+    <fragment
+        android:id="@+id/hotPubsFragment"
+        android:name="com.overmighties.pubber.ui.HotPubsFragment"
+        android:label="hot_pubs"
+        tools:layout="@layout/hot_pubs" >
+        <action
+            android:id="@+id/hotPubstoSearcher"
+            app:destination="@id/searcherScreen" />
+        <action
+            android:id="@+id/hotPubstoSaved"
+            app:destination="@id/savedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.overmighties.pubber.ui.SavedFragment"
+        android:label="saved"
+        tools:layout="@layout/saved" >
+        <action
+            android:id="@+id/savedToSearcher"
+            app:destination="@id/searcherScreen" />
+        <action
+            android:id="@+id/savedToHotPubs"
+            app:destination="@id/hotPubsFragment" />
+    </fragment>
 </navigation>

@@ -24,6 +24,8 @@ public class PubSearchingContainer {
     private final MutableLiveData<String> popupInformation =new MutableLiveData<>();
     @Getter
     private final MutableLiveData<List<PubData>> listOfSortedPubs=new MutableLiveData<>();
+    @Getter
+    private final MutableLiveData<Integer> navigationInformation=new MutableLiveData<>();
     public PubSearchingContainer()
     {
 
@@ -33,6 +35,7 @@ public class PubSearchingContainer {
         savedList.setValue("");
         popupInformation.setValue("nie");
         listOfSortedPubs.setValue(null);
+        navigationInformation.setValue(1);
 
     }
 

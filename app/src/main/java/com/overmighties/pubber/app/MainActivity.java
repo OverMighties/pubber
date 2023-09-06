@@ -1,6 +1,7 @@
 package com.overmighties.pubber.app;
 
 
+import static androidx.navigation.fragment.FragmentKt.findNavController;
 import static com.overmighties.pubber.app.Constants.NUMBERSDAYS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_DISMISS_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_IDS;
@@ -26,19 +27,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
+import com.overmighties.pubber.ui.FiltrationFragment;
 import com.overmighties.pubber.ui.HotPubsFragment;
+import com.overmighties.pubber.ui.HotPubsFragmentDirections;
 import com.overmighties.pubber.ui.SavedFragment;
+import com.overmighties.pubber.ui.SavedFragmentDirections;
 import com.overmighties.pubber.ui.SearcherFragment;
+import com.overmighties.pubber.ui.SearcherFragmentDirections;
 import com.overmighties.pubber.util.SortUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+
+import lombok.val;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -70,19 +82,51 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_list, R.id.navigation_saved, R.id.navigation_hot_pubs)
                 .build();
+
+
+
         navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.navigation_list) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, searcherFragment).commit();
+
+                    switch (AppContainer.getInstance().getPubSearchingContainer().getNavigationInformation().getValue())
+                    {
+                        case 2:
+                            Navigation.findNavController(MainActivity.this,R.id.fragmentContainerView).navigate(HotPubsFragmentDirections.hotPubstoSearcher());
+                            break;
+                        case 3:
+                            Navigation.findNavController(MainActivity.this,R.id.fragmentContainerView).navigate(SavedFragmentDirections.savedToSearcher());
+                            break;
+                    }
+                    AppContainer.getInstance().getPubSearchingContainer().getNavigationInformation().setValue(1);
                     return true;
                 } else {
-                    if (item.getItemId() == R.id.navigation_saved) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, savedFragment).commit();
+                    if (item.getItemId() == R.id.navigation_hot_pubs) {
+
+                        switch (AppContainer.getInstance().getPubSearchingContainer().getNavigationInformation().getValue())
+                        {
+                            case 1:
+                                Navigation.findNavController(MainActivity.this,R.id.fragmentContainerView).navigate(SearcherFragmentDirections.searcherToHotPubs());
+                                break;
+                            case 3:
+                                Navigation.findNavController(MainActivity.this,R.id.fragmentContainerView).navigate(SavedFragmentDirections.savedToHotPubs());
+                                break;
+                        }
+                        AppContainer.getInstance().getPubSearchingContainer().getNavigationInformation().setValue(2);
                         return true;
                     } else {
-                        if (item.getItemId() == R.id.navigation_hot_pubs) {
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, hotPubsFragment).commit();
+                        if (item.getItemId() == R.id.navigation_saved) {
+                            switch (AppContainer.getInstance().getPubSearchingContainer().getNavigationInformation().getValue())
+                            {
+                                case 1:
+                                    Navigation.findNavController(MainActivity.this,R.id.fragmentContainerView).navigate(SearcherFragmentDirections.searcherToSaved());
+                                    break;
+                                case 2:
+                                    Navigation.findNavController(MainActivity.this,R.id.fragmentContainerView).navigate(HotPubsFragmentDirections.hotPubstoSaved());
+                                    break;
+                            }
+                            AppContainer.getInstance().getPubSearchingContainer().getNavigationInformation().setValue(3);
                             return true;
                         }
                     }
@@ -91,10 +135,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     //Code for all of pop ups in the program
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Observer<String> name = sort -> {
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            Log.d("tak","takt");
             switch (AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().getValue()) {
 
                 case "days":
