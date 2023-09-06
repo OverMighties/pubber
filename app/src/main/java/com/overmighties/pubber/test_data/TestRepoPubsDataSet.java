@@ -81,10 +81,10 @@ public class TestRepoPubsDataSet {
         dataSet=new ArrayList<>();
 
         dataSet.add(new PubDto(1L,	"ChIJS3sKMwL7PEcRurd9BXet-fw","Pewex Pub","Rynek 18, 35-064 Rzeszów, Poland","Rzeszów","17 871 80 77",	"https://www.facebook.com/PewexPub/","",NOTHING,null,null,
-                new RatingsDto(4.0f,588,null,null,null,null,null,null,null,null,null),
+                new RatingsDto(4.0f,588,null,null,null,null,null,null,null,null,2),
               openingHoursDataSet1,drinksDataSet1,photosDataSet1));
         dataSet.add(new PubDto(2L,	"ChIJF-VPDAL7PEcRE5pnPMUZVAw","Rambla Cocktail&Music Pub","\"Jana Matejki 16, 35-064 Rzeszów, Poland","Rzeszów","535 041 290",	"https://www.facebook.com/PubRambla","",LOREM_IPSUM_20,true,true,
-                new RatingsDto(4.2f,514,null,null,null,null,null,null,null,null,null),
+                new RatingsDto(4.2f,514,null,null,null,null,null,null,null,null,3),
                 openingHoursDataSet2,drinksDataSet2,photosDataSet2));
         dataSet.add(new PubDto(3L,	"ChIJ79jBNQL7PEcRAJ0TSKs0Bic","Pub K20","Mikołaja Kopernika 4, 35-002 Rzeszów, Poland","Rzeszów","17 225 31 06",	"http://www.fb.com/K20PUB","",LOREM_IPSUM_50,true,true,
                 new RatingsDto(4.6f,956,4.7f,156,4.3f,343,4.24f,343,4.0f,5.0f,4),

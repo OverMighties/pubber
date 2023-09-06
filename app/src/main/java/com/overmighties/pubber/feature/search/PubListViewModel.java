@@ -16,6 +16,8 @@ import com.overmighties.pubber.util.SortPubsBy;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.Getter;
 
 public class PubListViewModel extends ViewModel {
@@ -42,11 +44,16 @@ public class PubListViewModel extends ViewModel {
     );
 
     public PubListViewModel(PubsRepository pubsRepository, SavedStateHandle savedStateHandle) {
-    this.pubsRepository=pubsRepository;
+        this.pubsRepository=pubsRepository;
     }
 
     public void getPubs()
     {
+        pubsRepository.getPubs()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(list->
 
+                )
     }
 }

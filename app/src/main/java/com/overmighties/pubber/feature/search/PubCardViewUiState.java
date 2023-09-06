@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class PubCardViewUiState{
     private Long pubId;
+    private Boolean bookmarked;
     private String name;
     private Integer imageViewId;
     private String timeOpenToday;
