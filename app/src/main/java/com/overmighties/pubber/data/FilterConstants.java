@@ -8,5 +8,5 @@ public class FilterConstants {
     public static final float BASE_BOTTOM_RATING=0.0f;
     public static final float BASE_UPPER_RATING=5.0f;
     public static final float BASE_DISTANCE=-1.0f;
-    public static final String BASE_PRICE="-$";
+    public static final String NONE_PRICE ="-$";
 }

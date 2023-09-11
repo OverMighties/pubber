@@ -28,7 +28,7 @@
         android:id="@+id/filtrationScreen"
         android:name="com.overmighties.pubber.ui.FiltrationFragment"
         android:label="filtration"
-        tools:layout="@layout/filtration">
+        tools:layout="@layout/filter">
         <action
             android:id="@+id/filtrationToSearcher"
             app:destination="@id/searcherScreen" />

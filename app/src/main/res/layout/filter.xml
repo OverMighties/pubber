@@ -13,11 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:background="#693D2B"
-            app:layout_constraintEnd_toEndOf="parent" />
+
 
 
         <Button
@@ -72,7 +68,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/rating_textView_filtration"
                 android:layout_width="62dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -89,8 +85,8 @@
                 android:layout_width="28dp"
                 android:layout_height="32dp"
                 android:src="@drawable/arrowwhite"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintStart_toEndOf="@+id/rating_textView_filtration"
+                app:layout_constraintTop_toTopOf="@+id/rating_textView_filtration" />
 
             <com.google.android.material.slider.RangeSlider
                 android:id="@+id/rangeRating"
@@ -106,7 +102,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.351"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/rating_textView_filtration"
                 app:thumbColor="#FFFFFF"
                 app:tickColor="#000000"
                 app:trackColor="@color/white"
@@ -125,7 +121,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rangeRating" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/distance_textView_filtration"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -142,8 +138,8 @@
                 android:layout_width="28dp"
                 android:layout_height="32dp"
                 android:src="@drawable/arrowwhite"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toTopOf="@+id/textView3" />
+                app:layout_constraintStart_toEndOf="@+id/distance_textView_filtration"
+                app:layout_constraintTop_toTopOf="@+id/distance_textView_filtration" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -174,7 +170,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.549"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/distance_textView_filtration"
                 app:thumbColor="#FFFFFF"
                 app:tickColor="#000000"
                 app:trackColor="@color/white" />

@@ -14,13 +14,13 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.chip.ChipGroup;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.NavigationBar;
-import com.overmighties.pubber.data.FilterData;
 import com.overmighties.pubber.data.FilterConstants;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
+import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
+import com.overmighties.pubber.util.PriceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +29,24 @@ public class FilterFragment extends Fragment {
 
     public static final String TAG="FilterFragment";
     public boolean moreBeers;
-    private List<String> drinks=new ArrayList<>();;
-    private List<String> breweries=new ArrayList<>();
+    private List<String> otherDrinks =new ArrayList<>();;
+    private List<String> beers =new ArrayList<>();
     private boolean open;
 
-    public String price= FilterConstants.BASE_PRICE;
-    private FilterData filterData;
+    public String price= FilterConstants.NONE_PRICE;
     private PubListViewModel viewModel;
 
 
     public FilterFragment()
     {
-        super(R.layout.filtration);
+        super(R.layout.filter);
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         var nav_bar=getActivity().findViewById(R.id.nav_view);
         requireView().findViewById(R.id.buttonfiltr).setOnClickListener(v->{
             filtration(requireView());
+
             NavigationBar.smoothPopUp(nav_bar);
             Navigation.findNavController(v).navigate(FilterFragmentDirections.filtrationToSearcher());
         });
@@ -57,12 +57,12 @@ public class FilterFragment extends Fragment {
 
         NavigationBar.smoothHide(nav_bar);
         requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
-        listeners();
+        arrowExpandersListeners();
 
 
     }
 
-    private void listeners()
+    private void arrowExpandersListeners()
     {
         requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
         requireView().findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
@@ -103,8 +103,8 @@ public class FilterFragment extends Fragment {
 
     public void filtration(View view)
     {
-        RangeSlider r=view.findViewById(R.id.rangeRating);
-        Slider s=view.findViewById(R.id.odleglosc);
+        RangeSlider averageRatingSlider=view.findViewById(R.id.rangeRating);
+        Slider distanceSlider=view.findViewById(R.id.odleglosc);
         //jakiebrowary
         breweriesCheck(view);
         //drinki
@@ -112,20 +112,12 @@ public class FilterFragment extends Fragment {
         //cena
         priceCheck(view);
         isOpen(view);
-        filterData =new FilterData.Builder()
-                .distance(s.getValue())
-                .bottomAverageRating( r.getValues().get(0))
-                .upperAverageRating( r.getValues().get(1))
-                .isOpen(open)
-                .price(price)
-                .drinks(drinks)
-                .build();
-       // Log.d(TAG, "filtration: bottom rating"+r.getValues().get(0)+ ", upper "+r.getValues().get(1));
-        AppContainer
-                .getInstance()
-                .getPubSearchingContainer()
-                .getFiltrationOfPubs()
-                .setValue(filterData);
+        FilterUiState filterUiState =new FilterUiState( averageRatingSlider.getValues().get(1),averageRatingSlider.getValues().get(0)
+                ,distanceSlider.getValue(),open
+                ,null, false,PriceType.getByIcon(price),beers,otherDrinks);
+
+        viewModel.filter(filterUiState);
+
     }
 
 
@@ -152,7 +144,7 @@ public class FilterFragment extends Fragment {
             try {
                 int field = R.id.class.getField(sid).getInt(0);
                 if (((Chip) v.findViewById(field)).isChecked()) {
-                    drinks.add(String.valueOf(((Chip) v.findViewById(field)).getText()));
+                    otherDrinks.add(String.valueOf(((Chip) v.findViewById(field)).getText()));
                 }
             }catch(NoSuchFieldException | IllegalAccessException e) {
                 Log.e(TAG, "drinksCheck: Such View Field doesn't exit");
@@ -168,7 +160,7 @@ public class FilterFragment extends Fragment {
                 int field = R.id.class.getField(sid).getInt(0);
                 if(((Chip)v.findViewById(field)).isChecked())
                 {
-                    breweries.add(String.valueOf(((Chip)v.findViewById(field)).getText()));
+                    beers.add(String.valueOf(((Chip)v.findViewById(field)).getText()));
                 }
             }catch(NoSuchFieldException | IllegalAccessException e) {
                 Log.e(TAG, "drinksCheck: Such View Field doesn't exit");

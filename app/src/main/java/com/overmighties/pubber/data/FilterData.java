@@ -31,7 +31,7 @@ public class FilterData {
     private final float bottomRating;
     private final float upperRating;
     private final float distance;//in kilometers
-    private final boolean isOpen;
+    private final boolean isOpenNow;
     private final List<String> drinks;
     private final PriceType price ;
 
@@ -85,7 +85,7 @@ public class FilterData {
         bottomRating = builder.bottomAverageRating;
         upperRating = builder.upperAverageRating;
         distance = builder.distance;
-        isOpen = builder.isOpen;
+        isOpenNow = builder.isOpen;
         drinks = builder.drinks;
         price= builder.price;
     }

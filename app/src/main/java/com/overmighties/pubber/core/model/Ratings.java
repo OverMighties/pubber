@@ -25,4 +25,31 @@ public class Ratings {
        private Integer facebookLikes;
        private Integer instagramFollowers;
      */
+    public Float getAverageRating()
+    {
+        int count=0;
+        float sum=0.f;
+        if(facebook!=null){
+            count++;
+            sum+=facebook;
+        }
+        if(tripAdvisor!=null){
+            count++;
+            sum+=google;
+        }
+        if(untappd!=null){
+            count++;
+            sum+=untappd;
+        }
+        if(ourDrinksQuality!=null){
+            count++;
+            sum+=ourDrinksQuality;
+        }
+        if(ourServiceQuality!=null){
+            count++;
+            sum+=ourServiceQuality;
+        }
+        return count==0?null:Math.round(sum*100.f)/100.f;
+
+    }
 }
