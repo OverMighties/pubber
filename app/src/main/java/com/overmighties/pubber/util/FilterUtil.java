@@ -40,7 +40,7 @@ public class FilterUtil {
     public FilterUtil ratingFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if(filterUiState.getBottomAverageRating()==BASE_BOTTOM_RATING && filterUiState.getUpperAverageRating()==BASE_UPPER_RATING) {
+        if(filterUiState.getBottomAverageRating()==null || (filterUiState.getBottomAverageRating()==BASE_BOTTOM_RATING && filterUiState.getUpperAverageRating()==BASE_UPPER_RATING)) {
             return this;
         }
         for(var pubData: filteredPubs)
@@ -72,7 +72,9 @@ public class FilterUtil {
     public FilterUtil drinksFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if(filterUiState.getBeers().size()==0 && filterUiState.getOtherDrinks().size()==0) {
+        if(filterUiState.getBeers()!= null && filterUiState.getBeers().size()==0
+                && filterUiState.getOtherDrinks()!= null &&filterUiState.getOtherDrinks().size()==0 ||
+                (filterUiState.getBeers()== null && filterUiState.getOtherDrinks()== null)) {
             return this;
         }
         for(var pubData: filteredPubs) {
@@ -99,7 +101,7 @@ public class FilterUtil {
     public FilterUtil priceFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if(filterUiState.getPriceType().getIcon().equals(NONE_PRICE)) {
+        if(filterUiState.getPriceType()==null || filterUiState.getPriceType().getIcon().equals(NONE_PRICE)) {
             return this;
         }
         for(var pubData: filteredPubs) {
@@ -114,7 +116,7 @@ public class FilterUtil {
     public FilterUtil isOpenFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if(!filterUiState.getOpenNow() || filterUiState.getOpenNow()==null) {
+        if( filterUiState.getOpenNow()==null || !filterUiState.getOpenNow() ) {
             return this;
         }
         Integer dayOfWeekNow=LocalDateTime.now(). getDayOfWeek().getValue();

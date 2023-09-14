@@ -2,20 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_list"
+        android:id="@+id/searcher"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Lista" />
 
     <item
-        android:id="@+id/navigation_hot_pubs"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Odkrywaj" />
-
-    <item
-        android:id="@+id/navigation_saved"
+        android:id="@+id/saved"
         android:icon="@drawable/heartnavigationempty"
         android:title="Ulubione" />
 
-
+    <item
+        android:id="@+id/hot_pubs"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Odkrywaj" />
 
 </menu>

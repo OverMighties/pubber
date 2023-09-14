@@ -1,4 +1,4 @@
-package com.overmighties.pubber.ui;
+package com.overmighties.pubber.feature.hotpubs;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,4 +1,4 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.app.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;

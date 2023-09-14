@@ -71,15 +71,22 @@ public class PubListViewModel extends ViewModel {
     public void getPubsFromRepo()
     {
         if(originalPubData.getValue()==null) {
-            Disposable d = pubsRepository.getPubs()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(originalPubData::setValue,
-                            err -> Log.e(TAG, "getPubs: Can't get pubs " + err.getLocalizedMessage())
+            if(pubsRepository==null)
+            {
+                Log.e(TAG, "getPubsFromRepo: kurwa null" );
+            }
+            Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
+                    .subscribe(pubs->{
+                        originalPubData.setValue(pubs);
+                        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
+                                pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
+                        },
+                        err -> Log.e(TAG, "getPubs: Can't get pubs " + err.getLocalizedMessage())
                     );
             if (d.isDisposed()) {
                 d.dispose();
             }
+
         }
     }
     public void search(String prompt)

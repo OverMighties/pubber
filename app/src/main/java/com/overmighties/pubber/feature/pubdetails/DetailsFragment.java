@@ -9,9 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.NavigationBar;
-import com.overmighties.pubber.feature.search.PubListViewModel;
-import com.overmighties.pubber.util.SliderAdapter;
+import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.app.ui.SliderAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

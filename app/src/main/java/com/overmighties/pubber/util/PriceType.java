@@ -24,6 +24,10 @@ public enum PriceType {
     }
     public static PriceType getById(Integer id)
     {
+        if(id==null)
+        {
+            return NONE;
+        }
         switch (id)
         {
             case 1:
@@ -43,6 +47,10 @@ public enum PriceType {
     }
     public static PriceType getByIcon(String stringIcon)
     {
+        if(stringIcon==null)
+        {
+            return NONE;
+        }
         switch (stringIcon)
         {
             case "$":

@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 @Data
 @AllArgsConstructor
+
 public class Pub {
 
     private Long id;

@@ -5,7 +5,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.overmighties.pubber.feature.search.PlaceChoiceFragment"
+        android:name="com.overmighties.pubber.app.ui.PlaceChoiceFragment"
         android:label="activity_choice"
         tools:layout="@layout/choice" >
         <action
@@ -46,7 +46,7 @@
         tools:layout="@layout/details" />
     <fragment
         android:id="@+id/hotPubsFragment"
-        android:name="com.overmighties.pubber.ui.HotPubsFragment"
+        android:name="com.overmighties.pubber.feature.hotpubs.HotPubsFragment"
         android:label="hot_pubs"
         tools:layout="@layout/hot_pubs" >
         <action

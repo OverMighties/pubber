@@ -11,15 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.chip.ChipGroup;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.NavigationBar;
+import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.data.FilterConstants;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
+
 import com.overmighties.pubber.util.PriceType;
 
 import java.util.ArrayList;
@@ -46,9 +48,8 @@ public class FilterFragment extends Fragment {
         var nav_bar=getActivity().findViewById(R.id.nav_view);
         requireView().findViewById(R.id.buttonfiltr).setOnClickListener(v->{
             filtration(requireView());
-
             NavigationBar.smoothPopUp(nav_bar);
-            Navigation.findNavController(v).navigate(FilterFragmentDirections.filtrationToSearcher());
+            Navigation.findNavController(requireView()).navigate(FilterFragmentDirections.actionFilterToSearcher());
         });
 
         viewModel = new ViewModelProvider(requireActivity(),
@@ -58,7 +59,6 @@ public class FilterFragment extends Fragment {
         NavigationBar.smoothHide(nav_bar);
         requireView().findViewById(R.id.wiecej).setOnClickListener(buttView->moreBeers(requireView()));
         arrowExpandersListeners();
-
 
     }
 

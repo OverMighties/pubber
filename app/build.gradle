@@ -68,6 +68,12 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.5.1"
 
+    //Room
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+
     //Lombok to shortening code
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'

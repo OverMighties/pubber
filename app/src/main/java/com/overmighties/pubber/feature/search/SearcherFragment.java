@@ -16,18 +16,17 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.app.PubberApp;
-import com.overmighties.pubber.util.SelectListener;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
-import com.overmighties.pubber.app.NavigationBar;
-import com.overmighties.pubber.util.ListPubAdapter;
+import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.util.SortPubsBy;
 
-public class SearcherFragment extends Fragment implements SelectListener {
+public class SearcherFragment extends Fragment  {
 
     public static final String TAG = "SearcherFragment";
     private RecyclerView recyclerView;
@@ -35,7 +34,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
     private SearchView searchview;
     private PubListViewModel viewModel;
-
+    private  NavController navcontroller;
     public SearcherFragment() {
         super(R.layout.searcher);
     }
@@ -47,12 +46,13 @@ public class SearcherFragment extends Fragment implements SelectListener {
         viewModel = new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
-        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue(),this);
+        viewModel.getPubsFromRepo();
+        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue());
         recyclerView.setAdapter(adapter);
-
+        //navcontroller= NavHostFragment.findNavController(this);
         //Setting listener to departure to FiltrationScreen
         ((ImageView) requireView().findViewById(R.id.Filtration)).setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(SearcherFragmentDirections.searcherToFiltration());
+            Navigation.findNavController(getActivity(),R.id.Filtration).navigate(SearcherFragmentDirections.actionSearcherToFilter());
 
         });
         NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
@@ -60,7 +60,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
         sortButtonsListeners();
         viewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs->
         {
-            adapter = new ListPubAdapter( pubs,SearcherFragment.this);
+            adapter = new ListPubAdapter( pubs);
             recyclerView.setAdapter(adapter);
         });
 
@@ -193,15 +193,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
         super.onResume();
         if(getActivity().findViewById(R.id.nav_view).getVisibility()==View.GONE)
             NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
+
     }
-
-    @Override
-    public void onItemClicked(int position) {
-        Navigation.findNavController(requireView()).navigate(SearcherFragmentDirections.searcherToDetail());
-    }
-
-
-
-
-
 }
