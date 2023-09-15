@@ -5,16 +5,23 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(tableName = "opening_hours")
 public class OpeningHoursEntity {
     @PrimaryKey(autoGenerate = true)
-    private Long id;
-
-    private String weekday;
-
+    @NonNull
+    public Long id=0L;
+    public Long pubId;
+    public String weekday;
     @ColumnInfo(name = "time_open")
-
-    private String timeOpen;
+    public String timeOpen;
     @ColumnInfo(name = "time_close")
-    private String timeClose;
+    public String timeClose;
 }

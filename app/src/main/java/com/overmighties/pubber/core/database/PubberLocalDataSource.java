@@ -10,5 +10,5 @@ import io.reactivex.rxjava3.core.Single;
 
 public interface PubberLocalDataSource {
     Single<List<Pub>> getPubs();
-    void updatePubs(Single<List<Pub>>  pubs) throws RuntimeException;
+    void updatePubs(List<Pub>  pubs) throws RuntimeException;
 }

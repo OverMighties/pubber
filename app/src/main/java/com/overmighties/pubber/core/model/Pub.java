@@ -5,21 +5,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 @Data
 @AllArgsConstructor
 
 public class Pub {
 
     private Long id;
-    private LocalDateTime timeFetched;
-
     private String name;
 
     private String address;
+    private LocalDateTime fetchTime;
     private String city;
 
     private String phoneNumber;

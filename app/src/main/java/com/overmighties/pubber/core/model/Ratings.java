@@ -14,8 +14,8 @@ public class Ratings {
     private Integer googleCount;
     private Float facebook;
     private Integer facebookReviewsCount;
-    private Float tripAdvisor;
-    private Integer tripAdvisorCount;
+    private Float tripadvisor;
+    private Integer tripadvisorCount;
     private Float untappd;
     private Integer untappdCount;
     private Float ourDrinksQuality;
@@ -33,7 +33,7 @@ public class Ratings {
             count++;
             sum+=facebook;
         }
-        if(tripAdvisor!=null){
+        if(tripadvisor !=null){
             count++;
             sum+=google;
         }

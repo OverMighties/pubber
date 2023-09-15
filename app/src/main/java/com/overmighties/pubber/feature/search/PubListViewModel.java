@@ -60,7 +60,7 @@ public class PubListViewModel extends ViewModel {
                 assert app != null;
                 SavedStateHandle savedStateHandle = createSavedStateHandle(creationExtras);
 
-                return new PubListViewModel(app.appContainer.pubsRepository,  savedStateHandle);
+                return new PubListViewModel(app.appContainer.getPubsRepository(),  savedStateHandle);
             }
     );
 
