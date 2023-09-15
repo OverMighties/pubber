@@ -85,10 +85,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-
-        android:layout_width="414dp"
-        android:layout_height="589dp"
-
+        android:layout_width="413dp"
+        android:layout_height="661dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +111,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/lista"
+                app:layout_constraintTop_toTopOf="@+id/Publista"
                 app:layout_constraintVertical_bias="1.0">
 
                 <androidx.recyclerview.widget.RecyclerView

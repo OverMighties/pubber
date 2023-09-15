@@ -1,7 +1,6 @@
 package com.overmighties.pubber.ui;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,16 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.overmighties.pubber.Interface.SelectListener;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
-import com.overmighties.pubber.app.MainActivity;
 import com.overmighties.pubber.app.NavigationBar;
 import com.overmighties.pubber.data.FiltrationData;
 import com.overmighties.pubber.data.PubData;
@@ -34,16 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import lombok.val;
-
 public class SearcherFragment extends Fragment implements SelectListener {
 
     public static final String TAG = "SearcherFragment";
     private RecyclerView recyclerView;
     private ListPubAdapter adapter;
 
-    private NavController navCo;
-    private NavHostFragment navHostFragment;
     private SearchView searchview;
 
     public SearcherFragment() {
@@ -56,9 +48,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
         TestData.initDataSets();
         adapter = new ListPubAdapter(TestData.getPubDataList(),this);
         recyclerView.setAdapter(adapter);
-       // navHostFragment = (NavHostFragment) getChildFragmentManager()
-      //        .findFragmentById(R.id.fragmentContainerView);
-       // navCo = navHostFragment.getNavController();
 
         final Observer<FiltrationData> nameObserver = filtration -> {
             Log.d(TAG, "onChanged: filtration changed");
@@ -92,29 +81,27 @@ public class SearcherFragment extends Fragment implements SelectListener {
             Navigation.findNavController(v).navigate(SearcherFragmentDirections.searcherToFiltration());
 
         });
-        if(getActivity().findViewById(R.id.nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
+        NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
         initSearchView();
         listeners();
 
 
 
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(getActivity().findViewById(R.id.nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
-    }
     private void listeners()
     {
         ((TextView)requireView().findViewById(R.id.sorttext)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");}
+            public void onClick(View v) {
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
+            }
         });
         ((ImageView)requireView().findViewById(R.id.sortimage)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue("sort");}
+            public void onClick(View v) {
+                AppContainer.getInstance().getPubSearchingContainer().getPopupInformation().setValue(((TextView)requireView().findViewById(R.id.sorttext)).getText().toString());
+
+            }
         });
     }
 
@@ -178,12 +165,17 @@ public class SearcherFragment extends Fragment implements SelectListener {
     }
 
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getActivity().findViewById(R.id.nav_view).getVisibility()==View.GONE)
+            NavigationBar.smoothPopUp(getActivity().findViewById(R.id.nav_view));
+    }
 
     @Override
     public void onItemClicked(int position)
     {
-        NavHostFragment.findNavController(this).navigate(SearcherFragmentDirections.searcherToDetail());
+        Navigation.findNavController(requireView()).navigate(SearcherFragmentDirections.searcherToDetail());
         AppContainer.getInstance().getPubSearchingContainer().getPosition().setValue(position);
 
     }
