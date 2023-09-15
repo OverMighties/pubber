@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:background="#2C2828"
-        app:itemActiveIndicatorStyle="@style/NavigationBarCollor"
+        app:itemActiveIndicatorStyle="@style/NavigationBarColor"
         app:itemIconTint="@color/white"
-        style="@style/CustomNaviationBarContainer"
+        style="@style/CustomNavigationBarContainer"
         app:itemTextColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -29,17 +29,26 @@
             android:background="@color/white" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadingEdge=""
-        android:background="#2C2828"
-        android:backgroundTint="#2C2828"
-        app:defaultNavHost="true"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:navGraph="@navigation/mobile_navigation"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2C2828"
+            android:backgroundTint="#2C2828"
+            android:fadingEdge=""
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/menu_navigation"
+            tools:layout_editor_absoluteX="0dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

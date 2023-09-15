@@ -1,6 +1,8 @@
 package com.overmighties.pubber.app;
 
 public class Constants {
+
+
     public static final String [] STRINGSXML_NAMES = new String[]{
            "app_name",
             "nazwa_aplikacji",
@@ -109,5 +111,7 @@ public class Constants {
             "srednio",
             "duzo",
     };
+
+
 
 }

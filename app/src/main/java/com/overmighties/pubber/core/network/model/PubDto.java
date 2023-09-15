@@ -1,0 +1,48 @@
+package com.overmighties.pubber.core.network.model;
+
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PubDto {
+    @SerializedName("id")
+    private Long id;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("address")
+    private String address;
+    @SerializedName("placeId")
+    private String placeId;
+    @SerializedName("city")
+    private String city;
+    @SerializedName("phoneNumber")
+    private String phoneNumber;
+    @SerializedName("websiteUrl")
+    private String websiteUrl;
+    @SerializedName("iconUrl")
+    private String iconUrl;
+    @SerializedName("description")
+    private String description;
+    @SerializedName("reservable")
+    private Boolean reservable;
+    @SerializedName("takeout")
+    private Boolean takeout;
+    @SerializedName("ratings")
+    private RatingsDto ratings;
+    @SerializedName("openingHours")
+    private List<OpeningHoursDto> openingHours;
+    @SerializedName("drinks")
+    private List<DrinkDto> drinks;
+    @SerializedName("photos")
+    private List<PhotoDto> photos;
+}
