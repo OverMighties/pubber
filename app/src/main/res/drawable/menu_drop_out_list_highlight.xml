@@ -3,7 +3,11 @@
     <solid android:color="@color/white"
         />
     <stroke android:width="2dp"
+<<<<<<< Updated upstream
         android:color="@color/main"
+=======
+        android:color="@color/theme"
+>>>>>>> Stashed changes
         />
     <padding
         android:top="2dp"

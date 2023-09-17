@@ -1,7 +1,12 @@
 package com.overmighties.pubber.util;
 
+<<<<<<< Updated upstream
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.data.PubData;
+=======
+
+import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
+>>>>>>> Stashed changes
 
 import java.util.Collections;
 import java.util.Comparator;

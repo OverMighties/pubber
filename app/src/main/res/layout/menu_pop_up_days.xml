@@ -2,16 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< Updated upstream
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+=======
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+>>>>>>> Stashed changes
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/jeden"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
         android:layout_marginTop="304dp"
+=======
+
+>>>>>>> Stashed changes
         android:background="@drawable/menu_drop_out_list_shape_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,7 +44,11 @@
         android:id="@+id/dwa"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
+=======
+
+>>>>>>> Stashed changes
         android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jeden">
@@ -65,7 +78,11 @@
         android:id="@+id/trzy"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
+=======
+
+>>>>>>> Stashed changes
         android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dwa">
@@ -95,7 +112,11 @@
         android:id="@+id/cztery"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
+=======
+
+>>>>>>> Stashed changes
         android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trzy">
@@ -125,7 +146,11 @@
         android:id="@+id/piec"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
+=======
+
+>>>>>>> Stashed changes
         android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cztery">
@@ -155,7 +180,10 @@
         android:id="@+id/szesc"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
+=======
+>>>>>>> Stashed changes
         android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/piec">
@@ -193,7 +221,11 @@
         android:id="@+id/siedem"
         android:layout_width="150dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="10dp"
+=======
+
+>>>>>>> Stashed changes
         android:background="@drawable/menu_drop_out_list_shape_down"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/szesc">
@@ -212,6 +244,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<<<<<<< Updated upstream
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dismissone"
         android:layout_width="421dp"
@@ -255,4 +288,6 @@
 
 
 
+=======
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

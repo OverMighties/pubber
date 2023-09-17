@@ -3,6 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pinky">#FFCBCB</color>
+<<<<<<< Updated upstream
     <color name="main">#693D2B</color>
 
+=======
+    <color name="main">#2C2828</color>
+    <color name="theme">#693D2B</color>
+>>>>>>> Stashed changes
 </resources>
