@@ -1,84 +1,35 @@
 package com.overmighties.pubber.feature.pubdetails;
 
-import android.content.Intent;
-import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
-<<<<<<<< HEAD:app/src/main/java/com/overmighties/pubber/ui/DetailFragment.java
-========
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.viewpager2.widget.ViewPager2;
->>>>>>>> main:app/src/main/java/com/overmighties/pubber/feature/pubdetails/DetailsFragment.java
 
-import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.shape.CornerFamily;
-import com.google.android.material.shape.ShapeAppearanceModel;
+
 import com.overmighties.pubber.R;
-<<<<<<<< HEAD:app/src/main/java/com/overmighties/pubber/ui/DetailFragment.java
-import com.overmighties.pubber.app.AppContainer;
-import com.overmighties.pubber.app.NavigationBar;
-import com.overmighties.pubber.data.PubData;
-========
-import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.app.ui.SliderAdapter;
->>>>>>>> main:app/src/main/java/com/overmighties/pubber/feature/pubdetails/DetailsFragment.java
 
-import java.util.ArrayList;
+import com.overmighties.pubber.app.ui.NavigationBar;
 
 public class DetailsFragment extends Fragment
 {
-<<<<<<<< HEAD:app/src/main/java/com/overmighties/pubber/ui/DetailFragment.java
-    private ArrayList<Integer> photolist=new ArrayList<Integer>();
 
-
-    public DetailFragment() {super(R.layout.detail);}
-
-========
     private ViewPager2 viewPager;
     private DetailsViewModel viewModel;
     public DetailsFragment() {super(R.layout.details);}
->>>>>>>> main:app/src/main/java/com/overmighties/pubber/feature/pubdetails/DetailsFragment.java
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
         //To ukrywa navigation bar
         NavigationBar.smoothHide(getActivity().findViewById(R.id.nav_view));
-<<<<<<<< HEAD:app/src/main/java/com/overmighties/pubber/ui/DetailFragment.java
-        photolist.add(R.drawable.zdjecie1);
-        photolist.add(R.drawable.zdjecie2);
-        photolist.add(R.drawable.zdjecie3);
-        photolist.add(R.drawable.zdjecie4);
-        photolist.add(R.drawable.zdjecie5);
-        photolist.add(R.drawable.zdjecie6);
-        //method for getting all of informations about exact pub
-        DetailAdapter();
-        //method for setting up image slider by making imageview
-        SetUpImageSlider(photolist);
 
 
 
-
-========
-        viewModel = new ViewModelProvider(requireActivity()).get(DetailsViewModel.class);
-        viewPager=requireView().findViewById(R.id.viewPager);
-        List<Integer> sliderItemIds=new ArrayList<>();
-        sliderItemIds.add(R.drawable.zdjecie1);
-        sliderItemIds.add(R.drawable.zdjecie3);
-        sliderItemIds.add(R.drawable.zdjecie1);
-        sliderItemIds.add(R.drawable.zdjecie3);
-        viewPager.setAdapter(new SliderAdapter(sliderItemIds,viewPager));
-        invisibleDetails();
->>>>>>>> main:app/src/main/java/com/overmighties/pubber/feature/pubdetails/DetailsFragment.java
 
     }
-
+    /*
     private void DetailAdapter()
     {
         PubData pub= AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue().get(AppContainer.getInstance().getPubSearchingContainer().getPosition().getValue());
@@ -163,4 +114,6 @@ public class DetailsFragment extends Fragment
     {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
+
+     */
 }

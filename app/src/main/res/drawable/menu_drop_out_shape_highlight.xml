@@ -10,10 +10,8 @@
         android:topRightRadius="10dp"/>
 
     <solid
-<<<<<<< Updated upstream
-        android:color="@color/main"
-=======
+
         android:color="@color/theme"
->>>>>>> Stashed changes
+
         />
 </shape>

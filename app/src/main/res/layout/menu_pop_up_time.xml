@@ -3,21 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dismis"
-<<<<<<< Updated upstream
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="168dp"
-        android:layout_height="280dp"
-
-        android:layout_marginTop="311dp"
-        android:layout_marginEnd="5dp"
-        android:fillViewport="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-=======
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -30,7 +15,6 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
->>>>>>> Stashed changes
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -1605,21 +1589,14 @@
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-<<<<<<< Updated upstream
-        android:layout_width="168dp"
-        android:layout_height="7dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/menu_drop_out_list_shape_scrollview_up"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent">
-=======
+
         android:id="@+id/constraintLayout2"
         android:layout_width="168dp"
         android:layout_height="7dp"
         android:background="@drawable/menu_drop_out_list_shape_scrollview_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
->>>>>>> Stashed changes
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1627,39 +1604,7 @@
         android:id="@+id/constraintLayout5"
         android:layout_width="168dp"
         android:layout_height="7dp"
-<<<<<<< Updated upstream
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/menu_drop_out_list_shape_scrollview_down"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dismis3"
-        android:layout_width="409dp"
-        android:layout_height="302dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dismis1"
-        android:layout_width="172dp"
-        android:layout_height="162dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dismis2"
-        android:layout_width="236dp"
-        android:layout_height="427dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-=======
         android:layout_marginTop="300dp"
         android:background="@drawable/menu_drop_out_list_shape_scrollview_down"
         app:layout_constraintStart_toStartOf="parent"
@@ -1667,5 +1612,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
->>>>>>> Stashed changes
+
 </androidx.constraintlayout.widget.ConstraintLayout>

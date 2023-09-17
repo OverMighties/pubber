@@ -3,10 +3,8 @@ package com.overmighties.pubber.app;
 import com.overmighties.pubber.R;
 
 public class Constants {
-
-
     public static final String [] STRINGSXML_NAMES = new String[]{
-           "app_name",
+            "app_name",
             "nazwa_aplikacji",
             "AleBrowar",
             "Amber",
@@ -125,34 +123,11 @@ public class Constants {
             };
     public static final Integer[] NUMBERSDAYS=new Integer[]
             {
-                1,2,3,4,5,6,7
+                    1,2,3,4,5,6,7
             };
-    public static final int[] POP_UP_DAYS_DISMISS_IDS=new int[]
-            {
-                    R.id.dismissone,
-                    R.id.dismisstwo,
-                    R.id.dismissthree,
-                    R.id.dismissfour
 
-<<<<<<< Updated upstream
-            };
-    public static final int[] SORT_POP_UP_IDS=new int[]
-            {
-                    R.id.trafnosc,
-                    R.id.najodleglosc,
-                    R.id.ocena,
-                    R.id.alfabetycznie
-=======
-    public static final int[] POP_UP_DAYS_IDS=new int[]
-            {
-                    R.id.jeden,
-                    R.id.dwa,
-                    R.id.trzy,
-                    R.id.cztery,
-                    R.id.piec,
-                    R.id.szesc,
-                    R.id.siedem
-            };
+
+
     public static final int[] POP_UP_DAYS_TEXTIDS=new int[]
             {
                     R.id.textViewjeden,
@@ -163,10 +138,7 @@ public class Constants {
                     R.id.textViewszesc,
                     R.id.textViewsiedem
             };
-    public static final Integer[] NUMBERSDAYS=new Integer[]
-            {
-                    1,2,3,4,5,6,7
-            };
+
 
     public static final int[] SORT_POP_UP_IDS=new int[]
             {
@@ -174,7 +146,7 @@ public class Constants {
                     R.id.radio_butt_alphabetical,
                     R.id.radio_butt_rating,
                     R.id.radio_butt_distance
->>>>>>> Stashed changes
+
             };
     public static final int[] POP_UP_TIME_IDS=new int[]
             {
@@ -282,18 +254,6 @@ public class Constants {
                     R.id.textg24,
                     R.id.textgdowolne
             };
-
-<<<<<<< Updated upstream
-    public static final int[] POP_UP_TIME_DISMISS_IDS=new int[]
-            {
-                    R.id.dismis1,
-                    R.id.dismis2,
-                    R.id.dismis3,
-
-            };
-=======
->>>>>>> Stashed changes
-
 
 
 
