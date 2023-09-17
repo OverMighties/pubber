@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/searcher"
+    android:id="@+id/menu_graph"
+    >
+
+    <fragment
+        android:id="@+id/searcher"
+        android:name="com.overmighties.pubber.feature.search.SearcherFragment"
+        android:label="searcher"
+
+        tools:layout="@layout/searcher">
+
+        <action
+            android:id="@+id/action_searcher_to_details"
+            app:destination="@id/details" />
+        <action
+            android:id="@+id/action_searcher_to_filter"
+            app:destination="@id/filter" />
+    </fragment>
+    <fragment
+        android:id="@+id/saved"
+        android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
+        android:label="saved"
+        tools:layout="@layout/saved" >
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/hot_pubs"
+        android:name="com.overmighties.pubber.feature.hotpubs.HotPubsFragment"
+        android:label="hot_pubs"
+        tools:layout="@layout/hot_pubs" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/details"
+        android:name="com.overmighties.pubber.feature.pubdetails.DetailsFragment"
+        android:label="details"
+        tools:layout="@layout/details" >
+        <action
+            android:id="@+id/action_details_to_searcher"
+            app:destination="@id/searcher" />
+    </fragment>
+    <fragment
+        android:id="@+id/filter"
+        android:name="com.overmighties.pubber.feature.search.FilterFragment"
+        android:label="FilterFragment" >
+        <action
+            android:id="@+id/action_filter_to_searcher"
+            app:destination="@id/searcher" />
+    </fragment>
+
+</navigation>

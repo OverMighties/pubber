@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#943828"
+    tools:context=".app.ui.PlaceChoiceFragment">
+
+    <Button
+        android:id="@+id/city1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:text="Kraków"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city2" />
+
+    <Button
+        android:id="@+id/city2"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:text="Warszawa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/city3"
+        android:layout_width="161dp"
+        android:layout_height="160dp"
+        android:text="Rzeszów"
+        app:layout_constraintBottom_toTopOf="@+id/city2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

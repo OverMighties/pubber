@@ -22,8 +22,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     buildFeatures {
         viewBinding true
@@ -56,6 +56,24 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //Android Concurrent
+    implementation "androidx.concurrent:concurrent-futures:1.1.0"
+
+    //RxJava
+    // (Java only)
+    implementation "androidx.work:work-runtime:2.8.1"
+    implementation "androidx.work:work-multiprocess:2.8.1"
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.5.1"
+
+    //Room
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
 
     //Lombok to shortening code
     compileOnly 'org.projectlombok:lombok:1.18.28'

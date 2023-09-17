@@ -1,8 +1,6 @@
 package com.overmighties.pubber.feature.search;
 
 
-import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
-
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -127,21 +125,48 @@ public class SearcherFragment extends Fragment  {
                 popupWindow.dismiss();
             }
         });
-        for (var id : SORT_POP_UP_IDS) {
-            ((RadioButton) popupView.findViewById(id)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (((RadioButton) popupView.findViewById(id)).isChecked()) {
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(id)).setChecked(true);
-                    } else {
-                    }
+
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
                 }
-            });
-        }
+            }
+        });
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
+                }
+            }
+        });
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
+                }
+            }
+        });
+        ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                }
+            }
+        });
+
 
     }
     private void initSearchView()

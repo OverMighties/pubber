@@ -1,55 +1,50 @@
 package com.overmighties.pubber.util;
 
-<<<<<<< Updated upstream
-import com.overmighties.pubber.app.AppContainer;
-import com.overmighties.pubber.data.PubData;
-=======
-
+import com.overmighties.pubber.data.model.PubUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
->>>>>>> Stashed changes
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import lombok.Getter;
+import lombok.NonNull;
 
 public class SortUtil
 {
-    public static void sortUtli(int sorting)
+    public static List<PubItemCardViewUiState>  sortingPubData(List<PubItemCardViewUiState> pubList, SortPubsBy sortingBy)
     {
-        List<PubData> pubDataList = AppContainer.getInstance().getPubSearchingContainer().getListOfFiltratedPubs().getValue();
-        switch(sorting)
+
+        switch(sortingBy)
         {
-            case 1:
+            case RELEVANCE:
                 break;
-            case 2:
-                sortByPubNameAlphabetical(pubDataList);
+            case ALPHABETICAL:
+                sortByPubNameAlphabetical(pubList);
                 break;
-            case 3:
-                sortByRatingsDesc(pubDataList);
+            case RATING:
+                sortByRatingsDesc(pubList);
                 break;
-            case 4:
-                sortByDistanceAsc(pubDataList);
+            case DISTANCE:
+                sortByDistanceAsc(pubList);
                 break;
         }
-        AppContainer.getInstance().getPubSearchingContainer().getListOfSortedPubs().setValue(pubDataList);
+        return pubList;
     }
 
-    public static  void sortByRatingsDesc(List<PubData> list)
+    public static  void sortByRatingsDesc( @NonNull List<PubItemCardViewUiState> list)
     {
-        list.sort(Comparator.comparingDouble(PubData::getRatingOwn).reversed());
+        list.sort(Comparator.comparingDouble(PubItemCardViewUiState::getAverageRatingFromServices).reversed());
     }
-    public static void sortByDistanceAsc(List<PubData> list)
+    public static void sortByDistanceAsc(@NonNull List<PubItemCardViewUiState> list)
     {
-        list.sort(Comparator.comparingDouble(PubData::getDistance).reversed());
+        list.sort(Comparator.comparingDouble(PubItemCardViewUiState::getCarDistance).reversed());
     }
-    public static void sortByPubNameAlphabetical(List<PubData> list)
+    public static void sortByPubNameAlphabetical(@NonNull List<PubItemCardViewUiState> list)
     {
-        //poprzednia wersja sortowania stawiała duże litery nad małymi
-        Collections.sort(list, new Comparator<PubData>() {
+     
+        Collections.sort(list, new Comparator<PubItemCardViewUiState>() {
             @Override
-            public int compare(final PubData object1, final PubData object2) {
+            public int compare(final PubItemCardViewUiState object1, final PubItemCardViewUiState object2) {
                 return (((object1.getName()).toLowerCase())).compareTo((object2.getName().toLowerCase()));
             }
         });

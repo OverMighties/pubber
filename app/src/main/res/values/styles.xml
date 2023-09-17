@@ -45,7 +45,7 @@
         <item name="cornerSizeBottomRight">10dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
-    <style name="NavigationBarCollor" parent="Widget.Material3.BottomNavigationView.ActiveIndicator" >
+    <style name="NavigationBarColor" parent="Widget.Material3.BottomNavigationView.ActiveIndicator" >
         <item name="android:color">@color/main</item>
 
     </style>
