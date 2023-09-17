@@ -1,6 +1,6 @@
 package com.overmighties.pubber.util;
 
-import com.overmighties.pubber.data.model.PubUiState;
+
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 
 import java.util.Collections;
