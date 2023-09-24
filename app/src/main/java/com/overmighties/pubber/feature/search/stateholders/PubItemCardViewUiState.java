@@ -11,7 +11,7 @@ public class PubItemCardViewUiState {
     private Long pubId;
     private Boolean bookmarked;
     private String name;
-    private Integer imageIconViewId;
+    private String iconUrl;
     private String timeOpenToday;
     private Float carDistance;
     private String costRating;

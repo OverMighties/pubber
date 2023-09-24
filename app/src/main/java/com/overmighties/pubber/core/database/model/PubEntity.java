@@ -4,6 +4,7 @@ package com.overmighties.pubber.core.database.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
@@ -41,15 +42,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PubEntity {
+    @Ignore
+    public static final Long ID_NONE =null;
     @PrimaryKey
-    @NonNull
+    @ColumnInfo(name="pub_id")
+   // @NonNull
     public Long pubId;
     public String name;
     public String address;
     public String fetchTime;
-   // @Ignore
+    //@Ignore
     //private String placeId;
-   public String city;
+    public String city;
     @ColumnInfo(name = "phone_number")
     public String phoneNumber;
     @ColumnInfo(name = "website_url")

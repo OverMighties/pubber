@@ -24,22 +24,32 @@ public abstract class PubsDao  {
     @Query("SELECT * FROM pubs")
     abstract Single<List<PubWithAllEntities>> getPubsWithEntities();
     @Transaction
-    @Query("SELECT * FROM pubs WHERE :pubId=pubId")
+    @Query("SELECT * FROM pubs WHERE :pubId=pub_id")
     abstract Single<PubWithAllEntities> getPubById(Long pubId);
 
     @Transaction
-    public void insertAll(List<PubWithAllEntities> pubs)
+    @Query("SELECT * FROM pub_drink_cross_ref WHERE :pubId=pub_id")
+    abstract Single<List<PubDrinkCrossRefEntity>> getDrinksByPubId(Long pubId);
+
+    @Transaction
+    public synchronized void insertAll(List<PubWithAllEntities> pubs)
     {
 
         for (PubWithAllEntities pubWithAllEntities : pubs) {
             insertPub(pubWithAllEntities.pub);
-            insertDrinks(pubWithAllEntities.drinks);
-            for(var drink :pubWithAllEntities.drinks)
+            if(pubWithAllEntities.drinks!=null)
             {
-                insertPubDrinkCrossRef(new PubDrinkCrossRefEntity(pubWithAllEntities.pub.pubId,drink.drinkId));
+                insertDrinks(pubWithAllEntities.drinks);
+                var drinks=getDrinksByPubId(pubWithAllEntities.pub.pubId).blockingGet();
+                for(var drink : drinks)
+                {
+                    insertPubDrinkCrossRef(new PubDrinkCrossRefEntity(pubWithAllEntities.pub.pubId,drink.drinkId));
+                }
             }
-            insertPhotos(pubWithAllEntities.photos);
-            insertRatings(pubWithAllEntities.ratings);
+            if(pubWithAllEntities.photos!=null)
+                insertPhotos(pubWithAllEntities.photos);
+            if(pubWithAllEntities.ratings!=null)
+                insertRatings(pubWithAllEntities.ratings);
         }
     }
 

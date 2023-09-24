@@ -29,35 +29,40 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/PubImage"
-                android:layout_width="135dp"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/pub_icon"
                 android:clickable="false"
                 android:contentDescription="Przykładowe zdjęcie pubu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                />
 
             <TextView
                 android:id="@+id/nazwaPubu"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:layout_gravity="start"
                 android:textColor="#FFFFFF"
                 android:textIsSelectable="true"
-                android:textSize="22sp"
+                android:textSize="19sp"
                 android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.24"
+                app:layout_constraintEnd_toStartOf="@id/heart"
                 app:layout_constraintStart_toEndOf="@+id/PubImage"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.16" />
+                app:layout_constraintVertical_bias="0.1" />
 
             <TextView
                 android:id="@+id/timeOpenToday_card_view_row"
@@ -69,7 +74,8 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/PubImage"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6"/>
 
             <TextView
                 android:id="@+id/drogaAuto"
@@ -81,7 +87,9 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/timeOpenToday_card_view_row"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6"
+                />
 
             <TextView
                 android:id="@+id/ocenaKoszty"
@@ -94,7 +102,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/PubImage"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.828" />
+                app:layout_constraintVertical_bias="0.9" />
 
             <TextView
                 android:id="@+id/ocenaJakosc"
@@ -106,7 +114,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ocenaKoszty"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.828" />
+                app:layout_constraintVertical_bias="0.9" />
 
             <TextView
                 android:id="@+id/ocenaSredniaSerwisy"
@@ -119,14 +127,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ocenaJakosc"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.828" />
+                app:layout_constraintVertical_bias="0.9" />
 
             <ImageButton
                 android:id="@+id/heart"
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
+                android:background="#433436"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/heartempty" />

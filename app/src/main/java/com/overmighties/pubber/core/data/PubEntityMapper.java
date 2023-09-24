@@ -11,7 +11,7 @@ import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
-import com.overmighties.pubber.util.DateConverter;
+import com.overmighties.pubber.util.DateTimeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class PubEntityMapper {
     public static Pub mapFromEntity(PubWithAllEntities pubWithAllEntities)
     {
         PubEntity pubEntity=pubWithAllEntities.pub;
-        return new Pub(pubEntity.getPubId(), pubEntity.getName(),pubEntity.getAddress(), DateConverter.getFromString(pubEntity.getFetchTime()), pubEntity.getCity(), pubEntity.getPhoneNumber(),
+        return new Pub(pubEntity.getPubId(), pubEntity.getName(),pubEntity.getAddress(), DateTimeConverter.getFromString(pubEntity.getFetchTime()), pubEntity.getCity(), pubEntity.getPhoneNumber(),
                 pubEntity.getWebsiteUrl(), pubEntity.getIconPath(), pubEntity.getDescription(), pubEntity.getReservable(), pubEntity.getTakeout(),
                 mapFromEntityRatings(pubWithAllEntities.getRatings()),mapFromEntityOpeningHours(pubWithAllEntities.getOpeningHours()),
                 mapFromEntityDrinks(pubWithAllEntities.getDrinks()),mapFromEntityPhotos(pubWithAllEntities.getPhotos()));
@@ -36,14 +36,14 @@ public class PubEntityMapper {
     }
     public static List<Drink> mapFromEntityDrinks(List<DrinkEntity> drinkEntities)
     {
-        return drinkEntities==null?new ArrayList<Drink>():drinkEntities.stream().map(entity -> new Drink(entity.getName(),entity.getType())).collect(Collectors.toList());
+        return drinkEntities==null?null:drinkEntities.stream().map(entity -> new Drink(entity.getName(),entity.getType())).collect(Collectors.toList());
     }
     public static List<OpeningHours> mapFromEntityOpeningHours(List<OpeningHoursEntity> openingHoursEntities)
     {
-        return openingHoursEntities==null?new ArrayList<OpeningHours>():openingHoursEntities.stream().map(entity -> new OpeningHours(entity.getWeekday(),entity.getTimeOpen(), entity.getTimeClose())).collect(Collectors.toList());
+        return openingHoursEntities==null?null:openingHoursEntities.stream().map(entity -> new OpeningHours(entity.getWeekday(),entity.getTimeOpen(), entity.getTimeClose())).collect(Collectors.toList());
     }
     public static List<Photo> mapFromEntityPhotos(List<PhotoEntity> photoEntities)
     {
-        return photoEntities==null?new ArrayList<Photo>():photoEntities.stream().map(entity ->new Photo(entity.getTitle(), entity.getPhotoPath())).collect(Collectors.toList());
+        return photoEntities==null?null:photoEntities.stream().map(entity ->new Photo(entity.getTitle(), entity.getPhotoPath())).collect(Collectors.toList());
     }
 }

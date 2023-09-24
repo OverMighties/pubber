@@ -1,17 +1,24 @@
 package com.overmighties.pubber.core.database.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@Entity(tableName = "pub_drink_cross_ref",primaryKeys = {"pubId", "drinkId"})
+@Entity(tableName = "pub_drink_cross_ref",primaryKeys = {"pub_id", "drink_id"})
 public class PubDrinkCrossRefEntity {
+    @Ignore
+    public static final Long ID_NONE =0L;
     @NonNull
+    @ColumnInfo(name="pub_id")
     public Long pubId;
     @NonNull
+    @ColumnInfo(name="drink_id")
     public Long drinkId;
 }

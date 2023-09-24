@@ -27,23 +27,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.Getter;
 
 public class PubListViewModel extends ViewModel {
     public static final String TAG="PubListViewModel";
+    //Temporary as a prefix in name of variable means that it will be changed in feature and now they are only in testing purpose
     public static final Float TEMPORARY_DISTANCE=20.f;
     public static final Integer TEMPORARY_IMAGE_ID=0;
     public static final Boolean TEMPORARY_BOOKMARK=false;
-
-    public static final String OPEN="Open";
+    public static final String TEMPORARY_OPEN ="Open";
     public static final String CLOSED="Closed";
     public static final String CONTENT_PROVIDED ="Content provided";
     private final PubsRepository pubsRepository;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
     private final LiveData<List<Pub>> _originalPubData=(LiveData<List<Pub>>) originalPubData;
+    @Getter
+    private final MutableLiveData<String> cityConstraint=new MutableLiveData<>();
     @Getter
     private final MutableLiveData<String> searchText=new MutableLiveData<>();
     @Getter
@@ -73,7 +73,7 @@ public class PubListViewModel extends ViewModel {
         if(originalPubData.getValue()==null) {
             if(pubsRepository==null)
             {
-                Log.e(TAG, "getPubsFromRepo: kurwa null" );
+                Log.e(TAG, "getPubsFromRepo returned null: PubsRepository didn't return anything" );
             }
             Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
                     .subscribe(pubs->{
@@ -81,13 +81,17 @@ public class PubListViewModel extends ViewModel {
                         sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
                                 pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
                         },
-                        err -> Log.e(TAG, "getPubs: Can't get pubs " + err.getLocalizedMessage())
+                        err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
                     );
             if (d.isDisposed()) {
                 d.dispose();
             }
 
         }
+    }
+    public void setCityConstraint(String city)
+    {
+        cityConstraint.setValue(city);
     }
     public void search(String prompt)
     {
@@ -111,7 +115,7 @@ public class PubListViewModel extends ViewModel {
     public void filter(FilterUiState filter)
     {
         filterUiState.setValue(filter);
-        List<PubItemCardViewUiState> filteredPubs=new FilterUtil(filter,_originalPubData.getValue(),TEMPORARY_DISTANCE)
+        List<PubItemCardViewUiState> filteredPubs=new FilterUtil(filter,_originalPubData.getValue(),TEMPORARY_DISTANCE, cityConstraint.getValue())
                 .filterByAll()
                 .getFilteredPubs().stream()
                 .map(this::mapPubToUiState)
@@ -128,10 +132,10 @@ public class PubListViewModel extends ViewModel {
         SortUtil.sortingPubData(pubs,sort);
         sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,pubs));
     }
-
+    //Temporary objects means that it will be changed in feature and now they are only in testing purpose
     public PubItemCardViewUiState mapPubToUiState(Pub pub)
     {
-        return new PubItemCardViewUiState(pub.getId(),TEMPORARY_BOOKMARK,pub.getName(),TEMPORARY_IMAGE_ID,OPEN,TEMPORARY_DISTANCE,
+        return new PubItemCardViewUiState(pub.getId(),TEMPORARY_BOOKMARK,pub.getName(),pub.getIconPath(), TEMPORARY_OPEN,TEMPORARY_DISTANCE,
                 PriceType.getById(pub.getRatings().getOurCost()).getIcon(),
                 pub.getRatings().getOurServiceQuality(),pub.getRatings().getAverageRating());
     }

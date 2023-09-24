@@ -1,6 +1,8 @@
 package com.overmighties.pubber.core.model;
 
 
+import androidx.annotation.NonNull;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,11 +13,13 @@ import lombok.Data;
 @AllArgsConstructor
 
 public class Pub {
-
+    @NonNull
     private Long id;
+    @NonNull
     private String name;
-
+    @NonNull
     private String address;
+    @NonNull
     private LocalDateTime fetchTime;
     private String city;
 

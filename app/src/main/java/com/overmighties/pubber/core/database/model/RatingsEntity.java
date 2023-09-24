@@ -4,6 +4,7 @@ package com.overmighties.pubber.core.database.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
@@ -13,12 +14,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(tableName = "ratings")
 public class RatingsEntity {
+    @Ignore
+    public static final Long ID_NONE =null;
     @PrimaryKey(autoGenerate = true)
-    @NonNull
-    public Long id= 0L;
-    public Long pubId;
+    //@NonNull
+    public Long id;
+    @ColumnInfo(name = "ratings_pub_id")
+    public Long ratingsPubId;
     public Float google;
     @ColumnInfo(name="google_count")
     public Integer googleCount;

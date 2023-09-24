@@ -3,6 +3,8 @@ package com.overmighties.pubber.app;
 import com.overmighties.pubber.R;
 
 public class Constants {
+
+    public static final String EXTRA_CITY_CONSTRAINT="com.pubber.EXTRA_CITY";
     public static final String [] STRINGSXML_NAMES = new String[]{
             "app_name",
             "nazwa_aplikacji",

@@ -34,14 +34,14 @@ public class PubDtoMapper {
     }
     public static List<Drink> mapFromDtoDrinks(List<DrinkDto> drinkDtos)
     {
-        return drinkDtos==null?new ArrayList<Drink>():drinkDtos.stream().map(drinkDto -> new Drink(drinkDto.getName(),drinkDto.getType())).collect(Collectors.toList());
+        return drinkDtos==null || drinkDtos.isEmpty()?null:drinkDtos.stream().map(drinkDto -> new Drink(drinkDto.getName(),drinkDto.getType())).collect(Collectors.toList());
     }
     public static List<OpeningHours> mapFromDtoOpeningHours(List<OpeningHoursDto> openingHoursDtos)
     {
-        return openingHoursDtos==null?new ArrayList<OpeningHours>():openingHoursDtos.stream().map(dto -> new OpeningHours(dto.getWeekday(),dto.getTimeOpen(), dto.getTimeClose())).collect(Collectors.toList());
+        return openingHoursDtos==null || openingHoursDtos.isEmpty()?null:openingHoursDtos.stream().map(dto -> new OpeningHours(dto.getWeekday(),dto.getTimeOpen(), dto.getTimeClose())).collect(Collectors.toList());
     }
     public static List<Photo> mapFromDtoPhotos(List<PhotoDto> photoDtos)
     {
-        return photoDtos==null?new ArrayList<Photo>():photoDtos.stream().map(dto ->new Photo(dto.getTitle(), dto.getPhotoUrl())).collect(Collectors.toList());
+        return photoDtos==null || photoDtos.isEmpty()?null:photoDtos.stream().map(dto ->new Photo(dto.getTitle(), dto.getPhotoUrl())).collect(Collectors.toList());
     }
 }

@@ -48,7 +48,7 @@ public class PubsRepository {
                         for (var el : list) {
                             pubList.add(PubDtoMapper.mapFromDto(el, localDateTime));
                         }
-                        Log.i(TAG, "sync: "+pubList.size());
+                        Log.i(TAG, "sync: fetched "+pubList.size()+" pubs from remote data source");
                         return pubList;
                     }).blockingGet());
         }catch(Exception exception)

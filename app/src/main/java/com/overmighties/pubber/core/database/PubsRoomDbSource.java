@@ -20,7 +20,7 @@ public class PubsRoomDbSource implements PubberLocalDataSource{
     public Single<List<Pub>> getPubs() {
         return appDb.pubsDao().getPubsWithEntities()
                 .map(list->{
-                    Log.i(TAG, "getPubs: "+list.size());
+                    Log.i(TAG, "getPubs: fetched pubs from db in number "+list.size());
                     return list.stream()
                         .map(PubEntityMapper::mapFromEntity)
                         .collect(Collectors.toList());});

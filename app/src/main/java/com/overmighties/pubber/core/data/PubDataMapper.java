@@ -11,7 +11,7 @@ import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
-import com.overmighties.pubber.util.DateConverter;
+import com.overmighties.pubber.util.DateTimeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class PubDataMapper {
     {}
     public static PubWithAllEntities mapToEntity(Pub pub)
     {
-        PubEntity pubEntity=new PubEntity(pub.getId(),pub.getName(),pub.getAddress(), DateConverter.getToString(pub.getFetchTime()), pub.getCity(), pub.getPhoneNumber(),
+        PubEntity pubEntity=new PubEntity(pub.getId(),pub.getName(),pub.getAddress(), DateTimeConverter.getToString(pub.getFetchTime()), pub.getCity(), pub.getPhoneNumber(),
                 pub.getWebsiteUrl(), pub.getIconPath(), pub.getDescription(), pub.getReservable(), pub.getTakeout());
         return new PubWithAllEntities(pubEntity,
                 mapToEntityRatings(pub.getRatings(),pub.getId()),mapToEntityOpeningHours(pub.getOpeningHours(),pub.getId()),
@@ -30,20 +30,20 @@ public class PubDataMapper {
     }
     public static RatingsEntity mapToEntityRatings(Ratings ratings, Long pubId)
     {
-        return ratings==null?new RatingsEntity():new RatingsEntity( 0L,pubId,ratings.getGoogle(), ratings.getGoogleCount(), ratings.getFacebook(), ratings.getFacebookReviewsCount(),
+        return ratings==null?new RatingsEntity():new RatingsEntity(  RatingsEntity.ID_NONE,pubId,ratings.getGoogle(), ratings.getGoogleCount(), ratings.getFacebook(), ratings.getFacebookReviewsCount(),
                 ratings.getTripadvisor(), ratings.getTripadvisorCount(), ratings.getUntappd(), ratings.getUntappdCount(),
                 ratings.getOurDrinksQuality(), ratings.getOurServiceQuality(), ratings.getOurCost());
     }
     public static List<DrinkEntity> mapToEntityDrinks(List<Drink> drinks, Long pubId)
     {
-        return drinks==null?new ArrayList<DrinkEntity>():drinks.stream().map(data -> new DrinkEntity( 0L,data.getName(),data.getType())).collect(Collectors.toList());
+        return drinks==null?null:drinks.stream().map(data -> new DrinkEntity( DrinkEntity.ID_NONE,data.getName(),data.getType())).collect(Collectors.toList());
     }
     public static List<OpeningHoursEntity> mapToEntityOpeningHours(List<OpeningHours> openingHours, Long pubId)
     {
-        return openingHours==null?new ArrayList<OpeningHoursEntity>():openingHours.stream().map(data -> new OpeningHoursEntity( 0L,pubId,data.getWeekday(),data.getTimeOpen(), data.getTimeClose())).collect(Collectors.toList());
+        return openingHours==null?null:openingHours.stream().map(data -> new OpeningHoursEntity( OpeningHoursEntity.ID_NONE,pubId,data.getWeekday(),data.getTimeOpen(), data.getTimeClose())).collect(Collectors.toList());
     }
     public static List<PhotoEntity> mapToEntityPhotos(List<Photo> photos, Long pubId)
     {
-        return photos==null?new ArrayList<PhotoEntity>():photos.stream().map(data ->new PhotoEntity( 0L,pubId,data.getTitle(), data.getPhotoPath())).collect(Collectors.toList());
+        return photos==null?null:photos.stream().map(data ->new PhotoEntity( PhotoEntity.ID_NONE,pubId,data.getTitle(), data.getPhotoPath())).collect(Collectors.toList());
     }
 }

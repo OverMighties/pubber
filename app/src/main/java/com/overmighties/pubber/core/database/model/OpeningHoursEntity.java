@@ -3,6 +3,7 @@ package com.overmighties.pubber.core.database.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
@@ -15,10 +16,13 @@ import lombok.NonNull;
 @NoArgsConstructor
 @Entity(tableName = "opening_hours")
 public class OpeningHoursEntity {
+    @Ignore
+    public static final Long ID_NONE =null;
     @PrimaryKey(autoGenerate = true)
-    @NonNull
-    public Long id=0L;
-    public Long pubId;
+   // @NonNull
+    public Long id;
+    @ColumnInfo(name="opening_hours_pub_id")
+    public Long openingHoursPubId;
     public String weekday;
     @ColumnInfo(name = "time_open")
     public String timeOpen;

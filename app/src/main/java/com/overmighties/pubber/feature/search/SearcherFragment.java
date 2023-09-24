@@ -51,8 +51,6 @@ public class SearcherFragment extends Fragment  {
         viewModel.getPubsFromRepo();
         adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue());
         recyclerView.setAdapter(adapter);
-        //navcontroller= NavHostFragment.findNavController(this);
-        //Setting listener to departure to FiltrationScreen
         ((ImageView) requireView().findViewById(R.id.Filtration)).setOnClickListener(v -> {
             Navigation.findNavController(getActivity(),R.id.Filtration).navigate(SearcherFragmentDirections.actionSearcherToFilter());
 
@@ -62,8 +60,14 @@ public class SearcherFragment extends Fragment  {
         sortButtonsListeners();
         viewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs->
         {
-            adapter = new ListPubAdapter( pubs);
-            recyclerView.setAdapter(adapter);
+            if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().size()==0)
+            {
+                recyclerView.setVisibility(View.GONE);
+            }else {
+                adapter = new ListPubAdapter(pubs);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
         });
 
 
