@@ -5,4 +5,8 @@
     <color name="pinky">#FFCBCB</color>
     <color name="main">#2C2828</color>
     <color name="theme">#693D2B</color>
+    <color name="highlight">#DA7800</color>
+    <color name="highlightOpen">#74B72E</color>
+    <color name="highlightClose">#E64242</color>
+
 </resources>

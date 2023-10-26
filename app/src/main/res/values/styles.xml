@@ -46,7 +46,7 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
     <style name="NavigationBarColor" parent="Widget.Material3.BottomNavigationView.ActiveIndicator" >
-        <item name="android:color">@color/main</item>
+        <item name="android:color">@color/theme</item>
 
     </style>
 

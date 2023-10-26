@@ -19,18 +19,349 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/g24"
-                android:layout_width="173dp"
+                android:id="@+id/tg0300"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView44"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
                 <TextView
-                    android:id="@+id/textg24"
+                    android:id="@+id/texttg0300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="03:00 "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Odtg0300"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/TVt0300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/texttg0300"
+                    app:layout_constraintTop_toTopOf="@id/texttg0300"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:text="(dnia następnego)"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                    android:id="@+id/Odtg0300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/texttg0300" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tg0230"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/tg0300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView46"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/texttg0230"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="02:30 "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Odtg0230"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/TVt0230"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textColor="#000000"
+                    app:layout_constraintStart_toEndOf="@id/texttg0230"
+                    app:layout_constraintTop_toTopOf="@id/texttg0230"
+                    android:layout_marginTop="4dp"
+                    android:textSize="10sp"
+                    android:text="(dnia następnego)"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                    android:id="@+id/Odtg0230"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/texttg0230" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tg0200"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/tg0230"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView50"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/texttg0200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="02:00 "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Odtg0200"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/TVt0200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/texttg0200"
+                    app:layout_constraintTop_toTopOf="@id/texttg0200"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:text="(dnia następnego)"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                    android:id="@+id/Odtg0200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/texttg0200" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tg0130"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/tg0200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView47"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/texttg0130"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="01:30 "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Odtg0130"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/TVt0130"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/texttg0130"
+                    app:layout_constraintTop_toTopOf="@id/texttg0130"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:text="(dnia następnego)"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                    android:id="@+id/Odtg0130"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/texttg0130" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tg0100"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/tg0130"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView48"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/texttg0100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="01:00 "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Odtg0100"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/TVt0100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/texttg0100"
+                    app:layout_constraintTop_toTopOf="@id/texttg0100"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:text="(dnia następnego)"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                    android:id="@+id/Odtg0100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/texttg0100" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tg0030"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/tg0100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView40"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/texttg0030"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="00:30 "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Odtg0030"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/TVt0030"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/texttg0030"
+                    app:layout_constraintTop_toTopOf="@id/texttg0030"
+                    android:layout_marginTop="4dp"
+                    android:textSize="10sp"
+                    android:textColor="#000000"
+                    android:text="(dnia następnego)"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                    android:id="@+id/Odtg0030"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/texttg0030" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/g2400"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/tg0030"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView51"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/textg2400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -39,8 +370,20 @@
                     android:gravity="center"
                     android:text="24:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2400"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2400" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,7 +392,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/g24"
+                app:layout_constraintBottom_toTopOf="@+id/g2400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -71,8 +414,20 @@
                     android:gravity="center"
                     android:text="23:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2330"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2330"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2330" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -104,8 +459,20 @@
                     android:gravity="center"
                     android:text="23:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2300"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2300" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,8 +504,20 @@
                     android:gravity="center"
                     android:text="22:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2230"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2230"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2230" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -170,8 +549,20 @@
                     android:gravity="center"
                     android:text="22:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2200"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2200" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -203,8 +594,20 @@
                     android:gravity="center"
                     android:text="21:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2130"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2130"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2130" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -236,8 +639,20 @@
                     android:gravity="center"
                     android:text="21:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2100"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2100" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -269,8 +684,20 @@
                     android:gravity="center"
                     android:text="20:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2030"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2030"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2030" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -302,8 +729,20 @@
                     android:gravity="center"
                     android:text="20:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg2000"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg2000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg2000" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -335,8 +774,20 @@
                     android:gravity="center"
                     android:text="19:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1930"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1930"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1930" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -368,8 +819,20 @@
                     android:gravity="center"
                     android:text="19:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1900"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1900"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1900" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -401,8 +864,20 @@
                     android:gravity="center"
                     android:text="18:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1830"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1830"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1830" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -434,8 +909,20 @@
                     android:gravity="center"
                     android:text="18:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1800"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1800" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -466,8 +953,20 @@
                     android:gravity="center"
                     android:text="17:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1730"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1730"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1730" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -498,8 +997,20 @@
                     android:gravity="center"
                     android:text="17:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1700"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1700" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -530,8 +1041,20 @@
                     android:gravity="center"
                     android:text="16:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1630"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1630"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1630" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -562,8 +1085,20 @@
                     android:gravity="center"
                     android:text="16:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1600"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1600"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1600" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -594,8 +1129,20 @@
                     android:gravity="center"
                     android:text="15:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1530"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1530"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1530" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -626,8 +1173,20 @@
                     android:gravity="center"
                     android:text="15:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1500"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1500" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -658,8 +1217,20 @@
                     android:gravity="center"
                     android:text="14:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1430"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1430"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1430" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -690,8 +1261,20 @@
                     android:gravity="center"
                     android:text="14:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1400"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1400" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -722,8 +1305,20 @@
                     android:gravity="center"
                     android:text="13:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1330"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1330"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1330" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -754,8 +1349,20 @@
                     android:gravity="center"
                     android:text="13:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1300"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1300" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -786,8 +1393,20 @@
                     android:gravity="center"
                     android:text="12:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1230"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1230"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1230" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -818,8 +1437,20 @@
                     android:gravity="center"
                     android:text="12:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1200"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1200" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -850,8 +1481,20 @@
                     android:gravity="center"
                     android:text="11:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1130"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1130"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1130" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -882,8 +1525,20 @@
                     android:gravity="center"
                     android:text="11:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1100"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1100" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -914,8 +1569,20 @@
                     android:gravity="center"
                     android:text="10:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1030"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1030"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1030" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -946,8 +1613,20 @@
                     android:gravity="center"
                     android:text="10:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg1000"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg1000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg1000" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -978,8 +1657,20 @@
                     android:gravity="center"
                     android:text="09:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0930"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0930"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0930" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1010,8 +1701,20 @@
                     android:gravity="center"
                     android:text="09:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0900"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0900"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0900" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1040,8 +1743,20 @@
                     android:gravity="center"
                     android:text="08:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0830"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0830"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0830" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1070,8 +1785,20 @@
                     android:gravity="center"
                     android:text="08:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0800"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0800" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1100,8 +1827,20 @@
                     android:gravity="center"
                     android:text="07:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0730"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0730"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0730" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1130,8 +1869,20 @@
                     android:gravity="center"
                     android:text="07:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0700"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0700" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1160,8 +1911,20 @@
                     android:gravity="center"
                     android:text="06:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0630"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0630"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0630" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1190,8 +1953,20 @@
                     android:gravity="center"
                     android:text="06:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0600"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0600"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0600" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1220,8 +1995,20 @@
                     android:gravity="center"
                     android:text="05:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0530"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0530"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0530" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1250,8 +2037,20 @@
                     android:gravity="center"
                     android:text="05:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0500"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0500" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1280,8 +2079,20 @@
                     android:gravity="center"
                     android:text="04:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0430"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0430"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0430" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1310,8 +2121,20 @@
                     android:gravity="center"
                     android:text="04:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0400"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0400" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1340,8 +2163,20 @@
                     android:gravity="center"
                     android:text="03:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0330"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0330"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0330" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1370,8 +2205,20 @@
                     android:gravity="center"
                     android:text="03:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0300"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0300" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1400,8 +2247,20 @@
                     android:gravity="center"
                     android:text="02:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0230"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0230"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0230" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1430,8 +2289,20 @@
                     android:gravity="center"
                     android:text="02:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0200"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0200" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1460,8 +2331,21 @@
                     android:gravity="center"
                     android:text="01:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0130"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0130"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0130" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1490,8 +2374,20 @@
                     android:gravity="center"
                     android:text="01:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0100"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0100" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1520,8 +2416,20 @@
                     android:gravity="center"
                     android:text="00:30"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0030"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/Odg0030"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0030" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1544,14 +2452,27 @@
                     android:id="@+id/textg0000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="00:00"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/Odg0000"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/Odg0000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="#FFFFFF"
+                    android:text="Od"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textg0000" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

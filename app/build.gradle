@@ -54,8 +54,19 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-
-    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //image view with ability to zooming
+    implementation 'com.github.MikeOrtiz:TouchImageView:3.6'
+    //added this constrains cause without them there is some weird bug, it just works now
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+    //library for bluring
+    implementation 'com.github.Dimezis:BlurView:version-2.0.3'
 
     //Android Concurrent
     implementation "androidx.concurrent:concurrent-futures:1.1.0"

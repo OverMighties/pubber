@@ -7,13 +7,17 @@ import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_TEXTIDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXTIDS;
+import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXTOdIDS;
+import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXT_NEXT_DAYS;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -38,6 +42,7 @@ import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.util.PriceType;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +58,7 @@ public class FilterFragment extends Fragment {
     private PubListViewModel viewModel;
     private View popUpView;
     private PopupWindow popupWindow;
+    private int[] TimePopUpState=new int[]{1,0,0};
 
 
     public FilterFragment()
@@ -61,11 +67,11 @@ public class FilterFragment extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
         var nav_bar=getActivity().findViewById(R.id.nav_view);
         requireView().findViewById(R.id.buttonfiltr).setOnClickListener(v->{
             filtration(requireView());
             Navigation.findNavController(v).navigate(FilterFragmentDirections.actionFilterToSearcher());
-            NavigationBar.smoothPopUp(nav_bar);
         });
 
         viewModel = new ViewModelProvider(requireActivity(),
@@ -119,29 +125,41 @@ public class FilterFragment extends Fragment {
     }
 
     private void whichOneCheckedTime(View popUpView) {
-        Integer i=0;
-        for (var id : POP_UP_TIME_TEXTIDS) {
-            if (((TextView) requireView().findViewById(R.id.textView18)).getText().toString().equals(((TextView) popUpView.findViewById(id)).getText().toString())) {
-                popUpView.findViewById(POP_UP_TIME_IDS[i]).setBackgroundColor(Color.parseColor("#693D2B"));
-                ((TextView) popUpView.findViewById(id)).setTextColor(Color.parseColor("#FFFFFF"));
-                popUpView.findViewById(POP_UP_TIME_IDS[i]).getParent().requestChildFocus(popUpView.findViewById(POP_UP_TIME_IDS[i]), popUpView.findViewById(POP_UP_TIME_IDS[i]));
-                break;
-            }
-            i++;
+        if(((TextView) (requireView().findViewById(R.id.textView18))).getText().toString().equals("Dowolna godzina"))
+        {
+            popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundColor(Color.parseColor("#693D2B"));
+            ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).setTextColor(Color.parseColor("#FFFFFF"));
         }
+        else{
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[1]])).performClick();
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])).performClick();
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])).getParent().requestChildFocus(((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])),
+                    ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])));
+        }
+
     }
 
     private void listenersmenutime(PopupWindow popupWindow, View popUpView) {
         ArrayList <Integer>numbers=new ArrayList<>();
         Integer number=1;
-        for(int i=1;i<51;i++){numbers.add(i);}
+        for(int i=1;i<57;i++){numbers.add(i);}
         for (var id : POP_UP_TIME_IDS) {
             for(Integer n:numbers)
             {
                 popUpView.findViewById(id).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        unchecktime(n, popUpView,id);
+                        checktime(n, popUpView);
+                        if(TimePopUpState[0]==0){
+                            TimePopUpState[0]=1;
+                        }else{
+                            if(TimePopUpState[0]==2){
+                                TimePopUpState[0]=1;}
+                            else {TimePopUpState[0]=0;}
+
+                        }
+
+
                     }
                 });
                 break;
@@ -153,7 +171,6 @@ public class FilterFragment extends Fragment {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                Log.d("tak","tak");
                 requireView().findViewById(R.id.Timeview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
                 ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.arrowblack);
             }
@@ -161,20 +178,90 @@ public class FilterFragment extends Fragment {
 
     }
 
-    private void unchecktime(Integer n, View popUpView,Integer BackgroundId) {
-        for (var id : POP_UP_TIME_IDS)
-        {
+    private void checktime(Integer n, View popUpView) {
+        if(TimePopUpState[0]==1) {
+            if(n-1!=55) {
+                unchecktime(popUpView);
+                popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundColor(Color.parseColor("#693D2B"));
+                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[n - 1])).setTextColor(Color.parseColor("#FFFFFF"));
+                setMargins(popUpView.findViewById(POP_UP_TIME_TEXTIDS[n - 1]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
+                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[n - 1])).setText("Od");
+                popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[n - 1]).setVisibility(View.VISIBLE);
+                if (n >= 50) {
+                    ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_NEXT_DAYS[n - 50])).setTextColor(Color.parseColor("#FFFFFF"));
+                }
+
+                String text = "Od "+(((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[n - 1])).getText().toString());
+                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
+
+                TimePopUpState[1] = n - 1;
+            }else{
+                unchecktime(popUpView);
+                popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundColor(Color.parseColor("#693D2B"));
+                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).setTextColor(Color.parseColor("#FFFFFF"));
+                String text =(((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).getText().toString());
+                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
+                TimePopUpState[0]=2;
+            }
+        }else{
+            if(n-1!=55){
+                for(int h=TimePopUpState[1];h<n;h++){
+                    if (h >= 49) {
+                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_NEXT_DAYS[h-49])).setTextColor(Color.parseColor("#FFFFFF"));
+                    }
+                    if(h!=n-1){
+                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundColor(Color.parseColor("#693D2B"));
+                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[h])).setTextColor(Color.parseColor("#FFFFFF"));
+                    }else{
+                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[h])).setText("Do");
+                        popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[h]).setVisibility(View.VISIBLE);
+                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXTIDS[h]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
+                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundColor(Color.parseColor("#693D2B"));
+                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[h])).setTextColor(Color.parseColor("#FFFFFF"));
+
+                        ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+" Do "+
+                                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[h])).getText());
+                        ((TextView) (requireView().findViewById(R.id.textView18))).setTextSize(14);
+                    }
+
+                }
+                TimePopUpState[2]=n;
+            }else{
+                unchecktime(popUpView);
+                popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundColor(Color.parseColor("#693D2B"));
+                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).setTextColor(Color.parseColor("#FFFFFF"));
+                String text =(((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).getText().toString());
+                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
+                TimePopUpState[0]=2;
+            }
+
+        }
+
+
+    }
+
+    private void unchecktime(View popUpView) {
+        for (var id : POP_UP_TIME_IDS) {
             popUpView.findViewById(id).setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
-        for (var id : POP_UP_TIME_TEXTIDS)
-        {
-
+        for (var id : POP_UP_TIME_TEXTIDS) {
+            setMargins(popUpView.findViewById(id), viewModel.dpToPx(8), viewModel.dpToPx(8), 0, 0);
             ((TextView) popUpView.findViewById(id)).setTextColor(Color.parseColor("#000000"));
         }
-        popUpView.findViewById(BackgroundId).setBackgroundColor(Color.parseColor("#693D2B"));
-        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[n-1])).setTextColor(Color.parseColor("#FFFFFF"));
-        String text=(((TextView)popUpView.findViewById(POP_UP_TIME_TEXTIDS[n-1])).getText().toString());
-        ((TextView)(requireView().findViewById(R.id.textView18))).setText(text);
+        for (var id : POP_UP_TIME_TEXTOdIDS) {
+            popUpView.findViewById(id).setVisibility(View.GONE);
+        }
+        for (var id : POP_UP_TIME_TEXT_NEXT_DAYS) {
+            ((TextView) popUpView.findViewById(id)).setTextColor(Color.parseColor("#000000"));
+        }
+    }
+
+    public static void setMargins (View v, int l, int t, int r, int b) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMargins(l, t, r, b);
+            v.requestLayout();
+        }
     }
 
     //method for highlight checked constrainlayout when pop_up starts

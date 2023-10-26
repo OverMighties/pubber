@@ -1,5 +1,8 @@
 package com.overmighties.pubber.util;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import lombok.Getter;
 
 @Getter
@@ -86,6 +89,31 @@ public enum DayOfWeekConverter {
             case "Saturday":
                 return SATURDAY;
             case "Sunday":
+                return SUNDAY;
+            default:
+                return NONE;
+        }
+    }
+    public static DayOfWeekConverter getByCurrentDay()
+    {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        int dayOfWeek=c.get(Calendar.DAY_OF_WEEK);
+        switch(dayOfWeek)
+        {
+            case 1:
+                return SUNDAY;
+            case 2:
+                return MONDAY;
+            case 3:
+                return TUESDAY;
+            case 4:
+                return WEDNESDAY;
+            case 5:
+                return THURSDAY;
+            case 6:
+                return FRIDAY;
+            case 7:
                 return SUNDAY;
             default:
                 return NONE;
