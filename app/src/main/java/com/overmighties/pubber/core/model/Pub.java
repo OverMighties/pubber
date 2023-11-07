@@ -1,25 +1,26 @@
 package com.overmighties.pubber.core.model;
 
 
+import androidx.annotation.NonNull;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 @Data
 @AllArgsConstructor
 
 public class Pub {
-
+    @NonNull
     private Long id;
-    private LocalDateTime timeFetched;
-
+    @NonNull
     private String name;
-
+    @NonNull
     private String address;
+    @NonNull
+    private LocalDateTime fetchTime;
     private String city;
 
     private String phoneNumber;

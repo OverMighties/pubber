@@ -9,14 +9,18 @@ import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class OpeningHours {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+    @NonNull
     private String weekday;
+    @NonNull
     private String timeOpen;
+    @NonNull
     private String timeClose;
     public LocalTime getLocalTimeOpen()
     {

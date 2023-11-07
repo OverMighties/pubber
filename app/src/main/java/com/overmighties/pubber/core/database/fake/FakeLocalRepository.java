@@ -20,7 +20,10 @@ public class FakeLocalRepository implements PubberLocalDataSource {
     }
 
     @Override
-    public void updatePubs(Single<List<Pub>> pubs) throws RuntimeException{
+    public void updatePubs(List<Pub> pubs) throws RuntimeException{
+
+        fakeLocalPubData=pubs;
+        /*
            Disposable d=pubs
                    .subscribe(
                            list ->fakeLocalPubData=list,
@@ -31,6 +34,8 @@ public class FakeLocalRepository implements PubberLocalDataSource {
            if(d.isDisposed()) {
                d.dispose();
            }
+
+         */
     }
 
 

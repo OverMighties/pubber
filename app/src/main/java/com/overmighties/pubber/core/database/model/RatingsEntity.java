@@ -1,35 +1,46 @@
 package com.overmighties.pubber.core.database.model;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(tableName = "ratings")
 public class RatingsEntity {
+    @Ignore
+    public static final Long ID_NONE =null;
     @PrimaryKey(autoGenerate = true)
-
-    private Long id;
-    public Long pubId;
-    private Float google;
+    //@NonNull
+    public Long id;
+    @ColumnInfo(name = "ratings_pub_id")
+    public Long ratingsPubId;
+    public Float google;
     @ColumnInfo(name="google_count")
-    private Integer googleCount;
+    public Integer googleCount;
 
-    private Float facebook;
-    @ColumnInfo(name="google_count")
-    private Integer facebookCount;
+    public Float facebook;
+    @ColumnInfo(name="facebook_count")
+    public Integer facebookCount;
 
-    private Float tripadvisor;
+    public Float tripadvisor;
     @ColumnInfo(name="tripadvisor_count")
-    private Integer tripadvisorCount;
-    private Float untapped ;
+    public Integer tripadvisorCount;
+    public Float untappd;
     @ColumnInfo(name="untapped_count")
-    private Integer untappedCount;
+    public Integer untappdCount;
     @ColumnInfo(name="our_drinks_quality")
-    private Float ourDrinksQuality;
+    public Float ourDrinksQuality;
     @ColumnInfo(name="our_service_quality")
-    private Float ourServiceQuality;
+    public Float ourServiceQuality;
     @ColumnInfo(name="our_cost")
-    private Integer ourCost;
+    public Integer ourCost;
 }

@@ -1,32 +1,34 @@
 package com.overmighties.pubber.app;
 
-import static androidx.navigation.ui.BottomNavigationViewKt.setupWithNavController;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
-import com.overmighties.pubber.feature.hotpubs.HotPubsFragment;
-import com.overmighties.pubber.feature.bookmarks.SavedFragment;
-import com.overmighties.pubber.feature.search.SearcherFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
+import com.overmighties.pubber.feature.search.PubListViewModel;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG="MainActivity";
     private ActivityMainBinding binding;
+    private PubListViewModel viewModel;
     private NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this,
+                ViewModelProvider.Factory.from(PubListViewModel.initializer))
+                .get(PubListViewModel.class);
+        viewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         navController= ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView) ).getNavController();

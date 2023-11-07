@@ -16,16 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 public class FilterUtil {
 
 
     private FilterUiState filterUiState;
+    private String city;
     private Float distance;
     @Getter
     private List<Pub> filteredPubs;
 
-    public FilterUtil(FilterUiState filter, List<Pub> filteredPubs, Float distance)
+    public FilterUtil(@NonNull FilterUiState filter, @NonNull List<Pub> filteredPubs, Float distance, String city)
     {
         this.filterUiState =filter;
         this.filteredPubs=filteredPubs;
@@ -35,6 +37,7 @@ public class FilterUtil {
         return ratingFilter()
                 .drinksFilter()
                 .priceFilter()
+                .cityFilter()
                 .isOpenFilter();
     }
     public FilterUtil ratingFilter()
@@ -127,6 +130,22 @@ public class FilterUtil {
                         timeNow.isAfter(time.getLocalTimeOpen()) &&
                        time.getLocalTimeClose().isAfter(timeNow) )
                     filteredNow.add(pubData);
+            }
+        }
+
+        filteredPubs=filteredNow;
+        return this;
+    }
+    public FilterUtil cityFilter()
+    {
+        List<Pub> filteredNow=new ArrayList<>();
+        if( city==null ) {
+            return this;
+        }
+        for(var pubData: filteredPubs) {
+            if(pubData.getCity()==null || pubData.getCity().equals(city))
+            {
+                filteredNow.add(pubData);
             }
         }
 

@@ -8,19 +8,17 @@ import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-@Entity(tableName = "drinks")
-public class DrinkEntity {
+@Entity(tableName = "pub_drink_cross_ref",primaryKeys = {"pub_id", "drink_id"})
+public class PubDrinkCrossRefEntity {
     @Ignore
-    public static final Long ID_NONE =null;
-    @PrimaryKey(autoGenerate = true)
+    public static final Long ID_NONE =0L;
+    @NonNull
+    @ColumnInfo(name="pub_id")
+    public Long pubId;
+    @NonNull
     @ColumnInfo(name="drink_id")
-   // @NonNull
     public Long drinkId;
-    public String name;
-    public String type;
 }

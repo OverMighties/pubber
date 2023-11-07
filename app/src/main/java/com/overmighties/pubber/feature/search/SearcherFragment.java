@@ -20,18 +20,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.util.SortPubsBy;
 
-public class SearcherFragment extends Fragment implements SelectListener {
+public class SearcherFragment extends Fragment  {
 
     public static final String TAG = "SearcherFragment";
     private RecyclerView recyclerView;
@@ -39,7 +36,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
     private SearchView searchview;
     private PubListViewModel viewModel;
-
+    private  NavController navcontroller;
     public SearcherFragment() {
         super(R.layout.searcher);
     }
@@ -52,9 +49,9 @@ public class SearcherFragment extends Fragment implements SelectListener {
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
         viewModel.getPubsFromRepo();
-        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue(),this);
+        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue());
         recyclerView.setAdapter(adapter);
-
+        //navcontroller= NavHostFragment.findNavController(this);
         //Setting listener to departure to FiltrationScreen
         ((ImageView) requireView().findViewById(R.id.Filtration)).setOnClickListener(v -> {
             Navigation.findNavController(getActivity(),R.id.Filtration).navigate(SearcherFragmentDirections.actionSearcherToFilter());
@@ -65,8 +62,14 @@ public class SearcherFragment extends Fragment implements SelectListener {
         sortButtonsListeners();
         viewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs->
         {
-            adapter = new ListPubAdapter(pubs,this);
-            recyclerView.setAdapter(adapter);
+            if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().size()==0)
+            {
+                recyclerView.setVisibility(View.GONE);
+            }else {
+                adapter = new ListPubAdapter(pubs);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
         });
 
 

@@ -1,16 +1,19 @@
 package com.overmighties.pubber.core.database.model;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity(tableName = "pubs", foreignKeys = {
+
+@Entity(tableName = "pubs"
+/*, foreignKeys = {
         @ForeignKey(
                 entity = DrinkEntity.class,
                 parentColumns = {"school_id"},
@@ -32,40 +35,33 @@ import java.util.List;
                 onDelete = ForeignKey.CASCADE,
                 onUpdate = ForeignKey.CASCADE
         )
-})
+        }
+        */
+)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PubEntity {
-    @PrimaryKey
-    private Long id;
-
-    private String name;
-
-    private String address;
-
     @Ignore
-
-    private String placeId;
-
-    private String city;
+    public static final Long ID_NONE =null;
+    @PrimaryKey
+    @ColumnInfo(name="pub_id")
+   // @NonNull
+    public Long pubId;
+    public String name;
+    public String address;
+    public String fetchTime;
+    //@Ignore
+    //private String placeId;
+    public String city;
     @ColumnInfo(name = "phone_number")
-    private String phoneNumber;
+    public String phoneNumber;
     @ColumnInfo(name = "website_url")
-    private String websiteUrl;
+    public String websiteUrl;
     @ColumnInfo(name = "icon_path")
-    private String iconPath;
+    public String iconPath;
+    public String description;
+    public Boolean reservable;
+    public Boolean takeout;
 
-    private String description;
-
-    private Boolean reservable;
-
-    private Boolean takeout;
-
-    @Embedded
-    private RatingsEntity ratings;
-    @ColumnInfo(name = "opening_hours")
-    @Embedded
-    private List<OpeningHoursEntity> openingHours;
-    @Embedded
-    private List<DrinkEntity> drinks;
-    @Embedded
-    private List<PhotoEntity> photos;
 }
