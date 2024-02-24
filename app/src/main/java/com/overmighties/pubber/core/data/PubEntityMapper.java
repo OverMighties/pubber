@@ -26,7 +26,7 @@ public class PubEntityMapper {
         return new Pub(pubEntity.getPubId(), pubEntity.getName(),pubEntity.getAddress(), DateTimeConverter.getFromString(pubEntity.getFetchTime()), pubEntity.getCity(), pubEntity.getPhoneNumber(),
                 pubEntity.getWebsiteUrl(), pubEntity.getIconPath(), pubEntity.getDescription(), pubEntity.getReservable(), pubEntity.getTakeout(),
                 mapFromEntityRatings(pubWithAllEntities.getRatings()),mapFromEntityOpeningHours(pubWithAllEntities.getOpeningHours()),
-                mapFromEntityDrinks(pubWithAllEntities.getDrinks()),mapFromEntityPhotos(pubWithAllEntities.getPhotos()));
+                mapFromEntityDrinks(pubWithAllEntities.getDrinks()),mapFromEntityPhotos(pubWithAllEntities.getPhotos()),null);
     }
     public static Ratings mapFromEntityRatings(RatingsEntity ratingsEntity)
     {

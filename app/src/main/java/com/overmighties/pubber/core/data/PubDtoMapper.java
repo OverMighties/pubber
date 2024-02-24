@@ -24,7 +24,7 @@ public class PubDtoMapper {
         return new Pub(pub.getId(), pub.getName(),pub.getAddress(),time, pub.getCity(), pub.getPhoneNumber(),
                 pub.getWebsiteUrl(), pub.getIconUrl(), pub.getDescription(), pub.getReservable(), pub.getTakeout(),
                 mapFromDtoRatings(pub.getRatings()),mapFromDtoOpeningHours(pub.getOpeningHours()),
-                mapFromDtoDrinks(pub.getDrinks()),mapFromDtoPhotos(pub.getPhotos()));
+                mapFromDtoDrinks(pub.getDrinks()),mapFromDtoPhotos(pub.getPhotos()),null);
     }
     public static Ratings mapFromDtoRatings(RatingsDto ratingsDto)
     {

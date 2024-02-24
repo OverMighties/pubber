@@ -8,9 +8,11 @@ import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(tableName = "pub_drink_cross_ref",primaryKeys = {"pub_id", "drink_id"})
 public class PubDrinkCrossRefEntity {
     @Ignore
