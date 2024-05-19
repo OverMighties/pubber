@@ -1,5 +1,10 @@
 package com.overmighties.pubber.feature.search.stateholders;
 
+import com.overmighties.pubber.core.model.Drink;
+import com.overmighties.pubber.core.model.OpeningHours;
+
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +18,14 @@ public class PubItemCardViewUiState {
     private String name;
     private String iconUrl;
     private String timeOpenToday;
-    private Float carDistance;
+    private boolean isOpenNow;
+    private Float walkDistance;
     private String costRating;
     private Float qualityRating;
-    private Float averageRatingFromServices;
-
+    private int ratingCount;
+    private String adress;
+    private List<Drink> alcohol;
+    public boolean getIsOpenNow() {
+        return isOpenNow;
+    }
 }

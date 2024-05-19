@@ -9,20 +9,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="264dp"
-        android:layout_margin="10dp"
-        android:background="@color/white"
+        android:layout_height="170dp"
+        android:background="@color/Surface_Variant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8">
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/textViewSortBy_sort_pop_up"
             android:layout_width="wrap_content"
             android:layout_height="44dp"
             android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:textColor="@color/On_Surface_variant"
             android:fontFamily="@font/roboto_black"
             android:text="Sortuj według"
             android:textSize="24sp"
@@ -44,11 +45,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_relevance"
             android:textSize="20sp"
-
+            android:textColor="@color/On_Surface_variant"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2" />
@@ -56,11 +57,12 @@
         <TextView
             android:id="@+id/textViewAlphabetical"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_alphabetical"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewRelevance" />
@@ -70,10 +72,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_rating"
             android:textSize="20sp"
+            android:textColor="@color/On_Surface_variant"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAlphabetical" />
 
@@ -82,7 +85,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
+
+            android:textColor="@color/On_Surface_variant"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_distance"
             android:textSize="20sp"
@@ -94,19 +99,18 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/radio_butt_alphabetical"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRelevance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewRelevance" />
 
         <RadioButton
             android:id="@+id/radio_butt_alphabetical"
             android:layout_width="38dp"
             android:layout_height="38dp"
-
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/radio_butt_rating"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/textViewAlphabetical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewAlphabetical" />
 
         <RadioButton
 
@@ -114,20 +118,19 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/radio_butt_distance"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewRating" />
 
         <RadioButton
-
             android:id="@+id/radio_butt_distance"
+            style="@style/Widget.App.RadioButton"
             android:layout_width="38dp"
             android:layout_height="38dp"
-
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/testViewDistance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/testViewDistance" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

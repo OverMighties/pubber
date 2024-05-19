@@ -35,4 +35,5 @@ public class Pub {
     private List<OpeningHours> openingHours;
     private List<Drink> drinks;
     private List<Photo> photos;
+    private String timeOpenToday;
 }

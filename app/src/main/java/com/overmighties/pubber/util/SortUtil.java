@@ -33,11 +33,11 @@ public class SortUtil
 
     public static  void sortByRatingsDesc( @NonNull List<PubItemCardViewUiState> list)
     {
-        list.sort(Comparator.comparingDouble(PubItemCardViewUiState::getAverageRatingFromServices).reversed());
+        list.sort(Comparator.comparingDouble(PubItemCardViewUiState::getQualityRating).reversed());
     }
     public static void sortByDistanceAsc(@NonNull List<PubItemCardViewUiState> list)
     {
-        list.sort(Comparator.comparingDouble(PubItemCardViewUiState::getCarDistance).reversed());
+        list.sort(Comparator.comparingDouble(PubItemCardViewUiState::getWalkDistance).reversed());
     }
     public static void sortByPubNameAlphabetical(@NonNull List<PubItemCardViewUiState> list)
     {

@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2828"
-    android:backgroundTint="#FFFFFF"
+    android:background="@drawable/gradient"
     tools:context=".app.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:background="#2C2828"
+        app:elevation="70dp"
+        app:itemIconSize="24dp"
+        android:layout_height="80dp"
+        android:background="@color/Surface_Variant_Secondary"
         app:itemActiveIndicatorStyle="@style/NavigationBarColor"
         app:itemIconTint="@color/white"
         style="@style/CustomNavigationBarContainer"
@@ -22,11 +23,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" >
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="0.3sp"
-            android:layout_marginBottom="68dp"
-            android:background="@color/white" />
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,5 +1,8 @@
 package com.overmighties.pubber.util;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import lombok.Getter;
 
 @Getter
@@ -11,7 +14,16 @@ public enum DayOfWeekConverter {
     THURSDAY("THURSDAY","Thursday",4),
     FRIDAY("FRIDAY","Friday",5),
     SATURDAY("SATURDAY","Saturday",6),
-    SUNDAY("SUNDAY","Sunday",7);
+    SUNDAY("SUNDAY","Sunday",7),
+    PONIEDZIAlEK("PONIEDZIAŁEK","Poniedziałek",1),
+    WTOREK("WTOREK","Wtorek",2),
+    SRODA("ŚRODA","Środa",3),
+    CZWARTEK("CZWARTEK","Czwartek",4),
+    PIATEK("PIĄTEK","Piątek",5),
+    SOBOTA("SOBOTA","Sobota",6),
+    NIEDZIELA("NIEDZIELA","Niedziela",7);
+
+
     private final String upperCase;
     private final String normal;
     private final Integer numeric;
@@ -90,5 +102,53 @@ public enum DayOfWeekConverter {
             default:
                 return NONE;
         }
+    }
+    public static DayOfWeekConverter getByCurrentDay()
+    {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        int dayOfWeek=c.get(Calendar.DAY_OF_WEEK);
+        switch(dayOfWeek)
+        {
+            case 1:
+                return SUNDAY;
+            case 2:
+                return MONDAY;
+            case 3:
+                return TUESDAY;
+            case 4:
+                return WEDNESDAY;
+            case 5:
+                return THURSDAY;
+            case 6:
+                return FRIDAY;
+            case 7:
+                return SUNDAY;
+            default:
+                return NONE;
+        }
+    }
+    public static DayOfWeekConverter PolsihDayOfWeekConverter(Integer numberOfDayOfWeek){
+        switch (numberOfDayOfWeek)
+        {
+            case 1:
+                return PONIEDZIAlEK;
+            case 2:
+                return WTOREK;
+            case 3:
+                return SRODA;
+            case 4:
+                return CZWARTEK;
+            case 5:
+                return PIATEK;
+            case 6:
+                return SOBOTA;
+            case 7:
+                return NIEDZIELA;
+            default:
+                return NONE;
+
+        }
+
     }
 }

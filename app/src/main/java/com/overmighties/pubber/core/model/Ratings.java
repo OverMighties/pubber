@@ -32,26 +32,35 @@ public class Ratings {
         int count=0;
         float sum=0.f;
         if(facebook!=null){
-            count++;
-            sum+=facebook;
+            count += facebookReviewsCount;
+            sum+=facebook*facebookReviewsCount;
         }
         if(tripadvisor !=null){
-            count++;
-            sum+=google;
+            count += tripadvisorCount;
+            sum+=tripadvisor*tripadvisorCount;
         }
-        if(untappd!=null){
-            count++;
-            sum+=untappd;
+        if (google != null){
+            count += googleCount;
+            sum += google * googleCount;
         }
-        if(ourDrinksQuality!=null){
-            count++;
-            sum+=ourDrinksQuality;
+        if (count == 0){
+            return null;
         }
-        if(ourServiceQuality!=null){
-            count++;
-            sum+=ourServiceQuality;
+
+        else{
+            sum = sum/count;
+            return Math.round(sum*100.f)/100.f;
         }
-        return count==0?null:Math.round(sum*100.f)/100.f;
 
     }
+
+    public int getRatingsCount()
+    {
+        int count = 0;
+        if (facebookReviewsCount!=null){count += facebookReviewsCount;}
+        if (tripadvisorCount!=null){count += tripadvisorCount;}
+        if (googleCount!=null){count += googleCount;}
+        return count;
+    }
+
 }
