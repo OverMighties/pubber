@@ -2,7 +2,6 @@ package com.overmighties.pubber.feature.pubdetails.TabFragments;
 
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_IDS;
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS;
-import static com.overmighties.pubber.app.Constants.TAB_OVERTVIEW_TEXTVIEW_OUR_RATING_IDS;
 
 
 import android.os.Bundle;
@@ -28,8 +27,6 @@ import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
-import com.overmighties.pubber.feature.pubdetails.TabFragments.TabFragmentsUiState;
-import com.overmighties.pubber.feature.pubdetails.TabFragments.TabFragmentsViewModel;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
@@ -238,7 +235,7 @@ public class TabFragmentOverView extends Fragment {
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.GONE);
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.GONE);
                 ((TextView)requireView().findViewById(R.id.WrapContentHolder2)).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.arrowwhite);
+                ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.arrow_white_down);
 
             }
         }
@@ -247,7 +244,7 @@ public class TabFragmentOverView extends Fragment {
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.VISIBLE);
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.VISIBLE);
                 ((TextView)requireView().findViewById(R.id.WrapContentHolder2)).setVisibility(View.INVISIBLE);
-                ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.arrowwhiteup);
+                ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.arrow_white_up);
 
             }
         }

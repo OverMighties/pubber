@@ -21,7 +21,7 @@ import lombok.NonNull;
 public class FilterUtil {
 
 
-    private FilterUiState filterUiState;
+    private final FilterUiState filterUiState;
     private String city;
     private Float distance;
     @Getter

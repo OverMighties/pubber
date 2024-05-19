@@ -1,8 +1,6 @@
 package com.overmighties.pubber.util;
 
 import android.content.res.Resources;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,7 +9,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
 
 import java.util.ArrayList;
 
@@ -31,14 +28,14 @@ public class RatingToIVConverter {
             constraintSet.applyTo(constraintLayout);
 
             if (raiting >= n+0.75){
-                ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beerfull);
+                ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_full);
             }
             else{
                 if (raiting >= (float)(n+0.25)){
-                    ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beerhalffull);
+                    ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_half_full);
                 }
                 else{
-                    ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beerempty);
+                    ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_empty);
                 }
             }
 

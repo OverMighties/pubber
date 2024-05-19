@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:background="@color/Surface_Variant"
+        android:background="@color/surface_variant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
             android:layout_height="44dp"
             android:layout_marginTop="16dp"
             android:visibility="gone"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:fontFamily="@font/roboto_black"
             android:text="Sortuj według"
             android:textSize="24sp"
@@ -49,7 +49,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_relevance"
             android:textSize="20sp"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2" />
@@ -62,7 +62,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_alphabetical"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewRelevance" />
@@ -76,7 +76,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_rating"
             android:textSize="20sp"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAlphabetical" />
 
@@ -87,7 +87,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="12dp"
 
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sort_distance"
             android:textSize="20sp"

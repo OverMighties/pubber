@@ -16,6 +16,7 @@ import com.overmighties.pubber.app.ui.PlaceChoiceViewModel;
 
 public class LoadActivity extends AppCompatActivity {
     private PlaceChoiceViewModel placeChoiceViewModel;
+    public static final int LOGO_DELAY=3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,7 +28,7 @@ public class LoadActivity extends AppCompatActivity {
         handler.postDelayed(() -> {
             findViewById(R.id.title_textView).setVisibility(View.GONE);
             replaceWithFragment(PlaceChoiceFragment.class);
-        }, 3000);
+        }, LOGO_DELAY);
     }
     public void goToMainActivity(String city)
     {

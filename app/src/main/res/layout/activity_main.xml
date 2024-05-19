@@ -13,7 +13,7 @@
         app:elevation="70dp"
         app:itemIconSize="24dp"
         android:layout_height="80dp"
-        android:background="@color/Surface_Variant_Secondary"
+        android:background="@color/surface_variant_secondary"
         app:itemActiveIndicatorStyle="@style/NavigationBarColor"
         app:itemIconTint="@color/white"
         style="@style/CustomNavigationBarContainer"

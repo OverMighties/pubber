@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/saved"
-        android:icon="@drawable/hearthfullnav"
+        android:icon="@drawable/hearth_full_nav"
         android:title="Ulubione" />
 
     <item

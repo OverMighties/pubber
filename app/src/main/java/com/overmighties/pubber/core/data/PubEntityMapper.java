@@ -17,9 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class PubEntityMapper {
-    private PubEntityMapper()
-    {}
     public static Pub mapFromEntity(PubWithAllEntities pubWithAllEntities)
     {
         PubEntity pubEntity=pubWithAllEntities.pub;

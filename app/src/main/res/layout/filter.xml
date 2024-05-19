@@ -72,7 +72,7 @@
                 android:id="@+id/IVrating"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
-                android:src="@drawable/arrowwhite"
+                android:src="@drawable/arrow_white_down"
                 app:layout_constraintStart_toEndOf="@+id/TVrating"
                 app:layout_constraintTop_toTopOf="@+id/TVrating" />
 
@@ -122,7 +122,7 @@
                 android:id="@+id/IVdistance"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
-                android:src="@drawable/arrowwhite"
+                android:src="@drawable/arrow_white_down"
                 app:layout_constraintStart_toEndOf="@+id/TVdistance"
                 app:layout_constraintTop_toTopOf="@+id/TVdistance" />
 
@@ -168,7 +168,7 @@
                 android:id="@+id/IVprice"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
-                android:src="@drawable/arrowwhite"
+                android:src="@drawable/arrow_white_down"
                 app:layout_constraintStart_toEndOf="@+id/TVprice"
                 app:layout_constraintTop_toTopOf="@+id/TVprice" />
 
@@ -240,7 +240,7 @@
                 android:id="@+id/IVtime"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
-                android:src="@drawable/arrowwhite"
+                android:src="@drawable/arrow_white_down"
                 app:layout_constraintStart_toEndOf="@+id/TVtime"
                 app:layout_constraintTop_toTopOf="@+id/TVtime" />
 
@@ -342,7 +342,7 @@
                     android:layout_marginEnd="4dp"
                     app:layout_constraintEnd_toEndOf="@+id/Dayview"
                     app:layout_constraintTop_toTopOf="@+id/Dayview"
-                    app:srcCompat="@drawable/arrowblack" />
+                    app:srcCompat="@drawable/arrow_black_down" />
 
                 <View
                     android:id="@+id/Timeview"
@@ -374,7 +374,7 @@
                     android:layout_marginEnd="4dp"
                     app:layout_constraintEnd_toEndOf="@+id/Timeview"
                     app:layout_constraintTop_toTopOf="@+id/Timeview"
-                    app:srcCompat="@drawable/arrowblack" />
+                    app:srcCompat="@drawable/arrow_black_down" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -399,7 +399,7 @@
                 android:id="@+id/IVbeer"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
-                android:src="@drawable/arrowwhite"
+                android:src="@drawable/arrow_white_down"
                 app:layout_constraintStart_toEndOf="@+id/TVbeer"
                 app:layout_constraintTop_toTopOf="@+id/TVbeer" />
 
@@ -808,7 +808,7 @@
                 android:id="@+id/IVdrinks"
                 android:layout_width="28dp"
                 android:layout_height="32dp"
-                android:src="@drawable/arrowwhite"
+                android:src="@drawable/arrow_white_down"
                 app:layout_constraintStart_toEndOf="@+id/TVdrinks"
                 app:layout_constraintTop_toTopOf="@+id/TVdrinks" />
 
