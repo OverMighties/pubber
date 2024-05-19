@@ -270,8 +270,8 @@ public class Constants {
             };
     public static final int[] POP_UP_TIME_TEXTOdIDS=new int[]
             {
-                R.id.Odg0000,
-                R.id.Odg0030,
+                    R.id.Odg0000,
+                    R.id.Odg0030,
                     R.id.Odg0100,
                     R.id.Odg0130,
                     R.id.Odg0200,
@@ -328,13 +328,52 @@ public class Constants {
             };
     public static final int[] POP_UP_TIME_TEXT_NEXT_DAYS=new int[]
             {
-              R.id.TVt0030,
+                    R.id.TVt0030,
                     R.id.TVt0100,
                     R.id.TVt0130,
                     R.id.TVt0200,
                     R.id.TVt0230,
                     R.id.TVt0300
             };
+
+    public static final int[] TAB_OVERVIEW_TEXTVIEW_DAY_IDS=new int[]
+            {
+                    R.id.OvTvDay1,
+                    R.id.OvTvDay2,
+                    R.id.OvTvDay3,
+                    R.id.OvTvDay4,
+                    R.id.OvTvDay5,
+                    R.id.OvTvDay6,
+                    R.id.OvTvDay7
+            };
+    public static final int[] TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS=new int[]
+            {
+                    R.id.OvTvTime1,
+                    R.id.OvTvTime2,
+                    R.id.OvTvTime3,
+                    R.id.OvTvTime4,
+                    R.id.OvTvTime5,
+                    R.id.OvTvTime6,
+                    R.id.OvTvTime7
+            };
+    public static final int[] TAB_OVERTVIEW_TEXTVIEW_OUR_RATING_IDS = new int[]
+            {
+                    R.id.OvTVOurRGeneral,
+                    R.id.OvTVOurRPrice,
+                    R.id.OvTVOurRService,
+                    R.id.OvTVOurRVibe,
+                    R.id.OvTVGeneral,
+                    R.id.OvTVVibe,
+                    R.id.OvTVPrice,
+                    R.id.OvTVService,
+                    R.id.OvClOurRGeneral,
+                    //R.id.OvClOurRPrice,
+                    //R.id.OvClOurRVibe,
+                    //R.id.OvClOurRService,
+                    R.id.OvTVOurReview,
+                    R.id.OvClOurRating
+
+    };
 
 
 }

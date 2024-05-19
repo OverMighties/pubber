@@ -13,8 +13,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,18 +38,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
+import com.google.android.material.tabs.TabLayout;
 import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.app.ui.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.ui.ViewPagerSliderAdapter;
+import com.overmighties.pubber.app.ui.ViewPagerTabAdapter;
 import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
 import com.overmighties.pubber.util.DateType;
+import com.overmighties.pubber.util.RatingToIVConverter;
 
 
 import java.util.ArrayList;
@@ -68,6 +76,10 @@ public class DetailsFragment extends Fragment
     public ViewPager viewPager;
     private ConstraintLayout layout;
     private ShapeableImageView shapeableImageView;
+
+    private TabLayout tabLayout;
+    private ViewPager2 TabviewPager;
+    private ViewPagerTabAdapter viewPagerTabAdapter;
 
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
@@ -92,13 +104,70 @@ public class DetailsFragment extends Fragment
             }
         });
 
+        SetUpTabViewPager();
         SetUpPubDate(pubDetailsUiState);
         SetUpImageSlider(fotki);
     }
 
+
+    private void SetUpTabViewPager(){
+        tabLayout = requireView().findViewById(R.id.tabLayout);
+        TabviewPager = requireView().findViewById(R.id.TabViewPager);
+        viewPagerTabAdapter = new ViewPagerTabAdapter(getActivity());
+        TabviewPager.setAdapter(viewPagerTabAdapter);
+        TabviewPager.setUserInputEnabled(false);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                TabviewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
+        TabviewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+                switch (position){
+                    default: break;
+                    case 1: break;
+
+                }
+            }
+        });
+        ViewPager2 mViewPager = requireView().findViewById(R.id.TabViewPager);
+        /*
+        ViewTreeObserver viewTreeObserver = mViewPager.getViewTreeObserver();
+        viewTreeObserver
+                .addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+
+                    @Override
+                    public void onGlobalLayout() {
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                        //int viewPagerWidth = tabLayout.getTabAt(0).getWidth();
+                        //float viewPagerHeight = (float) (tabLayout.getTabAt(0));
+
+                        layoutParams.width = viewPagerWidth;
+                        layoutParams.height = (int) viewPagerHeight;
+
+                        mViewPager.setLayoutParams(layoutParams);
+                        mViewPager.getViewTreeObserver()
+                                .removeGlobalOnLayoutListener(this);
+                    }
+                });
+
+         */
+
+    }
+
     private void SetUpPubDate(PubDetailsUiState pubDetailsUiState) {
         ((TextView)requireView().findViewById(R.id.name)).setText(pubDetailsUiState.getName());
-
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
             if((pubDetailsUiState.getTimeOpenToday().substring(0,1)).equals("O")){ ((TextView)requireView().findViewById(R.id.TimeOTd))
@@ -114,7 +183,18 @@ public class DetailsFragment extends Fragment
             ((TextView)requireView().findViewById(R.id.TimeOTd)).setText(pubDetailsUiState.getTimeOpenToday());
         }
 
+        setUpRating();
+    }
 
+    private void setUpRating(){
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+
+        new RatingToIVConverter().Convert(imageViews, 35, requireView().findViewById(R.id.PubRatingIV), 4.6f, -10,20);
     }
 
 
@@ -128,11 +208,16 @@ public class DetailsFragment extends Fragment
         final PopupWindow DetailImageViewPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
+        DetailImageViewPopUpWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                BlurImageView.setVisibility(View.GONE);
+            }
+        });
         popUpView.findViewById(R.id.dismissButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DetailImageViewPopUpWindow.dismiss();
-                BlurImageView.setVisibility(View.GONE);
             }
         });
 
@@ -245,6 +330,7 @@ public class DetailsFragment extends Fragment
         constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, dpToPx(140));
         constraintSet.applyTo(constraintLayout);
     }
+
 
 
 

@@ -14,7 +14,16 @@ public enum DayOfWeekConverter {
     THURSDAY("THURSDAY","Thursday",4),
     FRIDAY("FRIDAY","Friday",5),
     SATURDAY("SATURDAY","Saturday",6),
-    SUNDAY("SUNDAY","Sunday",7);
+    SUNDAY("SUNDAY","Sunday",7),
+    PONIEDZIAlEK("PONIEDZIAŁEK","Poniedziałek",1),
+    WTOREK("WTOREK","Wtorek",2),
+    SRODA("ŚRODA","Środa",3),
+    CZWARTEK("CZWARTEK","Czwartek",4),
+    PIATEK("PIĄTEK","Piątek",5),
+    SOBOTA("SOBOTA","Sobota",6),
+    NIEDZIELA("NIEDZIELA","Niedziela",7);
+
+
     private final String upperCase;
     private final String normal;
     private final Integer numeric;
@@ -118,5 +127,28 @@ public enum DayOfWeekConverter {
             default:
                 return NONE;
         }
+    }
+    public static DayOfWeekConverter PolsihDayOfWeekConverter(Integer numberOfDayOfWeek){
+        switch (numberOfDayOfWeek)
+        {
+            case 1:
+                return PONIEDZIAlEK;
+            case 2:
+                return WTOREK;
+            case 3:
+                return SRODA;
+            case 4:
+                return CZWARTEK;
+            case 5:
+                return PIATEK;
+            case 6:
+                return SOBOTA;
+            case 7:
+                return NIEDZIELA;
+            default:
+                return NONE;
+
+        }
+
     }
 }

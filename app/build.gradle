@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.overmighties.pubber'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 29
@@ -32,9 +32,6 @@ android {
 apply plugin: "androidx.navigation.safeargs"
 dependencies {
 
-    //  def nav_version = "2.6.0"
-
-    // Java language implementation navigation
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -49,11 +46,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
     //image view with ability to zooming
     implementation 'com.github.MikeOrtiz:TouchImageView:3.6'
     //added this constrains cause without them there is some weird bug, it just works now
@@ -67,6 +59,16 @@ dependencies {
     }
     //library for bluring
     implementation 'com.github.Dimezis:BlurView:version-2.0.3'
+    //Android Concurrent
+    implementation "androidx.concurrent:concurrent-futures:1.1.0"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //Android Concurrent
     implementation "androidx.concurrent:concurrent-futures:1.1.0"

@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="380dp"
+    android:background="@color/Surface"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     >
@@ -10,15 +11,16 @@
     <com.google.android.material.card.MaterialCardView
 
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="100dp"
         app:cardCornerRadius="30dp"
+        app:strokeWidth="1dp"
+        app:cardElevation="4dp"
+        app:strokeColor="#251c15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#693D2B"
-        android:weightSum="10"
-        app:cardBackgroundColor="#433436">
+        app:cardBackgroundColor="@color/Surface_Container">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,117 +31,154 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
+            <TextView
+                android:id="@+id/PWalkDis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*.*km"
+                android:textColor="@color/On_Surface_Container_Secondary"
+                android:textSize="16dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/PRatingCount" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/PubImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="84dp"
+                android:layout_height="0dp"
                 android:layout_margin="10dp"
                 android:adjustViewBounds="true"
-                app:srcCompat="@drawable/pub_icon"
                 android:clickable="false"
                 android:contentDescription="Przykładowe zdjęcie pubu"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                />
+                app:srcCompat="@drawable/pub_icon" />
 
             <TextView
-                android:id="@+id/nazwaPubu"
-                android:layout_width="0dp"
+                android:id="@+id/PName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:layout_gravity="start"
-                android:textColor="#FFFFFF"
-                android:textIsSelectable="true"
-                android:textSize="19sp"
-                android:textStyle="bold"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:maxLines="1"
+                android:minLines="0"
+                android:text="Pub Name"
+                android:textColor="@color/On_Surface_Container"
+                android:textIsSelectable="true"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/heart"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/PubImage"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.1" />
+                app:layout_constraintVertical_bias="0.04" />
 
             <TextView
                 android:id="@+id/timeOpenToday_card_view_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/roundstyle"
                 android:gravity="center"
+                android:text="Open"
+                android:textSize="11sp"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/PubImage"
+                app:layout_constraintStart_toStartOf="@+id/PName"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.6"/>
+                app:layout_constraintVertical_bias="0.317" />
 
-            <TextView
-                android:id="@+id/drogaAuto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:background="@drawable/roundstyle"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/timeOpenToday_card_view_row"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.6"
-                />
-
-            <TextView
-                android:id="@+id/ocenaKoszty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/PubImage"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.9" />
-
-            <TextView
-                android:id="@+id/ocenaJakosc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ocenaKoszty"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.9" />
-
-            <TextView
-                android:id="@+id/ocenaSredniaSerwisy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ocenaJakosc"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.9" />
-
-            <ImageButton
+            <ImageView
                 android:id="@+id/heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#433436"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="64dp"
+                android:layout_height="54dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/heartempty" />
+                app:srcCompat="@drawable/hearthfull" />
 
+            <TextView
+                android:id="@+id/PRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*.*"
+                android:textSize="16dp"
+                android:textColor="@color/On_Surface_Container_Secondary"
+                app:layout_constraintStart_toStartOf="@+id/PName"
+                app:layout_constraintTop_toBottomOf="@+id/timeOpenToday_card_view_row" />
+
+            <TextView
+                android:id="@+id/PRatingCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:text="(****)"
+                android:textColor="@color/On_Surface_Container_Secondary"
+                android:textSize="16dp"
+                app:layout_constraintStart_toEndOf="@+id/PRating"
+                app:layout_constraintTop_toTopOf="@+id/PRating" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_marginStart="8dp"
+                android:layout_width="19dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/PRatingCount"
+                app:layout_constraintStart_toEndOf="@+id/PRatingCount"
+                app:layout_constraintTop_toTopOf="@+id/PRatingCount"
+                app:srcCompat="@drawable/person_walking_vector_asset" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/PClRatingImage"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/PRating"
+                app:layout_constraintEnd_toStartOf="@+id/PRatingCount"
+                app:layout_constraintStart_toEndOf="@+id/PRating"
+                app:layout_constraintTop_toTopOf="@+id/PRating">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/MapChip"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="-5dp"
+                android:text="Zaprowadź"
+                android:textColor="@color/On_Secodary_Container"
+                android:textSize="14dp"
+                app:chipBackgroundColor="@color/Secondary_Container"
+                app:chipCornerRadius="40dp"
+                app:chipIcon="@drawable/baseline_directions_24"
+                app:chipIconSize="25dp"
+                android:elevation="1dp"
+                app:chipStrokeColor="#4F3C27"
+                app:chipStrokeWidth="0.5dp"
+                app:layout_constraintStart_toStartOf="@+id/PRating"
+                app:layout_constraintTop_toBottomOf="@+id/PRating" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/AlcoholChip"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:elevation="1dp"
+                android:text="Alkohole"
+                android:layout_marginLeft="7dp"
+                android:textColor="@color/On_Secodary_Container"
+                android:textSize="14dp"
+                app:chipBackgroundColor="@color/Secondary_Container"
+                app:chipCornerRadius="40dp"
+                app:chipStartPadding="8dp"
+                app:textStartPadding="8dp"
+                app:chipIconTint="@color/On_Secodary_Container"
+                app:chipIconSize="18dp"
+                app:chipStrokeColor="#4F3C27"
+                app:chipStrokeWidth="0.5dp"
+                app:chipIcon="@drawable/beerfullblackchip"
+                app:layout_constraintStart_toEndOf="@+id/MapChip"
+                app:layout_constraintTop_toTopOf="@+id/MapChip" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

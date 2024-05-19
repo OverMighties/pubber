@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2828"
-    android:backgroundTint="#FFFFFF"
+    android:background="@drawable/gradient"
     tools:context=".app.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:background="@drawable/constraint_layout_margin_up"
+        app:elevation="70dp"
+        app:itemIconSize="24dp"
+        android:layout_height="80dp"
+        android:background="@color/Surface_Variant_Secondary"
         app:itemActiveIndicatorStyle="@style/NavigationBarColor"
         app:itemIconTint="@color/white"
         style="@style/CustomNavigationBarContainer"

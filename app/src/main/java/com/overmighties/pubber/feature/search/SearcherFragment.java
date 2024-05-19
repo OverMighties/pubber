@@ -13,10 +13,12 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,9 +28,12 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.feature.search.stateholders.SelectListener;
+import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
+import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.util.SortPubsBy;
 
-public class SearcherFragment extends Fragment  {
+public class SearcherFragment extends Fragment implements SelectListener {
 
     public static final String TAG = "SearcherFragment";
     private RecyclerView recyclerView;
@@ -49,7 +54,7 @@ public class SearcherFragment extends Fragment  {
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
         viewModel.getPubsFromRepo();
-        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue());
+        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue(),this);
         recyclerView.setAdapter(adapter);
         //navcontroller= NavHostFragment.findNavController(this);
         //Setting listener to departure to FiltrationScreen
@@ -66,7 +71,7 @@ public class SearcherFragment extends Fragment  {
             {
                 recyclerView.setVisibility(View.GONE);
             }else {
-                adapter = new ListPubAdapter(pubs);
+                adapter = new ListPubAdapter(pubs,this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setVisibility(View.VISIBLE);
             }
@@ -141,7 +146,7 @@ public class SearcherFragment extends Fragment  {
                     if (((RadioButton) popupView.findViewById(id)).isChecked()) {
                         ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
                         ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                        ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
                         ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
                         ((RadioButton) popupView.findViewById(id)).setChecked(true);
                     } else {

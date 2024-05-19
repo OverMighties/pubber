@@ -5,8 +5,21 @@
     <color name="pinky">#FFCBCB</color>
     <color name="main">#2C2828</color>
     <color name="theme">#693D2B</color>
-    <color name="highlight">#DA7800</color>
-    <color name="highlightOpen">#74B72E</color>
+    <color name="highlight">#FF6D24</color>
+    <color name="highlightOpen">#89e326</color>
     <color name="highlightClose">#E64242</color>
-
+    <color name="Primary">#ffb962</color>
+    <color name="On_Primary">#472a00</color>
+    <color name="Secondary">#715a41</color>
+    <color name="On_Secondary">#ffffff</color>
+    <color name="Secondary_Container">#57432b</color>
+    <color name="On_Secodary_Container">#fdddbd</color>
+    <color name="Surface">#261d16</color>
+    <color name="Surface_Variant">#504539</color>
+    <color name="Surface_Variant_Secondary">#392e27</color>
+    <color name="On_Surface">#eee0d4</color>
+    <color name="On_Surface_variant">#d4c4b5</color>
+    <color name="Surface_Container">#3b332c</color>
+    <color name="On_Surface_Container">#d4c4b5</color>
+    <color name="On_Surface_Container_Secondary">#9c8e81</color>
 </resources>

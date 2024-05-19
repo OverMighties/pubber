@@ -112,7 +112,6 @@ public class DetailsViewModel extends ViewModel {
             return result;
         }
         catch (Exception e) {
-            // TODO: handle exception
             return input;
         }
 
