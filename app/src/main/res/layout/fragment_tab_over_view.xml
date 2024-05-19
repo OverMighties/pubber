@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.pubdetails.TabFragments.TabFragmentOverView">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/OvClTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/constraint_layout_margin_down_dim"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/OvIVTime"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/baseline_access_time_filled_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/OvTVTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/roboto"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintStart_toEndOf="@+id/OvIVTime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/OvUnFoldTime"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/arrowwhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/WrapContentHolder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/WrapContentHolder2"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:layout_marginTop="2dp"
+            android:text=""
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay7" />
+
+        <TextView
+            android:id="@+id/OvTvDay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="Day1"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/OvIVTime"
+            app:layout_constraintTop_toBottomOf="@+id/OvTVTime" />
+
+        <TextView
+            android:id="@+id/OvTvDay2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:visibility="gone"
+            android:text="Day2"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/OvTvDay1"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay1" />
+
+        <TextView
+            android:id="@+id/OvTvDay3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:visibility="gone"
+            android:text="Day3"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/OvTvDay2"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay2" />
+
+        <TextView
+            android:id="@+id/OvTvDay4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:visibility="gone"
+            android:text="Day4"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/OvTvDay3"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay3" />
+
+        <TextView
+            android:id="@+id/OvTvDay5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="Day5"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/OvTvDay4"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay4" />
+
+        <TextView
+            android:id="@+id/OvTvDay6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="Day6"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/OvTvDay5"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay5" />
+
+        <TextView
+            android:id="@+id/OvTvDay7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="Day7"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/OvTvDay6"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvDay6" />
+
+        <TextView
+            android:id="@+id/OvTvTime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime1"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/OvTvDay1" />
+
+        <TextView
+            android:id="@+id/OvTvTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime2"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvTime1" />
+
+        <TextView
+            android:id="@+id/OvTvTime3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime3"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvTime2" />
+
+        <TextView
+            android:id="@+id/OvTvTime4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime4"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvTime3" />
+
+        <TextView
+            android:id="@+id/OvTvTime5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime5"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvTime4" />
+
+        <TextView
+            android:id="@+id/OvTvTime6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime6"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvTime5" />
+
+        <TextView
+            android:id="@+id/OvTvTime7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto"
+            android:text="DayTime7"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTvTime6" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/OvClAdress"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/constraint_layout_margin_down_dim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/OvClTime">
+
+        <ImageView
+            android:id="@+id/OvIVAdress"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/baseline_location_on_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/OvTVAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Polna 30a, Warszawa"
+            android:fontFamily="@font/roboto"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/OvIVAdress"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout8"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/constraint_layout_margin_down_dim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OvClAdress">
+
+        <ImageView
+            android:id="@+id/OvIVPhone"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/baseline_local_phone_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.476" />
+
+        <TextView
+            android:id="@+id/OvTVPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/roboto"
+            android:text="+48 790-338-700"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/OvIVPhone"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout9"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/constraint_layout_margin_down_dim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/earth"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.476" />
+
+        <TextView
+            android:id="@+id/OvTVWebsiteAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/roboto"
+            android:text="https://www.facebook.com/K20PUB"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout10"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:background="@drawable/constraint_layour_margin_down_highlight_dimed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OvClAlcohol">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="163dp"
+            android:layout_height="156dp"
+            android:layout_marginStart="-15dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/beerfull"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="4.6"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto"
+            android:text="4.6"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto"
+            android:text="4.0"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto"
+            android:text="4.4"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-4dp"
+            android:text="Google"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="@+id/textView12"
+            app:layout_constraintStart_toStartOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-4dp"
+            android:shadowColor="#00af87"
+            android:shadowDx="1.8"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="TripAdvisor"
+            android:textColor="#00af87"
+            android:textColorHighlight="#00af87"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="@+id/textView13"
+            app:layout_constraintStart_toStartOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-4dp"
+            android:shadowColor="#4267B2"
+            android:shadowDx="1.8"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="Facebook"
+            android:textColor="#4267B2"
+            android:textColorHighlight="#4267B2"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="@+id/textView14"
+            app:layout_constraintStart_toStartOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-6dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="1.8"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="Średnia ocena"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/textView11" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/OvgoogleCl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toTopOf="@+id/textView12">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/OvTripAdvisorCl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/OvFacebookCl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView14">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="(992)"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView12"
+            app:layout_constraintStart_toEndOf="@+id/OvgoogleCl"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="(14)"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintStart_toEndOf="@+id/OvTripAdvisorCl"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="(69)"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            app:layout_constraintStart_toEndOf="@+id/OvFacebookCl"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/roboto"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/OvClAlcohol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/constraint_layout_margin_down_dim"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/BeerListChG"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView25">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/AleBrowar"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/AleBrowar"
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Amber"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Amber"
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Artezan"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Artezan"
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Budweiser"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Budweiser"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Brokreacja"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Brokreacja"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Cieszyn"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Cieszyn"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Fortuna"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Fortuna"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/FunkyFluids"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/FunkyFluids"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Grimbergen"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Grimbergen"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Grodziskie"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Grodziskie"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Grolsch"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Grolsch"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Kingpin"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Kingpin"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Komes"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Komes"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Komoran"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Komoran"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Kozel"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Kozel"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Książęce"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Książęce"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Miłosław"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Miłosław"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Moczybroda"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Moczybroda"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/NaJurze"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/NaJurze"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Nepomucen"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Nepomucen"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Paulaner"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Paulaner"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/PilsnerUrquell"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PilsenrUrquell"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Pinta"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Pinta"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Primator"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Primator"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Raduga"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Raduga"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Recraft"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Recraft"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TrzechKumpli"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TrzechKumpli"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Zatecky"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Zatecky"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Zamiastem"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Zamiastem"
+                android:textAppearance="@style/CustomChipStyle"
+
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Żywiec"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Żywiec"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/DrinksChG"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView26">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/BlackRussian"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/BlackRussian"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/B52"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/B52"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Cosmopolitan"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Cosmopolitan"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/CubaLibre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CubaLibre"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Daiquiri"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Daiquiri"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Kamikaze"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Kamikaze"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/KrwawaMary"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/KrwawaMary"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/LongIsland"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/LongIsland"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Margarita"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Margarita"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Martini"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Martini"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Mojito"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Mojito"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/PinaColada"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PinaColada"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Sexonthebeach"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Sexonthebeach"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TequilaSunrise"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TequilaSunrise"
+
+                android:textAppearance="@style/CustomChipStyle"
+                android:visibility="gone"
+                app:chipBackgroundColor="@color/white" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:text="Wyświetl Alkohole"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="9dp"
+            app:layout_constraintStart_toEndOf="@id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Browary:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="24dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Drinki:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="24dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BeerListChG" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text=""
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/beerfullblack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="281dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
+        tools:layout_editor_absoluteX="1dp">
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Najtrafniejszy komentarz z"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/textView32"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="&quot;Świetne miejsce z fajnym klimatem i dobrym jedzeniem, idealne na spotkanie ze znajomymi. Dodatkowo masa gier umila ten czas! Polecam&quot;"
+            android:textColor="@color/white"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/textView31"
+            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Najtrafniejszy komentarz z"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:text="&quot;Fajne klimatyczne miejsce z genialnymi rysunkami na ścianach przedstawiających sceny fantasy. Bardzo duży wybór gier planszowych oraz sporo piw regionalnych do przetestowania. Na minus niestety dość mały wybór jedzenia&quot;"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/constraint_layour_margin_down_highlight_dimed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+
+        <TextView
+            android:id="@+id/OvTVShowOurR"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_height="32dp"
+            android:fontFamily="@font/roboto_bold"
+            android:shadowColor="#DA7800"
+            android:shadowDx="1.8"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="Pokaż naszą recenzję"
+            android:textColor="#C37800"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/OvClOurRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OvTVShowOurR">
+
+
+            <TextView
+                android:id="@+id/OvTVService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-4dp"
+                android:text="Jakość obsługi"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/OvTVOurRService"
+                app:layout_constraintEnd_toEndOf="@+id/OvTVOurRService"
+                app:layout_constraintStart_toStartOf="@+id/OvTVOurRService" />
+
+            <TextView
+                android:id="@+id/OvTVOurRService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="4,0"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/OvTVOurRPrice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/OvTVOurRPrice"
+                app:layout_constraintTop_toBottomOf="@+id/OvTVPrice" />
+
+            <TextView
+                android:id="@+id/OvTVOurRPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto"
+                android:text="4,1"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/OvTVOurReview"
+                tools:layout_editor_absoluteY="14dp" />
+
+            <TextView
+                android:id="@+id/OvTVOurReview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto"
+                android:text="Bardzo przyjemne miejsce do spędzenia czasu wieczorem. Posiada ogromny asortyment gier planszowych i każdy znajdzie w nich coś dla siebie, żeby miło spędzić czas. Możliwe do zamówienia tylko 3 piwa lane z beczki, raczej typowe, oprócz tego bar posiada w swoim asortymencie najczęściej w miarę dużą ilość piw kraftowych w butelkach, więc myśle, że każdy piwosz znajdzie też coś dla siebie. Jest też możliwość zamówienia drinków i szotów, są one przyzwoite. Karta dań rozbudowana, głównie o typowe barowe przekąski, wykonanie normalne, jeśli ktoś byłby głodny znajdzie coś dla siebie."
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/OvTVOurRGeneral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="4,5"
+                android:textColor="@color/white"
+                android:textSize="28dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OvTVOurRPrice" />
+
+            <TextView
+                android:id="@+id/OvTVOurRVibe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="4,6"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/OvTVOurRPrice"
+                app:layout_constraintEnd_toStartOf="@+id/OvTVOurRPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OvTVPrice" />
+
+            <TextView
+                android:id="@+id/OvTVGeneral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ogólne wrażenie"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/OvTVOurRGeneral"
+                app:layout_constraintEnd_toEndOf="@+id/OvTVOurRGeneral"
+                app:layout_constraintStart_toStartOf="@+id/OvTVOurRGeneral" />
+
+            <TextView
+                android:id="@+id/OvTVVibe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-4dp"
+                android:text="Klimat"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/OvTVOurRVibe"
+                app:layout_constraintEnd_toEndOf="@+id/OvTVOurRVibe"
+                app:layout_constraintStart_toStartOf="@+id/OvTVOurRVibe" />
+
+            <TextView
+                android:id="@+id/OvTVPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-4dp"
+                android:text="Cena"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/OvTVOurRPrice"
+                app:layout_constraintEnd_toEndOf="@+id/OvTVOurRPrice"
+                app:layout_constraintStart_toStartOf="@+id/OvTVOurRPrice" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/OvClOurRGeneral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/OvTVOurRGeneral"
+                app:layout_constraintStart_toStartOf="@+id/OvTVOurRGeneral"
+                app:layout_constraintTop_toBottomOf="@+id/OvTVOurRGeneral">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/OvClOurRVibe"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/OvTVOurRVibe"
+                app:layout_constraintStart_toEndOf="@+id/OvTVOurRVibe"
+                app:layout_constraintTop_toBottomOf="@+id/OvTVVibe">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/OvClOurRPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/OvTVOurRPrice"
+                app:layout_constraintStart_toEndOf="@+id/OvTVOurRPrice"
+                app:layout_constraintTop_toBottomOf="@+id/OvTVPrice">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/OvClOurRService"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="30dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/OvTVOurRService"
+                app:layout_constraintStart_toEndOf="@+id/OvTVOurRService"
+                app:layout_constraintTop_toTopOf="@+id/OvTVOurRService"></androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
