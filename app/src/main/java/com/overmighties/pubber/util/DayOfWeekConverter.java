@@ -15,7 +15,7 @@ public enum DayOfWeekConverter {
     FRIDAY("FRIDAY","Friday",5),
     SATURDAY("SATURDAY","Saturday",6),
     SUNDAY("SUNDAY","Sunday",7),
-    PONIEDZIAlEK("PONIEDZIAŁEK","Poniedziałek",1),
+    PONIEDZIALEK("PONIEDZIAŁEK","Poniedziałek",1),
     WTOREK("WTOREK","Wtorek",2),
     SRODA("ŚRODA","Środa",3),
     CZWARTEK("CZWARTEK","Czwartek",4),
@@ -132,7 +132,7 @@ public enum DayOfWeekConverter {
         switch (numberOfDayOfWeek)
         {
             case 1:
-                return PONIEDZIAlEK;
+                return PONIEDZIALEK;
             case 2:
                 return WTOREK;
             case 3:

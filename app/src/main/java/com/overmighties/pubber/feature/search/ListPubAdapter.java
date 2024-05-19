@@ -1,7 +1,6 @@
 package com.overmighties.pubber.feature.search;
 
 import static androidx.core.content.ContextCompat.startActivity;
-import static java.security.AccessController.getContext;
 
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -23,7 +22,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.SelectListener;
@@ -47,8 +45,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private final TextView ratingCount;
         private final ConstraintLayout ratingImage;
         //private final TextView costRating;
-       // private final TextView averageRatingFromServices;
-       // private final ImageButton imageSaveButt;
+        //private final TextView averageRatingFromServices;
+        //private final ImageButton imageSaveButt;
         private final ShapeableImageView pubIcon;
         private final View itemView;
         private final Chip mapChip;
@@ -125,11 +123,11 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         if(pubCardView.getTimeOpenToday()!=null){
             holder.timeOpenToday.setText(pubCardView.getTimeOpenToday());
             if(pubCardView.getIsOpenNow()==true) {
-                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlightOpen));
-                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlightOpen));}
+                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
+                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));}
             else{
-                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlightClose));
-                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlightClose));
+                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
+                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
                 }}
      //   if(pubCardView.getAverageRatingFromServices()!=null)
      //       holder.averageRatingFromServices.setText(pubData.getPubItems().get(position).getAverageRatingFromServices().toString());
@@ -165,7 +163,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         holder.mapChip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri adress = Uri.parse("geo:0,0?q="+pubCardView.getAdress());
+                Uri adress = Uri.parse("geo:0,0?q="+pubCardView.getAddress());
                 Intent intent = new Intent(Intent.ACTION_VIEW, adress);
                 intent.setPackage("com.google.android.apps.maps");
                 try {

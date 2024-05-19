@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="380dp"
-    android:background="@color/Surface"
+    android:background="@color/surface"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     >
@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/Surface_Container">
+        app:cardBackgroundColor="@color/surface_container">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="*.*km"
-                android:textColor="@color/On_Surface_Container_Secondary"
+                android:textColor="@color/on_surface_container_secondary"
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/PRatingCount" />
@@ -66,7 +66,7 @@
                 android:maxLines="1"
                 android:minLines="0"
                 android:text="Pub Name"
-                android:textColor="@color/On_Surface_Container"
+                android:textColor="@color/on_surface_container"
                 android:textIsSelectable="true"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
                 android:layout_height="54dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/hearthfull" />
+                app:srcCompat="@drawable/hearth_full" />
 
             <TextView
                 android:id="@+id/PRating"
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:text="*.*"
                 android:textSize="16dp"
-                android:textColor="@color/On_Surface_Container_Secondary"
+                android:textColor="@color/on_surface_container_secondary"
                 app:layout_constraintStart_toStartOf="@+id/PName"
                 app:layout_constraintTop_toBottomOf="@+id/timeOpenToday_card_view_row" />
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:text="(****)"
-                android:textColor="@color/On_Surface_Container_Secondary"
+                android:textColor="@color/on_surface_container_secondary"
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@+id/PRating"
                 app:layout_constraintTop_toTopOf="@+id/PRating" />
@@ -147,9 +147,9 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="-5dp"
                 android:text="Zaprowadź"
-                android:textColor="@color/On_Secodary_Container"
+                android:textColor="@color/on_secondary_container"
                 android:textSize="14dp"
-                app:chipBackgroundColor="@color/Secondary_Container"
+                app:chipBackgroundColor="@color/secondary_container"
                 app:chipCornerRadius="40dp"
                 app:chipIcon="@drawable/baseline_directions_24"
                 app:chipIconSize="25dp"
@@ -166,17 +166,17 @@
                 android:elevation="1dp"
                 android:text="Alkohole"
                 android:layout_marginLeft="7dp"
-                android:textColor="@color/On_Secodary_Container"
+                android:textColor="@color/on_secondary_container"
                 android:textSize="14dp"
-                app:chipBackgroundColor="@color/Secondary_Container"
+                app:chipBackgroundColor="@color/secondary_container"
                 app:chipCornerRadius="40dp"
                 app:chipStartPadding="8dp"
                 app:textStartPadding="8dp"
-                app:chipIconTint="@color/On_Secodary_Container"
+                app:chipIconTint="@color/on_secondary_container"
                 app:chipIconSize="18dp"
                 app:chipStrokeColor="#4F3C27"
                 app:chipStrokeWidth="0.5dp"
-                app:chipIcon="@drawable/beerfullblackchip"
+                app:chipIcon="@drawable/beer_full_black_chip"
                 app:layout_constraintStart_toEndOf="@+id/MapChip"
                 app:layout_constraintTop_toTopOf="@+id/MapChip" />
 

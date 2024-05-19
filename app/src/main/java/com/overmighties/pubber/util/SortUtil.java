@@ -11,9 +11,8 @@ import lombok.NonNull;
 
 public class SortUtil
 {
-    public static List<PubItemCardViewUiState>  sortingPubData(List<PubItemCardViewUiState> pubList, SortPubsBy sortingBy)
+    public static void sortingPubData(List<PubItemCardViewUiState> pubList, SortPubsBy sortingBy)
     {
-
         switch(sortingBy)
         {
             case RELEVANCE:
@@ -28,7 +27,6 @@ public class SortUtil
                 sortByDistanceAsc(pubList);
                 break;
         }
-        return pubList;
     }
 
     public static  void sortByRatingsDesc( @NonNull List<PubItemCardViewUiState> list)
@@ -41,12 +39,6 @@ public class SortUtil
     }
     public static void sortByPubNameAlphabetical(@NonNull List<PubItemCardViewUiState> list)
     {
-     
-        Collections.sort(list, new Comparator<PubItemCardViewUiState>() {
-            @Override
-            public int compare(final PubItemCardViewUiState object1, final PubItemCardViewUiState object2) {
-                return (((object1.getName()).toLowerCase())).compareTo((object2.getName().toLowerCase()));
-            }
-        });
+        list.sort(Comparator.comparing(object -> object.getName().toLowerCase()));
     }
 }

@@ -77,7 +77,7 @@ public class PubListViewModel extends ViewModel {
     public static final String CONTENT_PROVIDED ="Content provided";
     private final PubsRepository pubsRepository;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
-    private final LiveData<List<Pub>> _originalPubData=(LiveData<List<Pub>>) originalPubData;
+    private final LiveData<List<Pub>> _originalPubData=originalPubData;
     @Getter
     private final MutableLiveData<String> cityConstraint=new MutableLiveData<>();
     @Getter
@@ -108,9 +108,7 @@ public class PubListViewModel extends ViewModel {
     {
         if(originalPubData.getValue()==null) {
             if(pubsRepository==null)
-            {
                 Log.e(TAG, "getPubsFromRepo returned null: PubsRepository didn't return anything" );
-            }
             Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
                     .subscribe(pubs->{
                         originalPubData.setValue(pubs);
@@ -119,10 +117,8 @@ public class PubListViewModel extends ViewModel {
                         },
                         err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
                     );
-            if (d.isDisposed()) {
+            if (d.isDisposed())
                 d.dispose();
-            }
-
         }
     }
     public void setCityConstraint(String city)
@@ -133,12 +129,9 @@ public class PubListViewModel extends ViewModel {
     {
         setSearchText( prompt);
         List<PubItemCardViewUiState> pubs=new ArrayList<>();
-        for(Pub pub: Objects.requireNonNull(_originalPubData.getValue()))
-        {
+        for(Pub pub: Objects.requireNonNull(_originalPubData.getValue())) {
             if(pub.getName().toLowerCase().contains(prompt.toLowerCase()))
-            {
                 pubs.add(mapPubToUiState(pub));
-            }
         }
         sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,pubs));
     }
@@ -151,7 +144,7 @@ public class PubListViewModel extends ViewModel {
     public void filter(FilterUiState filter)
     {
         filterUiState.setValue(filter);
-        List<PubItemCardViewUiState> filteredPubs=new FilterUtil(filter,_originalPubData.getValue(),TEMPORARY_DISTANCE, cityConstraint.getValue())
+        List<PubItemCardViewUiState> filteredPubs=new FilterUtil(filter, Objects.requireNonNull(_originalPubData.getValue()),TEMPORARY_DISTANCE, cityConstraint.getValue())
                 .filterByAll()
                 .getFilteredPubs().stream()
                 .map(this::mapPubToUiState)
@@ -172,25 +165,29 @@ public class PubListViewModel extends ViewModel {
     public PubItemCardViewUiState mapPubToUiState(Pub pub)
     {
         DateType openInfo = null;
-        try { if(pub.getOpeningHours()!= null){
-            if(pub.getOpeningHours().size()!=0){openInfo=getPubTimeOpenToday(pub);
-            pub.setTimeOpenToday(openInfo.getTime());}
-        }
-        else {openInfo=new DateType(null,false);}
+        try {
+            if(pub.getOpeningHours()!= null){
+                if(!pub.getOpeningHours().isEmpty()){
+                    openInfo=getPubTimeOpenToday(pub);
+                    pub.setTimeOpenToday(openInfo.getTime());
+                }
+            }
+            else
+                openInfo=new DateType(null,false);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
         Log.d("tak", String.valueOf(pub.getRatings().getRatingsCount()));
         return new PubItemCardViewUiState(pub.getId(),TEMPORARY_BOOKMARK,pub.getName(),pub.getIconPath(),
-                openInfo.getTime(), openInfo.getType(),
+                openInfo.getTime(), openInfo.isType(),
                 TEMPORARY_DISTANCE,
                 PriceType.getById(pub.getRatings().getOurCost()).getIcon(),
                 pub.getRatings().getAverageRating(), pub.getRatings().getRatingsCount(), pub.getAddress(), pub.getDrinks());
     }
     public DateType getPubTimeOpenToday(Pub pub) throws ParseException {
         String text;
-        String koncowka ="";
-        boolean otwarte=false;
+        String ending ="";
+        boolean open=false;
 
         //initialazing dates
         SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
@@ -208,24 +205,24 @@ public class PubListViewModel extends ViewModel {
         }
 
         DateType time=(new DateTimetoCurrentTimeComparator()).dateTimetoCurrentTimeComparator(timeOpenToday,timeCloseToday,timeOpenYesterday,timeCloseYesterday);
-        if(Float.valueOf(time.getTime())==1){koncowka="a";}
-        if(Float.valueOf(time.getTime())<=4.5 && Float.valueOf(time.getTime())!=1){koncowka="y";}
+        if(Float.valueOf(time.getTime())==1){ending="a";}
+        if(Float.valueOf(time.getTime())<=4.5 && Float.valueOf(time.getTime())!=1){ending="y";}
         if(Float.valueOf(time.getTime())>=5){
-            if(ceil(Float.valueOf(time.getTime()))!=Float.valueOf(time.getTime())){koncowka="y";}
+            if(ceil(Float.valueOf(time.getTime()))!=Float.valueOf(time.getTime())){ending="y";}
         }
         if(time.getTime().substring(time.getTime().length()-1,time.getTime().length()).equals("0")){
             time.setTime(time.getTime().substring(0,time.getTime().length()-2));
         }
-        if(time.getType()){
-            text="Otwarte jeszcze "+time.getTime()+" godzin"+koncowka;
-            otwarte=true;
+        if(time.isType()){
+            text="Otwarte jeszcze "+time.getTime()+" godzin"+ending;
+            open=true;
         }
         else {
-            text="Zamknięte jeszcze "+time.getTime()+" godzin"+koncowka;
-            otwarte=false;
+            text="Zamknięte jeszcze "+time.getTime()+" godzin"+ending;
+            open=false;
         }
         //używam tutaj dateType tylko do przeniesiania danych, bo jest to najwygodniejsza forma, a myśle, że nia warto dodawać kolejnej classy tylko po to
-        DateType dateType=new DateType(text,otwarte);
+        DateType dateType=new DateType(text,open);
 
         return dateType;
     }
@@ -235,7 +232,7 @@ public class PubListViewModel extends ViewModel {
         PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
                 pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday());
-        detailsViewModel.setPubDetails(pubDetailsUiState);
+        DetailsViewModel.setPubDetails(pubDetailsUiState);
     }
     public static int dpToPx(int dp)
     {

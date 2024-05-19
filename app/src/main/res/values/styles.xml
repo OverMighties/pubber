@@ -9,9 +9,9 @@
 
     <style name="AppTheme.Toolbar" parent="AppTheme">
         <!--This line changes the color of text in Toolbar-->
-        <item name="android:textColorPrimary">@color/On_Surface_variant</item>
+        <item name="android:textColorPrimary">@color/on_surface_variant</item>
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
-        <item name="android:textColorSecondary">@color/On_Surface</item>
+        <item name="android:textColorSecondary">@color/on_surface</item>
     </style>
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
@@ -61,8 +61,8 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
     </style>
     <style name="ThemeOverlay.App.RadioButton" parent="">
-        <item name="colorOnSurface">@color/On_Surface_variant</item>
-        <item name="colorSecondary">@color/Primary</item>
+        <item name="colorOnSurface">@color/on_surface_variant</item>
+        <item name="colorSecondary">@color/primary</item>
     </style>
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">15%</item>

@@ -1,25 +1,13 @@
 package com.overmighties.pubber.util;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
+@Getter
+@AllArgsConstructor
 public class DateType {
-    @Getter
+    @Setter
     private String time;
-
     private final boolean type;
-
-    public DateType(String time, boolean type) {
-        this.time = time;
-        this.type = type;
-    }
-
-
-    public boolean getType() {
-        return type;
-    }
-    public void setTime(String time){
-        this.time=time;
-    }
 }
