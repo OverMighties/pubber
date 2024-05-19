@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.pubdetails.TabFragments.TabFragmentAlcohol">
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/BeerListChG"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/AleBrowar"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AleBrowar"
+            android:visibility="gone"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Amber"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Amber"
+            android:visibility="gone"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Artezan"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Artezan"
+            android:visibility="gone"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Budweiser"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Budweiser"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Brokreacja"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Brokreacja"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Cieszyn"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Cieszyn"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Fortuna"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Fortuna"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/FunkyFluids"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/FunkyFluids"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Grimbergen"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Grimbergen"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Grodziskie"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Grodziskie"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Grolsch"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Grolsch"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Kingpin"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Kingpin"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Komes"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Komes"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Komoran"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Komoran"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Kozel"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Kozel"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Książęce"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Książęce"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Miłosław"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Miłosław"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Moczybroda"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Moczybroda"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/NaJurze"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/NaJurze"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Nepomucen"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Nepomucen"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Paulaner"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Paulaner"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/PilsnerUrquell"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/PilsenrUrquell"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Pinta"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Pinta"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Primator"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Primator"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Raduga"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Raduga"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Recraft"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Recraft"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/TrzechKumpli"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/TrzechKumpli"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Zatecky"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Zatecky"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Zamiastem"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/Zamiastem"
+
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Żywiec"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Żywiec"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/DrinksChG"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/BlackRussian"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/BlackRussian"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/B52"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/B52"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Cosmopolitan"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Cosmopolitan"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/CubaLibre"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/CubaLibre"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Daiquiri"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Daiquiri"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Kamikaze"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Kamikaze"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/KrwawaMary"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/KrwawaMary"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/LongIsland"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/LongIsland"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Margarita"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Margarita"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Martini"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Martini"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Mojito"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Mojito"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/PinaColada"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/PinaColada"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/Sexonthebeach"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/Sexonthebeach"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/TequilaSunrise"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:text="@string/TequilaSunrise"
+            android:textAppearance="@style/CustomChipStyle"
+            app:chipBackgroundColor="@color/white" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Dostępne Browary:"
+        android:textSize="25sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dostępne Drinki:"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintStart_toStartOf="@+id/BeerListChG"
+        app:layout_constraintTop_toBottomOf="@+id/BeerListChG" />
+</androidx.constraintlayout.widget.ConstraintLayout>
