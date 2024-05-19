@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class PubDtoMapper {
-    private PubDtoMapper()
-    {}
     public static Pub mapFromDto(PubDto pub, LocalDateTime time)
     {
         return new Pub(pub.getId(), pub.getName(),pub.getAddress(),time, pub.getCity(), pub.getPhoneNumber(),

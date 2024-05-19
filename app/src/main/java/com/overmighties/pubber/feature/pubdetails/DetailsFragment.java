@@ -3,32 +3,16 @@ package com.overmighties.pubber.feature.pubdetails;
 import static com.overmighties.pubber.feature.pubdetails.DetailsViewModel.dpToPx;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.ContactsContract;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -51,16 +35,10 @@ import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.app.ui.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.ui.ViewPagerSliderAdapter;
 import com.overmighties.pubber.app.ui.ViewPagerTabAdapter;
-import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
-import com.overmighties.pubber.util.DateType;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 
 import java.util.ArrayList;
-
-import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderEffectBlur;
-import eightbitlab.com.blurview.RenderScriptBlur;
 
 
 public class DetailsFragment extends Fragment
@@ -171,14 +149,14 @@ public class DetailsFragment extends Fragment
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
             if((pubDetailsUiState.getTimeOpenToday().substring(0,1)).equals("O")){ ((TextView)requireView().findViewById(R.id.TimeOTd))
-                    .setTextColor( ContextCompat.getColor(getContext(), R.color.highlightOpen));
+                    .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_open));
                 ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
-                        ContextCompat.getColor(getContext(), R.color.highlightOpen));
+                        ContextCompat.getColor(getContext(), R.color.highlight_open));
             }else{
                 ((TextView)requireView().findViewById(R.id.TimeOTd))
-                        .setTextColor( ContextCompat.getColor(getContext(), R.color.highlightClose));
+                        .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_close));
                 ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
-                        ContextCompat.getColor(getContext(), R.color.highlightClose));
+                        ContextCompat.getColor(getContext(), R.color.highlight_close));
             }
             ((TextView)requireView().findViewById(R.id.TimeOTd)).setText(pubDetailsUiState.getTimeOpenToday());
         }

@@ -5,7 +5,7 @@
     android:id="@+id/search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Surface"
+    android:background="@color/surface"
     tools:context=".feature.search.SearcherFragment">
 
 
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
             app:cardElevation="50dp"
-            android:backgroundTint="@color/Surface">
+            android:backgroundTint="@color/surface">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -68,7 +68,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Sortuj według:"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,12 +80,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/roboto_bold"
-            android:shadowColor="@color/Primary"
+            android:shadowColor="@color/primary"
             android:shadowDx="1.8"
             android:shadowDy="1.3"
             android:shadowRadius="3"
             android:text="@string/sort_relevance"
-            android:textColor="@color/Primary"
+            android:textColor="@color/primary"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewSortBy_searcher"
             app:layout_constraintStart_toEndOf="@+id/textViewSortBy_searcher"
@@ -106,7 +106,7 @@
             app:cardCornerRadius="50dp"
             app:cardElevation="20dp"
             android:layout_marginRight="12dp"
-            android:backgroundTint="@color/Secondary_Container"
+            android:backgroundTint="@color/secondary_container"
             app:layout_constraintBottom_toBottomOf="@+id/textViewSortBy_searcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewSortBy_searcher" >

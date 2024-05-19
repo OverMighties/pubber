@@ -1,7 +1,6 @@
 package com.overmighties.pubber.feature.search.stateholders;
 
 import com.overmighties.pubber.core.model.Drink;
-import com.overmighties.pubber.core.model.OpeningHours;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class PubItemCardViewUiState {
     private String costRating;
     private Float qualityRating;
     private int ratingCount;
-    private String adress;
+    private String address;
     private List<Drink> alcohol;
     public boolean getIsOpenNow() {
         return isOpenNow;

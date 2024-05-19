@@ -5,7 +5,4 @@ public enum SortPubsBy {
     RATING,
     DISTANCE,
     ALPHABETICAL
-
-
-    
 }

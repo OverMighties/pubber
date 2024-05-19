@@ -17,9 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class PubDataMapper {
-    private PubDataMapper()
-    {}
     public static PubWithAllEntities mapToEntity(Pub pub)
     {
         PubEntity pubEntity=new PubEntity(pub.getId(),pub.getName(),pub.getAddress(), DateTimeConverter.getToString(pub.getFetchTime()), pub.getCity(), pub.getPhoneNumber(),

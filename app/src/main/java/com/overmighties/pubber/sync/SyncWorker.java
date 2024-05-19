@@ -1,10 +1,8 @@
 package com.overmighties.pubber.sync;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.overmighties.pubber.core.database.DbResponse;
-import com.overmighties.pubber.sync.Result;
 import androidx.annotation.NonNull;
 import androidx.work.Data;
 import androidx.work.Worker;

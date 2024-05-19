@@ -5,7 +5,7 @@ import com.overmighties.pubber.R;
 public class Constants {
 
     public static final String EXTRA_CITY_CONSTRAINT="com.pubber.EXTRA_CITY";
-    public static final String [] STRINGSXML_NAMES = new String[]{
+    public static final String [] STRING_RES_NAMES = new String[]{
             "app_name",
             "nazwa_aplikacji",
             "AleBrowar",
@@ -113,8 +113,7 @@ public class Constants {
             "srednio",
             "duzo",
     };
-    public static final int[] POP_UP_DAYS_IDS=new int[]
-            {
+    public static final int[] POP_UP_DAYS_IDS=new int[]{
                     R.id.jeden,
                     R.id.dwa,
                     R.id.trzy,
@@ -122,15 +121,15 @@ public class Constants {
                     R.id.piec,
                     R.id.szesc,
                     R.id.siedem
-            };
-    public static final Integer[] NUMBERSDAYS=new Integer[]
+    };
+    public static final Integer[] DAY_OF_WEEK =new Integer[]
             {
                     1,2,3,4,5,6,7
             };
 
 
 
-    public static final int[] POP_UP_DAYS_TEXTIDS=new int[]
+    public static final int[] POP_UP_DAYS_TEXT_IDS =new int[]
             {
                     R.id.textViewjeden,
                     R.id.textViewdwa,
@@ -209,7 +208,7 @@ public class Constants {
                     R.id.tg0300,
                     R.id.gdowolne
             };
-    public static final int[] POP_UP_TIME_TEXTIDS=new int[]
+    public static final int[] POP_UP_TIME_TEXT_IDS =new int[]
             {
                     R.id.textg0000,
                     R.id.textg0030,
@@ -268,7 +267,7 @@ public class Constants {
                     R.id.texttg0300,
                     R.id.textgdowolne
             };
-    public static final int[] POP_UP_TIME_TEXTOdIDS=new int[]
+    public static final int[] POP_UP_TIME_TEXT_Od_IDS =new int[]
             {
                     R.id.Odg0000,
                     R.id.Odg0030,
