@@ -91,7 +91,7 @@ public class TestRepoPubsDataSet {
                 openingHoursDataSet5,drinksDataSet5,photosDataSet5,null));
         dataSet.add(new PubDto(6L,	 "Pub Underground","Jana Matejki 10, 35-001 Rzeszów, Poland","ChIJS3sKMwL7PEcRurd9BXet-fw",null,null,	"https://www.facebook.com/PewexPub/","",LOREM_IPSUM_200,true,null,
                 new RatingsDto(4.0f,588,null,null,null,null,null,null,null,null,null),
-                openingHoursDataSet6,drinksDataSet6,photosDataSet6,null));;
+                openingHoursDataSet6,drinksDataSet6,photosDataSet6,null));
     }
     private void initDataSet1()
     {

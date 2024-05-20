@@ -18,7 +18,7 @@ public final class AppContainer {
     private final FakeLocalRepository localRepository;
     //private final PubsRoomDbSource localRepository;
     @Getter
-    private PubsRepository pubsRepository;
+    private final PubsRepository pubsRepository;
     public AppContainer(AppDb localDb)
     {
         this.localDb=localDb;

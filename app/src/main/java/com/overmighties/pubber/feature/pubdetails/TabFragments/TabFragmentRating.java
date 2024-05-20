@@ -27,7 +27,7 @@ public class TabFragmentRating extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         viewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
-        PubDetailsUiState pubDetailsUiState=viewModel.getPubDetails().getValue();
+        PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
 
         ((TextView)requireView().findViewById(R.id.textView2)).setText(pubDetailsUiState.getName());
 

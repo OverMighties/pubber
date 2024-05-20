@@ -71,7 +71,7 @@ public class DateTimetoCurrentTimeComparator {
         else{
             minutes=0;
         }
-        time=String.valueOf(hours)+"."+String.valueOf(minutes);
+        time= hours +"."+ minutes;
 
 
         return time;

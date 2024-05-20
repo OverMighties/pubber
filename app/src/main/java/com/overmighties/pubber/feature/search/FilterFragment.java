@@ -50,7 +50,7 @@ public class FilterFragment extends Fragment {
 
     public static final String TAG="FilterFragment";
     public boolean moreBeers;
-    private final List<String> otherDrinks =new ArrayList<>();;
+    private final List<String> otherDrinks =new ArrayList<>();
     private final List<String> beers =new ArrayList<>();
     private boolean open;
     public String price= FilterConstants.NONE_PRICE;

@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PubsRetrofitDataSource implements PubberNetworkDataSource {
 
     private static final PubsRetrofitDataSource INSTANCE= new PubsRetrofitDataSource();
-    private PubsNetworkApi networkApi;
+    private final PubsNetworkApi networkApi;
     public static final String TAG="PubsRetrofitDataSource";
     private static final String URL = "https://pubber-rest-api-49572a95c20a.herokuapp.com";
     

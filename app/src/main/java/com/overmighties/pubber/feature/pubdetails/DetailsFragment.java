@@ -64,7 +64,7 @@ public class DetailsFragment extends Fragment
         NavigationBar.smoothHide(getActivity().findViewById(R.id.nav_view));
         viewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
-        PubDetailsUiState pubDetailsUiState=viewModel.getPubDetails().getValue();
+        PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
 
         fotki.add(R.drawable.zdjecie1);
         fotki.add(R.drawable.zdjecie2);
@@ -214,7 +214,7 @@ public class DetailsFragment extends Fragment
                 @Override
                 public void onClick(View v) {
                     viewModel.takeScreenShot(layout,getContext());
-                    BlurImageView.setBackground(new BitmapDrawable(getResources(),viewModel.getPubDetails().getValue().getCurrentScreen()));
+                    BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
                     (getActivity().findViewById(R.id.detail))
@@ -245,7 +245,7 @@ public class DetailsFragment extends Fragment
                 @Override
                 public void onClick(View v) {
                     viewModel.takeScreenShot(layout,getContext());
-                    BlurImageView.setBackground(new BitmapDrawable(getResources(),viewModel.getPubDetails().getValue().getCurrentScreen()));
+                    BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
                     (getActivity().findViewById(R.id.detail))
@@ -276,7 +276,7 @@ public class DetailsFragment extends Fragment
                 @Override
                 public void onClick(View v) {
                     viewModel.takeScreenShot(layout,getContext());
-                    BlurImageView.setBackground(new BitmapDrawable(getResources(),viewModel.getPubDetails().getValue().getCurrentScreen()));
+                    BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
                     (getActivity().findViewById(R.id.detail))

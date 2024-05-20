@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pubber"
         tools:targetApi="31">
-        …
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"

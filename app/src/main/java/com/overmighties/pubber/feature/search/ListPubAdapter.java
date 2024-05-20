@@ -122,7 +122,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     //        holder.costRating.setText(pubData.getPubItems().get(position).getCostRating());
         if(pubCardView.getTimeOpenToday()!=null){
             holder.timeOpenToday.setText(pubCardView.getTimeOpenToday());
-            if(pubCardView.getIsOpenNow()==true) {
+            if(pubCardView.getIsOpenNow()) {
                 holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
                 holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));}
             else{
@@ -136,7 +136,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         }
         //if(pubCardView.getRatingCount()!=null)
        // {
-        holder.ratingCount.setText("("+String.valueOf(pubCardView.getRatingCount())+")");
+        holder.ratingCount.setText("("+ pubCardView.getRatingCount() +")");
        // }
 
         Glide.with(holder.getItemView())

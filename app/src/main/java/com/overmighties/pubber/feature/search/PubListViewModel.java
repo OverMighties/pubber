@@ -8,11 +8,6 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.viewmodel.ViewModelInitializer;
-
-import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
-import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 
 import static java.lang.Math.ceil;
@@ -222,9 +217,8 @@ public class PubListViewModel extends ViewModel {
             open=false;
         }
         //używam tutaj dateType tylko do przeniesiania danych, bo jest to najwygodniejsza forma, a myśle, że nia warto dodawać kolejnej classy tylko po to
-        DateType dateType=new DateType(text,open);
 
-        return dateType;
+        return new DateType(text,open);
     }
 
     public void setPubDetail(int position, DetailsViewModel detailsViewModel){

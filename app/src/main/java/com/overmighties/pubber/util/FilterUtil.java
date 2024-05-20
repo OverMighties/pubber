@@ -75,8 +75,8 @@ public class FilterUtil {
     public FilterUtil drinksFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if(filterUiState.getBeers()!= null && filterUiState.getBeers().size()==0
-                && filterUiState.getOtherDrinks()!= null &&filterUiState.getOtherDrinks().size()==0 ||
+        if(filterUiState.getBeers()!= null && filterUiState.getBeers().isEmpty()
+                && filterUiState.getOtherDrinks()!= null && filterUiState.getOtherDrinks().isEmpty() ||
                 (filterUiState.getBeers()== null && filterUiState.getOtherDrinks()== null)) {
             return this;
         }

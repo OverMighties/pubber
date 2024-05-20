@@ -67,7 +67,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
         sortButtonsListeners();
         viewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs->
         {
-            if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().size()==0)
+            if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
             {
                 recyclerView.setVisibility(View.GONE);
             }else {
