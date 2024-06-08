@@ -2,7 +2,6 @@ package com.overmighties.pubber.feature.pubdetails.TabFragments;
 
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_IDS;
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS;
-import static com.overmighties.pubber.app.Constants.TAB_OVERTVIEW_TEXTVIEW_OUR_RATING_IDS;
 
 
 import android.os.Bundle;
@@ -28,8 +27,6 @@ import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
-import com.overmighties.pubber.feature.pubdetails.TabFragments.TabFragmentsUiState;
-import com.overmighties.pubber.feature.pubdetails.TabFragments.TabFragmentsViewModel;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
@@ -147,6 +144,17 @@ public class TabFragmentOverView extends Fragment {
         for(int i=0; i<=6; i++){
             if(i+Today>7){
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today-7).getNormal());
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((pubViewModel.getUiState().getValue().getOpeningHours().get(i +Today-8)).getTimeOpen() + "-" + (pubViewModel.getUiState().getValue().getOpeningHours().get(i + Today-8)).getTimeClose());
+            }
+            else {
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today).getNormal());
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((pubViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeOpen() + "-" + (pubViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeClose());
+            }
+        }
+        /*
+        for(int i=0; i<=6; i++){
+            if(i+Today>7){
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today-7).getNormal());
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((fakeOpeningHours.get(i +Today-8)).getTimeOpen() + "-" + (fakeOpeningHours.get(i + Today-8)).getTimeClose());
             }
             else {
@@ -154,6 +162,8 @@ public class TabFragmentOverView extends Fragment {
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((fakeOpeningHours.get(i + Today-1)).getTimeOpen() + "-" + (fakeOpeningHours.get(i + Today-1)).getTimeClose());
             }
         }
+
+         */
     }
 
     private void SetUpListener(TabFragmentsUiState tabFragmentsUiState){
@@ -234,20 +244,20 @@ public class TabFragmentOverView extends Fragment {
 
     private void UnFoldTime(){
         if(requireView().findViewById(R.id.OvTvDay1).getVisibility() == View.VISIBLE){
+            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_less_primary);
             for(int i=0;i<=6;i++){
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.GONE);
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.GONE);
                 ((TextView)requireView().findViewById(R.id.WrapContentHolder2)).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.arrowwhite);
 
             }
         }
         else{
+            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_more_primary);
             for(int i=0;i<=6;i++){
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.VISIBLE);
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.VISIBLE);
                 ((TextView)requireView().findViewById(R.id.WrapContentHolder2)).setVisibility(View.INVISIBLE);
-                ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.arrowwhiteup);
 
             }
         }

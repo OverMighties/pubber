@@ -3,32 +3,16 @@ package com.overmighties.pubber.feature.pubdetails;
 import static com.overmighties.pubber.feature.pubdetails.DetailsViewModel.dpToPx;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.ContactsContract;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -51,16 +35,10 @@ import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.app.ui.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.ui.ViewPagerSliderAdapter;
 import com.overmighties.pubber.app.ui.ViewPagerTabAdapter;
-import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
-import com.overmighties.pubber.util.DateType;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 
 import java.util.ArrayList;
-
-import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderEffectBlur;
-import eightbitlab.com.blurview.RenderScriptBlur;
 
 
 public class DetailsFragment extends Fragment
@@ -88,12 +66,12 @@ public class DetailsFragment extends Fragment
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState=viewModel.getPubDetails().getValue();
 
-        fotki.add(R.drawable.zdjecie1);
-        fotki.add(R.drawable.zdjecie2);
-        fotki.add(R.drawable.zdjecie3);
-        fotki.add(R.drawable.zdjecie4);
-        fotki.add(R.drawable.zdjecie5);
-        fotki.add(R.drawable.zdjecie6);
+        fotki.add(R.drawable.test_photo_1);
+        fotki.add(R.drawable.test_photo_2);
+        fotki.add(R.drawable.test_photo_3);
+        fotki.add(R.drawable.test_photo_4);
+        fotki.add(R.drawable.test_photo_5);
+        fotki.add(R.drawable.test_photo_6);
         BlurImageView=requireView().findViewById(R.id.blur);
         layout=(ConstraintLayout)requireView().findViewById(R.id.detail);
         //listener for closing button
@@ -105,7 +83,7 @@ public class DetailsFragment extends Fragment
         });
 
         SetUpTabViewPager();
-        SetUpPubDate(pubDetailsUiState);
+        SetUpPubData(pubDetailsUiState);
         SetUpImageSlider(fotki);
     }
 
@@ -166,7 +144,7 @@ public class DetailsFragment extends Fragment
 
     }
 
-    private void SetUpPubDate(PubDetailsUiState pubDetailsUiState) {
+    private void SetUpPubData(PubDetailsUiState pubDetailsUiState) {
         ((TextView)requireView().findViewById(R.id.name)).setText(pubDetailsUiState.getName());
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
@@ -182,8 +160,17 @@ public class DetailsFragment extends Fragment
             }
             ((TextView)requireView().findViewById(R.id.TimeOTd)).setText(pubDetailsUiState.getTimeOpenToday());
         }
-
-        setUpRating();
+        //set up rating and rating's iv
+        ((TextView)requireView().findViewById(R.id.PubRating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
+        ((TextView)requireView().findViewById(R.id.PubRatingCount)).setText("("+pubDetailsUiState.getRatings().getRatingsCount()+")");
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(getContext()));
+        new RatingToIVConverter().Convert(imageViews, 37, requireView().findViewById(R.id.PubRatingIV), pubDetailsUiState.getRatings().getAverageRating(), 6,20);
+        //setUpRating();
     }
 
     private void setUpRating(){
@@ -194,7 +181,7 @@ public class DetailsFragment extends Fragment
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
 
-        new RatingToIVConverter().Convert(imageViews, 35, requireView().findViewById(R.id.PubRatingIV), 4.6f, -10,20);
+      //  new RatingToIVConverter().Convert(imageViews, 35, requireView().findViewById(R.id.PubRatingIV), , 0,20);
     }
 
 

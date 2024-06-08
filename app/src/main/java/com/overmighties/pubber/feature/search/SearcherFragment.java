@@ -4,6 +4,9 @@ package com.overmighties.pubber.feature.search;
 import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.TextAppearanceSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +16,6 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,13 +26,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.search.SearchBar;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.util.SortPubsBy;
 
 public class SearcherFragment extends Fragment implements SelectListener {
@@ -160,7 +162,18 @@ public class SearcherFragment extends Fragment implements SelectListener {
     private void initSearchView()
     {
         searchview=(SearchView)requireView().findViewById(R.id.searchView);
-        searchview.setQueryHint("Wyszukaj tutaj");
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        SpannableString string = new SpannableString("Wyszukaj Tutaj");
+        string.setSpan(new TextAppearanceSpan(getContext(), R.style.SearchView_Hint_Text),0,14,0);
+        searchview.setQueryHint(string);
+        searchview.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchview.setQueryHint("");
+                return false;
+            }
+        });
+
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
             @Override
@@ -174,6 +187,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
                 return false;
             }
         });
+
+
 
     }
     @Override

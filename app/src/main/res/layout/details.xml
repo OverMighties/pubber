@@ -24,6 +24,7 @@
                 android:id="@+id/constraintLayout6"
                 android:layout_width="410dp"
                 android:layout_height="47dp"
+                android:background="@color/Surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -53,6 +54,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ImageSlider"
+                    android:background="@color/Surface"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </HorizontalScrollView>
@@ -60,7 +62,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
                 android:layout_width="409dp"
-                android:layout_height="180dp"
+                android:layout_height="wrap_content"
+                android:background="@color/Surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
@@ -69,8 +72,8 @@
                     android:id="@+id/namecl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -81,12 +84,12 @@
                         android:autoSizeTextType="uniform"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:maxLines="1"
                         android:minLines="0"
                         android:text="name"
-                        android:textColor="#FFFFFF"
-                        android:textSize="34sp"
+                        android:textColor="@color/On_Surface"
+                        android:textSize="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +102,9 @@
                     android:id="@+id/TimeOTd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="TextView"
+                    android:layout_marginBottom="-8dp"
                     app:layout_constraintBottom_toTopOf="@+id/namecl"
                     app:layout_constraintStart_toStartOf="@+id/namecl" />
 
@@ -107,25 +112,26 @@
                     android:id="@+id/PubRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:fontFamily="@font/roboto"
                     android:text="4.6"
-                    android:textColor="@color/white"
-                    android:textSize="23dp"
+
+                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/namecl"
                     app:layout_constraintTop_toBottomOf="@+id/namecl" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/PubWalkDistance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="2dp"
                     android:fontFamily="@font/roboto"
                     android:text="0.7 km"
-                    android:textColor="@color/white"
-                    android:textSize="23dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/PubRating"
                     app:layout_constraintTop_toBottomOf="@+id/PubRating" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,12 +143,56 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/PubRatingCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-6dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="(****)"
+                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/PubRating"
+                    app:layout_constraintStart_toEndOf="@+id/PubRatingIV" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_walk_on_surface_con_dark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/PubWalkDistance"
+                    app:layout_constraintTop_toTopOf="@+id/PubWalkDistance" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text=" • $$ • "
+                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/PubRatingCount"
+                    app:layout_constraintStart_toEndOf="@+id/PubRatingCount" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.4 km"
+                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView34" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout7"
                 android:layout_width="409dp"
                 android:layout_height="wrap_content"
+                android:background="@color/Surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
@@ -151,12 +201,12 @@
                     android:id="@+id/tabLayout"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/main"
-                    app:tabTextColor="@color/white"
+                    android:layout_marginLeft="4dp"
+                    android:background="@color/Surface"
+                    app:tabTextColor="@color/On_Surface"
                     android:isScrollContainer="true"
                     app:tabTextAppearance="@style/TabTextApperance"
-                    app:tabIndicatorColor="@color/highlight"
+                    app:tabIndicatorColor="@color/Primary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

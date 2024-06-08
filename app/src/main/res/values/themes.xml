@@ -3,7 +3,6 @@
     <style name="Base.Theme.Pubber" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">#302821</item>
         <item name="android:navigationBarColor">#392e27</item>
-        <!-- Customize your light theme here. -->
         <item name="colorPrimary">#302821</item>
         <item name="android:ambientShadowAlpha">0.2</item>
         <item name="android:spotShadowAlpha">0.2</item>
@@ -12,7 +11,6 @@
 
     <style name="Theme.Pubber" parent="Base.Theme.Pubber" >
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
-
         <item name="android:windowBackground">#2C2828</item>
         <item name="colorPrimary">#302821</item>
     </style>

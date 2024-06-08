@@ -10,6 +10,7 @@
     <color name="highlightClose">#E64242</color>
     <color name="Primary">#ffb962</color>
     <color name="On_Primary">#472a00</color>
+    <color name="Primary_Container">#663e00</color>
     <color name="Secondary">#715a41</color>
     <color name="On_Secondary">#ffffff</color>
     <color name="Secondary_Container">#57432b</color>
@@ -18,8 +19,12 @@
     <color name="Surface_Variant">#504539</color>
     <color name="Surface_Variant_Secondary">#392e27</color>
     <color name="On_Surface">#eee0d4</color>
+    <color name="On_Surface_dark_variant">#aca095</color>
     <color name="On_Surface_variant">#d4c4b5</color>
     <color name="Surface_Container">#3b332c</color>
+    <color name="Surface_Container_Low">#211a13</color>
     <color name="On_Surface_Container">#d4c4b5</color>
     <color name="On_Surface_Container_Secondary">#9c8e81</color>
+    <color name="Outline">#9d8e81</color>
+    <color name="Outline_Bright_Variant">#cac0b5</color>
 </resources>

@@ -127,7 +127,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/PRatingCount"
                 app:layout_constraintStart_toEndOf="@+id/PRatingCount"
                 app:layout_constraintTop_toTopOf="@+id/PRatingCount"
-                app:srcCompat="@drawable/person_walking_vector_asset" />
+                app:srcCompat="@drawable/ic_walking_on_sureface_con_sec" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/PClRatingImage"
@@ -151,7 +151,7 @@
                 android:textSize="14dp"
                 app:chipBackgroundColor="@color/Secondary_Container"
                 app:chipCornerRadius="40dp"
-                app:chipIcon="@drawable/baseline_directions_24"
+                app:chipIcon="@drawable/ic_directions_on_surface_container"
                 app:chipIconSize="25dp"
                 android:elevation="1dp"
                 app:chipStrokeColor="#4F3C27"
