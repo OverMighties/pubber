@@ -11,9 +11,6 @@
         android:id="@+id/jeden"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
-
-
         android:background="@drawable/menu_drop_out_list_shape_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,6 +23,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Poniedziałek"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,10 +35,7 @@
         android:id="@+id/dwa"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
-
-
-        android:background="#FFFFFF"
+        android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jeden">
 
@@ -48,7 +43,7 @@
             android:id="@+id/cardView9"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/Outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -57,11 +52,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Wtorek"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:text="Wtorek"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -69,10 +65,7 @@
         android:id="@+id/trzy"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
-
-
-        android:background="#FFFFFF"
+        android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dwa">
 
@@ -80,7 +73,7 @@
             android:id="@+id/cardView10"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/Outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -89,11 +82,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Środa"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:text="Środa"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -101,10 +95,7 @@
         android:id="@+id/cztery"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
-
-
-        android:background="#FFFFFF"
+        android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trzy">
 
@@ -112,7 +103,7 @@
             android:id="@+id/cardView11"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/Outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -121,11 +112,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Czwartek"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:text="Czwartek"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -133,8 +125,7 @@
         android:id="@+id/piec"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
-        android:background="#FFFFFF"
+        android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cztery">
 
@@ -142,7 +133,7 @@
             android:id="@+id/cardView12"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/Outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -151,11 +142,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Piątek"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:text="Piątek"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,8 +155,7 @@
         android:id="@+id/szesc"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
-        android:background="#FFFFFF"
+        android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/piec">
 
@@ -172,7 +163,7 @@
             android:id="@+id/cardView13"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/Outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -181,11 +172,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Sobota"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:text="Sobota"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -193,7 +185,7 @@
             android:id="@+id/cardView14"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/Outline"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -211,11 +203,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Niedziela"
+            android:textColor="@color/On_Surface_variant"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

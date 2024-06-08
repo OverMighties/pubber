@@ -8,6 +8,9 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirec
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.TextAppearanceSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +31,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.search.SearchBar;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
@@ -175,7 +179,18 @@ public class SearcherFragment extends Fragment implements SelectListener {
     private void initSearchView()
     {
         searchview=(SearchView)requireView().findViewById(R.id.searchView);
-        searchview.setQueryHint("Wyszukaj tutaj");
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        SpannableString string = new SpannableString("Wyszukaj Tutaj");
+        string.setSpan(new TextAppearanceSpan(getContext(), R.style.SearchView_Hint_Text),0,14,0);
+        searchview.setQueryHint(string);
+        searchview.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchview.setQueryHint("");
+                return false;
+            }
+        });
+
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
             @Override

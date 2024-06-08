@@ -11,7 +11,7 @@
 
     <solid
 
-        android:color="@color/theme"
+        android:color="@color/Primary"
 
         />
 </shape>

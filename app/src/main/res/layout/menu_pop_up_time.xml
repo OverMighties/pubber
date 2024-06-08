@@ -23,7 +23,7 @@
                 android:id="@+id/tg0300"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -32,7 +32,7 @@
                     android:id="@+id/cardView44"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -45,6 +45,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="03:00 "
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odtg0300"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +56,7 @@
                     app:layout_constraintStart_toEndOf="@id/texttg0300"
                     app:layout_constraintTop_toTopOf="@id/texttg0300"
                     android:layout_marginTop="4dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="10sp"
                     android:text="(dnia następnego)"
                     android:fontFamily="@font/roboto_medium"/>
@@ -66,7 +67,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +77,7 @@
                 android:id="@+id/tg0230"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/tg0300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -85,7 +86,7 @@
                     android:id="@+id/cardView46"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -98,6 +99,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="02:30 "
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odtg0230"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -105,7 +107,7 @@
                     android:id="@+id/TVt0230"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/On_Surface_variant"
                     app:layout_constraintStart_toEndOf="@id/texttg0230"
                     app:layout_constraintTop_toTopOf="@id/texttg0230"
                     android:layout_marginTop="4dp"
@@ -119,7 +121,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +133,7 @@
                 android:id="@+id/tg0200"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/tg0230"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -140,7 +142,7 @@
                     android:id="@+id/cardView50"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -154,6 +156,7 @@
                     android:gravity="center"
                     android:text="02:00 "
                     android:textSize="16sp"
+                    android:textColor="@color/On_Surface_variant"
                     app:layout_constraintStart_toEndOf="@+id/Odtg0200"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
@@ -163,7 +166,7 @@
                     app:layout_constraintStart_toEndOf="@id/texttg0200"
                     app:layout_constraintTop_toTopOf="@id/texttg0200"
                     android:layout_marginTop="4dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="10sp"
                     android:text="(dnia następnego)"
                     android:fontFamily="@font/roboto_medium"/>
@@ -174,7 +177,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -184,7 +187,7 @@
                 android:id="@+id/tg0130"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/tg0200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -193,7 +196,7 @@
                     android:id="@+id/cardView47"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -207,6 +210,7 @@
                     android:gravity="center"
                     android:text="01:30 "
                     android:textSize="16sp"
+                    android:textColor="@color/On_Surface_variant"
                     app:layout_constraintStart_toEndOf="@+id/Odtg0130"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
@@ -216,7 +220,7 @@
                     app:layout_constraintStart_toEndOf="@id/texttg0130"
                     app:layout_constraintTop_toTopOf="@id/texttg0130"
                     android:layout_marginTop="4dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="10sp"
                     android:text="(dnia następnego)"
                     android:fontFamily="@font/roboto_medium"/>
@@ -227,7 +231,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -237,7 +241,7 @@
                 android:id="@+id/tg0100"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/tg0130"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -246,7 +250,7 @@
                     android:id="@+id/cardView48"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -259,6 +263,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="01:00 "
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odtg0100"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -269,7 +274,7 @@
                     app:layout_constraintStart_toEndOf="@id/texttg0100"
                     app:layout_constraintTop_toTopOf="@id/texttg0100"
                     android:layout_marginTop="4dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="10sp"
                     android:text="(dnia następnego)"
                     android:fontFamily="@font/roboto_medium"/>
@@ -280,7 +285,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -292,7 +297,7 @@
                 android:id="@+id/tg0030"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toBottomOf="@+id/tg0100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -301,7 +306,7 @@
                     android:id="@+id/cardView40"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -314,6 +319,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="00:30 "
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odtg0030"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -325,7 +331,7 @@
                     app:layout_constraintTop_toTopOf="@id/texttg0030"
                     android:layout_marginTop="4dp"
                     android:textSize="10sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="(dnia następnego)"
                     android:fontFamily="@font/roboto_medium"/>
                 <TextView
@@ -335,7 +341,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -348,7 +354,7 @@
                 android:id="@+id/g2400"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/tg0030"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -356,7 +362,7 @@
                     android:id="@+id/cardView51"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -369,6 +375,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="24:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2400"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -379,7 +386,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -391,7 +398,7 @@
                 android:id="@+id/g2330"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -400,7 +407,7 @@
                     android:id="@+id/cardView16"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -412,6 +419,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="23:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2330"
@@ -423,7 +431,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -436,7 +444,7 @@
                 android:id="@+id/g2300"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2330"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -445,7 +453,7 @@
                     android:id="@+id/cardView17"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -457,6 +465,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="23:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2300"
@@ -468,7 +477,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -481,7 +490,7 @@
                 android:id="@+id/g2230"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -490,7 +499,7 @@
                     android:id="@+id/cardView18"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -502,6 +511,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="22:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2230"
@@ -513,7 +523,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -526,7 +536,7 @@
                 android:id="@+id/g2200"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2230"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -535,7 +545,7 @@
                     android:id="@+id/cardView19"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -548,6 +558,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="22:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2200"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -558,7 +569,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -571,7 +582,7 @@
                 android:id="@+id/g2130"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -580,7 +591,7 @@
                     android:id="@+id/cardView20"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -593,6 +604,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="21:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2130"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -603,7 +615,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -616,7 +628,7 @@
                 android:id="@+id/g2100"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2130"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -625,7 +637,7 @@
                     android:id="@+id/cardView21"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -637,6 +649,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="21:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2100"
@@ -648,7 +661,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -661,7 +674,7 @@
                 android:id="@+id/g2030"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -670,7 +683,7 @@
                     android:id="@+id/cardView22"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -683,6 +696,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="20:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2030"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -693,7 +707,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -706,7 +720,7 @@
                 android:id="@+id/g2000"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2030"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -715,7 +729,7 @@
                     android:id="@+id/cardView23"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -728,6 +742,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="20:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg2000"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -738,7 +753,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -751,7 +766,7 @@
                 android:id="@+id/g1930"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g2000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -760,7 +775,7 @@
                     android:id="@+id/cardView25"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -773,6 +788,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="19:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1930"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -783,7 +799,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -796,7 +812,7 @@
                 android:id="@+id/g1900"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1930"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -805,7 +821,7 @@
                     android:id="@+id/cardView26"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -817,6 +833,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="19:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1900"
@@ -828,7 +845,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -841,7 +858,7 @@
                 android:id="@+id/g1830"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1900"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -850,7 +867,7 @@
                     android:id="@+id/cardView27"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -863,6 +880,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="18:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1830"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -873,7 +891,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -886,7 +904,7 @@
                 android:id="@+id/g1800"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1830"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -895,7 +913,7 @@
                     android:id="@+id/cardView28"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -908,6 +926,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="18:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1800"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -918,7 +937,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -931,7 +950,7 @@
                 android:id="@+id/g1730"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1800"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -939,7 +958,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -952,6 +971,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="17:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1730"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -962,7 +982,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -975,7 +995,7 @@
                 android:id="@+id/g1700"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1730"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -983,7 +1003,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -995,6 +1015,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="17:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1700"
@@ -1006,7 +1027,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1019,7 +1040,7 @@
                 android:id="@+id/g1630"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1027,7 +1048,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1039,6 +1060,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="16:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1630"
@@ -1050,7 +1072,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1063,7 +1085,7 @@
                 android:id="@+id/g1600"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1630"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1071,7 +1093,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1084,6 +1106,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="16:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1600"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1094,7 +1117,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1107,7 +1130,7 @@
                 android:id="@+id/g1530"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1600"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1115,7 +1138,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1127,6 +1150,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="15:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1530"
@@ -1138,7 +1162,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1151,7 +1175,7 @@
                 android:id="@+id/g1500"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1530"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1159,7 +1183,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1172,6 +1196,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="15:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1500"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1182,7 +1207,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1195,7 +1220,7 @@
                 android:id="@+id/g1430"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1203,7 +1228,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1217,6 +1242,7 @@
                     android:gravity="center"
                     android:text="14:30"
                     android:textSize="16sp"
+                    android:textColor="@color/On_Surface_variant"
                     app:layout_constraintStart_toEndOf="@+id/Odg1430"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
@@ -1226,7 +1252,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1239,7 +1265,7 @@
                 android:id="@+id/g1400"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1430"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1247,7 +1273,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1259,6 +1285,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="14:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1400"
@@ -1270,7 +1297,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1283,7 +1310,7 @@
                 android:id="@+id/g1330"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1291,7 +1318,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1303,6 +1330,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="13:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1330"
@@ -1314,7 +1342,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1327,7 +1355,7 @@
                 android:id="@+id/g1300"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1330"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1335,7 +1363,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1347,6 +1375,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="13:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1300"
@@ -1358,7 +1387,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1371,7 +1400,7 @@
                 android:id="@+id/g1230"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1379,7 +1408,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1391,6 +1420,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="12:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1230"
@@ -1402,7 +1432,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1415,7 +1445,7 @@
                 android:id="@+id/g1200"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1230"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1423,7 +1453,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1436,6 +1466,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="12:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1200"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1446,7 +1477,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1459,7 +1490,7 @@
                 android:id="@+id/g1130"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1467,7 +1498,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1480,6 +1511,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="11:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1130"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1490,7 +1522,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1503,7 +1535,7 @@
                 android:id="@+id/g1100"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1130"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1511,7 +1543,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1523,6 +1555,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="11:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1100"
@@ -1534,7 +1567,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1547,7 +1580,7 @@
                 android:id="@+id/g1030"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1555,7 +1588,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1567,6 +1600,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="10:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1030"
@@ -1578,7 +1612,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1591,7 +1625,7 @@
                 android:id="@+id/g1000"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1030"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1599,7 +1633,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1612,6 +1646,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="10:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg1000"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1622,7 +1657,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1635,7 +1670,7 @@
                 android:id="@+id/g0930"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g1000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1643,7 +1678,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1656,6 +1691,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="09:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0930"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1666,7 +1702,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1679,7 +1715,7 @@
                 android:id="@+id/g0900"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0930"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1687,7 +1723,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1700,6 +1736,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="09:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0900"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1710,7 +1747,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1721,7 +1758,7 @@
                 android:id="@+id/g0830"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0900"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1729,7 +1766,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1741,6 +1778,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="08:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0830"
@@ -1752,7 +1790,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1763,7 +1801,7 @@
                 android:id="@+id/g0800"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0830"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1771,7 +1809,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1783,6 +1821,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="08:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0800"
@@ -1794,7 +1833,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1805,7 +1844,7 @@
                 android:id="@+id/g0730"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0800"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1813,7 +1852,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1825,6 +1864,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="07:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0730"
@@ -1836,7 +1876,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1847,7 +1887,7 @@
                 android:id="@+id/g0700"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0730"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1855,7 +1895,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1867,6 +1907,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="07:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0700"
@@ -1878,7 +1919,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1889,7 +1930,7 @@
                 android:id="@+id/g0630"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1897,7 +1938,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1910,6 +1951,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="06:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0630"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1920,7 +1962,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1931,7 +1973,7 @@
                 android:id="@+id/g0600"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0630"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1939,7 +1981,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1951,6 +1993,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="06:00"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0600"
@@ -1962,7 +2005,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1973,7 +2016,7 @@
                 android:id="@+id/g0530"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0600"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -1981,7 +2024,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -1995,6 +2038,7 @@
                     android:gravity="center"
                     android:text="05:30"
                     android:textSize="16sp"
+                    android:textColor="@color/On_Surface_variant"
                     app:layout_constraintStart_toEndOf="@+id/Odg0530"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
@@ -2004,7 +2048,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2015,7 +2059,7 @@
                 android:id="@+id/g0500"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0530"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2023,7 +2067,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2036,6 +2080,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="05:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0500"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -2046,7 +2091,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2057,7 +2102,7 @@
                 android:id="@+id/g0430"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2065,7 +2110,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2078,6 +2123,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="04:30"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0430"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -2088,7 +2134,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2099,7 +2145,7 @@
                 android:id="@+id/g0400"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0430"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2107,7 +2153,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2120,6 +2166,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="04:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0400"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -2130,7 +2177,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2141,7 +2188,7 @@
                 android:id="@+id/g0330"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2149,7 +2196,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2161,6 +2208,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="03:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0330"
@@ -2172,7 +2220,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2183,7 +2231,7 @@
                 android:id="@+id/g0300"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0330"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2191,7 +2239,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2204,6 +2252,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="03:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0300"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -2214,7 +2263,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2225,7 +2274,7 @@
                 android:id="@+id/g0230"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2233,7 +2282,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="#000000"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2245,6 +2294,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="02:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0230"
@@ -2256,7 +2306,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2267,7 +2317,7 @@
                 android:id="@+id/g0200"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0230"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2275,7 +2325,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2286,6 +2336,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/On_Surface_variant"
                     android:gravity="center"
                     android:text="02:00"
                     android:textSize="16sp"
@@ -2298,7 +2349,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2309,7 +2360,7 @@
                 android:id="@+id/g0130"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2317,7 +2368,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2329,6 +2380,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="01:30"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0130"
@@ -2340,7 +2392,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2352,7 +2404,7 @@
                 android:id="@+id/g0100"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0130"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2360,7 +2412,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2373,6 +2425,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="01:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0100"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -2383,7 +2436,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2394,7 +2447,7 @@
                 android:id="@+id/g0030"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2402,7 +2455,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2413,6 +2466,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/On_Surface_variant"
                     android:gravity="center"
                     android:text="00:30"
                     android:textSize="16sp"
@@ -2425,7 +2479,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2436,7 +2490,7 @@
                 android:id="@+id/g0000"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0030"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2444,7 +2498,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2456,6 +2510,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="00:00"
+                    android:textColor="@color/On_Surface_variant"
                     android:textSize="16sp"
                     android:layout_marginStart="8dp"
                     app:layout_constraintStart_toEndOf="@+id/Odg0000"
@@ -2468,7 +2523,7 @@
                     android:layout_marginStart="8dp"
                     android:visibility="gone"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Od"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -2479,7 +2534,7 @@
                 android:id="@+id/gdowolne"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/menu_drop_down_days_shape"
                 app:layout_constraintBottom_toTopOf="@+id/g0000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -2487,7 +2542,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/Outline"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="4dp" />
 
@@ -2499,6 +2554,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:textColor="@color/On_Surface_variant"
                     android:text="Dowolna godzina"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"

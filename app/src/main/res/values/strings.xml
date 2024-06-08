@@ -3,7 +3,7 @@
     <string name="nazwa_aplikacji">Pubber</string>
     <string-array name="rangeRating">
         <item>0</item>
-        <item>5</item>
+        <item>10</item>
     </string-array>
     <string name="hello_blank_fragment">Hi There</string>
     <string name="AleBrowar">AleBrowar</string>
