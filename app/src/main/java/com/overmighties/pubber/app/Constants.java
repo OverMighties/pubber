@@ -355,7 +355,7 @@ public class Constants {
                     R.id.OvTvTime6,
                     R.id.OvTvTime7
             };
-    public static final int[] TAB_OVERTVIEW_TEXTVIEW_OUR_RATING_IDS = new int[]
+    public static final int[] TAB_OVERVIEW_TEXTVIEW_OUR_RATING_IDS = new int[]
             {
                     R.id.OvTVOurRGeneral,
                     R.id.OvTVOurRPrice,

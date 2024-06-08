@@ -61,8 +61,8 @@ public class PubsRepository {
     public Single<List<Pub>> getPubs()
     {
         return localDataSource.getPubs()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io());
+
     }
 
 

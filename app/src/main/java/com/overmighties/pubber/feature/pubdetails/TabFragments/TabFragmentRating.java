@@ -7,11 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.overmighties.pubber.R;
@@ -29,7 +25,7 @@ public class TabFragmentRating extends Fragment {
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
 
-        ((TextView)requireView().findViewById(R.id.textView2)).setText(pubDetailsUiState.getName());
+        ((TextView)requireView().findViewById(R.id.text_welcoming_splash)).setText(pubDetailsUiState.getName());
 
 
     }

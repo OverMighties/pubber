@@ -54,14 +54,14 @@ public class DetailsFragment extends Fragment
     public ViewPager viewPager;
     private ConstraintLayout layout;
     private ShapeableImageView shapeableImageView;
-
     private TabLayout tabLayout;
     private ViewPager2 TabviewPager;
     private ViewPagerTabAdapter viewPagerTabAdapter;
 
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.nav_view));
+        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
+        NavigationBar.smoothHide(getActivity().findViewById(R.id.top_app_bar_view));
         viewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
@@ -186,18 +186,8 @@ public class DetailsFragment extends Fragment
         final PopupWindow DetailImageViewPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
-        DetailImageViewPopUpWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                BlurImageView.setVisibility(View.GONE);
-            }
-        });
-        popUpView.findViewById(R.id.dismissButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DetailImageViewPopUpWindow.dismiss();
-            }
-        });
+        DetailImageViewPopUpWindow.setOnDismissListener(() -> BlurImageView.setVisibility(View.GONE));
+        popUpView.findViewById(R.id.dismissButton).setOnClickListener(v -> DetailImageViewPopUpWindow.dismiss());
 
         ConstraintLayout constraintLayout=(ConstraintLayout) requireView().findViewById(R.id.ImageSlider);
         ShapeAppearanceModel shapeAppearanceModel=new ShapeAppearanceModel()
@@ -205,7 +195,7 @@ public class DetailsFragment extends Fragment
                 .setAllCorners(CornerFamily.ROUNDED,30)
                 .build();
         //set params
-        for(int i=0;i< fotki.size();i=i+3) {
+        for(int i=0;i< fotki.size();i+=3) {
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i),shapeAppearanceModel,i);
             //listner for popup
@@ -239,7 +229,7 @@ public class DetailsFragment extends Fragment
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+1),
                     shapeAppearanceModel,i+1);
-            //listner for popup
+            //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
                 @Override
@@ -270,7 +260,7 @@ public class DetailsFragment extends Fragment
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+2),
                     shapeAppearanceModel,i+2);
-            //listner for popup
+            //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
                 @Override

@@ -8,7 +8,7 @@
     tools:context=".feature.pubdetails.TabFragments.TabFragmentRating">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_welcoming_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="gsa"
@@ -28,7 +28,7 @@
         android:textColor="#FFFFFF"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/text_welcoming_splash" />
 
     <TextView
         android:id="@+id/textView5"
@@ -66,9 +66,9 @@
         android:text="Średnia ocena"
         android:textColor="@color/design_default_color_background"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/text_welcoming_splash"
         app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/text_welcoming_splash"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -82,6 +82,6 @@
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/text_welcoming_splash"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

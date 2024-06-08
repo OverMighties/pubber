@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "601137300136",
+    "project_id": "pubber-4e5c8",
+    "storage_bucket": "pubber-4e5c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601137300136:android:5a81cea3287df36a86f89d",
+        "android_client_info": {
+          "package_name": "com.overmighties.pubber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601137300136-a45m4lg9di94tj5o9ss40fqqphphdfkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.overmighties.pubber",
+            "certificate_hash": "25ae795f30e1d6834192fbd9c7fe031c7b727cfa"
+          }
+        },
+        {
+          "client_id": "601137300136-cqgdr5bppusu2sead4b2kgm8jstqb5d4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.overmighties.pubber",
+            "certificate_hash": "20a3ea499ef0a3ad6ee2eb6baf7b1e670765d677"
+          }
+        },
+        {
+          "client_id": "601137300136-kcpj1rbma8nfjtsl8r4lre01hcehj7pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe9wbhqR5zajeNVuURfaOBq4uMk5MUPPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601137300136-kcpj1rbma8nfjtsl8r4lre01hcehj7pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

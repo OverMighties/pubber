@@ -17,7 +17,7 @@ public class SavedFragment extends Fragment  {
     private  RecyclerView save;
 
     private SavedViewModel viewModel;
-    public SavedFragment(){super(R.layout.saved);}
+    public SavedFragment(){super(R.layout.fragment_saved);}
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)

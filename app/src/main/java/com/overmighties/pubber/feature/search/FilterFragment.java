@@ -66,7 +66,7 @@ public class FilterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        var nav_bar=requireActivity().findViewById(R.id.nav_view);
+        var nav_bar=requireActivity().findViewById(R.id.bottom_nav_view);
         requireView().findViewById(R.id.buttonfiltr).setOnClickListener(v->{
             filtration(requireView());
             Navigation.findNavController(v).navigate(FilterFragmentDirections.actionFilterToSearcher());

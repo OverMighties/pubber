@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_graph"
+    app:startDestination="@id/splash_nav_dir">
+    <fragment
+        android:id="@+id/splash_nav_dir"
+        android:name="com.overmighties.pubber.feature.auth.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/sign_in_nav_dir" />
+        <action
+            android:id="@+id/action_splashFragment_to_signUpFragment"
+            app:destination="@id/sign_up_nav_dir" />
+    </fragment>
+    <fragment
+        android:id="@+id/sign_in_nav_dir"
+        android:name="com.overmighties.pubber.feature.auth.SignInFragment"
+        android:label="SignInFragment">
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/sign_up_nav_dir" />
+    </fragment>
+    <fragment
+        android:id="@+id/sign_up_nav_dir"
+        android:name="com.overmighties.pubber.feature.auth.SignUpFragment"
+        android:label="SignUpFragment" />
+    <action
+        android:id="@+id/action_global_searcher"
+        app:destination="@id/searcher_nav_dir" />
+</navigation>

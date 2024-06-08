@@ -56,8 +56,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.Getter;
 
@@ -99,22 +101,22 @@ public class PubListViewModel extends ViewModel {
         this.pubsRepository=pubsRepository;
     }
 
-    public void getPubsFromRepo()
+    public void getPubsFromRepo(final int DELAY_TIME_MS)
     {
-        if(originalPubData.getValue()==null) {
-            if(pubsRepository==null)
-                Log.e(TAG, "getPubsFromRepo returned null: PubsRepository didn't return anything" );
-            Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
-                    .subscribe(pubs->{
-                        originalPubData.setValue(pubs);
-                        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
-                                pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
-                        },
-                        err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
-                    );
-            if (d.isDisposed())
-                d.dispose();
-        }
+        if(pubsRepository==null)
+            Log.e(TAG, "getPubsFromRepo returned null: PubsRepository didn't return anything" );
+        Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
+                .delay(DELAY_TIME_MS, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(pubs->{
+                    originalPubData.setValue(pubs);
+                    sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
+                            pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
+                    },
+                    err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
+                );
+        if (d.isDisposed())
+            d.dispose();
     }
     public void setCityConstraint(String city)
     {

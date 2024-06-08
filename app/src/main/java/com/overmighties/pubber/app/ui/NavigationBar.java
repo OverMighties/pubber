@@ -14,7 +14,6 @@ public class NavigationBar {
     }
     public static void smoothHide(View nav_bar)
     {
-
         TranslateAnimation animate = new TranslateAnimation(0, 0, 0,  nav_bar.getHeight());
         animate.setDuration(200);
         nav_bar.startAnimation(animate);

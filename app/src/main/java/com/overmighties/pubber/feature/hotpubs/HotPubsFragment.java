@@ -6,5 +6,5 @@ import com.overmighties.pubber.R;
 
 
 public class HotPubsFragment extends Fragment {
-    public HotPubsFragment(){super(R.layout.hot_pubs);}
+    public HotPubsFragment(){super(R.layout.fragment_hot_pubs);}
 }

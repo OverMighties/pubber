@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/searcher_graph"
+    android:id="@+id/nav_graph">
+    <include app:graph="@navigation/login_graph"/>
+    <include app:graph="@navigation/searcher_graph"/>
+    <include app:graph="@navigation/account_graph"/>
+    <fragment
+        android:id="@+id/saved_nav_dir"
+        android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
+        android:label="Saved"
+        tools:layout="@layout/fragment_saved" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/hot_pubs_nav_dir"
+        android:name="com.overmighties.pubber.feature.hotpubs.HotPubsFragment"
+        android:label="Hot Pubs"
+        tools:layout="@layout/fragment_hot_pubs" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/settings_nav_dir"
+        android:name="com.overmighties.pubber.feature.settings.SettingsFragment"
+        android:label="Settings" />
+
+</navigation>

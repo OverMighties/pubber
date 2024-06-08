@@ -36,13 +36,12 @@ public class LoadActivity extends AppCompatActivity {
                 .putExtra(Intent.EXTRA_TEXT,city);
         startActivity(i);
     }
-    private  <T extends Fragment> boolean  replaceWithFragment(Class<T> fragment)
+    private  <T extends Fragment> void replaceWithFragment(Class<T> fragment)
     {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainerViewLoad, fragment,null)
                 .commit();
-        return true;
     }
 
 }
