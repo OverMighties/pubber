@@ -4,9 +4,9 @@
 
     <style name="AppTheme.Toolbar" parent="AppTheme">
         <!--This line changes the color of text in Toolbar-->
-        <item name="android:textColorPrimary">@color/On_Surface_variant</item>
+        <item name="android:textColorPrimary">@color/on_surface_variant</item>
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
-        <item name="android:textColorSecondary">@color/On_Surface</item>
+        <item name="android:textColorSecondary">@color/on_surface</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
@@ -29,7 +29,7 @@
         <item name="android:paddingBottom">0dp</item>
         <item name="chipBackgroundColor">@color/chip_filter_background_color</item>
         <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textColor">@color/On_Surface_variant</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
         <item name="android:textSize">14dp</item>
         <item name="android:checkable">true</item>
         <item name="chipIconSize">18dp</item>
@@ -37,7 +37,7 @@
         <item name="checkedIconEnabled">true</item>
         <item name="chipIconEnabled">true</item>
         <item name="checkedIconVisible">true</item>
-        <item name="chipStrokeColor">@color/Outline</item>
+        <item name="chipStrokeColor">@color/outline</item>
         <item name="chipStrokeWidth">0.7dp</item>
     </style>
 
@@ -48,7 +48,7 @@
         <item name="android:paddingBottom">0dp</item>
         <item name="chipBackgroundColor">@color/chip_filter_background_color</item>
         <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textColor">@color/On_Surface_variant</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
         <item name="android:textSize">14dp</item>
         <item name="android:checkable">true</item>
         <item name="chipIconSize">18dp</item>
@@ -56,7 +56,7 @@
         <item name="checkedIconEnabled">true</item>
         <item name="chipIconEnabled">true</item>
         <item name="checkedIconVisible">true</item>
-        <item name="chipStrokeColor">@color/Outline</item>
+        <item name="chipStrokeColor">@color/outline</item>
         <item name="chipStrokeWidth">0.7dp</item>
     </style>
     <style name="CustomNavigationBar">
@@ -68,7 +68,7 @@
     </style>
     <style name="CustomSearchView" parent="Widget.AppCompat.SearchView">
         <item name="searchIcon">@drawable/ic_searchview_on_surface</item>
-        <item name="colorAccent">@color/Surface_Variant</item>
+        <item name="colorAccent">@color/surface_variant</item>
         <item name="android:iconifiedByDefault">false</item>
         <item name="textStartPadding">16dp</item>
     </style>
@@ -90,7 +90,7 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
     <style name="NavigationBarColor" parent="Widget.Material3.BottomNavigationView.ActiveIndicator" >
-        <item name="android:color">@color/Secondary</item>
+        <item name="android:color">@color/secondary</item>
     </style>
 
     <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
@@ -98,8 +98,8 @@
     </style>
 
     <style name="ThemeOverlay.App.RadioButton" parent="">
-        <item name="colorOnSurface">@color/On_Surface_variant</item>
-        <item name="colorSecondary">@color/Primary</item>
+        <item name="colorOnSurface">@color/on_surface_variant</item>
+        <item name="colorSecondary">@color/primary</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
@@ -110,11 +110,11 @@
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">18sp</item>
-        <item name="colorPrimary">@color/Primary</item>
+        <item name="colorPrimary">@color/primary</item>
     </style>
 
     <style name="SearchView_Hint_Text" parent="">
-        <item name="android:textColor">@color/On_Surface_variant</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
         <item name="android:textSize">16dp</item>
     </style>
 

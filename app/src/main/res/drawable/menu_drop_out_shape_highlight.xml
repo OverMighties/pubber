@@ -11,7 +11,7 @@
 
     <solid
 
-        android:color="@color/Primary"
+        android:color="@color/primary"
 
         />
 </shape>

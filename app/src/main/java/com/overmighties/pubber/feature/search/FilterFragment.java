@@ -1,19 +1,15 @@
 package com.overmighties.pubber.feature.search;
 
-import static androidx.core.content.ContextCompat.getColor;
 import static com.overmighties.pubber.app.Constants.BREWERIES_VIEW_ID_LIST;
-import static com.overmighties.pubber.app.Constants.DRINKS_VIEW_ID_LIST;
 import static com.overmighties.pubber.app.Constants.DAY_OF_WEEK;
+import static com.overmighties.pubber.app.Constants.DRINKS_VIEW_ID_LIST;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_TEXT_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_IDS;
-import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXTIDS;
-import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXTOdIDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXT_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXT_Od_IDS;
-import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXT_NEXT_DAYS;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -45,10 +41,10 @@ import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.util.PriceType;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class FilterFragment extends Fragment {
 
@@ -61,7 +57,7 @@ public class FilterFragment extends Fragment {
     private PubListViewModel viewModel;
     private View popUpView;
     private PopupWindow popupWindow;
-    private int[] TimePopUpState=new int[]{1,0,0};
+    private final int[] timePopUpState =new int[]{1,0,0};
 
 
     public FilterFragment()
@@ -92,82 +88,59 @@ public class FilterFragment extends Fragment {
 
     {
         requireView().findViewById(R.id.MoreBeers).setOnClickListener(buttView->moreBeers(requireView()));
-        requireView().findViewById(R.id.IVrating).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        requireView().findViewById(R.id.IVrating).setOnClickListener(v -> {
+            if ((requireView().findViewById(R.id.RatingSlider)).isShown()) {
+                (requireView().findViewById(R.id.RatingSlider)).setVisibility(View.GONE);
+                ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_more_primary);
+            } else {
+                (requireView().findViewById(R.id.RatingSlider)).setVisibility(View.VISIBLE);
+                ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_less_primary);
 
-
-                if ((requireView().findViewById(R.id.RatingSlider)).isShown()) {
-                    (requireView().findViewById(R.id.RatingSlider)).setVisibility(View.GONE);
-                    ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_more_primary);
-                } else {
-                    (requireView().findViewById(R.id.RatingSlider)).setVisibility(View.VISIBLE);
-                    ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_less_primary);
-
-                }
             }
         });
 
-        requireView().findViewById(R.id.IVdistance).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(((Slider)requireView().findViewById(R.id.DistanceSlider)).isShown())
-
-                {
-                    ((Slider)requireView().findViewById(R.id.DistanceSlider)).setVisibility(View.GONE);
-
-                    ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_more_primary);
-
-
-                }
-                else
-                {
-                    ((Slider)requireView().findViewById(R.id.DistanceSlider)).setVisibility(View.VISIBLE);
-
-                    ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_less_primary);
-
-                }
+        requireView().findViewById(R.id.IVdistance).setOnClickListener(v -> {
+            if(((Slider)requireView().findViewById(R.id.DistanceSlider)).isShown()) {
+                ((Slider)requireView().findViewById(R.id.DistanceSlider)).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_more_primary);
+            }
+            else {
+                ((Slider)requireView().findViewById(R.id.DistanceSlider)).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
-        requireView().findViewById(R.id.IVprice).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((ChipGroup)requireView().findViewById(R.id.PriceChG)).isShown())
-                {
-                    ((ChipGroup)requireView().findViewById(R.id.PriceChG)).setVisibility(View.GONE);
+        requireView().findViewById(R.id.IVprice).setOnClickListener(v -> {
+            if(((ChipGroup)requireView().findViewById(R.id.PriceChG)).isShown())
+            {
+                ((ChipGroup)requireView().findViewById(R.id.PriceChG)).setVisibility(View.GONE);
 
-                    ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_more_primary);
+                ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_more_primary);
 
-                }
-                else
-                {
-                    ((ChipGroup)requireView().findViewById(R.id.PriceChG)).setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                ((ChipGroup)requireView().findViewById(R.id.PriceChG)).setVisibility(View.VISIBLE);
 
-                    ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_less_primary);
-                }
+                ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
 
-        requireView().findViewById(R.id.IVtime).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.dowolne)).isShown())
-                {
-                    ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_more_primary);
-                    ((Chip)requireView().findViewById(R.id.dowolne)).setVisibility(View.GONE);
-                    ((Chip)requireView().findViewById(R.id.niestandardowe)).setVisibility(View.GONE);
-                    ((Chip)requireView().findViewById(R.id.czyotwarte)).setVisibility(View.GONE);
-                    ((ConstraintLayout)requireView().findViewById(R.id.NiestandardoweLayout)).setVisibility(View.GONE);
+        requireView().findViewById(R.id.IVtime).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.dowolne)).isShown())
+            {
+                ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_more_primary);
+                ((Chip)requireView().findViewById(R.id.dowolne)).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.niestandardowe)).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.czyotwarte)).setVisibility(View.GONE);
+                ((ConstraintLayout)requireView().findViewById(R.id.NiestandardoweLayout)).setVisibility(View.GONE);
 
-                }
-                else
-                {
-                    ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_less_primary);
-                    ((Chip)requireView().findViewById(R.id.dowolne)).setVisibility(View.VISIBLE);
-                    ((Chip)requireView().findViewById(R.id.niestandardowe)).setVisibility(View.VISIBLE);
-                    ((Chip)requireView().findViewById(R.id.czyotwarte)).setVisibility(View.VISIBLE);
-                }
+            }
+            else
+            {
+                ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_less_primary);
+                ((Chip)requireView().findViewById(R.id.dowolne)).setVisibility(View.VISIBLE);
+                ((Chip)requireView().findViewById(R.id.niestandardowe)).setVisibility(View.VISIBLE);
+                ((Chip)requireView().findViewById(R.id.czyotwarte)).setVisibility(View.VISIBLE);
             }
         });
         requireView().findViewById(R.id.niestandardowe).setOnClickListener(new View.OnClickListener() {
@@ -241,16 +214,13 @@ public class FilterFragment extends Fragment {
                 }
             }
         });
-        requireView().findViewById(R.id.buttonreset).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).clearCheck();
-                ((ChipGroup)requireView().findViewById(R.id.PriceChG)).clearCheck();
-                ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).clearCheck();
-                ((Chip)requireView().findViewById(R.id.dowolne)).performClick();
-                ((RangeSlider)requireView().findViewById(R.id.RatingSlider)).setValues(0f,5f);
-                ((Slider)requireView().findViewById(R.id.DistanceSlider)).setValue(5f);
-            }
+        requireView().findViewById(R.id.buttonreset).setOnClickListener(v -> {
+            ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).clearCheck();
+            ((ChipGroup)requireView().findViewById(R.id.PriceChG)).clearCheck();
+            ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).clearCheck();
+            ((Chip)requireView().findViewById(R.id.dowolne)).performClick();
+            ((RangeSlider)requireView().findViewById(R.id.RatingSlider)).setValues(0f,5f);
+            ((Slider)requireView().findViewById(R.id.DistanceSlider)).setValue(5f);
         });
     }
 
@@ -269,7 +239,7 @@ public class FilterFragment extends Fragment {
                         WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT, true);
                 //Listeners For popup days in filtrarion screen
-                listenersmenudays(popupWindow, popUpView);
+                listenersMenuDays(popupWindow, popUpView);
                 //cheking which one is selected to highlight it
                 whichOneCheckedDays(popUpView);
                 popupWindow.showAsDropDown(requireView().findViewById(R.id.Dayview),0,0,Gravity.BOTTOM);
@@ -302,14 +272,65 @@ public class FilterFragment extends Fragment {
             popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
         }
         else{
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[1]])).performClick();
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])).performClick();
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])).getParent().requestChildFocus(((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])),
-                    ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[TimePopUpState[2]-1])));
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[1]])).performClick();
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])).performClick();
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])).getParent().requestChildFocus(((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])),
+                    ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])));
         }
 
     }
 
+
+    private void checkTime(Integer n, View popUpView) {
+        if(timePopUpState[0]==1) {
+            if(n-1!=55) {
+                uncheckTime(popUpView);
+                popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+                setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
+                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1])).setText("Od");
+                popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1]).setVisibility(View.VISIBLE);
+                String text = "Od "+(((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1])).getText().toString());
+                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
+
+                timePopUpState[1] = n - 1;
+            }else{
+                uncheckTime(popUpView);
+                popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+                String text =(((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[55])).getText().toString());
+                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
+                timePopUpState[0]=2;
+            }
+        }else{
+            if(n-1!=55){
+                for(int h = timePopUpState[1]; h<n; h++){
+                    if (h >= 49) {}
+                    if(h!=n-1){
+                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+                    }else{
+                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h])).setText("Do");
+                        popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h]).setVisibility(View.VISIBLE);
+                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
+                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+
+                        ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+" Do "+
+                                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h])).getText());
+                        ((TextView) (requireView().findViewById(R.id.textView18))).setTextSize(14);
+                    }
+
+                }
+                timePopUpState[2]=n;
+            }else{
+                uncheckTime(popUpView);
+                popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+                String text =(((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[55])).getText().toString());
+                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
+                timePopUpState[0]=2;
+            }
+
+        }
+
+
+    }
     private void listenersmenutime(PopupWindow popupWindow, View popUpView) {
         ArrayList <Integer>numbers=new ArrayList<>();
         Integer number=1;
@@ -320,13 +341,13 @@ public class FilterFragment extends Fragment {
             for(Integer n:numbers) {
                 popUpView.findViewById(id).setOnClickListener(v -> {
                     checkTime(n, popUpView);
-                    if(TimePopUpState[0]==0)
-                        TimePopUpState[0]=1;
+                    if(timePopUpState[0]==0)
+                        timePopUpState[0]=1;
                     else{
-                        if(TimePopUpState[0]==2)
-                            TimePopUpState[0]=1;
+                        if(timePopUpState[0]==2)
+                            timePopUpState[0]=1;
                         else
-                            TimePopUpState[0]=0;
+                            timePopUpState[0]=0;
                     }
                 });
                 break;
@@ -335,75 +356,21 @@ public class FilterFragment extends Fragment {
             number=number+1;
         }
 
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                requireView().findViewById(R.id.Timeview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
-                ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
-            }
+        popupWindow.setOnDismissListener(() -> {
+            requireView().findViewById(R.id.Timeview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
+            ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
         });
 
     }
 
-    private void checktime(Integer n, View popUpView) {
-        if(TimePopUpState[0]==1) {
-            if(n-1!=55) {
-                unchecktime(popUpView);
-                popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                setMargins(popUpView.findViewById(POP_UP_TIME_TEXTIDS[n - 1]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
-                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[n - 1])).setText("Od");
-                popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[n - 1]).setVisibility(View.VISIBLE);
-                String text = "Od "+(((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[n - 1])).getText().toString());
-                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
-
-                TimePopUpState[1] = n - 1;
-            }else{
-                unchecktime(popUpView);
-                popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                String text =(((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).getText().toString());
-                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
-                TimePopUpState[0]=2;
-            }
-        }else{
-            if(n-1!=55){
-                for(int h=TimePopUpState[1];h<n;h++){
-                    if (h >= 49) {}
-                    if(h!=n-1){
-                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                    }else{
-                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[h])).setText("Do");
-                        popUpView.findViewById(POP_UP_TIME_TEXTOdIDS[h]).setVisibility(View.VISIBLE);
-                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXTIDS[h]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
-                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-
-                        ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+" Do "+
-                                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[h])).getText());
-                        ((TextView) (requireView().findViewById(R.id.textView18))).setTextSize(14);
-                    }
-
-                }
-                TimePopUpState[2]=n;
-            }else{
-                unchecktime(popUpView);
-                popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                String text =(((TextView) popUpView.findViewById(POP_UP_TIME_TEXTIDS[55])).getText().toString());
-                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
-                TimePopUpState[0]=2;
-            }
-
-        }
-
-
-    }
-
-    private void unchecktime(View popUpView) {
+    private void uncheckTime(View popUpView) {
         for (var id : POP_UP_TIME_IDS) {
             popUpView.findViewById(id).setBackgroundResource(R.drawable.menu_drop_down_days_shape);
         }
-        for (var id : POP_UP_TIME_TEXTIDS) {
+        for (var id : POP_UP_TIME_TEXT_IDS) {
             setMargins(popUpView.findViewById(id), viewModel.dpToPx(8), viewModel.dpToPx(8), 0, 0);
         }
-        for (var id : POP_UP_TIME_TEXTOdIDS) {
+        for (var id : POP_UP_TIME_TEXT_Od_IDS) {
             popUpView.findViewById(id).setVisibility(View.GONE);
         }
     }
@@ -418,10 +385,10 @@ public class FilterFragment extends Fragment {
 
     //method for highlight checked constrainlayout when pop_up starts
     private void whichOneCheckedDays(View popUpView) {
-        Integer i=0;
-        for(var id:POP_UP_DAYS_TEXTIDS){
+        int i=0;
+        for(var id:POP_UP_DAYS_TEXT_IDS){
             if(((TextView)requireView().findViewById(R.id.textView17)).getText().toString().equals(((TextView)popUpView.findViewById(id)).getText().toString())) {
-                ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.On_Surface_variant));
+                ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.on_surface_variant));
                 popUpView.findViewById(POP_UP_DAYS_IDS[i]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
                 if(i==0){popUpView.findViewById(R.id.jeden).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
                 if(i==6){popUpView.findViewById(R.id.siedem).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_down);}
@@ -431,7 +398,7 @@ public class FilterFragment extends Fragment {
         }
     }
 
-    private void listenersmenudays(PopupWindow popupWindow, View popUpView) {
+    private void listenersMenuDays(PopupWindow popupWindow, View popUpView) {
 
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -440,18 +407,12 @@ public class FilterFragment extends Fragment {
                 ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
             }
         });
-        ArrayList <Integer>numbers=new ArrayList<>();
         Integer number=1;
-        for(var n:NUMBERSDAYS){numbers.add(n);}
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(DAY_OF_WEEK));
         for (var id : POP_UP_DAYS_IDS) {
             for(Integer n:numbers)
             {
-                popUpView.findViewById(id).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        uncheckdays(n, popUpView);
-                    }
-                });
+                popUpView.findViewById(id).setOnClickListener(v -> uncheckDays(n, popUpView));
                 break;
             }
             numbers.remove(number);
@@ -465,11 +426,11 @@ public class FilterFragment extends Fragment {
             if (id == POP_UP_DAYS_IDS[0]) {popUpView.findViewById(R.id.jeden).setBackgroundResource(R.drawable.menu_drop_out_list_shape_up);}
             if (id == POP_UP_DAYS_IDS[6]) {popUpView.findViewById(R.id.siedem).setBackgroundResource(R.drawable.menu_drop_out_list_shape_down);}
         }
-        for(var id:POP_UP_DAYS_TEXTIDS) {
-            ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.On_Surface_variant));
+        for(var id:POP_UP_DAYS_TEXT_IDS) {
+            ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.on_surface_variant));
         }
-        ((TextView)(requireView().findViewById(R.id.textView17))).setText(((TextView)popUpView.findViewById(POP_UP_DAYS_TEXTIDS[checked-1])).getText().toString());
-        ((TextView) popUpView.findViewById(POP_UP_DAYS_TEXTIDS[checked-1])).setTextColor(getResources().getColor(R.color.On_Surface_variant));
+        ((TextView)(requireView().findViewById(R.id.textView17))).setText(((TextView)popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checked-1])).getText().toString());
+        ((TextView) popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checked-1])).setTextColor(getResources().getColor(R.color.on_surface_variant));
         popUpView.findViewById(POP_UP_DAYS_IDS[checked-1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
         if(checked==1){popUpView.findViewById(R.id.jeden).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
         if(checked==7){popUpView.findViewById(R.id.siedem).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_down);}
@@ -564,9 +525,7 @@ public class FilterFragment extends Fragment {
             try{
                 int field = R.id.class.getField(sid).getInt(0);
                 if(((Chip)v.findViewById(field)).isChecked())
-                {
                     beers.add(String.valueOf(((Chip)v.findViewById(field)).getText()));
-                }
             }catch(NoSuchFieldException | IllegalAccessException e) {
                 Log.e(TAG, "drinksCheck: Such View Field doesn't exit");
             }

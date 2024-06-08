@@ -10,8 +10,8 @@
         android:topRightRadius="10dp"/>
 
     <solid
-        android:color="@color/Surface_Container_Low"
+        android:color="@color/surface_container_low"
         />
-    <stroke android:color="@color/Outline"
+    <stroke android:color="@color/outline"
         android:width="0.7dp"/>
 </shape>

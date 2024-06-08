@@ -23,7 +23,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Poniedziałek"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
             android:id="@+id/cardView9"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/Outline"
+            app:cardBackgroundColor="@color/outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -55,7 +55,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Wtorek"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
             android:id="@+id/cardView10"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/Outline"
+            app:cardBackgroundColor="@color/outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -85,7 +85,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Środa"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,7 @@
             android:id="@+id/cardView11"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/Outline"
+            app:cardBackgroundColor="@color/outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -115,7 +115,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Czwartek"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +133,7 @@
             android:id="@+id/cardView12"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/Outline"
+            app:cardBackgroundColor="@color/outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -145,7 +145,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Piątek"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -163,7 +163,7 @@
             android:id="@+id/cardView13"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/Outline"
+            app:cardBackgroundColor="@color/outline"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -175,7 +175,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Sobota"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +185,7 @@
             android:id="@+id/cardView14"
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
-            app:cardBackgroundColor="@color/Outline"
+            app:cardBackgroundColor="@color/outline"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -206,7 +206,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Niedziela"
-            android:textColor="@color/On_Surface_variant"
+            android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

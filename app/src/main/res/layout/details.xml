@@ -23,7 +23,7 @@
                 android:id="@+id/constraintLayout6"
                 android:layout_width="410dp"
                 android:layout_height="47dp"
-                android:background="@color/Surface"
+                android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -53,7 +53,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ImageSlider"
-                    android:background="@color/Surface"
+                    android:background="@color/surface"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </HorizontalScrollView>
@@ -62,7 +62,7 @@
                 android:id="@+id/constraintLayout4"
                 android:layout_width="409dp"
                 android:layout_height="wrap_content"
-                android:background="@color/Surface"
+                android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
@@ -87,7 +87,7 @@
                         android:maxLines="1"
                         android:minLines="0"
                         android:text="name"
-                        android:textColor="@color/On_Surface"
+                        android:textColor="@color/on_surface"
                         android:textSize="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,7 @@
                     android:fontFamily="@font/roboto"
                     android:text="4.6"
 
-                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textColor="@color/on_surface_dark_variant"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/namecl"
                     app:layout_constraintTop_toBottomOf="@+id/namecl" />
@@ -128,7 +128,7 @@
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/roboto"
                     android:text="0.7 km"
-                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textColor="@color/on_surface_dark_variant"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/PubRating"
                     app:layout_constraintTop_toBottomOf="@+id/PubRating" />
@@ -149,7 +149,7 @@
                     android:layout_marginStart="-6dp"
                     android:fontFamily="@font/roboto"
                     android:text="(****)"
-                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textColor="@color/on_surface_dark_variant"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/PubRating"
                     app:layout_constraintStart_toEndOf="@+id/PubRatingIV" />
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
                     android:text=" • $$ • "
-                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textColor="@color/on_surface_dark_variant"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/PubRatingCount"
                     app:layout_constraintStart_toEndOf="@+id/PubRatingCount" />
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.4 km"
-                    android:textColor="@color/On_Surface_dark_variant"
+                    android:textColor="@color/on_surface_dark_variant"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView34" />
@@ -191,7 +191,7 @@
                 android:id="@+id/constraintLayout7"
                 android:layout_width="409dp"
                 android:layout_height="wrap_content"
-                android:background="@color/Surface"
+                android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
@@ -201,11 +201,11 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="4dp"
-                    android:background="@color/Surface"
-                    app:tabTextColor="@color/On_Surface"
+                    android:background="@color/surface"
+                    app:tabTextColor="@color/on_surface"
                     android:isScrollContainer="true"
                     app:tabTextAppearance="@style/TabTextApperance"
-                    app:tabIndicatorColor="@color/Primary"
+                    app:tabIndicatorColor="@color/primary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

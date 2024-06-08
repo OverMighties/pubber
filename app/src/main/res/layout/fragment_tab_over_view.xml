@@ -36,7 +36,7 @@
             android:layout_marginTop="11dp"
             android:fontFamily="@font/roboto"
             android:text="Godziny otwarcia"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/OvIVTime"
             app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +81,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto"
             android:text="Day1"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/OvIVTime"
@@ -95,7 +95,7 @@
             android:fontFamily="@font/roboto"
             android:visibility="gone"
             android:text="Day2"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/OvTvDay1"
             app:layout_constraintTop_toBottomOf="@+id/OvTvDay1" />
@@ -108,7 +108,7 @@
             android:fontFamily="@font/roboto"
             android:visibility="gone"
             android:text="Day3"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/OvTvDay2"
             app:layout_constraintTop_toBottomOf="@+id/OvTvDay2" />
@@ -121,7 +121,7 @@
             android:fontFamily="@font/roboto"
             android:visibility="gone"
             android:text="Day4"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/OvTvDay3"
             app:layout_constraintTop_toBottomOf="@+id/OvTvDay3" />
@@ -134,7 +134,7 @@
             android:fontFamily="@font/roboto"
             android:text="Day5"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/OvTvDay4"
             app:layout_constraintTop_toBottomOf="@+id/OvTvDay4" />
@@ -147,7 +147,7 @@
             android:fontFamily="@font/roboto"
             android:text="Day6"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/OvTvDay5"
             app:layout_constraintTop_toBottomOf="@+id/OvTvDay5" />
@@ -160,7 +160,7 @@
             android:fontFamily="@font/roboto"
             android:text="Day7"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/OvTvDay6"
             app:layout_constraintTop_toBottomOf="@+id/OvTvDay6" />
@@ -173,7 +173,7 @@
             android:fontFamily="@font/roboto"
             android:text="DayTime1"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/OvTvDay1" />
@@ -187,7 +187,7 @@
             android:visibility="gone"
             android:fontFamily="@font/roboto"
             android:text="DayTime2"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OvTvTime1" />
@@ -201,7 +201,7 @@
             android:fontFamily="@font/roboto"
             android:text="DayTime3"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OvTvTime2" />
@@ -215,7 +215,7 @@
             android:fontFamily="@font/roboto"
             android:text="DayTime4"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OvTvTime3" />
@@ -229,7 +229,7 @@
             android:fontFamily="@font/roboto"
             android:text="DayTime5"
             android:visibility="gone"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OvTvTime4" />
@@ -243,7 +243,7 @@
             android:visibility="gone"
             android:fontFamily="@font/roboto"
             android:text="DayTime6"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OvTvTime5" />
@@ -257,7 +257,7 @@
             android:visibility="gone"
             android:fontFamily="@font/roboto"
             android:text="DayTime7"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OvTvTime6" />
@@ -290,7 +290,7 @@
             android:layout_marginStart="20dp"
             android:text="Polna 30a, Warszawa"
             android:fontFamily="@font/roboto"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/OvIVAdress"
@@ -325,7 +325,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto"
             android:text="+48 790-338-700"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/OvIVPhone"
@@ -360,7 +360,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto"
             android:text="https://www.facebook.com/K20PUB"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
@@ -1143,7 +1143,7 @@
             android:layout_marginStart="9dp"
             android:text="Wyświetl Alkohole"
             android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/On_Surface"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             android:layout_marginTop="9dp"
             app:layout_constraintStart_toEndOf="@id/imageView4"
@@ -1192,8 +1192,8 @@
             android:layout_height="45dp"
             android:layout_marginStart="14dp"
             android:layout_marginTop="2dp"
-            android:tint="@color/On_Surface"
-            android:src="@drawable/beerfullblack"
+            android:tint="@color/on_surface"
+            android:src="@drawable/beer_full_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
