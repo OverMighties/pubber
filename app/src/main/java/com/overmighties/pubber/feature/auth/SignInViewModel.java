@@ -22,9 +22,12 @@ import com.overmighties.pubber.util.UIText;
 
 import java.util.function.BiConsumer;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class SignInViewModel extends PubberAppViewModel {
     private static final String TAG="SignInViewModel";
     private final AccountDataSource accountDataSource;
+    private final CompositeDisposable disposables = new CompositeDisposable();
     public static final ViewModelInitializer<SignInViewModel> initializer = new ViewModelInitializer<>(
             SignInViewModel.class,
             creationExtras -> {

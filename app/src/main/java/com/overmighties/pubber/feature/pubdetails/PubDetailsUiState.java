@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-
+@NoArgsConstructor
 public class PubDetailsUiState {
     private Long id;
     private String name;
@@ -38,8 +38,4 @@ public class PubDetailsUiState {
     private List<Photo> photos;
     private Bitmap CurrentScreen;
     private String TimeOpenToday;
-
-    public PubDetailsUiState() {
-
-    }
 }

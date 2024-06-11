@@ -36,30 +36,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import android.util.Log;
-
-import com.overmighties.pubber.app.PubberApp;
-import com.overmighties.pubber.core.data.PubsRepository;
-import com.overmighties.pubber.core.model.Pub;
-import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
-import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
-import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
-import com.overmighties.pubber.util.DateType;
-import com.overmighties.pubber.util.FilterUtil;
-import com.overmighties.pubber.util.PriceType;
-import com.overmighties.pubber.util.SortPubsBy;
-import com.overmighties.pubber.util.SortUtil;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.Getter;
 
@@ -85,7 +68,8 @@ public class PubListViewModel extends ViewModel {
     private final MutableLiveData<PubsCardViewUiState> sortedAndFilteredPubsUiState =new MutableLiveData<>(new PubsCardViewUiState());
     @Getter
     private final MutableLiveData<FilterUiState> filterUiState=new MutableLiveData<>();
-
+    @Getter
+    private final CompositeDisposable disposables = new CompositeDisposable();
     public static final ViewModelInitializer<PubListViewModel> initializer = new ViewModelInitializer<>(
             PubListViewModel.class,
             creationExtras -> {
@@ -112,11 +96,12 @@ public class PubListViewModel extends ViewModel {
                     originalPubData.setValue(pubs);
                     sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
                             pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
+                    if(filterUiState.getValue()!=null)
+                        filter(filterUiState.getValue());
                     },
                     err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
                 );
-        if (d.isDisposed())
-            d.dispose();
+        disposables.add(d);
     }
     public void setCityConstraint(String city)
     {
@@ -174,7 +159,7 @@ public class PubListViewModel extends ViewModel {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        Log.d("tak", String.valueOf(pub.getRatings().getRatingsCount()));
+        Log.d(TAG, String.valueOf(pub.getRatings().getRatingsCount()));
         return new PubItemCardViewUiState(pub.getId(),TEMPORARY_BOOKMARK,pub.getName(),pub.getIconPath(),
                 openInfo.getTime(), openInfo.isType(),
                 TEMPORARY_DISTANCE,
@@ -223,15 +208,22 @@ public class PubListViewModel extends ViewModel {
         return new DateType(text,open);
     }
 
-    public void setPubDetail(int position, DetailsViewModel detailsViewModel){
-        Pub pub=_originalPubData.getValue().get(position);
+    public void setPubDetails(int position, DetailsViewModel detailsViewModel){
+        Pub pub= Objects.requireNonNull(_originalPubData.getValue()).get(position);
         PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
                 pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday());
-        DetailsViewModel.setPubDetails(pubDetailsUiState);
+        Log.i(TAG,pubDetailsUiState.toString());
+        detailsViewModel.setPubDetails(pubDetailsUiState);
     }
     public static int dpToPx(int dp)
     {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposables.clear();
     }
 }

@@ -128,7 +128,7 @@ public enum DayOfWeekConverter {
                 return NONE;
         }
     }
-    public static DayOfWeekConverter PolsihDayOfWeekConverter(Integer numberOfDayOfWeek){
+    public static DayOfWeekConverter polishDayOfWeekConverter(Integer numberOfDayOfWeek){
         switch (numberOfDayOfWeek)
         {
             case 1:

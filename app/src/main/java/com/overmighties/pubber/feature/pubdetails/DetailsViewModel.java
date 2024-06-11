@@ -40,11 +40,11 @@ public class DetailsViewModel extends ViewModel {
     private static final MutableLiveData<Long> pubId =new MutableLiveData<>();
     @Getter
     private static final MutableLiveData<PubDetailsUiState> pubDetails =new MutableLiveData<>();
-    private final MutableLiveData<View> popUpView=new MutableLiveData<View>();
+    private final MutableLiveData<View> popUpView=new MutableLiveData<>();
 
     private final MutableLiveData<PubDetailsUiState> uiState=
-            new MutableLiveData(new PubDetailsUiState());
-    public LiveData<PubDetailsUiState>getUiState(){
+            new MutableLiveData<> (new PubDetailsUiState());
+    public LiveData<PubDetailsUiState> getUiState(){
         return uiState;
     }
 
@@ -68,7 +68,7 @@ public class DetailsViewModel extends ViewModel {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
-    public static void setPubDetails(PubDetailsUiState pubDetailsUiState) {
+    public void setPubDetails(PubDetailsUiState pubDetailsUiState) {
         pubDetails.setValue(pubDetailsUiState);
     }
 
@@ -91,7 +91,7 @@ public class DetailsViewModel extends ViewModel {
 
     }
     @SuppressLint("NewApi")
-    Bitmap BlurImage (Bitmap input, Context context)
+    public Bitmap BlurImage (Bitmap input, Context context)
     {
         try
         {

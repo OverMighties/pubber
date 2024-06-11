@@ -30,6 +30,7 @@ import com.overmighties.pubber.util.UIText;
 import java.util.function.BiConsumer;
 
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class SplashViewModel extends PubberAppViewModel {
     private static final String TAG="SplashViewModel";
@@ -43,6 +44,7 @@ public class SplashViewModel extends PubberAppViewModel {
                 return new SplashViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
             }
     );
+    private final CompositeDisposable disposables = new CompositeDisposable();
     public SplashViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
         this.accountDataSource=accountDataSource;
     }

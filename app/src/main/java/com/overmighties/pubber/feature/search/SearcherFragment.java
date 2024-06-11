@@ -7,10 +7,10 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAG
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +31,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.search.SearchBar;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
@@ -49,6 +48,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
     private NavController navController;
     private SearchView searchview;
     private PubListViewModel viewModel;
+    private DetailsViewModel detailsViewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
     public SearcherFragment() {
         super(R.layout.fragment_searcher);
@@ -62,13 +62,16 @@ public class SearcherFragment extends Fragment implements SelectListener {
         viewModel = new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
+        detailsViewModel=new ViewModelProvider(getActivity(),
+                ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
+        viewModel.getPubsFromRepo(0);
         swipeRefreshLayout = getActivity().findViewById(R.id.swipeRefresh);
+        Log.i(TAG,"onViewCreated");
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
             viewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
         swipeRefreshLayout.setRefreshing(true);
-        viewModel.getPubsFromRepo(0);
         adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue(),this);
         recyclerView.setAdapter(adapter);
         //Setting listener to departure to FiltrationScreen
@@ -206,6 +209,13 @@ public class SearcherFragment extends Fragment implements SelectListener {
         });
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        Log.i(TAG,"onStart");
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -217,8 +227,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
     @Override
     public void onItemClicked(int position) {
         NavHostFragment.findNavController(this).navigate(SearcherFragmentDirections.actionSearcherToDetails());
-        DetailsViewModel detailsViewModel=new ViewModelProvider(getActivity(),
-                ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
-        viewModel.setPubDetail(position,detailsViewModel);
+        viewModel.setPubDetails(position,detailsViewModel);
     }
 }

@@ -39,7 +39,7 @@ public class TabFragmentsViewModel extends ViewModel {
     private final MutableLiveData<View> popUpView=new MutableLiveData<View>();
 
     private final MutableLiveData<TabFragmentsUiState> uiState=
-            new MutableLiveData(new TabFragmentsUiState());
+            new MutableLiveData<>(new TabFragmentsUiState());
     public LiveData<TabFragmentsUiState> getUiState(){
         return uiState;
     }

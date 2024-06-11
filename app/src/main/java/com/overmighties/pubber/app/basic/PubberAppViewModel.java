@@ -17,16 +17,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PubberAppViewModel extends ViewModel {
 
-    public void singleAction(final String TAG,Action action){
+    public Disposable completableAction(final String TAG, Action action){
         Completable completable = Completable.fromAction(action)
                 .subscribeOn(Schedulers.io());
-        Disposable d = completable
+        return completable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> Log.i(TAG, "singleAction, onComplete: single action completed"),
                         throwable ->Log.e(TAG, "singleAction, onError: " + throwable.getLocalizedMessage())
                 );
-        if(d.isDisposed())
-            d.dispose();
 
     }
     public void singleAction(final String TAG,Action action,Action onComplete){
@@ -80,18 +78,16 @@ public class PubberAppViewModel extends ViewModel {
                            }
                 );
     }
-    public void completableAction(final String TAG, Action action, Action onComplete, Consumer<Throwable> onError){
+    public Disposable completableAction(final String TAG, Action action, Action onComplete, Consumer<Throwable> onError){
         Completable completable = Completable.fromAction(action)
                 .subscribeOn(Schedulers.io());
-        Disposable d = completable
+        return completable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                         onComplete.run();
                         Log.i(TAG, "singleAction, onComplete: action completed");
                     }, onError::accept
                 );
-        if(d.isDisposed())
-            d.dispose();
     }
 
 }

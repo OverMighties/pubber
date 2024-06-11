@@ -26,9 +26,12 @@ import com.overmighties.pubber.util.UIText;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
     private final AccountDataSource accountDataSource;
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private final MutableLiveData<AccountDetailsUIState> userData=new MutableLiveData<>(new AccountDetailsUIState());
     public LiveData<AccountDetailsUIState> getUserData(){
         return userData;
@@ -50,7 +53,7 @@ public class AccountViewModel extends PubberAppViewModel {
         this.accountDataSource=accountDataSource;
     }
     public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError) {
-        completableAction(TAG,
+        disposables.add(completableAction(TAG,
                 accountDataSource::signOut,
                 ()->{
                     openAndPopUp.accept(ACCOUNT_FRAGMENT,SPLASH_FRAGMENT);
@@ -65,7 +68,7 @@ public class AccountViewModel extends PubberAppViewModel {
                         snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
                     }
                 }
-        );
+        ));
     }
     public void getCurrentUser() {
         singleAction(TAG,
@@ -82,6 +85,12 @@ public class AccountViewModel extends PubberAppViewModel {
                 userData.getPhotoUrl()==null? Uri.EMPTY:userData.getPhotoUrl());
     }
     public void onDeleteAccountClick() {
-        singleAction(TAG, accountDataSource::deleteAccount);
+        disposables.add(completableAction(TAG, accountDataSource::deleteAccount));
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposables.clear();
     }
 }

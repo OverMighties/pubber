@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.widget.ImageView;
@@ -27,26 +28,26 @@ import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
-import com.overmighties.pubber.feature.pubdetails.TabFragments.TabFragmentsUiState;
-import com.overmighties.pubber.feature.pubdetails.TabFragments.TabFragmentsViewModel;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class TabFragmentOverView extends Fragment {
+    public static final String TAG="TabFragmentOverView";
     private TabFragmentsViewModel fragmentsViewModel;
-    private DetailsViewModel pubViewModel;
+    private DetailsViewModel detailsViewModel;
     private ArrayList<DrinkDto> drinksDataSet1 = new ArrayList<>();
     private ArrayList <OpeningHoursDto> fakeOpeningHours = new ArrayList<>();
     public TabFragmentOverView() {super(R.layout.fragment_tab_over_view);}
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        pubViewModel=new ViewModelProvider(getActivity(),
+        detailsViewModel =new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
-        PubDetailsUiState pubDetailsUiState=pubViewModel.getPubDetails().getValue();
+        PubDetailsUiState pubDetailsUiState= detailsViewModel.getPubDetails().getValue();
         fragmentsViewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(TabFragmentsViewModel.initializer)).get(TabFragmentsViewModel.class);
         fragmentsViewModel.getTabFragmentsUiState().setValue(new TabFragmentsUiState());
@@ -54,7 +55,7 @@ public class TabFragmentOverView extends Fragment {
         initFakeData();
 
 
-        SetUpData();
+        setUpFakeData();
         SetUpFragmentsAppearance();
         SetUpTime();
         SetUpListener(tabFragmentsUiState);
@@ -75,7 +76,7 @@ public class TabFragmentOverView extends Fragment {
         drinksDataSet1.add(new DrinkDto("Sexonthebeach","Cocktail"));
     }
 
-    private void SetUpData(){
+    private void setUpFakeData(){
         fragmentsViewModel.SetCheckedChipsIds(requireView().findViewById(R.id.BeerListChG), requireView().findViewById(R.id.DrinksChG),drinksDataSet1);
     }
 
@@ -145,12 +146,14 @@ public class TabFragmentOverView extends Fragment {
         Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
         for(int i=0; i<=6; i++){
             if(i+Today>7){
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today-7).getNormal());
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((pubViewModel.getUiState().getValue().getOpeningHours().get(i +Today-8)).getTimeOpen() + "-" + (pubViewModel.getUiState().getValue().getOpeningHours().get(i + Today-8)).getTimeClose());
+                Log.i(TAG, Objects.requireNonNull(detailsViewModel.getUiState().getValue()).toString());
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today-7).getNormal());
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((detailsViewModel.getUiState().getValue().getOpeningHours().get(i +Today-8)).getTimeOpen() + "-" + (detailsViewModel.getUiState().getValue().getOpeningHours().get(i + Today-8)).getTimeClose());
             }
             else {
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today).getNormal());
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((pubViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeOpen() + "-" + (pubViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeClose());
+                Log.i(TAG, Objects.requireNonNull(detailsViewModel.getUiState().getValue()).toString());
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today).getNormal());
+                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((detailsViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeOpen() + "-" + (detailsViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeClose());
             }
         }
         /*
