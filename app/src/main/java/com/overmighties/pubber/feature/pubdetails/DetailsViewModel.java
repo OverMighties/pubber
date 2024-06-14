@@ -41,12 +41,16 @@ public class DetailsViewModel extends ViewModel {
     @Getter
     private static final MutableLiveData<PubDetailsUiState> pubDetails =new MutableLiveData<>();
     private final MutableLiveData<View> popUpView=new MutableLiveData<>();
-
     private final MutableLiveData<PubDetailsUiState> uiState=
             new MutableLiveData<> (new PubDetailsUiState());
     public LiveData<PubDetailsUiState> getUiState(){
         return uiState;
     }
+
+    public void setUiState(PubDetailsUiState ui){
+        uiState.setValue(ui);
+    }
+
 
     public static final ViewModelInitializer<DetailsViewModel> initializer=new ViewModelInitializer<>(
             DetailsViewModel.class,

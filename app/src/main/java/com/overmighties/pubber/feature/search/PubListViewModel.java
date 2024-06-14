@@ -159,7 +159,6 @@ public class PubListViewModel extends ViewModel {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        Log.d(TAG, String.valueOf(pub.getRatings().getRatingsCount()));
         return new PubItemCardViewUiState(pub.getId(),TEMPORARY_BOOKMARK,pub.getName(),pub.getIconPath(),
                 openInfo.getTime(), openInfo.isType(),
                 TEMPORARY_DISTANCE,
@@ -213,7 +212,6 @@ public class PubListViewModel extends ViewModel {
         PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
                 pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday());
-        Log.i(TAG,pubDetailsUiState.toString());
         detailsViewModel.setPubDetails(pubDetailsUiState);
     }
     public static int dpToPx(int dp)

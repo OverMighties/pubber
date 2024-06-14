@@ -55,8 +55,8 @@ public class TabFragmentOverView extends Fragment {
         initFakeData();
 
 
-        setUpFakeData();
         SetUpFragmentsAppearance();
+        setUpFakeData();
         SetUpTime();
         SetUpListener(tabFragmentsUiState);
     }

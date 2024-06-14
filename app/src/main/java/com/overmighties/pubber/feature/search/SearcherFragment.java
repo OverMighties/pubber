@@ -54,6 +54,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
         super(R.layout.fragment_searcher);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         recyclerView = (RecyclerView) requireView().findViewById(R.id.Publista);

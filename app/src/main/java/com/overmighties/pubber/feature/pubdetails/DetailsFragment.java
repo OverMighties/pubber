@@ -65,7 +65,7 @@ public class DetailsFragment extends Fragment
         viewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
-
+        viewModel.setUiState(pubDetailsUiState);
         fotki.add(R.drawable.test_photo_1);
         fotki.add(R.drawable.test_photo_2);
         fotki.add(R.drawable.test_photo_3);
