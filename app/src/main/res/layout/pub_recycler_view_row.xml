@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="380dp"
+    android:layout_width="match_parent"
     android:background="@color/surface"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="15dp"
     >
 
     <com.google.android.material.card.MaterialCardView
@@ -148,7 +151,7 @@
                 android:layout_marginTop="-5dp"
                 android:text="Zaprowadź"
                 android:textColor="@color/on_secondary_container"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:chipBackgroundColor="@color/secondary_container"
                 app:chipCornerRadius="40dp"
                 app:chipIcon="@drawable/ic_directions_on_surface_container"
@@ -167,7 +170,7 @@
                 android:text="Alkohole"
                 android:layout_marginLeft="7dp"
                 android:textColor="@color/on_secondary_container"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:chipBackgroundColor="@color/secondary_container"
                 app:chipCornerRadius="40dp"
                 app:chipStartPadding="8dp"

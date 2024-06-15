@@ -17,6 +17,7 @@ import android.util.Log;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.core.data.PubsRepository;
+import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
@@ -45,6 +46,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.Getter;
+import lombok.Setter;
 
 public class PubListViewModel extends ViewModel {
     public static final String TAG="PubListViewModel";
@@ -55,6 +57,9 @@ public class PubListViewModel extends ViewModel {
     public static final String TEMPORARY_OPEN ="Open";
     public static final String CLOSED="Closed";
     public static final String CONTENT_PROVIDED ="Content provided";
+    @Setter
+    @Getter
+    public String ChipTag = "Normal";
     private final PubsRepository pubsRepository;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
     private final LiveData<List<Pub>> _originalPubData=originalPubData;
@@ -166,45 +171,27 @@ public class PubListViewModel extends ViewModel {
                 pub.getRatings().getAverageRating(), pub.getRatings().getRatingsCount(), pub.getAddress(), pub.getDrinks());
     }
     public DateType getPubTimeOpenToday(Pub pub) throws ParseException {
-        String text;
-        String ending ="";
-        boolean open=false;
-
         //initialazing dates
         SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
-        Date timeOpenToday=parser.parse(((pub.getOpeningHours()).get(DayOfWeekConverter.getByCurrentDay().getNumeric()-1)).getTimeOpen());
-        Date timeCloseToday=parser.parse(((pub.getOpeningHours()).get(DayOfWeekConverter.getByCurrentDay().getNumeric()-1)).getTimeClose());
+        List<OpeningHours> open_hours = pub.getOpeningHours();
+        Date timeOpenToday=parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric()-1)).getTimeOpen());
+        Date timeCloseToday=parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric()-1)).getTimeClose());
         Date timeOpenYesterday;
         Date timeCloseYesterday;
+        //check if it is week's split
         if(DayOfWeekConverter.getByCurrentDay().getNumeric()-2==-1){
-            timeOpenYesterday = parser.parse(((pub.getOpeningHours()).get(6)).getTimeOpen());
-            timeCloseYesterday = parser.parse(((pub.getOpeningHours()).get(6)).getTimeClose());
+            timeOpenYesterday = parser.parse((open_hours.get(6)).getTimeOpen());
+            timeCloseYesterday = parser.parse((open_hours.get(6)).getTimeClose());
         }
         else {
-            timeOpenYesterday = parser.parse(((pub.getOpeningHours()).get(DayOfWeekConverter.getByCurrentDay().getNumeric() - 2)).getTimeOpen());
-            timeCloseYesterday = parser.parse(((pub.getOpeningHours()).get(DayOfWeekConverter.getByCurrentDay().getNumeric() - 2)).getTimeClose());
+            timeOpenYesterday = parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric() - 2)).getTimeOpen());
+            timeCloseYesterday = parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric() - 2)).getTimeClose());
         }
 
         DateType time=(new DateTimetoCurrentTimeComparator()).dateTimetoCurrentTimeComparator(timeOpenToday,timeCloseToday,timeOpenYesterday,timeCloseYesterday);
-        if(Float.valueOf(time.getTime())==1){ending="a";}
-        if(Float.valueOf(time.getTime())<=4.5 && Float.valueOf(time.getTime())!=1){ending="y";}
-        if(Float.valueOf(time.getTime())>=5){
-            if(ceil(Float.valueOf(time.getTime()))!=Float.valueOf(time.getTime())){ending="y";}
-        }
-        if(time.getTime().substring(time.getTime().length()-1,time.getTime().length()).equals("0")){
-            time.setTime(time.getTime().substring(0,time.getTime().length()-2));
-        }
-        if(time.isType()){
-            text="Otwarte jeszcze "+time.getTime()+" godzin"+ending;
-            open=true;
-        }
-        else {
-            text="Zamknięte jeszcze "+time.getTime()+" godzin"+ending;
-            open=false;
-        }
-        //używam tutaj dateType tylko do przeniesiania danych, bo jest to najwygodniejsza forma, a myśle, że nia warto dodawać kolejnej classy tylko po to
+        time.convertToPolish();
 
-        return new DateType(text,open);
+        return time;
     }
 
     public void setPubDetails(int position, DetailsViewModel detailsViewModel){

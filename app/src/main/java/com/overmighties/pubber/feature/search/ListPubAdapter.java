@@ -3,6 +3,7 @@ package com.overmighties.pubber.feature.search;
 import static androidx.core.content.ContextCompat.startActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,12 +20,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.SelectListener;
+import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 import java.util.ArrayList;
@@ -35,6 +39,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
     private final PubsCardViewUiState pubData;
     public SelectListener selectListener;
+
+    private final String chiptag;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
 
@@ -87,7 +93,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
            });
        }
     }
-    public ListPubAdapter(PubsCardViewUiState pubData, SelectListener selectListener) {this.pubData=pubData;this.selectListener=selectListener;}
+    public ListPubAdapter(PubsCardViewUiState pubData, SelectListener selectListener, String ChipTag) {this.pubData=pubData;this.selectListener=selectListener; this.chiptag=ChipTag;}
     @Override
     public PubViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new PubViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pub_recycler_view_row,viewGroup,false),selectListener);
@@ -172,6 +178,47 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
             }
         });
+
+        holder.alcoholChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomDialog);
+                LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
+                View dialogView = inflater.inflate(R.layout.pub_recycler_view_row_dialog_box_chips, null);
+
+                ChipGroup chipGroup = dialogView.findViewById(R.id.dialog_chip_group);
+                if (pubCardView.getAlcohol() != null) {
+                    for (var alcohol : pubCardView.getAlcohol()) {
+                        Chip chip = new Chip(holder.itemView.getContext());
+                        chip.setText(alcohol.getName());
+                        chip.setPadding(16, 0, 16, 0);
+                        chip.setChipCornerRadius(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 45));
+                        chip.setChipBackgroundColorResource(R.color.surface_variant);
+                        chip.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.on_surface_variant));
+                        chip.setTextSize(14);
+                        chip.setChipStrokeColorResource(R.color.outline);
+                        chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 0.7F));
+                        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                        chip.setLayoutParams(params);
+                        chipGroup.addView(chip);
+                    }
+                }
+                builder.setView(dialogView);
+                builder.setTitle("Dostępne alkohole:");
+                builder.setPositiveButton("Wróć", null);
+                builder.show();
+            }
+        });
+
+        if (chiptag.equals("Small")){
+            holder.mapChip.setChipIconSize(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 20));
+            holder.mapChip.setTextSize(12);
+            holder.mapChip.setHeight(40);
+            holder.alcoholChip.setChipIconSize(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 16));
+            holder.alcoholChip.setTextSize(12);
+            holder.alcoholChip.setHeight(40);
+        }
 
     }
 

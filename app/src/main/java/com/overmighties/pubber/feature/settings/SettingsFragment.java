@@ -32,8 +32,6 @@ public class SettingsFragment extends Fragment {
         Log.i(TAG,"on create");
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.top_app_bar_view));
 
     }
 }

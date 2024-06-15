@@ -46,7 +46,6 @@ public class AccountDetailsFragment extends Fragment {
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         Log.i(TAG,"View created");
         NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.top_app_bar_view));
         requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> {
             viewModel.onSignOutClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),

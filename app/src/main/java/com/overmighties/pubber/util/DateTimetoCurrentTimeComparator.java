@@ -6,8 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-
-//nazwania chyba trzeba zmienic, ale nwm w sumie jak to nazwać
+//name to be changed
 
 public class DateTimetoCurrentTimeComparator {
     private long difference;

@@ -45,15 +45,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         navController= ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment) ).getNavController();
 
-        MaterialToolbar topAppBar = findViewById(R.id.top_app_bar_view);
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
         AppBarConfiguration  bottomNavConfiguration =
-                new AppBarConfiguration.Builder(R.id.SearcherFragment,R.id.HotPubsFragment,R.id.SavedFragment).build();
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(R.layout.fragment_account_details,R.layout.fragment_settings).build();
-        setSupportActionBar(topAppBar);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(topAppBar,navController,appBarConfiguration);
+                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
         bottomNavSize();
     }
@@ -61,18 +55,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
                 || super.onSupportNavigateUp();
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        boolean retValue = super.onCreateOptionsMenu(menu);
-        BottomNavigationView navigationView = findViewById(R.id.bottom_nav_view);
-        getMenuInflater().inflate(R.menu.top_app_bar, menu);
-        
-        if (navigationView == null) {
-            getMenuInflater().inflate(R.menu.top_app_bar, menu);
-            return true;
-        }
-        return retValue;
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -93,18 +75,6 @@ public class MainActivity extends AppCompatActivity {
         if (resourceId > 0) {
             Log.i(TAG,"tak: "+ resources.getDimensionPixelSize(resourceId));
         }
-//        int navigationBarHeight=resources.getDimensionPixelSize(resourceId);
-//
-//        boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
-//        boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
-//
-//        if (hasBackKey && hasHomeKey) {
-//            BottomNavigationView navBar = (BottomNavigationView) findViewById(R.id.nav_view);
-//            navBar.setLayoutParams(new BottomNavigationView.LayoutParams(navBar.getLayoutParams().width, navBar.getLayoutParams().height-20));
-//        } else {
-//            BottomNavigationView navBar = (BottomNavigationView) findViewById(R.id.nav_view);
-//            navBar.setLayoutParams(new BottomNavigationView.LayoutParams(navBar.getLayoutParams().width, navBar.getLayoutParams().height-200));
-//        }
 
 
     }

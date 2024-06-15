@@ -61,7 +61,6 @@ public class DetailsFragment extends Fragment
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
         NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.top_app_bar_view));
         viewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
