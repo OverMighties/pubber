@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -217,8 +218,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
             }
         });
 
-        ConstraintLayout parentLayout = (ConstraintLayout) requireView().findViewById(R.id.SearcherFragment);
-        parentLayout.setOnTouchListener(new View.OnTouchListener() {
+        ConstraintLayout Layout1 = (ConstraintLayout) requireView().findViewById(R.id.constraintLayout);
+        Layout1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (searchview.isIconified()){return  false;}
@@ -230,13 +231,43 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
                     if (x < 0 || x > searchview.getWidth() || y < 0 || y > searchview.getHeight()) {
                         searchview.setIconified(true);
-                    }
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        if (imm != null) {
+                            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                        }
+                        searchview.clearFocus();
 
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) {
-                        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+
                     }
-                    searchview.clearFocus();
+                    Log.d(TAG, String.valueOf(x)+" " + String.valueOf(y));
+                    Log.d(TAG, String.valueOf(searchview.getWidth())+ " "+String.valueOf(searchview.getHeight()));
+                    return false;
+                }
+
+            }
+        });
+
+        ScrollView scrollView = (ScrollView) requireView().findViewById(R.id.scrollView);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (searchview.isIconified()){return  false;}
+                else{
+                    int[] location = new int[2];
+                    searchview.getLocationOnScreen(location);
+                    float x = event.getRawX() + searchview.getLeft() - location[0];
+                    float y = event.getRawY() + searchview.getTop() - location[1];
+
+                    if (x < 0 || x > searchview.getWidth() || y < 0 || y > searchview.getHeight()) {
+                        searchview.setIconified(true);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        if (imm != null) {
+                            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                        }
+                        searchview.clearFocus();
+                    }
+                    Log.d(TAG, String.valueOf(x)+" " + String.valueOf(y));
+                    Log.d(TAG, String.valueOf(searchview.getWidth())+ " "+String.valueOf(searchview.getHeight()));
                     return false;
                 }
 

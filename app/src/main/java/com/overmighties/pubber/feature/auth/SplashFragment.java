@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
 import com.overmighties.pubber.R;
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest;
@@ -59,6 +60,7 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
+        ((SignInButton)requireView().findViewById(R.id.button_sign_in_google_splash)).setColorScheme(0);
         NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());

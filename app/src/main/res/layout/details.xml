@@ -21,7 +21,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
-                android:layout_width="410dp"
+                android:layout_width="0dp"
                 android:layout_height="47dp"
                 android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -32,9 +32,9 @@
                     android:id="@+id/CloseButton"
                     android:layout_width="41dp"
                     android:layout_height="29dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/arrow_back"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
-                android:layout_width="416dp"
+                android:layout_width="0dp"
                 android:layout_height="270dp"
                 android:fillViewport="true"
                 android:scrollbars="none"
@@ -60,7 +60,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
-                android:layout_width="409dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +189,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout7"
-                android:layout_width="409dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -235,11 +235,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Zdjęcia" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Informacje" />
                 </com.google.android.material.tabs.TabLayout>
 
                 <androidx.viewpager2.widget.ViewPager2

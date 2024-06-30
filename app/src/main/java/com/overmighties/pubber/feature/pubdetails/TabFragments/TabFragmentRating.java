@@ -25,7 +25,7 @@ public class TabFragmentRating extends Fragment {
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
 
-        ((TextView)requireView().findViewById(R.id.text_welcoming_splash)).setText(pubDetailsUiState.getName());
+        ((TextView)requireView().findViewById(R.id.RTvAvg)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
 
 
     }

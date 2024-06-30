@@ -8,11 +8,11 @@
     tools:context=".feature.pubdetails.TabFragments.TabFragmentRating">
 
     <TextView
-        android:id="@+id/text_welcoming_splash"
+        android:id="@+id/RTvAvg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="gsa"
-        android:textColor="#FFFFFF"
+        android:text="4.3"
+        android:textColor="@color/on_surface"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,10 +25,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:text="3.7"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/on_surface"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_welcoming_splash" />
+        app:layout_constraintTop_toBottomOf="@+id/RTvAvg" />
 
     <TextView
         android:id="@+id/textView5"
@@ -46,13 +46,13 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:shadowColor="#4267B2"
+        android:shadowColor="@color/facebook"
         android:shadowDx="1.8"
         android:shadowDy="1.3"
         android:shadowRadius="3"
         android:text="Facebook"
-        android:textColor="#4267B2"
-        android:textColorHighlight="#4267B2"
+        android:textColor="@color/facebook"
+        android:textColorHighlight="@color/facebook"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
@@ -64,11 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Średnia ocena"
-        android:textColor="@color/design_default_color_background"
+        android:textColor="@color/on_surface"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_welcoming_splash"
+        app:layout_constraintEnd_toEndOf="@+id/RTvAvg"
         app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="@+id/text_welcoming_splash"
+        app:layout_constraintStart_toStartOf="@+id/RTvAvg"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -82,6 +82,6 @@
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_welcoming_splash"
+        app:layout_constraintTop_toBottomOf="@+id/RTvAvg"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

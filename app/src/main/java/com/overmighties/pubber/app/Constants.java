@@ -2,7 +2,20 @@ package com.overmighties.pubber.app;
 
 import com.overmighties.pubber.R;
 
+import java.util.regex.Pattern;
+
 public class Constants {
+
+
+    public static final Pattern LOWERCASE_PATTERN = Pattern.compile(
+            "\\p{Ll}");
+    public static final Pattern UPPERCASE_PATTERN = Pattern.compile(
+            "\\p{Lu}");
+    public static final Pattern DIGIT_PATTERN = Pattern.compile(
+            "\\p{Nd}");
+
+    public static final Pattern SPECIAL_CHAR_PATTERN = Pattern.compile(
+            "[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~]");
 
     public static final String EXTRA_CITY_CONSTRAINT="com.pubber.EXTRA_CITY";
     public static final String [] STRING_RES_NAMES = new String[]{
@@ -355,6 +368,14 @@ public class Constants {
                     R.id.OvTvTime6,
                     R.id.OvTvTime7
             };
+
+    public static final int[] SIGN_UP_TEXTFIELDS_IDS=new int[]
+            {
+                    R.id.edit_field_email_sing_up,
+                    R.id.edit_filed_password_sing_up,
+                    R.id.edit_field_confirm_password_sign_up
+            };
+    /*
     public static final int[] TAB_OVERVIEW_TEXTVIEW_OUR_RATING_IDS = new int[]
             {
                     R.id.OvTVOurRGeneral,
@@ -374,5 +395,5 @@ public class Constants {
 
     };
 
-
+*/
 }

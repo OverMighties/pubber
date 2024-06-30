@@ -13,8 +13,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2C2828"
-        android:backgroundTint="#2C2828"
+        android:background="@color/surface"
         android:fadingEdge=""
         app:defaultNavHost="true" />
     <TextView
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nazwa_aplikacji"
         android:textAllCaps="true"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/on_surface"
         android:textSize="72sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

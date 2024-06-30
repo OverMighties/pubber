@@ -170,7 +170,13 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="android:background">@color/secondary</item>
         <item name="android:textColor">@color/on_surface_variant</item>
-
+    </style>
+    
+    <style name="CustomTextInputLayout">
+        <item name="boxStrokeColor">@color/textfield_stroke_color_selector</item>
+        <item name="android:textColorHint">@color/on_surface_dark_variant</item>
+        <item name="hintTextColor">@color/primary_dark_variant</item>
+        <item name="cursorColor">@color/on_surface</item>
     </style>
 
 </resources>

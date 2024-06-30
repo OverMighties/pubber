@@ -22,7 +22,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -68,8 +67,7 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
-    //library for bluring
-    implementation 'com.github.Dimezis:BlurView:version-2.0.3'
+
     //Android Concurrent
     implementation "androidx.concurrent:concurrent-futures:1.1.0"
 

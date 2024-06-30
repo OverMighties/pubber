@@ -81,39 +81,21 @@ public class TabFragmentOverView extends Fragment {
     }
 
     private void SetUpFragmentsAppearance(){
-        //nie działa nwm czemu, możesz spojrzeć jak będziesz miał chwile
-        /*
-        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.textView15),new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_red),
-                new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_blue),new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_green),
-                new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_yellow));
-
-         */
 
         //setting-up custom google textview
         //rating
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
 
-        SpannableString string = new SpannableString("G");
-        string.setSpan(new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_blue),0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("o");
-        string.setSpan(new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_red),0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("o");
-        string.setSpan(new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_yellow),0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("g");
-        string.setSpan(new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_blue),0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("l");
-        string.setSpan(new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_green),0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("e");
-        string.setSpan(new TextAppearanceSpan(getContext(),R.style.Google_highlight_custom_red),0,1,0);
-        spannableStringBuilder.append(string);
+        SpannableString string = new SpannableString("");
 
-        ((TextView)requireView().findViewById(R.id.textView15)).setText(spannableStringBuilder);
 
+        //((TextView)requireView().findViewById(R.id.textView15)).setText(spannableStringBuilder);
+        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.textView15), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red),
+                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_green),
+                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),
+                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red));
+
+        SetUpBeerIV(4.6f,((ConstraintLayout)requireView().findViewById(R.id.OvAverageCl)));
         SetUpBeerIV(4.7f,((ConstraintLayout)requireView().findViewById(R.id.OvgoogleCl)));
         SetUpBeerIV(4.0f,((ConstraintLayout)requireView().findViewById(R.id.OvTripAdvisorCl)));
         SetUpBeerIV(4.4f,((ConstraintLayout)requireView().findViewById(R.id.OvFacebookCl)));
@@ -124,51 +106,44 @@ public class TabFragmentOverView extends Fragment {
         for (int i=0;i<=4;i++){
             imageViews.add(new ImageView(getContext()));
         }
-        new RatingToIVConverter().Convert(imageViews, 65, requireView().findViewById(R.id.OvClOurRGeneral), 4.5f, -5,35);
+       // new RatingToIVConverter().Convert(imageViews, 65, requireView().findViewById(R.id.OvClOurRGeneral), 4.5f, -5,35);
         //Review
         SpannableStringBuilder spannableStringIntrestingBuilder = new SpannableStringBuilder("Najtrafniejszy komentarz z ");
         spannableStringIntrestingBuilder.append(spannableStringBuilder);
         spannableStringIntrestingBuilder.append(":");
-        ((TextView)requireView().findViewById(R.id.textView31)).setText(spannableStringIntrestingBuilder);
-        ((TextView)requireView().findViewById(R.id.textView31)).setTextSize(18);
+   //     ((TextView)requireView().findViewById(R.id.OvTvACom)).setText(spannableStringIntrestingBuilder);
+    //    ((TextView)requireView().findViewById(R.id.OvTvACom)).setTextSize(18);
         spannableStringBuilder = new SpannableStringBuilder("Najtrafniejszy komentarz z ");
         string = new SpannableString("TripAdvisor");
         string.setSpan(new TextAppearanceSpan(getContext(), R.style.TripAdvisor_highlight),0,11,0);
         spannableStringBuilder.append(string);
         spannableStringBuilder.append((":"));
-        ((TextView)requireView().findViewById(R.id.textView33)).setText(spannableStringBuilder);
-        ((TextView)requireView().findViewById(R.id.textView33)).setTextSize(18);
+   //     ((TextView)requireView().findViewById(R.id.textView33)).setText(spannableStringBuilder);
+    //    ((TextView)requireView().findViewById(R.id.textView33)).setTextSize(18);
         //alcohol
         fragmentsViewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(getContext(),R.color.highlight));
+        //Coms Constrains layout
+        /*
+        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.OvTvComG), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red),
+                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_green),
+                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),
+                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red));
+
+         */
     }
 
     private void SetUpTime(){
         Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
         for(int i=0; i<=6; i++){
             if(i+Today>7){
-                Log.i(TAG, Objects.requireNonNull(detailsViewModel.getUiState().getValue()).toString());
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today-7).getNormal());
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((detailsViewModel.getUiState().getValue().getOpeningHours().get(i +Today-8)).getTimeOpen() + "-" + (detailsViewModel.getUiState().getValue().getOpeningHours().get(i + Today-8)).getTimeClose());
             }
             else {
-                Log.i(TAG, Objects.requireNonNull(detailsViewModel.getUiState().getValue()).toString());
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today).getNormal());
                 ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((detailsViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeOpen() + "-" + (detailsViewModel.getUiState().getValue().getOpeningHours().get(i + Today-1)).getTimeClose());
             }
         }
-        /*
-        for(int i=0; i<=6; i++){
-            if(i+Today>7){
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today-7).getNormal());
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((fakeOpeningHours.get(i +Today-8)).getTimeOpen() + "-" + (fakeOpeningHours.get(i + Today-8)).getTimeClose());
-            }
-            else {
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.PolsihDayOfWeekConverter(i + Today).getNormal());
-                ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((fakeOpeningHours.get(i + Today-1)).getTimeOpen() + "-" + (fakeOpeningHours.get(i + Today-1)).getTimeClose());
-            }
-        }
-
-         */
     }
 
     private void SetUpListener(TabFragmentsUiState tabFragmentsUiState){
@@ -181,13 +156,13 @@ public class TabFragmentOverView extends Fragment {
         requireView().findViewById(R.id.OvTVPhoneNumber).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                String uri = "tel:" + ((TextView)requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString() ;
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse(uri));
-                startActivity(intent);
-
-                 */
+                if (((TextView)requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString().length() == 11)
+                {
+                    String uri = "tel:" + ((TextView)requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString() ;
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse(uri));
+                    startActivity(intent);
+                }
             }
         });
         requireView().findViewById((R.id.OvTVWebsiteAdress)).setOnClickListener(new View.OnClickListener() {
@@ -232,24 +207,13 @@ public class TabFragmentOverView extends Fragment {
             }
         });
 
-        requireView().findViewById(R.id.OvTVShowOurR).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (requireView().findViewById(R.id.OvClOurRating).getVisibility()==View.VISIBLE){
-                    requireView().findViewById(R.id.OvClOurRating).setVisibility(View.GONE);
-                    ((TextView)requireView().findViewById(R.id.OvTVShowOurR)).setText("Pokaż recenzje Pubbera");
-                }
-                else{
-                    requireView().findViewById(R.id.OvClOurRating).setVisibility(View.VISIBLE);
-                    ((TextView)requireView().findViewById(R.id.OvTVShowOurR)).setText("Ukryj recenzje Pubbera :(");
-                }
-            }
-        });
+
+        //fragmentsViewModel.adjustTextViewSize((TextView) requireView().findViewById(R.id.OvTvCom), "Bardzo przyjemne miejsce do spędzenia czasu wieczorem. Posiada ogromny asortyment gier planszowych i każdy znajdzie w nich coś dla siebie, żeby miło spędzić czas. Możliwe do zamówienia tylko 3 piwa lane z beczki, raczej typowe, oprócz tego bar posiada w swoim asortymencie najczęściej w miarę dużą ilość piw kraftowych w butelkach, więc myśle, że każdy piwosz znajdzie też coś dla siebie. Jest też możliwość zamówienia drinków i szotów, są one przyzwoite. Karta dań rozbudowana, głównie o typowe barowe przekąski, wykonanie normalne, jeśli ktoś byłby głodny znajdzie coś dla siebie.");
     }
 
     private void UnFoldTime(){
         if(requireView().findViewById(R.id.OvTvDay1).getVisibility() == View.VISIBLE){
-            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_less_primary);
+            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_more_primary);
             for(int i=0;i<=6;i++){
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.GONE);
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.GONE);
@@ -258,7 +222,7 @@ public class TabFragmentOverView extends Fragment {
             }
         }
         else{
-            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_more_primary);
+            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_less_primary);
             for(int i=0;i<=6;i++){
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.VISIBLE);
                 ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.VISIBLE);
@@ -273,7 +237,7 @@ public class TabFragmentOverView extends Fragment {
             imageViews.add(new ImageView(getContext()));
         }
 
-        new RatingToIVConverter().Convert(imageViews, 50, constraintLayout, rating, -7,20);
+        new RatingToIVConverter().Convert(imageViews, 36, constraintLayout, rating, 0,18);
     }
 
 

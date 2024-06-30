@@ -115,31 +115,6 @@ public class DetailsFragment extends Fragment
                 }
             }
         });
-        ViewPager2 mViewPager = requireView().findViewById(R.id.TabViewPager);
-        /*
-        ViewTreeObserver viewTreeObserver = mViewPager.getViewTreeObserver();
-        viewTreeObserver
-                .addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-
-                    @Override
-                    public void onGlobalLayout() {
-                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                        //int viewPagerWidth = tabLayout.getTabAt(0).getWidth();
-                        //float viewPagerHeight = (float) (tabLayout.getTabAt(0));
-
-                        layoutParams.width = viewPagerWidth;
-                        layoutParams.height = (int) viewPagerHeight;
-
-                        mViewPager.setLayoutParams(layoutParams);
-                        mViewPager.getViewTreeObserver()
-                                .removeGlobalOnLayoutListener(this);
-                    }
-                });
-
-         */
 
     }
 
@@ -205,7 +180,7 @@ public class DetailsFragment extends Fragment
         //set params
         for(int i=0;i< fotki.size();i+=3) {
             shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i),shapeAppearanceModel,i);
+            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i),shapeAppearanceModel,i, getContext());
             //listner for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
@@ -236,7 +211,7 @@ public class DetailsFragment extends Fragment
             //next ImageView
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+1),
-                    shapeAppearanceModel,i+1);
+                    shapeAppearanceModel,i+1, getContext());
             //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
@@ -267,7 +242,7 @@ public class DetailsFragment extends Fragment
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+2),
-                    shapeAppearanceModel,i+2);
+                    shapeAppearanceModel,i+2, getContext());
             //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")

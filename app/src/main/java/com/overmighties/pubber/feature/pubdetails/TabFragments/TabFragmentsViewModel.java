@@ -3,6 +3,7 @@ package com.overmighties.pubber.feature.pubdetails.TabFragments;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
+import com.overmighties.pubber.util.DimensionsConverter;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -100,10 +102,8 @@ public class TabFragmentsViewModel extends ViewModel {
         return Integer.valueOf(rating.replace(",","."));
     }
 
-    public void setUpGoogleTextView(TextView textView,TextAppearanceSpan red, TextAppearanceSpan blue, TextAppearanceSpan green, TextAppearanceSpan yellow){
+    public void setUpGoogleTextView(TextView textView,TextAppearanceSpan red, TextAppearanceSpan blue, TextAppearanceSpan green, TextAppearanceSpan yellow, TextAppearanceSpan blue2, TextAppearanceSpan red2){
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-
-
         SpannableString string = new SpannableString("G");
         string.setSpan(blue,0,1,0);
         spannableStringBuilder.append(string);
@@ -114,15 +114,60 @@ public class TabFragmentsViewModel extends ViewModel {
         string.setSpan(yellow,0,1,0);
         spannableStringBuilder.append(string);
         string = new SpannableString("g");
-        string.setSpan(blue,0,1,0);
+        string.setSpan(blue2,0,1,0);
         spannableStringBuilder.append(string);
         string = new SpannableString("l");
         string.setSpan(green,0,1,0);
         spannableStringBuilder.append(string);
         string = new SpannableString("e");
-        string.setSpan(red,0,1,0);
+        string.setSpan(red2,0,1,0);
         spannableStringBuilder.append(string);
 
         textView.setText(spannableStringBuilder);
+    }
+
+    public void adjustTextViewSize(TextView textView, String text)
+    {
+
+        textView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                int maxWidth = textView.getWidth();
+                int maxHeight = textView.getHeight();
+
+                if (maxWidth > 0 && maxHeight > 0) {
+                    textView.removeOnLayoutChangeListener(this);
+                    textView.setText(text);
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f);
+
+                    TextPaint textPaint = textView.getPaint();
+                    final String[] textHolder = { text };
+                    int len;
+                    float size;
+                    while (textPaint.measureText(textHolder[0]) > maxWidth || getTotalTextHeight(textView) > DimensionsConverter.dpFromPx(textView.getContext(), maxHeight)) {
+                        size = textView.getLineCount() * textPaint.getFontMetrics().bottom;
+                        len = textHolder[0].length();
+                        while(len > 0 && !Character.toString(textHolder[0].charAt(len - 1)).equals(" ")) {
+                            len -= 1;
+                        }
+                        if (len == 0) {
+                            break;  // No space found, stop adjusting
+                        }
+                        textHolder[0] = textHolder[0].substring(0, len-1);
+                        textView.setText(textHolder[0] + "...");
+                        textPaint = textView.getPaint();
+                    }
+                }
+            }
+        });
+
+
+    }
+
+    private float getTotalTextHeight(TextView textView) {
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(textView.getWidth(), View.MeasureSpec.EXACTLY);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        textView.measure(widthMeasureSpec, heightMeasureSpec);
+        return textView.getMeasuredHeight();
     }
 }

@@ -9,35 +9,42 @@
     <Button
         android:id="@+id/button_sign_in_splash"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_shape_container"
         android:text="@string/label_email_sign_in"
+        android:textColor="@color/on_secondary_container"
         app:layout_constraintBottom_toTopOf="@+id/button_sign_in_google_splash"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
 
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/button_sign_in_google_splash"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="@string/label_google_sign_in"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/button_sing_up_splash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <Button
         android:id="@+id/button_sing_up_splash"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginBottom="168dp"
+        android:background="@drawable/button_shape_container"
+        android:textColor="@color/on_secondary_container"
         android:text="@string/label_email_sign_up_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/text_welcoming_splash"
+        android:id="@+id/RTvAvg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="135dp"

@@ -10,6 +10,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
@@ -31,6 +35,7 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.util.DimensionsConverter;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -78,18 +83,16 @@ public class DetailsViewModel extends ViewModel {
 
     public void takeScreenShot(View view,Context context) {
 
-        view.setDrawingCacheEnabled(true);
-        view.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
-        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
 
-        if(view.getDrawingCache() == null){
+        Bitmap snapshot = bitmap;
+
+        if (snapshot == null) {
             pubDetails.getValue().setCurrentScreen(null);
-        }
-        else {
-            Bitmap snapshot = Bitmap.createBitmap(view.getDrawingCache());
-            view.setDrawingCacheEnabled(false);
-            view.destroyDrawingCache();
-            Bitmap screen=BlurImage(snapshot,context);
+        } else {
+            Bitmap screen = BlurImage(snapshot, context);
             pubDetails.getValue().setCurrentScreen(screen);
         }
 
@@ -113,6 +116,7 @@ public class DetailsViewModel extends ViewModel {
             outAlloc.copyTo(result);
 
             rsScript.destroy();
+
             return result;
         }
         catch (Exception e) {
@@ -122,7 +126,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public ShapeableImageView CustomingBigShapeableImageView(ShapeableImageView shapeableImageView, ConstraintLayout constraintLayout,int Pictureid,
-                                                             ShapeAppearanceModel shapeAppearanceModel,int number){
+                                                             ShapeAppearanceModel shapeAppearanceModel,int number, Context context){
         int bigwidth=dpToPx(170);
         int bigheight=dpToPx(270);
 
@@ -134,7 +138,7 @@ public class DetailsViewModel extends ViewModel {
         constraintLayout.addView(shapeableImageView);
         //setting up constraintset
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 80+number*(280));
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,8 + number*100));
         constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
         constraintSet.applyTo(constraintLayout);
         //Setting up Image and shape
@@ -145,7 +149,7 @@ public class DetailsViewModel extends ViewModel {
         return shapeableImageView;
     }
     public ShapeableImageView CustomingSmallShapeableImageView(ShapeableImageView shapeableImageView, ConstraintLayout constraintLayout,int Pictureid,
-                                                             ShapeAppearanceModel shapeAppearanceModel,int number){
+                                                             ShapeAppearanceModel shapeAppearanceModel,int number, Context context){
         int smallwidth=dpToPx(100);
         int smallheight=dpToPx(130);
 
@@ -158,13 +162,13 @@ public class DetailsViewModel extends ViewModel {
         //setting up constraintset
         if(number%3==1){
             constraintSet.clone(constraintLayout);
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 600+(number-1)*(280));
+            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,192+(number-1)*(100)));
             constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
             constraintSet.applyTo(constraintLayout);
         }
         else {
             constraintSet.clone(constraintLayout);
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 600+(number-2)*(280));
+            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,192+(number-2)*(100)));
             constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP,dpToPx(140));
             constraintSet.applyTo(constraintLayout);
         }
