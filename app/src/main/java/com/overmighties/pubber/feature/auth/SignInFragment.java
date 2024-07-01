@@ -1,17 +1,20 @@
 package com.overmighties.pubber.feature.auth;
 
 
+import static androidx.core.app.ActivityCompat.recreate;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_IN_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_UP_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -44,6 +47,9 @@ public class SignInFragment extends Fragment {
             viewModel.updateEmail(email.getText().toString());
             EditText password=requireView().findViewById(R.id.fieldPassword);
             viewModel.updatePassword(password.getText().toString());
+            Log.d(TAG, viewModel.getEmail().getValue());
+            Log.d(TAG, viewModel.getPassword().getValue());
+
             viewModel.onSignInClick(
                     (from,to)->  navController.navigate(getNavDirections(from,to)),
                     (snackbarType, uiText, logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes));
@@ -51,5 +57,7 @@ public class SignInFragment extends Fragment {
         requireView().findViewById(R.id.sign_up_5).setOnClickListener(v->{
             navController.navigate(getNavDirections(SIGN_IN_FRAGMENT,SIGN_UP_FRAGMENT));
         });
+
+
     }
 }

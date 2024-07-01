@@ -83,6 +83,9 @@ public class SplashFragment extends Fragment {
         requireView().findViewById(R.id.button_sign_in_google_splash).setOnClickListener(v->{
             signInWithGoogle();
         });
+        requireView().findViewById(R.id.IV_google_button).setOnClickListener(v->{
+            requireView().findViewById(R.id.button_sign_in_google_splash).performClick();
+        });
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             viewModel.onAppStart((from, to)-> Navigation.findNavController(view)
                     .navigate(getNavDirections(from,to)));

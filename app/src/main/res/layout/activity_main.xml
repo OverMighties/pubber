@@ -17,7 +17,6 @@
         android:background="@color/surface_variant_secondary"
         app:itemActiveIndicatorStyle="@style/NavigationBarColor"
         app:itemIconTint="@color/white"
-        style="@style/CustomNavigationBarContainer"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
