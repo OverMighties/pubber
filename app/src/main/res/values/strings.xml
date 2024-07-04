@@ -125,5 +125,6 @@
     <string name="content_description_profile_image">Your profile image</string>
     <string name="account_detail_title_cardview">Detail name:</string>
     <string name="account_detail_content_cardview">detail content\n</string>
+    <string name="log_out">Log Out</string>
 
 </resources>

@@ -6,7 +6,6 @@
     android:id="@+id/nav_graph">
     <include app:graph="@navigation/login_graph"/>
     <include app:graph="@navigation/searcher_graph"/>
-    <include app:graph="@navigation/account_graph"/>
     <fragment
         android:id="@+id/saved_nav_dir"
         android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
@@ -25,6 +24,11 @@
     <fragment
         android:id="@+id/settings_nav_dir"
         android:name="com.overmighties.pubber.feature.settings.SettingsFragment"
-        android:label="Settings" />
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_settings_nav_dir_to_login_graph"
+            app:destination="@id/login_graph" />
+    </fragment>
+    <include app:graph="@navigation/account_graph" />
 
 </navigation>

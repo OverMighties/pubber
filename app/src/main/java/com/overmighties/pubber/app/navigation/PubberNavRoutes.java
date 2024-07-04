@@ -7,6 +7,7 @@ import com.overmighties.pubber.feature.auth.SignInFragmentDirections;
 import com.overmighties.pubber.feature.auth.SignUpFragmentDirections;
 import com.overmighties.pubber.feature.auth.SplashFragmentDirections;
 import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
+import com.overmighties.pubber.feature.settings.SettingsFragmentDirections;
 
 
 public final class PubberNavRoutes {
@@ -15,6 +16,7 @@ public final class PubberNavRoutes {
     public static final String SIGN_IN_FRAGMENT="SignInFragment";
     public static final String SIGN_UP_FRAGMENT="SignUpFragment";
     public static final String ACCOUNT_FRAGMENT="AccountFragment";
+    public static final String SETTINGS_FRAGMENT="SettingsFragment";
     public static NavDirections getNavDirections(String from , String to){
         switch (from) {
             case SPLASH_FRAGMENT:
@@ -38,7 +40,9 @@ public final class PubberNavRoutes {
             case SEARCHER_FRAGMENT:
                 return SearcherFragmentDirections.actionSearcherToLogInGraph();
             case ACCOUNT_FRAGMENT:
-                return AccountDetailsFragmentDirections.actionAccountDetailsToSplash();
+                return AccountDetailsFragmentDirections.actionAccountDetailsFragmentToLoginGraph();
+            case SETTINGS_FRAGMENT:
+                return SettingsFragmentDirections.actionSettingsNavDirToLoginGraph();
         }
         return null;
     }

@@ -5,15 +5,11 @@
     android:id="@+id/searcher_graph"
     app:startDestination="@id/searcher_nav_dir">
     <include app:graph="@navigation/login_graph"/>
-    <include app:graph="@navigation/account_graph"/>
     <fragment
         android:id="@+id/searcher_nav_dir"
         android:name="com.overmighties.pubber.feature.search.SearcherFragment"
         android:label="Searcher"
         tools:layout="@layout/fragment_searcher">
-        <action
-            android:id="@+id/action_searcher_to_account"
-            app:destination="@id/account_graph" />
         <action
             android:id="@+id/action_searcher_to_details"
             app:destination="@id/details_nav_dir" />

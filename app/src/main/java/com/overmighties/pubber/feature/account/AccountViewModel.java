@@ -4,6 +4,7 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_FRAGMENT;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 
 import android.net.Uri;
@@ -56,7 +57,7 @@ public class AccountViewModel extends PubberAppViewModel {
         disposables.add(completableAction(TAG,
                 accountDataSource::signOut,
                 ()->{
-                    openAndPopUp.accept(ACCOUNT_FRAGMENT,SPLASH_FRAGMENT);
+                    openAndPopUp.accept(SETTINGS_FRAGMENT,SPLASH_FRAGMENT);
                 },
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError){
