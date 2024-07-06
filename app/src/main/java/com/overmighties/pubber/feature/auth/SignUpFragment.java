@@ -117,6 +117,7 @@ public class SignUpFragment  extends Fragment {
                 requireView().findViewById(R.id.progressTV).setVisibility(View.VISIBLE);
 
                 String password = String.valueOf(s);
+                ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPassword)).setErrorEnabled(false);
 
                 boolean len_6 = (password.length()>=6) ? true : false;
                 boolean len_12 = (password.length()>=12) ? true : false;
@@ -180,6 +181,16 @@ public class SignUpFragment  extends Fragment {
 
 
 
+    }
+
+    private void underlineEmnail(UIText.ResourceString authRes, String logMes) {
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmail)).setError(logMes);
+    }
+
+    private void underlinePassword(UIText.ResourceString authRes, String logMes){
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPassword)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPassword)).setError(logMes);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPassword)).setError(logMes);
     }
 
     private void handleError(ErrorHandler.ErrorTypes type, @Nullable UIText.ResourceString authRes, String logMes) {
