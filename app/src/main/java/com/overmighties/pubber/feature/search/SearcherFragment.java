@@ -9,7 +9,6 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirec
 import android.content.Context;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
@@ -17,32 +16,26 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
@@ -59,7 +52,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
     private ListPubAdapter adapter;
     private NavController navController;
     private SearchView searchview;
-    private PubListViewModel viewModel;
+    private PubListViewModel pubListViewModel;
     private DetailsViewModel detailsViewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
     public SearcherFragment() {
@@ -72,26 +65,27 @@ public class SearcherFragment extends Fragment implements SelectListener {
         recyclerView = (RecyclerView) requireView().findViewById(R.id.Publista);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         AppContainer appContainer = ((PubberApp) getActivity().getApplication()).appContainer;
-        viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(PubListViewModel.initializer))
-                .get(PubListViewModel.class);
+        pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(getActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         //check screen width to determine pubcardview's chips size
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         if (displayMetrics.xdpi <= 380){
-            viewModel.setChipTag("Small");
+            pubListViewModel.setChipTag("Small");
         }
-        viewModel.getPubsFromRepo(0);
+        if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
+                pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
+            pubListViewModel.getPubsFromRepo(0);
+        }
         swipeRefreshLayout = getActivity().findViewById(R.id.swipeRefresh);
         Log.i(TAG,"onViewCreated");
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
-            viewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
+            pubListViewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
-        swipeRefreshLayout.setRefreshing(true);
-        adapter = new ListPubAdapter(viewModel.getSortedAndFilteredPubsUiState().getValue(),this, viewModel.getChipTag());
+        //swipeRefreshLayout.setRefreshing(true);
+        adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
         recyclerView.setAdapter(adapter);
         //Setting listener to departure to FiltrationScreen
         ((ImageView) requireView().findViewById(R.id.Filtration)).setOnClickListener(v -> {
@@ -102,11 +96,11 @@ public class SearcherFragment extends Fragment implements SelectListener {
         getString(R.string.page_title,getString(R.string.searcher_title));
         initSearchView();
         sortButtonsListeners();
-        viewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
+        pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recyclerView.setVisibility(View.GONE);
             else {
-                adapter = new ListPubAdapter(pubs,this, viewModel.getChipTag());
+                adapter = new ListPubAdapter(pubs,this, pubListViewModel.getChipTag());
                 recyclerView.setAdapter(adapter);
                 recyclerView.setVisibility(View.VISIBLE);
             }
@@ -122,7 +116,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
         ((ImageView)requireView().findViewById(R.id.sort_image)).setOnClickListener(v -> showPopUpSortWindow());
     }
     private void showPopUpSortWindow(){
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
         View popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.sort_pop_up, null);
         final PopupWindow sortPubsPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -155,16 +149,16 @@ public class SearcherFragment extends Fragment implements SelectListener {
                 TextView text = getActivity().findViewById(R.id.textViewSortType_searcher);
                 if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
                     text.setText( getActivity().getString(R.string.sort_relevance));
-                    viewModel.sort(SortPubsBy.RELEVANCE);
+                    pubListViewModel.sort(SortPubsBy.RELEVANCE);
                 } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
                     text.setText(getString(R.string.sort_rating));
-                    viewModel.sort(SortPubsBy.RATING);
+                    pubListViewModel.sort(SortPubsBy.RATING);
                 } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
                     text.setText(getString(R.string.sort_alphabetical));
-                    viewModel.sort(SortPubsBy.ALPHABETICAL);
+                    pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
                 } else{
                     text.setText(getString(R.string.sort_distance));
-                    viewModel.sort(SortPubsBy.DISTANCE);
+                    pubListViewModel.sort(SortPubsBy.DISTANCE);
                 }
                 NavigationBar.smoothPopUp(getActivity().findViewById(R.id.bottom_nav_view));
             }
@@ -218,7 +212,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
             @Override
             public boolean onQueryTextChange(String s)
             {
-                viewModel.search(s);
+                pubListViewModel.search(s);
                 return false;
             }
         });
@@ -264,6 +258,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
     @Override
     public void onItemClicked(int position) {
         NavHostFragment.findNavController(this).navigate(SearcherFragmentDirections.actionSearcherToDetails());
-        viewModel.setPubDetails(position,detailsViewModel);
+        pubListViewModel.setPubDetails(position,detailsViewModel);
     }
 }

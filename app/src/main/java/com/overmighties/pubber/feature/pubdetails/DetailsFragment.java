@@ -77,7 +77,7 @@ public class DetailsFragment extends Fragment
         requireView().findViewById(R.id.CloseButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher());
+                NavHostFragment.findNavController(requireParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher());
             }
         });
 
@@ -90,7 +90,7 @@ public class DetailsFragment extends Fragment
     private void SetUpTabViewPager(){
         tabLayout = requireView().findViewById(R.id.tabLayout);
         TabviewPager = requireView().findViewById(R.id.TabViewPager);
-        viewPagerTabAdapter = new ViewPagerTabAdapter(getActivity());
+        viewPagerTabAdapter = new ViewPagerTabAdapter(requireActivity());
         TabviewPager.setAdapter(viewPagerTabAdapter);
         TabviewPager.setUserInputEnabled(false);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

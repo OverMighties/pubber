@@ -28,5 +28,5 @@
         android:label="SignUpFragment" />
     <action
         android:id="@+id/action_global_searcher"
-        app:destination="@id/searcher_nav_dir" />
+        app:destination="@id/searcher_graph" />
 </navigation>

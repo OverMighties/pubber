@@ -44,8 +44,6 @@ public class AccountDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         accountDetailsRecyclerView = (RecyclerView) requireView().findViewById(R.id.account_details_recycler_view);
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        Log.i(TAG,"View created");
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
         requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> {
             viewModel.onSignOutClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),

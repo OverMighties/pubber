@@ -42,9 +42,6 @@ public class MainActivity extends DarkModeTheme {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         pubListViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
@@ -52,6 +49,7 @@ public class MainActivity extends DarkModeTheme {
                 ViewModelProvider.Factory.from(AccountViewModel.initializer))
                 .get(AccountViewModel.class);
         pubListViewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+        pubListViewModel.getPubsFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         navController= ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment) ).getNavController();
