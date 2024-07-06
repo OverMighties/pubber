@@ -25,7 +25,7 @@
             android:fontFamily="@font/roboto"
 
             android:gravity="center"
-            android:text="Filtry"
+            android:text="@string/filtration_screen"
             android:textColor="@color/on_surface"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +70,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
-                android:text="Ocena"
+                android:text="@string/rating"
 
 
                 android:textColor="@color/on_surface"
@@ -116,7 +116,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
-                android:text="Odległość"
+                android:text="@string/distance"
                 android:textColor="@color/on_surface"
 
                 android:textSize="18sp"
@@ -161,7 +161,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
-                android:text="Cena"
+                android:text="@string/price"
                 android:textColor="@color/on_surface"
 
                 android:textSize="18sp"
@@ -195,7 +195,7 @@
                     style="@style/FilterChip"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="$"
+                    android:text="@string/cheap"
                      />
 
 
@@ -204,7 +204,7 @@
                     style="@style/FilterChip"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="$$" />
+                    android:text="@string/medium_price" />
 
 
                 <com.google.android.material.chip.Chip
@@ -212,7 +212,7 @@
                     style="@style/FilterChip"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="$$$" />
+                    android:text="@string/expensive" />
 
 
             </com.google.android.material.chip.ChipGroup>
@@ -226,7 +226,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
-                android:text="Godziny otwarcia"
+                android:text="@string/time_open"
                 android:textColor="@color/on_surface"
 
                 android:textSize="18sp"
@@ -244,49 +244,49 @@
 
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/czyotwarte"
+                android:id="@+id/Chip_open_now"
                 style="@style/FilterChipTime"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Teraz otwarte"
+                android:text="@string/open_now"
                 android:visibility="gone"
                 app:chipCornerRadius="0dp"
-                app:layout_constraintStart_toEndOf="@+id/dowolne"
-                app:layout_constraintTop_toTopOf="@+id/dowolne" />
+                app:layout_constraintStart_toEndOf="@+id/Chip_anytime"
+                app:layout_constraintTop_toTopOf="@+id/Chip_anytime" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/dowolne"
+                android:id="@+id/Chip_anytime"
                 style="@style/FilterChipTime"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
                 android:checked="true"
-                android:text="Dowolne"
+                android:text="@string/anytime"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TVtime"
                 app:shapeAppearance="@style/CustomChipSortLeft" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/niestandardowe"
+                android:id="@+id/Chip_custom"
                 style="@style/FilterChipTime"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Niestandardowe"
+                android:text="@string/custom"
                 android:visibility="gone"
-                app:layout_constraintStart_toEndOf="@+id/czyotwarte"
-                app:layout_constraintTop_toTopOf="@+id/czyotwarte"
+                app:layout_constraintStart_toEndOf="@+id/Chip_open_now"
+                app:layout_constraintTop_toTopOf="@+id/Chip_open_now"
                 app:shapeAppearance="@style/CustomChipSortRight" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/NiestandardoweLayout"
+                android:id="@+id/Layout_custom"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dowolne">
+                app:layout_constraintTop_toBottomOf="@+id/Chip_anytime">
 
                 <View
                     android:id="@+id/Dayview"
@@ -303,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Poniedziałek"
+                    android:text="@string/monday"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/Dayview"
@@ -335,7 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Dowolna godzina"
+                    android:text="@string/anytime"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/Timeview"
@@ -364,12 +364,12 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
-                android:text="Piwa"
+                android:text="@string/beers"
                 android:textColor="@color/on_surface"
 
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NiestandardoweLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/Layout_custom" />
 
             <ImageView
                 android:id="@+id/IVbeer"
@@ -668,7 +668,7 @@
                 android:shadowDx="1.8"
                 android:shadowDy="1.3"
                 android:shadowRadius="3"
-                android:text="Więcej"
+                android:text="@string/more"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 android:visibility="gone"
@@ -684,7 +684,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
-                android:text="Drinki"
+                android:text="@string/drinks"
                 android:textColor="@color/on_surface"
 
                 android:textSize="18sp"
@@ -852,9 +852,9 @@
             android:paddingTop="0dp"
             android:background="@drawable/button_shape_primary"
             android:fontFamily="@font/roboto"
-            android:text="Filtruj"
+            android:text="@string/filtr"
             android:textColor="@color/on_primary"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -873,10 +873,10 @@
             android:fontFamily="@font/roboto"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:text="Wyczyść"
+            android:text="@string/clear"
             android:textAlignment="center"
             android:textColor="@color/on_secondary"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/cardView"

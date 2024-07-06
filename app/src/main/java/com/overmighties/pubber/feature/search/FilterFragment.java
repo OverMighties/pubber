@@ -126,57 +126,57 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IVtime).setOnClickListener(v -> {
-            if(((Chip)requireView().findViewById(R.id.dowolne)).isShown())
+            if(((Chip)requireView().findViewById(R.id.Chip_anytime)).isShown())
             {
                 ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_more_primary);
-                ((Chip)requireView().findViewById(R.id.dowolne)).setVisibility(View.GONE);
-                ((Chip)requireView().findViewById(R.id.niestandardowe)).setVisibility(View.GONE);
-                ((Chip)requireView().findViewById(R.id.czyotwarte)).setVisibility(View.GONE);
-                ((ConstraintLayout)requireView().findViewById(R.id.NiestandardoweLayout)).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.Chip_custom)).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setVisibility(View.GONE);
+                ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
 
             }
             else
             {
                 ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_less_primary);
-                ((Chip)requireView().findViewById(R.id.dowolne)).setVisibility(View.VISIBLE);
-                ((Chip)requireView().findViewById(R.id.niestandardowe)).setVisibility(View.VISIBLE);
-                ((Chip)requireView().findViewById(R.id.czyotwarte)).setVisibility(View.VISIBLE);
+                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setVisibility(View.VISIBLE);
+                ((Chip)requireView().findViewById(R.id.Chip_custom)).setVisibility(View.VISIBLE);
+                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setVisibility(View.VISIBLE);
             }
         });
-        requireView().findViewById(R.id.niestandardowe).setOnClickListener(new View.OnClickListener() {
+        requireView().findViewById(R.id.Chip_custom).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.niestandardowe)).isChecked())
+                if(((Chip)requireView().findViewById(R.id.Chip_custom)).isChecked())
                 {
-                    ((Chip)requireView().findViewById(R.id.czyotwarte)).setChecked(false);
-                    ((Chip)requireView().findViewById(R.id.dowolne)).setChecked(false);
-                    ((ConstraintLayout)requireView().findViewById(R.id.NiestandardoweLayout)).setVisibility(View.VISIBLE);
+                    ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
+                    ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
+                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.VISIBLE);
                 }
-                else {((Chip)requireView().findViewById(R.id.niestandardowe)).setChecked(true);}
+                else {((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(true);}
             }
         });
-        requireView().findViewById(R.id.czyotwarte).setOnClickListener(new View.OnClickListener() {
+        requireView().findViewById(R.id.Chip_open_now).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.czyotwarte)).isChecked())
+                if(((Chip)requireView().findViewById(R.id.Chip_open_now)).isChecked())
                 {
-                    ((Chip)requireView().findViewById(R.id.niestandardowe)).setChecked(false);
-                    ((Chip)requireView().findViewById(R.id.dowolne)).setChecked(false);
-                    ((ConstraintLayout)requireView().findViewById(R.id.NiestandardoweLayout)).setVisibility(View.GONE);
+                    ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
+                    ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
+                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
                 }
-                else {((Chip)requireView().findViewById(R.id.czyotwarte)).setChecked(true);}
+                else {((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(true);}
             }
         });
-        requireView().findViewById(R.id.dowolne).setOnClickListener(new View.OnClickListener() {
+        requireView().findViewById(R.id.Chip_anytime).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.dowolne)).isChecked())
+                if(((Chip)requireView().findViewById(R.id.Chip_anytime)).isChecked())
                 {
-                    ((Chip)requireView().findViewById(R.id.niestandardowe)).setChecked(false);
-                    ((Chip)requireView().findViewById(R.id.czyotwarte)).setChecked(false);
-                    ((ConstraintLayout)requireView().findViewById(R.id.NiestandardoweLayout)).setVisibility(View.GONE);
+                    ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
+                    ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
+                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
                 }
-                else {((Chip)requireView().findViewById(R.id.dowolne)).setChecked(true);}
+                else {((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(true);}
             }
         });
 
@@ -218,7 +218,7 @@ public class FilterFragment extends Fragment {
             ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).clearCheck();
             ((ChipGroup)requireView().findViewById(R.id.PriceChG)).clearCheck();
             ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).clearCheck();
-            ((Chip)requireView().findViewById(R.id.dowolne)).performClick();
+            ((Chip)requireView().findViewById(R.id.Chip_anytime)).performClick();
             ((RangeSlider)requireView().findViewById(R.id.RatingSlider)).setValues(0f,5f);
             ((Slider)requireView().findViewById(R.id.DistanceSlider)).setValue(5f);
         });
@@ -267,7 +267,7 @@ public class FilterFragment extends Fragment {
     }
 
     private void whichOneCheckedTime(View popUpView) {
-        if(((TextView) (requireView().findViewById(R.id.textView18))).getText().toString().equals("Dowolna godzina"))
+        if(((TextView) (requireView().findViewById(R.id.textView18))).getText().toString().equals(getString(R.string.anytime)))
         {
             popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
         }
@@ -287,9 +287,9 @@ public class FilterFragment extends Fragment {
                 uncheckTime(popUpView);
                 popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
                 setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
-                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1])).setText("Od");
+                ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1])).setText(getString(R.string.from));
                 popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1]).setVisibility(View.VISIBLE);
-                String text = "Od "+(((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1])).getText().toString());
+                String text = getString(R.string.from) + (((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1])).getText().toString());
                 ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
 
                 timePopUpState[1] = n - 1;
@@ -307,12 +307,12 @@ public class FilterFragment extends Fragment {
                     if(h!=n-1){
                         popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
                     }else{
-                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h])).setText("Do");
+                        ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h])).setText(getString(R.string.to));
                         popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h]).setVisibility(View.VISIBLE);
                         setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
                         popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
 
-                        ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+" Do "+
+                        ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+getString(R.string.from)+
                                 ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h])).getText());
                         ((TextView) (requireView().findViewById(R.id.textView18))).setTextSize(14);
                     }
@@ -390,8 +390,8 @@ public class FilterFragment extends Fragment {
             if(((TextView)requireView().findViewById(R.id.textView17)).getText().toString().equals(((TextView)popUpView.findViewById(id)).getText().toString())) {
                 ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.on_surface_variant));
                 popUpView.findViewById(POP_UP_DAYS_IDS[i]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                if(i==0){popUpView.findViewById(R.id.jeden).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
-                if(i==6){popUpView.findViewById(R.id.siedem).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_down);}
+                if(i==0){popUpView.findViewById(R.id.cl_mon).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
+                if(i==6){popUpView.findViewById(R.id.cl_sun).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_down);}
                 break;
             }
             i++;
@@ -423,8 +423,8 @@ public class FilterFragment extends Fragment {
     private void uncheckDays(Integer checked, View popUpView) {
         for(var id:POP_UP_DAYS_IDS) {
             popUpView.findViewById(id).setBackgroundResource(R.drawable.menu_drop_down_days_shape);
-            if (id == POP_UP_DAYS_IDS[0]) {popUpView.findViewById(R.id.jeden).setBackgroundResource(R.drawable.menu_drop_out_list_shape_up);}
-            if (id == POP_UP_DAYS_IDS[6]) {popUpView.findViewById(R.id.siedem).setBackgroundResource(R.drawable.menu_drop_out_list_shape_down);}
+            if (id == POP_UP_DAYS_IDS[0]) {popUpView.findViewById(R.id.cl_mon).setBackgroundResource(R.drawable.menu_drop_out_list_shape_up);}
+            if (id == POP_UP_DAYS_IDS[6]) {popUpView.findViewById(R.id.cl_sun).setBackgroundResource(R.drawable.menu_drop_out_list_shape_down);}
         }
         for(var id:POP_UP_DAYS_TEXT_IDS) {
             ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.on_surface_variant));
@@ -432,8 +432,8 @@ public class FilterFragment extends Fragment {
         ((TextView)(requireView().findViewById(R.id.textView17))).setText(((TextView)popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checked-1])).getText().toString());
         ((TextView) popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checked-1])).setTextColor(getResources().getColor(R.color.on_surface_variant));
         popUpView.findViewById(POP_UP_DAYS_IDS[checked-1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-        if(checked==1){popUpView.findViewById(R.id.jeden).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
-        if(checked==7){popUpView.findViewById(R.id.siedem).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_down);}
+        if(checked==1){popUpView.findViewById(R.id.cl_mon).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
+        if(checked==7){popUpView.findViewById(R.id.cl_sun).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_down);}
     }
 
 
@@ -495,7 +495,7 @@ public class FilterFragment extends Fragment {
 
 
     public void isOpen(View v) {
-        open = ((Chip) v.findViewById(R.id.czyotwarte)).isChecked();
+        open = ((Chip) v.findViewById(R.id.Chip_open_now)).isChecked();
     }
 
     private void priceCheck(View v){

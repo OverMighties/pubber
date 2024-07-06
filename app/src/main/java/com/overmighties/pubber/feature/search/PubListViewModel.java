@@ -60,6 +60,9 @@ public class PubListViewModel extends ViewModel {
     @Setter
     @Getter
     public String ChipTag = "Normal";
+    @Setter
+    @Getter
+    public boolean searchviewClicked = false;
     private final PubsRepository pubsRepository;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
     private final LiveData<List<Pub>> _originalPubData=originalPubData;

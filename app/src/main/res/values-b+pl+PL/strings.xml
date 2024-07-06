@@ -5,9 +5,8 @@
         <item>0</item>
         <item>10</item>
     </string-array>
-
+    <string name="hello_blank_fragment">Siemka</string>
     <!--Beer/Drink names-->
-    <string name="hello_blank_fragment">Hi There</string>
     <string name="AleBrowar">AleBrowar</string>
     <string name="Amber">Amber</string>
     <string name="Artezan">Artezan</string>
@@ -68,106 +67,105 @@
     <string name="Sexonthebeach">Sex on the beach</string>
     <string name="TequilaSunrise">Tequila Sunrise</string>
 
-    <string name="sign_in">Sign In</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="loading">Loading…</string>
+    <string name="sign_in">Zaloguj się</string>
+    <string name="sign_out">Wyloguj się</string>
+    <string name="loading">Ładowanie...</string>
     <!-- Screens titles-->
     <string name="page_title">%1$s</string>
     <string name="searcher_title">Searcher</string>
     <!-- Snackbar messages-->
     <string name="auth_error_message">Authentication Error</string>
-    <string name="no_internet_connection_message">No Internet Connection</string>
-    <string name="marked_as_favorite_message">Marked as Favorite</string>
-    <string name="comment_added_message">Comment Added</string>
+    <string name="no_internet_connection_message">Brak Internetu</string>
+    <string name="marked_as_favorite_message">Oznaczony jako ulubiony</string>
+    <string name="comment_added_message">Komentarz dodany</string>
     <!--Top app bar-->
     <string name="ic_settings_title">Settings</string>
-    <string name="edit">edit</string>
-    <!--Bottom app bar-->
-    <string name="list">List</string>
-    <string name="favorite">Favourite</string>
-    <string name="settings">Settings</string>
-
+    <string name="edit">edytuj</string>
     <!--Account details-->
-    <string name="sex_title">Sex: </string>
+    <string name="list">Lista</string>
+    <string name="favorite">Ulubione</string>
+    <string name="settings">Ustawienia</string>
+    <string name="sex_title">Płeć: </string>
     <string name="email_title">Email: </string>
-    <string name="username_title">Username: </string>
+    <string name="username_title">Nazwa użytkownika: </string>
     <!--Auth messages-->
-    <string name="hint_user_id">User ID</string>
+    <string name="hint_user_id">ID użytkownika</string>
     <string name="get_custom_token">Get Token</string>
-    <string name="create_account">Create Account</string>
-    <string name="send_link">Send Link</string>
-    <string name="verify_email">Verify</string>
+    <string name="create_account">Stwórz konto</string>
+    <string name="send_link">Wyślij link</string>
+    <string name="verify_email">Weryfikuj</string>
     <string name="custom_token">Custom Token</string>
-    <string name="signed_in">Signed In</string>
-    <string name="signed_out">Signed Out</string>
+    <string name="signed_in">Zalogowany</string>
+    <string name="signed_out">Wylogowany</string>
     <string name="token_null">Token: null</string>
     <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_password">Hasło</string>
+    <string name="hint_confirm_password">Potwierdź hasło</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
-    <string name="auth_failed">Authentication failed</string>
+    <string name="auth_failed">Błąd Uwierzytelniania</string>
     <string name="start_phone_auth">Start</string>
-    <string name="verify_phone_auth">Verify</string>
-    <string name="resend_phone_auth">Resend</string>
-    <string name="hint_phone_number">Phone Number</string>
-    <string name="hint_verification_code">Verification Code</string>
-    <string name="status_code_sent">Code Sent</string>
-    <string name="status_verification_failed">Verification failed</string>
-    <string name="status_verification_succeeded">Verification succeeded</string>
-    <string name="status_sign_in_failed">Sign-in failed</string>
+    <string name="verify_phone_auth">Weryfikuj</string>
+    <string name="resend_phone_auth">Wyślij ponownie</string>
+    <string name="hint_phone_number">Numer telefonu</string>
+    <string name="hint_verification_code">Kod weryfikacyjny</string>
+    <string name="status_code_sent">Kod wysłany</string>
+    <string name="status_verification_failed">Błąd Uwierzytelniania</string>
+    <string name="status_verification_succeeded">Sukcej Uwierzytelniania</string>
+    <string name="status_sign_in_failed">Błąd logowania</string>
     <string name="instant_validation">(instant validation)</string>
-    <string name="label_google_sign_in">Sign In with Google </string>
-    <string name="label_email_sign_in">Sign In with email </string>
-    <string name="label_email_sign_up">Sign Up with email </string>
-    <string name="label_email_sign_up_add"> "Sing Up ( You create account )"</string>
-    <string name="ic_account_title">My account</string>
-    <string name="content_description_profile_image">Your profile image</string>
+    <string name="label_google_sign_in">Zaloguj się przez Google </string>
+    <string name="label_email_sign_in">Logowanie przez email </string>
+    <string name="label_email_sign_up">Rejestracja przez email </string>
+    <string name="label_email_sign_up_add"> "Rejestracja (ty tworzysz konto)"</string>
+    <string name="ic_account_title">Moje konto</string>
+    <string name="content_description_profile_image">Twoje zdjęcie profilowe</string>
     <string name="account_detail_title_cardview">Detail name:</string>
     <string name="account_detail_content_cardview">detail content\n</string>
-    <string name="log_out">Log Out</string>
-
+    <string name="log_out">Wyloguj</string>
+    
     <!-- general string used in more than one layout-->
-    <string name="go_back">go_back</string>
-    <string name="more">more</string>
-    <string name="less">less</string>
-    <string name="rating">Rating</string>
-    <string name="distance">Distance</string>
-    <string name="price">Price</string>
-    <string name="time_open">Time open</string>
-    <string name="beers">Beers</string>
-    <string name="drinks">Drinks</string>
+    <string name="go_back">Wróć</string>
+    <string name="more">Więcej</string>
+    <string name="less">Mniej</string>
+    <string name="rating">Ocena</string>
+    <string name="distance">Odległość</string>
+    <string name="price">Cena</string>
+    <string name="time_open">Godziny otwarcia</string>
+    <string name="beers">Piwa</string>
+    <string name="drinks">Drinki</string>
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>
-    <string name="avaliable_alcohols">Avaliable alcohols</string>
+    <string name="avaliable_alcohols">Dostępne alkohole</string>
+
 
     <!--searcher and it's pop ups-->
-    <string name="sort_based_on">Sort based on:</string>
-    <string name="searchview_hint">Type here...</string>
-    <string name="sort_relevance">Relevance</string>
-    <string name="sort_rating">Highest Rating</string>
-    <string name="sort_alphabetical">Alphabetical</string>`
-    <string name="sort_distance">Closest</string>
+    <string name="sort_based_on">Sortuj według:</string>
+    <string name="searchview_hint">Wyszukaj tutaj...</string>
+    <string name="sort_relevance">Trafność</string>
+    <string name="sort_rating">Najwyżej oceniane</string>
+    <string name="sort_alphabetical">Alfabetycznie</string>`
+    <string name="sort_distance">Najmniejsza odległość</string>
 
     <!--settings fragment-->
-    <string name="dark_theme">Dark theme</string>
+    <string name="dark_theme">Tryb nocny</string>
 
     <!-- recycler view row -->
-    <string name="guide">Guide</string>
-    <string name="alcohols">Alcohols</string>
-
+    <string name="guide">Zaprowadź</string>
+    <string name="alcohols">Alkohole</string>
 
     <!-- filtration screen and it's pop ups-->
-    <string name="filtration_screen">Filtration</string>
-    <string name="open_now">Open now</string>
-    <string name="custom">Custom</string>
-    <string name="filtr">Filtr</string>
-    <string name="clear">Clear</string>
+    <string name="filtration_screen">Filtry</string>
+    <string name="open_now">Teraz otwarte</string>
+    <string name="custom">Niestandardowe</string>
+    <string name="filtr">Filtruj</string>
+    <string name="clear">Wyczyść</string>
+    
 
-    <string name="anytime">Anytime</string>
-    <string name="next_day">(next day)</string>
-    <string name="from">from</string>
-    <string name="to">to</string>
+    <string name="anytime">Dowolna godzina</string>
+    <string name="next_day">(następnego dnia)</string>
+    <string name="from">Od</string>
+    <string name="to">Do</string>
     <string name="time_0000">00:00</string>
     <string name="time_0030">00:30</string>
     <string name="time_0100">01:00</string>
@@ -218,12 +216,14 @@
     <string name="time_2330">23:30</string>
     <string name="time_2400">24:00</string>
 
-    <string name="monday">monday</string>
-    <string name="tuesday">tuesday</string>
-    <string name="wednesday">wednesday</string>
-    <string name="thursday">thursday</string>
-    <string name="friday">friday</string>
-    <string name="saturday">saturday</string>
-    <string name="sunday">sunday</string>
+
+    <string name="monday">poniedziałek</string>
+    <string name="tuesday">wtorek</string>
+    <string name="wednesday">środa</string>
+    <string name="thursday">czwartek</string>
+    <string name="friday">piątek</string>
+    <string name="saturday">sobota</string>
+    <string name="sunday">niedziela</string>
+
 
 </resources>

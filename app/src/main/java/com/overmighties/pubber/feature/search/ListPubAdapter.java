@@ -93,7 +93,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
            });
        }
     }
-    public ListPubAdapter(PubsCardViewUiState pubData, SelectListener selectListener, String ChipTag) {this.pubData=pubData;this.selectListener=selectListener; this.chiptag=ChipTag;}
+    public ListPubAdapter(PubsCardViewUiState pubData, SelectListener selectListener, String ChipTag) {
+        this.pubData=pubData;this.selectListener=selectListener; this.chiptag=ChipTag;}
     @Override
     public PubViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new PubViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pub_recycler_view_row,viewGroup,false),selectListener);
@@ -130,11 +131,12 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             holder.timeOpenToday.setText(pubCardView.getTimeOpenToday());
             if(pubCardView.getIsOpenNow()) {
                 holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
-                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));}
+                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
+            }
             else{
                 holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
                 holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
-                }}
+            }}
      //   if(pubCardView.getAverageRatingFromServices()!=null)
      //       holder.averageRatingFromServices.setText(pubData.getPubItems().get(position).getAverageRatingFromServices().toString());
         if(pubCardView.getWalkDistance()!=null) {
@@ -205,8 +207,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
                     }
                 }
                 builder.setView(dialogView);
-                builder.setTitle("Dostępne alkohole:");
-                builder.setPositiveButton("Wróć", null);
+                builder.setTitle(holder.itemView.getContext().getString(R.string.avaliable_alcohols));
+                builder.setPositiveButton(holder.itemView.getContext().getString(R.string.go_back), null);
                 builder.show();
             }
         });

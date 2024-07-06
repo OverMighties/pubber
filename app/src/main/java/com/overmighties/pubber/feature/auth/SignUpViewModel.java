@@ -8,14 +8,16 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_UP_FRA
 
 import android.util.Log;
 
+import androidx.annotation.StringRes;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
-import com.overmighties.pubber.app.navigation.PubberNavRoutes;
+import com.overmighties.pubber.app.exception.ErrorHandler;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.util.SnackbarUI;
@@ -31,6 +33,9 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class SignUpViewModel extends PubberAppViewModel {
     private final AccountDataSource accountDataSource;
     private final CompositeDisposable disposables = new CompositeDisposable();
+
+    public static final int NONE_RES=-1;
+
     private static final String TAG="SignUpViewModel";
     public static final ViewModelInitializer<SignUpViewModel> initializer = new ViewModelInitializer<>(
             SignUpViewModel.class,
@@ -56,9 +61,9 @@ public class SignUpViewModel extends PubberAppViewModel {
     public void updateConfirmPassword(String newConfirmPassword){
         confirmPassword.setValue(newConfirmPassword);
     }
-    public void onSignUpClick(BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError){
+    public void onSignUpClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorHandler.ErrorTypes, UIText,String> snackbarOnError){
         if(!Objects.equals(password.getValue(), confirmPassword.getValue())){
-            snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,new UIText.ResourceString(R.string.NOT_MATCHING_PASSWORDS),"");
+            snackbarOnError.accept(ErrorHandler.ErrorTypes.BASIC_AUTH_ERROR,new UIText.ResourceString(R.string.NOT_MATCHING_PASSWORDS),"");
             Log.e(TAG,"User entered not matching passwords in sign up");
         }else{
             singleAction(TAG,
@@ -66,12 +71,32 @@ public class SignUpViewModel extends PubberAppViewModel {
                     ()->openAndPopUp.accept(SIGN_UP_FRAGMENT,SEARCHER_FRAGMENT),
                     (err)->{
                         if(err instanceof AccFirebaseDSError.DifferentInternalError)
-                            snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                            snackbarOnError.accept(ErrorHandler.ErrorTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                         else if(err instanceof AccFirebaseDSError)
-                            snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),"");
+                            snackbarOnError.accept(ErrorHandler.ErrorTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),"");
                         else
-                            snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
+                            snackbarOnError.accept(ErrorHandler.ErrorTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
                     });
         }
+    }
+
+    @StringRes
+    public static int getMessageResId(SnackbarUI.SnackbarTypes type) {
+        switch (type) {
+            case BASIC_AUTH_ERROR:{
+                return R.string.auth_error_message;
+            }
+            case NO_INTERNET_CONNECTION :{
+                return R.string.no_internet_connection_message;
+            }
+            case MARKED_AS_FAVORITE :{
+                return R.string.marked_as_favorite_message;
+            }
+            case COMMENT_ADDED :{
+                return R.string.comment_added_message;
+            }
+            default: Log.e(TAG,"Unknown SnackbarType: " + type);
+        }
+        return NONE_RES;
     }
 }

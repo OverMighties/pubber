@@ -6,9 +6,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/jeden"
+        android:id="@+id/cl_mon"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:background="@drawable/menu_drop_out_list_shape_up"
@@ -16,28 +15,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textViewjeden"
+            android:id="@+id/tv_mon"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Poniedziałek"
+            android:text="@string/monday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dwa"
+        android:id="@+id/cl_tue"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jeden">
+        app:layout_constraintTop_toBottomOf="@+id/cl_mon">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView9"
@@ -48,26 +46,27 @@
             tools:layout_editor_absoluteX="4dp" />
 
         <TextView
-            android:id="@+id/textViewdwa"
+            android:id="@+id/tv_tue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Wtorek"
+            android:text="@string/tuesday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/trzy"
+        android:id="@+id/cl_wen"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dwa">
+        app:layout_constraintTop_toBottomOf="@+id/cl_tue">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView10"
@@ -78,26 +77,27 @@
             tools:layout_editor_absoluteX="4dp" />
 
         <TextView
-            android:id="@+id/textViewtrzy"
+            android:id="@+id/tv_wen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Środa"
+            android:text="@string/wednesday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cztery"
+        android:id="@+id/cl_thu"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trzy">
+        app:layout_constraintTop_toBottomOf="@+id/cl_wen">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView11"
@@ -108,26 +108,27 @@
             tools:layout_editor_absoluteX="4dp" />
 
         <TextView
-            android:id="@+id/textViewcztery"
+            android:id="@+id/tv_thu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Czwartek"
+            android:text="@string/thursday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/piec"
+        android:id="@+id/cl_fri"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cztery">
+        app:layout_constraintTop_toBottomOf="@+id/cl_thu">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView12"
@@ -138,26 +139,27 @@
             tools:layout_editor_absoluteX="4dp" />
 
         <TextView
-            android:id="@+id/textViewpiec"
+            android:id="@+id/tv_fri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Piątek"
+            android:text="@string/friday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/szesc"
+        android:id="@+id/cl_sat"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:background="@drawable/menu_drop_down_days_shape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/piec">
+        app:layout_constraintTop_toBottomOf="@+id/cl_fri">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView13"
@@ -168,13 +170,13 @@
             tools:layout_editor_absoluteX="4dp" />
 
         <TextView
-            android:id="@+id/textViewszesc"
+            android:id="@+id/tv_sat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Sobota"
+            android:text="@string/saturday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -190,28 +192,26 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/siedem"
+        android:id="@+id/cl_sun"
         android:layout_width="150dp"
         android:layout_height="40dp"
-
         android:background="@drawable/menu_drop_out_list_shape_down"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/szesc">
+        app:layout_constraintTop_toBottomOf="@+id/cl_sat">
 
         <TextView
-            android:id="@+id/textViewsiedem"
+            android:id="@+id/tv_sun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Niedziela"
+            android:text="@string/sunday"
             android:textColor="@color/on_surface_variant"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

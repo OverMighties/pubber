@@ -1,14 +1,17 @@
 package com.overmighties.pubber.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,18 +25,26 @@ import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
+import com.overmighties.pubber.feature.search.SearcherFragment;
+import com.overmighties.pubber.feature.settings.SettingsFragment;
+import com.overmighties.pubber.util.DarkModeTheme;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DarkModeTheme {
 
     public static final String TAG="MainActivity";
     private ActivityMainBinding binding;
     private PubListViewModel pubListViewModel;
     private AccountViewModel accountViewModel;
     private NavController navController;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         pubListViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
@@ -50,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
         bottomNavSize();
+        if (getIntent().hasExtra("openFragmentE") && getIntent().getBooleanExtra("openFragmentE", false)) {
+            bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
+        }
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -78,5 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 }

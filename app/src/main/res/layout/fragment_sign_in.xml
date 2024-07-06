@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_container"
+        app:backgroundTint="@null"
         android:text="@string/sign_in"
         android:textColor="@color/on_secondary_container"
         android:layout_marginBottom="80dp"
@@ -28,6 +29,7 @@
         android:background="@drawable/button_shape_container"
         android:text="Sign Up(No acc)"
         android:textColor="@color/on_secondary_container"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@id/icon">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fieldEmail"
+            android:id="@+id/edit_field_email_sing_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/on_surface" />
@@ -81,9 +83,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fieldPassword"
+            android:id="@+id/edit_field_password_sing_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 

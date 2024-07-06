@@ -1,8 +1,10 @@
 package com.overmighties.pubber.app;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.room.Room;
 import androidx.work.Configuration;
 import androidx.work.Constraints;
@@ -11,6 +13,7 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
+import com.overmighties.pubber.R;
 import com.overmighties.pubber.core.database.AppDb;
 import com.overmighties.pubber.sync.SyncWorker;
 import com.overmighties.pubber.sync.SyncWorkerFactory;
@@ -19,6 +22,7 @@ public class PubberApp extends Application implements Configuration.Provider{
 
     private AppDb db;
     public AppContainer appContainer;
+
 
     @Override
     public void onCreate() {

@@ -3,14 +3,13 @@ package com.overmighties.pubber.feature.auth;
 
 import static com.overmighties.pubber.app.Constants.DIGIT_PATTERN;
 import static com.overmighties.pubber.app.Constants.LOWERCASE_PATTERN;
+import static com.overmighties.pubber.app.Constants.SIGN_UP_INPUTLAYOUTS_IDS;
 import static com.overmighties.pubber.app.Constants.SIGN_UP_TEXTFIELDS_IDS;import static com.overmighties.pubber.app.Constants.SPECIAL_CHAR_PATTERN;
 import static com.overmighties.pubber.app.Constants.UPPERCASE_PATTERN;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,11 +30,8 @@ import androidx.navigation.Navigation;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.app.exception.ErrorHandler;
 import com.overmighties.pubber.util.UIText;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Pattern;
 
 
 public class SignUpFragment  extends Fragment {
@@ -56,6 +52,7 @@ public class SignUpFragment  extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPassword)).setError("Błąd");
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         requireView().findViewById(R.id.button_create_account_sign_up).setOnClickListener(v->{
             EditText email=requireView().findViewById(R.id.edit_field_email_sing_up);
@@ -66,30 +63,56 @@ public class SignUpFragment  extends Fragment {
             viewModel.updateConfirmPassword(confirmPassword.getText().toString());
             viewModel.onSignUpClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),
-                    (snackbarType, uiText,logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes));
+                    (errorType, uiText,logMes) -> {
+                        handleError(errorType, (UIText.ResourceString)uiText,logMes);
+                    }
+            );
         });
 
         requireView().findViewById(R.id.SignUpFragment).setOnClickListener(v->{
-            for(var edit_field:SIGN_UP_TEXTFIELDS_IDS)
+            for(var id:SIGN_UP_TEXTFIELDS_IDS)
             {
-                TextInputEditText textInputEditText= (TextInputEditText) requireView().findViewById(edit_field);
-                if (textInputEditText.isFocused()) {
-                    textInputEditText.clearFocus();
+                TextInputEditText EditText= (TextInputEditText) requireView().findViewById(id);
+                if (EditText.isFocused()) {
+                    EditText.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) {
                         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                     }
                 }
             }
+
         });
 
-        ProgressBar progressBar = (ProgressBar) requireView().findViewById(R.id.progressBar2);
+        for (var edit_field:SIGN_UP_TEXTFIELDS_IDS){
+            //reset error message if there is any
+            TextInputEditText EditText= (TextInputEditText) requireView().findViewById(edit_field);
+            EditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    for(var id:SIGN_UP_INPUTLAYOUTS_IDS){
+                        //reset error text
+                        TextInputLayout InputLayout = (TextInputLayout) requireView().findViewById(id);
+                        InputLayout.setError(null);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+        }
+
+        ProgressBar progressBar = (ProgressBar) requireView().findViewById(R.id.progressBarPassword);
         ((EditText)requireView().findViewById(R.id.edit_filed_password_sing_up)).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 progressBar.setVisibility(View.VISIBLE);
                 requireView().findViewById(R.id.progressTV).setVisibility(View.VISIBLE);
 
@@ -156,5 +179,24 @@ public class SignUpFragment  extends Fragment {
         });
 
 
+
+    }
+
+    private void handleError(ErrorHandler.ErrorTypes type, @Nullable UIText.ResourceString authRes, String logMes) {
+        String error_message = ErrorHandler.getErrorMessage(getContext(), type, authRes, logMes);
+        TextInputLayout textInputLayout = ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPassword));
+        textInputLayout.setError(error_message);
+        Log.d(TAG, type.toString());
+        if (authRes != null)
+        {
+            Log.d(TAG, authRes.toString());
+        Log.d(TAG, String.valueOf(authRes.getResId()));}
+       // int messageResId = authRes==null?viewModel.getMessageResId(type):authRes.getResId();
+      //  if(type== SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR || type== SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR)
+      //      logMes+=getContext().getText(R.string.try_again);
+      //  if(messageResId==viewModel.NONE_RES)
+      //      textInputLayout.setError(logMes);
+      //  else
+        //    textInputLayout.setError(getContext().getText(messageResId)+logMes);
     }
 }

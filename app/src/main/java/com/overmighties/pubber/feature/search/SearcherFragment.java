@@ -7,7 +7,9 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAG
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.content.Context;
+
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
@@ -15,8 +17,10 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
@@ -27,15 +31,18 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
@@ -108,7 +115,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
         if(!appContainer.getAccountDataSource().hasUser()){
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,SPLASH_FRAGMENT));
         }
-
     }
     private void sortButtonsListeners()
     {
@@ -180,7 +186,6 @@ public class SearcherFragment extends Fragment implements SelectListener {
                         ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
                         ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
                         ((RadioButton) popupView.findViewById(id)).setChecked(true);
-                    } else {
                     }
                 }
             });
@@ -192,8 +197,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
     {
         searchview=(SearchView)requireView().findViewById(R.id.searchView);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        SpannableString string = new SpannableString("Wyszukaj Tutaj...");
-        string.setSpan(new TextAppearanceSpan(getContext(), R.style.SearchView_Hint_Text),0,17,0);
+        SpannableString string = new SpannableString(getString(R.string.searchview_hint));
+        string.setSpan(new TextAppearanceSpan(getContext(), R.style.SearchView_Hint_Text),0,getString(R.string.searchview_hint).length(),0);
         searchview.setQueryHint(string);
 
         searchview.setOnCloseListener(new SearchView.OnCloseListener() {
@@ -218,62 +223,30 @@ public class SearcherFragment extends Fragment implements SelectListener {
             }
         });
 
-        ConstraintLayout Layout1 = (ConstraintLayout) requireView().findViewById(R.id.constraintLayout);
-        Layout1.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (searchview.isIconified()){return  false;}
-                else{
-                    int[] location = new int[2];
-                    searchview.getLocationOnScreen(location);
-                    float x = event.getRawX() + searchview.getLeft() - location[0];
-                    float y = event.getRawY() + searchview.getTop() - location[1];
-
-                    if (x < 0 || x > searchview.getWidth() || y < 0 || y > searchview.getHeight()) {
-                        searchview.setIconified(true);
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) {
-                            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-                        }
-                        searchview.clearFocus();
-
-
-                    }
-                    Log.d(TAG, String.valueOf(x)+" " + String.valueOf(y));
-                    Log.d(TAG, String.valueOf(searchview.getWidth())+ " "+String.valueOf(searchview.getHeight()));
-                    return false;
+        requireView().findViewById(R.id.constraintLayout).setOnClickListener(v->{
+            if (!searchview.isIconified()){
+                searchview.setIconified(true);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                 }
-
+                searchview.clearFocus();
             }
         });
 
-        ScrollView scrollView = (ScrollView) requireView().findViewById(R.id.scrollView);
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (searchview.isIconified()){return  false;}
-                else{
-                    int[] location = new int[2];
-                    searchview.getLocationOnScreen(location);
-                    float x = event.getRawX() + searchview.getLeft() - location[0];
-                    float y = event.getRawY() + searchview.getTop() - location[1];
-
-                    if (x < 0 || x > searchview.getWidth() || y < 0 || y > searchview.getHeight()) {
-                        searchview.setIconified(true);
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) {
-                            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-                        }
-                        searchview.clearFocus();
+        recyclerView.setOnTouchListener((view, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                if (!searchview.isIconified()) {
+                    searchview.setIconified(true);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                     }
-                    Log.d(TAG, String.valueOf(x)+" " + String.valueOf(y));
-                    Log.d(TAG, String.valueOf(searchview.getWidth())+ " "+String.valueOf(searchview.getHeight()));
-                    return false;
+                    searchview.clearFocus();
                 }
-
             }
+            return false;
         });
-
     }
 
 
@@ -284,6 +257,9 @@ public class SearcherFragment extends Fragment implements SelectListener {
             NavigationBar.smoothPopUp(getActivity().findViewById(R.id.bottom_nav_view));
 
     }
+
+
+
 
     @Override
     public void onItemClicked(int position) {

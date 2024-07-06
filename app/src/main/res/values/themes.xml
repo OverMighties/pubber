@@ -1,26 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Pubber" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowBackground">#302821</item>
-        <item name="android:navigationBarColor">#392e27</item>
-        <item name="colorPrimary">#302821</item>
+        <item name="android:windowBackground">@color/surface</item>
+        <item name="android:navigationBarColor">@color/surface_variant_secondary</item>
         <item name="android:ambientShadowAlpha">0.2</item>
         <item name="android:spotShadowAlpha">0.2</item>
-
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/status_bar</item>
     </style>
 
     <style name="Theme.Pubber" parent="Base.Theme.Pubber" >
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
         <item name="android:windowBackground">@color/surface</item>
-        <item name="colorPrimary">#302821</item>
+        <item name="colorPrimary">@color/primary</item>
     </style>
 
-    <style name="CustomNavigationBarContainer" parent="" >
-        <item name="colorContainer">@color/main</item>
-        <item name="colorOnPrimaryContainer">@color/main</item>
-        <item name="colorOnContainer">@color/main</item>
-        <item name="colorOnPrimary">@color/main</item>
-        <item name="colorControlHighlight">@color/main</item>
-    </style>
 </resources>

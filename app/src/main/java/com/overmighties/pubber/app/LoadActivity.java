@@ -12,9 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.ui.PlaceChoiceFragment;
 import com.overmighties.pubber.app.ui.PlaceChoiceViewModel;
+import com.overmighties.pubber.util.DarkModeTheme;
 
 
-public class LoadActivity extends AppCompatActivity {
+public class LoadActivity extends DarkModeTheme {
     private PlaceChoiceViewModel placeChoiceViewModel;
     public static final int LOGO_DELAY=3000;
     @Override

@@ -4,16 +4,16 @@
     <item
         android:id="@+id/searcher_graph"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Lista" />
+        android:title="@string/list" />
 
     <item
         android:id="@+id/saved_nav_dir"
         android:icon="@drawable/hearth_full_nav"
-        android:title="Ulubione" />
+        android:title="@string/favorite" />
 
     <item
         android:id="@+id/settings_nav_dir"
         android:icon="@drawable/ic_settings_24px"
-        android:title="Ustawienia"/>
+        android:title="@string/settings"/>
 
 </menu>

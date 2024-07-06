@@ -60,7 +60,6 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
-        ((SignInButton)requireView().findViewById(R.id.button_sign_in_google_splash)).setColorScheme(0);
         NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
@@ -80,12 +79,11 @@ public class SplashFragment extends Fragment {
                         (from, to)-> Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(getNavDirections(from,to)),
                         (snackbarType, uiText,logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes))
         );
-        requireView().findViewById(R.id.button_sign_in_google_splash).setOnClickListener(v->{
-            signInWithGoogle();
-        });
+
         requireView().findViewById(R.id.IV_google_button).setOnClickListener(v->{
-            requireView().findViewById(R.id.button_sign_in_google_splash).performClick();
+                signInWithGoogle();
         });
+
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             viewModel.onAppStart((from, to)-> Navigation.findNavController(view)
                     .navigate(getNavDirections(from,to)));

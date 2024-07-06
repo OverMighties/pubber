@@ -7,7 +7,7 @@
     android:id="@+id/SignUpFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/textInputLayoutEmail"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -15,6 +15,7 @@
         android:layout_marginTop="150dp"
         android:layout_marginRight="30dp"
         android:hint="Email"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,45 +31,47 @@
         android:id="@+id/textInputLayouPassword"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="60dp"
         android:hint="Password"
+        app:errorEnabled="true"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_filed_password_sing_up"
             android:background="@null"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:inputType="textPassword"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutConfirmPassword"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
         android:background="@null"
         android:hint="Confirm Password"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayouPassword" >
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayouPassword">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_field_confirm_password_sign_up"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:inputType="textPassword"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,14 +83,17 @@
         android:background="@drawable/button_shape_container"
         android:textColor="@color/on_secondary_container"
         android:text="@string/create_account"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.661"
+        app:backgroundTint="@null"
+        />
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progressBarPassword"
         style="?android:attr/progressBarStyleHorizontal"
         android:visibility="invisible"
         android:layout_marginStart="4dp"
@@ -104,8 +110,8 @@
         android:text="Słabe"
         android:layout_marginBottom="2dp"
         android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
-        app:layout_constraintStart_toEndOf="@+id/progressBar2"
-        app:layout_constraintTop_toTopOf="@+id/progressBar2" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarPassword"
+        app:layout_constraintStart_toEndOf="@+id/progressBarPassword"
+        app:layout_constraintTop_toTopOf="@+id/progressBarPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

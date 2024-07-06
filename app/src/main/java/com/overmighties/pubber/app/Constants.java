@@ -127,13 +127,13 @@ public class Constants {
             "duzo",
     };
     public static final int[] POP_UP_DAYS_IDS=new int[]{
-                    R.id.jeden,
-                    R.id.dwa,
-                    R.id.trzy,
-                    R.id.cztery,
-                    R.id.piec,
-                    R.id.szesc,
-                    R.id.siedem
+                    R.id.cl_mon,
+                    R.id.cl_tue,
+                    R.id.cl_wen,
+                    R.id.cl_thu,
+                    R.id.cl_fri,
+                    R.id.cl_sat,
+                    R.id.cl_sun
     };
     public static final Integer[] DAY_OF_WEEK =new Integer[]
             {
@@ -144,13 +144,13 @@ public class Constants {
 
     public static final int[] POP_UP_DAYS_TEXT_IDS =new int[]
             {
-                    R.id.textViewjeden,
-                    R.id.textViewdwa,
-                    R.id.textViewtrzy,
-                    R.id.textViewcztery,
-                    R.id.textViewpiec,
-                    R.id.textViewszesc,
-                    R.id.textViewsiedem
+                    R.id.tv_mon,
+                    R.id.tv_tue,
+                    R.id.tv_wen,
+                    R.id.tv_thu,
+                    R.id.tv_fri,
+                    R.id.tv_sat,
+                    R.id.tv_sun
             };
 
 
@@ -369,12 +369,21 @@ public class Constants {
                     R.id.OvTvTime7
             };
 
-    public static final int[] SIGN_UP_TEXTFIELDS_IDS=new int[]
-            {
+    public static final int[] SIGN_IN_TEXTFIELDS_IDS=new int[]{
+            R.id.edit_field_email_sing_in,
+            R.id.edit_field_password_sing_in,
+    };
+
+    public static final int[] SIGN_UP_TEXTFIELDS_IDS=new int[]{
                     R.id.edit_field_email_sing_up,
                     R.id.edit_filed_password_sing_up,
                     R.id.edit_field_confirm_password_sign_up
             };
+    public static final int[] SIGN_UP_INPUTLAYOUTS_IDS=new int[]{
+            R.id.textInputLayoutEmail,
+            R.id.textInputLayouPassword,
+            R.id.textInputLayoutConfirmPassword
+    };
     /*
     public static final int[] TAB_OVERVIEW_TEXTVIEW_OUR_RATING_IDS = new int[]
             {
