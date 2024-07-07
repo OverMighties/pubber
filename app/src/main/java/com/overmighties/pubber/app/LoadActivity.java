@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.ui.PlaceChoiceFragment;
 import com.overmighties.pubber.app.ui.PlaceChoiceViewModel;
-import com.overmighties.pubber.util.DarkModeTheme;
+import com.overmighties.pubber.app.ui.DarkModeTheme;
 
 
 public class LoadActivity extends DarkModeTheme {

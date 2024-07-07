@@ -136,7 +136,7 @@
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>
-    <string name="avaliable_alcohols">Dostępne alkohole</string>
+    <string name="available_alcohols">Dostępne alkohole</string>
 
 
     <!--searcher and it's pop ups-->
@@ -224,6 +224,10 @@
     <string name="friday">piątek</string>
     <string name="saturday">sobota</string>
     <string name="sunday">niedziela</string>
+
+    <string name="weak_password">Słabe</string>
+    <string name="average_password">Średnie</string>
+    <string name="strong_password">Mocne</string>
 
 
 </resources>

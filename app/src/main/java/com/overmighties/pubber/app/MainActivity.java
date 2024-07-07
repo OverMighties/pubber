@@ -1,17 +1,12 @@
 package com.overmighties.pubber.app;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,15 +14,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
-import com.overmighties.pubber.feature.search.SearcherFragment;
-import com.overmighties.pubber.feature.settings.SettingsFragment;
-import com.overmighties.pubber.util.DarkModeTheme;
+import com.overmighties.pubber.app.ui.DarkModeTheme;
 
 
 public class MainActivity extends DarkModeTheme {
@@ -58,10 +50,10 @@ public class MainActivity extends DarkModeTheme {
         AppBarConfiguration  bottomNavConfiguration =
                 new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
-        bottomNavSize();
-        if (getIntent().hasExtra("openFragmentE") && getIntent().getBooleanExtra("openFragmentE", false)) {
-            bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
-        }
+//        bottomNavSize();
+//        if (getIntent().hasExtra("openFragmentE") && getIntent().getBooleanExtra("openFragmentE", false)) {
+//            bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
+//        }
     }
     @Override
     public boolean onSupportNavigateUp() {

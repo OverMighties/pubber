@@ -21,7 +21,7 @@ public class TabFragmentRating extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel=new ViewModelProvider(getActivity(),
+        viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
 

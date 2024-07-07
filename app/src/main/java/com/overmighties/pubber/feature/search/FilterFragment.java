@@ -235,7 +235,7 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Down Menus days in FilterFragment
-                popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.menu_pop_up_days, null);
+                popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_days, null);
                 popupWindow = new PopupWindow(popUpView,
                         WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT, true);
@@ -252,7 +252,7 @@ public class FilterFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.menu_pop_up_time, null);
+                popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_time, null);
                 popupWindow = new PopupWindow(popUpView,
                         WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT, true);

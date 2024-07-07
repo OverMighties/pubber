@@ -64,13 +64,13 @@ public class SearcherFragment extends Fragment implements SelectListener {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         recyclerView = (RecyclerView) requireView().findViewById(R.id.Publista);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        AppContainer appContainer = ((PubberApp) getActivity().getApplication()).appContainer;
+        AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
-        detailsViewModel=new ViewModelProvider(getActivity(),
+        detailsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         //check screen width to determine pubcardview's chips size
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         if (displayMetrics.xdpi <= 380){
             pubListViewModel.setChipTag("Small");
         }
@@ -78,7 +78,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
                 pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
             pubListViewModel.getPubsFromRepo(0);
         }
-        swipeRefreshLayout = getActivity().findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout = requireActivity().findViewById(R.id.swipeRefresh);
         Log.i(TAG,"onViewCreated");
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
@@ -91,8 +91,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
         ((ImageView) requireView().findViewById(R.id.Filtration)).setOnClickListener(v -> {
             navController.navigate(SearcherFragmentDirections.actionSearcherToFilter());
         });
-        if(!getActivity().findViewById(R.id.bottom_nav_view).isShown())
-            NavigationBar.smoothPopUp(getActivity().findViewById(R.id.bottom_nav_view));
+        if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
         getString(R.string.page_title,getString(R.string.searcher_title));
         initSearchView();
         sortButtonsListeners();
@@ -117,17 +117,17 @@ public class SearcherFragment extends Fragment implements SelectListener {
     }
     private void showPopUpSortWindow(){
         NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
-        View popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.sort_pop_up, null);
+        View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.sort_pop_up, null);
         final PopupWindow sortPubsPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
         buttonsListenersForSortPopUpWindow(sortPubsPopUpWindow, popUpView);
         checkCurrentSortRadioButtons(popUpView);
-        (getActivity().findViewById(R.id.SearcherFragment))
-                .post(() -> sortPubsPopUpWindow.showAtLocation(getActivity().findViewById(R.id.SearcherFragment), Gravity.BOTTOM, 0, 0));
+        (requireActivity().findViewById(R.id.SearcherFragment))
+                .post(() -> sortPubsPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.SearcherFragment), Gravity.BOTTOM, 0, 0));
     }
     private void checkCurrentSortRadioButtons(View popupView) {
-        String word = ((TextView) getActivity().findViewById(R.id.textViewSortType_searcher)).getText().toString();
+        String word = ((TextView) requireActivity().findViewById(R.id.textViewSortType_searcher)).getText().toString();
         if(getString(R.string.sort_relevance).equals(word)) {
             ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(true);
         }
@@ -146,9 +146,9 @@ public class SearcherFragment extends Fragment implements SelectListener {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                TextView text = getActivity().findViewById(R.id.textViewSortType_searcher);
+                TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
                 if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
-                    text.setText( getActivity().getString(R.string.sort_relevance));
+                    text.setText( requireActivity().getString(R.string.sort_relevance));
                     pubListViewModel.sort(SortPubsBy.RELEVANCE);
                 } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
                     text.setText(getString(R.string.sort_rating));
@@ -160,7 +160,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
                     text.setText(getString(R.string.sort_distance));
                     pubListViewModel.sort(SortPubsBy.DISTANCE);
                 }
-                NavigationBar.smoothPopUp(getActivity().findViewById(R.id.bottom_nav_view));
+                NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
             }
         });
         ((ConstraintLayout) popupView.findViewById(R.id.dismiss)).setOnClickListener(new View.OnClickListener() {
@@ -192,7 +192,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
         searchview=(SearchView)requireView().findViewById(R.id.searchView);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         SpannableString string = new SpannableString(getString(R.string.searchview_hint));
-        string.setSpan(new TextAppearanceSpan(getContext(), R.style.SearchView_Hint_Text),0,getString(R.string.searchview_hint).length(),0);
+        string.setSpan(new TextAppearanceSpan(requireContext(), R.style.SearchView_Hint_Text),0,getString(R.string.searchview_hint).length(),0);
         searchview.setQueryHint(string);
 
         searchview.setOnCloseListener(new SearchView.OnCloseListener() {
@@ -220,9 +220,9 @@ public class SearcherFragment extends Fragment implements SelectListener {
         requireView().findViewById(R.id.constraintLayout).setOnClickListener(v->{
             if (!searchview.isIconified()){
                 searchview.setIconified(true);
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
-                    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
                 }
                 searchview.clearFocus();
             }
@@ -232,9 +232,9 @@ public class SearcherFragment extends Fragment implements SelectListener {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 if (!searchview.isIconified()) {
                     searchview.setIconified(true);
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) {
-                        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                        imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
                     }
                     searchview.clearFocus();
                 }
@@ -247,8 +247,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
     @Override
     public void onResume() {
         super.onResume();
-        if(getActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(getActivity().findViewById(R.id.bottom_nav_view));
+        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
 
     }
 

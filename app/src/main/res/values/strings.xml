@@ -139,7 +139,7 @@
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>
-    <string name="avaliable_alcohols">Avaliable alcohols</string>
+    <string name="available_alcohols">Available alcohols</string>
 
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sort based on:</string>
@@ -225,5 +225,10 @@
     <string name="friday">friday</string>
     <string name="saturday">saturday</string>
     <string name="sunday">sunday</string>
+
+    <!-- Signing up password-->
+    <string name="weak_password">Weak</string>
+    <string name="average_password">Average</string>
+    <string name="strong_password">Strong</string>
 
 </resources>

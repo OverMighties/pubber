@@ -67,9 +67,9 @@ public class SignInFragment extends Fragment {
                 TextInputEditText EditText= (TextInputEditText) requireView().findViewById(id);
                 if (EditText.isFocused()) {
                     EditText.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) {
-                        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                        imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
                     }
                 }
             }

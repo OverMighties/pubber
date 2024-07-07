@@ -60,8 +60,8 @@ public class DetailsFragment extends Fragment
 
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
-        viewModel=new ViewModelProvider(getActivity(),
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
+        viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
         viewModel.setUiState(pubDetailsUiState);
@@ -123,14 +123,14 @@ public class DetailsFragment extends Fragment
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
             if((pubDetailsUiState.getTimeOpenToday().substring(0,1)).equals("O")){ ((TextView)requireView().findViewById(R.id.TimeOTd))
-                    .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_open));
+                    .setTextColor( ContextCompat.getColor(requireContext(), R.color.highlight_open));
                 ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
-                        ContextCompat.getColor(getContext(), R.color.highlight_open));
+                        ContextCompat.getColor(requireContext(), R.color.highlight_open));
             }else{
                 ((TextView)requireView().findViewById(R.id.TimeOTd))
-                        .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_close));
+                        .setTextColor( ContextCompat.getColor(requireContext(), R.color.highlight_close));
                 ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
-                        ContextCompat.getColor(getContext(), R.color.highlight_close));
+                        ContextCompat.getColor(requireContext(), R.color.highlight_close));
             }
             ((TextView)requireView().findViewById(R.id.TimeOTd)).setText(pubDetailsUiState.getTimeOpenToday());
         }
@@ -138,22 +138,22 @@ public class DetailsFragment extends Fragment
         ((TextView)requireView().findViewById(R.id.PubRating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
         ((TextView)requireView().findViewById(R.id.PubRatingCount)).setText("("+pubDetailsUiState.getRatings().getRatingsCount()+")");
         ArrayList<ImageView> imageViews = new ArrayList<>();
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
         new RatingToIVConverter().Convert(imageViews, 37, requireView().findViewById(R.id.PubRatingIV), pubDetailsUiState.getRatings().getAverageRating(), 6,20);
         //setUpRating();
     }
 
     private void setUpRating(){
         ArrayList<ImageView> imageViews = new ArrayList<>();
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
+        imageViews.add(new ImageView(requireContext()));
 
       //  new RatingToIVConverter().Convert(imageViews, 35, requireView().findViewById(R.id.PubRatingIV), , 0,20);
     }
@@ -161,7 +161,7 @@ public class DetailsFragment extends Fragment
 
     private void SetUpImageSlider(ArrayList<Integer> fotki)
     {
-        View popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.detail_image_pop_up, null);
+        View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.detail_image_pop_up, null);
         viewPager=popUpView.findViewById(R.id.viewPager);
         viewPager.setAdapter(new ViewPagerSliderAdapter(fotki));
         viewPager.setPageTransformer(true,new ViewPagerSlideTransformer());
@@ -179,19 +179,19 @@ public class DetailsFragment extends Fragment
                 .build();
         //set params
         for(int i=0;i< fotki.size();i+=3) {
-            shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i),shapeAppearanceModel,i, getContext());
+            shapeableImageView = new ShapeableImageView(requireContext());
+            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i),shapeAppearanceModel,i, requireContext());
             //listner for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
                 @Override
                 public void onClick(View v) {
-                    viewModel.takeScreenShot(layout,getContext());
+                    viewModel.takeScreenShot(layout,requireContext());
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (getActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(getActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
+                    (requireActivity().findViewById(R.id.detail))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
                     viewPager=popUpView.findViewById(R.id.viewPager);
                     int n=0;
                     for(int fotka:fotki)
@@ -209,20 +209,20 @@ public class DetailsFragment extends Fragment
                 }
             });
             //next ImageView
-            shapeableImageView = new ShapeableImageView(getContext());
+            shapeableImageView = new ShapeableImageView(requireContext());
             shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+1),
-                    shapeAppearanceModel,i+1, getContext());
+                    shapeAppearanceModel,i+1, requireContext());
             //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
                 @Override
                 public void onClick(View v) {
-                    viewModel.takeScreenShot(layout,getContext());
+                    viewModel.takeScreenShot(layout,requireContext());
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (getActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(getActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
+                    (requireActivity().findViewById(R.id.detail))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
                     viewPager=popUpView.findViewById(R.id.viewPager);
 
                     int n=0;
@@ -239,21 +239,21 @@ public class DetailsFragment extends Fragment
                 }
             });
             //nextImageView
-            shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView = new ShapeableImageView(getContext());
+            shapeableImageView = new ShapeableImageView(requireContext());
+            shapeableImageView = new ShapeableImageView(requireContext());
             shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+2),
-                    shapeAppearanceModel,i+2, getContext());
+                    shapeAppearanceModel,i+2, requireContext());
             //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
                 @Override
                 public void onClick(View v) {
-                    viewModel.takeScreenShot(layout,getContext());
+                    viewModel.takeScreenShot(layout,requireContext());
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (getActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(getActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
+                    (requireActivity().findViewById(R.id.detail))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
                     viewPager=popUpView.findViewById(R.id.viewPager);
 
                     int n=0;
@@ -270,7 +270,7 @@ public class DetailsFragment extends Fragment
                 }
             });
         }
-        shapeableImageView = new ShapeableImageView(getContext());
+        shapeableImageView = new ShapeableImageView(requireContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpToPx(170), dpToPx(270));
         shapeableImageView.setLayoutParams(params);
         shapeableImageView.setId(View.generateViewId());
