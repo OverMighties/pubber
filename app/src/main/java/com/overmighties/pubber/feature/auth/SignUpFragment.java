@@ -3,8 +3,8 @@ package com.overmighties.pubber.feature.auth;
 
 import static com.overmighties.pubber.app.Constants.DIGIT_PATTERN;
 import static com.overmighties.pubber.app.Constants.LOWERCASE_PATTERN;
-import static com.overmighties.pubber.app.Constants.SIGN_UP_INPUTLAYOUTS_IDS;
-import static com.overmighties.pubber.app.Constants.SIGN_UP_TEXTFIELDS_IDS;import static com.overmighties.pubber.app.Constants.SPECIAL_CHAR_PATTERN;
+import static com.overmighties.pubber.app.Constants.SIGN_UP_INPUT_LAYOUTS_IDS;
+import static com.overmighties.pubber.app.Constants.SIGN_UP_TEXT_FIELDS_IDS;import static com.overmighties.pubber.app.Constants.SPECIAL_CHAR_PATTERN;
 import static com.overmighties.pubber.app.Constants.UPPERCASE_PATTERN;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
@@ -13,7 +13,6 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -31,7 +30,8 @@ import androidx.navigation.Navigation;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.exception.ErrorUIHandler;
+import com.overmighties.pubber.app.exception.ErrorSigningUIHandler;
+import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
 import com.overmighties.pubber.util.UIText;
 
 
@@ -67,12 +67,11 @@ public class SignUpFragment  extends Fragment {
                     (from,to)-> navController.navigate(getNavDirections(from,to)),
                     (errorType, uiText,logMes) -> {
                         String errMess= getErrorMess(errorType, (UIText.ResourceString)uiText,logMes);
-                        if(errorType== ErrorUIHandler.ErrorTypes.FIREBASE_AUTH_EMAIL_ERROR){
+                        if(errorType== ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR){
                             underlineEmail(errMess);
-                            Log.i(TAG,"Email");
                         }
-                        else if(errorType== ErrorUIHandler.ErrorTypes.FIREBASE_AUTH_PASSWORD_ERROR ||
-                                errorType== ErrorUIHandler.ErrorTypes.AUTH_NOT_SAME_PASSWORDS){
+                        else if(errorType== ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR ||
+                                errorType== ErrorSigningUITypes.AUTH_NOT_SAME_PASSWORDS){
                             underlinePassword();
                             underlineConfirmPassword(errMess);
                         }
@@ -80,41 +79,7 @@ public class SignUpFragment  extends Fragment {
             );
         });
         progressBarPassword = requireView().findViewById(R.id.progressBarPassword);
-        requireView().findViewById(R.id.SignUpFragment).setOnClickListener(v->{
-            for(var id:SIGN_UP_TEXTFIELDS_IDS)
-            {
-                TextInputEditText EditText= (TextInputEditText) requireView().findViewById(id);
-                if (EditText.isFocused()) {
-                    EditText.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) {
-                        imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
-                    }
-                }
-            }
-
-        });
-
-        for (var edit_field:SIGN_UP_TEXTFIELDS_IDS){
-            //reset error message if there is any
-            TextInputEditText editText= (TextInputEditText) requireView().findViewById(edit_field);
-            editText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    for(var id:SIGN_UP_INPUTLAYOUTS_IDS){
-                        //reset error text
-                        TextInputLayout InputLayout = (TextInputLayout) requireView().findViewById(id);
-                        InputLayout.setError(null);
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {}
-            });
-        }
+        setUpTextFields();
         ((EditText)requireView().findViewById(R.id.edit_filed_password_sing_up)).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -146,6 +111,42 @@ public class SignUpFragment  extends Fragment {
 
 
 
+    }
+    private void setUpTextFields(){
+        requireView().findViewById(R.id.SignUpFragment).setOnClickListener(v->{
+            for(var id: SIGN_UP_TEXT_FIELDS_IDS)
+            {
+                TextInputEditText EditText= (TextInputEditText) requireView().findViewById(id);
+                if (EditText.isFocused()) {
+                    EditText.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
+                    }
+                }
+            }
+
+        });
+        for (var edit_field: SIGN_UP_TEXT_FIELDS_IDS){
+            //reset error message if there is any
+            TextInputEditText editText= (TextInputEditText) requireView().findViewById(edit_field);
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    for(var id: SIGN_UP_INPUT_LAYOUTS_IDS){
+                        //reset error text
+                        TextInputLayout InputLayout = (TextInputLayout) requireView().findViewById(id);
+                        InputLayout.setError(null);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+        }
     }
     private void setGonePasswordUnderlineView(){
         progressBarPassword.setVisibility(View.GONE);
@@ -202,19 +203,19 @@ public class SignUpFragment  extends Fragment {
         return strength;
     }
     private void underlineEmail(String errMess) {
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmail)).setErrorEnabled(true);
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmail)).setError(errMess);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmailSignUp)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmailSignUp)).setError(errMess);
     }
     private void underlinePassword(){
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPassword)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPasswordSignUp)).setErrorEnabled(true);
 
     }
     private void underlineConfirmPassword(String errMess) {
-        ((TextInputLayout) requireView().findViewById(R.id.textInputLayoutConfirmPassword)).setErrorEnabled(true);
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPassword)).setError(errMess);
+        ((TextInputLayout) requireView().findViewById(R.id.textInputLayoutConfirmPasswordSignUp)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPasswordSignUp)).setError(errMess);
     }
 
-    private String getErrorMess(ErrorUIHandler.ErrorTypes type, @Nullable UIText.ResourceString authRes, String logMes) {
-        return ErrorUIHandler.getErrorMessage(requireContext(), type, authRes, logMes);
+    private String getErrorMess(ErrorSigningUITypes type, @Nullable UIText.ResourceString authRes, String logMes) {
+        return ErrorSigningUIHandler.getErrorMessage(requireContext(), type, authRes, logMes);
     }
 }

@@ -42,7 +42,7 @@ import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.util.SortPubsBy;
+import com.overmighties.pubber.feature.search.util.SortPubsBy;
 
 public class SearcherFragment extends Fragment implements SelectListener {
 

@@ -33,14 +33,14 @@ import com.google.android.material.slider.LabelFormatter;
 import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.data.FilterConstants;
+import com.overmighties.pubber.feature.search.data.FilterConstants;
 
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
-import com.overmighties.pubber.util.PriceType;
+import com.overmighties.pubber.feature.search.util.PriceType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

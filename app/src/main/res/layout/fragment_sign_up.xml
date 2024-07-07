@@ -7,7 +7,7 @@
     android:id="@+id/SignUpFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEmail"
+        android:id="@+id/textInputLayoutEmailSignUp"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPassword"
+        android:id="@+id/textInputLayoutPasswordSignUp"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmailSignUp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_filed_password_sing_up"
@@ -54,7 +54,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutConfirmPassword"
+        android:id="@+id/textInputLayoutConfirmPasswordSignUp"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordSignUp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_field_confirm_password_sign_up"
@@ -100,8 +100,8 @@
         android:layout_marginStart="4dp"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayoutPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutPasswordSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordSignUp" />
 
     <TextView
         android:visibility="invisible"

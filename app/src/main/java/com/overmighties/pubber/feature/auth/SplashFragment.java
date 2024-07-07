@@ -1,8 +1,8 @@
 package com.overmighties.pubber.feature.auth;
 
 
+import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
 
 import android.app.PendingIntent;
 import android.os.Bundle;
@@ -27,7 +27,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.common.SignInButton;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
 import com.overmighties.pubber.R;
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest;
@@ -77,7 +76,7 @@ public class SplashFragment extends Fragment {
                 result -> viewModel.handleSignInResult(
                         result.getData(), signInClient,
                         (from, to)-> Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(getNavDirections(from,to)),
-                        (snackbarType, uiText,logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes))
+                        (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes))
         );
 
         requireView().findViewById(R.id.IV_google_button).setOnClickListener(v->{

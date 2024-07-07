@@ -3,7 +3,6 @@ package com.overmighties.pubber.feature.account;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 
@@ -17,10 +16,12 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
+import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
+import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
-import com.overmighties.pubber.util.SnackbarUI;
+import com.overmighties.pubber.util.NotificationSnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
 import com.overmighties.pubber.util.UIText;
 
@@ -53,7 +54,7 @@ public class AccountViewModel extends PubberAppViewModel {
     public AccountViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
         this.accountDataSource=accountDataSource;
     }
-    public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError) {
+    public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         disposables.add(completableAction(TAG,
                 accountDataSource::signOut,
                 ()->{
@@ -61,21 +62,24 @@ public class AccountViewModel extends PubberAppViewModel {
                 },
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError){
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                        snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                     }
                     else if(err instanceof AccFirebaseDSError){
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),"");
+                        snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),"");
                     } else{
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
+                        snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
                     }
                 }
         ));
     }
-    public void getCurrentUser() {
+    public void getCurrentUser( TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         singleAction(TAG,
                 accountDataSource.currentUser(),
                 el->updateUserData(mapToUIState(el)),
-                (err)-> Log.e(TAG,"User data can't be retrieved because:"+err.getLocalizedMessage()));
+                (err)->{
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
+                    Log.e(TAG,"User data can't be retrieved because:"+err.getLocalizedMessage());
+                });
     }
     public AccountDetailsUIState mapToUIState(UserData userData){
         Log.i(TAG,userData.getUserId()+userData.getEmail()+userData.getUsername());

@@ -1,9 +1,8 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.feature.search.util;
 
 
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 

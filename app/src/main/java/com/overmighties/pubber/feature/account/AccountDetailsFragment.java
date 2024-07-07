@@ -1,7 +1,7 @@
 package com.overmighties.pubber.feature.account;
 
+import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.util.UIText;
 
 public class AccountDetailsFragment extends Fragment {
@@ -47,7 +46,7 @@ public class AccountDetailsFragment extends Fragment {
         requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> {
             viewModel.onSignOutClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),
-                    (snackbarType, uiText,logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes));
+                    (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));
         });
         profileImage=requireView().findViewById(R.id.profile_image);
         accountDetailsAdapter = new AccountDetailsAdapter(viewModel.getUserData().getValue());
@@ -62,7 +61,8 @@ public class AccountDetailsFragment extends Fragment {
             accountDetailsAdapter = new AccountDetailsAdapter(userData);
             accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
         });
-        viewModel.getCurrentUser();
+        viewModel.getCurrentUser(
+                (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));
 
     }
 }

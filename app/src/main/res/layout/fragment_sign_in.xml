@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_container"
-        android:text="Sign Up(No acc)"
+        android:text="@string/label_email_sign_up_add"
         android:textColor="@color/on_secondary_container"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="@id/emailSignInButton" />
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/icon_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/desc_firebase_lockup"
@@ -48,30 +48,30 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/textInputLayoutEmailSignIn"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon">
+        app:layout_constraintTop_toBottomOf="@id/icon_sign_in">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_field_email_sing_in"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+        android:id="@+id/textInputLayoutPasswordSignIn"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="15dp"
@@ -80,12 +80,12 @@
         android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmailSignIn">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_field_password_sing_in"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:inputType="textPassword"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>

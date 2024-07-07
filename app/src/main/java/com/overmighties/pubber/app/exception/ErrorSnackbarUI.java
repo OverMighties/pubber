@@ -1,4 +1,4 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.app.exception;
 
 
 import android.util.Log;
@@ -9,23 +9,22 @@ import androidx.annotation.StringRes;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.util.UIText;
 
-public class SnackbarUI {
+public class ErrorSnackbarUI {
 
 
-    public static final String TAG="SnackbarUI";
+    public static final String TAG="ErrorSnackbarUI";
     public static final int NONE_RES=-1;
-    public enum SnackbarTypes {
-        FIREBASE_AUTH_ERROR,
-        BASIC_AUTH_ERROR,
+    public enum ErrorTypes {
+        FIREBASE_AUTH,
+        GOOGLE_SIGN_IN,
         NO_INTERNET_CONNECTION,
-        MARKED_AS_FAVORITE,
-        COMMENT_ADDED
+        NO_NAVIGATION,
+        UNKNOWN_ERROR
     }
-    public static void showSnackbar(View view, SnackbarTypes type, @Nullable UIText.ResourceString authRes, String logMes) {
+    public static void showSnackbar(View view, ErrorTypes type, @Nullable UIText.ResourceString authRes, String logMes) {
         int messageResId = authRes==null?getMessageResId(type):authRes.getResId();
-        if(type== SnackbarTypes.BASIC_AUTH_ERROR || type== SnackbarTypes.FIREBASE_AUTH_ERROR)
-            logMes+=view.getContext().getText(R.string.try_again);
         if(messageResId==NONE_RES)
             Snackbar.make(view,  logMes, Snackbar.LENGTH_LONG).show();
         else
@@ -33,19 +32,16 @@ public class SnackbarUI {
     }
 
     @StringRes
-    private static int getMessageResId(SnackbarTypes type) {
+    private static int getMessageResId(ErrorTypes type) {
         switch (type) {
-            case BASIC_AUTH_ERROR:{
+            case NO_NAVIGATION:{
                 return R.string.auth_error_message;
             }
             case NO_INTERNET_CONNECTION :{
                 return R.string.no_internet_connection_message;
             }
-            case MARKED_AS_FAVORITE :{
-                return R.string.marked_as_favorite_message;
-            }
-            case COMMENT_ADDED :{
-                return R.string.comment_added_message;
+            case FIREBASE_AUTH:{
+                return R.string.auth_error_message;
             }
             default: Log.e(TAG,"Unknown SnackbarType: " + type);
         }

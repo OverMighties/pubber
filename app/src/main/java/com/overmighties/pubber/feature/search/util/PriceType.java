@@ -1,6 +1,6 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.feature.search.util;
 
-import static com.overmighties.pubber.data.FilterConstants.NONE_PRICE;
+import static com.overmighties.pubber.feature.search.data.FilterConstants.NONE_PRICE;
 
 import lombok.Getter;
 
