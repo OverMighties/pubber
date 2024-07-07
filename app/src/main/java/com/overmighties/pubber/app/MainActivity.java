@@ -21,6 +21,8 @@ import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.app.ui.DarkModeTheme;
 
+import java.util.Objects;
+
 
 public class MainActivity extends DarkModeTheme {
 
@@ -40,15 +42,15 @@ public class MainActivity extends DarkModeTheme {
         accountViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(AccountViewModel.initializer))
                 .get(AccountViewModel.class);
-        pubListViewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+//        pubListViewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
         pubListViewModel.getPubsFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        navController= ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment) ).getNavController();
+        navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment))).getNavController();
 
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
-        AppBarConfiguration  bottomNavConfiguration =
-                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
+//        AppBarConfiguration  bottomNavConfiguration =
+//                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
 //        bottomNavSize();
 //        if (getIntent().hasExtra("openFragmentE") && getIntent().getBooleanExtra("openFragmentE", false)) {

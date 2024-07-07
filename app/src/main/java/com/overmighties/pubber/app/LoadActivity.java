@@ -10,30 +10,25 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.ui.PlaceChoiceFragment;
-import com.overmighties.pubber.app.ui.PlaceChoiceViewModel;
 import com.overmighties.pubber.app.ui.DarkModeTheme;
 
 
 public class LoadActivity extends DarkModeTheme {
-    private PlaceChoiceViewModel placeChoiceViewModel;
     public static final int LOGO_DELAY=3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
-        placeChoiceViewModel=new ViewModelProvider(this).get(PlaceChoiceViewModel.class);
-        placeChoiceViewModel.getCity().observe(this, this::goToMainActivity);
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             findViewById(R.id.title_textView).setVisibility(View.GONE);
-            replaceWithFragment(PlaceChoiceFragment.class);
+            goToMainActivity();
         }, LOGO_DELAY);
     }
-    public void goToMainActivity(String city)
+    public void goToMainActivity()
     {
-        Intent i=new Intent(LoadActivity.this, MainActivity.class)
-                .putExtra(Intent.EXTRA_TEXT,city);
+        Intent i=new Intent(LoadActivity.this, MainActivity.class);
         startActivity(i);
     }
     private  <T extends Fragment> void replaceWithFragment(Class<T> fragment)

@@ -30,5 +30,13 @@
             app:destination="@id/login_graph" />
     </fragment>
     <include app:graph="@navigation/account_graph" />
-
+    <fragment
+        android:id="@+id/place_choice_nav_dir"
+        android:name="com.overmighties.pubber.app.ui.PlaceChoiceFragment"
+        android:label="place_choice"
+        tools:layout="@layout/place_choice">
+        <action
+            android:id="@+id/action_place_choice_nav_dir_to_searcher_graph"
+            app:destination="@id/searcher_graph" />
+    </fragment>
 </navigation>

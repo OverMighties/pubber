@@ -80,7 +80,7 @@ public class SplashViewModel extends PubberAppViewModel {
     //To api<14
     public void handleSignInResult(Intent data, SignInClient signInClient, BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         singleAction(TAG, firebaseAuthWithGoogle(data, signInClient),
-            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT),
+            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT),
             (err) -> {
                 if(err instanceof AccFirebaseDSError.DifferentInternalError)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
@@ -95,7 +95,7 @@ public class SplashViewModel extends PubberAppViewModel {
     //From SDK api>=14
     public void handleSignInResult(GetCredentialResponse credentialResponse, BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText,String> snackbarOnError) {
         singleAction(TAG, firebaseAuthWithGoogle(credentialResponse),
-            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT),
+            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT),
             (err) -> {
                 if(err instanceof AccFirebaseDSError.DifferentInternalError)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
