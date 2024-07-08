@@ -149,6 +149,14 @@
 
     <!--settings fragment-->
     <string name="dark_theme">Tryb nocny</string>
+    <string name="notifications">Powiadomienia</string>
+    <string name="soon">Wkrótce...</string>
+    <string name="game">Przejdź do gry</string>
+    <string name="language">Język</string>
+    <string name="send_message">Wyślij nam wiadomość</string>
+    <string name="about_us">O nas</string>
+
+
 
     <!-- recycler view row -->
     <string name="guide">Zaprowadź</string>

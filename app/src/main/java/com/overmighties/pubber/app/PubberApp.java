@@ -1,5 +1,6 @@
 package com.overmighties.pubber.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 
@@ -17,6 +18,7 @@ import com.overmighties.pubber.R;
 import com.overmighties.pubber.core.database.AppDb;
 import com.overmighties.pubber.sync.SyncWorker;
 import com.overmighties.pubber.sync.SyncWorkerFactory;
+import com.overmighties.pubber.util.SettingsHandler;
 
 public class PubberApp extends Application implements Configuration.Provider{
 
@@ -27,6 +29,7 @@ public class PubberApp extends Application implements Configuration.Provider{
     @Override
     public void onCreate() {
         super.onCreate();
+
         db=Room.databaseBuilder(getApplicationContext(),AppDb.class,"db-pubber").build();
         appContainer=new AppContainer(db);
         syncDataRepos();

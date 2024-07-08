@@ -28,7 +28,59 @@
         <action
             android:id="@+id/action_settings_nav_dir_to_login_graph"
             app:destination="@id/login_graph" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsAboutFragment"
+            app:destination="@id/settingsAboutFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsMessageFragment"
+            app:destination="@id/settingsMessageFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsLanguageFragment"
+            app:destination="@id/settingsLanguageFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <include app:graph="@navigation/account_graph" />
+    <fragment
+        android:id="@+id/settingsLanguageFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsLanguageFragment"
+        android:label="SettingsLanguageFragment" >
+        <action
+            android:id="@+id/action_settingsLanguageFragment_to_settings_nav_dir"
+            app:destination="@id/settings_nav_dir"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/settingsAboutFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsAboutFragment"
+        android:label="fragment_settings_about"
+        tools:layout="@layout/fragment_settings_about" />
+    <fragment
+        android:id="@+id/settingsMessageFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsMessageFragment"
+        android:label="fragment_settings_message"
+        tools:layout="@layout/fragment_settings_message" />
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="com.overmighties.pubber.feature.account.AccountDetailsFragment"
+        android:label="AccountDetailsFragment" />
 
 </navigation>

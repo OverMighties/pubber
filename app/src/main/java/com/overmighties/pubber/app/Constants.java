@@ -381,7 +381,7 @@ public class Constants {
             };
     public static final int[] SIGN_UP_INPUTLAYOUTS_IDS=new int[]{
             R.id.textInputLayoutEmail,
-            R.id.textInputLayouPassword,
+            R.id.textInputLayoutPassword,
             R.id.textInputLayoutConfirmPassword
     };
     /*

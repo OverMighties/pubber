@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -61,7 +62,8 @@ public class MainActivity extends DarkModeTheme {
                 new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
         bottomNavSize();
-        if (getIntent().hasExtra("openFragmentE") && getIntent().getBooleanExtra("openFragmentE", false)) {
+        if ((getIntent().hasExtra("openSettings") && getIntent().getBooleanExtra("openSettings", false))||
+                getIntent().hasExtra("openLanguage") && getIntent().getBooleanExtra("openLanguage", false)) {
             bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
         }
     }

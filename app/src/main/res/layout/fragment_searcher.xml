@@ -59,7 +59,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="Sortuj według:"
+            android:text="@string/sort_based_on"
             android:textColor="@color/on_surface"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -150,7 +150,14 @@
     <string name="sort_distance">Closest</string>
 
     <!--settings fragment-->
-    <string name="dark_theme">Dark theme</string>
+    <string name="dark_theme">Night Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="soon">Soon...</string>
+    <string name="game">Go to game</string>
+    <string name="language">Language</string>
+    <string name="send_message">Send us a message</string>
+    <string name="about_us">About us</string>
+
 
     <!-- recycler view row -->
     <string name="guide">Guide</string>
