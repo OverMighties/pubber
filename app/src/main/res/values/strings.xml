@@ -157,6 +157,19 @@
     <string name="language">Language</string>
     <string name="send_message">Send us a message</string>
     <string name="about_us">About us</string>
+    <string name="type_here">Type here...</string>
+    <string name="send">Send</string>
+    <string name="send_message_adnotation">We are asking for writing everything that comes to your mind. From your overall app experience to what would you like to be added in the future. Thanks in advance for all messages.\n </string>
+    <!-- about us fragment -->
+    <string name="question1">What is idea\'s origin ?</string>
+    <string name="answer1">Pretty simple answer being honest. Me and my friend wanted to give you and also us a possibility to choose a pub in simple and fast way. Myself, I love to go out for pub crawling once in a while, but after all i always struggle to decide which one I would like to visit based on Google Maps. So that\'s how idea origin and now we are here. </string>
+    <string name="question2">Who are we ?</string>
+    <string name="answer2">The writers of whole code from A to Z are 2 students. One from PW another from AGH. When it comes to graphics, there is one more student from PJATK.  </string>
+    <string name="question3">What are future plans for app\'s development ?</string>
+    <string name="answer3">We will keep this answer regularly updated so make sure to once in a while check it out. Back to the topic, firstly we are going to give you guys an possibility to fully change pubs\' drink and beers, because we aren't able to keep up with updating them ourselves so we will give you a platform to do so. Secondly as you might've spotted already our game is coming out soon (..</string>
+    <string name="question4">Must there be ads ?</string>
+    <string name="answer4">Sadly there must, we have to pay for server and Google\'s api asks. Sorry and thanks.</string>
+
 
 
     <!-- recycler view row -->

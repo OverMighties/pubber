@@ -22,6 +22,7 @@
     <color name="on_surface_variant">#2b3b4a</color>
     <color name="surface_container">#c4ccd3</color>
     <color name="surface_container_low">#dee5ec</color>
+    <color name="surface_container_highest">#e2e2e9</color>
     <color name="on_surface_container">#2b3b4a</color>
     <color name="on_surface_container_secondary">#63717e</color>
     <color name="outline">#62717e</color>

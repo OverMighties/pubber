@@ -153,8 +153,20 @@
     <string name="soon">Wkrótce...</string>
     <string name="game">Przejdź do gry</string>
     <string name="language">Język</string>
-    <string name="send_message">Wyślij nam wiadomość</string>
+    <string name="send_message">Wyślij nam wiadomość</string>]
+    <string name="send">Wyślij</string>
     <string name="about_us">O nas</string>
+    <string name="type_here">Pisz tutaj...</string>
+    <string name="send_message_adnotation">Prosimy o feedback, czego Wam, w naszej apliackji brakuję i ogólne wrażenia. Z góry dziękujemy bardzo za każdą wiadomość</string>
+    <!-- about us fragment -->
+    <string name="question1">Skąd pomysł ?</string>
+    <string name="answer1">Odpowiedź dość prosta, chcieliśmy dać sobie i wam możliwość prostszego wyboru Pubu do wyjścia wieczorem (albo o 12 po południu, jak kto woli). Osobiście raz na jakiś czas lubię wyjść na Puby, ale też po samym Google Maps trudno mi określić co ma jaki pub w szybki i trafny sposób, więc tu pojawił się pomysł i później sama aplikacja.</string>
+    <string name="question2">Kim jesteśmy ?</string>
+    <string name="answer2">Za cały kod od A do Z dwójka studenciaków, jeden z PW, drugi z AGH, a za wszystkie grafiki studentka z PJATK\'a.</string>
+    <string name="question3">Jakie plany na przyszłość aplikacji ?</string>
+    <string name="answer3">Ta odpowiedź stale będzie aktualizowana, więc zapraszamy do sprawdzania jej! Po pierwsze, danie wam pełnej możliwość zmieny przynależności piw i drinków do daneo pubu. Niestety my nie jesteśmy w stanie stale sprawdzać i aktualizować ich, więc liczymy, że w miarę możliwości i chęci, to wy będziecie za nas to robić, a my wam damy platformę do tego. Po drugie, dodanie gry wewnątrz aplikacji. Będzie to prosta gra na zabicie czasu, gdy w pubie znajomi wyjdą do toalety albo będziecie chcieli zabić czas w ciągu dnia. Na razie to są nasze priorytety, ale jak macie jakiś pomysł, to piszczie do nas. W zakładce ustawienia macie opcję "Wyślij wiadomość". Zachęcamy!</string>
+    <string name="question4">Czy muszą być reklamy ?</string>
+    <string name="answer4">Tak, niestety musimy opłacić serwer i zapytania przez api do Googla. Przepraszamy i dziękujęmy. </string>
 
 
 

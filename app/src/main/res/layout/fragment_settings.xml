@@ -23,6 +23,7 @@
                 android:id="@+id/account_IV"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/account_circle_24px"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,10 +153,12 @@
                         android:layout_toEndOf="@+id/cardView3"
                         android:text="@string/dark_theme" />
 
-                    <Switch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/dark_mode_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/switch_thumb_selector"
+                        app:trackTint="@color/switch_track_selector"
+                        android:layout_width="52dp"
+                        android:layout_height="32dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:checked="false"
@@ -203,10 +206,12 @@
                         android:layout_toEndOf="@+id/cardView4"
                         android:text="@string/notifications" />
 
-                    <Switch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="52dp"
+                        android:layout_height="32dp"
                         android:id="@+id/notification_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/switch_thumb_selector"
+                        app:trackTint="@color/switch_track_selector"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:checked="false"

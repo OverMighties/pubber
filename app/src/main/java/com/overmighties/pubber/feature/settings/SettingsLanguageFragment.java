@@ -65,7 +65,7 @@ public class SettingsLanguageFragment extends Fragment {
 
         requireView().findViewById(R.id.IV_polish).setOnClickListener(v->{
             if (highlighted == 1){
-                SettingsHandler.LanguageHelper.saveLanguage(requireContext(), 0);
+                SettingsHandler.LanguageHelper.saveLanguage(requireContext(), SettingsHandler.LanguageHelper.LANGUAGE_POLISH);
                 // Restart the application to apply the language
                 Intent intent = new Intent(requireActivity(), MainActivity.class);
                 intent.putExtra("openLanguage", true);
@@ -79,7 +79,7 @@ public class SettingsLanguageFragment extends Fragment {
 
         requireView().findViewById(R.id.IV_english).setOnClickListener(v->{
             if (highlighted == 0){
-                SettingsHandler.LanguageHelper.saveLanguage(requireContext(), 1);
+                SettingsHandler.LanguageHelper.saveLanguage(requireContext(), SettingsHandler.LanguageHelper.LANGUAGE_ENGLISH);
                 // Restart the application to apply the language
                 Intent intent = new Intent(requireActivity(), MainActivity.class);
                 intent.putExtra("openLanguage", true);
@@ -92,8 +92,7 @@ public class SettingsLanguageFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IV_goback_l).setOnClickListener(v->{
-            //after reloading language navigation back doesn't work
-            navController.navigate(SettingsLanguageFragmentDirections.actionSettingsLanguageFragmentToSettingsNavDir());
+            navController.popBackStack();
         });
 
     }

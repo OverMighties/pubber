@@ -41,15 +41,7 @@ public class SettingsFragment extends Fragment {
     {
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
 
-        if (requireActivity().getIntent().hasExtra("openLanguage") && requireActivity().getIntent().getBooleanExtra("openLanguage", false)) {
-            NavOptions navOptions = new NavOptions.Builder()
-                    .setEnterAnim(0)
-                    .setExitAnim(0)
-                    .setPopEnterAnim(0)
-                    .setPopExitAnim(0)
-                    .build();
-            navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsLanguageFragment(), navOptions);
-        }
+
 
         if (SettingsHandler.ThemeHelper.getSavedTheme(requireContext())==1) {
             ((Switch) requireView().findViewById(R.id.dark_mode_switch)).setChecked(true);
@@ -57,12 +49,11 @@ public class SettingsFragment extends Fragment {
         else{
             ((Switch) requireView().findViewById(R.id.dark_mode_switch)).setChecked(false);
         }
+
         ((Switch) requireView().findViewById(R.id.dark_mode_switch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int currentTheme = SettingsHandler.ThemeHelper.getSavedTheme(requireContext());
-                int newTheme = (currentTheme == SettingsHandler.ThemeHelper.THEME_LIGHT) ?
-                        SettingsHandler.ThemeHelper.THEME_DARK : SettingsHandler.ThemeHelper.THEME_LIGHT;
+                int newTheme = (isChecked) ? SettingsHandler.ThemeHelper.THEME_DARK : SettingsHandler.ThemeHelper.THEME_LIGHT;
                 SettingsHandler.ThemeHelper.saveTheme(requireContext(), newTheme);
 
                 // Restart the application to apply the new theme
@@ -73,6 +64,23 @@ public class SettingsFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
+        if(SettingsHandler.NotificationsHelper.getNotificationState(requireContext()) == SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON){
+            ((Switch)requireView().findViewById(R.id.notification_switch)).setChecked(true);
+        }
+        else{
+            ((Switch)requireView().findViewById(R.id.notification_switch)).setChecked(false);
+
+        }
+
+        ((Switch)requireView().findViewById(R.id.notification_switch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int newState = (isChecked) ? SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON : SettingsHandler.NotificationsHelper.NOTIFICATIONS_OFF;
+                SettingsHandler.NotificationsHelper.saveNotificationState(requireContext(), newState);
+            }
+        });
+
 
         requireView().findViewById(R.id.account_IV).setOnClickListener(v->{
             navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment());
