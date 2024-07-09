@@ -20,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
@@ -207,7 +206,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
                     }
                 }
                 builder.setView(dialogView);
-                builder.setTitle(holder.itemView.getContext().getString(R.string.avaliable_alcohols));
+                builder.setTitle(holder.itemView.getContext().getString(R.string.available_alcohols));
                 builder.setPositiveButton(holder.itemView.getContext().getString(R.string.go_back), null);
                 builder.show();
             }

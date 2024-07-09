@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="try_again">\u0020Spróbuj ponownie.</string>
+    <string name="BAD_FORMAT_OF_EMAIL_MESSAGE">Nieprawidłowy format adresu email.</string>
+    <string name="BAD_FORMAT_OF_PASSWORD_MESSAGE">Nieprawidłowy format hasła.</string>
+    <string name="BAD_PASSWORD_MESSAGE">Wprowadziłeś błędne hasło.</string>
+    <string name="WEAK_PASSWORD_MESSAGE">Twoje hasło jest zbyt słabe (powinno zawierać od 6 do 30 znaków).</string>
+    <string name="NO_SUCH_EMAIL">Nie znaleziono konta z tym adresem email.</string>
+    <string name="EMAIL_IS_USED">Ten adres email jest już zajęty.</string>
+    <string name="NO_DISPLAY_NAME">Nie znaleziono wyświetlanej nazwy.</string>
+    <string name="NONE_LOGGED_ACCOUNT">Nie jesteś zalogowany na tym urządzeniu.</string>
+    <string name="DIFFERENT_INTERNAL_ERROR">Nieoczekiwany błąd:\u0020</string>
+    <string name="UNKNOWN_ERROR">Nieoczekiwany błąd:\u0020</string>
+    <string name="GOOGLE_API_EXCEPTION">Nie można rozwiązać wyjątku Google API:</string>
+    <string name="CREDENTIAL_NOT_PRESENT">Na twoim urządzeniu nie ma kont Google.</string>
+    <string name="NOT_MATCHING_PASSWORDS">Twoje hasła nie są takie same.</string>
+    <string name="GOOGLE_SIGN_IN_FAILED">Logowanie do Google nie powiodło się</string>
+</resources>

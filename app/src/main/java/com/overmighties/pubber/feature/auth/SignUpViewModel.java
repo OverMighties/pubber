@@ -3,24 +3,22 @@ package com.overmighties.pubber.feature.auth;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.PLACE_CHOICE_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_UP_FRAGMENT;
 
 import android.util.Log;
 
-import androidx.annotation.StringRes;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
-import com.overmighties.pubber.app.exception.ErrorHandler;
+import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
-import com.overmighties.pubber.util.SnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
 import com.overmighties.pubber.util.UIText;
 
@@ -61,42 +59,27 @@ public class SignUpViewModel extends PubberAppViewModel {
     public void updateConfirmPassword(String newConfirmPassword){
         confirmPassword.setValue(newConfirmPassword);
     }
-    public void onSignUpClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorHandler.ErrorTypes, UIText,String> snackbarOnError){
+    public void onSignUpClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSigningUITypes, UIText,String> responseOnError){
         if(!Objects.equals(password.getValue(), confirmPassword.getValue())){
-            snackbarOnError.accept(ErrorHandler.ErrorTypes.BASIC_AUTH_ERROR,new UIText.ResourceString(R.string.NOT_MATCHING_PASSWORDS),"");
+            responseOnError.accept(ErrorSigningUITypes.AUTH_NOT_SAME_PASSWORDS,new UIText.ResourceString(R.string.NOT_MATCHING_PASSWORDS),"");
             Log.e(TAG,"User entered not matching passwords in sign up");
         }else{
             singleAction(TAG,
                     accountDataSource.signUp(email.getValue(),password.getValue()),
-                    ()->openAndPopUp.accept(SIGN_UP_FRAGMENT,SEARCHER_FRAGMENT),
+                    ()->openAndPopUp.accept(SIGN_UP_FRAGMENT,PLACE_CHOICE_FRAGMENT),
                     (err)->{
                         if(err instanceof AccFirebaseDSError.DifferentInternalError)
-                            snackbarOnError.accept(ErrorHandler.ErrorTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
-                        else if(err instanceof AccFirebaseDSError)
-                            snackbarOnError.accept(ErrorHandler.ErrorTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),"");
-                        else
-                            snackbarOnError.accept(ErrorHandler.ErrorTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                        else if(err instanceof AccFirebaseDSError) {
+                            if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.EMAIL)
+                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                            else if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.PASSWORD)
+                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                            else
+                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                        }else
+                            responseOnError.accept(ErrorSigningUITypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
                     });
         }
-    }
-
-    @StringRes
-    public static int getMessageResId(SnackbarUI.SnackbarTypes type) {
-        switch (type) {
-            case BASIC_AUTH_ERROR:{
-                return R.string.auth_error_message;
-            }
-            case NO_INTERNET_CONNECTION :{
-                return R.string.no_internet_connection_message;
-            }
-            case MARKED_AS_FAVORITE :{
-                return R.string.marked_as_favorite_message;
-            }
-            case COMMENT_ADDED :{
-                return R.string.comment_added_message;
-            }
-            default: Log.e(TAG,"Unknown SnackbarType: " + type);
-        }
-        return NONE_RES;
     }
 }

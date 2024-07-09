@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.chip.ChipGroup;
@@ -32,14 +33,14 @@ import com.google.android.material.slider.LabelFormatter;
 import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.data.FilterConstants;
+import com.overmighties.pubber.feature.search.data.FilterConstants;
 
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
-import com.overmighties.pubber.util.PriceType;
+import com.overmighties.pubber.feature.search.util.PriceType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,11 +55,11 @@ public class FilterFragment extends Fragment {
     private final List<String> beers =new ArrayList<>();
     private boolean open;
     public String price= FilterConstants.NONE_PRICE;
-    private PubListViewModel viewModel;
+    private PubListViewModel pubListViewModel;
     private View popUpView;
     private PopupWindow popupWindow;
     private final int[] timePopUpState =new int[]{1,0,0};
-
+    private NavController navController;
 
     public FilterFragment()
     {
@@ -73,19 +74,19 @@ public class FilterFragment extends Fragment {
             Navigation.findNavController(v).navigate(FilterFragmentDirections.actionFilterToSearcher());
         });
 
-        viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(PubListViewModel.initializer))
+        pubListViewModel = new ViewModelProvider(requireActivity())
                 .get(PubListViewModel.class);
         NavigationBar.smoothHide(nav_bar);
-
+        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         arrowExpandersListeners();
         dropDownMenusListener();
         setUpRangeSliders();
-
+        requireView().findViewById(R.id.close_filter).setOnClickListener(v -> {
+            navController.navigate(FilterFragmentDirections.actionFilterToSearcher());
+        });
     }
 
     private void arrowExpandersListeners()
-
     {
         requireView().findViewById(R.id.MoreBeers).setOnClickListener(buttView->moreBeers(requireView()));
         requireView().findViewById(R.id.IVrating).setOnClickListener(v -> {
@@ -234,7 +235,7 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Down Menus days in FilterFragment
-                popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.menu_pop_up_days, null);
+                popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_days, null);
                 popupWindow = new PopupWindow(popUpView,
                         WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT, true);
@@ -251,7 +252,7 @@ public class FilterFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.menu_pop_up_time, null);
+                popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_time, null);
                 popupWindow = new PopupWindow(popUpView,
                         WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT, true);
@@ -286,7 +287,7 @@ public class FilterFragment extends Fragment {
             if(n-1!=55) {
                 uncheckTime(popUpView);
                 popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
+                setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), pubListViewModel.dpToPx(4), pubListViewModel.dpToPx(8), 0, 0);
                 ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1])).setText(getString(R.string.from));
                 popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1]).setVisibility(View.VISIBLE);
                 String text = getString(R.string.from) + (((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1])).getText().toString());
@@ -309,7 +310,7 @@ public class FilterFragment extends Fragment {
                     }else{
                         ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h])).setText(getString(R.string.to));
                         popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h]).setVisibility(View.VISIBLE);
-                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), viewModel.dpToPx(4), viewModel.dpToPx(8), 0, 0);
+                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), pubListViewModel.dpToPx(4), pubListViewModel.dpToPx(8), 0, 0);
                         popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
 
                         ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+getString(R.string.from)+
@@ -368,7 +369,7 @@ public class FilterFragment extends Fragment {
             popUpView.findViewById(id).setBackgroundResource(R.drawable.menu_drop_down_days_shape);
         }
         for (var id : POP_UP_TIME_TEXT_IDS) {
-            setMargins(popUpView.findViewById(id), viewModel.dpToPx(8), viewModel.dpToPx(8), 0, 0);
+            setMargins(popUpView.findViewById(id), pubListViewModel.dpToPx(8), pubListViewModel.dpToPx(8), 0, 0);
         }
         for (var id : POP_UP_TIME_TEXT_Od_IDS) {
             popUpView.findViewById(id).setVisibility(View.GONE);
@@ -490,7 +491,7 @@ public class FilterFragment extends Fragment {
                 ,distance,open
                 ,null, false, PriceType.getByIcon(price),beers,otherDrinks);
 
-        viewModel.filter(filterUiState);
+        pubListViewModel.filter(filterUiState);
     }
 
 

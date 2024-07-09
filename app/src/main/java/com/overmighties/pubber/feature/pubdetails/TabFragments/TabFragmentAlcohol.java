@@ -33,10 +33,10 @@ public class TabFragmentAlcohol extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel=new ViewModelProvider(getActivity(),
+        viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
-        fragmentsViewModel=new ViewModelProvider(getActivity(),
+        fragmentsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(TabFragmentsViewModel.initializer)).get(TabFragmentsViewModel.class);
         TabFragmentsUiState tabFragmentsUiState= TabFragmentsViewModel.getTabFragmentsUiState().getValue();
 

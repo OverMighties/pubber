@@ -1,4 +1,4 @@
-package com.overmighties.pubber.data;
+package com.overmighties.pubber.feature.search.data;
 
 public class FilterConstants {
     public static final String MALO="$";

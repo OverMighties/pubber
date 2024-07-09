@@ -369,20 +369,25 @@ public class Constants {
                     R.id.OvTvTime7
             };
 
-    public static final int[] SIGN_IN_TEXTFIELDS_IDS=new int[]{
+    public static final int[] SIGN_IN_TEXT_FIELDS_IDS =new int[]{
             R.id.edit_field_email_sing_in,
             R.id.edit_field_password_sing_in,
     };
+    public static final int[] SIGN_IN_INPUT_LAYOUTS_IDS =new int[]{
+            R.id.textInputLayoutEmailSignIn,
+            R.id.textInputLayoutPasswordSignIn,
+    };
 
-    public static final int[] SIGN_UP_TEXTFIELDS_IDS=new int[]{
+
+    public static final int[] SIGN_UP_TEXT_FIELDS_IDS =new int[]{
                     R.id.edit_field_email_sing_up,
                     R.id.edit_filed_password_sing_up,
                     R.id.edit_field_confirm_password_sign_up
             };
-    public static final int[] SIGN_UP_INPUTLAYOUTS_IDS=new int[]{
-            R.id.textInputLayoutEmail,
-            R.id.textInputLayoutPassword,
-            R.id.textInputLayoutConfirmPassword
+    public static final int[] SIGN_UP_INPUT_LAYOUTS_IDS =new int[]{
+            R.id.textInputLayoutEmailSignUp,
+            R.id.textInputLayoutPasswordSignUp,
+            R.id.textInputLayoutConfirmPasswordSignUp
     };
     /*
     public static final int[] TAB_OVERVIEW_TEXTVIEW_OUR_RATING_IDS = new int[]

@@ -74,12 +74,14 @@
     <string name="page_title">%1$s</string>
     <string name="searcher_title">Searcher</string>
     <!-- Snackbar messages-->
-    <string name="auth_error_message">Authentication Error</string>
+    <string name="sth_went_wrong">Coś poszło nie tak...</string>
+    <string name="auth_error_message">Błąd uwierzytelniania</string>
     <string name="no_internet_connection_message">Brak Internetu</string>
     <string name="marked_as_favorite_message">Oznaczony jako ulubiony</string>
     <string name="comment_added_message">Komentarz dodany</string>
+    <string name="no_navigation">Brak nawiagacji</string>
     <!--Top app bar-->
-    <string name="ic_settings_title">Settings</string>
+    <string name="ic_settings_title">Ustawienia</string>
     <string name="edit">edytuj</string>
     <!--Account details-->
     <string name="list">Lista</string>
@@ -110,13 +112,13 @@
     <string name="hint_verification_code">Kod weryfikacyjny</string>
     <string name="status_code_sent">Kod wysłany</string>
     <string name="status_verification_failed">Błąd Uwierzytelniania</string>
-    <string name="status_verification_succeeded">Sukcej Uwierzytelniania</string>
+    <string name="status_verification_succeeded">Uwierzytelnianie zakończone sukcesem</string>
     <string name="status_sign_in_failed">Błąd logowania</string>
     <string name="instant_validation">(instant validation)</string>
-    <string name="label_google_sign_in">Zaloguj się przez Google </string>
-    <string name="label_email_sign_in">Logowanie przez email </string>
-    <string name="label_email_sign_up">Rejestracja przez email </string>
-    <string name="label_email_sign_up_add"> "Rejestracja (ty tworzysz konto)"</string>
+    <string name="label_google_sign_in">Kontynuuj przez Google </string>
+    <string name="label_email_sign_in">Zaloguj się przez email </string>
+    <string name="label_email_sign_up">Zarejstruj się przez email </string>
+    <string name="label_email_sign_up_add"> "lub zarejestruj się"</string>
     <string name="ic_account_title">Moje konto</string>
     <string name="content_description_profile_image">Twoje zdjęcie profilowe</string>
     <string name="account_detail_title_cardview">Detail name:</string>
@@ -136,7 +138,7 @@
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>
-    <string name="avaliable_alcohols">Dostępne alkohole</string>
+    <string name="available_alcohols">Dostępne alkohole</string>
 
 
     <!--searcher and it's pop ups-->
@@ -176,7 +178,7 @@
 
     <!-- filtration screen and it's pop ups-->
     <string name="filtration_screen">Filtry</string>
-    <string name="open_now">Teraz otwarte</string>
+    <string name="open_now">Otwarte teraz</string>
     <string name="custom">Niestandardowe</string>
     <string name="filtr">Filtruj</string>
     <string name="clear">Wyczyść</string>
@@ -244,6 +246,10 @@
     <string name="friday">piątek</string>
     <string name="saturday">sobota</string>
     <string name="sunday">niedziela</string>
+
+    <string name="weak_password">Słabe</string>
+    <string name="average_password">Średnie</string>
+    <string name="strong_password">Mocne</string>
 
 
 </resources>

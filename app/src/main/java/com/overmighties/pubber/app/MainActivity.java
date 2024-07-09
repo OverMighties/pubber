@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,9 +25,9 @@ import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
-import com.overmighties.pubber.feature.search.SearcherFragment;
-import com.overmighties.pubber.feature.settings.SettingsFragment;
-import com.overmighties.pubber.util.DarkModeTheme;
+import com.overmighties.pubber.app.ui.DarkModeTheme;
+
+import java.util.Objects;
 
 
 public class MainActivity extends DarkModeTheme {
@@ -52,14 +51,15 @@ public class MainActivity extends DarkModeTheme {
         accountViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(AccountViewModel.initializer))
                 .get(AccountViewModel.class);
-        pubListViewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+//        pubListViewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+        pubListViewModel.getPubsFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        navController= ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment) ).getNavController();
+        navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment))).getNavController();
 
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
-        AppBarConfiguration  bottomNavConfiguration =
-                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
+//        AppBarConfiguration  bottomNavConfiguration =
+//                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
         bottomNavSize();
         if ((getIntent().hasExtra("openSettings") && getIntent().getBooleanExtra("openSettings", false))||

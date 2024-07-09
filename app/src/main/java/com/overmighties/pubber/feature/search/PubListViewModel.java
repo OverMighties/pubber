@@ -10,8 +10,6 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 
-import static java.lang.Math.ceil;
-
 import android.content.res.Resources;
 import android.util.Log;
 
@@ -24,13 +22,13 @@ import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
+import com.overmighties.pubber.feature.search.util.FilterUtil;
+import com.overmighties.pubber.feature.search.util.PriceType;
 import com.overmighties.pubber.util.DateTimetoCurrentTimeComparator;
 import com.overmighties.pubber.util.DateType;
 import com.overmighties.pubber.util.DayOfWeekConverter;
-import com.overmighties.pubber.util.FilterUtil;
-import com.overmighties.pubber.util.PriceType;
-import com.overmighties.pubber.util.SortPubsBy;
-import com.overmighties.pubber.util.SortUtil;
+import com.overmighties.pubber.feature.search.util.SortPubsBy;
+import com.overmighties.pubber.feature.search.util.SortUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

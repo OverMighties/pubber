@@ -19,11 +19,12 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
+import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.app.navigation.PubberNavRoutes;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
-import com.overmighties.pubber.util.SnackbarUI;
+import com.overmighties.pubber.util.NotificationSnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
 import com.overmighties.pubber.util.UIText;
 
@@ -36,22 +37,21 @@ public class SplashViewModel extends PubberAppViewModel {
     private static final String TAG="SplashViewModel";
     private final AccountDataSource accountDataSource;
     public static final ViewModelInitializer<SplashViewModel> initializer = new ViewModelInitializer<>(
-            SplashViewModel.class,
-            creationExtras -> {
-                PubberApp app = (PubberApp) creationExtras.get(APPLICATION_KEY);
-                assert app != null;
-                SavedStateHandle savedStateHandle = createSavedStateHandle(creationExtras);
-                return new SplashViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
-            }
+        SplashViewModel.class,
+        creationExtras -> {
+            PubberApp app = (PubberApp) creationExtras.get(APPLICATION_KEY);
+            assert app != null;
+            SavedStateHandle savedStateHandle = createSavedStateHandle(creationExtras);
+            return new SplashViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
+        }
     );
     private final CompositeDisposable disposables = new CompositeDisposable();
     public SplashViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
         this.accountDataSource=accountDataSource;
     }
     public void onAppStart(BiConsumer<String,String> openAndPopUp){
-            if (accountDataSource.hasUser()) {
-                openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT);
-            }
+        if (accountDataSource.hasUser())
+            openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT);
     }
     //To api<14
     private Single<UserData> firebaseAuthWithGoogle(Intent data, SignInClient signInClient)  {
@@ -78,36 +78,36 @@ public class SplashViewModel extends PubberAppViewModel {
         return Single.error(new GoogleSignInError(null));
     }
     //To api<14
-    public void handleSignInResult(Intent data, SignInClient signInClient, BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError) {
+    public void handleSignInResult(Intent data, SignInClient signInClient, BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         singleAction(TAG, firebaseAuthWithGoogle(data, signInClient),
-                () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT),
-                (err) -> {
-                    if(err instanceof AccFirebaseDSError.DifferentInternalError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
-                    else if (err instanceof AccFirebaseDSError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR, ((AccFirebaseDSError) err).getUserMsg(),"");
-                    else if (err instanceof ApiException)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR, new UIText.ResourceString(R.string.GOOGLE_API_EXCEPTION),err.getLocalizedMessage());
-                    else
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null,err.getLocalizedMessage());
-                });
+            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT),
+            (err) -> {
+                if(err instanceof AccFirebaseDSError.DifferentInternalError)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                else if (err instanceof AccFirebaseDSError)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, ((AccFirebaseDSError) err).getUserMsg(),"");
+                else if (err instanceof ApiException)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.GOOGLE_SIGN_IN, new UIText.ResourceString(R.string.GOOGLE_API_EXCEPTION),err.getLocalizedMessage());
+                else
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null,err.getLocalizedMessage());
+            });
     }
     //From SDK api>=14
-    public void handleSignInResult(GetCredentialResponse credentialResponse, BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError) {
+    public void handleSignInResult(GetCredentialResponse credentialResponse, BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText,String> snackbarOnError) {
         singleAction(TAG, firebaseAuthWithGoogle(credentialResponse),
-                () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT),
-                (err) -> {
-                    if(err instanceof AccFirebaseDSError.DifferentInternalError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
-                    else if (err instanceof AccFirebaseDSError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR, ((AccFirebaseDSError) err).getUserMsg(),"");
-                    else if (err instanceof ApiException)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR, new UIText.ResourceString(R.string.CREDENTIAL_NOT_PRESENT),"");
-                    else if (err instanceof GoogleSignInError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,((GoogleSignInError) err).getUserMsg(),"");
-                    else
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null,err.getLocalizedMessage());
-                });
+            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT),
+            (err) -> {
+                if(err instanceof AccFirebaseDSError.DifferentInternalError)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                else if (err instanceof AccFirebaseDSError)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, ((AccFirebaseDSError) err).getUserMsg(),"");
+                else if (err instanceof ApiException)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, new UIText.ResourceString(R.string.CREDENTIAL_NOT_PRESENT),"");
+                else if (err instanceof GoogleSignInError)
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.GOOGLE_SIGN_IN,((GoogleSignInError) err).getUserMsg(),"");
+                else
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null,err.getLocalizedMessage());
+            });
     }
 
 }

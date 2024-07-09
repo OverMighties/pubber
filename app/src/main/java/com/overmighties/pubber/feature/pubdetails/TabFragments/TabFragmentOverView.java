@@ -45,10 +45,10 @@ public class TabFragmentOverView extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        detailsViewModel =new ViewModelProvider(getActivity(),
+        detailsViewModel =new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= detailsViewModel.getPubDetails().getValue();
-        fragmentsViewModel=new ViewModelProvider(getActivity(),
+        fragmentsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(TabFragmentsViewModel.initializer)).get(TabFragmentsViewModel.class);
         fragmentsViewModel.getTabFragmentsUiState().setValue(new TabFragmentsUiState());
         TabFragmentsUiState tabFragmentsUiState=fragmentsViewModel.getTabFragmentsUiState().getValue();
@@ -90,10 +90,10 @@ public class TabFragmentOverView extends Fragment {
 
 
         //((TextView)requireView().findViewById(R.id.textView15)).setText(spannableStringBuilder);
-        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.textView15), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_green),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red));
+        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.textView15), new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_red),
+                new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_green),
+                new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_blue),
+                new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_red));
 
         SetUpBeerIV(4.6f,((ConstraintLayout)requireView().findViewById(R.id.OvAverageCl)));
         SetUpBeerIV(4.7f,((ConstraintLayout)requireView().findViewById(R.id.OvgoogleCl)));
@@ -104,7 +104,7 @@ public class TabFragmentOverView extends Fragment {
         //SetUpBeerIV(4.0f,((ConstraintLayout)requireView().findViewById(R.id.OvClOurRService)));
         ArrayList<ImageView> imageViews = new ArrayList<>();
         for (int i=0;i<=4;i++){
-            imageViews.add(new ImageView(getContext()));
+            imageViews.add(new ImageView(requireContext()));
         }
        // new RatingToIVConverter().Convert(imageViews, 65, requireView().findViewById(R.id.OvClOurRGeneral), 4.5f, -5,35);
         //Review
@@ -115,19 +115,19 @@ public class TabFragmentOverView extends Fragment {
     //    ((TextView)requireView().findViewById(R.id.OvTvACom)).setTextSize(18);
         spannableStringBuilder = new SpannableStringBuilder("Najtrafniejszy komentarz z ");
         string = new SpannableString("TripAdvisor");
-        string.setSpan(new TextAppearanceSpan(getContext(), R.style.TripAdvisor_highlight),0,11,0);
+        string.setSpan(new TextAppearanceSpan(requireContext(), R.style.TripAdvisor_highlight),0,11,0);
         spannableStringBuilder.append(string);
         spannableStringBuilder.append((":"));
    //     ((TextView)requireView().findViewById(R.id.textView33)).setText(spannableStringBuilder);
     //    ((TextView)requireView().findViewById(R.id.textView33)).setTextSize(18);
         //alcohol
-        fragmentsViewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(getContext(),R.color.highlight));
+        fragmentsViewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(requireContext(),R.color.highlight));
         //Coms Constrains layout
         /*
-        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.OvTvComG), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_green),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red));
+        fragmentsViewModel.setUpGoogleTextView(requireView().findViewById(R.id.OvTvComG), new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_red),
+                new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_green),
+                new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_blue),
+                new TextAppearanceSpan(requireContext(), R.style.Google_highlight_custom_red));
 
          */
     }
@@ -202,7 +202,7 @@ public class TabFragmentOverView extends Fragment {
                         requireView().findViewById(id).setVisibility(View.VISIBLE);
                     }
                 }
-                fragmentsViewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(getContext(),R.color.white));
+                fragmentsViewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(requireContext(),R.color.white));
 
             }
         });
@@ -234,7 +234,7 @@ public class TabFragmentOverView extends Fragment {
     private void SetUpBeerIV(float rating, ConstraintLayout constraintLayout){
         ArrayList<ImageView> imageViews = new ArrayList<>();
         for (int i=0;i<=4;i++){
-            imageViews.add(new ImageView(getContext()));
+            imageViews.add(new ImageView(requireContext()));
         }
 
         new RatingToIVConverter().Convert(imageViews, 36, constraintLayout, rating, 0,18);

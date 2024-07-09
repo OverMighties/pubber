@@ -1,9 +1,9 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.feature.search.util;
 
-import static com.overmighties.pubber.data.FilterConstants.BASE_BOTTOM_RATING;
-import static com.overmighties.pubber.data.FilterConstants.BASE_DISTANCE;
-import static com.overmighties.pubber.data.FilterConstants.NONE_PRICE;
-import static com.overmighties.pubber.data.FilterConstants.BASE_UPPER_RATING;
+import static com.overmighties.pubber.feature.search.data.FilterConstants.BASE_BOTTOM_RATING;
+import static com.overmighties.pubber.feature.search.data.FilterConstants.BASE_DISTANCE;
+import static com.overmighties.pubber.feature.search.data.FilterConstants.NONE_PRICE;
+import static com.overmighties.pubber.feature.search.data.FilterConstants.BASE_UPPER_RATING;
 
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;

@@ -1,12 +1,11 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.app.ui;
 
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+
+import com.overmighties.pubber.util.ThemeHelper;
 
 import java.util.Set;
 

@@ -1,14 +1,11 @@
 package com.overmighties.pubber.feature.search.stateholders;
 
-import com.overmighties.pubber.util.PriceType;
-import com.overmighties.pubber.util.SortPubsBy;
+import com.overmighties.pubber.feature.search.util.PriceType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

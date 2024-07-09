@@ -75,10 +75,12 @@
     <string name="page_title">%1$s</string>
     <string name="searcher_title">Searcher</string>
     <!-- Snackbar messages-->
+    <string name="sth_went_wrong">Something went wrong ...\u0020</string>
     <string name="auth_error_message">Authentication Error</string>
     <string name="no_internet_connection_message">No Internet Connection</string>
     <string name="marked_as_favorite_message">Marked as Favorite</string>
     <string name="comment_added_message">Comment Added</string>
+    <string name="no_navigation">No navigation</string>
     <!--Top app bar-->
     <string name="ic_settings_title">Settings</string>
     <string name="edit">edit</string>
@@ -116,10 +118,10 @@
     <string name="status_verification_succeeded">Verification succeeded</string>
     <string name="status_sign_in_failed">Sign-in failed</string>
     <string name="instant_validation">(instant validation)</string>
-    <string name="label_google_sign_in">Sign In with Google </string>
+    <string name="label_google_sign_in">Continue with Google </string>
     <string name="label_email_sign_in">Sign In with email </string>
     <string name="label_email_sign_up">Sign Up with email </string>
-    <string name="label_email_sign_up_add"> "Sing Up ( You create account )"</string>
+    <string name="label_email_sign_up_add"> "or Sing Up"</string>
     <string name="ic_account_title">My account</string>
     <string name="content_description_profile_image">Your profile image</string>
     <string name="account_detail_title_cardview">Detail name:</string>
@@ -139,7 +141,7 @@
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>
-    <string name="avaliable_alcohols">Avaliable alcohols</string>
+    <string name="available_alcohols">Available alcohols</string>
 
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sort based on:</string>
@@ -245,5 +247,10 @@
     <string name="friday">friday</string>
     <string name="saturday">saturday</string>
     <string name="sunday">sunday</string>
+
+    <!-- Signing up password-->
+    <string name="weak_password">Weak</string>
+    <string name="average_password">Average</string>
+    <string name="strong_password">Strong</string>
 
 </resources>
