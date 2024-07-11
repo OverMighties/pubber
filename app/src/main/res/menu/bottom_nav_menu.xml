@@ -7,12 +7,12 @@
         android:title="@string/list" />
 
     <item
-        android:id="@+id/saved_nav_dir"
+        android:id="@+id/savedFragment"
         android:icon="@drawable/hearth_full_nav"
         android:title="@string/favorite" />
 
     <item
-        android:id="@+id/settings_nav_dir"
+        android:id="@+id/settings_graph"
         android:icon="@drawable/ic_settings_24px"
         android:title="@string/settings"/>
 

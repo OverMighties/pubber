@@ -77,6 +77,7 @@
     <!-- Snackbar messages-->
     <string name="sth_went_wrong">Something went wrong ...\u0020</string>
     <string name="auth_error_message">Authentication Error</string>
+    <string name="user_account_error_message">User Account Error</string>
     <string name="no_internet_connection_message">No Internet Connection</string>
     <string name="marked_as_favorite_message">Marked as Favorite</string>
     <string name="comment_added_message">Comment Added</string>
@@ -168,7 +169,7 @@
     <string name="question2">Who are we ?</string>
     <string name="answer2">The writers of whole code from A to Z are 2 students. One from PW another from AGH. When it comes to graphics, there is one more student from PJATK.  </string>
     <string name="question3">What are future plans for app\'s development ?</string>
-    <string name="answer3">We will keep this answer regularly updated so make sure to once in a while check it out. Back to the topic, firstly we are going to give you guys an possibility to fully change pubs\' drink and beers, because we aren't able to keep up with updating them ourselves so we will give you a platform to do so. Secondly as you might've spotted already our game is coming out soon (..</string>
+    <string name="answer3">We will keep this answer regularly updated so make sure to once in a while check it out. Back to the topic, firstly we are going to give you guys an possibility to fully change pubs\' drink and beers, because we aren\'t able to keep up with updating them ourselves so we will give you a platform to do so. Secondly as you might\'ve spotted already our game is coming out soon (..</string>
     <string name="question4">Must there be ads ?</string>
     <string name="answer4">Sadly there must, we have to pay for server and Google\'s api asks. Sorry and thanks.</string>
 
@@ -252,5 +253,9 @@
     <string name="weak_password">Weak</string>
     <string name="average_password">Average</string>
     <string name="strong_password">Strong</string>
+    <string name="confirm">Confirm</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
 
 </resources>

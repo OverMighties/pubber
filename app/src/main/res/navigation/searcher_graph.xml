@@ -3,38 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/searcher_graph"
-    app:startDestination="@id/searcher_nav_dir">
+    app:startDestination="@id/searcherFragment">
     <include app:graph="@navigation/login_graph"/>
     <fragment
-        android:id="@+id/searcher_nav_dir"
+        android:id="@+id/searcherFragment"
         android:name="com.overmighties.pubber.feature.search.SearcherFragment"
         android:label="Searcher"
         tools:layout="@layout/fragment_searcher">
         <action
             android:id="@+id/action_searcher_to_details"
-            app:destination="@id/details_nav_dir" />
+            app:destination="@id/detailsFragment" />
         <action
             android:id="@+id/action_searcher_to_filter"
-            app:destination="@id/filter_nav_dir" />
+            app:destination="@id/filterFragment" />
         <action
-            android:id="@+id/action_searcher_to_log_in_graph"
+            android:id="@+id/action_searcherFragment_to_login_graph"
             app:destination="@id/login_graph" />
     </fragment>
     <fragment
-        android:id="@+id/details_nav_dir"
+        android:id="@+id/detailsFragment"
         android:name="com.overmighties.pubber.feature.pubdetails.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/details" >
         <action
             android:id="@+id/action_details_to_searcher"
-            app:destination="@id/searcher_nav_dir" />
+            app:destination="@id/searcherFragment" />
     </fragment>
     <fragment
-        android:id="@+id/filter_nav_dir"
+        android:id="@+id/filterFragment"
         android:name="com.overmighties.pubber.feature.search.FilterFragment"
         android:label="Filter" >
         <action
             android:id="@+id/action_filter_to_searcher"
-            app:destination="@id/searcher_nav_dir" />
+            app:destination="@id/searcherFragment" />
     </fragment>
 </navigation>

@@ -3,6 +3,7 @@ package com.overmighties.pubber.feature.auth;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.NEW_USER_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.PLACE_CHOICE_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_UP_FRAGMENT;
@@ -66,7 +67,7 @@ public class SignUpViewModel extends PubberAppViewModel {
         }else{
             singleAction(TAG,
                     accountDataSource.signUp(email.getValue(),password.getValue()),
-                    ()->openAndPopUp.accept(SIGN_UP_FRAGMENT,PLACE_CHOICE_FRAGMENT),
+                    ()->openAndPopUp.accept(SIGN_UP_FRAGMENT,NEW_USER_DETAILS_FRAGMENT),
                     (err)->{
                         if(err instanceof AccFirebaseDSError.DifferentInternalError)
                             responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());

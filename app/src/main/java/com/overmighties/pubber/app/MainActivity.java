@@ -42,9 +42,6 @@ public class MainActivity extends DarkModeTheme {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         pubListViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);

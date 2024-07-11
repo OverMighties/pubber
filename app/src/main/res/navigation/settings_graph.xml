@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_graph"
+    app:startDestination="@id/settingsFragment"
+    >
+
+    <fragment
+        android:id="@+id/settingsAboutFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsAboutFragment"
+        tools:layout="@layout/fragment_settings_about"
+        android:label="fragment_settings_about" />
+    <action
+        android:id="@+id/action_settingsFragment_login_graph"
+        app:destination="@id/login_graph" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsFragment"
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsAboutFragment"
+            app:destination="@id/settingsAboutFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsMessageFragment"
+            app:destination="@id/settingsMessageFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsLanguageFragment"
+            app:destination="@id/settingsLanguageFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsLanguageFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsLanguageFragment"
+        android:label="SettingsLanguageFragment">
+        <action
+            android:id="@+id/action_settingsLanguageFragment_to_settings_nav_dir"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="com.overmighties.pubber.feature.account.AccountDetailsFragment"
+        android:label="AccountDetailsFragment" />
+    <action
+        android:id="@+id/action_settingsFragment_to_settingsMessageFragment"
+        app:destination="@id/settingsMessageFragment"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+    <fragment
+        android:id="@+id/settingsMessageFragment"
+        android:name="com.overmighties.pubber.feature.settings.SettingsMessageFragment"
+        tools:layout="@layout/fragment_settings_message"
+        android:label="fragment_settings_message" />
+    <action
+        android:id="@+id/action_settingsFragment_to_settingsAboutFragment"
+        app:destination="@id/settingsAboutFragment"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+    <action android:id="@+id/action_global_login_graph"
+        app:destination="@id/login_graph"/>
+
+</navigation>

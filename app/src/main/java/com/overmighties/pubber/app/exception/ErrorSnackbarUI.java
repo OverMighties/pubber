@@ -18,6 +18,7 @@ public class ErrorSnackbarUI {
     public static final int NONE_RES=-1;
     public enum ErrorTypes {
         FIREBASE_AUTH,
+        USER_ACCOUNT,
         GOOGLE_SIGN_IN,
         NO_INTERNET_CONNECTION,
         NO_NAVIGATION,
@@ -35,7 +36,10 @@ public class ErrorSnackbarUI {
     private static int getMessageResId(ErrorTypes type) {
         switch (type) {
             case NO_NAVIGATION:{
-                return R.string.auth_error_message;
+                return R.string.no_navigation;
+            }
+            case USER_ACCOUNT:{
+                return R.string.user_account_error_message;
             }
             case NO_INTERNET_CONNECTION :{
                 return R.string.no_internet_connection_message;
@@ -43,8 +47,10 @@ public class ErrorSnackbarUI {
             case FIREBASE_AUTH:{
                 return R.string.auth_error_message;
             }
-            default: Log.e(TAG,"Unknown SnackbarType: " + type);
+            default: {
+                Log.e(TAG, "Unknown SnackbarType: " + type);
+                return R.string.sth_went_wrong;
+            }
         }
-        return NONE_RES;
     }
 }

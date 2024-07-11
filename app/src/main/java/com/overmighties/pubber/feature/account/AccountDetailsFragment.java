@@ -22,7 +22,7 @@ import com.overmighties.pubber.util.UIText;
 
 public class AccountDetailsFragment extends Fragment {
     public static final String TAG="AccountDetailsFragment";
-    private AccountViewModel viewModel;
+    private AccountViewModel accountViewModel;
     private NavController navController;
     private RecyclerView accountDetailsRecyclerView;
     private  ShapeableImageView profileImage;
@@ -33,9 +33,7 @@ public class AccountDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,"on create");
-        viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(AccountViewModel.initializer))
+        accountViewModel = new ViewModelProvider(requireActivity())
                 .get(AccountViewModel.class);
     }
     @Override
@@ -44,14 +42,14 @@ public class AccountDetailsFragment extends Fragment {
         accountDetailsRecyclerView = (RecyclerView) requireView().findViewById(R.id.account_details_recycler_view);
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> {
-            viewModel.onSignOutClick(
+            accountViewModel.onSignOutClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),
                     (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));
         });
         profileImage=requireView().findViewById(R.id.profile_image);
-        accountDetailsAdapter = new AccountDetailsAdapter(viewModel.getUserData().getValue());
+        accountDetailsAdapter = new AccountDetailsAdapter(accountViewModel.getUserData().getValue());
         accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
-        viewModel.getUserData().observe(getViewLifecycleOwner(), userData -> {
+        accountViewModel.getUserData().observe(getViewLifecycleOwner(), userData -> {
             Glide.with(this)
                     .load(userData.getPhotoUrl())
                     .placeholder(R.drawable.account_circle_24px)
@@ -61,8 +59,7 @@ public class AccountDetailsFragment extends Fragment {
             accountDetailsAdapter = new AccountDetailsAdapter(userData);
             accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
         });
-        viewModel.getCurrentUser(
-                (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));
+        accountViewModel.getCurrentUser();
 
     }
 }

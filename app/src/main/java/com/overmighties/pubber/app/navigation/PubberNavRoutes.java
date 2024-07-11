@@ -16,9 +16,10 @@ public final class PubberNavRoutes {
     public static final String SEARCHER_FRAGMENT="SearcherFragment";
     public static final String SIGN_IN_FRAGMENT="SignInFragment";
     public static final String SIGN_UP_FRAGMENT="SignUpFragment";
-    public static final String ACCOUNT_FRAGMENT="AccountFragment";
+    public static final String ACCOUNT_DETAILS_FRAGMENT ="AccountDetailsFragment";
     public static final String SETTINGS_FRAGMENT="SettingsFragment";
     public static final String PLACE_CHOICE_FRAGMENT="PlaceChoiceFragment";
+    public static final String NEW_USER_DETAILS_FRAGMENT="NewUserDetailsFragment";
     public static NavDirections getNavDirections(String from , String to){
         switch (from) {
             case SPLASH_FRAGMENT:
@@ -27,26 +28,30 @@ public final class PubberNavRoutes {
                         return SplashFragmentDirections.actionSplashFragmentToSignInFragment();
                     case SIGN_UP_FRAGMENT:
                         return SplashFragmentDirections.actionSplashFragmentToSignUpFragment();
-                    case SEARCHER_FRAGMENT:
-                        return SplashFragmentDirections.actionGlobalPlaceChoiceNavDir();
+                    case PLACE_CHOICE_FRAGMENT:
+                        return SplashFragmentDirections.actionGlobalPlaceChoiceFragment();
+                    case NEW_USER_DETAILS_FRAGMENT:
+                        return SplashFragmentDirections.actionSplashFragmentToNewUserDetailsFragment();
                 }
             case PLACE_CHOICE_FRAGMENT:
-                return PlaceChoiceFragmentDirections.actionPlaceChoiceNavDirToSearcherGraph();
+                return PlaceChoiceFragmentDirections.actionPlaceChoiceFragmentToSearcherGraph();
             case SIGN_UP_FRAGMENT:
-                return SignUpFragmentDirections.actionGlobalPlaceChoiceNavDir();
+                return SignUpFragmentDirections.actionSignInFragmentToNewUserDetailsFragment();
             case SIGN_IN_FRAGMENT:
                 switch (to) {
                     case PLACE_CHOICE_FRAGMENT:
-                        return SignInFragmentDirections.actionGlobalPlaceChoiceNavDir();
+                        return SignInFragmentDirections.actionGlobalPlaceChoiceFragment();
                     case SIGN_UP_FRAGMENT:
                         return SignInFragmentDirections.actionSignInFragmentToSignUpFragment();
                 }
             case SEARCHER_FRAGMENT:
-                return SearcherFragmentDirections.actionSearcherToLogInGraph();
-            case ACCOUNT_FRAGMENT:
-                return AccountDetailsFragmentDirections.actionAccountDetailsFragmentToLoginGraph();
+                return SearcherFragmentDirections.actionSearcherFragmentToLoginGraph();
+            case ACCOUNT_DETAILS_FRAGMENT:
+                return AccountDetailsFragmentDirections.actionGlobalLoginGraph();
             case SETTINGS_FRAGMENT:
-                return SettingsFragmentDirections.actionSettingsNavDirToLoginGraph();
+                return SettingsFragmentDirections.actionSettingsFragmentLoginGraph();
+            case NEW_USER_DETAILS_FRAGMENT:
+                return SignInFragmentDirections.actionGlobalPlaceChoiceFragment();
         }
         return null;
     }

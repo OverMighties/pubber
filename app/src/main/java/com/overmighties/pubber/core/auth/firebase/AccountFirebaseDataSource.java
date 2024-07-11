@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.model.UserData;
 
@@ -46,31 +47,67 @@ public class AccountFirebaseDataSource implements AccountDataSource {
                 .build();
     }
     @Override
-    public Single<UserData> currentUser() {
-        return Single.create(emitter-> {
-            FirebaseAuth.AuthStateListener listener = firebaseAuth -> {
-                FirebaseUser userFb = firebaseAuth.getCurrentUser();
-                if (userFb == null || userFb.getUid() == null) {
-                    emitter.onError(new AccFirebaseDSError.NoneLoggedAccount("Couldn't retrieve user from firebaseAuth - it's null"));
-                } else {
-                    Log.i(TAG, "User data retrieved from firebaseAuth successfully");
-                    emitter.onSuccess(mapToUserData(userFb));
-                }
-            };
-            fireAuth.addAuthStateListener(listener);
-            emitter.setCancellable(() -> fireAuth.removeAuthStateListener(listener));
-        });
-
-    }
-
-    @Override
-    public boolean hasUser() {
+    public UserData currentUser() {
         if(fireAuth.getCurrentUser()==null){
             Log.i(TAG,"User data in device was not found");
+            return null;
         }else{
             Log.i(TAG,"User data in device was found");
         }
-        return fireAuth.getCurrentUser()!=null;
+        return mapToUserData(fireAuth.getCurrentUser());
+    }
+//    @Override
+//    public Single<UserData> currentUser() {
+//        return Single.create(emitter-> {
+//            FirebaseAuth.AuthStateListener listener = firebaseAuth -> {
+//                FirebaseUser userFb = firebaseAuth.getCurrentUser();
+//                if (userFb == null || userFb.getUid() == null) {
+//                    emitter.onError(new AccFirebaseDSError.NoneLoggedAccount("Couldn't retrieve user from firebaseAuth - it's null"));
+//                } else {
+//                    Log.i(TAG, "User data retrieved from firebaseAuth successfully");
+//                    emitter.onSuccess(mapToUserData(userFb));
+//                }
+//            };
+//            fireAuth.addAuthStateListener(listener);
+//            emitter.setCancellable(() -> fireAuth.removeAuthStateListener(listener));
+//        });
+//
+//    }
+
+    @Override
+    public Single<Object> updateUserProfile(@NonNull UserData userChangedData) {
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(userChangedData.getUsername())
+                .setPhotoUri(userChangedData.getPhotoUrl())
+                .build();
+            return Single.create(emitter-> {
+                Objects.requireNonNull(fireAuth.getCurrentUser()).updateProfile(profileUpdates).addOnCompleteListener(task -> {
+                    if ( task.isSuccessful()){
+                        Log.i(TAG,"User account profile updated successfully");
+                        emitter.onSuccess(new Object());
+                    }else{
+                        Log.e(TAG,"User account profile updating failed");
+                        emitter.onError(errorHandling(task));
+                    }
+                    //Log.e(TAG,"User couldn't delete account: "+ Objects.requireNonNull(task.getException()).getLocalizedMessage());
+                });
+            });
+    }
+
+    @Override
+    public Single<Object> updateUserEmail(@NonNull String email) {
+        return Single.create(emitter-> {
+            Objects.requireNonNull(fireAuth.getCurrentUser()).verifyBeforeUpdateEmail(email).addOnCompleteListener(task -> {
+                if ( task.isSuccessful()){
+                    Log.i(TAG,"User email changed account successfully");
+                    emitter.onSuccess(new Object());
+                }else{
+                    Log.e(TAG,"User email changing failed");
+                    emitter.onError(errorHandling(task));
+                }
+                //Log.e(TAG,"User couldn't delete account: "+ Objects.requireNonNull(task.getException()).getLocalizedMessage());
+            });
+        });
     }
     @Override
     public Single<UserData> signIn(String email, String password)  {
@@ -123,7 +160,7 @@ public class AccountFirebaseDataSource implements AccountDataSource {
     }
 
     @Override
-    public  Single<Object> deleteAccount() {
+    public Single<Object> deleteAccount() {
         return Single.create(emitter-> {
             Objects.requireNonNull(fireAuth.getCurrentUser()).delete().addOnCompleteListener(task -> {
                 if ( task.isSuccessful()){

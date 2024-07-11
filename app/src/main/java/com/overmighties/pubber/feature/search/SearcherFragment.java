@@ -106,7 +106,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
             }
             swipeRefreshLayout.setRefreshing(false);
         });
-        if(!appContainer.getAccountDataSource().hasUser()){
+        if(appContainer.getAccountDataSource().currentUser()==null){
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,SPLASH_FRAGMENT));
         }
     }

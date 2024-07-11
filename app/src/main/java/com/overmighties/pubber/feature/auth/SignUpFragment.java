@@ -66,7 +66,8 @@ public class SignUpFragment  extends Fragment {
             viewModel.onSignUpClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),
                     (errorType, uiText,logMes) -> {
-                        String errMess= getErrorMess(errorType, (UIText.ResourceString)uiText,logMes);
+                        String errMess= ErrorSigningUIHandler.getErrorMessage(requireContext(),errorType,
+                                (UIText.ResourceString)uiText,logMes);
                         if(errorType== ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR){
                             underlineEmail(errMess);
                         }
@@ -215,7 +216,4 @@ public class SignUpFragment  extends Fragment {
         ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPasswordSignUp)).setError(errMess);
     }
 
-    private String getErrorMess(ErrorSigningUITypes type, @Nullable UIText.ResourceString authRes, String logMes) {
-        return ErrorSigningUIHandler.getErrorMessage(requireContext(), type, authRes, logMes);
-    }
 }

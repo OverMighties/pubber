@@ -1,8 +1,6 @@
 package com.overmighties.pubber.feature.settings;
 
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,12 +19,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.LoadActivity;
 import com.overmighties.pubber.app.MainActivity;
 import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.feature.account.AccountDetailsFragment;
-import com.overmighties.pubber.util.ThemeHelper;
+import com.overmighties.pubber.util.SettingsHandler;
 import com.overmighties.pubber.util.UIText;
 
 public class SettingsFragment extends Fragment {
@@ -42,53 +41,40 @@ public class SettingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.i(TAG,"on create");
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        // Load the child fragment
-        if (savedInstanceState == null) {
-            getChildFragmentManager().beginTransaction()
-                    .replace(R.id.account_details_container_view, new AccountDetailsFragment())
-                    .commit();
-        }
 
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-
-
-
         if (SettingsHandler.ThemeHelper.getSavedTheme(requireContext())==1) {
-            ((Switch) requireView().findViewById(R.id.dark_mode_switch)).setChecked(true);
+            ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setChecked(true);
         }
         else{
-            ((Switch) requireView().findViewById(R.id.dark_mode_switch)).setChecked(false);
+            ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setChecked(false);
         }
 
-        ((Switch) requireView().findViewById(R.id.dark_mode_switch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int newTheme = (isChecked) ? SettingsHandler.ThemeHelper.THEME_DARK : SettingsHandler.ThemeHelper.THEME_LIGHT;
-                SettingsHandler.ThemeHelper.saveTheme(requireContext(), newTheme);
+        ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int newTheme = (isChecked) ? SettingsHandler.ThemeHelper.THEME_DARK : SettingsHandler.ThemeHelper.THEME_LIGHT;
+            SettingsHandler.ThemeHelper.saveTheme(requireContext(), newTheme);
 
-                // Restart the application to apply the new theme
-                Intent intent = new Intent(requireActivity(), MainActivity.class);
-                intent.putExtra("openSettings", true);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                requireActivity().finish();
-            }
+            // Restart the application to apply the new theme
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            intent.putExtra("openSettings", true);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            requireActivity().finish();
         });
 
         if(SettingsHandler.NotificationsHelper.getNotificationState(requireContext()) == SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON){
-            ((Switch)requireView().findViewById(R.id.notification_switch)).setChecked(true);
+            ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setChecked(true);
         }
         else{
-            ((Switch)requireView().findViewById(R.id.notification_switch)).setChecked(false);
+            ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setChecked(false);
 
         }
 
-        ((Switch)requireView().findViewById(R.id.notification_switch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int newState = (isChecked) ? SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON : SettingsHandler.NotificationsHelper.NOTIFICATIONS_OFF;

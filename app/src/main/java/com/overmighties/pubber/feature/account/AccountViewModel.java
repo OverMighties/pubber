@@ -3,6 +3,7 @@ package com.overmighties.pubber.feature.account;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 
@@ -29,12 +30,13 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Action;
 
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
     private final AccountDataSource accountDataSource;
     private final CompositeDisposable disposables = new CompositeDisposable();
-    private final MutableLiveData<AccountDetailsUIState> userData=new MutableLiveData<>(new AccountDetailsUIState());
+    private final MutableLiveData<AccountDetailsUIState> userData;
     public LiveData<AccountDetailsUIState> getUserData(){
         return userData;
     }
@@ -53,12 +55,13 @@ public class AccountViewModel extends PubberAppViewModel {
     );
     public AccountViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
         this.accountDataSource=accountDataSource;
+        userData = new MutableLiveData<>(new AccountDetailsUIState());
     }
     public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         disposables.add(completableAction(TAG,
                 accountDataSource::signOut,
                 ()->{
-                    openAndPopUp.accept(SETTINGS_FRAGMENT,SPLASH_FRAGMENT);
+                    openAndPopUp.accept(ACCOUNT_DETAILS_FRAGMENT,SPLASH_FRAGMENT);
                 },
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError){
@@ -72,16 +75,34 @@ public class AccountViewModel extends PubberAppViewModel {
                 }
         ));
     }
-    public void getCurrentUser( TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
+    public void updateEmail(String email,TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError){
         singleAction(TAG,
-                accountDataSource.currentUser(),
-                el->updateUserData(mapToUIState(el)),
+                accountDataSource.updateUserEmail(email),
+                el->userData.getValue().setEmail(email),
                 (err)->{
-                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
-                    Log.e(TAG,"User data can't be retrieved because:"+err.getLocalizedMessage());
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,null, err.getLocalizedMessage());
+                    Log.e(TAG,"User email can't be updated because:"+err.getLocalizedMessage());
                 });
     }
-    public AccountDetailsUIState mapToUIState(UserData userData){
+    public void updateDisplayName(String displayName, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError, Runnable onComplete){
+        singleAction(TAG,
+                accountDataSource.updateUserProfile(new UserData(null,userData.getValue().getEmail()
+                        ,displayName,userData.getValue().getPhotoUrl())),
+                el-> {
+                    userData.getValue().setUsername(displayName);
+                    onComplete.run();
+                },
+                (err)->{
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,null, err.getLocalizedMessage());
+                    Log.e(TAG,"User display name can't be updated because: "+err.getLocalizedMessage());
+                });
+    }
+    public void getCurrentUser() {
+        UserData userData=accountDataSource.currentUser();
+        if(userData!=null)
+            updateUserData(mapToUIState(accountDataSource.currentUser()));
+    }
+    public static AccountDetailsUIState mapToUIState(UserData userData){
         Log.i(TAG,userData.getUserId()+userData.getEmail()+userData.getUsername());
         return new AccountDetailsUIState(
                 userData.getUsername()==null ||  userData.getUsername().isBlank()?AccountDetailsUIState.UNKNOWN:userData.getUsername(),

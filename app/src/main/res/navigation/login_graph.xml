@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_graph"
     app:startDestination="@id/splash_nav_dir">
     <fragment
@@ -13,6 +14,9 @@
         <action
             android:id="@+id/action_splashFragment_to_signUpFragment"
             app:destination="@id/sign_up_nav_dir" />
+        <action
+            android:id="@+id/action_splashFragment_to_newUserDetailsFragment"
+            app:destination="@id/new_user_details_nav_dir" />
     </fragment>
     <fragment
         android:id="@+id/sign_in_nav_dir"
@@ -25,8 +29,17 @@
     <fragment
         android:id="@+id/sign_up_nav_dir"
         android:name="com.overmighties.pubber.feature.auth.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_newUserDetailsFragment"
+            app:destination="@id/new_user_details_nav_dir" />
+    </fragment>
     <action
-        android:id="@+id/action_global_place_choice_nav_dir"
-        app:destination="@id/place_choice_nav_dir" />
+        android:id="@+id/action_global_placeChoiceFragment"
+        app:destination="@id/placeChoiceFragment" />
+    <fragment
+        android:id="@+id/new_user_details_nav_dir"
+        android:name="com.overmighties.pubber.feature.auth.NewUserDetailsFragment"
+        android:label="NewUserDetailsFragment" />
+
 </navigation>

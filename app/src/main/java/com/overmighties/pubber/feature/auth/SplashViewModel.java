@@ -24,7 +24,6 @@ import com.overmighties.pubber.app.navigation.PubberNavRoutes;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
-import com.overmighties.pubber.util.NotificationSnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
 import com.overmighties.pubber.util.UIText;
 
@@ -49,9 +48,17 @@ public class SplashViewModel extends PubberAppViewModel {
     public SplashViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
         this.accountDataSource=accountDataSource;
     }
-    public void onAppStart(BiConsumer<String,String> openAndPopUp){
-        if (accountDataSource.hasUser())
-            openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.SEARCHER_FRAGMENT);
+    public void currentUserCheckOnStart(BiConsumer<String,String> openAndPopUp){
+        UserData userData=accountDataSource.currentUser();
+        if (userData!=null) {
+            String displayName=userData.getUsername();
+            if (displayName != null && !displayName.isBlank() && !displayName.isEmpty()) {
+                Log.i(TAG, displayName);
+                openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT);
+            } else {
+                openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.NEW_USER_DETAILS_FRAGMENT);
+            }
+        }
     }
     //To api<14
     private Single<UserData> firebaseAuthWithGoogle(Intent data, SignInClient signInClient)  {
@@ -80,7 +87,7 @@ public class SplashViewModel extends PubberAppViewModel {
     //To api<14
     public void handleSignInResult(Intent data, SignInClient signInClient, BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         singleAction(TAG, firebaseAuthWithGoogle(data, signInClient),
-            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT),
+            (userData) -> currentUserCheckOnStart(openAndPopUp),
             (err) -> {
                 if(err instanceof AccFirebaseDSError.DifferentInternalError)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
@@ -95,7 +102,7 @@ public class SplashViewModel extends PubberAppViewModel {
     //From SDK api>=14
     public void handleSignInResult(GetCredentialResponse credentialResponse, BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText,String> snackbarOnError) {
         singleAction(TAG, firebaseAuthWithGoogle(credentialResponse),
-            () -> openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT),
+            (userData) -> currentUserCheckOnStart(openAndPopUp),
             (err) -> {
                 if(err instanceof AccFirebaseDSError.DifferentInternalError)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());

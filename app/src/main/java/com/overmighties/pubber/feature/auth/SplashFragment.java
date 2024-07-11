@@ -38,7 +38,7 @@ import com.overmighties.pubber.util.UIText;
 import java.util.concurrent.Executors;
 
 public class SplashFragment extends Fragment {
-    private static final Integer SPLASH_DELAY=1000;
+    private static final Integer SPLASH_DELAY=1;
     public static final String TAG="SplashFragment";
     private SplashViewModel viewModel;
     private SignInClient signInClient;
@@ -84,7 +84,7 @@ public class SplashFragment extends Fragment {
         });
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            viewModel.onAppStart((from, to)-> Navigation.findNavController(view)
+            viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)
                     .navigate(getNavDirections(from,to)));
         }, SPLASH_DELAY);
 
