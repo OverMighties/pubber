@@ -38,4 +38,6 @@ public class PubDetailsUiState {
     private List<Photo> photos;
     private Bitmap CurrentScreen;
     private String TimeOpenToday;
+    private List <Integer> idsOfBeerChips;
+    private List <Integer> idsOfDrinkChips;
 }

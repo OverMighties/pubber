@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/surface"
     android:id="@+id/SplashFragment">
 
     <Button
@@ -13,40 +14,40 @@
         android:background="@drawable/button_shape_container"
         android:text="@string/label_email_sign_in"
         android:textColor="@color/on_secondary_container"
+        android:textAppearance="@style/ButtonTextApperance"
         app:backgroundTint="@null"
         android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/IV_google_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/button_sing_up_splash"
+        app:layout_constraintEnd_toEndOf="@+id/IV_google_button"
+        app:layout_constraintStart_toStartOf="@+id/IV_google_button" />
 
 
     <ImageView
         android:id="@+id/IV_google_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:background="@drawable/ic_google_button_polish"
         android:text="@string/label_google_sign_in"
-        android:background="@drawable/google_button_dark"
-        app:layout_constraintBottom_toTopOf="@+id/button_sing_up_splash"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
 
 
     <Button
         android:id="@+id/button_sing_up_splash"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/button_shape_container"
-        android:textColor="@color/on_secondary_container"
         android:text="@string/label_email_sign_up"
+        android:textAppearance="@style/ButtonTextApperance"
+        android:textColor="@color/on_secondary_container"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/IV_google_button"
+        app:layout_constraintEnd_toEndOf="@+id/IV_google_button"
+        app:layout_constraintStart_toStartOf="@+id/IV_google_button" />
 
     <TextView
         android:id="@+id/RTvAvg"

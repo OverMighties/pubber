@@ -68,6 +68,11 @@ public class SignInFragment extends Fragment {
                             showSnackbar(view, ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,(UIText.ResourceString)uiText,logMes);
                     });
         });
+
+        requireView().findViewById(R.id.IV_goback_sign_in).setOnClickListener(v->{
+            navController.popBackStack();
+        });
+
         requireView().findViewById(R.id.sign_up_5).setOnClickListener(v->{
             navController.navigate(getNavDirections(SIGN_IN_FRAGMENT,SIGN_UP_FRAGMENT));
         });

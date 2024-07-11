@@ -19,6 +19,11 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.TextAppearanceSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -32,10 +37,16 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.util.DimensionsConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -179,6 +190,72 @@ public class DetailsViewModel extends ViewModel {
 
 
         return shapeableImageView;
+    }
+
+    public void SetCheckedChipsIds(ChipGroup beerChipGroup, ChipGroup drinkChipGroup, ArrayList<DrinkDto> drinksDataSet1){
+        List<Integer> IdsBeer = new ArrayList<>();
+        List <Integer> IdsDrink = new ArrayList<>();
+
+        for (DrinkDto alldrinks:drinksDataSet1){
+            if(alldrinks.getType().equals("Beer")){
+                for(int i=0;i<beerChipGroup.getChildCount();i++){
+                    if(((Chip)beerChipGroup.getChildAt(i)).getText().toString().toLowerCase().replaceAll("\\s+","").
+                            equals(alldrinks.getName().toLowerCase().replaceAll("\\s+",""))){
+                        IdsBeer.add(((Chip)beerChipGroup.getChildAt(i)).getId());
+                    }
+                }
+            }
+            else{
+                for(int i=0;i<drinkChipGroup.getChildCount();i++){
+                    if(((Chip)drinkChipGroup.getChildAt(i)).getText().toString().toLowerCase().replaceAll("\\s+","").
+                            equals(alldrinks.getName().toLowerCase().replaceAll("\\s+",""))){
+                        IdsDrink.add(((Chip)drinkChipGroup.getChildAt(i)).getId());
+                    }
+                }
+            }
+        }
+        getUiState().getValue().setIdsOfBeerChips(IdsBeer);
+        getUiState().getValue().setIdsOfDrinkChips(IdsDrink);
+
+    }
+    public void addUnderLineLink(TextView textView,int color) {
+        if (textView != null) {
+            SpannableString content = new SpannableString(textView.getText().toString());
+            UnderlineSpan us=new UnderlineSpan();
+            TextPaint tp=new TextPaint();
+            tp.setColor(color);
+            us.updateDrawState(tp);
+            content.setSpan(us, 0, textView.getText().toString().length(), 0);
+            textView.setText(content);
+        }
+    }
+
+    public int stringToIntRatingConverter(String rating){
+        return Integer.valueOf(rating.replace(",","."));
+    }
+
+    public void setUpGoogleTextView(TextView textView, TextAppearanceSpan red, TextAppearanceSpan blue, TextAppearanceSpan green, TextAppearanceSpan yellow, TextAppearanceSpan blue2, TextAppearanceSpan red2){
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        SpannableString string = new SpannableString("G");
+        string.setSpan(blue,0,1,0);
+        spannableStringBuilder.append(string);
+        string = new SpannableString("o");
+        string.setSpan(red,0,1,0);
+        spannableStringBuilder.append(string);
+        string = new SpannableString("o");
+        string.setSpan(yellow,0,1,0);
+        spannableStringBuilder.append(string);
+        string = new SpannableString("g");
+        string.setSpan(blue2,0,1,0);
+        spannableStringBuilder.append(string);
+        string = new SpannableString("l");
+        string.setSpan(green,0,1,0);
+        spannableStringBuilder.append(string);
+        string = new SpannableString("e");
+        string.setSpan(red2,0,1,0);
+        spannableStringBuilder.append(string);
+
+        textView.setText(spannableStringBuilder);
     }
 
 

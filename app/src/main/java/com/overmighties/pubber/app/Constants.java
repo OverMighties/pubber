@@ -126,6 +126,12 @@ public class Constants {
             "srednio",
             "duzo",
     };
+
+    public static final int[] SPLASH_FRAGMENT_BUTTONS_IDS = new int[]{
+            R.id.button_sign_in_splash,
+            R.id.button_sing_up_splash,
+    };
+
     public static final int[] POP_UP_DAYS_IDS=new int[]{
                     R.id.cl_mon,
                     R.id.cl_tue,

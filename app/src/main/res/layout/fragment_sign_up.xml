@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:id="@+id/SignUpFragment">
 
+    <ImageView
+        android:id="@+id/IV_goback_sign_up"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmailSignUp"
         style="@style/CustomTextInputLayout"
@@ -15,8 +25,11 @@
         android:layout_marginTop="150dp"
         android:layout_marginRight="30dp"
         android:background="@null"
-        android:hint="Email"
+        android:hint="@string/hint_email"
         app:errorEnabled="true"
+        app:errorTextColor="@color/error"
+        app:errorIconTint="@color/error"
+        app:boxStrokeErrorColor="@color/error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,8 +49,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="60dp"
-        android:hint="Password"
+        android:hint="@string/hint_password"
         app:errorEnabled="false"
+        app:errorTextColor="@color/error"
+        app:errorIconTint="@color/error"
+        app:boxStrokeErrorColor="@color/error"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +78,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
         android:background="@null"
-        android:hint="Confirm Password"
+        android:hint="@string/hint_confirm_password"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +101,9 @@
         android:textColor="@color/on_secondary_container"
         android:text="@string/create_account"
         app:errorEnabled="true"
+        app:errorTextColor="@color/error"
+        app:errorIconTint="@color/error"
+        app:boxStrokeErrorColor="@color/error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

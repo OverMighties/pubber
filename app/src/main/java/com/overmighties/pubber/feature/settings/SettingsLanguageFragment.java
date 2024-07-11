@@ -68,7 +68,7 @@ public class SettingsLanguageFragment extends Fragment {
                 SettingsHandler.LanguageHelper.saveLanguage(requireContext(), SettingsHandler.LanguageHelper.LANGUAGE_POLISH);
                 // Restart the application to apply the language
                 Intent intent = new Intent(requireActivity(), MainActivity.class);
-                intent.putExtra("openLanguage", true);
+                intent.putExtra("openSettings", true);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 navController.popBackStack();
                 startActivity(intent);
@@ -82,7 +82,7 @@ public class SettingsLanguageFragment extends Fragment {
                 SettingsHandler.LanguageHelper.saveLanguage(requireContext(), SettingsHandler.LanguageHelper.LANGUAGE_ENGLISH);
                 // Restart the application to apply the language
                 Intent intent = new Intent(requireActivity(), MainActivity.class);
-                intent.putExtra("openLanguage", true);
+                intent.putExtra("openSettings", true);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 navController.popBackStack();
                 startActivity(intent);

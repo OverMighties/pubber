@@ -26,6 +26,21 @@ public class SettingsHandler {
         return sharedPreferences.getInt(key, default_state);
     }
 
+    public static final class FirstTimeOpenHelper{
+        private static final String PREFS_NAME = "open_prefs";
+        private static final String KEY_TIME = "key_open";
+        public static final int FIRST_TIME = 0;
+        public static final int NOT_FIRST_TIME = 1;
+
+        public static void setSecond(Context context){
+            savePreference(context, NOT_FIRST_TIME, PREFS_NAME, KEY_TIME);
+        }
+
+        public static int getTimeOpened(Context context){
+            return getPreference(context, FIRST_TIME, PREFS_NAME, KEY_TIME);
+        }
+    }
+
     public static final class ThemeHelper {
         private static final String PREFS_NAME = "theme_prefs";
         private static final String KEY_THEME = "key_theme";

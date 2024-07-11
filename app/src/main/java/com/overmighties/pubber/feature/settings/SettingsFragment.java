@@ -1,6 +1,7 @@
 package com.overmighties.pubber.feature.settings;
 
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;

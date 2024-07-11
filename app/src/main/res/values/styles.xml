@@ -179,4 +179,9 @@
         <item name="cursorColor">@color/on_surface</item>
     </style>
 
+    <style name="ButtonTextApperance">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

@@ -6,6 +6,12 @@
         <item>10</item>
     </string-array>
     <string name="hello_blank_fragment">Siemka</string>
+    <!-- Notifications -->
+    <string name="general_group">POWIADOMIENIA</string>
+    <string name="notifications_from_app">Od Pubbera</string>
+    <string name="notifications_rating">Twoje opinie</string>
+    <string name="notification_from_app_remind_title">Wychodzisz dzisiaj ?</string>
+    <string name="notification_from_app_remind_description">Znajdź Pub, który idealnie do ciebie pasuje !</string>
     <!--Beer/Drink names-->
     <string name="AleBrowar">AleBrowar</string>
     <string name="Amber">Amber</string>
@@ -140,6 +146,17 @@
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>
     <string name="available_alcohols">Dostępne alkohole</string>
+    <string name="language">Język</string>
+
+
+    <!-- splash screen setting pup up window-->
+    <string name="theme">Motyw Aplikacji</string>
+    <string name="light">Jasny</string>
+    <string name="dark">Ciemny</string>
+    <string name="polish">Polski</string>
+    <string name="english">Angielski</string>
+    <string name="con">Kontynuj</string>
+
 
 
     <!--searcher and it's pop ups-->
@@ -150,12 +167,16 @@
     <string name="sort_alphabetical">Alfabetycznie</string>`
     <string name="sort_distance">Najmniejsza odległość</string>
 
+    <!-- details-->
+    <string name="google">Google</string>
+    <string name="tripadvisor">Tripadvisor</string>
+    <string name="facebook">Facebook</string>
+
     <!--settings fragment-->
     <string name="dark_theme">Tryb nocny</string>
     <string name="notifications">Powiadomienia</string>
     <string name="soon">Wkrótce...</string>
     <string name="game">Przejdź do gry</string>
-    <string name="language">Język</string>
     <string name="send_message">Wyślij nam wiadomość</string>]
     <string name="send">Wyślij</string>
     <string name="about_us">O nas</string>

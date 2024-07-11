@@ -199,7 +199,7 @@ public class PubListViewModel extends ViewModel {
         Pub pub= Objects.requireNonNull(_originalPubData.getValue()).get(position);
         PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
-                pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday());
+                pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday(), null, null);
         detailsViewModel.setPubDetails(pubDetailsUiState);
     }
     public static int dpToPx(int dp)
