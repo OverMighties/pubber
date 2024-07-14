@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.card.MaterialCardView
+        app:cardCornerRadius="28dp"
+        app:cardBackgroundColor="@color/surface_container_highest"
+
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/theme"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/light"
+                android:textColor="@color/on_surface"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textViewDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/dark"
+                android:textColor="@color/on_surface"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <RadioButton
+                android:id="@+id/radioButtonLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.App.RadioButton"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewLight"
+                app:layout_constraintStart_toEndOf="@+id/textViewLight"
+                app:layout_constraintTop_toTopOf="@+id/textViewLight" />
+
+            <RadioButton
+                android:id="@+id/radioButtonDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.App.RadioButton"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDark"
+                app:layout_constraintStart_toEndOf="@+id/textViewDark"
+                app:layout_constraintTop_toTopOf="@+id/textViewDark" />
+
+            <ImageView
+                android:id="@+id/imageViewDark"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDark"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDark"
+                app:layout_constraintTop_toTopOf="@+id/textViewDark"
+                app:tint = "@color/on_surface"
+                app:srcCompat="@drawable/ic_dark_mode" />
+
+            <ImageView
+                android:id="@+id/imageViewLight"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewLight"
+                app:layout_constraintEnd_toStartOf="@+id/textViewLight"
+                app:layout_constraintTop_toTopOf="@+id/textViewLight"
+                app:tint = "@color/on_surface"
+                app:srcCompat="@drawable/ic_light_mode" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/language"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLight" />
+
+            <ImageView
+                android:id="@+id/IV_first_eng"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                app:layout_constraintEnd_toStartOf="@+id/IV_first_pl"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="@+id/IV_first_pl"
+                app:srcCompat="@drawable/ic_eng" />
+
+            <ImageView
+                android:id="@+id/IV_first_pl"
+                android:layout_width="64dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView"
+                app:srcCompat="@drawable/ic_pl" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/IV_first_pl"
+                app:layout_constraintTop_toTopOf="@+id/IV_first_pl"
+                app:srcCompat="@drawable/ic_ua" />
+
+            <Button
+                android:id="@+id/button_first_dismiss"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_shape_container"
+                android:text="@string/con"
+                android:textAppearance="@style/ButtonTextApperance"
+                android:textColor="@color/on_secondary_container"
+                app:backgroundTint="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IV_first_pl" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
