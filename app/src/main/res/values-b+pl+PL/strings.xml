@@ -75,12 +75,12 @@
 
     <string name="sign_in">Zaloguj się</string>
     <string name="sign_out">Wyloguj się</string>
-    <string name="loading">Ładowanie...</string>
+    <string name="loading">Ładowanie…</string>
     <!-- Screens titles-->
     <string name="page_title">%1$s</string>
     <string name="searcher_title">Searcher</string>
     <!-- Snackbar messages-->
-    <string name="sth_went_wrong">Coś poszło nie tak...</string>
+    <string name="sth_went_wrong">Coś poszło nie tak…</string>
     <string name="auth_error_message">Błąd uwierzytelniania</string>
     <string name="user_account_error_message">Błąd konta użytkownika</string>
     <string name="no_internet_connection_message">Brak Internetu</string>
@@ -161,7 +161,7 @@
 
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sortuj według:</string>
-    <string name="searchview_hint">Wyszukaj tutaj...</string>
+    <string name="searchview_hint">Wyszukaj tutaj…</string>
     <string name="sort_relevance">Trafność</string>
     <string name="sort_rating">Najwyżej oceniane</string>
     <string name="sort_alphabetical">Alfabetycznie</string>`
@@ -175,12 +175,12 @@
     <!--settings fragment-->
     <string name="dark_theme">Tryb nocny</string>
     <string name="notifications">Powiadomienia</string>
-    <string name="soon">Wkrótce...</string>
+    <string name="soon">Wkrótce…</string>
     <string name="game">Przejdź do gry</string>
     <string name="send_message">Wyślij nam wiadomość</string>]
     <string name="send">Wyślij</string>
     <string name="about_us">O nas</string>
-    <string name="type_here">Pisz tutaj...</string>
+    <string name="type_here">Pisz tutaj…</string>
     <string name="send_message_adnotation">Prosimy o feedback, czego Wam, w naszej apliackji brakuję i ogólne wrażenia. Z góry dziękujemy bardzo za każdą wiadomość</string>
     <!-- about us fragment -->
     <string name="question1">Skąd pomysł ?</string>

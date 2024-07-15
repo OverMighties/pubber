@@ -80,7 +80,7 @@
     <string name="page_title">%1$s</string>
     <string name="searcher_title">Searcher</string>
     <!-- Snackbar messages-->
-    <string name="sth_went_wrong">Something went wrong ...\u0020</string>
+    <string name="sth_went_wrong">Something went wrong …\u0020</string>
     <string name="auth_error_message">Authentication Error</string>
     <string name="user_account_error_message">User Account Error</string>
     <string name="no_internet_connection_message">No Internet Connection</string>
@@ -161,7 +161,7 @@
 
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sort based on:</string>
-    <string name="searchview_hint">Type here...</string>
+    <string name="searchview_hint">Type here…</string>
     <string name="sort_relevance">Relevance</string>
     <string name="sort_rating">Highest Rating</string>
     <string name="sort_alphabetical">Alphabetical</string>`
@@ -175,11 +175,11 @@
     <!--settings fragment-->
     <string name="dark_theme">Night Mode</string>
     <string name="notifications">Notifications</string>
-    <string name="soon">Soon...</string>
+    <string name="soon">Soon…</string>
     <string name="game">Go to game</string>
     <string name="send_message">Send us a message</string>
     <string name="about_us">About us</string>
-    <string name="type_here">Type here...</string>
+    <string name="type_here">Type here…</string>
     <string name="send">Send</string>
     <string name="send_message_adnotation">We are asking for writing everything that comes to your mind. From your overall app experience to what would you like to be added in the future. Thanks in advance for all messages.\n </string>
     <!-- about us fragment -->

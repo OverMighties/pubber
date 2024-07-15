@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.overmighties.pubber.util.SettingsHandler;
 
-import java.util.Set;
-
 public class DarkModeTheme extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
