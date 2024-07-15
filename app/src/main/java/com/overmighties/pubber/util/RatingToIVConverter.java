@@ -10,10 +10,10 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.overmighties.pubber.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RatingToIVConverter {
-    public void Convert(ArrayList<ImageView> ImageViewArraylist, Integer size, ConstraintLayout constraintLayout, Float raiting, Integer marginTop,Integer distance){
+    public void convert(List<ImageView> ImageViewArraylist, Integer size, ConstraintLayout constraintLayout, Float rating, Integer marginTop, Integer distance){
         for(int n = 0; n<5;n++){
             ConstraintSet constraintSet = new ConstraintSet();
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dpToPx(size),dpToPx(size));
@@ -27,11 +27,11 @@ public class RatingToIVConverter {
             constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, dpToPx(marginTop));
             constraintSet.applyTo(constraintLayout);
 
-            if (raiting >= n+0.75){
+            if (rating >= n+0.75){
                 ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_full);
             }
             else{
-                if (raiting >= (float)(n+0.25)){
+                if (rating >= (float)(n+0.25)){
                     ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_half_full);
                 }
                 else{

@@ -4,29 +4,17 @@ import android.util.Log;
 
 import com.overmighties.pubber.core.database.DbResponse;
 import com.overmighties.pubber.core.database.PubberLocalDataSource;
-import com.overmighties.pubber.core.model.Drink;
-import com.overmighties.pubber.core.model.OpeningHours;
-import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
-import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.core.network.PubberNetworkDataSource;
-import com.overmighties.pubber.core.network.model.DrinkDto;
-import com.overmighties.pubber.core.network.model.OpeningHoursDto;
-import com.overmighties.pubber.core.network.model.PhotoDto;
-import com.overmighties.pubber.core.network.model.PubDto;
-import com.overmighties.pubber.core.network.model.RatingsDto;
 import com.overmighties.pubber.sync.Result;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.AllArgsConstructor;
 

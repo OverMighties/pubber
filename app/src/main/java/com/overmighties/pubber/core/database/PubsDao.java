@@ -12,7 +12,6 @@ import com.overmighties.pubber.core.database.model.PubDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.PubWithAllEntities;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
-import com.overmighties.pubber.core.model.Ratings;
 
 import java.util.List;
 

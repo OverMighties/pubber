@@ -62,7 +62,7 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        recyclerView = (RecyclerView) requireView().findViewById(R.id.Publista);
+        recyclerView = requireView().findViewById(R.id.Publista);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
@@ -88,12 +88,10 @@ public class SearcherFragment extends Fragment implements SelectListener {
         adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
         recyclerView.setAdapter(adapter);
         //Setting listener to departure to FiltrationScreen
-        ((ImageView) requireView().findViewById(R.id.Filtration)).setOnClickListener(v -> {
-            navController.navigate(SearcherFragmentDirections.actionSearcherToFilter());
-        });
+        requireView().findViewById(R.id.Filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
         if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
             NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
-        getString(R.string.page_title,getString(R.string.searcher_title));
+//        getString(R.string.page_title,getString(R.string.searcher_title));
         initSearchView();
         sortButtonsListeners();
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
@@ -112,8 +110,8 @@ public class SearcherFragment extends Fragment implements SelectListener {
     }
     private void sortButtonsListeners()
     {
-        ((TextView)requireView().findViewById(R.id.textViewSortType_searcher)).setOnClickListener(v -> showPopUpSortWindow());
-        ((ImageView)requireView().findViewById(R.id.sort_image)).setOnClickListener(v -> showPopUpSortWindow());
+        requireView().findViewById(R.id.textViewSortType_searcher).setOnClickListener(v -> showPopUpSortWindow());
+        requireView().findViewById(R.id.sort_image).setOnClickListener(v -> showPopUpSortWindow());
     }
     private void showPopUpSortWindow(){
         NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
@@ -143,44 +141,33 @@ public class SearcherFragment extends Fragment implements SelectListener {
 
     }
     private void buttonsListenersForSortPopUpWindow(PopupWindow popupWindow, View popupView) {
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
-                if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
-                    text.setText( requireActivity().getString(R.string.sort_relevance));
-                    pubListViewModel.sort(SortPubsBy.RELEVANCE);
-                } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
-                    text.setText(getString(R.string.sort_rating));
-                    pubListViewModel.sort(SortPubsBy.RATING);
-                } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
-                    text.setText(getString(R.string.sort_alphabetical));
-                    pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
-                } else{
-                    text.setText(getString(R.string.sort_distance));
-                    pubListViewModel.sort(SortPubsBy.DISTANCE);
-                }
-                NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
+        popupWindow.setOnDismissListener(() -> {
+            TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
+            if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                text.setText( requireActivity().getString(R.string.sort_relevance));
+                pubListViewModel.sort(SortPubsBy.RELEVANCE);
+            } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                text.setText(getString(R.string.sort_rating));
+                pubListViewModel.sort(SortPubsBy.RATING);
+            } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                text.setText(getString(R.string.sort_alphabetical));
+                pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
+            } else{
+                text.setText(getString(R.string.sort_distance));
+                pubListViewModel.sort(SortPubsBy.DISTANCE);
             }
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
         });
-        ((ConstraintLayout) popupView.findViewById(R.id.dismiss)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
+        popupView.findViewById(R.id.dismiss).setOnClickListener(v -> popupWindow.dismiss());
 
         for (var id : SORT_POP_UP_IDS) {
-            ((RadioButton) popupView.findViewById(id)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (((RadioButton) popupView.findViewById(id)).isChecked()) {
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
-                        ((RadioButton) popupView.findViewById(id)).setChecked(true);
-                    }
+            popupView.findViewById(id).setOnClickListener(v -> {
+                if (((RadioButton) popupView.findViewById(id)).isChecked()) {
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
+                    ((RadioButton) popupView.findViewById(id)).setChecked(true);
                 }
             });
         }
@@ -189,18 +176,15 @@ public class SearcherFragment extends Fragment implements SelectListener {
     }
     private void initSearchView()
     {
-        searchview=(SearchView)requireView().findViewById(R.id.searchView);
+        searchview= requireView().findViewById(R.id.searchView);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         SpannableString string = new SpannableString(getString(R.string.searchview_hint));
         string.setSpan(new TextAppearanceSpan(requireContext(), R.style.SearchView_Hint_Text),0,getString(R.string.searchview_hint).length(),0);
         searchview.setQueryHint(string);
 
-        searchview.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                searchview.setQueryHint("");
-                return false;
-            }
+        searchview.setOnCloseListener(() -> {
+            searchview.setQueryHint("");
+            return false;
         });
 
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener()

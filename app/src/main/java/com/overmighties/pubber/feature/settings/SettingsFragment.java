@@ -1,20 +1,12 @@
 package com.overmighties.pubber.feature.settings;
 
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -22,12 +14,9 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.LoadActivity;
 import com.overmighties.pubber.app.MainActivity;
 import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.feature.account.AccountDetailsFragment;
 import com.overmighties.pubber.util.SettingsHandler;
-import com.overmighties.pubber.util.UIText;
 
 public class SettingsFragment extends Fragment {
     public static final String TAG="SettingsFragment";
@@ -40,7 +29,6 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,"on create");
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
 
     }
@@ -48,12 +36,7 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        if (SettingsHandler.ThemeHelper.getSavedTheme(requireContext())==1) {
-            ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setChecked(true);
-        }
-        else{
-            ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setChecked(false);
-        }
+        ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setChecked(SettingsHandler.ThemeHelper.getSavedTheme(requireContext()) == 1);
 
         ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
             int newTheme = (isChecked) ? SettingsHandler.ThemeHelper.THEME_DARK : SettingsHandler.ThemeHelper.THEME_LIGHT;
@@ -67,38 +50,21 @@ public class SettingsFragment extends Fragment {
             requireActivity().finish();
         });
 
-        if(SettingsHandler.NotificationsHelper.getNotificationState(requireContext()) == SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON){
-            ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setChecked(true);
-        }
-        else{
-            ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setChecked(false);
+        ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setChecked(SettingsHandler.NotificationsHelper.getNotificationState(requireContext()) == SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON);
 
-        }
-
-        ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int newState = (isChecked) ? SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON : SettingsHandler.NotificationsHelper.NOTIFICATIONS_OFF;
-                SettingsHandler.NotificationsHelper.saveNotificationState(requireContext(), newState);
-            }
+        ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int newState = (isChecked) ? SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON : SettingsHandler.NotificationsHelper.NOTIFICATIONS_OFF;
+            SettingsHandler.NotificationsHelper.saveNotificationState(requireContext(), newState);
         });
 
 
-        requireView().findViewById(R.id.account_IV).setOnClickListener(v->{
-            navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment());
-        });
+        requireView().findViewById(R.id.account_IV).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment()));
 
-        requireView().findViewById(R.id.language_go_to).setOnClickListener(v->{
-            navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsLanguageFragment());
-        });
+        requireView().findViewById(R.id.language_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsLanguageFragment()));
 
-        requireView().findViewById(R.id.send_message_go_to).setOnClickListener(v->{
-            navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsMessageFragment());
-        });
+        requireView().findViewById(R.id.send_message_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsMessageFragment()));
 
-        requireView().findViewById(R.id.about_us_go_to).setOnClickListener(v->{
-            navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsAboutFragment());
-        });
+        requireView().findViewById(R.id.about_us_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsAboutFragment()));
 
 
     }
@@ -107,8 +73,8 @@ public class SettingsFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
-        if(getActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(getActivity().findViewById(R.id.bottom_nav_view));
+        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
 
     }
 }
