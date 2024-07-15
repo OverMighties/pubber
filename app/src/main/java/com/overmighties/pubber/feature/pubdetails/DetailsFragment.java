@@ -1,13 +1,10 @@
 package com.overmighties.pubber.feature.pubdetails;
 
-import static androidx.core.content.ContextCompat.getSystemService;
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS;
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_IDS;
 import static com.overmighties.pubber.feature.pubdetails.DetailsViewModel.dpToPx;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -33,13 +30,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.tabs.TabLayout;
 import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.ui.NavigationBar;
@@ -52,62 +47,58 @@ import com.overmighties.pubber.util.RatingToIVConverter;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DetailsFragment extends Fragment
 {
 
     private ImageView BlurImageView;
-    private ArrayList<Integer> fotki=new ArrayList<Integer>();
+    private final List<Integer> testPhotos =new ArrayList<>();
     private DetailsViewModel viewModel;
 
     public DetailsFragment() {super(R.layout.details);}
-    private final ArrayList<Integer> idList=new ArrayList<Integer>();
+    private final List<Integer> idList=new ArrayList<>();
 
     public ViewPager viewPager;
     private ConstraintLayout layout;
     private ShapeableImageView shapeableImageView;
-    private ArrayList<DrinkDto> drinksDataSet1 = new ArrayList<>();
-    private ArrayList <OpeningHoursDto> fakeOpeningHours = new ArrayList<>();
+    private final List<DrinkDto> drinksDataSet1 = new ArrayList<>();
+    private final List <OpeningHoursDto> fakeOpeningHours = new ArrayList<>();
 
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
-        viewModel=new ViewModelProvider(getActivity(),
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
+        viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
         viewModel.setUiState(pubDetailsUiState);
-        fotki.add(R.drawable.test_photo_1);
-        fotki.add(R.drawable.test_photo_2);
-        fotki.add(R.drawable.test_photo_3);
-        fotki.add(R.drawable.test_photo_4);
-        fotki.add(R.drawable.test_photo_5);
-        fotki.add(R.drawable.test_photo_6);
+        testPhotos.add(R.drawable.test_photo_1);
+        testPhotos.add(R.drawable.test_photo_2);
+        testPhotos.add(R.drawable.test_photo_3);
+        testPhotos.add(R.drawable.test_photo_4);
+        testPhotos.add(R.drawable.test_photo_5);
+        testPhotos.add(R.drawable.test_photo_6);
         BlurImageView=requireView().findViewById(R.id.blur);
-        layout=(ConstraintLayout)requireView().findViewById(R.id.detail);
+        layout= requireView().findViewById(R.id.detail);
         //listener for closing button
-        requireView().findViewById(R.id.CloseButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher());
-            }
-        });
+        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
 
-        SetUpPubData(pubDetailsUiState);
-        SetUpImageSlider(fotki);
-        SetUpFragmentsAppearance();
+        setUpPubData(pubDetailsUiState);
+        setUpImageSlider();
+        setUpFragmentsAppearance();
         setUpFakeData();
-        SetUpTime();
-        SetUpListener();
+        setUpTime();
+        setUpListener();
     }
 
 
-    private void SetUpPubData(PubDetailsUiState pubDetailsUiState) {
+    private void setUpPubData(PubDetailsUiState pubDetailsUiState) {
         ((TextView)requireView().findViewById(R.id.name)).setText(pubDetailsUiState.getName());
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
-            if((pubDetailsUiState.getTimeOpenToday().substring(0,1)).equals("O")){ ((TextView)requireView().findViewById(R.id.TimeOTd))
+            if(pubDetailsUiState.getTimeOpenToday().charAt(0) == 'O'){ ((TextView)requireView().findViewById(R.id.TimeOTd))
                     .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_open));
                 ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
                         ContextCompat.getColor(getContext(), R.color.highlight_open));
@@ -122,18 +113,18 @@ public class DetailsFragment extends Fragment
         //set up rating and rating's iv
         ((TextView)requireView().findViewById(R.id.PubRating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
         ((TextView)requireView().findViewById(R.id.PubRatingCount)).setText("("+pubDetailsUiState.getRatings().getRatingsCount()+")");
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+        List<ImageView> imageViews = new ArrayList<>();
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
-        new RatingToIVConverter().Convert(imageViews, 37, requireView().findViewById(R.id.PubRatingIV), pubDetailsUiState.getRatings().getAverageRating(), 6,20);
+        new RatingToIVConverter().convert(imageViews, 37, requireView().findViewById(R.id.PubRatingIV), pubDetailsUiState.getRatings().getAverageRating(), 6,20);
         //setUpRating();
     }
 
     private void setUpRating(){
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+        List<ImageView> imageViews = new ArrayList<>();
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
         imageViews.add(new ImageView(getContext()));
@@ -144,11 +135,11 @@ public class DetailsFragment extends Fragment
     }
 
 
-    private void SetUpImageSlider(ArrayList<Integer> fotki)
+    private void setUpImageSlider()
     {
-        View popUpView = LayoutInflater.from(getActivity()).inflate(R.layout.detail_image_pop_up, null);
+        View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.detail_image_pop_up, null);
         viewPager=popUpView.findViewById(R.id.viewPager);
-        viewPager.setAdapter(new ViewPagerSliderAdapter(fotki));
+        viewPager.setAdapter(new ViewPagerSliderAdapter(testPhotos));
         viewPager.setPageTransformer(true,new ViewPagerSlideTransformer());
 
         final PopupWindow DetailImageViewPopUpWindow = new PopupWindow(popUpView,
@@ -157,15 +148,15 @@ public class DetailsFragment extends Fragment
         DetailImageViewPopUpWindow.setOnDismissListener(() -> BlurImageView.setVisibility(View.GONE));
         popUpView.findViewById(R.id.dismissButton).setOnClickListener(v -> DetailImageViewPopUpWindow.dismiss());
 
-        ConstraintLayout constraintLayout=(ConstraintLayout) requireView().findViewById(R.id.ImageSlider);
+        ConstraintLayout constraintLayout= requireView().findViewById(R.id.ImageSlider);
         ShapeAppearanceModel shapeAppearanceModel=new ShapeAppearanceModel()
                 .toBuilder()
                 .setAllCorners(CornerFamily.ROUNDED,30)
                 .build();
         //set params
-        for(int i=0;i< fotki.size();i+=3) {
-            shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i),shapeAppearanceModel,i, getContext());
+        for(int i=0;i< testPhotos.size();i+=3) {
+            shapeableImageView = new ShapeableImageView(requireContext());
+            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, testPhotos.get(i),shapeAppearanceModel,i, getContext());
             //listner for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("MissingInflatedId")
@@ -175,13 +166,13 @@ public class DetailsFragment extends Fragment
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (getActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(getActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
+                    (requireActivity().findViewById(R.id.detail))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
                     viewPager=popUpView.findViewById(R.id.viewPager);
                     int n=0;
-                    for(int fotka:fotki)
+                    for(Integer photoId:testPhotos)
                     {
-                        if(getResources().getDrawable(fotka).getConstantState()==v.getBackground().getConstantState()){
+                        if( ContextCompat.getDrawable(requireContext(), photoId).getConstantState()==v.getBackground().getConstantState()){
                             break;
                         }
                         n++;
@@ -195,7 +186,7 @@ public class DetailsFragment extends Fragment
             });
             //next ImageView
             shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+1),
+            shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, testPhotos.get(i+1),
                     shapeAppearanceModel,i+1, getContext());
             //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
@@ -206,12 +197,12 @@ public class DetailsFragment extends Fragment
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (getActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(getActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
+                    (requireActivity().findViewById(R.id.detail))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
                     viewPager=popUpView.findViewById(R.id.viewPager);
 
                     int n=0;
-                    for(int fotka:fotki)
+                    for(int fotka:testPhotos)
                     {
                         if(getResources().getDrawable(fotka).getConstantState()==v.getBackground().getConstantState()){
                             break;
@@ -226,7 +217,7 @@ public class DetailsFragment extends Fragment
             //nextImageView
             shapeableImageView = new ShapeableImageView(getContext());
             shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, fotki.get(i+2),
+            shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, testPhotos.get(i+2),
                     shapeAppearanceModel,i+2, getContext());
             //listener for popup
             shapeableImageView.setOnClickListener(new View.OnClickListener() {
@@ -237,12 +228,12 @@ public class DetailsFragment extends Fragment
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (getActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(getActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
+                    (requireActivity().findViewById(R.id.detail))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
                     viewPager=popUpView.findViewById(R.id.viewPager);
 
                     int n=0;
-                    for(int fotka:fotki)
+                    for(int fotka:testPhotos)
                     {
                         if(getResources().getDrawable(fotka).getConstantState()==v.getBackground().getConstantState()){
                             break;
@@ -262,7 +253,7 @@ public class DetailsFragment extends Fragment
         constraintLayout.addView(shapeableImageView);
         ConstraintSet constraintSet=new ConstraintSet();
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 480+(fotki.size()-3)*(280));
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 480+(testPhotos.size()-3)*(280));
         constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, dpToPx(140));
         constraintSet.applyTo(constraintLayout);
     }
@@ -284,17 +275,14 @@ public class DetailsFragment extends Fragment
     }
 
     private void setUpFakeData(){
-        viewModel.SetCheckedChipsIds(requireView().findViewById(R.id.BeerListChG), requireView().findViewById(R.id.DrinksChG),drinksDataSet1);
+        viewModel.setCheckedChipsIds(requireView().findViewById(R.id.BeerListChG), requireView().findViewById(R.id.DrinksChG),drinksDataSet1);
     }
 
-    private void SetUpFragmentsAppearance(){
+    private void setUpFragmentsAppearance(){
 
         //setting-up custom google textview
         //rating
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-
-        SpannableString string = new SpannableString("");
-
         ArrayList<ImageView> imageViews = new ArrayList<>();
         for (int i=0;i<=4;i++){
             imageViews.add(new ImageView(getContext()));
@@ -304,7 +292,7 @@ public class DetailsFragment extends Fragment
         spannableStringIntrestingBuilder.append(spannableStringBuilder);
         spannableStringIntrestingBuilder.append(":");
         spannableStringBuilder = new SpannableStringBuilder("Najtrafniejszy komentarz z ");
-        string = new SpannableString("TripAdvisor");
+        SpannableString string = new SpannableString("TripAdvisor");
         string.setSpan(new TextAppearanceSpan(getContext(), R.style.TripAdvisor_highlight),0,11,0);
         spannableStringBuilder.append(string);
         spannableStringBuilder.append((":"));
@@ -320,7 +308,7 @@ public class DetailsFragment extends Fragment
          */
     }
 
-    private void SetUpTime(){
+    private void setUpTime(){
         Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
         for(int i=0; i<=6; i++){
             if(i+Today>7){
@@ -334,8 +322,8 @@ public class DetailsFragment extends Fragment
         }
     }
 
-    private void SetUpListener(){
-        requireView().findViewById(R.id.OvUnFoldTime).setOnClickListener(v->{UnFoldTime();});
+    private void setUpListener(){
+        requireView().findViewById(R.id.OvUnFoldTime).setOnClickListener(v-> UnFoldTime());
 
         requireView().findViewById(R.id.OvTVAdress).setOnLongClickListener(v->{
             setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.OvTVAdress)).getText().toString());
@@ -408,15 +396,15 @@ public class DetailsFragment extends Fragment
         if(requireView().findViewById(R.id.OvTvDay1).getVisibility() == View.VISIBLE){
             ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_more_primary);
             for(int i=0;i<=6;i++){
-                ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.GONE);
-                ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.GONE);
+                requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i]).setVisibility(View.GONE);
+                requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i]).setVisibility(View.GONE);
             }
         }
         else{
             ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_less_primary);
             for(int i=0;i<=6;i++){
-                ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setVisibility(View.VISIBLE);
-                ((TextView)requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setVisibility(View.VISIBLE);
+                requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i]).setVisibility(View.VISIBLE);
+                requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i]).setVisibility(View.VISIBLE);
             }
         }
     }
@@ -426,7 +414,7 @@ public class DetailsFragment extends Fragment
             imageViews.add(new ImageView(getContext()));
         }
 
-        new RatingToIVConverter().Convert(imageViews, 36, constraintLayout, rating, 0,18);
+        new RatingToIVConverter().convert(imageViews, 36, constraintLayout, rating, 0,18);
     }
 
 
