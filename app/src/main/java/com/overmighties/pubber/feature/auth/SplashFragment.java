@@ -160,12 +160,12 @@ public class SplashFragment extends Fragment {
         final PopupWindow settingsPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
+        preparePopUpWindow(popUpView, settingsPopUpWindow);
+        setUpPopUpWindowListeners(popUpView, settingsPopUpWindow);
         if(settingsPopUpWindow==null)
             Log.e(TAG,"WWWWWWWWWWW");
         (requireActivity().findViewById(R.id.SplashFragment))
                 .post(() -> settingsPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.SplashFragment), Gravity.BOTTOM, 0, 0));
-        preparePopUpWindow(popUpView, settingsPopUpWindow);
-        setUpPopUpWindowListeners(popUpView, settingsPopUpWindow);
     }
 
     private void preparePopUpWindow(View popUpView, PopupWindow settingsPopUpWindow) {

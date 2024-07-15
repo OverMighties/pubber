@@ -1,6 +1,5 @@
 package com.overmighties.pubber.feature.settings;
 
-import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -12,9 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.ui.NavigationBar;
@@ -42,12 +39,10 @@ public class SettingsMessageFragment extends Fragment {
 
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
 
-        if (getActivity().findViewById(R.id.bottom_nav_view) != null)
-            NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
+        if (requireActivity().findViewById(R.id.bottom_nav_view) != null)
+            NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
 
-        requireView().findViewById(R.id.IV_goback_m).setOnClickListener(v->{
-            navController.popBackStack();
-        });
+        requireView().findViewById(R.id.IV_goback_m).setOnClickListener(v-> navController.popBackStack());
 
     }
 
