@@ -12,14 +12,14 @@ import com.overmighties.pubber.core.network.model.PubDto;
 import com.overmighties.pubber.core.network.model.RatingsDto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public class PubDtoMapper {
+    //Blocking default constructor
+    private PubDtoMapper(){
+        throw new AssertionError();
+    }
     public static Pub mapFromDto(PubDto pub, LocalDateTime time)
     {
         return new Pub(pub.getId(), pub.getName(),pub.getAddress(),time, pub.getCity(), pub.getPhoneNumber(),

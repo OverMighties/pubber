@@ -35,6 +35,7 @@ public class NewUserDetailsFragment extends Fragment {
     private AccountViewModel accountViewModel;
     private TextInputEditText editText;
     private NavController navController;
+    private static final Pattern DISPLAY_NAME_PATTERN = Pattern.compile("^\\p{L}[\\p{L}0-9_$#!]{3,19}$", Pattern.CASE_INSENSITIVE);
     public NewUserDetailsFragment(){
         super(R.layout.fragment_new_user_details);
     }
@@ -54,9 +55,7 @@ public class NewUserDetailsFragment extends Fragment {
             String displayName=editText.getText().toString();
             if(checkDisplayNameValidity(displayName)){
                 accountViewModel.updateDisplayName(displayName,
-                    (errorType, uiText,logMes) -> {
-                        showSnackbar(view, ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,(UIText.ResourceString)uiText,logMes);
-                    },
+                    (errorType, uiText,logMes) -> showSnackbar(view, ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,(UIText.ResourceString)uiText,logMes),
                     ()->{
                         Log.i(TAG,"Navigating to PlaceChoiceFragment after successful change of display name");
                         navController.navigate(getNavDirections(NEW_USER_DETAILS_FRAGMENT,PLACE_CHOICE_FRAGMENT));
@@ -105,10 +104,9 @@ public class NewUserDetailsFragment extends Fragment {
      -  contains letters from every language 0...9 or _,#,$,! as characters
      -  starts from alphabetical letter4
      */
-    private static boolean checkDisplayNameValidity(String displayName){
+    private boolean checkDisplayNameValidity(String displayName){
         if(displayName==null)
             return false;
-        Pattern pattern = Pattern.compile("^\\p{L}[\\p{L}0-9_$#!]{3,19}$", Pattern.CASE_INSENSITIVE);
-        return pattern.matcher(displayName).find();
+        return DISPLAY_NAME_PATTERN.matcher(displayName).find();
     }
 }

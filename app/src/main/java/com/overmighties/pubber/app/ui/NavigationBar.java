@@ -4,6 +4,10 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 
 public class NavigationBar {
+    //Blocking default constructor
+    private NavigationBar(){
+        throw new AssertionError();
+    }
     public static void smoothPopUp(View nav_bar)
     {
         nav_bar.setVisibility(View.VISIBLE);

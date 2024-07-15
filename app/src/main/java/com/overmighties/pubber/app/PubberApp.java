@@ -1,12 +1,8 @@
 package com.overmighties.pubber.app;
 
-import android.app.Activity;
 import android.app.Application;
-import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.room.Room;
 import androidx.work.Configuration;
 import androidx.work.Constraints;
@@ -17,13 +13,11 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
-import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.notifications.NotificationHandler;
 import com.overmighties.pubber.app.notifications.NotificationWorker;
 import com.overmighties.pubber.core.database.AppDb;
 import com.overmighties.pubber.sync.SyncWorker;
 import com.overmighties.pubber.sync.SyncWorkerFactory;
-import com.overmighties.pubber.util.SettingsHandler;
 
 import java.util.Calendar;
 import java.util.TimeZone;

@@ -24,7 +24,7 @@ import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiStat
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.FilterUtil;
 import com.overmighties.pubber.feature.search.util.PriceType;
-import com.overmighties.pubber.util.DateTimetoCurrentTimeComparator;
+import com.overmighties.pubber.util.DateTimeToCurrentTimeComparator;
 import com.overmighties.pubber.util.DateType;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
@@ -189,7 +189,7 @@ public class PubListViewModel extends ViewModel {
             timeCloseYesterday = parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric() - 2)).getTimeClose());
         }
 
-        DateType time=(new DateTimetoCurrentTimeComparator()).dateTimetoCurrentTimeComparator(timeOpenToday,timeCloseToday,timeOpenYesterday,timeCloseYesterday);
+        DateType time= DateTimeToCurrentTimeComparator.dateTimeToCurrentTimeComparator(timeOpenToday,timeCloseToday,timeOpenYesterday,timeCloseYesterday);
         time.convertToPolish();
 
         return time;

@@ -1,7 +1,6 @@
 package com.overmighties.pubber.core.database;
 
 import com.overmighties.pubber.core.model.Pub;
-import com.overmighties.pubber.sync.Result;
 
 
 import java.util.List;
