@@ -4,7 +4,6 @@ import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -39,13 +38,11 @@ public class AccountDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        accountDetailsRecyclerView = (RecyclerView) requireView().findViewById(R.id.account_details_recycler_view);
+        accountDetailsRecyclerView = requireView().findViewById(R.id.account_details_recycler_view);
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> {
-            accountViewModel.onSignOutClick(
-                    (from,to)-> navController.navigate(getNavDirections(from,to)),
-                    (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));
-        });
+        requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> accountViewModel.onSignOutClick(
+                (from,to)-> navController.navigate(getNavDirections(from,to)),
+                (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes)));
         profileImage=requireView().findViewById(R.id.profile_image);
         accountDetailsAdapter = new AccountDetailsAdapter(accountViewModel.getUserData().getValue());
         accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);

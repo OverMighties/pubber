@@ -4,7 +4,6 @@ package com.overmighties.pubber.feature.account;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.overmighties.pubber.R;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +22,8 @@ public class AccountDetailsAdapter extends RecyclerView.Adapter<AccountDetailsAd
         private final TextView detailContentView;
         public ViewHolder(View view) {
             super(view);
-            detailTitleView = (TextView) view.findViewById(R.id.left_title_view);
-            detailContentView = (TextView) view.findViewById(R.id.right_content_view);
+            detailTitleView = view.findViewById(R.id.left_title_view);
+            detailContentView = view.findViewById(R.id.right_content_view);
         }
 
     }

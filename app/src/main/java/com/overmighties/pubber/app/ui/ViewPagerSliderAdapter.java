@@ -12,7 +12,7 @@ import com.ortiz.touchview.TouchImageView;
 import java.util.List;
 
 public class ViewPagerSliderAdapter extends PagerAdapter {
-    private List<Integer> images;
+    private final List<Integer> images;
 
     public ViewPagerSliderAdapter(List<Integer> sliderItems)
     {
@@ -24,6 +24,7 @@ public class ViewPagerSliderAdapter extends PagerAdapter {
         return images.size();
     }
 
+    @NonNull
     @Override
     public View instantiateItem(ViewGroup container, int position) {
         TouchImageView img = new TouchImageView(container.getContext());
@@ -33,7 +34,7 @@ public class ViewPagerSliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
 

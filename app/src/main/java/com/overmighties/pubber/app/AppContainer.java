@@ -6,10 +6,8 @@ import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccountFirebaseDataSource;
 import com.overmighties.pubber.core.data.PubsRepository;
 import com.overmighties.pubber.core.database.AppDb;
-import com.overmighties.pubber.core.database.PubsRoomDbSource;
 import com.overmighties.pubber.core.network.fake.FakePubsNetworkDataSource;
 import com.overmighties.pubber.core.database.fake.FakeLocalRepository;
-import com.overmighties.pubber.core.network.retrofit.PubsRetrofitDataSource;
 
 import lombok.Getter;
 
@@ -28,10 +26,10 @@ public final class AppContainer {
         this.localDb=localDb;
         this.accountDataSource=new AccountFirebaseDataSource();
         //localRepository=new PubsRoomDbSource(localDb);
-        localRepository=new FakeLocalRepository();
-        pubsNetworkDataSource=new FakePubsNetworkDataSource();
+        this.localRepository=new FakeLocalRepository();
+        this.pubsNetworkDataSource=new FakePubsNetworkDataSource();
         //pubsNetworkDataSource=PubsRetrofitDataSource.getInstance();
-        pubsRepository=new PubsRepository(pubsNetworkDataSource,localRepository);
+        this.pubsRepository=new PubsRepository(pubsNetworkDataSource,localRepository);
     }
 
 

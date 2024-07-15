@@ -4,7 +4,6 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 
 import android.net.Uri;
@@ -17,12 +16,10 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
-import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
-import com.overmighties.pubber.util.NotificationSnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
 import com.overmighties.pubber.util.UIText;
 
@@ -30,7 +27,6 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.functions.Action;
 
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
@@ -60,9 +56,7 @@ public class AccountViewModel extends PubberAppViewModel {
     public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         disposables.add(completableAction(TAG,
                 accountDataSource::signOut,
-                ()->{
-                    openAndPopUp.accept(ACCOUNT_DETAILS_FRAGMENT,SPLASH_FRAGMENT);
-                },
+                ()-> openAndPopUp.accept(ACCOUNT_DETAILS_FRAGMENT,SPLASH_FRAGMENT),
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError){
                         snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
