@@ -13,14 +13,14 @@ import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.util.DateTimeConverter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public class PubDataMapper {
+    //Blocking default constructor
+    private PubDataMapper(){
+        throw new AssertionError();
+    }
     public static PubWithAllEntities mapToEntity(Pub pub)
     {
         PubEntity pubEntity=new PubEntity(pub.getId(),pub.getName(),pub.getAddress(), DateTimeConverter.getToString(pub.getFetchTime()), pub.getCity(), pub.getPhoneNumber(),

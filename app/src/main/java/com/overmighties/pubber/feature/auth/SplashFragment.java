@@ -5,11 +5,9 @@ import static com.overmighties.pubber.app.Constants.SPLASH_FRAGMENT_BUTTONS_IDS;
 import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
-import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -33,7 +31,6 @@ import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 import androidx.credentials.CredentialManager;
 import androidx.credentials.CredentialManagerCallback;
@@ -84,12 +81,8 @@ public class SplashFragment extends Fragment {
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.button_sign_in_splash).setOnClickListener(v->{
-            navController.navigate(R.id.action_splashFragment_to_signInFragment,null);
-        });
-        requireView().findViewById(R.id.button_sing_up_splash).setOnClickListener(v->{
-            navController.navigate(R.id.action_splashFragment_to_signUpFragment,null);
-        });
+        requireView().findViewById(R.id.button_sign_in_splash).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
+        requireView().findViewById(R.id.button_sing_up_splash).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
 
         //Sign in launcher calls firebase api from viewmodel
         signInLauncher= registerForActivityResult(
@@ -100,9 +93,7 @@ public class SplashFragment extends Fragment {
                         (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes))
         );
 
-        requireView().findViewById(R.id.IV_google_button).setOnClickListener(v->{
-                signInWithGoogle();
-        });
+        requireView().findViewById(R.id.IV_google_button).setOnClickListener(v-> signInWithGoogle());
 
         Integer google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()) == SettingsHandler.LanguageHelper.LANGUAGE_POLISH)? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageResource(google_button_id);
@@ -112,10 +103,8 @@ public class SplashFragment extends Fragment {
             showPopUp();
         }
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)
-                    .navigate(getNavDirections(from,to)));
-        }, SPLASH_DELAY);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)
+                .navigate(getNavDirections(from,to))), SPLASH_DELAY);
 
     }
     private void signInWithGoogle() {
@@ -164,18 +153,22 @@ public class SplashFragment extends Fragment {
     }
 
     private void showPopUp(){
-        // to do: change on settings clicked popupview theme and lagnuege
+        // to do: change on settings clicked popupview theme and language
         View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.first_time_settings_pop_up, null);
+        if(requireActivity().findViewById(R.id.SplashFragment)==null)
+            Log.e(TAG,"ERRRRR");
         final PopupWindow settingsPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
-        preparePopUpWinodw(popUpView, settingsPopUpWindow);
+        preparePopUpWindow(popUpView, settingsPopUpWindow);
         setUpPopUpWindowListeners(popUpView, settingsPopUpWindow);
+        if(settingsPopUpWindow==null)
+            Log.e(TAG,"WWWWWWWWWWW");
         (requireActivity().findViewById(R.id.SplashFragment))
                 .post(() -> settingsPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.SplashFragment), Gravity.BOTTOM, 0, 0));
     }
 
-    private void preparePopUpWinodw(View popUpView, PopupWindow settingsPopUpWindow) {
+    private void preparePopUpWindow(View popUpView, PopupWindow settingsPopUpWindow) {
         if (SettingsHandler.ThemeHelper.getSavedTheme(requireContext()) == SettingsHandler.ThemeHelper.THEME_DARK){
             ((RadioButton)popUpView.findViewById(R.id.radioButtonDark)).setChecked(true);
             ((ImageView)popUpView.findViewById(R.id.imageViewDark)).setColorFilter(ContextCompat.getColor(requireContext(), R.color.primary));
@@ -189,7 +182,7 @@ public class SplashFragment extends Fragment {
     }
 
     private void setUpPopUpWindowListeners(View popUpView, PopupWindow settingsPopUpWindow) {
-        ((RadioButton)popUpView.findViewById(R.id.radioButtonLight)).setOnTouchListener((v, event)->{
+        popUpView.findViewById(R.id.radioButtonLight).setOnTouchListener((v, event)->{
             if(!((RadioButton)popUpView.findViewById(R.id.radioButtonLight)).isChecked() && event.getAction() == MotionEvent.ACTION_UP ){
                 ((RadioButton)popUpView.findViewById(R.id.radioButtonDark)).setChecked(false);
                 SettingsHandler.ThemeHelper.saveTheme(requireContext(), SettingsHandler.ThemeHelper.THEME_LIGHT);
@@ -197,7 +190,7 @@ public class SplashFragment extends Fragment {
             }
             return false;
         });
-        ((RadioButton)popUpView.findViewById(R.id.radioButtonDark)).setOnTouchListener((v, event)->{
+        popUpView.findViewById(R.id.radioButtonDark).setOnTouchListener((v, event)->{
             if(!((RadioButton)popUpView.findViewById(R.id.radioButtonDark)).isChecked() && event.getAction() == MotionEvent.ACTION_UP ){
                 ((RadioButton)popUpView.findViewById(R.id.radioButtonLight)).setChecked(false);
                 SettingsHandler.ThemeHelper.saveTheme(requireContext(), SettingsHandler.ThemeHelper.THEME_DARK);
@@ -229,17 +222,17 @@ public class SplashFragment extends Fragment {
     }
 
     private void changeFragmentsColor() {
-        boolean dark_colors = (SettingsHandler.ThemeHelper.getSavedTheme(requireContext()) == SettingsHandler.ThemeHelper.THEME_DARK) ? true:false;
+        boolean dark_colors = SettingsHandler.ThemeHelper.getSavedTheme(requireContext()) == SettingsHandler.ThemeHelper.THEME_DARK;
 
         if (dark_colors) {
             requireView().findViewById(R.id.SplashFragment).setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.surface));
-            getActivity().getWindow().setStatusBarColor(ContextCompat.getColor(requireContext(), R.color.status_bar));
-            getActivity().getWindow().setNavigationBarColor(ContextCompat.getColor(requireContext(), R.color.surface_variant_secondary));
+            requireActivity().getWindow().setStatusBarColor(ContextCompat.getColor(requireContext(), R.color.status_bar));
+            requireActivity().getWindow().setNavigationBarColor(ContextCompat.getColor(requireContext(), R.color.surface_variant_secondary));
         }
         else {
-            requireView().findViewById(R.id.SplashFragment).setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.oposing_surface));
-            getActivity().getWindow().setStatusBarColor(ContextCompat.getColor(requireContext(), R.color.oposing_status_bar));
-            getActivity().getWindow().setNavigationBarColor(ContextCompat.getColor(requireContext(), R.color.oposing_surface_variant_secondary));
+            requireView().findViewById(R.id.SplashFragment).setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.opposing_surface));
+            requireActivity().getWindow().setStatusBarColor(ContextCompat.getColor(requireContext(), R.color.opposing_status_bar));
+            requireActivity().getWindow().setNavigationBarColor(ContextCompat.getColor(requireContext(), R.color.opposing_surface_variant_secondary));
         }
 
 
@@ -247,14 +240,14 @@ public class SplashFragment extends Fragment {
 
 
         for(var id: SPLASH_FRAGMENT_BUTTONS_IDS){
-            Button button = (Button) requireView().findViewById(id);
+            Button button = requireView().findViewById(id);
             if (dark_colors){
                 button.setBackground(getResources().getDrawable(R.drawable.button_shape_container));
                 button.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_secondary_container));
             }
             else{
-                button.setBackground(getResources().getDrawable(R.drawable.button_shape_container_oposing));
-                button.setTextColor(ContextCompat.getColor(requireContext(), R.color.oposing_on_secondary_container));
+                button.setBackground(getResources().getDrawable(R.drawable.button_shape_container_opposing));
+                button.setTextColor(ContextCompat.getColor(requireContext(), R.color.opposing_on_secondary_container));
             }
         }
 
@@ -264,7 +257,7 @@ public class SplashFragment extends Fragment {
             if (dark_colors)
                 ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageDrawable(getResources().getDrawable(R.drawable.ic_google_button_polish));
             else
-                ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageDrawable(getResources().getDrawable(R.drawable.ic_google_button_polish_oposing));
+                ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageDrawable(getResources().getDrawable(R.drawable.ic_google_button_polish_opposing));
         }
         else{
             ((Button)requireView().findViewById(R.id.button_sign_in_splash)).setText(getStringFromLocale(requireContext(), "label_email_sign_in", "en-US"));
@@ -272,7 +265,7 @@ public class SplashFragment extends Fragment {
             if (dark_colors)
                 ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageDrawable(getResources().getDrawable(R.drawable.ic_google_button_english));
             else
-                ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageDrawable(getResources().getDrawable(R.drawable.ic_google_button_english_oposing));
+                ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageDrawable(getResources().getDrawable(R.drawable.ic_google_button_english_opposing));
         }
     }
 

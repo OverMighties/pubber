@@ -81,9 +81,7 @@ public class FilterFragment extends Fragment {
         arrowExpandersListeners();
         dropDownMenusListener();
         setUpRangeSliders();
-        requireView().findViewById(R.id.close_filter).setOnClickListener(v -> {
-            navController.navigate(FilterFragmentDirections.actionFilterToSearcher());
-        });
+        requireView().findViewById(R.id.close_filter).setOnClickListener(v -> navController.navigate(FilterFragmentDirections.actionFilterToSearcher()));
     }
 
     private void arrowExpandersListeners()
@@ -101,125 +99,110 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IVdistance).setOnClickListener(v -> {
-            if(((Slider)requireView().findViewById(R.id.DistanceSlider)).isShown()) {
-                ((Slider)requireView().findViewById(R.id.DistanceSlider)).setVisibility(View.GONE);
+            if(requireView().findViewById(R.id.DistanceSlider).isShown()) {
+                requireView().findViewById(R.id.DistanceSlider).setVisibility(View.GONE);
                 ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_more_primary);
             }
             else {
-                ((Slider)requireView().findViewById(R.id.DistanceSlider)).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.DistanceSlider).setVisibility(View.VISIBLE);
                 ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
         requireView().findViewById(R.id.IVprice).setOnClickListener(v -> {
-            if(((ChipGroup)requireView().findViewById(R.id.PriceChG)).isShown())
+            if(requireView().findViewById(R.id.PriceChG).isShown())
             {
-                ((ChipGroup)requireView().findViewById(R.id.PriceChG)).setVisibility(View.GONE);
+                requireView().findViewById(R.id.PriceChG).setVisibility(View.GONE);
 
                 ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_more_primary);
 
             }
             else
             {
-                ((ChipGroup)requireView().findViewById(R.id.PriceChG)).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.PriceChG).setVisibility(View.VISIBLE);
 
                 ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
 
         requireView().findViewById(R.id.IVtime).setOnClickListener(v -> {
-            if(((Chip)requireView().findViewById(R.id.Chip_anytime)).isShown())
+            if(requireView().findViewById(R.id.Chip_anytime).isShown())
             {
                 ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_more_primary);
-                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setVisibility(View.GONE);
-                ((Chip)requireView().findViewById(R.id.Chip_custom)).setVisibility(View.GONE);
-                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setVisibility(View.GONE);
-                ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
+                requireView().findViewById(R.id.Chip_anytime).setVisibility(View.GONE);
+                requireView().findViewById(R.id.Chip_custom).setVisibility(View.GONE);
+                requireView().findViewById(R.id.Chip_open_now).setVisibility(View.GONE);
+                requireView().findViewById(R.id.Layout_custom).setVisibility(View.GONE);
 
             }
             else
             {
                 ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_less_primary);
-                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setVisibility(View.VISIBLE);
-                ((Chip)requireView().findViewById(R.id.Chip_custom)).setVisibility(View.VISIBLE);
-                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.Chip_anytime).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.Chip_custom).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.Chip_open_now).setVisibility(View.VISIBLE);
             }
         });
-        requireView().findViewById(R.id.Chip_custom).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.Chip_custom)).isChecked())
-                {
-                    ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
-                    ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
-                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.VISIBLE);
-                }
-                else {((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(true);}
+        requireView().findViewById(R.id.Chip_custom).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.Chip_custom)).isChecked())
+            {
+                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
+                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
+                ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.VISIBLE);
             }
+            else {((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(true);}
         });
-        requireView().findViewById(R.id.Chip_open_now).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.Chip_open_now)).isChecked())
-                {
-                    ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
-                    ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
-                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
-                }
-                else {((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(true);}
+        requireView().findViewById(R.id.Chip_open_now).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.Chip_open_now)).isChecked())
+            {
+                ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
+                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
+                ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
             }
+            else {((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(true);}
         });
-        requireView().findViewById(R.id.Chip_anytime).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((Chip)requireView().findViewById(R.id.Chip_anytime)).isChecked())
-                {
-                    ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
-                    ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
-                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
-                }
-                else {((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(true);}
+        requireView().findViewById(R.id.Chip_anytime).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.Chip_anytime)).isChecked())
+            {
+                ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
+                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
+                ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.GONE);
             }
+            else {((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(true);}
         });
 
-        requireView().findViewById(R.id.IVbeer).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((ChipGroup)requireView().findViewById(R.id.BeerListChG)).isShown())
-                {
-                    ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).setVisibility(View.GONE);
-                    ((TextView)requireView().findViewById(R.id.MoreBeers)).setVisibility(View.GONE);
-                    ((ImageView)requireView().findViewById(R.id.IVbeer)).setImageResource(R.drawable.ic_expand_more_primary);
-                }
-                else
-                {
-                    ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).setVisibility(View.VISIBLE);
-                    ((TextView)requireView().findViewById(R.id.MoreBeers)).setVisibility(View.VISIBLE);
-                    ((ImageView)requireView().findViewById(R.id.IVbeer)).setImageResource(R.drawable.ic_expand_less_primary);
-                }
+        requireView().findViewById(R.id.IVbeer).setOnClickListener(v -> {
+            if(((ChipGroup)requireView().findViewById(R.id.BeerListChG)).isShown())
+            {
+                ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).setVisibility(View.GONE);
+                ((TextView)requireView().findViewById(R.id.MoreBeers)).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.IVbeer)).setImageResource(R.drawable.ic_expand_more_primary);
+            }
+            else
+            {
+                ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).setVisibility(View.VISIBLE);
+                ((TextView)requireView().findViewById(R.id.MoreBeers)).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.IVbeer)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
-        requireView().findViewById(R.id.IVdrinks).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((ChipGroup)requireView().findViewById(R.id.DrinksChG)).isShown())
-                {
-                    ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).setVisibility(View.GONE);
-                    ((ImageView)requireView().findViewById(R.id.IVdrinks)).setImageResource(R.drawable.ic_expand_more_primary);
+        requireView().findViewById(R.id.IVdrinks).setOnClickListener(v -> {
+            if(((ChipGroup)requireView().findViewById(R.id.DrinksChG)).isShown())
+            {
+                ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.IVdrinks)).setImageResource(R.drawable.ic_expand_more_primary);
 
-                }
-                else
-                {
-                    ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).setVisibility(View.VISIBLE);
-                    ((ImageView)requireView().findViewById(R.id.IVdrinks)).setImageResource(R.drawable.ic_expand_less_primary);
+            }
+            else
+            {
+                ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.IVdrinks)).setImageResource(R.drawable.ic_expand_less_primary);
 
-                }
             }
         });
         requireView().findViewById(R.id.buttonreset).setOnClickListener(v -> {
             ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).clearCheck();
             ((ChipGroup)requireView().findViewById(R.id.PriceChG)).clearCheck();
             ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).clearCheck();
-            ((Chip)requireView().findViewById(R.id.Chip_anytime)).performClick();
+            requireView().findViewById(R.id.Chip_anytime).performClick();
             ((RangeSlider)requireView().findViewById(R.id.RatingSlider)).setValues(0f,5f);
             ((Slider)requireView().findViewById(R.id.DistanceSlider)).setValue(5f);
         });
@@ -230,40 +213,32 @@ public class FilterFragment extends Fragment {
     private void dropDownMenusListener()
     {
 
-        requireView().findViewById(R.id.Dayview).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //Down Menus days in FilterFragment
-                popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_days, null);
-                popupWindow = new PopupWindow(popUpView,
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT, true);
-                //Listeners For popup days in filtrarion screen
-                listenersMenuDays(popupWindow, popUpView);
-                //cheking which one is selected to highlight it
-                whichOneCheckedDays(popUpView);
-                popupWindow.showAsDropDown(requireView().findViewById(R.id.Dayview),0,0,Gravity.BOTTOM);
-                requireView().findViewById(R.id.Dayview).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
-                ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
-            }
+        requireView().findViewById(R.id.Dayview).setOnClickListener(v -> {
+            //Down Menus days in FilterFragment
+            popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_days, null);
+            popupWindow = new PopupWindow(popUpView,
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT, true);
+            //Listeners For popup days in filtrarion screen
+            listenersMenuDays(popupWindow, popUpView);
+            //cheking which one is selected to highlight it
+            whichOneCheckedDays(popUpView);
+            popupWindow.showAsDropDown(requireView().findViewById(R.id.Dayview),0,0,Gravity.BOTTOM);
+            requireView().findViewById(R.id.Dayview).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
+            ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
         });
-        requireView().findViewById(R.id.Timeview).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_time, null);
-                popupWindow = new PopupWindow(popUpView,
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT, true);
-                //Listeners For popup time in filtrarion screen
-                listenersmenutime(popupWindow, popUpView);
-                //cheking which one is selected to highlight it
-                whichOneCheckedTime(popUpView);
-                popupWindow.showAsDropDown(requireView().findViewById(R.id.Timeview),0,0,Gravity.BOTTOM);
-                ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
-                ((View)requireView().findViewById(R.id.Timeview)).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
-            }
+        requireView().findViewById(R.id.Timeview).setOnClickListener(v -> {
+            popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_time, null);
+            popupWindow = new PopupWindow(popUpView,
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT, true);
+            //Listeners For popup time in filtrarion screen
+            listenersmenutime(popupWindow, popUpView);
+            //cheking which one is selected to highlight it
+            whichOneCheckedTime(popUpView);
+            popupWindow.showAsDropDown(requireView().findViewById(R.id.Timeview),0,0,Gravity.BOTTOM);
+            ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
+            ((View)requireView().findViewById(R.id.Timeview)).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
         });
     }
 
@@ -273,10 +248,10 @@ public class FilterFragment extends Fragment {
             popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
         }
         else{
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[1]])).performClick();
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])).performClick();
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])).getParent().requestChildFocus(((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])),
-                    ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1])));
+            popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[1]]).performClick();
+            popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]).performClick();
+            popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]).getParent().requestChildFocus(popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]),
+                    popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]));
         }
 
     }
@@ -287,7 +262,7 @@ public class FilterFragment extends Fragment {
             if(n-1!=55) {
                 uncheckTime(popUpView);
                 popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), pubListViewModel.dpToPx(4), pubListViewModel.dpToPx(8), 0, 0);
+                setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), PubListViewModel.dpToPx(4), PubListViewModel.dpToPx(8), 0, 0);
                 ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1])).setText(getString(R.string.from));
                 popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[n - 1]).setVisibility(View.VISIBLE);
                 String text = getString(R.string.from) + (((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1])).getText().toString());
@@ -310,7 +285,7 @@ public class FilterFragment extends Fragment {
                     }else{
                         ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h])).setText(getString(R.string.to));
                         popUpView.findViewById(POP_UP_TIME_TEXT_Od_IDS[h]).setVisibility(View.VISIBLE);
-                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), pubListViewModel.dpToPx(4), pubListViewModel.dpToPx(8), 0, 0);
+                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), PubListViewModel.dpToPx(4), PubListViewModel.dpToPx(8), 0, 0);
                         popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
 
                         ((TextView) (requireView().findViewById(R.id.textView18))).setText( ((TextView) (requireView().findViewById(R.id.textView18))).getText()+getString(R.string.from)+
@@ -369,7 +344,7 @@ public class FilterFragment extends Fragment {
             popUpView.findViewById(id).setBackgroundResource(R.drawable.menu_drop_down_days_shape);
         }
         for (var id : POP_UP_TIME_TEXT_IDS) {
-            setMargins(popUpView.findViewById(id), pubListViewModel.dpToPx(8), pubListViewModel.dpToPx(8), 0, 0);
+            setMargins(popUpView.findViewById(id), PubListViewModel.dpToPx(8), PubListViewModel.dpToPx(8), 0, 0);
         }
         for (var id : POP_UP_TIME_TEXT_Od_IDS) {
             popUpView.findViewById(id).setVisibility(View.GONE);
@@ -401,12 +376,9 @@ public class FilterFragment extends Fragment {
 
     private void listenersMenuDays(PopupWindow popupWindow, View popUpView) {
 
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                requireView().findViewById(R.id.Dayview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
-                ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
-            }
+        popupWindow.setOnDismissListener(() -> {
+            requireView().findViewById(R.id.Dayview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
+            ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
         });
         Integer number=1;
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(DAY_OF_WEEK));

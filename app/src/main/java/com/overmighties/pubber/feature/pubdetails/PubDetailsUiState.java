@@ -7,8 +7,6 @@ import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Ratings;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;

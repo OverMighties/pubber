@@ -69,18 +69,14 @@ public class SignInFragment extends Fragment {
                     });
         });
 
-        requireView().findViewById(R.id.IV_goback_sign_in).setOnClickListener(v->{
-            navController.popBackStack();
-        });
+        requireView().findViewById(R.id.IV_goback_sign_in).setOnClickListener(v-> navController.popBackStack());
 
-        requireView().findViewById(R.id.sign_up_5).setOnClickListener(v->{
-            navController.navigate(getNavDirections(SIGN_IN_FRAGMENT,SIGN_UP_FRAGMENT));
-        });
+        requireView().findViewById(R.id.sign_up_5).setOnClickListener(v-> navController.navigate(getNavDirections(SIGN_IN_FRAGMENT,SIGN_UP_FRAGMENT)));
 
         requireView().findViewById(R.id.SignInFragment).setOnClickListener(v->{
             for(var id: SIGN_IN_TEXT_FIELDS_IDS)
             {
-                TextInputEditText EditText= (TextInputEditText) requireView().findViewById(id);
+                TextInputEditText EditText= requireView().findViewById(id);
                 if (EditText.isFocused()) {
                     EditText.clearFocus();
                     InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -97,7 +93,7 @@ public class SignInFragment extends Fragment {
     private void setUpEditTexts(){
         for (var edit_field: SIGN_IN_TEXT_FIELDS_IDS){
             //reset error message if there is any
-            TextInputEditText editText= (TextInputEditText) requireView().findViewById(edit_field);
+            TextInputEditText editText= requireView().findViewById(edit_field);
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -106,7 +102,7 @@ public class SignInFragment extends Fragment {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     for(var id: SIGN_IN_INPUT_LAYOUTS_IDS){
                         //reset error text
-                        TextInputLayout InputLayout = (TextInputLayout) requireView().findViewById(id);
+                        TextInputLayout InputLayout = requireView().findViewById(id);
                         InputLayout.setError(null);
                     }
                 }

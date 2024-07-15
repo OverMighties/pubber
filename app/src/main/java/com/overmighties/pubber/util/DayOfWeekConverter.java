@@ -111,6 +111,7 @@ public enum DayOfWeekConverter {
         switch(dayOfWeek)
         {
             case 1:
+            case 7:
                 return SUNDAY;
             case 2:
                 return MONDAY;
@@ -122,8 +123,6 @@ public enum DayOfWeekConverter {
                 return THURSDAY;
             case 6:
                 return FRIDAY;
-            case 7:
-                return SUNDAY;
             default:
                 return NONE;
         }

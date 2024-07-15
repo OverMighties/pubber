@@ -1,21 +1,16 @@
 package com.overmighties.pubber.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 
-import com.bumptech.glide.load.engine.Resource;
-
-import java.util.Locale;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 public class SettingsHandler {
-
+    //Blocking default constructor
+    private SettingsHandler(){
+        throw new AssertionError();
+    }
     public static void savePreference(Context context, int theme, String prefs_name, String key) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(prefs_name, Context.MODE_PRIVATE);
         sharedPreferences.edit().putInt(key, theme).apply();

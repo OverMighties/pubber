@@ -80,9 +80,7 @@ public class SignUpFragment  extends Fragment {
             );
         });
 
-        requireView().findViewById(R.id.IV_goback_sign_up).setOnClickListener(v->{
-            navController.popBackStack();
-        });
+        requireView().findViewById(R.id.IV_goback_sign_up).setOnClickListener(v-> navController.popBackStack());
 
         progressBarPassword = requireView().findViewById(R.id.progressBarPassword);
         setUpTextFields();
@@ -103,7 +101,7 @@ public class SignUpFragment  extends Fragment {
                     setGonePasswordUnderlineView();
                 else if (strength <= 2)
                     setWeakPasswordUnderlineView();
-                else if (strength <=3)
+                else if (strength == 3)
                     setAveragePasswordUnderlineView();
                 else
                     setStrongPasswordUnderlineView();
@@ -123,7 +121,7 @@ public class SignUpFragment  extends Fragment {
         requireView().findViewById(R.id.SignUpFragment).setOnClickListener(v->{
             for(var id: SIGN_UP_TEXT_FIELDS_IDS)
             {
-                TextInputEditText EditText= (TextInputEditText) requireView().findViewById(id);
+                TextInputEditText EditText= requireView().findViewById(id);
                 if (EditText.isFocused()) {
                     EditText.clearFocus();
                     InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -136,7 +134,7 @@ public class SignUpFragment  extends Fragment {
         });
         for (var edit_field: SIGN_UP_TEXT_FIELDS_IDS){
             //reset error message if there is any
-            TextInputEditText editText= (TextInputEditText) requireView().findViewById(edit_field);
+            TextInputEditText editText= requireView().findViewById(edit_field);
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -145,7 +143,7 @@ public class SignUpFragment  extends Fragment {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     for(var id: SIGN_UP_INPUT_LAYOUTS_IDS){
                         //reset error text
-                        TextInputLayout InputLayout = (TextInputLayout) requireView().findViewById(id);
+                        TextInputLayout InputLayout = requireView().findViewById(id);
                         InputLayout.setError(null);
                     }
                 }

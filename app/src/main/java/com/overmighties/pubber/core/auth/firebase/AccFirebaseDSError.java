@@ -15,7 +15,8 @@ public class AccFirebaseDSError extends AppError {
         EMAIL,
         PASSWORD,
         OTHER
-    };
+    }
+
     private final Type type;
     public static final String TAG="AccFirebaseDSError";
     public AccFirebaseDSError(String logMessage, UIText userMsg, Type type) {

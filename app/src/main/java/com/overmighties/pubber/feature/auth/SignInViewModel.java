@@ -4,7 +4,6 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.PLACE_CHOICE_FRAGMENT;
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_IN_FRAGMENT;
 
 import androidx.lifecycle.LiveData;
@@ -14,11 +13,9 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
-import com.overmighties.pubber.app.exception.ErrorSigningUIHandler;
 import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
 import com.overmighties.pubber.core.auth.AccountDataSource;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
-import com.overmighties.pubber.util.NotificationSnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
 import com.overmighties.pubber.util.UIText;
 

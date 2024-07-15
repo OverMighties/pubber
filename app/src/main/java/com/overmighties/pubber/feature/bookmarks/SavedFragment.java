@@ -23,7 +23,7 @@ public class SavedFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
 
-        save=(RecyclerView) requireView().findViewById(R.id.savelist);
+        save= requireView().findViewById(R.id.savelist);
         viewModel= new ViewModelProvider(this).get(SavedViewModel.class);
         setup();
     }

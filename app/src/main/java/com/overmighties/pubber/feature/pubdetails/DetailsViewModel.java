@@ -9,12 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -24,7 +19,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.style.TextAppearanceSpan;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,9 +41,9 @@ import com.overmighties.pubber.util.DimensionsConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Getter;
-import lombok.Setter;
 
 public class DetailsViewModel extends ViewModel {
     @Getter
@@ -98,14 +92,8 @@ public class DetailsViewModel extends ViewModel {
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
 
-        Bitmap snapshot = bitmap;
-
-        if (snapshot == null) {
-            pubDetails.getValue().setCurrentScreen(null);
-        } else {
-            Bitmap screen = BlurImage(snapshot, context);
-            pubDetails.getValue().setCurrentScreen(screen);
-        }
+        Bitmap screen = BlurImage(bitmap, context);
+        Objects.requireNonNull(pubDetails.getValue()).setCurrentScreen(screen);
 
     }
     @SuppressLint("NewApi")
@@ -192,24 +180,24 @@ public class DetailsViewModel extends ViewModel {
         return shapeableImageView;
     }
 
-    public void SetCheckedChipsIds(ChipGroup beerChipGroup, ChipGroup drinkChipGroup, ArrayList<DrinkDto> drinksDataSet1){
+    public void setCheckedChipsIds(ChipGroup beerChipGroup, ChipGroup drinkChipGroup, List<DrinkDto> drinksDataSet1){
         List<Integer> IdsBeer = new ArrayList<>();
-        List <Integer> IdsDrink = new ArrayList<>();
+        List<Integer> IdsDrink = new ArrayList<>();
 
-        for (DrinkDto alldrinks:drinksDataSet1){
-            if(alldrinks.getType().equals("Beer")){
+        for (DrinkDto allDrinks:drinksDataSet1){
+            if(allDrinks.getType().equals("Beer")){
                 for(int i=0;i<beerChipGroup.getChildCount();i++){
                     if(((Chip)beerChipGroup.getChildAt(i)).getText().toString().toLowerCase().replaceAll("\\s+","").
-                            equals(alldrinks.getName().toLowerCase().replaceAll("\\s+",""))){
-                        IdsBeer.add(((Chip)beerChipGroup.getChildAt(i)).getId());
+                            equals(allDrinks.getName().toLowerCase().replaceAll("\\s+",""))){
+                        IdsBeer.add(beerChipGroup.getChildAt(i).getId());
                     }
                 }
             }
             else{
                 for(int i=0;i<drinkChipGroup.getChildCount();i++){
                     if(((Chip)drinkChipGroup.getChildAt(i)).getText().toString().toLowerCase().replaceAll("\\s+","").
-                            equals(alldrinks.getName().toLowerCase().replaceAll("\\s+",""))){
-                        IdsDrink.add(((Chip)drinkChipGroup.getChildAt(i)).getId());
+                            equals(allDrinks.getName().toLowerCase().replaceAll("\\s+",""))){
+                        IdsDrink.add(drinkChipGroup.getChildAt(i).getId());
                     }
                 }
             }
@@ -231,7 +219,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public int stringToIntRatingConverter(String rating){
-        return Integer.valueOf(rating.replace(",","."));
+        return Integer.parseInt(rating.replace(",","."));
     }
 
     public void setUpGoogleTextView(TextView textView, TextAppearanceSpan red, TextAppearanceSpan blue, TextAppearanceSpan green, TextAppearanceSpan yellow, TextAppearanceSpan blue2, TextAppearanceSpan red2){

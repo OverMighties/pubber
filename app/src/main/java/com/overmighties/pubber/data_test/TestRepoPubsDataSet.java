@@ -1,6 +1,5 @@
 package com.overmighties.pubber.data_test;
 
-import com.overmighties.pubber.R;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.core.network.model.PhotoDto;
@@ -12,8 +11,8 @@ import java.util.List;
 
 import lombok.Getter;
 
+@Getter
 public class TestRepoPubsDataSet {
-    @Getter
     private List<PubDto> dataSet;
 
     private final static TestRepoPubsDataSet INSTANCE=new TestRepoPubsDataSet();
@@ -29,8 +28,8 @@ public class TestRepoPubsDataSet {
     private static ArrayList<OpeningHoursDto> openingHoursDataSet1;
     private static ArrayList<OpeningHoursDto> openingHoursDataSet2;
     private static ArrayList<OpeningHoursDto> openingHoursDataSet3;
-    private static ArrayList<OpeningHoursDto>  openingHoursDataSet4;
-    private static ArrayList<OpeningHoursDto>openingHoursDataSet5;
+    private static ArrayList<OpeningHoursDto> openingHoursDataSet4;
+    private static ArrayList<OpeningHoursDto> openingHoursDataSet5;
     private static ArrayList<OpeningHoursDto> openingHoursDataSet6;
 
     private static ArrayList<PhotoDto> photosDataSet1;

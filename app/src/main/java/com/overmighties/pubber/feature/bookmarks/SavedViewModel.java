@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import lombok.Getter;
 
+@Getter
 public class SavedViewModel extends ViewModel {
-    @Getter
     private final MutableLiveData<String> savedList =new MutableLiveData<>();
 }
