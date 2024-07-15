@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -60,7 +61,7 @@ public class FilterUtil {
     public FilterUtil distanceFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if(filterUiState.getDistance()==BASE_DISTANCE || filterUiState.getDistance()==null) {
+        if(filterUiState.getDistance() == BASE_DISTANCE) {
             return this;
         }
         for(var pubData: filteredPubs) {
@@ -83,14 +84,14 @@ public class FilterUtil {
         for(var pubData: filteredPubs) {
             tonext:
             for( var drinkPub:pubData.getDrinks()) {
-                for( var drinkFilter: filterUiState.getBeers()) {
-                    if (drinkPub.equals(drinkFilter) ) {
+                for( var drinkFilter: Objects.requireNonNull(filterUiState.getBeers())) {
+                    if (drinkPub.getName().equals(drinkFilter) ) {
                         filteredNow.add(pubData);
                         break tonext;
                     }
                 }
-                for( var drinkFilter: filterUiState.getOtherDrinks()) {
-                    if (drinkPub.equals(drinkFilter) ) {
+                for( var drinkFilter: Objects.requireNonNull(filterUiState.getOtherDrinks())) {
+                    if (drinkPub.getName().equals(drinkFilter) ) {
                         filteredNow.add(pubData);
                         break tonext;
                     }
