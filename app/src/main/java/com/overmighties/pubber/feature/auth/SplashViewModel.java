@@ -63,7 +63,7 @@ public class SplashViewModel extends PubberAppViewModel {
     //To api<14
     private Single<UserData> firebaseAuthWithGoogle(Intent data, SignInClient signInClient)  {
         // Google Sign In was successful, authenticate with Firebase
-        SignInCredential credential = null;
+        SignInCredential credential;
         try {
             credential = signInClient.getSignInCredentialFromIntent(data);
         } catch (ApiException e) {
