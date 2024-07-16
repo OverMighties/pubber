@@ -1,9 +1,11 @@
 package com.overmighties.pubber.feature.settings;
 
+import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,20 +18,22 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
 import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.util.SettingsHandler;
+import com.overmighties.pubber.util.UIText;
 
 public class SettingsFragment extends Fragment {
     public static final String TAG="SettingsFragment";
-    private SettingsViewModel viewModel;
     private NavController navController;
-
+    private AccountViewModel accountViewModel;
     public SettingsFragment(){
         super(R.layout.fragment_settings);
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
+        accountViewModel = new ViewModelProvider(requireActivity())
+                .get(AccountViewModel.class);
 
     }
     @Override
@@ -66,6 +70,9 @@ public class SettingsFragment extends Fragment {
 
         requireView().findViewById(R.id.about_us_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsAboutFragment()));
 
+        requireView().findViewById(R.id.logout_go_to).setOnClickListener(v-> accountViewModel.onSignOutClick(
+                (from,to)-> navController.navigate(getNavDirections(from,to)),
+                (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes)));
 
     }
 
