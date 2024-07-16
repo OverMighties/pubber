@@ -10,7 +10,6 @@
         android:id="@+id/PopUpScrollView"
         android:layout_width="168dp"
         android:layout_height="0dp"
-
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,56 +21,25 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tg0300"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/menu_drop_down_days_shape"
+                android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView44"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
 
                 <TextView
                     android:id="@+id/texttg0300"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3.5dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0300"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odtg0300"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/TVt0300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    app:layout_constraintStart_toEndOf="@id/texttg0300"
-                    app:layout_constraintTop_toTopOf="@id/texttg0300"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="10sp"
-                    android:text="@string/next_day"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TextView
-                    android:id="@+id/Odtg0300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/texttg0300" />
+                    android:layout_marginStart="8dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tg0230"
@@ -82,50 +50,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView46"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/texttg0230"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0230"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odtg0230"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/TVt0230"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:textColor="@color/on_surface_variant"
-                    app:layout_constraintStart_toEndOf="@id/texttg0230"
-                    app:layout_constraintTop_toTopOf="@id/texttg0230"
-                    android:layout_marginTop="4dp"
-                    android:textSize="10sp"
-                    android:text="@string/next_day"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TextView
-                    android:id="@+id/Odtg0230"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/texttg0230" />
+                    android:layout_marginStart="8dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -138,50 +75,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView50"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/texttg0200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0200"
+                    android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    android:textColor="@color/on_surface_variant"
-                    app:layout_constraintStart_toEndOf="@+id/Odtg0200"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/TVt0200"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    app:layout_constraintStart_toEndOf="@id/texttg0200"
-                    app:layout_constraintTop_toTopOf="@id/texttg0200"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="10sp"
-                    android:text="@string/next_day"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TextView
-                    android:id="@+id/Odtg0200"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/texttg0200" />
+                    android:layout_marginStart="8dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tg0130"
@@ -192,50 +98,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView47"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/texttg0130"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0130"
+                    android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    android:textColor="@color/on_surface_variant"
-                    app:layout_constraintStart_toEndOf="@+id/Odtg0130"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/TVt0130"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    app:layout_constraintStart_toEndOf="@id/texttg0130"
-                    app:layout_constraintTop_toTopOf="@id/texttg0130"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="10sp"
-                    android:text="@string/next_day"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TextView
-                    android:id="@+id/Odtg0130"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/texttg0130" />
+                    android:layout_marginStart="8dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tg0100"
@@ -246,50 +121,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView48"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/texttg0100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0100"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odtg0100"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/TVt0100"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    app:layout_constraintStart_toEndOf="@id/texttg0100"
-                    app:layout_constraintTop_toTopOf="@id/texttg0100"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="10sp"
-                    android:text="@string/next_day"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TextView
-                    android:id="@+id/Odtg0100"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/texttg0100" />
+                    android:layout_marginStart="8dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -302,50 +147,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView40"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/texttg0030"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0030"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odtg0030"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/TVt0030"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    app:layout_constraintStart_toEndOf="@id/texttg0030"
-                    app:layout_constraintTop_toTopOf="@id/texttg0030"
-                    android:layout_marginTop="4dp"
-                    android:textSize="10sp"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/next_day"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TextView
-                    android:id="@+id/Odtg0030"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/texttg0030" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -358,39 +174,21 @@
                 app:layout_constraintBottom_toTopOf="@+id/tg0030"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView51"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
 
                 <TextView
                     android:id="@+id/textg2400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="7dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_2400"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2400"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2400"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2400" />
+                    android:layout_marginStart="8dp"
+                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -403,39 +201,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2330"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_2330"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2330"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2330"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2330" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -449,39 +229,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2300"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_2300"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2300"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2300" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -495,39 +257,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2230"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_2230"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2230"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2230"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2230" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -541,39 +285,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_2200"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2200"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2200"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2200" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -587,39 +313,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2130"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_2130"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2130"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2130"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2130" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -633,39 +341,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_2100"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2100"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2100"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2100" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -679,39 +369,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2030"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_2030"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2030"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2030"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2030" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -725,39 +397,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView23"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg2000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_2000"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg2000"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg2000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg2000" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -771,39 +425,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView25"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1930"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1930"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1930"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1930"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1930" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -817,39 +453,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView26"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1900"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1900"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1900"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1900"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1900" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -863,39 +481,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView27"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1830"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1830"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1830"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1830"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1830" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -909,39 +509,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView28"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1800"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1800"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1800"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1800"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1800" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -955,38 +537,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1730"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1730"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1730"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1730"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1730" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1000,38 +565,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1700"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1700"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1700"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1700"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1700" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1045,38 +593,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1630"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1630"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1630"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1630"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1630" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1090,38 +621,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1600"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1600"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1600"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1600"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1600" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1135,38 +649,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1530"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1530"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1530"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1530"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1530" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1180,38 +677,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1500"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1500"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1500"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1500" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1225,38 +705,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1430"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1430"
-                    android:textSize="16sp"
                     android:textColor="@color/on_surface_variant"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1430"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1430"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1430" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1270,38 +733,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1400"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1400"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1400"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1400" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1315,38 +761,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1330"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1330"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1330"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1330"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1330" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1360,38 +789,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1300"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1300"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1300"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1300" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1405,38 +817,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1230"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1230"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1230"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1230"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1230" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1450,38 +845,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1200"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1200"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1200"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1200" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1495,38 +873,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1130"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1130"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1130"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1130"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1130" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1540,38 +901,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1100"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1100"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1100"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1100" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1585,38 +929,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1030"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_1030"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1030"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1030"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1030" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1630,38 +957,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg1000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_1000"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg1000"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg1000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg1000" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1675,38 +985,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0930"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0930"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0930"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0930"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0930" />
+                    android:layout_marginStart="8dp"
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1720,38 +1013,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0900"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0900"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0900"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0900"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0900" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1763,38 +1039,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0830"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0830"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0830"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0830"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0830" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1806,38 +1065,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0800"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0800"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0800"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0800"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0800" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1849,38 +1091,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0730"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0730"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0730"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0730"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0730" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1892,38 +1117,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0700"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0700"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0700"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0700"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0700" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1935,38 +1143,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0630"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0630"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0630"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0630"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/time_0230"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0630" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1978,38 +1169,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0600"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0600"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0600"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0600"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/time_0230"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0600" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2021,38 +1195,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0530"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0530"
-                    android:textSize="16sp"
                     android:textColor="@color/on_surface_variant"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0530"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0530"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0530" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2064,38 +1221,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0500"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0500"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0500"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0500" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2107,38 +1247,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0430"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0430"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0430"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0430"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/time_0230"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0430" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2150,38 +1273,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0400"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0400"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0400"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/time_0230"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0400" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2193,38 +1299,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0330"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0330"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0330"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0330"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0330" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2236,38 +1325,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0300"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0300"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0300"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0300" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2279,38 +1351,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0230"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0230"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0230"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0230"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0230" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2322,38 +1377,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
                     android:gravity="center"
                     android:text="@string/time_0200"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0200"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0200"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0200" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2365,38 +1403,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0130"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textColor="@color/on_surface_variant"
                     android:text="@string/time_0130"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0130"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0130"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0130" />
+                    android:layout_marginStart="8dp"
+                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -2409,38 +1430,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0100"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0100"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0100"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0100" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2452,38 +1456,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0030"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
                     android:gravity="center"
                     android:text="@string/time_0030"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0030"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/Odg0030"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0030" />
+                    android:layout_marginStart="8dp"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2495,39 +1482,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textg0000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="@string/time_0000"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/Odg0000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/Odg0000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/on_surface_variant"
-                    android:text="@string/from"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textg0000" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -2539,26 +1507,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    app:cardBackgroundColor="@color/outline"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:layout_editor_absoluteX="4dp" />
-
                 <TextView
                     android:id="@+id/textgdowolne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:textColor="@color/on_surface_variant"
                     android:text="@string/anytime"
                     android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginStart="8dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -2571,8 +1533,8 @@
         android:layout_width="168dp"
         android:layout_height="7dp"
         android:background="@drawable/menu_drop_out_list_shape_scrollview_up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
