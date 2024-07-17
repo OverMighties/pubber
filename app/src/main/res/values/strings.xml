@@ -277,4 +277,11 @@
     <string name="female">Female</string>
     <string name="other">Other</string>
 
+    <!-- Alert dialog with location permission-->
+    <string name="location_alert_dialog_title">Location Permission Needed</string>
+    <string name="location_alert_dialog_message">This app needs location permissions to calculate distances between you and pubs. Please grant location access.</string>
+    <string name="location_alert_dialog_positive">Ok</string>
+    <string name="location_alert_dialog_negative">No thanks</string>
+
+
 </resources>

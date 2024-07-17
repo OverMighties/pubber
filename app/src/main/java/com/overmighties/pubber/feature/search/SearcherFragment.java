@@ -39,12 +39,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
+import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
 
-public class SearcherFragment extends Fragment implements SelectListener {
+public class SearcherFragment extends BaseFragmentWithPermission implements SelectListener {
 
     public static final String TAG = "SearcherFragment";
     public static final int REFRESH_MIN_TIME_MS=1500;
@@ -79,11 +80,12 @@ public class SearcherFragment extends Fragment implements SelectListener {
             pubListViewModel.getPubsFromRepo(0);
         }
         swipeRefreshLayout = requireActivity().findViewById(R.id.swipeRefresh);
-        Log.i(TAG,"onViewCreated");
+//        Log.i(TAG,"onViewCreated");
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
+        actionOnLocationAvailable(null);
         //swipeRefreshLayout.setRefreshing(true);
         adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
         recyclerView.setAdapter(adapter);
