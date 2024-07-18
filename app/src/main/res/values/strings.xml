@@ -134,6 +134,21 @@
     <string name="account_detail_content_cardview">detail content\n</string>
     <string name="log_out">Log Out</string>
 
+    <!-- first time fragments strings -->
+    <string name="welcome_in_pubber">Welcome in Pubber !</string>
+    <string name="first_time_info">We hope to help you find pubs that match your taste and to stay by your side as long as possible.</string>
+    <string name="next">Next</string>
+    <string name="choose_language">App\'s language</string>
+    <string name="choose_theme">App\'s theme</string>
+    <string name="theme">Motyw aplikacji</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="polish">Polski</string>
+    <string name="english">English</string>
+    <string name="con">Continue</string>
+    <string name="example_button">Button example</string>
+    <string name="text">Text</string>
+
     <!-- general string used in more than one layout-->
     <string name="go_back">go_back</string>
     <string name="more">more</string>
@@ -150,14 +165,6 @@
     <string name="available_alcohols">Available alcohols</string>
     <string name="language">Language</string>
 
-
-    <!-- splash screen setting pup up window-->
-    <string name="theme">App\'s Theme</string>
-    <string name="light">Light</string>
-    <string name="dark">Dark</string>
-    <string name="polish">Polish</string>
-    <string name="english">English</string>
-    <string name="con">Continue</string>
 
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sort based on:</string>

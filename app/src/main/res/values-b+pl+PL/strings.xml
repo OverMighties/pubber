@@ -130,8 +130,25 @@
     <string name="content_description_profile_image">Twoje zdjęcie profilowe</string>
     <string name="account_detail_title_cardview">Detail name:</string>
     <string name="account_detail_content_cardview">detail content\n</string>
-    <string name="log_out">Wyloguj</string>
-    
+    <string name="log_out">Wyloguj</string>,
+
+    <!-- first time fragments strings -->
+    <string name="welcome_in_pubber">Witaj w Pubberze !</string>
+    <string name="first_time_info">Mamy nadzieję, że pozwolimy ci znaleźć odpowiednie dla Ciebie puby i zostaniesz z nami jak najdłużesz.</string>
+    <string name="next">Dalej</string>
+    <string name="choose_language">Język aplikacji</string>
+    <string name="choose_theme">Motyw aplikacji</string>
+    <string name="theme">Motyw aplikacji</string>
+    <string name="light">Jasny</string>
+    <string name="dark">Ciemny</string>
+    <string name="polish">Polski</string>
+    <string name="english">English</string>
+    <string name="con">Kontynuj</string>
+    <string name="example_button">Przykładowy przycisk</string>
+    <string name="text">Tekst</string>
+
+
+
     <!-- general string used in more than one layout-->
     <string name="go_back">Wróć</string>
     <string name="more">Więcej</string>
@@ -149,13 +166,6 @@
     <string name="language">Język</string>
 
 
-    <!-- splash screen setting pup up window-->
-    <string name="theme">Motyw Aplikacji</string>
-    <string name="light">Jasny</string>
-    <string name="dark">Ciemny</string>
-    <string name="polish">Polski</string>
-    <string name="english">Angielski</string>
-    <string name="con">Kontynuj</string>
 
 
 

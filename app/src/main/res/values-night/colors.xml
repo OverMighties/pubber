@@ -33,6 +33,7 @@
     <color name="opposing_on_surface">#111f2b</color>
     <color name="opposing_surface_container">#c4ccd3</color>
     <color name="opposing_on_secondary_container">#022242</color>
+    <color name="opposing_outline">#62717e</color>
     <color name="opposing_status_bar">#c9d4db</color>
     <color name="error">#ffb4ab</color>
     <color name="error_container">#93000a</color>

@@ -13,17 +13,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.notifications.NotificationHandler;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
-import com.overmighties.pubber.app.ui.DarkModeTheme;
+import com.overmighties.pubber.app.ui.SettingsBasicActivity;
 
 import java.util.Objects;
 
 
-public class MainActivity extends DarkModeTheme {
+public class MainActivity extends SettingsBasicActivity {
 
     public static final String TAG="MainActivity";
     private ActivityMainBinding binding;
@@ -48,7 +47,7 @@ public class MainActivity extends DarkModeTheme {
         navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment))).getNavController();
 
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
-//        AppBarConfiguration  bottomNavConfiguration =
+//      AppBarConfiguration  bottomNavConfiguration =
 //                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
         bottomNavSize();
