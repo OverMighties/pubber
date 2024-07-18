@@ -103,8 +103,8 @@ public class SplashFragment extends Fragment {
             showPopUp();
         }
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)
-                .navigate(getNavDirections(from,to))), SPLASH_DELAY);
+        (requireActivity().findViewById(R.id.SplashFragment)).post(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)
+                .navigate(getNavDirections(from,to))));
 
     }
     private void signInWithGoogle() {

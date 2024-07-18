@@ -410,7 +410,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView9"
+                        android:id="@+id/logout_card_view"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginEnd="12dp"
@@ -441,7 +441,7 @@
                         android:layout_centerVertical="true"
                         android:textColor="@color/on_surface_variant"
                         android:fontFamily="@font/roboto_bold"
-                        android:layout_toEndOf="@+id/cardView9"
+                        android:layout_toEndOf="@+id/logout_card_view"
                         android:text="@string/log_out" />
 
                     <ImageView

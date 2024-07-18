@@ -18,7 +18,7 @@ android {
     }
     defaultConfig {
         applicationId 'com.overmighties.pubber'
-        minSdk 29
+        minSdk 31
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -123,5 +123,9 @@ dependencies {
 
     // Jetpack Annotations
     implementation 'androidx.annotation:annotation:1.8.0'
+
+    //Google location
+    implementation 'com.google.maps:google-maps-services:2.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 
 }
