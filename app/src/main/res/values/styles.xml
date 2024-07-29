@@ -170,6 +170,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="android:background">@color/secondary</item>
         <item name="android:textColor">@color/on_surface_variant</item>
+
     </style>
     
     <style name="CustomTextInputLayout">

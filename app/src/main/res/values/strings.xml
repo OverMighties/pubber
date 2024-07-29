@@ -150,7 +150,7 @@
     <string name="text">Text</string>
 
     <!-- general string used in more than one layout-->
-    <string name="go_back">go_back</string>
+    <string name="go_back">go back</string>
     <string name="more">more</string>
     <string name="less">less</string>
     <string name="rating">Rating</string>
@@ -158,7 +158,9 @@
     <string name="price">Price</string>
     <string name="time_open">Time open</string>
     <string name="beers">Beers</string>
+    <string name="beers_present">Beers:</string>
     <string name="drinks">Drinks</string>
+    <string name="drinks_present">Drinks:</string>
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>

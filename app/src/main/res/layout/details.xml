@@ -40,7 +40,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
                 android:layout_width="0dp"
-                android:layout_height="47dp"
+                android:layout_height="50dp"
                 android:background="@color/surface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,14 +63,14 @@
                 android:id="@+id/ClDetailsInfo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingBottom="12dp"
                 android:background="@drawable/constraint_layout_margin_down_dim"
+                android:paddingBottom="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/namecl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,9 +194,10 @@
                 android:id="@+id/OvClTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
                 android:background="@drawable/constraint_layout_margin_down_dim"
-                android:paddingBottom="7.5dp"
                 android:paddingTop="7.5dp"
+                android:paddingBottom="7.5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -541,637 +542,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/OvClAlcohol"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/constraint_layout_margin_down_dim"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClSite">
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/BeerListChG"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView25">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/AleBrowar"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/AleBrowar"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Amber"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Amber"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Artezan"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Artezan"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Budweiser"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Budweiser"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Brokreacja"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Brokreacja"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Cieszyn"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Cieszyn"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Fortuna"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Fortuna"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/FunkyFluids"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/FunkyFluids"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Grimbergen"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Grimbergen"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Grodziskie"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Grodziskie"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Grolsch"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Grolsch"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Kingpin"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Kingpin"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Komes"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Komes"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Komoran"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Komoran"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Kozel"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Kozel"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Książęce"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Książęce"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Miłosław"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Miłosław"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Moczybroda"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Moczybroda"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/NaJurze"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/NaJurze"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Nepomucen"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Nepomucen"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Paulaner"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Paulaner"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/PilsnerUrquell"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/PilsenrUrquell"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Pinta"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Pinta"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Primator"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Primator"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Raduga"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Raduga"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Recraft"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Recraft"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/TrzechKumpli"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/TrzechKumpli"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Zatecky"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Zatecky"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Zamiastem"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Zamiastem"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Żywiec"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Żywiec"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                </com.google.android.material.chip.ChipGroup>
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/DrinksChG"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-
-                    android:layout_marginStart="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView26">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/BlackRussian"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/BlackRussian"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/B52"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/B52"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Cosmopolitan"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Cosmopolitan"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/CubaLibre"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/CubaLibre"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Daiquiri"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Daiquiri"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Kamikaze"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Kamikaze"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/KrwawaMary"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/KrwawaMary"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/LongIsland"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/LongIsland"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Margarita"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Margarita"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Martini"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Martini"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Mojito"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Mojito"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/PinaColada"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/PinaColada"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/Sexonthebeach"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/Sexonthebeach"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/TequilaSunrise"
-                        style="@style/FilterChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:text="@string/TequilaSunrise"
-                        android:visibility="gone"
-                        app:checkedIconEnabled="false" />
-
-                </com.google.android.material.chip.ChipGroup>
-
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="Wyświetl Alkohole"
-                    android:textColor="@color/on_surface"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@id/imageView4"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="Browary:"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
-
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="Drinki:"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/BeerListChG" />
-
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="27dp"
-                    android:text=""
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="2dp"
-                    android:src="@drawable/beer_full_black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/on_surface" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="264dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClAlcohol">
+                app:layout_constraintTop_toBottomOf="@+id/OvClSite">
 
                 <TextView
                     android:id="@+id/TV_rating_trip"
@@ -1187,12 +562,12 @@
                     android:id="@+id/TV_trip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tripadvisor"
                     android:layout_marginTop="8dp"
                     android:shadowColor="@color/trip_advisor"
                     android:shadowDx="1.8"
                     android:shadowDy="1.3"
                     android:shadowRadius="3"
+                    android:text="@string/tripadvisor"
                     android:textColor="@color/trip_advisor"
                     android:textColorHighlight="@color/trip_advisor"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -1204,8 +579,8 @@
                     android:id="@+id/TV_google"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/google"
                     android:layout_marginTop="8dp"
+                    android:text="@string/google"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1214,12 +589,12 @@
                     android:id="@+id/TV_facebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/facebook"
                     android:layout_marginTop="8dp"
                     android:shadowColor="@color/facebook"
                     android:shadowDx="1.8"
                     android:shadowDy="1.3"
                     android:shadowRadius="3"
+                    android:text="@string/facebook"
                     android:textColor="@color/facebook"
                     android:textColorHighlight="@color/facebook"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -1231,8 +606,8 @@
                     android:id="@+id/TV_rating_google"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:text="@string/rating"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="@+id/TV_google"
                     app:layout_constraintStart_toStartOf="@+id/TV_google"
                     app:layout_constraintTop_toBottomOf="@+id/TV_google" />
@@ -1241,11 +616,53 @@
                     android:id="@+id/TV_rating_facebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:text="@string/rating"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="@+id/TV_facebook"
                     app:layout_constraintStart_toStartOf="@+id/TV_facebook"
                     app:layout_constraintTop_toBottomOf="@+id/TV_facebook" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="198dp"
+                android:background="@drawable/constraint_layout_margin_down_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ClDetailsInfo">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/beers"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toTopOf="@+id/textView3"
+                    app:srcCompat="@drawable/ic_expand_less_primary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

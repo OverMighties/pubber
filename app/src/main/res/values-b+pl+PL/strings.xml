@@ -158,7 +158,9 @@
     <string name="price">Cena</string>
     <string name="time_open">Godziny otwarcia</string>
     <string name="beers">Piwa</string>
+    <string name="beers_present">Piwa:</string>
     <string name="drinks">Drinki</string>
+    <string name="drinks_present">Drinki:</string>
     <string name="cheap">$</string>
     <string name="medium_price">$$</string>
     <string name="expensive">$$$</string>

@@ -177,20 +177,20 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             }
 
         });
-
+        //TODO fix bug that no idea why  pubcardView.getAlcohol gives more alcohols than is should be based on fakedataset
         holder.alcoholChip.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomDialog);
             LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
-            View dialogView = inflater.inflate(R.layout.pub_recycler_view_row_dialog_box_chips, null);
-
-            ChipGroup chipGroup = dialogView.findViewById(R.id.dialog_chip_group);
+            View dialogView = inflater.inflate(R.layout.pub_recycler_view_row_dialog_alcohols, null);
+            ChipGroup beerChipGroup = dialogView.findViewById(R.id.dialog_beers_CHG);
+            ChipGroup drinkChipGroup = dialogView.findViewById(R.id.dialog_drinks_CHG);
             if (pubCardView.getAlcohol() != null) {
                 for (var alcohol : pubCardView.getAlcohol()) {
                     Chip chip = new Chip(holder.itemView.getContext());
                     chip.setText(alcohol.getName());
                     chip.setPadding(16, 0, 16, 0);
-                    chip.setChipCornerRadius(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 45));
-                    chip.setChipBackgroundColorResource(R.color.surface_variant);
+                    chip.setChipCornerRadius(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 8));
+                    chip.setChipBackgroundColorResource(R.color.surface_container_highest);
                     chip.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.on_surface_variant));
                     chip.setTextSize(14);
                     chip.setChipStrokeColorResource(R.color.outline);
@@ -198,13 +198,22 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
                     chip.setLayoutParams(params);
-                    chipGroup.addView(chip);
+                    if(alcohol.getType().equals("Beer")){
+                        beerChipGroup.addView(chip);
+                    }
+                    else{
+                        drinkChipGroup.addView(chip);
+                    };
                 }
             }
+
+
             builder.setView(dialogView);
-            builder.setTitle(holder.itemView.getContext().getString(R.string.available_alcohols));
-            builder.setPositiveButton(holder.itemView.getContext().getString(R.string.go_back), null);
-            builder.show();
+            AlertDialog alertDialog = builder.create();
+            dialogView.findViewById(R.id.dialog_go_back).setOnClickListener(view->{
+                alertDialog.dismiss();
+            });
+            alertDialog.show();
         });
 
         if (chiptag.equals("Small")){

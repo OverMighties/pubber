@@ -85,7 +85,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements Sele
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
-        actionOnLocationAvailable(null);
+        //gives me null poiner exception
+        //actionOnLocationAvailable(null);
         //swipeRefreshLayout.setRefreshing(true);
         adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
         recyclerView.setAdapter(adapter);
