@@ -38,7 +38,7 @@ public class LanguageFragment extends Fragment {
         ukrainian,
         english
     }
-
+    //TODO check system's language and determine which one should be checked at start
 
     public LanguageFragment(){super(R.layout.fragment_language);}
 

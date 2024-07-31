@@ -119,10 +119,10 @@ public class TestRepoPubsDataSet {
         openingHoursDataSet2=new ArrayList<>();
         photosDataSet2=new ArrayList<>();
 
-        drinksDataSet1.add(new DrinkDto("AleBrowar","Beer"));
-        drinksDataSet1.add(new DrinkDto("Amber","Beer"));
-        drinksDataSet1.add(new DrinkDto("Artezanr","Beer"));
-        drinksDataSet1.add(new DrinkDto("Sexonthebeach","Cocktail"));
+        drinksDataSet2.add(new DrinkDto("AleBrowar","Beer"));
+        drinksDataSet2.add(new DrinkDto("Amber","Beer"));
+        drinksDataSet2.add(new DrinkDto("Artezanr","Beer"));
+        drinksDataSet2.add(new DrinkDto("Sexonthebeach","Cocktail"));
 
         openingHoursDataSet2.add(new OpeningHoursDto("MONDAY","00:00","00:00"));
         openingHoursDataSet2.add(new OpeningHoursDto("WEDNESDAY","00:00","00:00"));
@@ -138,9 +138,9 @@ public class TestRepoPubsDataSet {
         openingHoursDataSet3=new ArrayList<>();
         photosDataSet3=new ArrayList<>();
 
-        drinksDataSet1.add(new DrinkDto("AleBrowar","Beer"));
-        drinksDataSet1.add(new DrinkDto("FunkyFluids","Cocktail"));
-        drinksDataSet1.add(new DrinkDto("Sexonthebeach","Cocktail"));
+        drinksDataSet3.add(new DrinkDto("AleBrowar","Beer"));
+        drinksDataSet3.add(new DrinkDto("FunkyFluids","Cocktail"));
+        drinksDataSet3.add(new DrinkDto("Sexonthebeach","Cocktail"));
 
         openingHoursDataSet3.add(new OpeningHoursDto("MONDAY","18:00","01:00"));
         openingHoursDataSet3.add(new OpeningHoursDto("TUESDAY","18:00","01:00"));
@@ -156,9 +156,9 @@ public class TestRepoPubsDataSet {
         openingHoursDataSet4=new ArrayList<>();
         photosDataSet4=new ArrayList<>();
 
-        drinksDataSet1.add(new DrinkDto("Komes","Beer"));
-        drinksDataSet1.add(new DrinkDto("Amber","Beer"));
-        drinksDataSet1.add(new DrinkDto("Martini","Cocktail"));
+        drinksDataSet4.add(new DrinkDto("Komes","Beer"));
+        drinksDataSet4.add(new DrinkDto("Amber","Beer"));
+        drinksDataSet4.add(new DrinkDto("Martini","Cocktail"));
 
         openingHoursDataSet4.add(new OpeningHoursDto("MONDAY","18:00","01:00"));
         openingHoursDataSet4.add(new OpeningHoursDto("TUESDAY","00:00","02:00"));
@@ -174,9 +174,9 @@ public class TestRepoPubsDataSet {
         openingHoursDataSet5=new ArrayList<>();
         photosDataSet5=new ArrayList<>();
 
-        drinksDataSet1.add(new DrinkDto("Recraft","Beer"));
-        drinksDataSet1.add(new DrinkDto("Amber","Beer"));
-        drinksDataSet1.add(new DrinkDto("Martini","Cocktail"));
+        drinksDataSet5.add(new DrinkDto("Recraft","Beer"));
+        drinksDataSet5.add(new DrinkDto("Amber","Beer"));
+        drinksDataSet5.add(new DrinkDto("Martini","Cocktail"));
 
         openingHoursDataSet5.add(new OpeningHoursDto("MONDAY","18:00","01:00"));
         openingHoursDataSet5.add(new OpeningHoursDto("TUESDAY","00:00","02:00"));

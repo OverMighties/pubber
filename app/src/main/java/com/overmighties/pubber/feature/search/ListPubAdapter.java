@@ -177,7 +177,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             }
 
         });
-        //TODO fix bug that no idea why  pubcardView.getAlcohol gives more alcohols than is should be based on fakedataset
+
         holder.alcoholChip.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomDialog);
             LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
