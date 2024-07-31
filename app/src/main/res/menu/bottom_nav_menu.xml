@@ -6,14 +6,15 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/list" />
 
+
+    <item
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/ic_map"
+        android:title="@string/map"/>
+
     <item
         android:id="@+id/savedFragment"
         android:icon="@drawable/hearth_full_nav"
         android:title="@string/favorite" />
-
-    <item
-        android:id="@+id/settings_graph"
-        android:icon="@drawable/ic_settings_24px"
-        android:title="@string/settings"/>
 
 </menu>

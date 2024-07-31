@@ -166,6 +166,7 @@
     <string name="expensive">$$$</string>
     <string name="available_alcohols">Available alcohols</string>
     <string name="language">Language</string>
+    <string name="map">Map</string>
 
 
     <!--searcher and it's pop ups-->

@@ -9,14 +9,6 @@
     <include app:graph="@navigation/settings_graph"/>
 
     <fragment
-        android:id="@+id/hotPubsFragment"
-        android:name="com.overmighties.pubber.feature.hotpubs.HotPubsFragment"
-        android:label="Hot Pubs"
-        tools:layout="@layout/fragment_hot_pubs" >
-
-    </fragment>
-
-    <fragment
         android:id="@+id/placeChoiceFragment"
         android:name="com.overmighties.pubber.app.ui.PlaceChoiceFragment"
         android:label="place_choice"
@@ -30,5 +22,10 @@
         android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.overmighties.pubber.feature.map.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
 
 </navigation>

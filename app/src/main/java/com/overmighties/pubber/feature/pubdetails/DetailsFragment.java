@@ -68,7 +68,7 @@ public class DetailsFragment extends Fragment
     private ConstraintLayout layout;
     private ShapeableImageView shapeableImageView;
 
-
+    @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
         NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));

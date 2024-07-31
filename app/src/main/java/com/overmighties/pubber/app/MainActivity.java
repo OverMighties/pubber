@@ -3,6 +3,7 @@ package com.overmighties.pubber.app;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,9 +49,13 @@ public class MainActivity extends SettingsBasicActivity {
         navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment))).getNavController();
 
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
+        MaterialToolbar topAppBar = findViewById(R.id.top_app_bar_view);
+
+
 //      AppBarConfiguration  bottomNavConfiguration =
 //                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
+        setSupportActionBar(topAppBar);
         bottomNavSize();
         if ((getIntent().hasExtra("openSettings") && getIntent().getBooleanExtra("openSettings", false))) {
             bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
@@ -59,6 +65,19 @@ public class MainActivity extends SettingsBasicActivity {
     public boolean onSupportNavigateUp() {
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        boolean retValue = super.onCreateOptionsMenu(menu);
+        BottomNavigationView navigationView = findViewById(R.id.bottom_nav_view);
+        getMenuInflater().inflate(R.menu.top_app_bar, menu);
+
+        if (navigationView == null) {
+            getMenuInflater().inflate(R.menu.top_app_bar, menu);
+            return true;
+        }
+        return retValue;
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
