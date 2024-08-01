@@ -16,26 +16,38 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.card.MaterialCardView;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
@@ -44,6 +56,7 @@ import com.overmighties.pubber.app.ui.NavigationBar;
 import com.overmighties.pubber.feature.search.stateholders.SelectListener;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
+import com.overmighties.pubber.util.DimensionsConverter;
 
 public class SearcherFragment extends BaseFragmentWithPermission implements SelectListener {
 
@@ -65,6 +78,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements Sele
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         recyclerView = requireView().findViewById(R.id.Publista);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+
+
         AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(requireActivity(),
@@ -97,6 +112,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements Sele
 //        getString(R.string.page_title,getString(R.string.searcher_title));
         initSearchView();
         sortButtonsListeners();
+        setUpTopBarNavigation();
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recyclerView.setVisibility(View.GONE);
@@ -231,6 +247,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements Sele
     }
 
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -247,4 +264,5 @@ public class SearcherFragment extends BaseFragmentWithPermission implements Sele
         NavHostFragment.findNavController(this).navigate(SearcherFragmentDirections.actionSearcherToDetails());
         pubListViewModel.setPubDetails(position,detailsViewModel);
     }
+
 }

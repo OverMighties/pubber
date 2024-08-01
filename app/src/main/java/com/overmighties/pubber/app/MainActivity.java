@@ -56,7 +56,6 @@ public class MainActivity extends SettingsBasicActivity {
 //                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
         setSupportActionBar(topAppBar);
-        bottomNavSize();
         if ((getIntent().hasExtra("openSettings") && getIntent().getBooleanExtra("openSettings", false))) {
             bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
         }
@@ -68,39 +67,13 @@ public class MainActivity extends SettingsBasicActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        boolean retValue = super.onCreateOptionsMenu(menu);
-        BottomNavigationView navigationView = findViewById(R.id.bottom_nav_view);
-        getMenuInflater().inflate(R.menu.top_app_bar, menu);
-
-        if (navigationView == null) {
-            getMenuInflater().inflate(R.menu.top_app_bar, menu);
-            return true;
-        }
-        return retValue;
-    }
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         NavController navController = ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment) ).getNavController();
         return NavigationUI.onNavDestinationSelected(item, navController)
                 || super.onOptionsItemSelected(item);
     }
 
-    void bottomNavSize()
-    {
-        int statusBarHeight = getResources().getDimensionPixelSize(
-                getResources().getIdentifier("status_bar_height", "dimen", "android"));
 
-        Log.i(TAG, "StatusBar Height= " + statusBarHeight);
-
-        Resources resources = this.getResources();
-        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            Log.i(TAG,"tak: "+ resources.getDimensionPixelSize(resourceId));
-        }
-
-
-    }
 
 
 }
