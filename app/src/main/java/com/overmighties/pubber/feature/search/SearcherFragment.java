@@ -112,7 +112,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements Sele
 //        getString(R.string.page_title,getString(R.string.searcher_title));
         initSearchView();
         sortButtonsListeners();
-        setUpTopBarNavigation();
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recyclerView.setVisibility(View.GONE);
