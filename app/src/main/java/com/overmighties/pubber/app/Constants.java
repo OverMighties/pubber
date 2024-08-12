@@ -1,5 +1,7 @@
 package com.overmighties.pubber.app;
 
+import androidx.core.util.Pair;
+
 import com.overmighties.pubber.R;
 
 import java.util.regex.Pattern;
@@ -82,6 +84,7 @@ public class Constants {
             "TequilaSunrise"
 
     };
+
     public static final String [] BREWERIES_VIEW_ID_LIST = {
             "AleBrowar",
             "Amber",
@@ -121,15 +124,27 @@ public class Constants {
             "Sexonthebeach",
             "TequilaSunrise"
     };
+
     public static final String [] PRICE_VIEW_ID_LIST = {
             "malo",
             "srednio",
             "duzo",
     };
 
+
+
     public static final int[] SPLASH_FRAGMENT_BUTTONS_IDS = {
             R.id.button_sign_in_splash,
             R.id.button_sing_up_splash,
+    };
+
+    public static final int[] FILTER_FRAGMENT_BEER_WIDGETS_IDS={
+            R.id.TVBreweries,
+            R.id.IVBreweries,
+            R.id.TVStyles,
+            R.id.IVStyles,
+            R.id.TVParticularBeers,
+            R.id.IVParticularBeers
     };
 
     public static final int[] POP_UP_DAYS_IDS = {

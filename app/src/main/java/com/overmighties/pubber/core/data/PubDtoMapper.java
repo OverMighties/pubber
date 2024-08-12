@@ -5,11 +5,13 @@ import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
+import com.overmighties.pubber.core.model.Style;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.core.network.model.PhotoDto;
 import com.overmighties.pubber.core.network.model.PubDto;
 import com.overmighties.pubber.core.network.model.RatingsDto;
+import com.overmighties.pubber.core.network.model.StyleDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,7 +37,7 @@ public class PubDtoMapper {
     }
     public static List<Drink> mapFromDtoDrinks(List<DrinkDto> drinkDtos)
     {
-        return drinkDtos==null || drinkDtos.isEmpty()?null:drinkDtos.stream().map(drinkDto -> new Drink(drinkDto.getName(),drinkDto.getType())).collect(Collectors.toList());
+        return drinkDtos==null || drinkDtos.isEmpty()?null:drinkDtos.stream().map(drinkDto -> new Drink(drinkDto.getName(),drinkDto.getType(),drinkDto.getStyles()==null?null:drinkDto.getStyles().stream().map(style->new Style(style.getStyle())).collect(Collectors.toList()))).collect(Collectors.toList());
     }
     public static List<OpeningHours> mapFromDtoOpeningHours(List<OpeningHoursDto> openingHoursDtos)
     {

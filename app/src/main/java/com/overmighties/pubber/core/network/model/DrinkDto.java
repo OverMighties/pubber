@@ -1,6 +1,12 @@
 package com.overmighties.pubber.core.network.model;
 
+import android.graphics.Paint;
+
+import androidx.core.util.Pair;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,4 +23,6 @@ public class DrinkDto {
     private String name;
     @SerializedName("type")
     private String type;
+    @SerializedName("styles")
+    private List<StyleDto> styles;
 }

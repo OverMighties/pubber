@@ -1,5 +1,10 @@
 package com.overmighties.pubber.core.model;
 
+import androidx.annotation.Nullable;
+import androidx.core.util.Pair;
+
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +19,6 @@ public class Drink {
     private String name;
     @NonNull
     private String type;
+    @Nullable
+    private List<Style> styles;
 }

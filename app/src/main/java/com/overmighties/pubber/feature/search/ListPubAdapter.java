@@ -27,7 +27,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
-import com.overmighties.pubber.feature.search.stateholders.SelectListener;
+import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
@@ -39,7 +39,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
     public static final String TAG="ListPubAdapter";
     private final PubsCardViewUiState pubData;
-    public final SelectListener selectListener;
+    public final PubListSelectListener pubListSelectListener;
     private final String chiptag;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
@@ -59,7 +59,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private final Chip alcoholChip;
 
 
-       public PubViewHolder(@NonNull View itemView, SelectListener selectListener) {
+       public PubViewHolder(@NonNull View itemView, PubListSelectListener pubListSelectListener) {
             super(itemView);
             this.itemView=itemView;
             name= itemView.findViewById(R.id.PName);
@@ -78,24 +78,25 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
              */
            itemView.setOnClickListener(view -> {
-               if(selectListener!=null)
+               if(pubListSelectListener !=null)
                {
-                   int pos=getAdapterPosition();
+                   int pos=getBindingAdapterPosition();
 
                    if(pos!=RecyclerView.NO_POSITION)
                    {
-                       selectListener.onItemClicked(pos);
+                       pubListSelectListener.onItemClicked(pos);
                    }
                }
            });
        }
     }
-    public ListPubAdapter(PubsCardViewUiState pubData, SelectListener selectListener, String ChipTag) {
-        this.pubData=pubData;this.selectListener=selectListener; this.chiptag=ChipTag;}
+    public ListPubAdapter(PubsCardViewUiState pubData, PubListSelectListener pubListSelectListener, String ChipTag) {
+
+        this.pubData=pubData;this.pubListSelectListener = pubListSelectListener; this.chiptag=ChipTag;}
     @NonNull
     @Override
     public PubViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new PubViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pub_recycler_view_row,viewGroup,false),selectListener);
+        return new PubViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pub_recycler_view_row,viewGroup,false), pubListSelectListener);
     }
 
     @SuppressLint("SetTextI18n")

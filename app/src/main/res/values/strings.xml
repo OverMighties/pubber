@@ -13,65 +13,184 @@
     <string name="notification_from_app_remind_description">Znajdź Pub, który idealnie do ciebie pasuje !</string>
     <!--Beer/Drink names-->
     <string name="hello_blank_fragment">Hi There</string>
-    <string name="AleBrowar">AleBrowar</string>
-    <string name="Amber">Amber</string>
-    <string name="Artezan">Artezan</string>
-    <string name="FunkyFluids">Funky Fluids</string>
-    <string name="Grimbergen">Grimbergen</string>
-    <string name="Grodziskie">Grodzisk</string>
-    <string name="Grolsch">Grolsch</string>
-    <string name="Harnaś">Harnaś</string>
-    <string name="Kasztelan">Kasztelan</string>
-    <string name="Kingpin">Kingpin</string>
-    <string name="Komoran">Komoran</string>
-    <string name="Kozel">Kozel</string>
-    <string name="Książęce">Książęce</string>
-    <string name="Lech">Lech</string>
-    <string name="Łomża">Łomża</string>
-    <string name="Miłosław">Miłosław</string>
-    <string name="Moczybroda">Moczybroda</string>
-    <string name="NaJurze">Na Jurze</string>
-    <string name="Namysłów">Namysłów</string>
-    <string name="Nepomucen">Nepomucen</string>
-    <string name="Okocim">Okocim</string>
-    <string name="Paulaner">Paulaner</string>
-    <string name="Perła">Perła</string>
-    <string name="PilsenrUrquell">Pilsenr Urquell</string>
-    <string name="Pinta">Pinta</string>
-    <string name="Primator">Primator</string>
-    <string name="Racibórz">Racibórz</string>
-    <string name="Raduga">Raduga</string>
-    <string name="Recraft">Recraft</string>
-    <string name="Staropramen">Staropramen</string>
-    <string name="Somersby">Somersby</string>
-    <string name="TrzechKumpli">Trzech Kumpli</string>
-    <string name="Tyskie">Tyskie</string>
-    <string name="Witnica">Witnica</string>
-    <string name="Wrężel">Wrężel</string>
-    <string name="Zatecky">Zatecky</string>
-    <string name="Zamiastem">Za miastem</string>
-    <string name="Żubr">Żubr</string>
-    <string name="Żywiec">Żywiec</string>
+    <string-array name="all_breweries">
+        <item>AleBrowar</item>
+        <item>Amber</item>
+        <item>Artezan</item>
+        <item>Brokreacja</item>
+        <item>Budweiser</item>
+        <item>Cieszyn</item>
+        <item>Fortuna</item>
+        <item>Funky Fluids</item>
+        <item>Grimbergen</item>
+        <item>Grodzisk</item>
+        <item>Grolsch</item>
+        <item>Harnaś</item>
+        <item>Kasztelan</item>
+        <item>Kingpin</item>
+        <item>Komes</item>
+        <item>Komoran</item>
+        <item>Kozel</item>
+        <item>Książęce</item>
+        <item>Lech</item>
+        <item>Łomża</item>
+        <item>Miłosław</item>
+        <item>Moczybroda</item>
+        <item>Na Jurze</item>
+        <item>Namysłów</item>
+        <item>Nepomucen</item>
+        <item>Okocim</item>
+        <item>Paulaner</item>
+        <item>Perła</item>
+        <item>Pilsner Urquell</item>
+        <item>Pinta</item>
+        <item>Primator</item>
+        <item>Racibórz</item>
+        <item>Raduga</item>
+        <item>Recraft</item>
+        <item>Somersby</item>
+        <item>Staropramen</item>
+        <item>Trzech Kumpli</item>
+        <item>Tyskie</item>
+        <item>Witnica</item>
+        <item>Wrężel</item>
+        <item>Za Miastem</item>
+        <item>Zatecky</item>
+        <item>Żubr</item>
+        <item>Żywiec</item>
+    </string-array>
+    <string-array name="first_to_show_breweries">
+        <item>Budweiser</item>
+        <item>Grodzisk</item>
+        <item>Grolsch</item>
+        <item>Kozel</item>
+        <item>Paulaner</item>
+        <item>Pilsner Urquell</item>
+        <item>Pinta</item>
+        <item>Trzech Kumpli</item>
+        <item>Żywiec</item>
+    </string-array>
+    <string-array name="second_to_show_breweries">
+        <item>AleBrowar</item>
+        <item>Amber</item>
+        <item>Artezan</item>
+        <item>Brokreacja</item>
+        <item>Cieszyn</item>
+        <item>Fortuna</item>
+        <item>Funky Fluids</item>
+        <item>Grimbergen</item>
+        <item>Harnaś</item>
+        <item>Kasztelan</item>
+        <item>Kingpin</item>
+        <item>Komes</item>
+        <item>Komoran</item>
+        <item>Książęce</item>
+        <item>Lech</item>
+        <item>Łomża</item>
+        <item>Miłosław</item>
+        <item>Moczybroda</item>
+        <item>Na Jurze</item>
+        <item>Namysłów</item>
+        <item>Nepomucen</item>
+        <item>Okocim</item>
+        <item>Perła</item>
+        <item>Primator</item>
+        <item>Racibórz</item>
+        <item>Raduga</item>
+        <item>Recraft</item>
+        <item>Somersby</item>
+        <item>Staropramen</item>
+        <item>Tyskie</item>
+        <item>Witnica</item>
+        <item>Wrężel</item>
+        <item>Za Miastem</item>
+        <item>Zatecky</item>
+        <item>Żubr</item>
+    </string-array>
+    <string-array name="cocktails">
+        <item>Black Russian</item>
+        <item>B-52</item>
+        <item>Cosmopolitan</item>
+        <item>Cuba Libre</item>
+        <item>Daiquiri</item>
+        <item>Kamikaze</item>
+        <item>Krwawa Mary</item>
+        <item>Long Island</item>
+        <item>Margarita</item>
+        <item>Martini</item>
+        <item>Mojito</item>
+        <item>Pina Colada</item>
+        <item>Sex On The Beach</item>
+        <item>Tequila Sunrise</item>
+    </string-array>
+
     <string name="wiecej">więcej</string>
-    <string name="Brokreacja">Brokreacja</string>
-    <string name="Budweiser">Budweiser</string>
-    <string name="Cieszyn">Cieszyn</string>
-    <string name="Fortuna">Fortuna</string>
-    <string name="Komes">Komes</string>
-    <string name="BlackRussian">Black Russian</string>
-    <string name="B52">B-52</string>
-    <string name="Cosmopolitan">Cosmopolitan</string>
-    <string name="CubaLibre">Cuba Libre</string>
-    <string name="Daiquiri">Daiquiri</string>
-    <string name="Kamikaze">Kamikaze</string>
-    <string name="KrwawaMary">Krwawa Mary</string>
-    <string name="LongIsland">Long Island</string>
-    <string name="Margarita">Margarita</string>
-    <string name="Martini">Martini</string>
-    <string name="Mojito">Mojito</string>
-    <string name="PinaColada">Pina Colada</string>
-    <string name="Sexonthebeach">Sex on the beach</string>
-    <string name="TequilaSunrise">Tequila Sunrise</string>
+
+
+    <!--beer styles-->
+    <string-array name="beer_styles">
+        <item>Lager</item>
+        <item>Pilsner</item>
+        <item>IPA</item>
+        <item>APA</item>
+        <item>Witbier</item>
+        <item>Porter</item>
+        <item>Scout</item>
+        <item>Ale</item>
+        <item>Wheat beer</item>
+        <item>Dark beer</item>
+        <item>Light beer</item>
+    </string-array>
+    <!--beer styles long descriptiopn-->
+    <!-- TODO translate beer styles desciption to english-->
+    <string-array name="beer_styles_long_description">
+    </string-array>
+    <string-array name="beer_styles_short_description">
+    </string-array>
+    <string-array name="beer_styles_maltiness">
+        <item>2/5</item>
+        <item>2/5</item>
+        <item>3/5</item>
+        <item>3/5</item>
+        <item>2/5</item>
+        <item>4/5</item>
+        <item>4/5</item>
+        <item>3/5</item>
+        <item>3/5</item>
+        <item>4/5</item>
+        <item>2/5</item>
+    </string-array>
+
+    <string-array name="beer_styles_hoppiness">
+        <item>2/5</item>
+        <item>4/5</item>
+        <item>5/5</item>
+        <item>4/5</item>
+        <item>2/5</item>
+        <item>2/5</item>
+        <item>3/5</item>
+        <item>3/5</item>
+        <item>2/5</item>
+        <item>2/5</item>
+        <item>3/5</item>
+    </string-array>
+
+    <string-array name="beer_styles_alcohol_percentage">
+        <item>4-5%</item>
+        <item>4-5%</item>
+        <item>5-7%</item>
+        <item>4-6%</item>
+        <item>4-5%</item>
+        <item>4-6%</item>
+        <item>5-12%</item>
+        <item>4-7%</item>
+        <item>4-6%</item>
+        <item>5-7%</item>
+        <item>4-5%</item>
+    </string-array>
+
+
+    <!--beer styles short description-->
 
     <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign Out</string>
@@ -215,6 +334,11 @@
     <string name="custom">Custom</string>
     <string name="filtr">Filtr</string>
     <string name="clear">Clear</string>
+    <string name="breweries">Breweries</string>
+    <string name="styles">Styles</string>
+    <string name="combination">Particular beers</string>
+    <string name="choose_brewery">Choose brewery...</string>
+    <string name="choose_style">Choose style...</string>
 
     <string name="anytime">Anytime</string>
     <string name="next_day">(next day)</string>

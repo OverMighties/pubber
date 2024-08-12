@@ -1,11 +1,13 @@
 package com.overmighties.pubber.core.data;
 
 import com.overmighties.pubber.core.database.model.DrinkEntity;
+import com.overmighties.pubber.core.database.model.DrinkWithStyleEntity;
 import com.overmighties.pubber.core.database.model.OpeningHoursEntity;
 import com.overmighties.pubber.core.database.model.PhotoEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.PubWithAllEntities;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
+import com.overmighties.pubber.core.database.model.StyleEntity;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
@@ -35,9 +37,9 @@ public class PubDataMapper {
                 ratings.getTripadvisor(), ratings.getTripadvisorCount(), ratings.getUntappd(), ratings.getUntappdCount(),
                 ratings.getOurDrinksQuality(), ratings.getOurServiceQuality(), ratings.getOurCost());
     }
-    public static List<DrinkEntity> mapToEntityDrinks(List<Drink> drinks, Long pubId)
+    public static List<DrinkWithStyleEntity> mapToEntityDrinks(List<Drink> drinks, Long pubId)
     {
-        return drinks==null?null:drinks.stream().map(data -> new DrinkEntity( DrinkEntity.ID_NONE,data.getName(),data.getType())).collect(Collectors.toList());
+        return drinks==null?null:drinks.stream().map(data -> new DrinkWithStyleEntity(new DrinkEntity(DrinkEntity.ID_NONE,data.getName(),data.getType()), data.getStyles()==null?null:data.getStyles().stream().map(style->new StyleEntity(DrinkEntity.ID_NONE, StyleEntity.ID_NONE, style.getName())).collect(Collectors.toList()))).collect(Collectors.toList());
     }
     public static List<OpeningHoursEntity> mapToEntityOpeningHours(List<OpeningHours> openingHours, Long pubId)
     {

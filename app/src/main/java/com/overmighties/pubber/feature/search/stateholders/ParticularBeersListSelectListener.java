@@ -1,6 +1,6 @@
 package com.overmighties.pubber.feature.search.stateholders;
 
-
-public interface SelectListener {
+public interface ParticularBeersListSelectListener {
     void onItemClicked(int position);
+
 }

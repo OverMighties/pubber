@@ -40,7 +40,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PubEntity {
+public class  PubEntity {
     @Ignore
     public static final Long ID_NONE =null;
     @PrimaryKey

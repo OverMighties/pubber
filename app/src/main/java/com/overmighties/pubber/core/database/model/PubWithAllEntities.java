@@ -31,11 +31,12 @@ public final class PubWithAllEntities {
     )
     public  List<OpeningHoursEntity> openingHours;
     @Relation(
+            entity = DrinkEntity.class,
             parentColumn = "pub_id",
             entityColumn = "drink_id",
             associateBy = @Junction(PubDrinkCrossRefEntity.class)
     )
-    public List<DrinkEntity> drinks;
+    public List<DrinkWithStyleEntity> drinks;
 
     @Relation(
             parentColumn = "pub_id",

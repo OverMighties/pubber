@@ -61,6 +61,13 @@ public class PubListViewModel extends ViewModel {
     @Setter
     @Getter
     public boolean searchviewClicked = false;
+    @Setter
+    @Getter
+    private String brewery_textview = null;
+    @Setter
+    @Getter
+    private String style_textview = null;
+
     private final PubsRepository pubsRepository;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
     private final LiveData<List<Pub>> _originalPubData=originalPubData;
@@ -202,10 +209,7 @@ public class PubListViewModel extends ViewModel {
                 pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday(), null, null);
         detailsViewModel.setPubDetails(pubDetailsUiState);
     }
-    public static int dpToPx(int dp)
-    {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
-    }
+
 
     @Override
     protected void onCleared() {

@@ -1,16 +1,19 @@
 package com.overmighties.pubber.core.data;
 
 import com.overmighties.pubber.core.database.model.DrinkEntity;
+import com.overmighties.pubber.core.database.model.DrinkWithStyleEntity;
 import com.overmighties.pubber.core.database.model.OpeningHoursEntity;
 import com.overmighties.pubber.core.database.model.PhotoEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.PubWithAllEntities;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
+import com.overmighties.pubber.core.database.model.StyleEntity;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
+import com.overmighties.pubber.core.model.Style;
 import com.overmighties.pubber.util.DateTimeConverter;
 
 import java.util.List;
@@ -35,9 +38,9 @@ public class PubEntityMapper {
                 ratingsEntity.getTripadvisor(), ratingsEntity.getTripadvisorCount(), ratingsEntity.getUntappd(), ratingsEntity.getUntappdCount(),
                 ratingsEntity.getOurDrinksQuality(), ratingsEntity.getOurServiceQuality(), ratingsEntity.getOurCost());
     }
-    public static List<Drink> mapFromEntityDrinks(List<DrinkEntity> drinkEntities)
+    public static List<Drink> mapFromEntityDrinks(List<DrinkWithStyleEntity> drinkEntities)
     {
-        return drinkEntities==null?null:drinkEntities.stream().map(entity -> new Drink(entity.getName(),entity.getType())).collect(Collectors.toList());
+        return drinkEntities==null?null:drinkEntities.stream().map(entity -> new Drink(entity.drink.getName(), entity.getDrink().getType(), entity.getStyles().stream().map(style->new Style(style.getStyleName())).collect(Collectors.toList()))).collect(Collectors.toList());
     }
     public static List<OpeningHours> mapFromEntityOpeningHours(List<OpeningHoursEntity> openingHoursEntities)
     {

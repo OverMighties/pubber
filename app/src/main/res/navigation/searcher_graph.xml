@@ -36,5 +36,16 @@
         <action
             android:id="@+id/action_filter_to_searcher"
             app:destination="@id/searcherFragment" />
+        <action
+            android:id="@+id/action_filterFragment_to_filterSelectFragment"
+            app:destination="@id/filterSelectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterSelectFragment"
+        android:name="com.overmighties.pubber.feature.search.filterselect.FilterSelectFragment"
+        android:label="FilterSelectFragment" >
+        <action
+            android:id="@+id/action_filterSelectFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
     </fragment>
 </navigation>

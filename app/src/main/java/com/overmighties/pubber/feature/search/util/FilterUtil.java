@@ -96,6 +96,24 @@ public class FilterUtil {
                         break tonext;
                     }
                 }
+                for(var drinkFilter: Objects.requireNonNull(filterUiState.getStyles())){
+                    for(var drinkType: Objects.requireNonNull(drinkPub.getStyles())){
+                        if(drinkType.getName().equals(drinkFilter)){
+                            filteredNow.add(pubData);
+                            break tonext;
+                        }
+                    }
+                }
+                for(var drinkFilter: Objects.requireNonNull(filterUiState.getParticular_beers())){
+                    if(drinkFilter.first.equals(drinkPub.getName())){
+                        for(var drinkType:Objects.requireNonNull(drinkPub.getStyles())){
+                            if(drinkType.getName().equals(drinkFilter.second)){
+                                filteredNow.add(pubData);
+                                break tonext;
+                            }
+                        }
+                    }
+                }
             }
 
         }
