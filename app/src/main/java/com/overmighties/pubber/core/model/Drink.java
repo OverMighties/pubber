@@ -1,7 +1,6 @@
 package com.overmighties.pubber.core.model;
 
 import androidx.annotation.Nullable;
-import androidx.core.util.Pair;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class Drink {
     private String name;
     @NonNull
     private String type;
+    private String description;
     @Nullable
-    private List<Style> styles;
+    private List<DrinkStyle> drinkStyles;
 }

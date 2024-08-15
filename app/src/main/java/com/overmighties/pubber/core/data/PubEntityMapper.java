@@ -1,19 +1,17 @@
 package com.overmighties.pubber.core.data;
 
-import com.overmighties.pubber.core.database.model.DrinkEntity;
 import com.overmighties.pubber.core.database.model.DrinkWithStyleEntity;
 import com.overmighties.pubber.core.database.model.OpeningHoursEntity;
 import com.overmighties.pubber.core.database.model.PhotoEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.PubWithAllEntities;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
-import com.overmighties.pubber.core.database.model.StyleEntity;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
-import com.overmighties.pubber.core.model.Style;
+import com.overmighties.pubber.core.model.DrinkStyle;
 import com.overmighties.pubber.util.DateTimeConverter;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public class PubEntityMapper {
     {
         PubEntity pubEntity=pubWithAllEntities.pub;
         return new Pub(pubEntity.getPubId(), pubEntity.getName(),pubEntity.getAddress(), DateTimeConverter.getFromString(pubEntity.getFetchTime()), pubEntity.getCity(), pubEntity.getPhoneNumber(),
-                pubEntity.getWebsiteUrl(), pubEntity.getIconPath(), pubEntity.getDescription(), pubEntity.getReservable(), pubEntity.getTakeout(),
+                pubEntity.getWebsiteUrl(), pubEntity.getIconPath(), pubEntity.getDescription(), pubEntity.getReservable(),pubEntity.getTakeout(), pubEntity.getLatitude(), pubEntity.getLongitude(),
                 mapFromEntityRatings(pubWithAllEntities.getRatings()),mapFromEntityOpeningHours(pubWithAllEntities.getOpeningHours()),
                 mapFromEntityDrinks(pubWithAllEntities.getDrinks()),mapFromEntityPhotos(pubWithAllEntities.getPhotos()),null);
     }
@@ -40,7 +38,11 @@ public class PubEntityMapper {
     }
     public static List<Drink> mapFromEntityDrinks(List<DrinkWithStyleEntity> drinkEntities)
     {
-        return drinkEntities==null?null:drinkEntities.stream().map(entity -> new Drink(entity.drink.getName(), entity.getDrink().getType(), entity.getStyles().stream().map(style->new Style(style.getStyleName())).collect(Collectors.toList()))).collect(Collectors.toList());
+        return drinkEntities==null?null:drinkEntities.stream()
+                .map(entity -> new Drink(entity.drink.getName(), entity.getDrink().getType(),entity.getDrink().getDescription(), entity.getDrinkStyles()
+                    .stream().map(style->new DrinkStyle(style.getStyleName()))
+                    .collect(Collectors.toList())))
+                .collect(Collectors.toList());
     }
     public static List<OpeningHours> mapFromEntityOpeningHours(List<OpeningHoursEntity> openingHoursEntities)
     {

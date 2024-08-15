@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 public class ErrorSigningUIHandler {
     public static final String TAG = "ErrorHandler";

@@ -62,5 +62,7 @@ public class  PubEntity {
     public String description;
     public Boolean reservable;
     public Boolean takeout;
+    public Double latitude;
+    public Double longitude;
 
 }

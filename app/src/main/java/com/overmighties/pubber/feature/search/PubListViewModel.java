@@ -159,7 +159,7 @@ public class PubListViewModel extends ViewModel {
     //Temporary objects means that it will be changed in feature and now they are only in testing purpose
     public PubItemCardViewUiState mapPubToUiState(Pub pub)
     {
-        DateType openInfo = null;
+        DateType openInfo = DateType.NONE;
         try {
             if(pub.getOpeningHours()!= null){
                 if(!pub.getOpeningHours().isEmpty()){

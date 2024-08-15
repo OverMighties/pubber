@@ -1,4 +1,4 @@
-package com.overmighties.pubber.util;
+package com.overmighties.pubber.feature.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;

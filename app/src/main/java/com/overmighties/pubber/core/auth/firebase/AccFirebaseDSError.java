@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.exception.AppError;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import lombok.Getter;
 

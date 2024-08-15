@@ -1,4 +1,4 @@
-package com.overmighties.pubber.app.ui;
+package com.overmighties.pubber.app.designsystem;
 
 import android.view.View;
 import android.view.animation.Animation;

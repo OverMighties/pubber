@@ -1,37 +1,23 @@
 package com.overmighties.pubber.feature.auth;
 
 
-import static com.overmighties.pubber.app.Constants.SPLASH_FRAGMENT_BUTTONS_IDS;
 import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.credentials.CredentialManager;
 import androidx.credentials.CredentialManagerCallback;
 import androidx.credentials.GetCredentialRequest;
@@ -47,12 +33,10 @@ import com.overmighties.pubber.R;
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
-import com.overmighties.pubber.app.MainActivity;
-import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.util.SettingsHandler;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
+import com.overmighties.pubber.feature.settings.SettingsHandler;
+import com.overmighties.pubber.app.designsystem.UIText;
 
-import java.util.Locale;
 import java.util.concurrent.Executors;
 
 public class SplashFragment extends Fragment {

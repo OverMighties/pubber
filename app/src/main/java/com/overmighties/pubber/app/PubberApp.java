@@ -18,7 +18,6 @@ import com.overmighties.pubber.app.notifications.NotificationWorker;
 import com.overmighties.pubber.core.database.AppDb;
 import com.overmighties.pubber.sync.SyncWorker;
 import com.overmighties.pubber.sync.SyncWorkerFactory;
-import com.overmighties.pubber.util.SettingsHandler;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -26,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 
 public class PubberApp extends Application implements Configuration.Provider{
 
-    private AppDb db;
     public AppContainer appContainer;
 
 
@@ -36,8 +34,9 @@ public class PubberApp extends Application implements Configuration.Provider{
 
         NotificationHandler.createNotificationChannels(this);
 
-        db=Room.databaseBuilder(getApplicationContext(),AppDb.class,"db-pubber").build();
+        AppDb db = Room.databaseBuilder(getApplicationContext(), AppDb.class, "db-pubber").build();
         appContainer=new AppContainer(db);
+        appContainer.setLocationRepository(getApplicationContext());
 
         WorkManager.initialize(this, getWorkManagerConfiguration());
         sheduleNotification();

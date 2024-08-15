@@ -22,6 +22,9 @@ render.experimental.xml
 *.jks
 *.keystore
 
+#Keys
+secrets.properties
+
 # Gradle
 .gradle/
 **/.gradle/

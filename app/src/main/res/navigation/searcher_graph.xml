@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_searcherFragment_to_login_graph"
             app:destination="@id/login_graph" />
+        <action
+            android:id="@+id/action_searcherFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -48,4 +51,9 @@
             android:id="@+id/action_filterSelectFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.overmighties.pubber.feature.map.MapFragment"
+        android:label="MapFragment" />
+
 </navigation>

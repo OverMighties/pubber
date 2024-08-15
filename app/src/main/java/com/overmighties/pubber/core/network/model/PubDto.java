@@ -6,10 +6,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,6 +38,10 @@ public class PubDto {
     private Boolean reservable;
     @SerializedName("takeout")
     private Boolean takeout;
+    @SerializedName("latitude")
+    private Double latitude;
+    @SerializedName("longitude")
+    private Double longitude;
     @SerializedName("ratings")
     private RatingsDto ratings;
     @SerializedName("openingHours")
@@ -45,6 +50,4 @@ public class PubDto {
     private List<DrinkDto> drinks;
     @SerializedName("photos")
     private List<PhotoDto> photos;
-    @SerializedName("OpenToday")
-    private String timeOpenToday;
 }

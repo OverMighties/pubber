@@ -26,7 +26,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.feature.account.AccountViewModel;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.regex.Pattern;
 

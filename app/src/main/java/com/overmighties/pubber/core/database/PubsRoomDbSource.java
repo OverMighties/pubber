@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.core.Single;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class PubsRoomDbSource implements PubberLocalDataSource{
+public class PubsRoomDbSource implements PubberLocalApi {
     private final AppDb appDb;
     public static final String TAG="PubsRoomDbSource";
     @Override
@@ -23,7 +23,8 @@ public class PubsRoomDbSource implements PubberLocalDataSource{
                     Log.i(TAG, "getPubs: fetched pubs from db in number "+list.size());
                     return list.stream()
                         .map(PubEntityMapper::mapFromEntity)
-                        .collect(Collectors.toList());});
+                        .collect(Collectors.toList());
+                });
     }
 
     @Override

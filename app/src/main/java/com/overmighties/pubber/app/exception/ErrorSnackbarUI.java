@@ -9,7 +9,7 @@ import androidx.annotation.StringRes;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 public class ErrorSnackbarUI {
 

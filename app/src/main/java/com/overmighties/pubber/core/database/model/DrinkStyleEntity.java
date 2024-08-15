@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(tableName = "styles")
-public class StyleEntity {
+public class DrinkStyleEntity {
     @Ignore
     public static final Long ID_NONE =null;
     @ColumnInfo(name="drink_id")
     // @NonNull
     public Long drinkId;
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name="style_id")
-    public Long styleId;
+    @ColumnInfo(name="drink_style_id")
+    public Long drinkStyleId;
     public String styleName;
 }

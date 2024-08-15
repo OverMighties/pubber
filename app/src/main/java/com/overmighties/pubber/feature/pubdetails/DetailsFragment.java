@@ -40,9 +40,9 @@ import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.overmighties.pubber.R;
 
-import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.app.ui.ViewPagerSlideTransformer;
-import com.overmighties.pubber.app.ui.ViewPagerSliderAdapter;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
+import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
+import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.util.DayOfWeekConverter;

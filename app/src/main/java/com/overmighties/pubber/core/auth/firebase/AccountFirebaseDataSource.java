@@ -13,14 +13,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.model.UserData;
 
 import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class AccountFirebaseDataSource implements AccountDataSource {
+public class AccountFirebaseDataSource implements AccountApi {
 
     private static final String TAG="AccountFirebaseDataSource";
     private final FirebaseAuth fireAuth=FirebaseAuth.getInstance();

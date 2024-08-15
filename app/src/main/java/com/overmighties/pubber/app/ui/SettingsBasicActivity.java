@@ -8,7 +8,7 @@ import androidx.core.util.Pair;
 
 import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
 import com.luckycatlabs.sunrisesunset.dto.Location;
-import com.overmighties.pubber.util.SettingsHandler;
+import com.overmighties.pubber.feature.settings.SettingsHandler;
 
 import java.util.Calendar;
 import java.util.TimeZone;

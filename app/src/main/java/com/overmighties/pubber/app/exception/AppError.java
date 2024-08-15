@@ -1,6 +1,6 @@
 package com.overmighties.pubber.app.exception;
 
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import lombok.Getter;
 

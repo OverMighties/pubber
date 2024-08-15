@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class DateType {
+    public static final DateType NONE=new DateType("",false);
     @Setter
     private String time;
     private final boolean type;

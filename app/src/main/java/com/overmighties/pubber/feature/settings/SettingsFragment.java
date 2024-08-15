@@ -17,10 +17,9 @@ import androidx.navigation.Navigation;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
-import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.feature.account.AccountViewModel;
-import com.overmighties.pubber.util.SettingsHandler;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 public class SettingsFragment extends Fragment {
     public static final String TAG="SettingsFragment";

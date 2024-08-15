@@ -22,15 +22,14 @@ public class Pub {
     @NonNull
     private LocalDateTime fetchTime;
     private String city;
-
     private String phoneNumber;
-
     private String websiteUrl;
-
     private String iconPath;
     private String description;
     private Boolean reservable;
     private Boolean takeout;
+    private Double latitude;
+    private Double longitude;
     private Ratings ratings;
     private List<OpeningHours> openingHours;
     private List<Drink> drinks;

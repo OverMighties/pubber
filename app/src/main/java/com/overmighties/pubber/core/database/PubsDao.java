@@ -8,13 +8,12 @@ import androidx.room.Transaction;
 
 import com.overmighties.pubber.core.database.model.DrinkEntity;
 import com.overmighties.pubber.core.database.model.DrinkStyleCrossRefEntity;
-import com.overmighties.pubber.core.database.model.DrinkWithStyleEntity;
+import com.overmighties.pubber.core.database.model.DrinkStyleEntity;
 import com.overmighties.pubber.core.database.model.PhotoEntity;
 import com.overmighties.pubber.core.database.model.PubDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.PubWithAllEntities;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
-import com.overmighties.pubber.core.database.model.StyleEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +34,7 @@ public abstract class PubsDao  {
     abstract Single<List<PubDrinkCrossRefEntity>> getDrinksByPubId(Long pubId);
     @Transaction
     @Query("SELECT * FROM drink_style_cross_ref WHERE :drinkId=drink_id")
-    abstract Single<List<DrinkStyleCrossRefEntity>> getStylesByDrinkId(Long drinkId);
+    abstract Single<List<DrinkStyleCrossRefEntity>> getDrinkStylesByDrinkId(Long drinkId);
 
     @Transaction
     public synchronized void insertAll(List<PubWithAllEntities> pubs)
@@ -49,11 +48,11 @@ public abstract class PubsDao  {
                 var drinks=getDrinksByPubId(pubWithAllEntities.pub.pubId).blockingGet();
                 for(var drink : drinks)
                 {
-                    var styles = getStylesByDrinkId(drink.drinkId).blockingGet();
+                    var styles = getDrinkStylesByDrinkId(drink.drinkId).blockingGet();
                     if(styles != null)
                     {
                         for(var style:styles){
-                            insertDrinkStylesCrossRef(new DrinkStyleCrossRefEntity(drink.drinkId, style.styleId));
+                            insertDrinkStylesCrossRef(new DrinkStyleCrossRefEntity(drink.drinkId, style.drinkStyleId));
                         }
                     }
                     insertPubDrinkCrossRef(new PubDrinkCrossRefEntity(pubWithAllEntities.pub.pubId,drink.drinkId));
@@ -74,7 +73,7 @@ public abstract class PubsDao  {
     abstract void insertDrinks(List<DrinkEntity> drinks);
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract void insertDrinkStylesCrossRef(DrinkStyleCrossRefEntity refStyles);
+    abstract void insertDrinkStylesCrossRef(DrinkStyleCrossRefEntity refDrinkStyles);
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -85,4 +84,7 @@ public abstract class PubsDao  {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract void insertRatings(RatingsEntity ratings);
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract void insertDrinkStyles(List<DrinkStyleEntity> drinkStyles);
 }
