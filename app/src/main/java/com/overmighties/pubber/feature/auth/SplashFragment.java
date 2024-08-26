@@ -77,7 +77,7 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);

@@ -2,28 +2,28 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pub_recycler_view_row"
     android:layout_width="match_parent"
-    android:background="@color/surface"
     android:layout_height="wrap_content"
     android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
     android:layout_marginTop="5dp"
+    android:layout_marginRight="15dp"
     android:layout_marginBottom="15dp"
-    >
+    android:background="@color/surface">
 
     <com.google.android.material.card.MaterialCardView
 
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        app:cardBackgroundColor="@color/surface_container"
         app:cardCornerRadius="30dp"
-        app:strokeWidth="1dp"
         app:cardElevation="4dp"
-        app:strokeColor="#251c15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/surface_container">
+        app:strokeColor="#251c15"
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -86,8 +86,8 @@
                 android:background="@drawable/roundstyle"
                 android:gravity="center"
                 android:text="Open"
-                android:textSize="11sp"
                 android:textColor="#FFFFFF"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/PName"
                 app:layout_constraintTop_toTopOf="parent"
@@ -106,8 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="*.*"
-                android:textSize="16dp"
                 android:textColor="@color/on_surface_container_secondary"
+                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="@+id/PName"
                 app:layout_constraintTop_toBottomOf="@+id/timeOpenToday_card_view_row" />
 
@@ -124,9 +124,9 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_marginStart="8dp"
                 android:layout_width="19dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/PRatingCount"
                 app:layout_constraintStart_toEndOf="@+id/PRatingCount"
                 app:layout_constraintTop_toTopOf="@+id/PRatingCount"
@@ -149,6 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_marginTop="-5dp"
+                android:elevation="1dp"
                 android:text="@string/guide"
                 android:textColor="@color/on_secondary_container"
                 android:textSize="14sp"
@@ -156,7 +157,6 @@
                 app:chipCornerRadius="40dp"
                 app:chipIcon="@drawable/ic_directions_on_surface_container"
                 app:chipIconSize="25dp"
-                android:elevation="1dp"
                 app:chipStrokeColor="#4F3C27"
                 app:chipStrokeWidth="0.5dp"
                 app:layout_constraintStart_toStartOf="@+id/PRating"
@@ -166,22 +166,22 @@
                 android:id="@+id/AlcoholChip"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
+                android:layout_marginLeft="7dp"
                 android:elevation="1dp"
                 android:text="@string/alcohols"
-                android:layout_marginLeft="7dp"
                 android:textColor="@color/on_secondary_container"
                 android:textSize="14sp"
                 app:chipBackgroundColor="@color/secondary_container"
                 app:chipCornerRadius="40dp"
-                app:chipStartPadding="8dp"
-                app:textStartPadding="8dp"
-                app:chipIconTint="@color/on_secondary_container"
+                app:chipIcon="@drawable/beer_full_black_chip"
                 app:chipIconSize="18dp"
+                app:chipIconTint="@color/on_secondary_container"
+                app:chipStartPadding="8dp"
                 app:chipStrokeColor="#4F3C27"
                 app:chipStrokeWidth="0.5dp"
-                app:chipIcon="@drawable/beer_full_black_chip"
                 app:layout_constraintStart_toEndOf="@+id/MapChip"
-                app:layout_constraintTop_toTopOf="@+id/MapChip" />
+                app:layout_constraintTop_toTopOf="@+id/MapChip"
+                app:textStartPadding="8dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

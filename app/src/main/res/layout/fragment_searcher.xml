@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liftOnScroll="true"
+
         app:liftOnScrollTargetViewId="@id/Publista"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,16 +152,38 @@
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-            android:id="@+id/swipeRefresh"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/mapLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:isScrollContainer="false"
-            app:layout_constraintTop_toBottomOf="@id/searchConstraintLayout"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="200dp"
+            app:liftOnScroll="true"
+
+            app:liftOnScrollTargetViewId="@id/Publista"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/searchConstraintLayout">
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapLayout">
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+                android:id="@+id/swipeRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:isScrollContainer="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/Publista"
@@ -169,5 +192,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

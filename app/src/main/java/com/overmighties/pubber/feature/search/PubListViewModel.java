@@ -55,6 +55,7 @@ public class PubListViewModel extends ViewModel {
     public static final String TEMPORARY_OPEN ="Open";
     public static final String CLOSED="Closed";
     public static final String CONTENT_PROVIDED ="Content provided";
+    public static final String DETAILS_TRANSITION_NAME = "details_transition";
     @Setter
     @Getter
     public String ChipTag = "Normal";

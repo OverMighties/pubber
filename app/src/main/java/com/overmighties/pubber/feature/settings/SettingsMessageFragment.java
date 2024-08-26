@@ -40,7 +40,7 @@ public class SettingsMessageFragment extends Fragment {
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
 
         if (requireActivity().findViewById(R.id.bottom_nav_view) != null)
-            NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
+            NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 
         requireView().findViewById(R.id.IV_goback_m).setOnClickListener(v-> navController.popBackStack());
 

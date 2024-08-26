@@ -97,7 +97,7 @@ public class FilterFragment extends Fragment {
                 .get(PubListViewModel.class);
         filterSelectViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(FilterSelectViewModel.initializer)).get(FilterSelectViewModel.class);
-        NavigationBar.smoothHide(nav_bar);
+        NavigationBar.smoothHide(nav_bar, 200);
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         arrowExpandersListeners();
         dropDownMenusListener();

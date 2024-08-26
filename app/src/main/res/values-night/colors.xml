@@ -14,7 +14,7 @@
     <color name="on_secondary">#ffffff</color>
     <color name="secondary_container">#57432b</color>
     <color name="on_secondary_container">#fdddbd</color>
-    <color name="surface">#261d16</color>
+    <color name="surface">#FF261d16</color>
     <color name="surface_variant">#504539</color>
     <color name="surface_variant_secondary">#392e27</color>
     <color name="on_surface">#eee0d4</color>

@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
+import android.transition.TransitionInflater;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,7 +73,7 @@ public class DetailsFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
         viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
@@ -87,13 +89,14 @@ public class DetailsFragment extends Fragment
         //listener for closing button
         requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
-
         setUpPubData(pubDetailsUiState);
         setUpImageSlider();
         setUpFragmentsAppearance();
         setUpTime();
         setUpListener();
     }
+
+
 
 
     private void setUpPubData(PubDetailsUiState pubDetailsUiState) {

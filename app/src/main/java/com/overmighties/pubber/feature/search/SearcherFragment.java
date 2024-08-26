@@ -8,6 +8,7 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirec
 
 import android.content.Context;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -18,14 +19,28 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SearchView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.constraintlayout.widget.Constraints;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.FragmentNavigator;
+import androidx.navigation.fragment.FragmentNavigatorExtrasKt;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -38,9 +53,11 @@ import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.feature.pubdetails.DetailsFragment;
 import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
+import com.overmighties.pubber.util.DimensionsConverter;
 
 public class SearcherFragment extends BaseFragmentWithPermission implements PubListSelectListener {
 
@@ -92,7 +109,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         //Setting listener to departure to FiltrationScreen
         requireView().findViewById(R.id.Filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
         if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 //        getString(R.string.page_title,getString(R.string.searcher_title));
         initSearchView();
         sortButtonsListeners();
@@ -116,7 +133,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         requireView().findViewById(R.id.sort_image).setOnClickListener(v -> showPopUpSortWindow());
     }
     private void showPopUpSortWindow(){
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view));
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
         View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.sort_pop_up, null);
         final PopupWindow sortPubsPopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -158,7 +175,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 text.setText(getString(R.string.sort_distance));
                 pubListViewModel.sort(SortPubsBy.DISTANCE);
             }
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
         });
         popupView.findViewById(R.id.dismiss).setOnClickListener(v -> popupWindow.dismiss());
 
@@ -235,7 +252,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     public void onResume() {
         super.onResume();
         if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 
     }
 
@@ -244,8 +261,100 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     @Override
     public void onItemClicked(int position) {
-        NavHostFragment.findNavController(this).navigate(SearcherFragmentDirections.actionSearcherToDetails());
+        View imageView = recyclerView.getChildAt(position).findViewById(R.id.PubImage);
+        int[] location = new int[2];
+        imageView.getLocationOnScreen(location);
+        ConstraintLayout constraintLayout = requireView().findViewById(R.id.constraintLayout);
+        int[] layoutLocation = new int[2];
+        constraintLayout.getLocationOnScreen(layoutLocation);
+
+        ConstraintLayout view = new ConstraintLayout(requireContext());
+        view.setId(View.generateViewId());
+        view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.surface));
+        view.setLayoutParams( new Constraints.LayoutParams(
+                (int)DimensionsConverter.pxFromDp(requireContext(), 84),
+                (int)DimensionsConverter.pxFromDp(requireContext(), 82)
+        ));
+        constraintLayout.addView(view);
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(constraintLayout);
+        constraintSet.connect(view.getId(), ConstraintSet.START, R.id.constraintLayout, ConstraintSet.START,
+                (int)DimensionsConverter.pxFromDp(requireContext(), 25));
+        constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.constraintLayout, ConstraintSet.TOP,
+                 location[1]-layoutLocation[1]);
+        constraintSet.applyTo(constraintLayout);
+
+
+
+        view.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+
+                int screenWidth = getResources().getDisplayMetrics().widthPixels;
+                int screenHeight = getResources().getDisplayMetrics().heightPixels;
+                float scaleX = (float) screenWidth / view.getWidth();
+                float scaleY = (float) screenHeight / view.getHeight();
+
+
+                ScaleAnimation scaleAnimation = new ScaleAnimation(
+                        1f, scaleX+1, 1f, scaleY+1,
+                        ScaleAnimation.RELATIVE_TO_SELF, DimensionsConverter.pxFromDp(requireContext(), 25)/screenWidth,
+                        ScaleAnimation.RELATIVE_TO_SELF, (float)location[1]/(float)screenHeight);
+                scaleAnimation.setDuration(300-(int)(300*((float)location[1]/(float)screenHeight)));
+                scaleAnimation.setFillAfter(true);
+                scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        NavigationBar.hideTransitionTopBottomBar(requireView().findViewById(R.id.top_app_bar_layout), requireView().findViewById(R.id.top_app_bar_view), requireActivity().findViewById(R.id.bottom_nav_view),(int)(300*((float)location[1]/(float)screenHeight)));
+                        view.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
+                            }
+                        }, (int)(300*((float)location[1]/(float)screenHeight)));
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {}
+                });
+
+
+                view.startAnimation(scaleAnimation);
+
+
+            }
+
+
+        });
+
+
         pubListViewModel.setPubDetails(position,detailsViewModel);
+    }
+
+    public void addDetailsWithoutShowing() {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if(fragmentManager.findFragmentByTag("DETAILS") == null)
+            fragmentTransaction.add(R.id.nav_host_fragment, new DetailsFragment(), "DETAILS");
+        fragmentTransaction.commit();
+    }
+
+    public void showDetails() {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag("DETAILS");
+
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            // Show the fragment
+            fragmentTransaction.show(fragment);
+            fragmentTransaction.commit();
+        }
     }
 
 }

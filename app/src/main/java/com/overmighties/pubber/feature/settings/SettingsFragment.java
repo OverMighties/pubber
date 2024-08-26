@@ -81,7 +81,7 @@ public class SettingsFragment extends Fragment {
 
         super.onResume();
         if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view));
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 
     }
 }
