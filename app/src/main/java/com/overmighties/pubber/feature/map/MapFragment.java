@@ -34,7 +34,7 @@ public class MapFragment extends BaseFragmentWithPermission implements OnMapRead
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userTrackerViewModel = new ViewModelProvider(this).get(UserTrackerViewModel.class);
+       // userTrackerViewModel = new ViewModelProvider(this).get(UserTrackerViewModel.class);
 //        mapFragment = (SupportMapFragment) this.getChildFragmentManager()
 //                .findFragmentById(R.id.MapFragment);
 //        mapFragment.getMapAsync(this);
@@ -45,7 +45,7 @@ public class MapFragment extends BaseFragmentWithPermission implements OnMapRead
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, null, false);
-        userTrackerViewModel.getLocationData().observe(getViewLifecycleOwner(), this::onUserLocationChanged);
+        //userTrackerViewModel.getLocationData().observe(getViewLifecycleOwner(), this::onUserLocationChanged);
         // userTrackerViewModel.getLocationData().observe(getViewLifecycleOwner(), this::onUserLocationChanged);
         mapFragment = ((SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.MapFragment));

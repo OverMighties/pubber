@@ -106,7 +106,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         });
         //gives me null poiner exception
         //actionOnLocationAvailable(null);
-        //swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setRefreshing(true);
         adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
         recyclerView.setAdapter(adapter);
         //Setting listener to departure to FiltrationScreen
@@ -294,8 +294,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
 
         view.post(new Runnable() {
-
-
             @Override
             public void run() {
 

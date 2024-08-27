@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.StartActivity;
-import com.overmighties.pubber.util.SettingsHandler;
+import com.overmighties.pubber.feature.settings.SettingsHandler;
 
 public class ThemeFragment extends Fragment {
 
