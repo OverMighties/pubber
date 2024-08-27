@@ -7,7 +7,7 @@ import com.overmighties.pubber.core.database.model.PhotoEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.PubWithAllEntities;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
-import com.overmighties.pubber.core.database.model.StyleEntity;
+import com.overmighties.pubber.core.database.model.DrinkStyleEntity;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
@@ -26,7 +26,7 @@ public class PubDataMapper {
     public static PubWithAllEntities mapToEntity(Pub pub)
     {
         PubEntity pubEntity=new PubEntity(pub.getId(),pub.getName(),pub.getAddress(), DateTimeConverter.getToString(pub.getFetchTime()), pub.getCity(), pub.getPhoneNumber(),
-                pub.getWebsiteUrl(), pub.getIconPath(), pub.getDescription(), pub.getReservable(), pub.getTakeout());
+                pub.getWebsiteUrl(), pub.getIconPath(), pub.getDescription(), pub.getReservable(), pub.getTakeout(), pub.getLatitude(), pub.getLongitude());
         return new PubWithAllEntities(pubEntity,
                 mapToEntityRatings(pub.getRatings(),pub.getId()),mapToEntityOpeningHours(pub.getOpeningHours(),pub.getId()),
                 mapToEntityDrinks(pub.getDrinks(),pub.getId()),mapToEntityPhotos(pub.getPhotos(),pub.getId()));
@@ -39,7 +39,12 @@ public class PubDataMapper {
     }
     public static List<DrinkWithStyleEntity> mapToEntityDrinks(List<Drink> drinks, Long pubId)
     {
-        return drinks==null?null:drinks.stream().map(data -> new DrinkWithStyleEntity(new DrinkEntity(DrinkEntity.ID_NONE,data.getName(),data.getType()), data.getStyles()==null?null:data.getStyles().stream().map(style->new StyleEntity(DrinkEntity.ID_NONE, StyleEntity.ID_NONE, style.getName())).collect(Collectors.toList()))).collect(Collectors.toList());
+        return drinks==null?null:drinks.stream().map(data -> new DrinkWithStyleEntity(new DrinkEntity(DrinkEntity.ID_NONE,data.getName(),data.getType(),data.getDescription()), data.getDrinkStyles()==null?null:
+                data.getDrinkStyles().stream()
+                        .map(style->
+                                new DrinkStyleEntity(DrinkEntity.ID_NONE, DrinkStyleEntity.ID_NONE, style.getName()))
+                        .collect(Collectors.toList())))
+                .collect(Collectors.toList());
     }
     public static List<OpeningHoursEntity> mapToEntityOpeningHours(List<OpeningHours> openingHours, Long pubId)
     {

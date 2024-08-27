@@ -25,4 +25,5 @@ public class DrinkEntity {
     public Long drinkId;
     public String name;
     public String type;
+    public String description;
 }

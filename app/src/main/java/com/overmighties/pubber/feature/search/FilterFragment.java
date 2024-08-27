@@ -36,7 +36,7 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.slider.LabelFormatter;
 import com.overmighties.pubber.R;
 
-import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.feature.search.data.FilterConstants;
 
 

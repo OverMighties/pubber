@@ -29,7 +29,7 @@ import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.exception.ErrorSigningUIHandler;
 import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 
 public class SignInFragment extends Fragment {

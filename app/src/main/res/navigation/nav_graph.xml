@@ -22,10 +22,5 @@
         android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" />
-    <fragment
-        android:id="@+id/mapFragment"
-        android:name="com.overmighties.pubber.feature.map.MapFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
 
 </navigation>

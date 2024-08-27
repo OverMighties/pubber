@@ -10,9 +10,9 @@ import com.overmighties.pubber.core.database.model.PhotoEntity;
 import com.overmighties.pubber.core.database.model.PubDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.model.PubEntity;
 import com.overmighties.pubber.core.database.model.RatingsEntity;
-import com.overmighties.pubber.core.database.model.StyleEntity;
+import com.overmighties.pubber.core.database.model.DrinkStyleEntity;
 
-@Database(entities = {PubEntity.class, DrinkEntity.class, StyleEntity.class, PubDrinkCrossRefEntity.class, DrinkStyleCrossRefEntity.class, OpeningHoursEntity.class, PhotoEntity.class, RatingsEntity.class},version=1,exportSchema = false)
+@Database(entities = {PubEntity.class, DrinkEntity.class, DrinkStyleEntity.class, PubDrinkCrossRefEntity.class, DrinkStyleCrossRefEntity.class, OpeningHoursEntity.class, PhotoEntity.class, RatingsEntity.class},version=1,exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
     public abstract PubsDao pubsDao();
 }

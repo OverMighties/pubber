@@ -2,6 +2,7 @@ package com.overmighties.pubber.feature.search;
 
 
 import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.MAP_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
@@ -45,17 +46,18 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
+import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
-import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.feature.pubdetails.DetailsFragment;
-import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
+import com.overmighties.pubber.feature.map.MapFragment;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
+import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
 import com.overmighties.pubber.util.DimensionsConverter;
 
@@ -77,6 +79,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Log.i(TAG,"onViewCreated");
         recyclerView = requireView().findViewById(R.id.Publista);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
@@ -126,6 +129,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         if(appContainer.getAccountDataSource().currentUser()==null){
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,SPLASH_FRAGMENT));
         }
+        requireActivity().findViewById(R.id.fab_map).setOnClickListener(v -> {
+            navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
+        });
+
     }
     private void sortButtonsListeners()
     {
@@ -334,27 +341,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
 
         pubListViewModel.setPubDetails(position,detailsViewModel);
-    }
-
-    public void addDetailsWithoutShowing() {
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(fragmentManager.findFragmentByTag("DETAILS") == null)
-            fragmentTransaction.add(R.id.nav_host_fragment, new DetailsFragment(), "DETAILS");
-        fragmentTransaction.commit();
-    }
-
-    public void showDetails() {
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentByTag("DETAILS");
-
-        if (fragment != null) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            // Show the fragment
-            fragmentTransaction.show(fragment);
-            fragmentTransaction.commit();
-        }
     }
 
 }

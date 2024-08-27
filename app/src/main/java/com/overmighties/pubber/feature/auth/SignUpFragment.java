@@ -32,7 +32,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.exception.ErrorSigningUIHandler;
 import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 
 public class SignUpFragment  extends Fragment {

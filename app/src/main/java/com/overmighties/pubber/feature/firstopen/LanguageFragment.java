@@ -1,8 +1,5 @@
 package com.overmighties.pubber.feature.firstopen;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,9 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.card.MaterialCardView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.util.DimensionsConverter;
-import com.overmighties.pubber.util.SettingsHandler;
-
-import java.util.Locale;
+import com.overmighties.pubber.feature.settings.SettingsHandler;
 
 public class LanguageFragment extends Fragment {
 

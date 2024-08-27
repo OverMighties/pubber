@@ -97,7 +97,7 @@ public class FilterUtil {
                     }
                 }
                 for(var drinkFilter: Objects.requireNonNull(filterUiState.getStyles())){
-                    for(var drinkType: Objects.requireNonNull(drinkPub.getStyles())){
+                    for(var drinkType: Objects.requireNonNull(drinkPub.getDrinkStyles())){
                         if(drinkType.getName().equals(drinkFilter)){
                             filteredNow.add(pubData);
                             break tonext;
@@ -106,7 +106,7 @@ public class FilterUtil {
                 }
                 for(var drinkFilter: Objects.requireNonNull(filterUiState.getParticular_beers())){
                     if(drinkFilter.first.equals(drinkPub.getName())){
-                        for(var drinkType:Objects.requireNonNull(drinkPub.getStyles())){
+                        for(var drinkType:Objects.requireNonNull(drinkPub.getDrinkStyles())){
                             if(drinkType.getName().equals(drinkFilter.second)){
                                 filteredNow.add(pubData);
                                 break tonext;

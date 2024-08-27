@@ -2,7 +2,7 @@ package com.overmighties.pubber.core.network.retrofit;
 
 
 
-import com.overmighties.pubber.core.network.PubberNetworkDataSource;
+import com.overmighties.pubber.core.network.PubberNetworkApi;
 import com.overmighties.pubber.core.network.model.PubDto;
 
 
@@ -13,10 +13,10 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PubsRetrofitDataSource implements PubberNetworkDataSource {
+public class PubsRetrofitDataSource implements PubberNetworkApi {
 
     private static final PubsRetrofitDataSource INSTANCE= new PubsRetrofitDataSource();
-    private final PubsNetworkApi networkApi;
+    private final PubsRetrofitNetworkApi networkApi;
     public static final String TAG="PubsRetrofitDataSource";
     private static final String URL = "https://pubber-rest-api-49572a95c20a.herokuapp.com";
     
@@ -27,7 +27,7 @@ public class PubsRetrofitDataSource implements PubberNetworkDataSource {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build()
-                .create(PubsNetworkApi.class);
+                .create(PubsRetrofitNetworkApi.class);
     }
     public static PubsRetrofitDataSource getInstance()
     {

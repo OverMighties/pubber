@@ -21,11 +21,11 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.app.navigation.PubberNavRoutes;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
 import com.overmighties.pubber.util.TriConsumer;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.function.BiConsumer;
 
@@ -34,7 +34,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class SplashViewModel extends PubberAppViewModel {
     private static final String TAG="SplashViewModel";
-    private final AccountDataSource accountDataSource;
+    private final AccountApi accountApi;
     public static final ViewModelInitializer<SplashViewModel> initializer = new ViewModelInitializer<>(
         SplashViewModel.class,
         creationExtras -> {
@@ -45,11 +45,11 @@ public class SplashViewModel extends PubberAppViewModel {
         }
     );
     private final CompositeDisposable disposables = new CompositeDisposable();
-    public SplashViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
-        this.accountDataSource=accountDataSource;
+    public SplashViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
+        this.accountApi = accountApi;
     }
     public void currentUserCheckOnStart(BiConsumer<String,String> openAndPopUp){
-        UserData userData=accountDataSource.currentUser();
+        UserData userData= accountApi.currentUser();
         if (userData!=null) {
             String displayName=userData.getUsername();
             if (displayName != null && !displayName.isBlank() && !displayName.isEmpty()) {
@@ -70,7 +70,7 @@ public class SplashViewModel extends PubberAppViewModel {
             return Single.error(e);
         }
         String idToken = credential.getGoogleIdToken();
-        return  accountDataSource.signInWithCredentials(idToken);
+        return  accountApi.signInWithCredentials(idToken);
     }
     //From SDK api>=14
     private Single<UserData> firebaseAuthWithGoogle(GetCredentialResponse response)  {
@@ -78,7 +78,7 @@ public class SplashViewModel extends PubberAppViewModel {
             PasswordCredential credential= (PasswordCredential) response.getCredential();
             if (GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL.equals(credential.getType())) {
                 GoogleIdTokenCredential googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
-                return accountDataSource.signInWithCredentials(googleIdTokenCredential.getIdToken());
+                return accountApi.signInWithCredentials(googleIdTokenCredential.getIdToken());
             }
         }
         Log.e(TAG, "No valid credential response");

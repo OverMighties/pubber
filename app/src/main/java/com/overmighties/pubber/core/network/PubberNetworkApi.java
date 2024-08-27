@@ -6,6 +6,6 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 
-public interface PubberNetworkDataSource {
+public interface PubberNetworkApi {
      Single<List<PubDto>> getPubs();
 }

@@ -1,19 +1,17 @@
 package com.overmighties.pubber.core.network.model;
 
-import android.graphics.Paint;
-
-import androidx.core.util.Pair;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,6 +21,8 @@ public class DrinkDto {
     private String name;
     @SerializedName("type")
     private String type;
-    @SerializedName("styles")
-    private List<StyleDto> styles;
+    @SerializedName("description")
+    private String description;
+    @SerializedName("drinkStyles")
+    private List<DrinkStyleDto> drinkStyles;
 }

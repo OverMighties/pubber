@@ -25,9 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:background="@color/surface"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/top_app_bar"
             app:titleTextColor="@color/on_surface"
             app:navigationIconTint="@color/on_surface"
@@ -39,7 +36,8 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@id/top_app_bar_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/searchConstraintLayout"
@@ -152,46 +150,34 @@
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/mapLayout"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:liftOnScroll="true"
-
-            app:liftOnScrollTargetViewId="@id/Publista"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchConstraintLayout">
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:isScrollContainer="false"
+            app:layout_constraintTop_toBottomOf="@id/searchConstraintLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mapLayout">
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-                android:id="@+id/swipeRefresh"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Publista"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:isScrollContainer="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/Publista"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_destination"
+        app:layout_anchor="@id/constraintLayout"
+        app:layout_anchorGravity="bottom|end"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/red_bright" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

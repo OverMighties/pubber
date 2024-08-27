@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity(
         tableName = "drink_style_cross_ref",
-        primaryKeys = {"drink_id", "style_id"},
-        indices = {@Index(value = "drink_id"), @Index(value = "style_id")}
+        primaryKeys = {"drink_id", "drink_style_id"},
+        indices = {@Index(value = "drink_id"), @Index(value = "drink_style_id")}
 )
 public class DrinkStyleCrossRefEntity {
     @Ignore
@@ -27,6 +27,6 @@ public class DrinkStyleCrossRefEntity {
     public Long drinkId;
 
     @NonNull
-    @ColumnInfo(name = "style_id")
-    public Long styleId;
+    @ColumnInfo(name = "drink_style_id")
+    public Long drinkStyleId;
 }

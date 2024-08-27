@@ -20,6 +20,7 @@ public final class PubberNavRoutes {
     public static final String SETTINGS_FRAGMENT="SettingsFragment";
     public static final String PLACE_CHOICE_FRAGMENT="PlaceChoiceFragment";
     public static final String NEW_USER_DETAILS_FRAGMENT="NewUserDetailsFragment";
+    public static final String MAP_FRAGMENT="MapFragment";
     public static NavDirections getNavDirections(String from , String to){
         switch (from) {
             case SPLASH_FRAGMENT:
@@ -45,7 +46,12 @@ public final class PubberNavRoutes {
                         return SignInFragmentDirections.actionSignInFragmentToSignUpFragment();
                 }
             case SEARCHER_FRAGMENT:
-                return SearcherFragmentDirections.actionSearcherFragmentToLoginGraph();
+                switch (to) {
+                    case MAP_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToMapFragment();
+                    default:
+                        return SearcherFragmentDirections.actionSearcherFragmentToLoginGraph();
+                }
             case ACCOUNT_DETAILS_FRAGMENT:
                 return AccountDetailsFragmentDirections.actionGlobalLoginGraph();
             case SETTINGS_FRAGMENT:

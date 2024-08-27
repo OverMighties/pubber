@@ -3,9 +3,9 @@ package com.overmighties.pubber.core.data;
 import android.util.Log;
 
 import com.overmighties.pubber.core.database.DbResponse;
-import com.overmighties.pubber.core.database.PubberLocalDataSource;
+import com.overmighties.pubber.core.database.PubberLocalApi;
 import com.overmighties.pubber.core.model.Pub;
-import com.overmighties.pubber.core.network.PubberNetworkDataSource;
+import com.overmighties.pubber.core.network.PubberNetworkApi;
 import com.overmighties.pubber.sync.Result;
 
 import java.time.LocalDateTime;
@@ -21,8 +21,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PubsRepository {
     public static final String TAG="PubsRepository";
-    private final PubberNetworkDataSource remoteDataSource;
-    private final PubberLocalDataSource localDataSource;
+    private final PubberNetworkApi remoteDataSource;
+    private final PubberLocalApi localDataSource;
     public Result<DbResponse> sync() throws RuntimeException
     {
 
@@ -41,7 +41,7 @@ public class PubsRepository {
                     }).blockingGet());
         }catch(Exception exception)
         {
-            Log.e(TAG, "sync: error"+exception.getMessage()+"\n"+exception.getLocalizedMessage(),exception );
+            Log.e(TAG, "sync error: "+exception.getMessage()+"\n"+exception.getLocalizedMessage(),exception );
             return  new Result.Error<>(exception, exception.getLocalizedMessage());
         }
         return  new Result.Success<>(new DbResponse("Data synchronized", DbResponse.Status.OK));

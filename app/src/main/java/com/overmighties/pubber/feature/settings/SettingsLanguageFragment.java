@@ -20,9 +20,8 @@ import android.view.View;
 import com.google.android.material.card.MaterialCardView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
-import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.util.DimensionsConverter;
-import com.overmighties.pubber.util.SettingsHandler;
 
 public class SettingsLanguageFragment extends Fragment {
 

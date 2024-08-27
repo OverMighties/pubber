@@ -14,10 +14,10 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
 import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.util.TriConsumer;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.function.BiConsumer;
 
@@ -25,7 +25,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class SignInViewModel extends PubberAppViewModel {
     private static final String TAG="SignInViewModel";
-    private final AccountDataSource accountDataSource;
+    private final AccountApi accountApi;
     private final CompositeDisposable disposables = new CompositeDisposable();
     public static final ViewModelInitializer<SignInViewModel> initializer = new ViewModelInitializer<>(
             SignInViewModel.class,
@@ -37,8 +37,8 @@ public class SignInViewModel extends PubberAppViewModel {
                 return new SignInViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
             }
     );
-    public SignInViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
-        this.accountDataSource=accountDataSource;
+    public SignInViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
+        this.accountApi = accountApi;
     }
     private final MutableLiveData<String> email=new MutableLiveData<>();
     public LiveData<String> getEmail(){
@@ -57,7 +57,7 @@ public class SignInViewModel extends PubberAppViewModel {
     }
     public void onSignInClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSigningUITypes, UIText,String> responseOnError){
         singleAction(TAG,
-                accountDataSource.signIn(email.getValue(),password.getValue()),
+                accountApi.signIn(email.getValue(),password.getValue()),
                 ()-> openAndPopUp.accept(SIGN_IN_FRAGMENT,PLACE_CHOICE_FRAGMENT),
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError)

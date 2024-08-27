@@ -1,6 +1,5 @@
 package com.overmighties.pubber.app.notifications;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
@@ -10,10 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.util.Pair;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;

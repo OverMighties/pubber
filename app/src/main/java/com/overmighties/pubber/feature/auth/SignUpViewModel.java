@@ -16,10 +16,10 @@ import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
 import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.util.TriConsumer;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -28,7 +28,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 
 public class SignUpViewModel extends PubberAppViewModel {
-    private final AccountDataSource accountDataSource;
+    private final AccountApi accountApi;
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     public static final int NONE_RES=-1;
@@ -43,8 +43,8 @@ public class SignUpViewModel extends PubberAppViewModel {
                 return new SignUpViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
             }
     );
-    public SignUpViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
-        this.accountDataSource=accountDataSource;
+    public SignUpViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
+        this.accountApi = accountApi;
     }
     private final MutableLiveData<String> email=new MutableLiveData<>();
     public void updateEmail(String newEmail){
@@ -64,7 +64,7 @@ public class SignUpViewModel extends PubberAppViewModel {
             Log.e(TAG,"User entered not matching passwords in sign up");
         }else{
             singleAction(TAG,
-                    accountDataSource.signUp(email.getValue(),password.getValue()),
+                    accountApi.signUp(email.getValue(),password.getValue()),
                     ()->openAndPopUp.accept(SIGN_UP_FRAGMENT,NEW_USER_DETAILS_FRAGMENT),
                     (err)->{
                         if(err instanceof AccFirebaseDSError.DifferentInternalError)

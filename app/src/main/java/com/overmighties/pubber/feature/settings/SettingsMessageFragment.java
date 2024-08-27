@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.ui.NavigationBar;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
 
 public class SettingsMessageFragment extends Fragment {
 

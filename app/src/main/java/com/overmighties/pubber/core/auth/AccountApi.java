@@ -6,7 +6,7 @@ import com.overmighties.pubber.core.auth.model.UserData;
 
 import io.reactivex.rxjava3.core.Single;
 
-public interface AccountDataSource {
+public interface AccountApi {
     UserData currentUser();
 //    boolean getLastUser();
     Single<UserData> signIn(String email, String password);

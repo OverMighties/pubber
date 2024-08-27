@@ -1,16 +1,15 @@
 package com.overmighties.pubber.data_test;
 
-import androidx.core.util.Pair;
-
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.core.network.model.PhotoDto;
 import com.overmighties.pubber.core.network.model.PubDto;
 import com.overmighties.pubber.core.network.model.RatingsDto;
-import com.overmighties.pubber.core.network.model.StyleDto;
+import com.overmighties.pubber.core.network.model.DrinkStyleDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Getter;
@@ -21,27 +20,27 @@ public class TestRepoPubsDataSet {
 
     private final static TestRepoPubsDataSet INSTANCE=new TestRepoPubsDataSet();
 
-    private static ArrayList<DrinkDto> drinksDataSet1;
-    private static ArrayList<DrinkDto> drinksDataSet2;
-    private static ArrayList<DrinkDto> drinksDataSet3;
-    private static ArrayList<DrinkDto> drinksDataSet4;
-    private static ArrayList<DrinkDto> drinksDataSet5;
-    private static ArrayList<DrinkDto> drinksDataSet6;
+    private ArrayList<DrinkDto> drinksDataSet1;
+    private ArrayList<DrinkDto> drinksDataSet2;
+    private ArrayList<DrinkDto> drinksDataSet3;
+    private ArrayList<DrinkDto> drinksDataSet4;
+    private ArrayList<DrinkDto> drinksDataSet5;
+    private ArrayList<DrinkDto> drinksDataSet6;
 
 
-    private static ArrayList<OpeningHoursDto> openingHoursDataSet1;
-    private static ArrayList<OpeningHoursDto> openingHoursDataSet2;
-    private static ArrayList<OpeningHoursDto> openingHoursDataSet3;
-    private static ArrayList<OpeningHoursDto> openingHoursDataSet4;
-    private static ArrayList<OpeningHoursDto> openingHoursDataSet5;
-    private static ArrayList<OpeningHoursDto> openingHoursDataSet6;
+    private ArrayList<OpeningHoursDto> openingHoursDataSet1;
+    private ArrayList<OpeningHoursDto> openingHoursDataSet2;
+    private ArrayList<OpeningHoursDto> openingHoursDataSet3;
+    private ArrayList<OpeningHoursDto> openingHoursDataSet4;
+    private ArrayList<OpeningHoursDto> openingHoursDataSet5;
+    private ArrayList<OpeningHoursDto> openingHoursDataSet6;
 
-    private static ArrayList<PhotoDto> photosDataSet1;
-    private static ArrayList<PhotoDto> photosDataSet2;
-    private static ArrayList<PhotoDto> photosDataSet3;
-    private static ArrayList<PhotoDto> photosDataSet4;
-    private static ArrayList<PhotoDto> photosDataSet5;
-    private static ArrayList<PhotoDto> photosDataSet6;
+    private ArrayList<PhotoDto> photosDataSet1;
+    private ArrayList<PhotoDto> photosDataSet2;
+    private ArrayList<PhotoDto> photosDataSet3;
+    private ArrayList<PhotoDto> photosDataSet4;
+    private ArrayList<PhotoDto> photosDataSet5;
+    private ArrayList<PhotoDto> photosDataSet6;
 
 
     private static final String NOTHING="";
@@ -75,122 +74,541 @@ public class TestRepoPubsDataSet {
         initDataSet6();
 
 
-        dataSet=new ArrayList<>();
+        dataSet = new ArrayList<>();
 
-        dataSet.add(new PubDto(1L,	"Pewex Pub","Rynek 18, 35-064 Rzeszów, Poland","ChIJS3sKMwL7PEcRurd9BXet-fw","Rzeszów","17 871 80 77",	"https://www.facebook.com/PewexPub/","",NOTHING,null,null,
-                new RatingsDto(4.0f,588,null,null,null,null,null,null,null,null,2),
-              openingHoursDataSet1,drinksDataSet1,photosDataSet1,null));
-        dataSet.add(new PubDto(2L,	"Rambla Cocktail&Music Pub","Jana Matejki 16, 35-064 Rzeszów, Poland","ChIJF-VPDAL7PEcRE5pnPMUZVAw","Rzeszów","535 041 290",	"https://www.facebook.com/PubRambla","",LOREM_IPSUM_20,true,true,
-                new RatingsDto(4.2f,514,null,null,null,null,null,null,null,null,3),
-                openingHoursDataSet2,drinksDataSet2,photosDataSet2,null));
-        dataSet.add(new PubDto(3L,	"Pub K20","Mikołaja Kopernika 4, 35-002 Rzeszów, Poland","ChIJ79jBNQL7PEcRAJ0TSKs0Bic","Rzeszów","17 225 31 06",	"http://www.fb.com/K20PUB","",LOREM_IPSUM_50,true,true,
-                new RatingsDto(4.6f,956,4.7f,156,4.3f,343,4.24f,343,4.0f,5.0f,4),
-                openingHoursDataSet3,drinksDataSet3,photosDataSet3,null));
-        dataSet.add(new PubDto(4L,	"Corner Pub Mała Graciarnia Rzeszów","Przesmyk 2, 35-065 Rzeszów, Poland","ChIJGcTVBwL7PEcRTflMy_gvdhI","Rzeszów","519 159 156",	"https://www.facebook.com/PewexPub/","",LOREM_IPSUM_20,true,false,
-                new RatingsDto(4.0f,588,null,null,null,null,null,null,3.3f,4.1f,2),
-                openingHoursDataSet4,drinksDataSet4,photosDataSet4,null));
-        dataSet.add(new PubDto(5L,		"Jameson Pub","Stanisława Moniuszki 4, 35-015 Rzeszów, Poland","ChIJlxM_5QP7PEcRuKMUGawHRgs","Rzeszów","17 871 80 77",	"https://www.facebook.com/PewexPub/","",LOREM_IPSUM_100,null,true,
-                new RatingsDto(4.0f,588,null,null,null,null,null,null,2.3f,4.0f,4),
-                openingHoursDataSet5,drinksDataSet5,photosDataSet5,null));
-        dataSet.add(new PubDto(6L,	 "Pub Underground","Jana Matejki 10, 35-001 Rzeszów, Poland","ChIJS3sKMwL7PEcRurd9BXet-fw",null,null,	"https://www.facebook.com/PewexPub/","",LOREM_IPSUM_200,true,null,
-                new RatingsDto(4.0f,588,null,null,null,null,null,null,null,null,null),
-                openingHoursDataSet6,drinksDataSet6,photosDataSet6,null));
+        dataSet.add(PubDto.builder()
+                .id(1L)
+                .name("Pewex Pub")
+                .address("Rynek 18, 35-064 Rzeszów, Poland")
+                .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
+                .city("Rzeszów")
+                .phoneNumber("17 871 80 77")
+                .websiteUrl("https://www.facebook.com/PewexPub/")
+                .longitude(22.0053014)
+                .latitude(50.0377769)
+                .ratings(RatingsDto.builder()
+                        .google(4.0f)
+                        .googleCount(588)
+                        .ourCost(2)
+                        .build())
+                .openingHours(openingHoursDataSet1)
+                .drinks(drinksDataSet1)
+                .photos(photosDataSet1)
+                .build());
+
+        dataSet.add(PubDto.builder()
+                .id(2L)
+                .name("Rambla Cocktail&Music Pub")
+                .address("Jana Matejki 16, 35-064 Rzeszów, Poland")
+                .placeId("ChIJF-VPDAL7PEcRE5pnPMUZVAw")
+                .city("Rzeszów")
+                .phoneNumber("535 041 290")
+                .websiteUrl("https://www.facebook.com/PubRambla")
+                .longitude(22.0023941)
+                .latitude(50.0380331)
+                .description(LOREM_IPSUM_20)
+                .reservable(true)
+                .takeout(true)
+                .ratings(RatingsDto.builder()
+                        .google(4.2f)
+                        .googleCount(514)
+                        .ourCost(3)
+                        .build())
+                .openingHours(openingHoursDataSet2)
+                .drinks(drinksDataSet2)
+                .photos(photosDataSet2)
+                .build());
+
+        dataSet.add(PubDto.builder()
+                .id(3L)
+                .name("Pub K20")
+                .address("Mikołaja Kopernika 4, 35-002 Rzeszów, Poland")
+                .placeId("ChIJ79jBNQL7PEcRAJ0TSKs0Bic")
+                .city("Rzeszów")
+                .phoneNumber("17 225 31 06")
+                .websiteUrl("http://www.fb.com/K20PUB")
+                .longitude(22.0031631)
+                .latitude(50.0382432)
+                .description(LOREM_IPSUM_50)
+                .reservable(true)
+                .takeout(true)
+                .ratings(RatingsDto.builder()
+                        .google(4.6f)
+                        .googleCount(956)
+                        .facebook(4.7f)
+                        .facebookCount(156)
+                        .tripadvisor(4.3f)
+                        .tripadvisorCount(343)
+                        .untapped(4.24f)
+                        .untappedCount(343)
+                        .ourDrinksQuality(4.0f)
+                        .ourServiceQuality(5.0f)
+                        .ourCost(4)
+                        .build())
+                .openingHours(openingHoursDataSet3)
+                .drinks(drinksDataSet3)
+                .photos(photosDataSet3)
+                .build());
+
+        dataSet.add(PubDto.builder()
+                .id(4L)
+                .name("Corner Pub Mała Graciarnia Rzeszów")
+                .address("Przesmyk 2, 35-065 Rzeszów, Poland")
+                .placeId("ChIJGcTVBwL7PEcRTflMy_gvdhI")
+                .city("Rzeszów")
+                .phoneNumber("519 159 156")
+                .websiteUrl("https://www.facebook.com/PewexPub/")
+                .longitude(22.0056159)
+                .latitude(50.0371217)
+                .description(LOREM_IPSUM_20)
+                .reservable(true)
+                .takeout(false)
+                .ratings(RatingsDto.builder()
+                        .google(4.0f)
+                        .googleCount(588)
+                        .ourDrinksQuality(3.3f)
+                        .ourServiceQuality(4.1f)
+                        .ourCost(2)
+                        .build())
+                .openingHours(openingHoursDataSet4)
+                .drinks(drinksDataSet4)
+                .photos(photosDataSet4)
+                .build());
+
+        dataSet.add(PubDto.builder()
+                .id(5L)
+                .name("Jameson Pub")
+                .address("Stanisława Moniuszki 4, 35-015 Rzeszów, Poland")
+                .placeId("ChIJlxM_5QP7PEcRuKMUGawHRgs")
+                .city("Rzeszów")
+                .phoneNumber("17 871 80 77")
+                .websiteUrl("https://www.facebook.com/PewexPub/")
+                .longitude(21.9996011)
+                .latitude(50.0382023)
+                .description(LOREM_IPSUM_100)
+                .takeout(true)
+                .ratings(RatingsDto.builder()
+                        .google(4.0f)
+                        .googleCount(588)
+                        .ourDrinksQuality(2.3f)
+                        .ourServiceQuality(4.0f)
+                        .ourCost(4)
+                        .build())
+                .openingHours(openingHoursDataSet5)
+                .drinks(drinksDataSet5)
+                .photos(photosDataSet5)
+                .build());
+
+        dataSet.add(PubDto.builder()
+                .id(6L)
+                .name("Pub Underground")
+                .address("Jana Matejki 10, 35-001 Rzeszów, Poland")
+                .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
+                .websiteUrl("https://www.facebook.com/PewexPub/")
+                .description(LOREM_IPSUM_200)
+                .reservable(true)
+                .ratings(RatingsDto.builder()
+                        .google(4.0f)
+                        .googleCount(588)
+                        .build())
+                .openingHours(openingHoursDataSet6)
+                .drinks(drinksDataSet6)
+                .photos(photosDataSet6)
+                .build());
+        dataSet.add(PubDto.builder()
+                .id(7L)
+                .name("Pub Underground")
+                .address("Jana Matejki 10, 35-001 Rzeszów, Poland")
+                .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
+                .websiteUrl("https://www.facebook.com/PewexPub/")
+                .description(LOREM_IPSUM_200)
+                .reservable(true)
+                .ratings(RatingsDto.builder()
+                        .google(4.0f)
+                        .googleCount(588)
+                        .build())
+                .openingHours(openingHoursDataSet6)
+                .drinks(drinksDataSet6)
+                .photos(photosDataSet6)
+                .build());
+        dataSet.add(PubDto.builder()
+                .id(8L)
+                .name("Pub Underground")
+                .address("Jana Matejki 10, 35-001 Rzeszów, Poland")
+                .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
+                .websiteUrl("https://www.facebook.com/PewexPub/")
+                .description(LOREM_IPSUM_200)
+                .reservable(true)
+                .ratings(RatingsDto.builder()
+                        .google(4.0f)
+                        .googleCount(588)
+                        .build())
+                .openingHours(openingHoursDataSet6)
+                .drinks(drinksDataSet6)
+                .photos(photosDataSet6)
+                .build());
+
     }
     private void initDataSet1()
     {
-        drinksDataSet1=new ArrayList<>();
-        openingHoursDataSet1=new ArrayList<>();
-        photosDataSet1=new ArrayList<>();
+        drinksDataSet1 = new ArrayList<>();
+        openingHoursDataSet1 = new ArrayList<>();
+        photosDataSet1 = new ArrayList<>();
 
-        drinksDataSet1.add(new DrinkDto("AleBrowar", "Beer", null));
-        drinksDataSet1.add(new DrinkDto("Amber", "Beer", Arrays.asList(new StyleDto("Pilsner"))));
-        drinksDataSet1.add(new DrinkDto("Sexonthebeach", "Cocktail", null));
+        drinksDataSet1.add(DrinkDto.builder()
+                .name("AleBrowar")
+                .type("Beer")
+                .build());
 
-        openingHoursDataSet1.add(new OpeningHoursDto("MONDAY","00:00","02:00"));
-        openingHoursDataSet1.add(new OpeningHoursDto("TUESDAY","00:00","02:00"));
-        openingHoursDataSet1.add(new OpeningHoursDto("WEDNESDAY","16:00","02:00"));
-        openingHoursDataSet1.add(new OpeningHoursDto("THURSDAY","16:00","02:00"));
-        openingHoursDataSet1.add(new OpeningHoursDto("FRIDAY","16:00","03:00"));
-        openingHoursDataSet1.add(new OpeningHoursDto("SATURDAY","16:00","00:00"));
-        openingHoursDataSet1.add(new OpeningHoursDto("SUNDAY","00:00","02:00"));
+        drinksDataSet1.add(DrinkDto.builder()
+                .name("Amber")
+                .type("Beer")
+                .drinkStyles(Collections.singletonList(
+                        DrinkStyleDto.builder()
+                                .styleName("Pilsner")
+                                .build()))
+                .build());
+
+        drinksDataSet1.add(DrinkDto.builder()
+                .name("Sexonthebeach")
+                .type("Cocktail")
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("MONDAY")
+                .timeOpen("00:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("TUESDAY")
+                .timeOpen("00:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("WEDNESDAY")
+                .timeOpen("16:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("THURSDAY")
+                .timeOpen("16:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("FRIDAY")
+                .timeOpen("16:00")
+                .timeClose("03:00")
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("SATURDAY")
+                .timeOpen("16:00")
+                .timeClose("24:00")  // Note: This might be a typo; "00:00" typically means midnight, suggesting closing time is exactly at the start of the day.
+                .build());
+
+        openingHoursDataSet1.add(OpeningHoursDto.builder()
+                .weekday("SUNDAY")
+                .timeOpen("00:00")
+                .timeClose("02:00")
+                .build());
 
 
 
     }
     private void initDataSet2()
     {
-        drinksDataSet2=new ArrayList<>();
-        openingHoursDataSet2=new ArrayList<>();
-        photosDataSet2=new ArrayList<>();
+        drinksDataSet2 = new ArrayList<>();
+        openingHoursDataSet2 = new ArrayList<>();
+        photosDataSet2 = new ArrayList<>();
 
-        drinksDataSet2.add(new DrinkDto("AleBrowar", "Beer", Arrays.asList(new StyleDto("Lager"))));
-        drinksDataSet2.add(new DrinkDto("Amber", "Beer", Arrays.asList(new StyleDto("IPA"))));
-        drinksDataSet2.add(new DrinkDto("Artezanr", "Beer", Arrays.asList(new StyleDto("APA"))));
-        drinksDataSet2.add(new DrinkDto("Sexonthebeach", "Cocktail", null));
+        drinksDataSet2.add(DrinkDto.builder()
+                .name("AleBrowar")
+                .type("Beer")
+                .drinkStyles(Arrays.asList(
+                        DrinkStyleDto.builder()
+                                .styleName("Lager")
+                                .build()))
+                .build());
 
-        openingHoursDataSet2.add(new OpeningHoursDto("MONDAY","00:00","00:00"));
-        openingHoursDataSet2.add(new OpeningHoursDto("WEDNESDAY","00:00","00:00"));
-        openingHoursDataSet2.add(new OpeningHoursDto("THURSDAY","00:00","00:00"));
-        openingHoursDataSet2.add(new OpeningHoursDto("FRIDAY","00:00","00:00"));
-        openingHoursDataSet2.add(new OpeningHoursDto("SATURDAY","00:00","00:00"));
-        openingHoursDataSet2.add(new OpeningHoursDto("SUNDAY","00:00","00:00"));
-        openingHoursDataSet2.add(new OpeningHoursDto("TUESDAY","00:00","00:00"));
+        drinksDataSet2.add(DrinkDto.builder()
+                .name("Amber")
+                .type("Beer")
+                .drinkStyles(Arrays.asList(
+                        DrinkStyleDto.builder()
+                                .styleName("IPA")
+                                .build()))
+                .build());
+
+        drinksDataSet2.add(DrinkDto.builder()
+                .name("Artezanr")
+                .type("Beer")
+                .drinkStyles(Arrays.asList(
+                        DrinkStyleDto.builder()
+                                .styleName("APA")
+                                .build()))
+                .build());
+
+        drinksDataSet2.add(DrinkDto.builder()
+                .name("Sexonthebeach")
+                .type("Cocktail")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("MONDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("TUESDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("WEDNESDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("THURSDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("FRIDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("SATURDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
+
+        openingHoursDataSet2.add(OpeningHoursDto.builder()
+                .weekday("SUNDAY")
+                .timeOpen("00:00")
+                .timeClose("00:00")
+                .build());
     }
     private void initDataSet3()
     {
-        drinksDataSet3=new ArrayList<>();
-        openingHoursDataSet3=new ArrayList<>();
-        photosDataSet3=new ArrayList<>();
+        drinksDataSet3 = new ArrayList<>();
+        openingHoursDataSet3 = new ArrayList<>();
+        photosDataSet3 = new ArrayList<>();
 
-        drinksDataSet3.add(new DrinkDto("Żywiec",
-                "Beer", Arrays.asList(new StyleDto("Lager"),new StyleDto("Jasne"))));
-        drinksDataSet3.add(new DrinkDto("FunkyFluids", "Beer", Arrays.asList(new StyleDto("Witbier"))));
-        drinksDataSet3.add(new DrinkDto("Sexonthebeach", "Cocktail", null));
+        drinksDataSet3.add(DrinkDto.builder()
+                .name("Żywiec")
+                .type("Beer")
+                .drinkStyles(Arrays.asList(
+                        DrinkStyleDto.builder().styleName("Lager").build(),
+                        DrinkStyleDto.builder().styleName("Jasne").build()))
+                .build());
 
-        openingHoursDataSet3.add(new OpeningHoursDto("MONDAY","18:00","01:00"));
-        openingHoursDataSet3.add(new OpeningHoursDto("TUESDAY","18:00","01:00"));
-        openingHoursDataSet3.add(new OpeningHoursDto("WEDNESDAY","18:00","01:00"));
-        openingHoursDataSet3.add(new OpeningHoursDto("THURSDAY","18:00","01:00"));
-        openingHoursDataSet3.add(new OpeningHoursDto("FRIDAY","18:00","04:00"));
-        openingHoursDataSet3.add(new OpeningHoursDto("SATURDAY","18:00","04:00"));
-        openingHoursDataSet3.add(new OpeningHoursDto("SUNDAY","15:00","01:00"));
+        drinksDataSet3.add(DrinkDto.builder()
+                .name("FunkyFluids")
+                .type("Beer")
+                .drinkStyles(List.of(
+                        DrinkStyleDto.builder().styleName("Witbier").build()))
+                .build());
+
+        drinksDataSet3.add(DrinkDto.builder()
+                .name("Sexonthebeach")
+                .type("Cocktail")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("MONDAY")
+                .timeOpen("18:00")
+                .timeClose("01:00")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("TUESDAY")
+                .timeOpen("18:00")
+                .timeClose("01:00")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("WEDNESDAY")
+                .timeOpen("18:00")
+                .timeClose("01:00")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("THURSDAY")
+                .timeOpen("18:00")
+                .timeClose("01:00")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("FRIDAY")
+                .timeOpen("18:00")
+                .timeClose("04:00")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("SATURDAY")
+                .timeOpen("18:00")
+                .timeClose("04:00")
+                .build());
+
+        openingHoursDataSet3.add(OpeningHoursDto.builder()
+                .weekday("SUNDAY")
+                .timeOpen("15:00")
+                .timeClose("01:00")
+                .build());
+
     }
     private void initDataSet4()
     {
-        drinksDataSet4=new ArrayList<>();
-        openingHoursDataSet4=new ArrayList<>();
-        photosDataSet4=new ArrayList<>();
+        drinksDataSet4 = new ArrayList<>();
+        openingHoursDataSet4 = new ArrayList<>();
+        photosDataSet4 = new ArrayList<>();
 
-        drinksDataSet4.add(new DrinkDto("Komes", "Beer", Arrays.asList(new StyleDto("Porter"),new StyleDto( "Ciemne"))));
-        drinksDataSet4.add(new DrinkDto("Amber", "Beer", null));
-        drinksDataSet4.add(new DrinkDto("Martini", "Cocktail", null));
+        drinksDataSet4.add(DrinkDto.builder()
+                .name("Komes")
+                .type("Beer")
+                .drinkStyles(Arrays.asList(
+                        DrinkStyleDto.builder().styleName("Porter").build(),
+                        DrinkStyleDto.builder().styleName("Ciemne").build()))
+                .build());
 
-        openingHoursDataSet4.add(new OpeningHoursDto("MONDAY","18:00","01:00"));
-        openingHoursDataSet4.add(new OpeningHoursDto("TUESDAY","00:00","02:00"));
-        openingHoursDataSet4.add(new OpeningHoursDto("WEDNESDAY","16:00","02:00"));
-        openingHoursDataSet4.add(new OpeningHoursDto("THURSDAY","16:00","02:00"));
-        openingHoursDataSet4.add(new OpeningHoursDto("FRIDAY","16:00","03:00"));
-        openingHoursDataSet4.add(new OpeningHoursDto("SATURDAY","16:00","00:00"));
-        openingHoursDataSet4.add(new OpeningHoursDto("SUNDAY","15:00","01:00"));
+        drinksDataSet4.add(DrinkDto.builder()
+                .name("Amber")
+                .type("Beer")
+                .build());
+
+        drinksDataSet4.add(DrinkDto.builder()
+                .name("Martini")
+                .type("Cocktail")
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("MONDAY")
+                .timeOpen("18:00")
+                .timeClose("01:00")
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("TUESDAY")
+                .timeOpen("00:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("WEDNESDAY")
+                .timeOpen("16:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("THURSDAY")
+                .timeOpen("16:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("FRIDAY")
+                .timeOpen("16:00")
+                .timeClose("03:00")
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("SATURDAY")
+                .timeOpen("16:00")
+                .timeClose("00:00")  // Note: "00:00" typically means midnight, suggesting closing time is exactly at the start of the day.
+                .build());
+
+        openingHoursDataSet4.add(OpeningHoursDto.builder()
+                .weekday("SUNDAY")
+                .timeOpen("15:00")
+                .timeClose("01:00")
+                .build());
+
     }
     private void initDataSet5()
     {
-        drinksDataSet5=new ArrayList<>();
-        openingHoursDataSet5=new ArrayList<>();
-        photosDataSet5=new ArrayList<>();
+        drinksDataSet5 = new ArrayList<>();
+        openingHoursDataSet5 = new ArrayList<>();
+        photosDataSet5 = new ArrayList<>();
 
-        drinksDataSet5.add(new DrinkDto("Recraft", "Beer", Arrays.asList(new StyleDto("Ale"))));
-        drinksDataSet5.add(new DrinkDto("Recraft", "Beer", Arrays.asList(new StyleDto("Lager"))));
-        drinksDataSet5.add(new DrinkDto("Recraft", "Beer", Arrays.asList(new StyleDto("Pszeniczne"))));
-        drinksDataSet5.add(new DrinkDto("Martini", "Cocktail", null));
+        drinksDataSet5.add(DrinkDto.builder()
+                .name("Recraft")
+                .type("Beer")
+                .drinkStyles(List.of(
+                        DrinkStyleDto.builder().styleName("Ale").build()))
+                .build());
 
-        openingHoursDataSet5.add(new OpeningHoursDto("MONDAY","18:00","01:00"));
-        openingHoursDataSet5.add(new OpeningHoursDto("TUESDAY","00:00","02:00"));
-        openingHoursDataSet5.add(new OpeningHoursDto("WEDNESDAY","16:00","02:00"));
-        openingHoursDataSet5.add(new OpeningHoursDto("THURSDAY","16:00","02:00"));
-        openingHoursDataSet5.add(new OpeningHoursDto("FRIDAY","16:00","03:00"));
-        openingHoursDataSet5.add(new OpeningHoursDto("SATURDAY","16:00","00:00"));
-        openingHoursDataSet5.add(new OpeningHoursDto("SUNDAY","15:00","01:00"));
+        drinksDataSet5.add(DrinkDto.builder()
+                .name("Recraft")
+                .type("Beer")
+                .drinkStyles(List.of(
+                        DrinkStyleDto.builder().styleName("Lager").build()))
+                .build());
+
+        drinksDataSet5.add(DrinkDto.builder()
+                .name("Recraft")
+                .type("Beer")
+                .drinkStyles(List.of(
+                        DrinkStyleDto.builder().styleName("Pszeniczne").build()))
+                .build());
+
+        drinksDataSet5.add(DrinkDto.builder()
+                .name("Martini")
+                .type("Cocktail")
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("MONDAY")
+                .timeOpen("18:00")
+                .timeClose("01:00")
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("TUESDAY")
+                .timeOpen("00:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("WEDNESDAY")
+                .timeOpen("16:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("THURSDAY")
+                .timeOpen("16:00")
+                .timeClose("02:00")
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("FRIDAY")
+                .timeOpen("16:00")
+                .timeClose("03:00")
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("SATURDAY")
+                .timeOpen("16:00")
+                .timeClose("00:00")  // Note: "00:00" typically means midnight, suggesting closing time is exactly at the start of the day.
+                .build());
+
+        openingHoursDataSet5.add(OpeningHoursDto.builder()
+                .weekday("SUNDAY")
+                .timeOpen("15:00")
+                .timeClose("01:00")
+                .build());
+
     }
     private void initDataSet6()
     {

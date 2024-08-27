@@ -1,7 +1,6 @@
 package com.overmighties.pubber.core.database.model;
 
 import androidx.room.Embedded;
-import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Junction;
 import androidx.room.Relation;
@@ -22,8 +21,8 @@ public class DrinkWithStyleEntity {
     public DrinkEntity drink;
     @Relation(
             parentColumn = "drink_id",
-            entityColumn = "style_id",
+            entityColumn = "drink_style_id",
             associateBy = @Junction(DrinkStyleCrossRefEntity.class)
     )
-    public List<StyleEntity> styles;
+    public List<DrinkStyleEntity> drinkStyles;
 }

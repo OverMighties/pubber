@@ -18,11 +18,11 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
 import com.overmighties.pubber.util.TriConsumer;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -31,7 +31,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
-    private final AccountDataSource accountDataSource;
+    private final AccountApi accountApi;
     private final CompositeDisposable disposables = new CompositeDisposable();
     private final MutableLiveData<AccountDetailsUIState> userData;
     public LiveData<AccountDetailsUIState> getUserData(){
@@ -50,13 +50,13 @@ public class AccountViewModel extends PubberAppViewModel {
                 return new AccountViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
             }
     );
-    public AccountViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
-        this.accountDataSource=accountDataSource;
+    public AccountViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
+        this.accountApi = accountApi;
         userData = new MutableLiveData<>(new AccountDetailsUIState());
     }
     public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         disposables.add(completableAction(TAG,
-                accountDataSource::signOut,
+                accountApi::signOut,
                 ()-> openAndPopUp.accept(ACCOUNT_DETAILS_FRAGMENT,SPLASH_FRAGMENT),
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError){
@@ -72,7 +72,7 @@ public class AccountViewModel extends PubberAppViewModel {
     }
     public void updateEmail(String email,TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError){
         singleAction(TAG,
-                accountDataSource.updateUserEmail(email),
+                accountApi.updateUserEmail(email),
                 el->userData.getValue().setEmail(email),
                 (err)->{
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,null, err.getLocalizedMessage());
@@ -81,7 +81,7 @@ public class AccountViewModel extends PubberAppViewModel {
     }
     public void updateDisplayName(String displayName, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError, Runnable onComplete){
         singleAction(TAG,
-                accountDataSource.updateUserProfile(new UserData(null,userData.getValue().getEmail()
+                accountApi.updateUserProfile(new UserData(null,userData.getValue().getEmail()
                         ,displayName,userData.getValue().getPhotoUrl())),
                 el-> {
                     userData.getValue().setUsername(displayName);
@@ -93,9 +93,9 @@ public class AccountViewModel extends PubberAppViewModel {
                 });
     }
     public void getCurrentUser() {
-        UserData userData=accountDataSource.currentUser();
+        UserData userData= accountApi.currentUser();
         if(userData!=null)
-            updateUserData(mapToUIState(accountDataSource.currentUser()));
+            updateUserData(mapToUIState(accountApi.currentUser()));
     }
     public static AccountDetailsUIState mapToUIState(UserData userData){
         Log.i(TAG,userData.getUserId()+userData.getEmail()+userData.getUsername());
@@ -106,7 +106,7 @@ public class AccountViewModel extends PubberAppViewModel {
                 userData.getPhotoUrl()==null? Uri.EMPTY:userData.getPhotoUrl());
     }
     public void onDeleteAccountClick() {
-        disposables.add(completableAction(TAG, accountDataSource::deleteAccount));
+        disposables.add(completableAction(TAG, accountApi::deleteAccount));
     }
 
     @Override
