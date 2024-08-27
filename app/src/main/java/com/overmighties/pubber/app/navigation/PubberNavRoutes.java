@@ -49,11 +49,15 @@ public final class PubberNavRoutes {
                 switch (to) {
                     case MAP_FRAGMENT:
                         return SearcherFragmentDirections.actionSearcherFragmentToMapFragment();
+                    case ACCOUNT_DETAILS_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToAccountDetailsFragment();
+                    case SETTINGS_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToSettingsGraph();
                     default:
                         return SearcherFragmentDirections.actionSearcherFragmentToLoginGraph();
                 }
             case ACCOUNT_DETAILS_FRAGMENT:
-                return AccountDetailsFragmentDirections.actionGlobalLoginGraph();
+                return AccountDetailsFragmentDirections.actionAccountDetailsFragmentToLoginGraph();
             case SETTINGS_FRAGMENT:
                 return SettingsFragmentDirections.actionSettingsFragmentLoginGraph();
             case NEW_USER_DETAILS_FRAGMENT:

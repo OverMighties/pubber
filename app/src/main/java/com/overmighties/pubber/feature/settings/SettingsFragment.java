@@ -61,7 +61,7 @@ public class SettingsFragment extends Fragment {
         });
 
 
-        requireView().findViewById(R.id.account_IV).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment()));
+//        requireView().findViewById(R.id.account_IV).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment()));
 
         requireView().findViewById(R.id.language_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsLanguageFragment()));
 

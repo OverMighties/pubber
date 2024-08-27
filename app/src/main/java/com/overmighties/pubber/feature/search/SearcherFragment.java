@@ -2,14 +2,15 @@ package com.overmighties.pubber.feature.search;
 
 
 import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.MAP_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.content.Context;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -20,7 +21,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -28,34 +28,26 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SearchView;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Constraints;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.fragment.FragmentNavigator;
-import androidx.navigation.fragment.FragmentNavigatorExtrasKt;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
-import com.overmighties.pubber.feature.map.MapFragment;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
@@ -104,7 +96,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
-        //gives me null poiner exception
+
+        setUpTopAppBar();
+
+        //gives me null pointer exception
         //actionOnLocationAvailable(null);
         swipeRefreshLayout.setRefreshing(true);
         adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
@@ -133,6 +128,24 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
         });
 
+    }
+    private void setUpTopAppBar(){
+        MaterialToolbar topAppBar = requireView().findViewById(R.id.top_app_bar_view);
+        topAppBar.setOnMenuItemClickListener(menuItem->{
+            if(menuItem.getItemId()==R.id.account_item){
+                if(requireActivity().findViewById(R.id.bottom_nav_view).isShown())
+                    NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+                navController.navigate(getNavDirections(SEARCHER_FRAGMENT,ACCOUNT_DETAILS_FRAGMENT));
+                return true;
+            }
+            if(menuItem.getItemId()==R.id.settings_item){
+                if(requireActivity().findViewById(R.id.bottom_nav_view).isShown())
+                    NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+                navController.navigate(getNavDirections(SEARCHER_FRAGMENT,SETTINGS_FRAGMENT));
+                return true;
+            }
+            return false;
+        });
     }
     private void sortButtonsListeners()
     {
@@ -315,7 +328,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        NavigationBar.hideTransitionTopBottomBar(requireView().findViewById(R.id.top_app_bar_layout), requireView().findViewById(R.id.top_app_bar_view), requireActivity().findViewById(R.id.bottom_nav_view),(int)(300*((float)location[1]/(float)screenHeight)));
+                        NavigationBar.hideTransitionTopAndBottomBar(requireView().findViewById(R.id.top_app_bar_layout), requireView().findViewById(R.id.top_app_bar_view), requireActivity().findViewById(R.id.bottom_nav_view),(int)(300*((float)location[1]/(float)screenHeight)));
                         view.postDelayed(new Runnable() {
                             @Override
                             public void run() {

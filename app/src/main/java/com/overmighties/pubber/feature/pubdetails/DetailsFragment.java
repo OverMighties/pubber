@@ -73,7 +73,8 @@ public class DetailsFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        if(requireActivity().findViewById(R.id.bottom_nav_view).isShown())
+            NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
         viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();

@@ -2,12 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/account_graph"
+        android:id="@+id/account_item"
         android:icon="@drawable/ic_person_24px"
         android:title="@string/ic_account_title"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/settings_nav_dir"
+        android:id="@+id/settings_item"
         android:icon="@drawable/ic_settings_24px"
         android:title="@string/ic_settings_title"
         app:showAsAction="ifRoom" />

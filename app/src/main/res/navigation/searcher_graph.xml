@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_searcherFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_searcherFragment_to_settings_graph"
+            app:destination="@id/settings_graph" />
+        <action
+            android:id="@+id/action_searcherFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -55,5 +61,15 @@
         android:id="@+id/mapFragment"
         android:name="com.overmighties.pubber.feature.map.MapFragment"
         android:label="MapFragment" />
+    <include app:graph="@navigation/settings_graph" />
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="com.overmighties.pubber.feature.account.AccountDetailsFragment"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details" >
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_login_graph"
+            app:destination="@id/login_graph" />
+    </fragment>
 
 </navigation>

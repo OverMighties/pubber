@@ -46,16 +46,14 @@ public class MainActivity extends SettingsBasicActivity {
         pubListViewModel.getPubsFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment))).getNavController();
+        navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment))).getNavController();
 
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
-        MaterialToolbar topAppBar = findViewById(R.id.top_app_bar_view);
-
-
 //      AppBarConfiguration  bottomNavConfiguration =
 //                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
-        setSupportActionBar(topAppBar);
+//        NavigationUI.setupWithNavController(topAppBar,navController);
         if ((getIntent().hasExtra("openSettings") && getIntent().getBooleanExtra("openSettings", false))) {
             bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
         }
