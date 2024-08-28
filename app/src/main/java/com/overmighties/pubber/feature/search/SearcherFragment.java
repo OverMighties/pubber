@@ -17,6 +17,7 @@ import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -274,6 +275,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
             NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 
+        if(detailsViewModel.getOpenedPubPosition() != null)
+            recyclerView.scrollToPosition(detailsViewModel.getOpenedPubPosition());
+            detailsViewModel.setOpenedPubPosition(null);
+
     }
 
 
@@ -349,8 +354,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
 
         });
-
-
+        detailsViewModel.setOpenedPubPosition(position);
         pubListViewModel.setPubDetails(position,detailsViewModel);
     }
 

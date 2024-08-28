@@ -10,16 +10,19 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -88,8 +91,6 @@ public class DetailsFragment extends Fragment
         BlurImageView=requireView().findViewById(R.id.blur);
         layout= requireView().findViewById(R.id.detail);
         //listener for closing button
-        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
-
         setUpPubData(pubDetailsUiState);
         setUpImageSlider();
         setUpFragmentsAppearance();
@@ -376,6 +377,9 @@ public class DetailsFragment extends Fragment
             }
             return  false;
         });
+
+        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).popBackStack());
+
         /*
         requireView().findViewById(R.id.textView24).setOnClickListener(v-> {
 
@@ -438,18 +442,15 @@ public class DetailsFragment extends Fragment
 
     //Coping text to phone's clipboard
     private void setClipboard(Context context, String text) {
-    if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        clipboard.setText(text);
-    } else {
-        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
-        clipboard.setPrimaryClip(clip);
+        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        } else {
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
+            clipboard.setPrimaryClip(clip);
+        }
     }
-}
-
-
-
 
 
 }

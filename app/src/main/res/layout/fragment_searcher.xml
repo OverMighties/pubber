@@ -171,13 +171,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_destination"
         app:layout_anchor="@id/constraintLayout"
         app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end"
-        app:backgroundTint="@color/red_bright" />
+        app:backgroundTint="@color/secondary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

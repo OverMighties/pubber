@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_searcher">
         <action
             android:id="@+id/action_searcher_to_details"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:popExitAnim="@anim/scale_down" />
         <action
             android:id="@+id/action_searcher_to_filter"
             app:destination="@id/filterFragment" />
@@ -36,7 +37,8 @@
         tools:layout="@layout/details" >
         <action
             android:id="@+id/action_details_to_searcher"
-            app:destination="@id/searcherFragment" />
+            app:destination="@id/searcherFragment"
+            app:popExitAnim="@anim/scale_down" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"

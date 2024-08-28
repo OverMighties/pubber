@@ -19,6 +19,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.style.TextAppearanceSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Pair;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ import java.util.List;
 import java.util.Objects;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class DetailsViewModel extends ViewModel {
     @Getter
@@ -60,6 +62,9 @@ public class DetailsViewModel extends ViewModel {
     public void setUiState(PubDetailsUiState ui){
         uiState.setValue(ui);
     }
+    @Getter
+    @Setter
+    private Integer openedPubPosition = null;
 
 
     public static final ViewModelInitializer<DetailsViewModel> initializer=new ViewModelInitializer<>(
