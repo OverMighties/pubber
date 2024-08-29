@@ -30,6 +30,7 @@ import com.overmighties.pubber.app.util.PermissionHandler;
 import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
+import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     public static final String TAG="SettingsFragment";
@@ -116,7 +117,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference accountInfoPref = findPreference(getString(R.string.account_key));
         if(accountInfoPref!=null){
             accountInfoPref.setOnPreferenceClickListener((v)->{
-                navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment2());
+                navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment());
                 return true;
             });
         }
@@ -124,6 +125,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference logOutPref = findPreference(getString(R.string.account_log_out_key));
         if(logOutPref!=null){
             logOutPref.setOnPreferenceClickListener((v)->{
+                navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment());
                 accountViewModel.onSignOutClick(
                         (from,to)-> navController.navigate(getNavDirections(from,to)),
                         (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));

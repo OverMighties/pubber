@@ -32,33 +32,18 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
-        <action
-            android:id="@+id/action_settingsFragment_to_accountDetailsFragment2"
-            app:destination="@id/accountDetailsFragment2" />
     </fragment>
     <action
-        android:id="@+id/action_settingsFragment_to_settingsMessageFragment"
-        app:destination="@id/settingsMessageFragment"
-        app:enterAnim="@anim/from_right"
-        app:exitAnim="@anim/to_left"
-        app:popEnterAnim="@anim/from_left"
-        app:popExitAnim="@anim/to_right" />
+        android:id="@+id/action_settingsFragment_to_accountDetailsFragment"
+        app:destination="@id/accountDetailsFragment"/>
     <fragment
         android:id="@+id/settingsMessageFragment"
         android:name="com.overmighties.pubber.feature.settings.SettingsMessageFragment"
         tools:layout="@layout/fragment_settings_message"
         android:label="fragment_settings_message" />
-    <action
-        android:id="@+id/action_settingsFragment_to_settingsAboutFragment"
-        app:destination="@id/settingsAboutFragment"
-        app:enterAnim="@anim/from_right"
-        app:exitAnim="@anim/to_left"
-        app:popEnterAnim="@anim/from_left"
-        app:popExitAnim="@anim/to_right" />
-    <action android:id="@+id/action_global_login_graph"
-        app:destination="@id/login_graph"/>
+
     <fragment
-        android:id="@+id/accountDetailsFragment2"
+        android:id="@+id/accountDetailsFragment"
         android:name="com.overmighties.pubber.feature.account.AccountDetailsFragment"
         android:label="fragment_account_details"
         tools:layout="@layout/fragment_account_details"
@@ -66,6 +51,11 @@
         app:enterAnim="@anim/from_right"
         app:exitAnim="@anim/to_left"
         app:popEnterAnim="@anim/from_left"
-        app:popExitAnim="@anim/to_right"/>
+        app:popExitAnim="@anim/to_right">
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_login_graph"
+            app:destination="@id/login_graph" />
+    </fragment>
+    <include app:graph="@navigation/login_graph" />
 
 </navigation>

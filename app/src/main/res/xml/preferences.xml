@@ -44,7 +44,7 @@
     <PreferenceCategory
         app:key="account_info"
         android:title="Account">
-        <EditTextPreference
+        <Preference
             app:key="@string/account_key"
             app:title="@string/account"
             app:icon="@drawable/ic_account_on_surface"/>
