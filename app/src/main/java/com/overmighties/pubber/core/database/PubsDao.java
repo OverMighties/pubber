@@ -6,14 +6,14 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.overmighties.pubber.core.database.model.DrinkEntity;
-import com.overmighties.pubber.core.database.model.DrinkStyleCrossRefEntity;
-import com.overmighties.pubber.core.database.model.DrinkStyleEntity;
-import com.overmighties.pubber.core.database.model.PhotoEntity;
-import com.overmighties.pubber.core.database.model.PubDrinkCrossRefEntity;
-import com.overmighties.pubber.core.database.model.PubEntity;
-import com.overmighties.pubber.core.database.model.PubWithAllEntities;
-import com.overmighties.pubber.core.database.model.RatingsEntity;
+import com.overmighties.pubber.core.database.entities.DrinkEntity;
+import com.overmighties.pubber.core.database.entities.DrinkStyleCrossRefEntity;
+import com.overmighties.pubber.core.database.entities.DrinkStyleEntity;
+import com.overmighties.pubber.core.database.entities.PhotoEntity;
+import com.overmighties.pubber.core.database.entities.PubDrinkCrossRefEntity;
+import com.overmighties.pubber.core.database.entities.PubEntity;
+import com.overmighties.pubber.core.database.entities.PubWithAllEntities;
+import com.overmighties.pubber.core.database.entities.RatingsEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

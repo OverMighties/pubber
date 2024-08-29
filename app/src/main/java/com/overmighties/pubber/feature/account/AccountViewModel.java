@@ -32,7 +32,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
     private final AccountApi accountApi;
-    private final CompositeDisposable disposables = new CompositeDisposable();
     private final MutableLiveData<AccountDetailsUIState> userData;
     public LiveData<AccountDetailsUIState> getUserData(){
         return userData;
@@ -107,11 +106,5 @@ public class AccountViewModel extends PubberAppViewModel {
     }
     public void onDeleteAccountClick() {
         disposables.add(completableAction(TAG, accountApi::deleteAccount));
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        disposables.clear();
     }
 }

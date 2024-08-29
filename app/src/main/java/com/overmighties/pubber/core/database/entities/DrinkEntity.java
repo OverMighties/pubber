@@ -1,4 +1,4 @@
-package com.overmighties.pubber.core.database.model;
+package com.overmighties.pubber.core.database.entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(tableName = "styles")
-public class DrinkStyleEntity {
+@Entity(tableName = "drinks")
+public class DrinkEntity {
     @Ignore
     public static final Long ID_NONE =null;
-    @ColumnInfo(name="drink_id")
-    // @NonNull
-    public Long drinkId;
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name="drink_style_id")
-    public Long drinkStyleId;
-    public String styleName;
+    @ColumnInfo(name="drink_id")
+   // @NonNull
+    public Long drinkId;
+    public String name;
+    public String type;
+    public String description;
 }

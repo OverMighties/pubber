@@ -1,13 +1,13 @@
-package com.overmighties.pubber.core.data;
+package com.overmighties.pubber.core.data.mappers;
 
-import com.overmighties.pubber.core.database.model.DrinkEntity;
-import com.overmighties.pubber.core.database.model.DrinkWithStyleEntity;
-import com.overmighties.pubber.core.database.model.OpeningHoursEntity;
-import com.overmighties.pubber.core.database.model.PhotoEntity;
-import com.overmighties.pubber.core.database.model.PubEntity;
-import com.overmighties.pubber.core.database.model.PubWithAllEntities;
-import com.overmighties.pubber.core.database.model.RatingsEntity;
-import com.overmighties.pubber.core.database.model.DrinkStyleEntity;
+import com.overmighties.pubber.core.database.entities.DrinkEntity;
+import com.overmighties.pubber.core.database.entities.DrinkWithStyleEntity;
+import com.overmighties.pubber.core.database.entities.OpeningHoursEntity;
+import com.overmighties.pubber.core.database.entities.PhotoEntity;
+import com.overmighties.pubber.core.database.entities.PubEntity;
+import com.overmighties.pubber.core.database.entities.PubWithAllEntities;
+import com.overmighties.pubber.core.database.entities.RatingsEntity;
+import com.overmighties.pubber.core.database.entities.DrinkStyleEntity;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;

@@ -2,7 +2,7 @@ package com.overmighties.pubber.core.network.fake;
 
 import com.overmighties.pubber.core.network.PubberNetworkApi;
 import com.overmighties.pubber.core.network.model.PubDto;
-import com.overmighties.pubber.data_test.TestRepoPubsDataSet;
+import com.overmighties.pubber.core.data_test.TestRepoPubsDataSet;
 
 import java.util.List;
 

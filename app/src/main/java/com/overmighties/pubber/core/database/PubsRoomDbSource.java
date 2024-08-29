@@ -2,8 +2,8 @@ package com.overmighties.pubber.core.database;
 
 import android.util.Log;
 
-import com.overmighties.pubber.core.data.PubDataMapper;
-import com.overmighties.pubber.core.data.PubEntityMapper;
+import com.overmighties.pubber.core.data.mappers.PubDataMapper;
+import com.overmighties.pubber.core.data.mappers.PubEntityMapper;
 import com.overmighties.pubber.core.model.Pub;
 
 import java.util.List;

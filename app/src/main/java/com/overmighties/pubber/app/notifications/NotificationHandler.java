@@ -25,8 +25,7 @@ public class NotificationHandler {
     public static final String CHANNEL_ID_RATE = "Pubber_rate";
 
 
-    public static
-    void createNotificationRemind(Context context){
+    public static void createNotificationRemind(Context context){
 
         Integer id = 0;
 

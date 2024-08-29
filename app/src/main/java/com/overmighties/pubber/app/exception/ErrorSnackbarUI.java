@@ -1,6 +1,7 @@
 package com.overmighties.pubber.app.exception;
 
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
@@ -10,6 +11,8 @@ import androidx.annotation.StringRes;
 import com.google.android.material.snackbar.Snackbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.designsystem.UIText;
+
+import org.jetbrains.annotations.NotNull;
 
 public class ErrorSnackbarUI {
 
@@ -24,32 +27,37 @@ public class ErrorSnackbarUI {
         NO_NAVIGATION,
         UNKNOWN_ERROR
     }
-    public static void showSnackbar(View view, ErrorTypes type, @Nullable UIText.ResourceString authRes, String logMes) {
-        int messageResId = authRes==null?getMessageResId(type):authRes.getResId();
-        if(messageResId==NONE_RES)
-            Snackbar.make(view,  logMes, Snackbar.LENGTH_LONG).show();
-        else
-            Snackbar.make(view,  view.getContext().getText(messageResId)+logMes, Snackbar.LENGTH_LONG).show();
+    public static void showSnackbar(@NotNull View view,@NotNull ErrorTypes type, @Nullable UIText.ResourceString resMess,@Nullable String logMess) {
+        String userInfoMess =getMessForErrorType(type,view.getContext());
+        if(resMess!=null)
+            userInfoMess+=(String) view.getContext().getText(resMess.getResId());
+        if(logMess!=null)
+            userInfoMess+=logMess;
+        Snackbar.make(view,  userInfoMess, Snackbar.LENGTH_LONG).show();
     }
 
-    @StringRes
-    private static int getMessageResId(ErrorTypes type) {
+    private static String getMessForErrorType(ErrorTypes type, Context context) {
         switch (type) {
             case NO_NAVIGATION:{
-                return R.string.no_navigation;
+                return (String) context.getText(R.string.no_navigation_message)+
+                        context.getText(R.string.limited_func);
             }
             case USER_ACCOUNT:{
-                return R.string.user_account_error_message;
+                return  (String) context.getText(R.string.user_account_error_message);
             }
             case NO_INTERNET_CONNECTION :{
-                return R.string.no_internet_connection_message;
+                return  (String) context.getText(R.string.no_internet_connection_message)+
+                        context.getText(R.string.limited_func);
             }
             case FIREBASE_AUTH:{
-                return R.string.auth_error_message;
+                return (String) context.getText(R.string.auth_error_message);
+            }
+            case UNKNOWN_ERROR: {
+                return (String) context.getText(R.string.sth_went_wrong);
             }
             default: {
                 Log.e(TAG, "Unknown SnackbarType: " + type);
-                return R.string.sth_went_wrong;
+                return (String) context.getText(R.string.sth_went_wrong);
             }
         }
     }

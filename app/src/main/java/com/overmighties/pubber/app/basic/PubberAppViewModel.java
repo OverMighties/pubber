@@ -10,13 +10,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Action;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PubberAppViewModel extends ViewModel {
-
+    protected CompositeDisposable disposables = new CompositeDisposable();
     public Disposable completableAction(final String TAG, Action action){
         Completable completable = Completable.fromAction(action)
                 .subscribeOn(Schedulers.io());
@@ -88,6 +89,11 @@ public class PubberAppViewModel extends ViewModel {
                         Log.i(TAG, "singleAction, onComplete: action completed");
                     }, onError::accept
                 );
+    }
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposables.clear();
     }
 
 }

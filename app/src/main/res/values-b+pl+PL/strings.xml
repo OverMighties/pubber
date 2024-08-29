@@ -131,7 +131,7 @@
     <string name="no_internet_connection_message">Brak Internetu</string>
     <string name="marked_as_favorite_message">Oznaczony jako ulubiony</string>
     <string name="comment_added_message">Komentarz dodany</string>
-    <string name="no_navigation">Brak nawiagacji</string>
+    <string name="no_navigation_message">Brak nawiagacji</string>
     <!--Top app bar-->
     <string name="ic_settings_title">Ustawienia</string>
     <string name="edit">edytuj</string>

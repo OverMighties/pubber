@@ -2,6 +2,7 @@ package com.overmighties.pubber.core.data;
 
 import android.util.Log;
 
+import com.overmighties.pubber.core.data.mappers.PubDtoMapper;
 import com.overmighties.pubber.core.database.DbResponse;
 import com.overmighties.pubber.core.database.PubberLocalApi;
 import com.overmighties.pubber.core.model.Pub;
@@ -28,17 +29,18 @@ public class PubsRepository {
 
         try {
             LocalDateTime localDateTime=LocalDateTime.now();
-            localDataSource.updatePubs(remoteDataSource.getPubs()
+            localDataSource.updatePubs(
+                    remoteDataSource.getPubs()
                     .observeOn(AndroidSchedulers.mainThread())
-                    .map(list ->
-                    {
-                        List<Pub> pubList = new ArrayList<>();
-                        for (var el : list) {
-                            pubList.add(PubDtoMapper.mapFromDto(el, localDateTime));
-                        }
-                        Log.i(TAG, "sync: fetched "+pubList.size()+" pubs from remote data source");
-                        return pubList;
-                    }).blockingGet());
+                    .map(list -> {
+                            List<Pub> pubList = new ArrayList<>();
+                            for (var el : list) {
+                                pubList.add(PubDtoMapper.mapFromDto(el, localDateTime));
+                            }
+                            Log.i(TAG, "sync: fetched "+pubList.size()+" pubs from remote data source");
+                            return pubList;
+                        })
+                    .blockingGet());
         }catch(Exception exception)
         {
             Log.e(TAG, "sync error: "+exception.getMessage()+"\n"+exception.getLocalizedMessage(),exception );

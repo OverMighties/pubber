@@ -27,7 +27,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
-import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
+import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 

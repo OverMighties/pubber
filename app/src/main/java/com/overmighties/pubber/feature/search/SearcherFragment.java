@@ -50,7 +50,7 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.search.stateholders.PubListSelectListener;
+import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
 import com.overmighties.pubber.util.DimensionsConverter;
 
@@ -90,12 +90,12 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         }
         if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
                 pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
-            pubListViewModel.getPubsFromRepo(0);
+            pubListViewModel.fetchPubsFromRepo(0);
         }
         swipeRefreshLayout = requireActivity().findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
-            pubListViewModel.getPubsFromRepo(REFRESH_MIN_TIME_MS);
+            pubListViewModel.fetchPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
 
         setUpTopAppBar();

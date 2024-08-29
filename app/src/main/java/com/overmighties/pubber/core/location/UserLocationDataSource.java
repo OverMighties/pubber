@@ -22,6 +22,7 @@ import java.util.function.Consumer;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.subjects.AsyncSubject;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
 import lombok.Getter;
@@ -30,7 +31,7 @@ import lombok.Getter;
 public final class UserLocationDataSource implements UserLocationApi{
     private static final long  LOCATION_REQUEST_INTERVAL = 30000L;
     public static final String TAG = "UserLocationDataSource";
-    private final Subject<LocationData> locationSubject = AsyncSubject.create();
+    private final Subject<LocationData> locationSubject = BehaviorSubject.create();
     @Getter
     private Flowable<LocationData> locationFlowable;
     private final LocationRequest locationRequestRealTime=  new LocationRequest
@@ -41,7 +42,7 @@ public final class UserLocationDataSource implements UserLocationApi{
     private final CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     public UserLocationDataSource(Context context){
         this.fusedLocationClient= LocationServices.getFusedLocationProviderClient(context);
-        locationFlowable=locationSubject.toFlowable(BackpressureStrategy.MISSING)
+        locationFlowable=locationSubject.toFlowable(BackpressureStrategy.LATEST)
                 .doOnSubscribe((loc)->startLocationUpdates())
                 .doOnCancel(this::stopLocationUpdates);
     }
@@ -89,7 +90,7 @@ public final class UserLocationDataSource implements UserLocationApi{
         fusedLocationClient.removeLocationUpdates(locationCallback());
     }
     private LocationData mapToData(Location location){
-        return new LocationData(location.getTime(),location.getLongitude(),location.getAltitude());
+        return new LocationData(location.getTime(),location.getLongitude(),location.getLatitude());
     }
 
     //    private CancellationToken getCancellationToken(){

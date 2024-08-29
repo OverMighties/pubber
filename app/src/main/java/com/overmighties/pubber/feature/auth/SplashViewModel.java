@@ -44,7 +44,6 @@ public class SplashViewModel extends PubberAppViewModel {
             return new SplashViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
         }
     );
-    private final CompositeDisposable disposables = new CompositeDisposable();
     public SplashViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
         this.accountApi = accountApi;
     }
@@ -53,7 +52,7 @@ public class SplashViewModel extends PubberAppViewModel {
         if (userData!=null) {
             String displayName=userData.getUsername();
             if (displayName != null && !displayName.isBlank() && !displayName.isEmpty()) {
-                Log.i(TAG, displayName);
+                Log.i(TAG, "User " + displayName + " is logged in");
                 openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT);
             } else {
                 openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.NEW_USER_DETAILS_FRAGMENT);
@@ -92,7 +91,7 @@ public class SplashViewModel extends PubberAppViewModel {
                 if(err instanceof AccFirebaseDSError.DifferentInternalError)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                 else if (err instanceof AccFirebaseDSError)
-                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, ((AccFirebaseDSError) err).getUserMsg(),"");
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, ((AccFirebaseDSError) err).getUserMsg(),null);
                 else if (err instanceof ApiException)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.GOOGLE_SIGN_IN, new UIText.ResourceString(R.string.GOOGLE_API_EXCEPTION),err.getLocalizedMessage());
                 else
@@ -107,11 +106,11 @@ public class SplashViewModel extends PubberAppViewModel {
                 if(err instanceof AccFirebaseDSError.DifferentInternalError)
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                 else if (err instanceof AccFirebaseDSError)
-                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, ((AccFirebaseDSError) err).getUserMsg(),"");
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, ((AccFirebaseDSError) err).getUserMsg(),null);
                 else if (err instanceof ApiException)
-                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, new UIText.ResourceString(R.string.CREDENTIAL_NOT_PRESENT),"");
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH, new UIText.ResourceString(R.string.CREDENTIAL_NOT_PRESENT),null);
                 else if (err instanceof GoogleSignInError)
-                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.GOOGLE_SIGN_IN,((GoogleSignInError) err).getUserMsg(),"");
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.GOOGLE_SIGN_IN,((GoogleSignInError) err).getUserMsg(),null);
                 else
                     snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null,err.getLocalizedMessage());
             });

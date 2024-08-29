@@ -1,4 +1,4 @@
-package com.overmighties.pubber.data_test;
+package com.overmighties.pubber.core.data_test;
 
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;

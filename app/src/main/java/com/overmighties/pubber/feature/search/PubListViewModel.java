@@ -10,7 +10,6 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 
-import android.content.res.Resources;
 import android.util.Log;
 
 import com.overmighties.pubber.app.PubberApp;
@@ -99,10 +98,10 @@ public class PubListViewModel extends ViewModel {
         this.pubsRepository=pubsRepository;
     }
 
-    public void getPubsFromRepo(final int DELAY_TIME_MS)
+    public void fetchPubsFromRepo(final int DELAY_TIME_MS)
     {
         if(pubsRepository==null)
-            Log.e(TAG, "getPubsFromRepo returned null: PubsRepository didn't return anything" );
+            Log.e(TAG, "fetchPubsFromRepo returned null: PubsRepository didn't return anything" );
         Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
                 .delay(DELAY_TIME_MS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -113,7 +112,7 @@ public class PubListViewModel extends ViewModel {
                     if(filterUiState.getValue()!=null)
                         filter(filterUiState.getValue());
                     },
-                    err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
+                    err -> Log.e(TAG, "fetchPubsFromRepo can't get pubs due to :" + err.getLocalizedMessage())
                 );
         disposables.add(d);
     }

@@ -1,4 +1,4 @@
-package com.overmighties.pubber.core.data;
+package com.overmighties.pubber.core.data.mappers;
 
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;

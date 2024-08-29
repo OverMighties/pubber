@@ -1,4 +1,4 @@
-package com.overmighties.pubber.core.database.model;
+package com.overmighties.pubber.core.database.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

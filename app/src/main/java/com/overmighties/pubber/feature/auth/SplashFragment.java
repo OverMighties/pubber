@@ -79,7 +79,7 @@ public class SplashFragment extends Fragment {
 
         requireView().findViewById(R.id.IV_google_button).setOnClickListener(v-> signInWithGoogle());
 
-        Integer google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()) == SettingsHandler.LanguageHelper.LANGUAGE_POLISH)? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
+        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()) == SettingsHandler.LanguageHelper.LANGUAGE_POLISH)? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageResource(google_button_id);
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)

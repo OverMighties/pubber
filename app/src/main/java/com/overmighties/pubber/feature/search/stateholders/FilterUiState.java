@@ -33,7 +33,7 @@ public class FilterUiState {
     private PriceType priceType;
     private List<String> beers;
     private List<String> styles;
-    private List<Pair<String, String>> particular_beers;
+    private List<Pair<String, String>> particularBeers;
     private List<String> otherDrinks;
 
     public static class CustomOpeningHours
@@ -50,7 +50,7 @@ public class FilterUiState {
         this.priceType=PriceType.NONE;
         this.beers=NONE_BEERS;
         this.styles = NONE_STYLES;
-        this.particular_beers = NONE_PARTICULAR_BEERS;
+        this.particularBeers = NONE_PARTICULAR_BEERS;
         this.otherDrinks=NONE_DRINKS;
     }
 

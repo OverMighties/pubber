@@ -23,8 +23,8 @@ public class FilterUtil {
 
 
     private final FilterUiState filterUiState;
-    private String city;
-    private Float distance;
+    private final String city;
+    private final Float distance;
     @Getter
     private List<Pub> filteredPubs;
 
@@ -32,6 +32,8 @@ public class FilterUtil {
     {
         this.filterUiState =filter;
         this.filteredPubs=filteredPubs;
+        this.city=city;
+        this.distance=distance;
     }
     public FilterUtil filterByAll()
     {
@@ -104,7 +106,7 @@ public class FilterUtil {
                         }
                     }
                 }
-                for(var drinkFilter: Objects.requireNonNull(filterUiState.getParticular_beers())){
+                for(var drinkFilter: Objects.requireNonNull(filterUiState.getParticularBeers())){
                     if(drinkFilter.first.equals(drinkPub.getName())){
                         for(var drinkType:Objects.requireNonNull(drinkPub.getDrinkStyles())){
                             if(drinkType.getName().equals(drinkFilter.second)){

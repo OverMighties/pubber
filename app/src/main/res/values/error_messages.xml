@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="try_again">\u0020Try again. </string>
+    <string name="limited_func">\u0020Due to that functionality of app is limited.</string>
     <string name="BAD_FORMAT_OF_EMAIL_MESSAGE"> Bad format of email.</string>
     <string name="BAD_FORMAT_OF_PASSWORD_MESSAGE"> Bad format of password. </string>
     <string name="BAD_PASSWORD_MESSAGE"> You entered wrong password. </string>

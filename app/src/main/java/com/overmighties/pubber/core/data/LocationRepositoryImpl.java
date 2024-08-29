@@ -16,11 +16,17 @@ public class LocationRepositoryImpl implements LocationRepository {
 
     @Override
     public Flowable<LocationData> getLastUserLocation() {
+        userLocationDataSource.getLastLocation();
         return userLocationDataSource.getLocationFlowable();
     }
     @Override
     public Flowable<LocationData> getCurrentUserLocation() {
         userLocationDataSource.getCurrentLocation();
+        return userLocationDataSource.getLocationFlowable();
+    }
+
+    @Override
+    public Flowable<LocationData> getLocationFromPeriodicUpdates() {
         return userLocationDataSource.getLocationFlowable();
     }
 }

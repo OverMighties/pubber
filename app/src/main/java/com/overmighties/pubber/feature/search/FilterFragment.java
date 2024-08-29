@@ -29,7 +29,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.ChipGroup;
@@ -46,7 +45,6 @@ import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.filterselect.FilterSelectViewModel;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.ParticularBeersCardViewUiState;
-import com.overmighties.pubber.feature.search.stateholders.ParticularBeersListSelectListener;
 import com.overmighties.pubber.feature.search.util.PriceType;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.ResourceUtil;

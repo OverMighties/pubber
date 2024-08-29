@@ -29,7 +29,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class SignUpViewModel extends PubberAppViewModel {
     private final AccountApi accountApi;
-    private final CompositeDisposable disposables = new CompositeDisposable();
 
     public static final int NONE_RES=-1;
 
@@ -71,11 +70,11 @@ public class SignUpViewModel extends PubberAppViewModel {
                             responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                         else if(err instanceof AccFirebaseDSError) {
                             if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.EMAIL)
-                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
                             else if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.PASSWORD)
-                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
                             else
-                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                                responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
                         }else
                             responseOnError.accept(ErrorSigningUITypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
                     });

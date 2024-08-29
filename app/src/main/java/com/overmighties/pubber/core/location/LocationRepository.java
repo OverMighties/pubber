@@ -7,4 +7,5 @@ import io.reactivex.rxjava3.core.Flowable;
 public interface LocationRepository {
     Flowable<LocationData> getLastUserLocation();
     Flowable<LocationData> getCurrentUserLocation();
+    Flowable<LocationData> getLocationFromPeriodicUpdates();
 }

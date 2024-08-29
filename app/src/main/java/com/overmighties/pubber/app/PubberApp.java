@@ -39,13 +39,13 @@ public class PubberApp extends Application implements Configuration.Provider{
         appContainer.setLocationRepository(getApplicationContext());
 
         WorkManager.initialize(this, getWorkManagerConfiguration());
-        sheduleNotification();
+        scheduleNotification();
         syncDataRepos();
 
 
     }
 
-    private void sheduleNotification() {
+    private void scheduleNotification() {
         Calendar time_now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Warsaw"));
         Calendar time_target = Calendar.getInstance(TimeZone.getTimeZone("Europe/Warsaw"));
         time_target.set(Calendar.HOUR_OF_DAY, 18);
@@ -74,7 +74,7 @@ public class PubberApp extends Application implements Configuration.Provider{
                 notificationRequest);
     }
 
-        private void syncDataRepos()
+    private void syncDataRepos()
     {
         Constraints constraints=new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)

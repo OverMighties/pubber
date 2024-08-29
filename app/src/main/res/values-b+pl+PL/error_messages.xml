@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="try_again">\u0020Spróbuj ponownie.</string>
+    <string name="limited_func">\u0020Z powodu tego pewne funkcje aplikacji są ograniczone.</string>
     <string name="BAD_FORMAT_OF_EMAIL_MESSAGE">Nieprawidłowy format adresu email.</string>
     <string name="BAD_FORMAT_OF_PASSWORD_MESSAGE">Nieprawidłowy format hasła.</string>
     <string name="BAD_PASSWORD_MESSAGE">Wprowadziłeś błędne hasło.</string>

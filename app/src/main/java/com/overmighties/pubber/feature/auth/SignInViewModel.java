@@ -26,7 +26,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class SignInViewModel extends PubberAppViewModel {
     private static final String TAG="SignInViewModel";
     private final AccountApi accountApi;
-    private final CompositeDisposable disposables = new CompositeDisposable();
     public static final ViewModelInitializer<SignInViewModel> initializer = new ViewModelInitializer<>(
             SignInViewModel.class,
             creationExtras -> {
@@ -64,11 +63,11 @@ public class SignInViewModel extends PubberAppViewModel {
                         responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                     else if(err instanceof AccFirebaseDSError){
                         if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.EMAIL)
-                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
                         else if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.PASSWORD)
-                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
                         else
-                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR, ((AccFirebaseDSError) err).getUserMsg(), "");
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
                     }
                     else
                         responseOnError.accept(ErrorSigningUITypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());

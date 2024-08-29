@@ -9,13 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.card.MaterialCardView;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.feature.search.filterselect.DrinkListAdapter;
-import com.overmighties.pubber.feature.search.filterselect.stateholders.FilterSelectDrinkCardViewUiState;
-import com.overmighties.pubber.feature.search.filterselect.stateholders.FilterSelectListener;
 import com.overmighties.pubber.feature.search.stateholders.ParticularBeersCardViewUiState;
-import com.overmighties.pubber.feature.search.stateholders.ParticularBeersListSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
