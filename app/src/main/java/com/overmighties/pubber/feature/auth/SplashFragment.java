@@ -34,7 +34,7 @@ import com.google.android.gms.auth.api.identity.GetSignInIntentRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
-import com.overmighties.pubber.feature.settings.SettingsHandler;
+import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.concurrent.Executors;

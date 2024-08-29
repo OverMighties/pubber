@@ -129,6 +129,12 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
         });
 
+        if ((requireActivity().getIntent().hasExtra("openSettings") && requireActivity().getIntent().getBooleanExtra("openSettings", false))) {
+            navController.navigate(getNavDirections(SEARCHER_FRAGMENT, SETTINGS_FRAGMENT));
+            requireActivity().getIntent().removeExtra("city");
+            requireActivity().getIntent().removeExtra("openSettings");
+        }
+
     }
     private void setUpTopAppBar(){
         MaterialToolbar topAppBar = requireView().findViewById(R.id.top_app_bar_view);
@@ -272,6 +278,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     @Override
     public void onResume() {
         super.onResume();
+        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.GONE);
+
         if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
             NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 

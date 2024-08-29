@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.card.MaterialCardView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.util.DimensionsConverter;
-import com.overmighties.pubber.feature.settings.SettingsHandler;
+import com.overmighties.pubber.app.settings.SettingsHandler;
 
 public class LanguageFragment extends Fragment {
 

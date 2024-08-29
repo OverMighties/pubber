@@ -28,7 +28,7 @@ public class PermissionHandler {
         return hasPermission(context,Manifest.permission.ACCESS_FINE_LOCATION) && hasPermission(context,Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
-    private static boolean hasPermission(@NonNull Context context,@NonNull String permission) {
+    public static boolean hasPermission(@NonNull Context context,@NonNull String permission) {
         return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
     }
 }

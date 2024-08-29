@@ -30,10 +30,6 @@ public class SettingsAboutFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        if (requireActivity().findViewById(R.id.bottom_nav_view) != null)
-            NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
-
-        requireView().findViewById(R.id.IV_goback_a).setOnClickListener(v-> navController.popBackStack());
 
     }
 

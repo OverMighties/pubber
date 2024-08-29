@@ -189,8 +189,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="CustomNavigationBarContainer">
-
+    <style name="CustomPreferenceTextStyle" parent="Preference">
+        <item name="android:titleTextColor">@color/error</item>
+        <item name="iconTint">@color/error</item>
     </style>
 
 </resources>

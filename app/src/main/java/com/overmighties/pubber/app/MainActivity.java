@@ -54,9 +54,7 @@ public class MainActivity extends SettingsBasicActivity {
 //                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
 //        NavigationUI.setupWithNavController(topAppBar,navController);
-        if ((getIntent().hasExtra("openSettings") && getIntent().getBooleanExtra("openSettings", false))) {
-            bottomNavView.setSelectedItemId(bottomNavView.getMenu().getItem(2).getItemId());
-        }
+        ((MaterialToolbar)findViewById(R.id.top_app_bar_view_back)).setNavigationOnClickListener(v->{navController.popBackStack();});
     }
     @Override
     public boolean onSupportNavigateUp() {

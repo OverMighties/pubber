@@ -1,86 +1,152 @@
 package com.overmighties.pubber.feature.settings;
 
+import static android.Manifest.permission.POST_NOTIFICATIONS;
+
 import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreferenceCompat;
 
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.appbar.MaterialToolbar;
+import android.Manifest;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
-import com.overmighties.pubber.app.designsystem.NavigationBar;
-import com.overmighties.pubber.feature.account.AccountViewModel;
+import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.designsystem.UIText;
+import com.overmighties.pubber.app.settings.SettingsHandler;
+import com.overmighties.pubber.app.util.PermissionHandler;
+import com.overmighties.pubber.core.auth.AccountApi;
+import com.overmighties.pubber.feature.account.AccountViewModel;
+import com.overmighties.pubber.feature.search.PubListViewModel;
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends PreferenceFragmentCompat {
     public static final String TAG="SettingsFragment";
     private NavController navController;
+    private PubListViewModel pubListViewModel;
     private AccountViewModel accountViewModel;
-    public SettingsFragment(){
-        super(R.layout.fragment_settings);
-    }
+
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.preferences, rootKey);
         accountViewModel = new ViewModelProvider(requireActivity())
                 .get(AccountViewModel.class);
-
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
+        super.onViewCreated(view, savedInstanceState);
+        pubListViewModel = pubListViewModel = new ViewModelProvider(requireActivity())
+                .get(PubListViewModel.class);
+
+        requireActivity().requireViewById(R.id.top_app_bar_layout_back).setVisibility(View.VISIBLE);
+
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setChecked(SettingsHandler.ThemeHelper.getSavedTheme(requireContext()) == 1);
 
-        ((SwitchMaterial) requireView().findViewById(R.id.dark_mode_switch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
-            int newTheme = (isChecked) ? SettingsHandler.ThemeHelper.THEME_DARK : SettingsHandler.ThemeHelper.THEME_LIGHT;
-            SettingsHandler.ThemeHelper.saveTheme(requireContext(), newTheme);
+        SwitchPreferenceCompat notificationPref = findPreference(getString(R.string.notifications_key));
+        if(notificationPref!=null){
+            notificationPref.setChecked((PermissionHandler.hasPermission(requireContext(), POST_NOTIFICATIONS)==true?true:false));
+            notificationPref.setOnPreferenceChangeListener(((preference, newValue) -> {
+                //TODO if permission wasn't granted ask for it
+                if((boolean) newValue && !PermissionHandler.hasPermission(requireContext(), POST_NOTIFICATIONS)){
 
-            // Restart the application to apply the new theme
-            Intent intent = new Intent(requireActivity(), MainActivity.class);
-            intent.putExtra("openSettings", true);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            requireActivity().finish();
-        });
+                }
+                return true;
+            }));
+        }
 
-        ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setChecked(SettingsHandler.NotificationsHelper.getNotificationState(requireContext()) == SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON);
+        SwitchPreferenceCompat locationPref = findPreference(getString(R.string.localization_key));
+        if(locationPref!=null){
+            locationPref.setChecked(PermissionHandler.hasLocationPermission(requireContext())==true?true:false);
+            locationPref.setOnPreferenceChangeListener(((preference, newValue) -> {
+                //TODO if permission wasn't granted ask for it
+                if((boolean) newValue && !PermissionHandler.hasLocationPermission(requireContext())){
 
-        ((SwitchMaterial)requireView().findViewById(R.id.notification_switch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
-            int newState = (isChecked) ? SettingsHandler.NotificationsHelper.NOTIFICATIONS_ON : SettingsHandler.NotificationsHelper.NOTIFICATIONS_OFF;
-            SettingsHandler.NotificationsHelper.saveNotificationState(requireContext(), newState);
-        });
+                }
+                return true;
+            }));
+        }
 
+        ListPreference languagePref = findPreference(getString(R.string.language_key));
+        if(languagePref!=null){
+            languagePref.setValue(SettingsHandler.LanguageHelper.getLanguage(requireContext()));
+            languagePref.setOnPreferenceChangeListener(((preference, newValue) -> {
+                resetActivity();
+                return true;
+            }));
+        }
 
-//        requireView().findViewById(R.id.account_IV).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment()));
+        ListPreference themePref = findPreference(getString(R.string.theme_key));
+        if(themePref!=null){
+            themePref.setValue(SettingsHandler.ThemeHelper.getSavedTheme(requireContext()));
+            themePref.setOnPreferenceChangeListener(((preference, newValue) -> {
+                resetActivity();
+                return true;
+            }));
+        }
 
-        requireView().findViewById(R.id.language_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsLanguageFragment()));
+        Preference aboutUsPref = findPreference(getString(R.string.about_us_key));
+        if(aboutUsPref!=null){
+            aboutUsPref.setOnPreferenceClickListener((v)->{
+                navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsAboutFragment());
+                return true;
+            });
+        }
 
-        requireView().findViewById(R.id.send_message_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsMessageFragment()));
+        Preference feedbackPref = findPreference(getString(R.string.send_feedback_key));
+        if (feedbackPref != null) {
+            feedbackPref.setOnPreferenceClickListener((v)->{
+                navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsMessageFragment());
+                return true;
+            });
+        }
 
-        requireView().findViewById(R.id.about_us_go_to).setOnClickListener(v-> navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsAboutFragment()));
+        Preference accountInfoPref = findPreference(getString(R.string.account_key));
+        if(accountInfoPref!=null){
+            accountInfoPref.setOnPreferenceClickListener((v)->{
+                navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment2());
+                return true;
+            });
+        }
 
-        requireView().findViewById(R.id.logout_go_to).setOnClickListener(v-> accountViewModel.onSignOutClick(
-                (from,to)-> navController.navigate(getNavDirections(from,to)),
-                (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes)));
+        Preference logOutPref = findPreference(getString(R.string.account_log_out_key));
+        if(logOutPref!=null){
+            logOutPref.setOnPreferenceClickListener((v)->{
+                accountViewModel.onSignOutClick(
+                        (from,to)-> navController.navigate(getNavDirections(from,to)),
+                        (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes));
+                return true;
+            });
+        }
 
     }
 
+    private void resetActivity(){
+        Intent intent = new Intent(requireActivity(), MainActivity.class);
+        intent.putExtra("openSettings", true);
+        intent.putExtra("city", pubListViewModel.getCityConstraint().getValue());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+
     @Override
     public void onResume() {
-
         super.onResume();
-        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
+        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.VISIBLE);
 
     }
 }

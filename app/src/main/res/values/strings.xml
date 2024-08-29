@@ -259,7 +259,7 @@
     <string name="next">Next</string>
     <string name="choose_language">App\'s language</string>
     <string name="choose_theme">App\'s theme</string>
-    <string name="theme">Motyw aplikacji</string>
+    <string name="theme">App\'s theme</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="polish">Polski</string>
@@ -419,6 +419,35 @@
 
 
     <string name="transition_scale_up_name">scale_up</string>
+
+    <!--preferencescreen settings -->
+    <string name="general_category">General</string>
+    <string name="notifications_key">notification</string>
+    <string name="enable_notifications">Enable notifications</string>
+    <string name="localization_key">localization</string>
+    <string name="enable_localization">Enable localization</string>
+    <string name="language_key">language</string>
+    <string-array name="language_list">
+        <item>Polski</item>
+        <item>English</item>
+        <item>Український</item>
+    </string-array>
+    <string name="theme_key">theme</string>
+    <string-array name="theme_list">
+        <item>Phone\'s theme</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string name="information_category">Informations</string>
+    <string name="about_us_key">about_us</string>
+    <string name="about_us_summary">Informations about app and it\'s origin</string>
+    <string name="send_feedback_key">feedback</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="send_feedback_summary">Report technical issues or suggest new features!</string>
+    <string name="account_key">account</string>
+    <string name="account">Manage</string>
+    <string name="account_log_out_key">logout</string>
+    <string name="account_log_out">Log out</string>
 
 
 </resources>

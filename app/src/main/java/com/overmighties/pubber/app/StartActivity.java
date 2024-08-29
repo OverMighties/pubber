@@ -7,7 +7,7 @@ import androidx.navigation.NavController;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.ui.SettingsBasicActivity;
-import com.overmighties.pubber.feature.settings.SettingsHandler;
+import com.overmighties.pubber.app.settings.SettingsHandler;
 
 
 public class StartActivity extends SettingsBasicActivity {
@@ -15,9 +15,9 @@ public class StartActivity extends SettingsBasicActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        if (SettingsHandler.FirstTimeOpenHelper.getTimeOpened(this) == SettingsHandler.FirstTimeOpenHelper.NOT_FIRST_TIME){
+        if (SettingsHandler.FirstTimeOpenHelper.getTimeOpened(this).equals(SettingsHandler.FirstTimeOpenHelper.NOT_FIRST_TIME)){
             goToMainActivity();
         }
     }

@@ -33,22 +33,8 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
-            android:id="@+id/action_settingsFragment_to_settingsLanguageFragment"
-            app:destination="@id/settingsLanguageFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsLanguageFragment"
-        android:name="com.overmighties.pubber.feature.settings.SettingsLanguageFragment"
-        android:label="SettingsLanguageFragment">
-        <action
-            android:id="@+id/action_settingsLanguageFragment_to_settings_nav_dir"
-            app:destination="@id/settingsFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            android:id="@+id/action_settingsFragment_to_accountDetailsFragment2"
+            app:destination="@id/accountDetailsFragment2" />
     </fragment>
     <action
         android:id="@+id/action_settingsFragment_to_settingsMessageFragment"
@@ -71,5 +57,15 @@
         app:popExitAnim="@anim/to_right" />
     <action android:id="@+id/action_global_login_graph"
         app:destination="@id/login_graph"/>
+    <fragment
+        android:id="@+id/accountDetailsFragment2"
+        android:name="com.overmighties.pubber.feature.account.AccountDetailsFragment"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details"
+        app:destination="@id/settingsMessageFragment"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right"/>
 
 </navigation>
