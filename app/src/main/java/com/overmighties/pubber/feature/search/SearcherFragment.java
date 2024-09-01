@@ -4,6 +4,7 @@ package com.overmighties.pubber.feature.search;
 import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.MAP_FRAGMENT;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.PLACE_CHOICE_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
@@ -18,14 +19,17 @@ import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Pair;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SearchView;
@@ -152,6 +156,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 return true;
             }
             return false;
+        });
+        topAppBar.setTitle(pubListViewModel.getCityConstraint().getValue().toString());
+        topAppBar.setNavigationOnClickListener(v->{
+            navController.popBackStack();
         });
     }
     private void sortButtonsListeners()

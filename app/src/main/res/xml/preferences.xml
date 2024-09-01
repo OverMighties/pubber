@@ -33,7 +33,7 @@
         <Preference
             app:key="@string/about_us_key"
             app:title="@string/about_us"
-            app:icon="@drawable/ic_info"
+            app:icon="@drawable/ic_info_on_surface"
             app:summary="@string/about_us_summary"/>
         <Preference
             app:key="@string/send_feedback_key"

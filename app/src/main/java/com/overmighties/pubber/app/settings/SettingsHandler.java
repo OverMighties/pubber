@@ -28,16 +28,17 @@ public class SettingsHandler {
 
     public static final class FirstTimeOpenHelper{
         private static final String KEY_TIME = "key_open";
+        private static final String FILE_NAME = "open_info";
         public static final String FIRST_TIME = "first";
         public static final String NOT_FIRST_TIME = "second";
 
         public static void setSecond(Context context){
-            SharedPreferences sharedPreferences = context.getSharedPreferences("open_info", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
             sharedPreferences.edit().putString(KEY_TIME, NOT_FIRST_TIME).apply();
         }
 
         public static String getTimeOpened(Context context){
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
             return sharedPreferences.getString(KEY_TIME, FIRST_TIME);
         }
     }

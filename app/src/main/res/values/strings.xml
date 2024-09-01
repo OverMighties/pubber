@@ -218,6 +218,13 @@
     <string name="sex_title">Sex: </string>
     <string name="email_title">Email: </string>
     <string name="username_title">Username: </string>
+    <string name="edit_content">Edit</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_account">Delete account</string>
+    <string name="yes">Yes</string>
+    <string name="new_email">New email:</string>
+    <string name="new_username">New username:</string>
     <!--Auth messages-->
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>
@@ -267,7 +274,6 @@
     <string name="con">Continue</string>
     <string name="example_button">Button example</string>
     <string name="text">Text</string>
-
     <!-- general string used in more than one layout-->
     <string name="go_back">go back</string>
     <string name="more">more</string>
@@ -286,6 +292,9 @@
     <string name="available_alcohols">Available alcohols</string>
     <string name="language">Language</string>
     <string name="map">Map</string>
+    <string name="city_rzeszow">Rzeszów</string>
+    <string name="city_warsaw">Warsaw</string>
+    <string name="city_cracow">Cracow</string>
 
 
     <!--searcher and it's pop ups-->
@@ -295,6 +304,7 @@
     <string name="sort_rating">Highest Rating</string>
     <string name="sort_alphabetical">Alphabetical</string>`
     <string name="sort_distance">Closest</string>
+    
 
     <!-- details-->
     <string name="google">Google</string>

@@ -15,7 +15,11 @@
         tools:layout="@layout/place_choice">
         <action
             android:id="@+id/action_placeChoiceFragment_to_searcher_graph"
-            app:destination="@id/searcher_graph" />
+            app:destination="@id/searcher_graph"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"

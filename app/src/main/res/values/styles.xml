@@ -167,15 +167,13 @@
     </style>
 
     <style name="CustomDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="android:background">@color/secondary</item>
+        <item name="colorPrimary">@color/secondary</item>
+        <item name="dialogCornerRadius">12dp</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:textColor">@color/on_surface_variant</item>
 
     </style>
 
-    <style name="test">
-        <item name="android:textSize">0dp</item>
-    </style>
     
     <style name="CustomTextInputLayout">
         <item name="boxStrokeColor">@color/textfield_stroke_color_selector</item>
@@ -183,6 +181,15 @@
         <item name="hintTextColor">@color/primary_dark_variant</item>
         <item name="cursorColor">@color/on_surface</item>
     </style>
+
+    <style name="CustomTextInputLayoutTransparent" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@android:color/transparent</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="android:backgroundTint">@color/outline</item>
+    </style>
+    >
 
     <style name="ButtonTextApperance">
         <item name="fontFamily">@font/roboto_medium</item>
@@ -193,5 +200,7 @@
         <item name="android:titleTextColor">@color/error</item>
         <item name="iconTint">@color/error</item>
     </style>
+
+
 
 </resources>

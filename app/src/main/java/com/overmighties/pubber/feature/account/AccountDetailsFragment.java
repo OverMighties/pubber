@@ -3,7 +3,9 @@ package com.overmighties.pubber.feature.account;
 import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -38,25 +40,37 @@ public class AccountDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.VISIBLE);
         accountDetailsRecyclerView = requireView().findViewById(R.id.account_details_recycler_view);
         navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
         requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> accountViewModel.onSignOutClick(
                 (from,to)-> navController.navigate(getNavDirections(from,to)),
                 (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes)));
+        requireView().findViewById(R.id.delete_button).setOnClickListener(v->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomDialog);
+            builder.setNeutralButton(getString(R.string.cancel), null);
+            builder.setPositiveButton(getString(R.string.yes), (((dialog, which) -> {
+                //TODO delete account function
+                Log.i(TAG, "Account Deleted");
+            })));
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        });
         profileImage=requireView().findViewById(R.id.profile_image);
-        accountDetailsAdapter = new AccountDetailsAdapter(accountViewModel.getUserData().getValue());
+        accountDetailsAdapter = new AccountDetailsAdapter(accountViewModel.getUserData().getValue(), accountViewModel);
         accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
         accountViewModel.getUserData().observe(getViewLifecycleOwner(), userData -> {
             Glide.with(this)
                     .load(userData.getPhotoUrl())
-                    .placeholder(R.drawable.account_circle_24px)
-                    .fallback(R.drawable.account_circle_24px)
+                    .placeholder(R.drawable.ic_account_primary_dark)
+                    .fallback(R.drawable.ic_account_primary_dark)
                     .centerCrop()
                     .into(profileImage);
-            accountDetailsAdapter = new AccountDetailsAdapter(userData);
+            accountDetailsAdapter = new AccountDetailsAdapter(userData, accountViewModel);
             accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
         });
         accountViewModel.getCurrentUser();
+
 
     }
 }

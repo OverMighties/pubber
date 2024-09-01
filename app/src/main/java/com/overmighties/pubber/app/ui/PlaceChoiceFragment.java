@@ -28,6 +28,7 @@ public class PlaceChoiceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
         requireView().findViewById(R.id.city1).setOnClickListener(v->{
             pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.city1)).getText().toString());
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
@@ -41,10 +42,9 @@ public class PlaceChoiceFragment extends Fragment {
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         });
 
-        if ((requireActivity().getIntent().hasExtra("openSettings") && requireActivity().getIntent().getBooleanExtra("openSettings", false))){
-            if(requireActivity().getIntent().hasExtra("city"))
-                pubListViewModel.setCityConstraint(requireActivity().getIntent().getStringExtra("city"));
-                navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
+        if ((requireActivity().getIntent().hasExtra("openSettings") && requireActivity().getIntent().getBooleanExtra("openSettings", false) && requireActivity().getIntent().hasExtra("city"))){
+            pubListViewModel.setCityConstraint(requireActivity().getIntent().getStringExtra("city"));
+            navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         }
     }
 }

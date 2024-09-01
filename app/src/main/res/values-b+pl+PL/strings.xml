@@ -142,6 +142,13 @@
     <string name="sex_title">Płeć: </string>
     <string name="email_title">Email: </string>
     <string name="username_title">Nazwa użytkownika: </string>
+    <string name="edit_content">Edytuj</string>
+    <string name="accept">Akceptuj</string>
+    <string name="cancel">Anuluj</string>
+    <string name="delete_account">Usuń konto</string>
+    <string name="yes">Tak</string>
+    <string name="new_email">Nowy email:</string>
+    <string name="new_username">Nowa nazwa użytkownika:</string>
     <!--Auth messages-->
     <string name="hint_user_id">ID użytkownika</string>
     <string name="get_custom_token">Get Token</string>
@@ -212,6 +219,9 @@
     <string name="available_alcohols">Dostępne alkohole</string>
     <string name="language">Język</string>
     <string name="map">Mapa</string>
+    <string name="city_rzeszow">Rzeszów</string>
+    <string name="city_warsaw">Warszawa</string>
+    <string name="city_cracow">Kraków</string>
 
 
 
@@ -342,10 +352,24 @@
     <string name="female">Kobieta</string>
     <string name="other">Inna</string>
 
+
+
     <!-- Alert dialog with location permission-->
     <string name="location_alert_dialog_title">Wymagane uprawnienia do lokalizacji</string>
     <string name="location_alert_dialog_message">"Aplikacja wymaga uprawnień do lokalizacji, by obliczyć odległości między tobą a pubami. Prosimy o udzielenie dostępu do lokalizacji.</string>
     <string name="location_alert_dialog_positive">Ok</string>
     <string name="location_alert_dialog_negative">Nie, dziękuję</string>
+
+    <!--preferencescreen settings -->
+    <string name="general_category">Ogólne</string>
+    <string name="enable_notifications">Otrzymuj powiadomienia</string>
+    <string name="enable_localization">Dostęp do lokalizacji</string>
+    <string name="information_category">Informacje</string>
+    <string name="about_us_summary">Inofrmacje o aplikacji i jej początkach</string>
+    <string name="send_feedback">Wyślij wiadomość</string>
+    <string name="send_feedback_summary">Wyślij wiadomość na temat problemu technicznego lub sugestji zmiany aplikacji</string>
+    <string name="account">Zarządzaj</string>
+    <string name="account_log_out">Wyloguj się</string>
+
 
 </resources>
