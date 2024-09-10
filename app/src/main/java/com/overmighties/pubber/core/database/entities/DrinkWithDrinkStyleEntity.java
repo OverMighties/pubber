@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DrinkWithStyleEntity {
+public class DrinkWithDrinkStyleEntity {
     @Ignore
     public static final Long ID_NONE =null;
     @Embedded
@@ -22,7 +22,7 @@ public class DrinkWithStyleEntity {
     @Relation(
             parentColumn = "drink_id",
             entityColumn = "drink_style_id",
-            associateBy = @Junction(DrinkStyleCrossRefEntity.class)
+            associateBy = @Junction(DrinkStyleDrinkCrossRefEntity.class)
     )
     public List<DrinkStyleEntity> drinkStyles;
 }

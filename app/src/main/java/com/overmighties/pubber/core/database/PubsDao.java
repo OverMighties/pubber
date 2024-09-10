@@ -7,84 +7,129 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.overmighties.pubber.core.database.entities.DrinkEntity;
-import com.overmighties.pubber.core.database.entities.DrinkStyleCrossRefEntity;
+import com.overmighties.pubber.core.database.entities.DrinkStyleDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.entities.DrinkStyleEntity;
+import com.overmighties.pubber.core.database.entities.DrinkWithDrinkStyleEntity;
 import com.overmighties.pubber.core.database.entities.PhotoEntity;
 import com.overmighties.pubber.core.database.entities.PubDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.entities.PubEntity;
 import com.overmighties.pubber.core.database.entities.PubWithAllEntities;
 import com.overmighties.pubber.core.database.entities.RatingsEntity;
+import com.overmighties.pubber.core.database.entities.TagEntity;
+import com.overmighties.pubber.core.model.Drink;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 @Dao
-public abstract class PubsDao  {
+public abstract class PubsDao {
 
     @Transaction
     @Query("SELECT * FROM pubs")
     abstract Single<List<PubWithAllEntities>> getPubsWithEntities();
+
     @Transaction
     @Query("SELECT * FROM pubs WHERE :pubId=pub_id")
     abstract Single<PubWithAllEntities> getPubById(Long pubId);
 
     @Transaction
     @Query("SELECT * FROM pub_drink_cross_ref WHERE :pubId=pub_id")
-    abstract Single<List<PubDrinkCrossRefEntity>> getDrinksByPubId(Long pubId);
-    @Transaction
-    @Query("SELECT * FROM drink_style_cross_ref WHERE :drinkId=drink_id")
-    abstract Single<List<DrinkStyleCrossRefEntity>> getDrinkStylesByDrinkId(Long drinkId);
+    abstract Single<List<PubDrinkCrossRefEntity>> getDrinksCrossRefByPubId(Long pubId);
 
     @Transaction
-    public synchronized void insertAll(List<PubWithAllEntities> pubs)
-    {
+    @Query("SELECT * FROM drink_style_drink_cross_ref WHERE :drinkId=drink_id")
+    abstract Single<List<DrinkStyleDrinkCrossRefEntity>> getDrinkStylesCrossRefByDrinkId(Long drinkId);
+
+    @Transaction
+    @Query("SELECT * FROM drinks WHERE :name=name")
+    abstract Single<DrinkWithDrinkStyleEntity> getDrinkByName(String name);
+
+    @Transaction
+    @Query("SELECT * FROM styles WHERE :name=style_name")
+    abstract Single<DrinkWithDrinkStyleEntity> getDrinkStyleByName(String name);
+
+    @Transaction
+    public synchronized void insertAll(List<PubWithAllEntities> pubs) {
 
         for (PubWithAllEntities pubWithAllEntities : pubs) {
+
             insertPub(pubWithAllEntities.pub);
-            if(pubWithAllEntities.drinks!=null)
-            {
-                insertDrinks(pubWithAllEntities.drinks.stream().map(data->data.drink).collect(Collectors.toList()));
-                var drinks=getDrinksByPubId(pubWithAllEntities.pub.pubId).blockingGet();
-                for(var drink : drinks)
-                {
-                    var styles = getDrinkStylesByDrinkId(drink.drinkId).blockingGet();
-                    if(styles != null)
-                    {
-                        for(var style:styles){
-                            insertDrinkStylesCrossRef(new DrinkStyleCrossRefEntity(drink.drinkId, style.drinkStyleId));
+
+            if (pubWithAllEntities.drinks != null) {
+                List<DrinkEntity> drinkEntities=pubWithAllEntities.drinks
+                        .stream()
+                        .map(data->data.drink)
+                        .distinct()
+                        .collect(Collectors.toList());
+                insertDrinks(drinkEntities);
+
+                for (DrinkWithDrinkStyleEntity drinkWithDrinkStyleEntity : pubWithAllEntities.drinks) {
+
+                    PubDrinkCrossRefEntity crossRef = new PubDrinkCrossRefEntity();
+                    crossRef.pubId = pubWithAllEntities.pub.pubId;
+                    crossRef.drinkId = drinkWithDrinkStyleEntity.drink.drinkId;
+                    insertPubDrinkCrossRef(crossRef);
+
+                    if ( drinkWithDrinkStyleEntity.drinkStyles != null) {
+
+                        List<DrinkStyleEntity> drinkStyleEntities = drinkWithDrinkStyleEntity.drinkStyles;
+                        insertDrinkStyles(drinkStyleEntities);
+
+                        for (DrinkStyleEntity drinkStyleEntity : drinkStyleEntities) {
+
+                            DrinkStyleDrinkCrossRefEntity drinkStyleDrinkCrossRefEntity = new DrinkStyleDrinkCrossRefEntity();
+                            drinkStyleDrinkCrossRefEntity.drinkStyleId = drinkStyleEntity.drinkStyleId;
+                            drinkStyleDrinkCrossRefEntity.drinkId = drinkStyleEntity.drinkId;
+
+                            insertDrinkStylesCrossRef(drinkStyleDrinkCrossRefEntity);
                         }
                     }
-                    insertPubDrinkCrossRef(new PubDrinkCrossRefEntity(pubWithAllEntities.pub.pubId,drink.drinkId));
                 }
             }
-            if(pubWithAllEntities.photos!=null)
+            if (pubWithAllEntities.photos != null)
                 insertPhotos(pubWithAllEntities.photos);
-            if(pubWithAllEntities.ratings!=null)
+
+            if (pubWithAllEntities.ratings != null)
                 insertRatings(pubWithAllEntities.ratings);
+
+            if (pubWithAllEntities.tags != null)
+                insertTags(pubWithAllEntities.tags);
+
         }
     }
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract void insertPub(PubEntity pubs);
-    @Transaction
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract void insertDrinks(List<DrinkEntity> drinks);
-    @Transaction
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract void insertDrinkStylesCrossRef(DrinkStyleCrossRefEntity refDrinkStyles);
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract void insertDrinks(List<DrinkEntity> drinks);
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract void insertDrinkStylesCrossRef(DrinkStyleDrinkCrossRefEntity refDrinkStyles);
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract void insertPubDrinkCrossRef(PubDrinkCrossRefEntity refEntity);
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract void insertPhotos(List<PhotoEntity> photos);
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract void insertRatings(RatingsEntity ratings);
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract void insertDrinkStyles(List<DrinkStyleEntity> drinkStyles);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract void insertTags(List<TagEntity> tags);
 }

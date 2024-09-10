@@ -1,5 +1,6 @@
 package com.overmighties.pubber.app.navigation;
 
+import androidx.annotation.Nullable;
 import androidx.navigation.NavDirections;
 
 import com.overmighties.pubber.app.ui.PlaceChoiceFragmentDirections;
@@ -21,6 +22,7 @@ public final class PubberNavRoutes {
     public static final String PLACE_CHOICE_FRAGMENT="PlaceChoiceFragment";
     public static final String NEW_USER_DETAILS_FRAGMENT="NewUserDetailsFragment";
     public static final String MAP_FRAGMENT="MapFragment";
+    @Nullable
     public static NavDirections getNavDirections(String from , String to){
         switch (from) {
             case SPLASH_FRAGMENT:

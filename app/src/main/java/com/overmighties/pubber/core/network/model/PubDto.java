@@ -50,4 +50,6 @@ public class PubDto {
     private List<DrinkDto> drinks;
     @SerializedName("photos")
     private List<PhotoDto> photos;
+    @SerializedName("tags")
+    private List<TagDto> tags;
 }

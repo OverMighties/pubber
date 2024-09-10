@@ -1,17 +1,19 @@
 package com.overmighties.pubber.core.data.mappers;
 
-import com.overmighties.pubber.core.database.entities.DrinkWithStyleEntity;
+import com.overmighties.pubber.core.database.entities.DrinkWithDrinkStyleEntity;
 import com.overmighties.pubber.core.database.entities.OpeningHoursEntity;
 import com.overmighties.pubber.core.database.entities.PhotoEntity;
 import com.overmighties.pubber.core.database.entities.PubEntity;
 import com.overmighties.pubber.core.database.entities.PubWithAllEntities;
 import com.overmighties.pubber.core.database.entities.RatingsEntity;
+import com.overmighties.pubber.core.database.entities.TagEntity;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.core.model.DrinkStyle;
+import com.overmighties.pubber.core.model.Tag;
 import com.overmighties.pubber.util.DateTimeConverter;
 
 import java.util.List;
@@ -25,10 +27,27 @@ public class PubEntityMapper {
     public static Pub mapFromEntity(PubWithAllEntities pubWithAllEntities)
     {
         PubEntity pubEntity=pubWithAllEntities.pub;
-        return new Pub(pubEntity.getPubId(), pubEntity.getName(),pubEntity.getAddress(), DateTimeConverter.getFromString(pubEntity.getFetchTime()), pubEntity.getCity(), pubEntity.getPhoneNumber(),
-                pubEntity.getWebsiteUrl(), pubEntity.getIconPath(), pubEntity.getDescription(), pubEntity.getReservable(),pubEntity.getTakeout(), pubEntity.getLatitude(), pubEntity.getLongitude(),
-                mapFromEntityRatings(pubWithAllEntities.getRatings()),mapFromEntityOpeningHours(pubWithAllEntities.getOpeningHours()),
-                mapFromEntityDrinks(pubWithAllEntities.getDrinks()),mapFromEntityPhotos(pubWithAllEntities.getPhotos()),null);
+        return new Pub(
+                pubEntity.getPubId(),
+                pubEntity.getName(),
+                pubEntity.getAddress(),
+                DateTimeConverter.getFromString(pubEntity.getFetchTime()),
+                pubEntity.getCity(),
+                pubEntity.getPhoneNumber(),
+                pubEntity.getWebsiteUrl(),
+                pubEntity.getIconPath(),
+                pubEntity.getDescription(),
+                pubEntity.getReservable(),
+                pubEntity.getTakeout(),
+                pubEntity.getLatitude(),
+                pubEntity.getLongitude(),
+                mapFromEntityRatings(pubWithAllEntities.getRatings()),
+                mapFromEntityOpeningHours(pubWithAllEntities.getOpeningHours()),
+                mapFromEntityDrinks(pubWithAllEntities.getDrinks()),
+                mapFromEntityPhotos(pubWithAllEntities.getPhotos()),
+                mapFromEntityTags(pubWithAllEntities.getTags()),
+                null
+        );
     }
     public static Ratings mapFromEntityRatings(RatingsEntity ratingsEntity)
     {
@@ -36,7 +55,7 @@ public class PubEntityMapper {
                 ratingsEntity.getTripadvisor(), ratingsEntity.getTripadvisorCount(), ratingsEntity.getUntappd(), ratingsEntity.getUntappdCount(),
                 ratingsEntity.getOurDrinksQuality(), ratingsEntity.getOurServiceQuality(), ratingsEntity.getOurCost());
     }
-    public static List<Drink> mapFromEntityDrinks(List<DrinkWithStyleEntity> drinkEntities)
+    public static List<Drink> mapFromEntityDrinks(List<DrinkWithDrinkStyleEntity> drinkEntities)
     {
         return drinkEntities==null?null:drinkEntities.stream()
                 .map(entity -> new Drink(entity.drink.getName(), entity.getDrink().getType(),entity.getDrink().getDescription(), entity.getDrinkStyles()
@@ -52,4 +71,11 @@ public class PubEntityMapper {
     {
         return photoEntities==null?null:photoEntities.stream().map(entity ->new Photo(entity.getTitle(), entity.getPhotoPath())).collect(Collectors.toList());
     }
+    public static List<Tag> mapFromEntityTags(List<TagEntity> tagEntities)
+    {
+        return tagEntities==null?null:tagEntities.stream()
+                .map(entity ->new Tag(entity.getName()))
+                .collect(Collectors.toList());
+    }
+
 }
