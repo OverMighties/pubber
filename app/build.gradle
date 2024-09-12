@@ -150,6 +150,10 @@ dependencies {
     // Preference Screen
     implementation "androidx.preference:preference-ktx:1.2.0"
 
+    //layout that automaticaly verticaly and horizontaly position views
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+
 
 
 

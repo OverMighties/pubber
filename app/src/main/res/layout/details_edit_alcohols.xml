@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@color/surface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/CloseButtonEdit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/beers"
+            android:textColor="@color/on_surface"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView14"
+            app:srcCompat="@drawable/ic_expand_more_secondary" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/buttonAddBeer"
+            style="@style/ActionChip"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/add"
+            app:chipIcon="@drawable/ic_add"
+            app:layout_constraintStart_toStartOf="@id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/buttonRemoveBeer"
+            style="@style/ActionChip"
+            android:layout_marginStart="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/remove"
+            android:visibility="gone"
+            app:chipIcon="@drawable/ic_close_on_secondary_container"
+            app:layout_constraintStart_toEndOf="@id/buttonAddBeer"
+            app:layout_constraintTop_toTopOf="@+id/buttonAddBeer" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addBeerRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/buttonAddBeer"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddBeer" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/removeBeerRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/buttonRemoveBeer"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRemoveBeer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/drinks"
+            android:textColor="@color/on_surface"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textView35"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/textView35"
+            app:srcCompat="@drawable/ic_expand_more_secondary" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/buttonAddDrink"
+            style="@style/ActionChip"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/add"
+            app:chipIcon="@drawable/ic_add"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/buttonRemoveDrink"
+            style="@style/ActionChip"
+            android:layout_marginStart="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/remove"
+            android:visibility="gone"
+            app:chipIcon="@drawable/ic_close_on_secondary_container"
+            app:layout_constraintStart_toEndOf="@id/buttonAddDrink"
+            app:layout_constraintTop_toTopOf="@+id/buttonAddDrink" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addDrinkRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/buttonAddDrink"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddDrink" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/removeDrinkRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/buttonRemoveDrink"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRemoveDrink" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="12dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button_shape_secondary"
+        app:backgroundTint="@null"
+        android:textColor="@color/on_secondary_container"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

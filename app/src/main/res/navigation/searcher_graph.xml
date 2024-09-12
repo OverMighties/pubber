@@ -39,6 +39,19 @@
             android:id="@+id/action_details_to_searcher"
             app:destination="@id/searcherFragment"
             app:popExitAnim="@anim/scale_down" />
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsRateFragment"
+            app:destination="@id/detailsRateFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsEditFragment"
+            app:destination="@id/detailsEditFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsRatingsFragment"
+            app:destination="@id/detailsRatingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -73,5 +86,35 @@
             android:id="@+id/action_accountDetailsFragment_to_login_graph"
             app:destination="@id/login_graph" />
     </fragment>
+    <fragment
+        android:id="@+id/detailsRateFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsRateFragment"
+        android:label="DetailsRateFragment" />
+    <fragment
+        android:id="@+id/detailsEditFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditAlcoholsFragment"
+        android:label="DetailsEditFragment" >
+        <action
+            android:id="@+id/action_detailsEditFragment_to_detailsEditAlcoholsSelectFragment"
+            app:destination="@id/detailsEditAlcoholsSelectFragment" />
+        <action
+            android:id="@+id/action_detailsEditFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsEditAlcoholsSelectFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditAlcoholsSelectFragment"
+        android:label="DetailsEditAlcoholsSelectFragment" >
+        <action
+            android:id="@+id/action_detailsEditAlcoholsSelectFragment_self"
+            app:destination="@id/detailsEditAlcoholsSelectFragment" />
+        <action
+            android:id="@+id/action_detailsEditAlcoholsSelectFragment_to_detailsEditFragment"
+            app:destination="@id/detailsEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsRatingsFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.DetailsRatingsFragment"
+        android:label="DetailsRatingsFragment" />
 
 </navigation>

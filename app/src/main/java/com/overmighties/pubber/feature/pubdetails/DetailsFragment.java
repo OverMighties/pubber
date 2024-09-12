@@ -5,24 +5,18 @@ import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_ID
 import static com.overmighties.pubber.feature.pubdetails.DetailsViewModel.dpToPx;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.TextAppearanceSpan;
-import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -31,6 +25,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,6 +33,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -45,11 +42,9 @@ import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.overmighties.pubber.R;
 
-import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
-import com.overmighties.pubber.core.network.model.DrinkDto;
-import com.overmighties.pubber.core.network.model.OpeningHoursDto;
+import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
@@ -61,10 +56,13 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment
 {
+    public static final String TAG = "DetailsFragment";
 
     private ImageView BlurImageView;
     private final List<Integer> testPhotos =new ArrayList<>();
+    private final static List<String> testTags = new ArrayList<>();
     private DetailsViewModel viewModel;
+    private PubListViewModel pubListViewModel;
 
     public DetailsFragment() {super(R.layout.details);}
     private final List<Integer> idList=new ArrayList<>();
@@ -76,92 +74,157 @@ public class DetailsFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        if(requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-            NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        pubListViewModel = new ViewModelProvider(this,
+                ViewModelProvider.Factory.from(PubListViewModel.initializer))
+                .get(PubListViewModel.class);
         viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
+
+        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility() == View.INVISIBLE)
+            requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
+
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
         viewModel.setUiState(pubDetailsUiState);
+        //test data
+        prepareFakeData();
+        BlurImageView=requireView().findViewById(R.id.blur);
+        layout= requireView().findViewById(R.id.detail);
+
+
+        setUpPubData(pubDetailsUiState);
+        setUpImageSlider();
+        setUpTime();
+        setUpListener();
+
+
+    }
+
+    private void prepareFakeData(){
         testPhotos.add(R.drawable.test_photo_1);
         testPhotos.add(R.drawable.test_photo_2);
         testPhotos.add(R.drawable.test_photo_3);
         testPhotos.add(R.drawable.test_photo_4);
         testPhotos.add(R.drawable.test_photo_5);
         testPhotos.add(R.drawable.test_photo_6);
-        BlurImageView=requireView().findViewById(R.id.blur);
-        layout= requireView().findViewById(R.id.detail);
-        //listener for closing button
-        setUpPubData(pubDetailsUiState);
-        setUpImageSlider();
-        setUpFragmentsAppearance();
-        setUpTime();
-        setUpListener();
+        testTags.add("Karaoke");
+        testTags.add("Whiskey");
+        testTags.add("Piwa kraftowe");
     }
-
-
 
 
     private void setUpPubData(PubDetailsUiState pubDetailsUiState) {
-        ((TextView)requireView().findViewById(R.id.name)).setText(pubDetailsUiState.getName());
+        if(pubDetailsUiState.getName()!=null)
+            ((TextView)requireView().findViewById(R.id.name)).setText(pubDetailsUiState.getName());
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
-            if(pubDetailsUiState.getTimeOpenToday().charAt(0) == 'O'){ ((TextView)requireView().findViewById(R.id.TimeOTd))
+            if(pubDetailsUiState.getTimeOpenToday().charAt(0) == 'O'){ ((TextView)requireView().findViewById(R.id.OvTVTime))
                     .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_open));
-                ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
+                ((TextView)requireView().findViewById(R.id.OvTVTime)).setShadowLayer(1,0.5f,0.5f,
                         ContextCompat.getColor(getContext(), R.color.highlight_open));
             }else{
-                ((TextView)requireView().findViewById(R.id.TimeOTd))
+                ((TextView)requireView().findViewById(R.id.OvTVTime))
                         .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_close));
-                ((TextView)requireView().findViewById(R.id.TimeOTd)).setShadowLayer(3,1.8f,1.3f,
+                ((TextView)requireView().findViewById(R.id.OvTVTime)).setShadowLayer(1,0.5f,0.5f,
                         ContextCompat.getColor(getContext(), R.color.highlight_close));
             }
-            ((TextView)requireView().findViewById(R.id.TimeOTd)).setText(pubDetailsUiState.getTimeOpenToday());
+            ((TextView)requireView().findViewById(R.id.OvTVTime)).setText(pubDetailsUiState.getTimeOpenToday());
         }
         //set up rating and rating's iv
-        ((TextView)requireView().findViewById(R.id.PubRating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
-        ((TextView)requireView().findViewById(R.id.PubRatingCount)).setText("("+pubDetailsUiState.getRatings().getRatingsCount()+")");
-        List<ImageView> imageViews = new ArrayList<>();
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        new RatingToIVConverter().convert(imageViews, 32, requireView().findViewById(R.id.PubRatingIV), pubDetailsUiState.getRatings().getAverageRating(), 11,17);
-        //setUpRating();
+        if(pubDetailsUiState.getRatings() != null) {
+            ((TextView) requireView().findViewById(R.id.PubRating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
+            List<ImageView> imageViews = new ArrayList<>();
+            imageViews.add(new ImageView(getContext()));
+            imageViews.add(new ImageView(getContext()));
+            imageViews.add(new ImageView(getContext()));
+            imageViews.add(new ImageView(getContext()));
+            imageViews.add(new ImageView(getContext()));
+            new RatingToIVConverter().convert(imageViews, 32, requireView().findViewById(R.id.PubRatingIV),
+                    pubDetailsUiState.getRatings().getAverageRating(), 11, 17);
+            ((TextView) requireView().findViewById(R.id.PubRatingCount)).setText("(" + pubDetailsUiState.getRatings().getRatingsCount() + ")");
+        }
+        //set up pub's price
+        //if(pubDetailsUiState.get)
+        //distance
+        if(pubDetailsUiState.getDistance()!=null){
+            ((TextView)requireView().findViewById(R.id.PubDistance)).setText(" "+String.valueOf(pubDetailsUiState.getDistance())+"km");
+        }
+        else{
+            ((TextView)requireView().findViewById(R.id.PubDistance)).setText(getString(R.string.not_calculated));
+            ((TextView)requireView().findViewById(R.id.PubDistance)).setTextColor(ContextCompat.getColor(requireContext(), R.color.primary));
+        }
+        //additiona info
+        if(pubDetailsUiState.getReservable() != null && pubDetailsUiState.getReservable()){
+            ((TextView)requireView().findViewById(R.id.PubReserve)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_open));
+            ((TextView)requireView().findViewById(R.id.PubReserve)).setShadowLayer(1,0.5f,0.5f,
+                    ContextCompat.getColor(getContext(), R.color.highlight_open));;
+        }
+        else{
+            ((TextView)requireView().findViewById(R.id.PubReserve)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_close));
+            ((TextView)requireView().findViewById(R.id.PubReserve)).setShadowLayer(1,0.5f,0.5f,
+                    ContextCompat.getColor(getContext(), R.color.highlight_close));;
+        }
+
+
         //chips
         if (pubDetailsUiState.getDrinks() != null) {
             for (var alcohol : pubDetailsUiState.getDrinks()) {
-                Chip chip = new Chip(getContext());
-                chip.setText(alcohol.getName());
-                chip.setPadding(16, 0, 16, 0);
-                chip.setChipCornerRadius(DimensionsConverter.pxFromDp(getContext(), 8));
-                chip.setChipBackgroundColorResource(R.color.surface_container_highest);
-                chip.setTextColor(getContext().getResources().getColor(R.color.on_surface_variant));
-                chip.setTextSize(14);
-                chip.setChipStrokeColorResource(R.color.outline);
-                chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(getContext(), 0.7F));
-                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-                chip.setLayoutParams(params);
                 if(alcohol.getType().equals("Beer")){
-                    ((ChipGroup)requireView().findViewById(R.id.chipGroupBeers)).addView(chip);
+                    FlexboxLayout beerLayout = ((FlexboxLayout)requireView().findViewById(R.id.chipGroupBeersLayout));
+                    View alcoholChipView =  LayoutInflater.from(requireContext()).inflate(R.layout.alcohol_view_chip, beerLayout, false);
+
+                    ((Chip) alcoholChipView.findViewById(R.id.chipAlcohol)).setText(alcohol.getName());
+                    String styles = null;
+                    if(alcohol.getDrinkStyles() != null && !alcohol.getDrinkStyles().isEmpty()){
+                        styles="";
+                        for(var style: alcohol.getDrinkStyles()){
+                            if(alcohol.getDrinkStyles().get(alcohol.getDrinkStyles().size()-1).getName().equals(style.getName())) {
+                                styles = styles + style.getName();
+                            }
+                            else{
+                                styles = styles + style.getName() + ", ";
+                            }
+                        }
+                        ((TextView)alcoholChipView.findViewById(R.id.textViewAlcoholStyles)).setText(styles);
+                    }
+                    else{
+                        ((TextView)alcoholChipView.findViewById(R.id.textViewAlcoholStyles)).setVisibility(View.GONE);
+                    }
+                    beerLayout.addView(alcoholChipView);
                 }
                 else{
+                    Chip chip = new Chip(requireContext());
+                    chip.setText(alcohol.getName());
+                    chip.setPadding(16, 0, 16, 0);
+                    chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
+                    chip.setChipBackgroundColorResource(R.color.surface_container_highest);
+                    chip.setTextColor(requireContext().getResources().getColor(R.color.on_surface_variant));
+                    chip.setTextSize(14);
+                    chip.setChipStrokeColorResource(R.color.outline);
+                    chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(requireContext(), 0.7F));
+                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+                    chip.setLayoutParams(params);
                     ((ChipGroup)requireView().findViewById(R.id.chipGroupDrinks)).addView(chip);
                 };
+
             }
         }
-    }
 
-    private void setUpRating(){
-        List<ImageView> imageViews = new ArrayList<>();
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-        imageViews.add(new ImageView(getContext()));
-
-      //  new RatingToIVConverter().Convert(imageViews, 35, requireView().findViewById(R.id.PubRatingIV), , 0,20);
+        //tags
+        for(var tag:testTags){
+            Chip chip = new Chip(requireContext());
+            chip.setText(tag);
+            chip.setPadding(16, 0, 16, 0);
+            chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
+            chip.setChipBackgroundColorResource(R.color.secondary_container);
+            chip.setTextColor(requireContext().getResources().getColor(R.color.on_secondary_container));
+            chip.setTextSize(14);
+            chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(requireContext(), 0F));
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            chip.setLayoutParams(params);
+            ((ChipGroup)requireView().findViewById(R.id.chipGroupTags)).addView(chip);
+        }
     }
 
 
@@ -289,39 +352,6 @@ public class DetailsFragment extends Fragment
     }
 
 
-
-
-
-    private void setUpFragmentsAppearance(){
-
-        //setting-up custom google textview
-        //rating
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        ArrayList<ImageView> imageViews = new ArrayList<>();
-        for (int i=0;i<=4;i++){
-            imageViews.add(new ImageView(getContext()));
-        }
-        //Review
-        SpannableStringBuilder spannableStringIntrestingBuilder = new SpannableStringBuilder("Najtrafniejszy komentarz z ");
-        spannableStringIntrestingBuilder.append(spannableStringBuilder);
-        spannableStringIntrestingBuilder.append(":");
-        spannableStringBuilder = new SpannableStringBuilder("Najtrafniejszy komentarz z ");
-        SpannableString string = new SpannableString("TripAdvisor");
-        string.setSpan(new TextAppearanceSpan(getContext(), R.style.TripAdvisor_highlight),0,11,0);
-        spannableStringBuilder.append(string);
-        spannableStringBuilder.append((":"));
-        //alcohol
-        //viewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(getContext(),R.color.highlight));
-        //Coms Constrains layout
-
-        viewModel.setUpGoogleTextView(requireView().findViewById(R.id.TV_google), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_green),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_yellow), new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_blue),
-                new TextAppearanceSpan(getContext(), R.style.Google_highlight_custom_red));
-
-
-    }
-
     private void setUpTime(){
         Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
         if(!(viewModel.getUiState().getValue().getOpeningHours().isEmpty()))
@@ -339,6 +369,68 @@ public class DetailsFragment extends Fragment
     }
 
     private void setUpListener(){
+
+        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).popBackStack());
+
+        requireView().findViewById(R.id.chipGuide).setOnClickListener(v->{
+            Uri adress = Uri.parse("geo:0,0?q="+viewModel.getUiState().getValue().getAddress());
+            Intent intent = new Intent(Intent.ACTION_VIEW, adress);
+            intent.setPackage("com.google.android.apps.maps");
+            try {
+                startActivity(intent);
+            }catch (ActivityNotFoundException e) {
+                Log.e(TAG,"Activity not found ");
+            }
+        });
+
+        requireView().findViewById(R.id.chipCall).setOnClickListener(v->{
+            if(viewModel.getUiState().getValue().getPhoneNumber()!=null) {
+                String uri = "tel:" + viewModel.getUiState().getValue().getPhoneNumber();
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse(uri));
+                startActivity(intent);
+            }
+        });
+
+        requireView().findViewById(R.id.chipRate).setOnClickListener(v->{
+            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
+        });
+
+        requireView().findViewById(R.id.chipEdit).setOnClickListener(v->{
+            View bottomSheetView = getLayoutInflater().inflate(R.layout.details_bottom_sheet_edit, null);
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
+                bottomSheetDialog.hide();
+                NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
+            });
+            bottomSheetDialog.show();
+        });
+
+        requireView().findViewById(R.id.chipShare).setOnClickListener(v->{
+            String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + pubListViewModel.getCityConstraint().getValue() + "/" +  viewModel.getUiState().getValue().getId().toString();
+
+            Intent shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
+                    .setType("text/plain")
+                    .setText(link)
+                    .getIntent();
+            if(shareIntent.resolveActivity(requireContext().getPackageManager()) != null){
+                startActivity(shareIntent);
+            }
+
+        });
+
+        requireView().findViewById(R.id.expandRatingCardView).setOnClickListener(v->{
+            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
+        });
+
+        requireView().findViewById(R.id.PubDistance).setOnClickListener(v->{
+            if(viewModel.getUiState().getValue().getDistance()==null){
+                //TODO show ad and then calculate distance to that pub
+            }
+        });
+
+
         requireView().findViewById(R.id.OvUnFoldTime).setOnClickListener(v-> UnFoldTime());
 
         requireView().findViewById(R.id.OvTVAdress).setOnLongClickListener(v->{
@@ -378,40 +470,6 @@ public class DetailsFragment extends Fragment
             return  false;
         });
 
-        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).popBackStack());
-
-        /*
-        requireView().findViewById(R.id.textView24).setOnClickListener(v-> {
-
-                if(requireView().findViewById(R.id.textView25).getVisibility()==View.VISIBLE){
-                    ((TextView)requireView().findViewById(R.id.textView24)).setText("Wyświetl Alkohole");
-                    requireView().findViewById(R.id.textView25).setVisibility(View.GONE);
-                    requireView().findViewById(R.id.textView26).setVisibility(View.GONE);
-                    for (Integer id:viewModel.getUiState().getValue().getIdsOfBeerChips()){
-                        requireView().findViewById(id).setVisibility(View.GONE);
-                    }
-                    for(Integer id:viewModel.getUiState().getValue().getIdsOfDrinkChips()){
-                        requireView().findViewById(id).setVisibility(View.GONE);
-                    }
-
-
-                }
-                else{
-                    ((TextView)requireView().findViewById(R.id.textView24)).setText("Ukryj Alkohole");
-                    requireView().findViewById(R.id.textView25).setVisibility(View.VISIBLE);
-                    requireView().findViewById(R.id.textView26).setVisibility(View.VISIBLE);
-                    for (Integer id:viewModel.getUiState().getValue().getIdsOfBeerChips()){
-                        requireView().findViewById(id).setVisibility(View.VISIBLE);
-                    }
-                    for(Integer id:viewModel.getUiState().getValue().getIdsOfDrinkChips()){
-                        requireView().findViewById(id).setVisibility(View.VISIBLE);
-                    }
-                }
-                viewModel.addUnderLineLink(requireView().findViewById(R.id.textView24),ContextCompat.getColor(getContext(),R.color.white));
-
-        });
-
-         */
     }
 
     private void UnFoldTime(){
@@ -429,14 +487,6 @@ public class DetailsFragment extends Fragment
                 requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i]).setVisibility(View.VISIBLE);
             }
         }
-    }
-    private void SetUpBeerIV(float rating, ConstraintLayout constraintLayout){
-        ArrayList<ImageView> imageViews = new ArrayList<>();
-        for (int i=0;i<=4;i++){
-            imageViews.add(new ImageView(getContext()));
-        }
-
-        new RatingToIVConverter().convert(imageViews, 36, constraintLayout, rating, 0,18);
     }
 
 

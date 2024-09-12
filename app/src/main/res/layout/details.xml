@@ -6,6 +6,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/surface">
+
+        <TextView
+            android:id="@+id/TimeOTd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-8dp"
+            android:text="TextView"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/name"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@+id/name" />
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:autoSizeTextType="uniform"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/roboto"
+            android:maxLines="1"
+            android:minLines="0"
+            android:text="@string/pub_name"
+            android:textAlignment="center"
+            android:textColor="@color/on_surface"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageView"
+            app:layout_constraintStart_toEndOf="@id/CloseButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/CloseButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="58dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hearth_full" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -13,7 +77,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout6">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,7 +91,7 @@
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollViewChips"
                 tools:layout_editor_absoluteY="47dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,38 +100,6 @@
                     android:layout_height="match_parent"
                     android:background="@color/surface" />
             </HorizontalScrollView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:background="@color/surface"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/CloseButton"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1" />
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="58dp"
-                    android:layout_height="44dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/hearth_full" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ClDetailsInfo"
@@ -80,58 +112,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/namecl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="330dp"
-                        android:layout_height="wrap_content"
-                        android:autoSizeTextType="uniform"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:fontFamily="@font/roboto"
-                        android:maxLines="1"
-                        android:minLines="0"
-                        android:text="name"
-                        android:textColor="@color/on_surface"
-                        android:textSize="22sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <TextView
-                    android:id="@+id/TimeOTd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="-8dp"
-                    android:text="TextView"
-                    android:textSize="11sp"
-                    app:layout_constraintBottom_toTopOf="@+id/namecl"
-                    app:layout_constraintStart_toStartOf="@+id/namecl" />
-
                 <TextView
                     android:id="@+id/PubRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto"
-                    android:text="4.6"
-
-                    android:textColor="@color/on_surface_dark_variant"
+                    android:text="@string/rating"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/namecl"
-                    app:layout_constraintTop_toBottomOf="@+id/namecl" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/PubWalkDistance"
@@ -162,43 +154,60 @@
                     android:layout_marginStart="-6dp"
                     android:fontFamily="@font/roboto"
                     android:text="(****)"
-                    android:textColor="@color/on_surface_dark_variant"
+                    android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/PubRating"
                     app:layout_constraintStart_toEndOf="@+id/PubRatingIV" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/expandRatingCardView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:layout_constraintBottom_toBottomOf="@id/PubRatingCount"
+                    app:layout_constraintStart_toEndOf="@id/PubRatingCount"
+                    app:layout_constraintTop_toTopOf="@id/PubRatingCount"
+                    app:strokeWidth="0dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_right_expand" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_walk_on_surface_con_dark"
+                    android:src="@drawable/ic_walk_on_surface"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/PubWalkDistance"
                     app:layout_constraintTop_toTopOf="@+id/PubWalkDistance" />
 
                 <TextView
-                    android:id="@+id/textView34"
+                    android:id="@+id/PubPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
-                    android:text="$$ • "
-                    android:textColor="@color/on_surface_dark_variant"
+                    android:text="@string/price_point"
+                    android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintTop_toBottomOf="@+id/PubRatingCount"
                     app:layout_constraintStart_toStartOf="@+id/PubRating" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/PubDistance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.4 km"
-                    android:textColor="@color/on_surface_dark_variant"
+                    android:text="@string/distance"
+                    android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView34"
-                    app:layout_constraintStart_toEndOf="@+id/textView34"
-                    app:layout_constraintTop_toTopOf="@+id/textView34" />
+                    app:layout_constraintBottom_toBottomOf="@+id/PubPrice"
+                    app:layout_constraintStart_toEndOf="@+id/PubPrice"
+                    app:layout_constraintTop_toTopOf="@+id/PubPrice" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -209,10 +218,13 @@
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/PubRating"
-                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
+                    app:layout_constraintTop_toBottomOf="@+id/PubPrice" />
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupBeers"
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/chipGroupBeersLayout"
+                    app:flexWrap="wrap"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginLeft="-8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,7 +232,7 @@
                     app:layout_constraintStart_toStartOf="@+id/textView12"
                     app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-                </com.google.android.material.chip.ChipGroup>
+                </com.google.android.flexbox.FlexboxLayout>
 
                 <TextView
                     android:id="@+id/textView13"
@@ -231,7 +243,7 @@
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/textView12"
-                    app:layout_constraintTop_toBottomOf="@+id/chipGroupBeers" />
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroupBeersLayout" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupDrinks"
@@ -248,29 +260,51 @@
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView35"
-                    app:layout_constraintStart_toEndOf="@+id/textView35"
-                    app:layout_constraintTop_toTopOf="@+id/textView35"
-                    app:srcCompat="@drawable/ic_walk_on_surface_con_dark" />
+                    app:layout_constraintBottom_toBottomOf="@+id/PubDistance"
+                    app:layout_constraintStart_toEndOf="@+id/PubDistance"
+                    app:layout_constraintTop_toTopOf="@+id/PubDistance"
+                    app:srcCompat="@drawable/ic_walk_on_surface" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
+                <TextView
+                    android:id="@+id/PubReserve"
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:text="@string/guide"
-                    android:textColor="@color/on_surface_dark_variant"
-                    android:textSize="14sp"
-                    app:chipBackgroundColor="@color/surface_container_highest"
-                    app:chipCornerRadius="40dp"
-                    app:chipIcon="@drawable/ic_directions_on_surface_variant"
-                    app:chipIconSize="24dp"
-                    android:elevation="1dp"
-                    app:chipStrokeColor="@color/outline"
-                    app:chipStrokeWidth="0.5dp"
-                    android:layout_marginStart="4dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reservable"
+                    android:textColor="@color/on_surface"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/space_symbol"
+                    android:textColor="@color/on_surface"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
                     app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tags_present"
+                    android:textColor="@color/on_surface"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroupDrinks"/>
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupTags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/textView15"
+                    app:layout_constraintTop_toBottomOf="@id/textView15"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -622,78 +656,75 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:background="@drawable/constraint_layout_margin_down_dim"
+                android:layout_height="300dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClSite">
+                app:layout_constraintTop_toBottomOf="@+id/OvClSite" />
 
-                <TextView
-                    android:id="@+id/TV_rating_trip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rating"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="@+id/TV_trip"
-                    app:layout_constraintStart_toStartOf="@+id/TV_trip"
-                    app:layout_constraintTop_toBottomOf="@+id/TV_trip" />
 
-                <TextView
-                    android:id="@+id/TV_trip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:shadowColor="@color/trip_advisor"
-                    android:shadowDx="1.8"
-                    android:shadowDy="1.3"
-                    android:shadowRadius="3"
-                    android:text="@string/tripadvisor"
-                    android:textColor="@color/trip_advisor"
-                    android:textColorHighlight="@color/trip_advisor"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/TV_google"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/google"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/TV_rating_google"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rating"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="@+id/TV_google"
-                    app:layout_constraintStart_toStartOf="@+id/TV_google"
-                    app:layout_constraintTop_toBottomOf="@+id/TV_google" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollViewChips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
+                android:fillViewport="true"
+                android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="1dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.chip.ChipGroup
+                        android:layout_width="match_parent"
+                        android:paddingLeft="16dp"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipGuide"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:chipBackgroundColor="@color/secondary_container"
+                            android:textColor="@color/on_secondary_container"
+                            android:text="@string/guide"
+                            app:chipIconTint="@color/on_secondary_container"
+                            app:chipIcon="@drawable/ic_directions_on_surface_variant"
+                            style="@style/ActionChip"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/ActionChip"
+                            android:text="@string/call"
+                            app:chipIcon="@drawable/ic_phone_on_surface"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/ActionChip"
+                            android:text="@string/rate"
+                            app:chipIcon="@drawable/ic_add"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipEdit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/ActionChip"
+                            app:chipIcon="@drawable/ic_edit"
+                            android:text="@string/edit_content"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipShare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/ActionChip"
+                            app:chipIcon="@drawable/ic_share"
+                            android:text="@string/share"/>
 
+
+
+
+                    </com.google.android.material.chip.ChipGroup>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

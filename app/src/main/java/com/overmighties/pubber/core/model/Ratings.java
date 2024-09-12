@@ -45,7 +45,6 @@ public class Ratings {
         if (count == 0){
             return null;
         }
-
         else{
             sum = sum/count;
             return Math.round(sum*100.f)/100.f;

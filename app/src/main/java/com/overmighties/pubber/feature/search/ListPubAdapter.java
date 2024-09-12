@@ -135,7 +135,11 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             else{
                 holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
                 holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
-            }}
+            }
+        }
+        else{
+            holder.timeOpenToday.setText(holder.itemView.getContext().getString(R.string.nodata));
+        }
      //   if(pubCardView.getAverageRatingFromServices()!=null)
      //       holder.averageRatingFromServices.setText(pubData.getPubItems().get(position).getAverageRatingFromServices().toString());
         if(pubCardView.getWalkDistance()!=null) {

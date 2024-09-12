@@ -219,6 +219,7 @@
     <string name="available_alcohols">Dostępne alkohole</string>
     <string name="language">Język</string>
     <string name="map">Mapa</string>
+    <string name="nodata">Brak danych</string>
     <string name="city_rzeszow">Rzeszów</string>
     <string name="city_warsaw">Warszawa</string>
     <string name="city_cracow">Kraków</string>
@@ -237,9 +238,24 @@
     <string name="sort_distance">Najmniejsza odległość</string>
 
     <!-- details-->
+    <string name="pub_name">Nazwa Pubu</string>
+    <string name="call">Zadzwoń</string>
+    <string name="rate">Oceń</string>
+    <string name="share">Udostępnij</string>
+    <string name="takeout">Na wynos</string>
+    <string name="price_point">$$ • </string>
+    <string name="not_calculated">\ Oblicz dystans</string>
+    <string name="reservable">Możliwość rezerwacji</string>
+
+    <string name="share_rating">Podziel się swoimi wrażeniami</string>
+    <string name="rating_error">Ocena nie może być mniejsza niż 1</string>
+    <string name="publish">Opublikuj</string>
+
+
     <string name="google">Google</string>
     <string name="tripadvisor">Tripadvisor</string>
     <string name="facebook">Facebook</string>
+
 
     <!--settings fragment-->
     <string name="dark_theme">Tryb nocny</string>
@@ -264,7 +280,7 @@
 
 
     <!-- recycler view row -->
-    <string name="guide">Zaprowadź</string>
+    <string name="guide">Trasa</string>
     <string name="alcohols">Alkohole</string>
 
     <!-- filtration screen and it's pop ups-->

@@ -335,24 +335,18 @@ public class Constants {
             R.id.textInputLayoutPasswordSignUp,
             R.id.textInputLayoutConfirmPasswordSignUp
     };
-    /*
-    public static final int[] TAB_OVERVIEW_TEXTVIEW_OUR_RATING_IDS = {
-            R.id.OvTVOurRGeneral,
-            R.id.OvTVOurRPrice,
-            R.id.OvTVOurRService,
-            R.id.OvTVOurRVibe,
-            R.id.OvTVGeneral,
-            R.id.OvTVVibe,
-            R.id.OvTVPrice,
-            R.id.OvTVService,
-            R.id.OvClOurRGeneral,
-            //R.id.OvClOurRPrice,
-            //R.id.OvClOurRVibe,
-            //R.id.OvClOurRService,
-            R.id.OvTVOurReview,
-            R.id.OvClOurRating
 
+    public static final int[] DETAILS_ALCOHOL_EDIT_BEERS_WIDGETS_IDS = {
+            R.id.buttonAddBeer,
+            R.id.addBeerRecyclerView,
+            R.id.buttonRemoveBeer,
+            R.id.removeBeerRecyclerView
     };
 
-*/
+    public static final int[] DETAILS_ALCOHOL_EDIT_DRINKS_WIDGETS_IDS = {
+            R.id.buttonAddDrink,
+            R.id.addDrinkRecyclerView,
+            R.id.buttonRemoveDrink,
+            R.id.removeDrinkRecyclerView
+    };
 }

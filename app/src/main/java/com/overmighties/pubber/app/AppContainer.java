@@ -40,8 +40,8 @@ public final class AppContainer {
     {
         this.localDb=localDb;
         this.accountDataSource =new AccountFirebaseDataSource();
-        this.localRepository=new PubsRoomDbSource(localDb);
-        //this.localRepository=new FakeLocalRepository();
+        //this.localRepository=new PubsRoomDbSource(localDb);
+        this.localRepository=new FakeLocalRepository();
         this.pubsNetworkDataSource=new FakePubsNetworkDataSource();
        // this.pubsNetworkDataSource= PubsRetrofitDataSource.getInstance();
         this.pubsRepository=new PubsRepository(pubsNetworkDataSource,localRepository);

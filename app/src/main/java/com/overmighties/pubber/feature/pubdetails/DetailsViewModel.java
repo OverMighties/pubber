@@ -78,8 +78,7 @@ public class DetailsViewModel extends ViewModel {
             }
     );
 
-    public DetailsViewModel(SavedStateHandle savedStateHandle){
-    }
+    public DetailsViewModel(SavedStateHandle savedStateHandle){}
 
 
     public static int dpToPx(int dp)

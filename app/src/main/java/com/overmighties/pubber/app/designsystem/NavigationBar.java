@@ -36,12 +36,11 @@ public class NavigationBar {
         top_animate.setDuration(duration);
         animationSet.addAnimation(top_animate);
 
+        nav_bar.startAnimation(nav_animate);
+        nav_bar.setVisibility(View.INVISIBLE);
 
-            nav_bar.startAnimation(nav_animate);
-            nav_bar.setVisibility(View.INVISIBLE);
-
-            top_bar.startAnimation(top_animate);
-            top_bar_view.setVisibility(View.GONE);
+        top_bar.startAnimation(top_animate);
+        top_bar_view.setVisibility(View.GONE);
 
     }
 

@@ -38,4 +38,5 @@ public class PubDetailsUiState {
     private String TimeOpenToday;
     private List <Integer> idsOfBeerChips;
     private List <Integer> idsOfDrinkChips;
+    private Float distance;
 }

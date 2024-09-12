@@ -141,6 +141,23 @@
         <item>Dark beer</item>
         <item>Light beer</item>
     </string-array>
+    <!-- string array for editing pub-->
+    <string-array name="beer_styles_unkown">
+        <item>Unknown</item>
+        <item>Lager</item>
+        <item>Pilsner</item>
+        <item>IPA</item>
+        <item>APA</item>
+        <item>Witbier</item>
+        <item>Porter</item>
+        <item>Scout</item>
+        <item>Ale</item>
+        <item>Wheat beer</item>
+        <item>Dark beer</item>
+        <item>Light beer</item>
+    </string-array>
+
+
     <!--beer styles long descriptiopn-->
     <!-- TODO translate beer styles desciption to english-->
     <string-array name="beer_styles_long_description">
@@ -253,7 +270,7 @@
     <string name="label_google_sign_in">Continue with Google </string>
     <string name="label_email_sign_in">Sign In with email </string>
     <string name="label_email_sign_up">Sign Up with email </string>
-    <string name="label_email_sign_up_add"> "or Sing Up"</string>
+    <string name="label_email_sign_up_add">Sing Up</string>
     <string name="ic_account_title">My account</string>
     <string name="content_description_profile_image">Your profile image</string>
     <string name="account_detail_title_cardview">Detail name:</string>
@@ -292,6 +309,7 @@
     <string name="available_alcohols">Available alcohols</string>
     <string name="language">Language</string>
     <string name="map">Map</string>
+    <string name="nodata">No data</string>
     <string name="city_rzeszow">Rzeszów</string>
     <string name="city_warsaw">Warsaw</string>
     <string name="city_cracow">Cracow</string>
@@ -307,6 +325,27 @@
     
 
     <!-- details-->
+    <string name="pub_name">Pub\'s name</string>
+    <string name="call">Call</string>
+    <string name="rate">Rate</string>
+    <string name="share">Share</string>
+    <string name="space_symbol">•\ </string>
+    <string name="price_point">Price point •\ </string>
+    <string name="not_calculated">Calculate distance</string>
+    <string name="reservable">Reservable</string>
+    <string name="tags">Tags</string>
+    <string name="propose_change">Propose a change</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="unknown">Unknown</string>
+    <string name="select_beers_remove">Select beers to be removed</string>
+    <string name="select_drinks_remove">Select drinks to be removed</string>
+    <string name="submit">Submit</string>
+    <string name="tags_present">Tags:</string>
+    <string name="choose">Choose</string>
+    <string name="share_rating">Share your experience</string>
+    <string name="rating_error">Rating cannot be less than 1</string>
+    <string name="publish">Publish</string>
     <string name="google">Google</string>
     <string name="tripadvisor">Tripadvisor</string>
     <string name="facebook">Facebook</string>
