@@ -36,12 +36,17 @@ public final class PubWithAllEntities {
             entityColumn = "drink_id",
             associateBy = @Junction(PubDrinkCrossRefEntity.class)
     )
-    public List<DrinkWithStyleEntity> drinks;
+    public List<DrinkWithDrinkStyleEntity> drinks;
 
     @Relation(
             parentColumn = "pub_id",
             entityColumn = "pub_id"
     )
     public  List<PhotoEntity> photos;
+    @Relation(
+            parentColumn = "pub_id",
+            entityColumn = "pub_id"
+    )
+    public  List<TagEntity> tags;
 
 }

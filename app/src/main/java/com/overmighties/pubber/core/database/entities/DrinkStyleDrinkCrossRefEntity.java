@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(
-        tableName = "drink_style_cross_ref",
+        tableName = "drink_style_drink_cross_ref",
         primaryKeys = {"drink_id", "drink_style_id"},
         indices = {@Index(value = "drink_id"), @Index(value = "drink_style_id")}
 )
-public class DrinkStyleCrossRefEntity {
+public class DrinkStyleDrinkCrossRefEntity {
     @Ignore
     public static final Long ID_NONE = 0L;
 

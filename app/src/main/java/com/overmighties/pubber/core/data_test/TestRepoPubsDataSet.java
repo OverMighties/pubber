@@ -6,6 +6,7 @@ import com.overmighties.pubber.core.network.model.PhotoDto;
 import com.overmighties.pubber.core.network.model.PubDto;
 import com.overmighties.pubber.core.network.model.RatingsDto;
 import com.overmighties.pubber.core.network.model.DrinkStyleDto;
+import com.overmighties.pubber.core.network.model.TagDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,13 @@ public class TestRepoPubsDataSet {
     private ArrayList<PhotoDto> photosDataSet4;
     private ArrayList<PhotoDto> photosDataSet5;
     private ArrayList<PhotoDto> photosDataSet6;
+
+    private ArrayList<TagDto> tagsDataSet1;
+    private ArrayList<TagDto> tagsDataSet2;
+    private ArrayList<TagDto> tagsDataSet3;
+    private ArrayList<TagDto> tagsDataSet4;
+    private ArrayList<TagDto> tagsDataSet5;
+    private ArrayList<TagDto> tagsDataSet6;
 
 
     public static final String NOTHING="";
@@ -94,6 +102,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet1)
                 .drinks(drinksDataSet1)
                 .photos(photosDataSet1)
+                .tags(tagsDataSet1)
                 .build());
 
         dataSet.add(PubDto.builder()
@@ -117,6 +126,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet2)
                 .drinks(drinksDataSet2)
                 .photos(photosDataSet2)
+                .tags(tagsDataSet2)
                 .build());
 
         dataSet.add(PubDto.builder()
@@ -148,6 +158,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet3)
                 .drinks(drinksDataSet3)
                 .photos(photosDataSet3)
+                .tags(tagsDataSet3)
                 .build());
 
         dataSet.add(PubDto.builder()
@@ -173,6 +184,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet4)
                 .drinks(drinksDataSet4)
                 .photos(photosDataSet4)
+                .tags(tagsDataSet4)
                 .build());
 
         dataSet.add(PubDto.builder()
@@ -197,6 +209,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet5)
                 .drinks(drinksDataSet5)
                 .photos(photosDataSet5)
+                .tags(tagsDataSet5)
                 .build());
 
         dataSet.add(PubDto.builder()
@@ -214,6 +227,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet6)
                 .drinks(drinksDataSet6)
                 .photos(photosDataSet6)
+                .tags(tagsDataSet6)
                 .build());
         dataSet.add(PubDto.builder()
                 .id(7L)
@@ -230,6 +244,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet6)
                 .drinks(drinksDataSet6)
                 .photos(photosDataSet6)
+                .tags(tagsDataSet6)
                 .build());
         dataSet.add(PubDto.builder()
                 .id(8L)
@@ -246,6 +261,7 @@ public class TestRepoPubsDataSet {
                 .openingHours(openingHoursDataSet6)
                 .drinks(drinksDataSet6)
                 .photos(photosDataSet6)
+                .tags(tagsDataSet6)
                 .build());
 
     }
@@ -254,7 +270,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet1 = new ArrayList<>();
         openingHoursDataSet1 = new ArrayList<>();
         photosDataSet1 = new ArrayList<>();
-
+        tagsDataSet1 = new ArrayList<>();
         drinksDataSet1.add(DrinkDto.builder()
                 .name("AleBrowar")
                 .type("Beer")
@@ -316,7 +332,8 @@ public class TestRepoPubsDataSet {
                 .timeClose("02:00")
                 .build());
 
-
+        tagsDataSet1.add(new TagDto("TagNr1"));
+        tagsDataSet1.add(new TagDto("TagNr2"));
 
     }
     private void initDataSet2()
@@ -324,6 +341,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet2 = new ArrayList<>();
         openingHoursDataSet2 = new ArrayList<>();
         photosDataSet2 = new ArrayList<>();
+        tagsDataSet2 = new ArrayList<>();
 
         drinksDataSet2.add(DrinkDto.builder()
                 .name("AleBrowar")
@@ -398,12 +416,15 @@ public class TestRepoPubsDataSet {
                 .timeOpen("00:00")
                 .timeClose("00:00")
                 .build());
+        tagsDataSet2.add(new TagDto("TagNr1"));
+        tagsDataSet2.add(new TagDto("TagNr3"));
     }
     private void initDataSet3()
     {
         drinksDataSet3 = new ArrayList<>();
         openingHoursDataSet3 = new ArrayList<>();
         photosDataSet3 = new ArrayList<>();
+        tagsDataSet3 = new ArrayList<>();
 
         drinksDataSet3.add(DrinkDto.builder()
                 .name("Żywiec")
@@ -466,6 +487,8 @@ public class TestRepoPubsDataSet {
                 .timeOpen("15:00")
                 .timeClose("01:00")
                 .build());
+        tagsDataSet3.add(new TagDto("TagNr3"));
+        tagsDataSet3.add(new TagDto("TagNr2"));
 
     }
     private void initDataSet4()
@@ -473,6 +496,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet4 = new ArrayList<>();
         openingHoursDataSet4 = new ArrayList<>();
         photosDataSet4 = new ArrayList<>();
+        tagsDataSet4 = new ArrayList<>();
 
         drinksDataSet4.add(DrinkDto.builder()
                 .name("Komes")
@@ -533,6 +557,8 @@ public class TestRepoPubsDataSet {
                 .timeOpen("15:00")
                 .timeClose("01:00")
                 .build());
+        tagsDataSet4.add(new TagDto("tagel"));
+        tagsDataSet4.add(new TagDto("meh"));
 
     }
     private void initDataSet5()
@@ -540,6 +566,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet5 = new ArrayList<>();
         openingHoursDataSet5 = new ArrayList<>();
         photosDataSet5 = new ArrayList<>();
+        tagsDataSet5 = new ArrayList<>();
 
         drinksDataSet5.add(DrinkDto.builder()
                 .name("Recraft")
@@ -608,6 +635,8 @@ public class TestRepoPubsDataSet {
                 .timeOpen("15:00")
                 .timeClose("01:00")
                 .build());
+        tagsDataSet5.add(new TagDto("Uf"));
+        tagsDataSet5.add(new TagDto("Ah"));
 
     }
     private void initDataSet6()
@@ -615,5 +644,6 @@ public class TestRepoPubsDataSet {
         drinksDataSet6=null;
         openingHoursDataSet6=null;
         photosDataSet6=null;
+        tagsDataSet6 = null;
     }
 }

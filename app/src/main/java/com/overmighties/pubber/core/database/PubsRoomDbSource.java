@@ -20,7 +20,7 @@ public class PubsRoomDbSource implements PubberLocalApi {
     public Single<List<Pub>> getPubs() {
         return appDb.pubsDao().getPubsWithEntities()
                 .map(list->{
-                    Log.i(TAG, "getPubs: fetched pubs from db in number "+list.size());
+                    Log.i(TAG, "getPubs: fetched pubs from db in number of "+list.size());
                     return list.stream()
                         .map(PubEntityMapper::mapFromEntity)
                         .collect(Collectors.toList());
@@ -29,6 +29,10 @@ public class PubsRoomDbSource implements PubberLocalApi {
 
     @Override
     public void updatePubs(List<Pub> pubs) throws RuntimeException {
-        appDb.pubsDao().insertAll(pubs.stream().map(PubDataMapper::mapToEntity).collect(Collectors.toList()));
+        appDb.pubsDao()
+                .insertAll(pubs.stream()
+                        .map(PubDataMapper::mapToEntity)
+                        .collect(Collectors.toList())
+                );
     }
 }

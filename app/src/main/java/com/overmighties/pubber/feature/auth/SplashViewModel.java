@@ -55,6 +55,7 @@ public class SplashViewModel extends PubberAppViewModel {
                 Log.i(TAG, "User " + displayName + " is logged in");
                 openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.PLACE_CHOICE_FRAGMENT);
             } else {
+                Log.i(TAG, "User needs to fill data about yourself");
                 openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.NEW_USER_DETAILS_FRAGMENT);
             }
         }

@@ -6,11 +6,13 @@ import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.core.model.DrinkStyle;
+import com.overmighties.pubber.core.model.Tag;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.core.network.model.PhotoDto;
 import com.overmighties.pubber.core.network.model.PubDto;
 import com.overmighties.pubber.core.network.model.RatingsDto;
+import com.overmighties.pubber.core.network.model.TagDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,32 +25,78 @@ public class PubDtoMapper {
     }
     public static Pub mapFromDto(PubDto pub, LocalDateTime time)
     {
-        return new Pub(pub.getId(), pub.getName(),pub.getAddress(),time, pub.getCity(), pub.getPhoneNumber(),
-                pub.getWebsiteUrl(), pub.getIconUrl(), pub.getDescription(), pub.getReservable(), pub.getTakeout(), pub.getLatitude(), pub.getLongitude(),
-                mapFromDtoRatings(pub.getRatings()),mapFromDtoOpeningHours(pub.getOpeningHours()),
-                mapFromDtoDrinks(pub.getDrinks()),mapFromDtoPhotos(pub.getPhotos()),null);
+        return new Pub(
+                pub.getId(),
+                pub.getName(),
+                pub.getAddress(),
+                time,
+                pub.getCity(),
+                pub.getPhoneNumber(),
+                pub.getWebsiteUrl(),
+                pub.getIconUrl(),
+                pub.getDescription(),
+                pub.getReservable(),
+                pub.getTakeout(),
+                pub.getLatitude(),
+                pub.getLongitude(),
+                mapFromDtoRatings(pub.getRatings()),
+                mapFromDtoOpeningHours(pub.getOpeningHours()),
+                mapFromDtoDrinks(pub.getDrinks()),
+                mapFromDtoPhotos(pub.getPhotos()),
+                mapFromDtoTags(pub.getTags()),
+                null
+        );
     }
     public static Ratings mapFromDtoRatings(RatingsDto ratingsDto)
     {
-        return ratingsDto==null?new Ratings():new Ratings(ratingsDto.getGoogle(), ratingsDto.getGoogleCount(), ratingsDto.getFacebook(), ratingsDto.getFacebookCount(),
-                ratingsDto.getTripadvisor(), ratingsDto.getTripadvisorCount(), ratingsDto.getUntapped(), ratingsDto.getUntappedCount(),
-                ratingsDto.getOurDrinksQuality(), ratingsDto.getOurServiceQuality(), ratingsDto.getOurCost());
+        return ratingsDto==null?new Ratings():new Ratings(
+                ratingsDto.getGoogle(),
+                ratingsDto.getGoogleCount(),
+                ratingsDto.getFacebook(),
+                ratingsDto.getFacebookCount(),
+                ratingsDto.getTripadvisor(),
+                ratingsDto.getTripadvisorCount(),
+                ratingsDto.getUntapped(),
+                ratingsDto.getUntappedCount(),
+                ratingsDto.getOurDrinksQuality(),
+                ratingsDto.getOurServiceQuality(),
+                ratingsDto.getOurCost()
+        );
     }
     public static List<Drink> mapFromDtoDrinks(List<DrinkDto> drinkDtos)
     {
         return drinkDtos==null || drinkDtos.isEmpty()?null:drinkDtos.stream()
-                .map(drinkDto -> new Drink(drinkDto.getName(),drinkDto.getType(),drinkDto.getDescription(),drinkDto.getDrinkStyles()==null?null:drinkDto.getDrinkStyles()
-                        .stream()
-                        .map(style->new DrinkStyle(style.getStyleName()))
+                .map(drinkDto -> new Drink(
+                        drinkDto.getName(),
+                        drinkDto.getType(),
+                        drinkDto.getDescription(),
+                        drinkDto.getDrinkStyles()==null?null:drinkDto.getDrinkStyles()
+                                .stream()
+                                .map(style->new DrinkStyle(style.getStyleName()))
                             .collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
     public static List<OpeningHours> mapFromDtoOpeningHours(List<OpeningHoursDto> openingHoursDtos)
     {
-        return openingHoursDtos==null || openingHoursDtos.isEmpty()?null:openingHoursDtos.stream().map(dto -> new OpeningHours(dto.getWeekday(),dto.getTimeOpen(), dto.getTimeClose())).collect(Collectors.toList());
+        return openingHoursDtos==null || openingHoursDtos.isEmpty()?null:openingHoursDtos.stream()
+                .map(dto -> new OpeningHours(
+                        dto.getWeekday(),
+                        dto.getTimeOpen(),
+                        dto.getTimeClose()
+                        )
+                )
+                .collect(Collectors.toList());
     }
     public static List<Photo> mapFromDtoPhotos(List<PhotoDto> photoDtos)
     {
-        return photoDtos==null || photoDtos.isEmpty()?null:photoDtos.stream().map(dto ->new Photo(dto.getTitle(), dto.getPhotoUrl())).collect(Collectors.toList());
+        return photoDtos==null || photoDtos.isEmpty()?null:photoDtos.stream()
+                .map(dto ->new Photo(dto.getTitle(), dto.getPhotoUrl()))
+                .collect(Collectors.toList());
+    }
+    public static List<Tag> mapFromDtoTags(List<TagDto> tagDtos)
+    {
+        return tagDtos==null  || tagDtos.isEmpty()?null:tagDtos.stream()
+                .map(dto->new Tag(dto.getName()))
+                .collect(Collectors.toList());
     }
 }

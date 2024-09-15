@@ -83,8 +83,13 @@ public class SplashFragment extends Fragment {
         int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageResource(google_button_id);
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)
-                .navigate(getNavDirections(from,to))), SPLASH_DELAY);
+        new Handler(
+                Looper.getMainLooper())
+                .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation
+                        .findNavController(view)
+                        .navigate(getNavDirections(from,to))),
+                        SPLASH_DELAY
+                );
 
     }
     private void signInWithGoogle() {

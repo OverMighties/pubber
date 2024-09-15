@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity(
         tableName = "pub_drink_cross_ref",
         primaryKeys = {"pub_id", "drink_id"},
-        indices = {@Index(value = "pub_id"), @Index(value = "drink_id")}
+        indices = {@Index(value = {"pub_id", "drink_id"},unique = true)}
 )
 public class PubDrinkCrossRefEntity {
 
