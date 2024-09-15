@@ -62,6 +62,7 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
         NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.GONE);
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
@@ -79,7 +80,7 @@ public class SplashFragment extends Fragment {
 
         requireView().findViewById(R.id.IV_google_button).setOnClickListener(v-> signInWithGoogle());
 
-        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()) == SettingsHandler.LanguageHelper.LANGUAGE_POLISH)? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
+        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageResource(google_button_id);
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation.findNavController(view)

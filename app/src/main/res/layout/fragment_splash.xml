@@ -26,7 +26,6 @@
         android:id="@+id/IV_google_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_google_button_polish"
         android:text="@string/label_google_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

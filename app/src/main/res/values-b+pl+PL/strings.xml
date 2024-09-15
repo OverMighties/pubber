@@ -177,7 +177,7 @@
     <string name="label_google_sign_in">Kontynuuj przez Google </string>
     <string name="label_email_sign_in">Zaloguj się przez email </string>
     <string name="label_email_sign_up">Zarejstruj się przez email </string>
-    <string name="label_email_sign_up_add"> "lub zarejestruj się"</string>
+    <string name="label_email_sign_up_add"> "Zarejestruj się"</string>
     <string name="ic_account_title">Moje konto</string>
     <string name="content_description_profile_image">Twoje zdjęcie profilowe</string>
     <string name="account_detail_title_cardview">Detail name:</string>
