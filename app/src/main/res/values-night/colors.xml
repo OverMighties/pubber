@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="google_blue">#4285F4</color>
     <color name="main">#2C2828</color>
     <color name="theme">#693D2B</color>
     <color name="highlight">#FF6D24</color>
@@ -41,6 +40,9 @@
     <color name="status_bar">#302821</color>
     <color name="facebook">#4267B2</color>
     <color name="trip_advisor">#00af87</color>
+    <color name="google_blue">#4285F4</color>
+    <color name="google_red">#EA4335</color>
+    <color name="google_green">#34A853</color>
     <color name="red_bright">#D32F2F</color>
     <color name="red_dark">#B71C1C</color>
     <color name="yellow_bright">#FBC02D</color>

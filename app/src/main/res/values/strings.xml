@@ -346,6 +346,10 @@
     <string name="share_rating">Share your experience</string>
     <string name="rating_error">Rating cannot be less than 1</string>
     <string name="publish">Publish</string>
+    <string name="opinions">Opinions</string>
+    <string name="origin">Origin</string>
+    <string name="nickname">Nickname</string>
+    <string name="content">Content</string>
     <string name="google">Google</string>
     <string name="tripadvisor">Tripadvisor</string>
     <string name="facebook">Facebook</string>

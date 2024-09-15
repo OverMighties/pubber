@@ -20,11 +20,18 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_placeChoiceFragment_to_detailsFragment2"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.DetailsFragment"
+        android:label="DetailsFragment" />
 
 </navigation>

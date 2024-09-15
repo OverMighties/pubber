@@ -2,6 +2,8 @@ package com.overmighties.pubber.feature.pubdetails;
 
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS;
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_IDS;
+import static com.overmighties.pubber.core.data_test.TestRepoPubsDataSet.LOREM_IPSUM_20;
+import static com.overmighties.pubber.core.data_test.TestRepoPubsDataSet.LOREM_IPSUM_200;
 import static com.overmighties.pubber.feature.pubdetails.DetailsViewModel.dpToPx;
 
 import android.annotation.SuppressLint;
@@ -20,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -44,6 +48,9 @@ import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
+import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsDrinkListAdapter;
+import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
+import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.util.DimensionsConverter;
@@ -53,6 +60,10 @@ import com.overmighties.pubber.util.RatingToIVConverter;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 public class DetailsFragment extends Fragment
 {
@@ -61,6 +72,7 @@ public class DetailsFragment extends Fragment
     private ImageView BlurImageView;
     private final List<Integer> testPhotos =new ArrayList<>();
     private final static List<String> testTags = new ArrayList<>();
+    private final static List<DetailsCommentCardViewUiState> testComments = new ArrayList<>();
     private DetailsViewModel viewModel;
     private PubListViewModel pubListViewModel;
 
@@ -70,6 +82,7 @@ public class DetailsFragment extends Fragment
     public ViewPager viewPager;
     private ConstraintLayout layout;
     private ShapeableImageView shapeableImageView;
+    private DetailsCommentsAdapter adapter;
 
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
@@ -80,7 +93,7 @@ public class DetailsFragment extends Fragment
         viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
 
-        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility() == View.INVISIBLE)
+        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility() == View.INVISIBLE || requireActivity().findViewById(R.id.bottom_nav_view).getVisibility() == View.VISIBLE)
             requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
 
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
@@ -95,7 +108,7 @@ public class DetailsFragment extends Fragment
         setUpImageSlider();
         setUpTime();
         setUpListener();
-
+        setUpBottomExpandableLayout();
 
     }
 
@@ -109,6 +122,9 @@ public class DetailsFragment extends Fragment
         testTags.add("Karaoke");
         testTags.add("Whiskey");
         testTags.add("Piwa kraftowe");
+        testComments.add(new DetailsCommentCardViewUiState("Potato1", getString(R.string.google), 3.2F, "40-60zł", LOREM_IPSUM_20));
+        testComments.add(new DetailsCommentCardViewUiState("Potato2", getString(R.string.tripadvisor), 4.2F, null, LOREM_IPSUM_200));
+        testComments.add(new DetailsCommentCardViewUiState("Potato3", getString(R.string.app_name), 0.0F, "40-60zł", LOREM_IPSUM_200 + LOREM_IPSUM_200));
     }
 
 
@@ -225,6 +241,10 @@ public class DetailsFragment extends Fragment
             chip.setLayoutParams(params);
             ((ChipGroup)requireView().findViewById(R.id.chipGroupTags)).addView(chip);
         }
+        
+        //Comments List
+        adapter = new DetailsCommentsAdapter(testComments);
+        ((RecyclerView)requireView().findViewById(R.id.commentsRecyclerView)).setAdapter(adapter);
     }
 
 
@@ -370,7 +390,7 @@ public class DetailsFragment extends Fragment
 
     private void setUpListener(){
 
-        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).popBackStack());
+        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
         requireView().findViewById(R.id.chipGuide).setOnClickListener(v->{
             Uri adress = Uri.parse("geo:0,0?q="+viewModel.getUiState().getValue().getAddress());
@@ -408,7 +428,7 @@ public class DetailsFragment extends Fragment
         });
 
         requireView().findViewById(R.id.chipShare).setOnClickListener(v->{
-            String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + pubListViewModel.getCityConstraint().getValue() + "/" +  viewModel.getUiState().getValue().getId().toString();
+            String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + viewModel.getUiState().getValue().getCity() + "/" +  viewModel.getUiState().getValue().getId().toString();
 
             Intent shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
                     .setType("text/plain")
@@ -500,6 +520,27 @@ public class DetailsFragment extends Fragment
             android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
             clipboard.setPrimaryClip(clip);
         }
+    }
+
+    private void setUpBottomExpandableLayout(){
+        ConstraintLayout expandableView = requireView().findViewById(R.id.detailsExpandableView);
+        ((ScrollView)requireView().findViewById(R.id.detailsScrollView)).setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(DimensionsConverter.dpFromPx(requireContext(), scrollY)<=48F){
+                    ConstraintLayout.LayoutParams layoutParams =
+                            (ConstraintLayout.LayoutParams) expandableView.getLayoutParams();
+                    layoutParams.bottomMargin = (int) -DimensionsConverter.pxFromDp(requireContext(), 48)+scrollY;
+                    expandableView.setLayoutParams(layoutParams);
+                }
+                else{
+                    ConstraintLayout.LayoutParams layoutParams =
+                            (ConstraintLayout.LayoutParams) expandableView.getLayoutParams();
+                    layoutParams.bottomMargin = 0;
+                    expandableView.setLayoutParams(layoutParams);
+                }
+            }
+        });
     }
 
 

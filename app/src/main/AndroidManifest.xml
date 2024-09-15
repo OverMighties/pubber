@@ -47,8 +47,23 @@
         <activity
             android:name=".app.MainActivity"
             android:configChanges="uiMode"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="http"
+                    android:host="pubber-4e5c8.firebaseapp.com"
+                    android:pathPrefix="/pub"/>
+                <data
+                    android:scheme="https"
+                    android:host="pubber-4e5c8.firebaseapp.com"
+                    android:pathPrefix="/pub"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".app.StartActivity"
             android:exported="true"

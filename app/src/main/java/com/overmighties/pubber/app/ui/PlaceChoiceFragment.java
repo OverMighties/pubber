@@ -42,6 +42,10 @@ public class PlaceChoiceFragment extends Fragment {
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         });
 
+        if(pubListViewModel.getLinkPubId() != null){
+            navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
+        }
+
         if ((requireActivity().getIntent().hasExtra("openSettings") && requireActivity().getIntent().getBooleanExtra("openSettings", false) && requireActivity().getIntent().hasExtra("city"))){
             pubListViewModel.setCityConstraint(requireActivity().getIntent().getStringExtra("city"));
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));

@@ -71,6 +71,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/detailsScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -116,10 +117,10 @@
                     android:id="@+id/PubRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/rating"
-                    android:layout_marginStart="16dp"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -190,13 +191,13 @@
                     android:id="@+id/PubPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/price_point"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintTop_toBottomOf="@+id/PubRatingCount"
-                    app:layout_constraintStart_toStartOf="@+id/PubRating" />
+                    app:layout_constraintStart_toStartOf="@+id/PubRating"
+                    app:layout_constraintTop_toBottomOf="@+id/PubRatingCount" />
 
                 <TextView
                     android:id="@+id/PubDistance"
@@ -222,11 +223,11 @@
 
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/chipGroupBeersLayout"
-                    app:flexWrap="wrap"
-                    android:layout_marginTop="-8dp"
-                    android:layout_marginLeft="-8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_marginTop="-8dp"
+                    app:flexWrap="wrap"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView12"
@@ -291,20 +292,21 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/tags_present"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="@+id/textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/chipGroupDrinks"/>
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroupDrinks" />
+
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupTags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@id/textView15"
-                    app:layout_constraintTop_toBottomOf="@id/textView15"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/textView15" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -324,7 +326,7 @@
                     android:id="@+id/OvIVTime"
                     android:layout_width="25dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_clock_filled_on_surface"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -567,7 +569,7 @@
                     android:id="@+id/OvIVAdress"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_location_on_surface"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -601,7 +603,7 @@
                     android:id="@+id/OvIVPhone"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_phone_on_surface"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -635,7 +637,7 @@
                     android:id="@+id/profile_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_earth_on_surface"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -657,10 +659,32 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:paddingBottom="48dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClSite" />
+                app:layout_constraintTop_toBottomOf="@+id/OvClSite" >
+                <TextView
+                    android:id="@+id/textViewOpinion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/opinions"
+                    android:textSize="20sp"
+                    android:textColor="@color/on_surface"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewOpinion"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <HorizontalScrollView
@@ -676,50 +700,54 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <com.google.android.material.chip.ChipGroup
                         android:layout_width="match_parent"
-                        android:paddingLeft="16dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp">
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipGuide"
+                            style="@style/ActionChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:chipBackgroundColor="@color/secondary_container"
-                            android:textColor="@color/on_secondary_container"
                             android:text="@string/guide"
-                            app:chipIconTint="@color/on_secondary_container"
+                            android:textColor="@color/on_secondary_container"
+                            app:chipBackgroundColor="@color/secondary_container"
                             app:chipIcon="@drawable/ic_directions_on_surface_variant"
-                            style="@style/ActionChip"/>
+                            app:chipIconTint="@color/on_secondary_container" />
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipCall"
+                            style="@style/ActionChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/ActionChip"
                             android:text="@string/call"
-                            app:chipIcon="@drawable/ic_phone_on_surface"/>
+                            app:chipIcon="@drawable/ic_phone_on_surface" />
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipRate"
+                            style="@style/ActionChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/ActionChip"
                             android:text="@string/rate"
-                            app:chipIcon="@drawable/ic_add"/>
+                            app:chipIcon="@drawable/ic_add" />
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipEdit"
+                            style="@style/ActionChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/ActionChip"
-                            app:chipIcon="@drawable/ic_edit"
-                            android:text="@string/edit_content"/>
+                            android:text="@string/edit_content"
+                            app:chipIcon="@drawable/ic_edit" />
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipShare"
+                            style="@style/ActionChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/ActionChip"
-                            app:chipIcon="@drawable/ic_share"
-                            android:text="@string/share"/>
-
-
+                            android:text="@string/share"
+                            app:chipIcon="@drawable/ic_share" />
 
 
                     </com.google.android.material.chip.ChipGroup>
@@ -727,6 +755,104 @@
             </HorizontalScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsExpandableView"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="-48dp"
+        android:background="@drawable/constraint_layout_variant_outline_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollViewChipsExpandable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardViewGuideExpandable"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0.7dp"
+                    app:strokeColor="@color/outline"
+                    app:cardBackgroundColor="@color/secondary_container"
+                    app:cardCornerRadius="50dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_directions_on_secondary_cotainer"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/cardViewGuideExpandable"
+                    android:paddingLeft="8dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipCallExpandable"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/call"
+                        app:chipIcon="@drawable/ic_phone_on_surface" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRateExpandable"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rate"
+                        app:chipIcon="@drawable/ic_add" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipEditExpandable"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_content"
+                        app:chipIcon="@drawable/ic_edit" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipShareExpandable"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/share"
+                        app:chipIcon="@drawable/ic_share" />
+
+
+                </com.google.android.material.chip.ChipGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/blur"

@@ -17,7 +17,7 @@ import com.overmighties.pubber.core.data.PubsRepository;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
+import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
@@ -67,9 +67,13 @@ public class PubListViewModel extends ViewModel {
     @Setter
     @Getter
     private String style_textview = null;
+    @Setter
+    @Getter
+    private Long linkPubId = null;
 
     private final PubsRepository pubsRepository;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
+    @Getter
     private final LiveData<List<Pub>> _originalPubData=originalPubData;
     @Getter
     private final MutableLiveData<String> cityConstraint=new MutableLiveData<>();
@@ -204,7 +208,7 @@ public class PubListViewModel extends ViewModel {
 
     public void setPubDetails(int position, DetailsViewModel detailsViewModel){
         Pub pub= Objects.requireNonNull(_originalPubData.getValue()).get(position);
-        PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
+        PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), cityConstraint.getValue(),pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
                 pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday(), null, null, null);
         detailsViewModel.setPubDetails(pubDetailsUiState);

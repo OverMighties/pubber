@@ -10,9 +10,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
-import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsEditAlcoholsUiState;
-import com.overmighties.pubber.feature.search.filterselect.FilterSelectViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.overmighties.pubber.feature.pubdetails;
+package com.overmighties.pubber.feature.pubdetails.stateholders;
 
 import android.graphics.Bitmap;
 
@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PubDetailsUiState {
     private Long id;
+    private String city;
     private String name;
 
     private String address;

@@ -1,10 +1,12 @@
 package com.overmighties.pubber.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.LinkProperties;
 import android.net.Network;
 import android.net.NetworkCapabilities;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -51,7 +53,6 @@ public class MainActivity extends SettingsBasicActivity {
         accountViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(AccountViewModel.initializer))
                 .get(AccountViewModel.class);
-//        pubListViewModel.setCityConstraint(getIntent().getStringExtra(Intent.EXTRA_TEXT));
         pubListViewModel.fetchPubsFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -67,6 +68,25 @@ public class MainActivity extends SettingsBasicActivity {
 //        NavigationUI.setupWithNavController(topAppBar,navController);
         findViewById(R.id.top_app_bar_layout_back).setVisibility(View.GONE);
         ((MaterialToolbar)findViewById(R.id.top_app_bar_view_back)).setNavigationOnClickListener(v->{navController.popBackStack();});
+
+
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        if (data != null) {
+            String path = data.getPath();
+            String[] splitted = path.split("/");
+            if(splitted.length == 4){
+                String city = splitted[2];
+                pubListViewModel.setCityConstraint(city);
+                String pubId = splitted[3];
+                try {
+                    Long id = Long.parseLong(pubId);
+                    pubListViewModel.setLinkPubId(id);
+                }catch (NumberFormatException e){
+                    Log.e(TAG, "Invalid Link");
+                }
+            }
+        }
     }
 
 

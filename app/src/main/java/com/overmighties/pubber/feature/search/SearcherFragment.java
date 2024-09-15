@@ -80,8 +80,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         Log.i(TAG,"onViewCreated");
         recyclerView = requireView().findViewById(R.id.Publista);
         navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-
-
         AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(requireActivity(),
@@ -133,12 +131,29 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
         });
 
+        //switch navigation checks
         if ((requireActivity().getIntent().hasExtra("openSettings") && requireActivity().getIntent().getBooleanExtra("openSettings", false))) {
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT, SETTINGS_FRAGMENT));
             requireActivity().getIntent().removeExtra("city");
             requireActivity().getIntent().removeExtra("openSettings");
         }
 
+        if(pubListViewModel.getLinkPubId() != null){
+            int n = 0;
+            for(var pub:pubListViewModel.get_originalPubData().getValue()){
+                if(pubListViewModel.getLinkPubId() == pub.getId()){
+                    pubListViewModel.setLinkPubId(null);
+                    pubListViewModel.setPubDetails(n, detailsViewModel);
+                    NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
+                    break;
+                }
+                n+=1;
+            }
+            if(pubListViewModel.get_originalPubData().getValue().size() == n){
+                pubListViewModel.setLinkPubId(null);
+                Log.e(TAG, "App Link got invalid Pub Id for city");
+            }
+        }
     }
     private void setUpTopAppBar(){
         MaterialToolbar topAppBar = requireView().findViewById(R.id.top_app_bar_view);

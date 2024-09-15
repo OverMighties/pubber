@@ -19,7 +19,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.style.TextAppearanceSpan;
 import android.text.style.UnderlineSpan;
-import android.util.Pair;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,8 +35,10 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.ShapeAppearanceModel;
+import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.core.network.model.DrinkDto;
+import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.util.DimensionsConverter;
 
 import java.util.ArrayList;
@@ -226,29 +227,7 @@ public class DetailsViewModel extends ViewModel {
         return Integer.parseInt(rating.replace(",","."));
     }
 
-    public void setUpGoogleTextView(TextView textView, TextAppearanceSpan red, TextAppearanceSpan blue, TextAppearanceSpan green, TextAppearanceSpan yellow, TextAppearanceSpan blue2, TextAppearanceSpan red2){
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        SpannableString string = new SpannableString("G");
-        string.setSpan(blue,0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("o");
-        string.setSpan(red,0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("o");
-        string.setSpan(yellow,0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("g");
-        string.setSpan(blue2,0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("l");
-        string.setSpan(green,0,1,0);
-        spannableStringBuilder.append(string);
-        string = new SpannableString("e");
-        string.setSpan(red2,0,1,0);
-        spannableStringBuilder.append(string);
 
-        textView.setText(spannableStringBuilder);
-    }
 
 
 }
