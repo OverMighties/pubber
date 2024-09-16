@@ -5,7 +5,7 @@
     <color name="highlight">#FF6D24</color>
     <color name="highlight_open">#89e326</color>
     <color name="highlight_close">#DA6A6A</color>
-    <color name="primary">#ffb962</color>
+    <color name="primary">#f8bb71</color>
     <color name="primary_dark_variant">#a87b44</color>
     <color name="on_primary">#472a00</color>
     <color name="primary_container">#663e00</color>
@@ -38,6 +38,7 @@
     <color name="error_container">#93000a</color>
     <color name="error_bright">#ba1a1a</color>
     <color name="status_bar">#302821</color>
+    <color name="heart_color">#c2604f</color>
     <color name="facebook">#4267B2</color>
     <color name="trip_advisor">#00af87</color>
     <color name="google_blue">#4285F4</color>

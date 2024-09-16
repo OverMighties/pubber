@@ -10,7 +10,8 @@
         android:id="@+id/settingsAboutFragment"
         android:name="com.overmighties.pubber.feature.settings.SettingsAboutFragment"
         tools:layout="@layout/fragment_settings_about"
-        android:label="fragment_settings_about" />
+        android:label="fragment_settings_about" >
+    </fragment>
     <action
         android:id="@+id/action_settingsFragment_login_graph"
         app:destination="@id/login_graph" />

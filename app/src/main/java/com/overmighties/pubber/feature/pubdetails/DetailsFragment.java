@@ -52,6 +52,7 @@ import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsDrinkLis
 import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.PubListViewModel;
+import com.overmighties.pubber.feature.search.util.PriceType;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
@@ -71,7 +72,6 @@ public class DetailsFragment extends Fragment
 
     private ImageView BlurImageView;
     private final List<Integer> testPhotos =new ArrayList<>();
-    private final static List<String> testTags = new ArrayList<>();
     private final static List<DetailsCommentCardViewUiState> testComments = new ArrayList<>();
     private DetailsViewModel viewModel;
     private PubListViewModel pubListViewModel;
@@ -106,7 +106,6 @@ public class DetailsFragment extends Fragment
 
         setUpPubData(pubDetailsUiState);
         setUpImageSlider();
-        setUpTime();
         setUpListener();
         setUpBottomExpandableLayout();
 
@@ -119,9 +118,6 @@ public class DetailsFragment extends Fragment
         testPhotos.add(R.drawable.test_photo_4);
         testPhotos.add(R.drawable.test_photo_5);
         testPhotos.add(R.drawable.test_photo_6);
-        testTags.add("Karaoke");
-        testTags.add("Whiskey");
-        testTags.add("Piwa kraftowe");
         testComments.add(new DetailsCommentCardViewUiState("Potato1", getString(R.string.google), 3.2F, "40-60zł", LOREM_IPSUM_20));
         testComments.add(new DetailsCommentCardViewUiState("Potato2", getString(R.string.tripadvisor), 4.2F, null, LOREM_IPSUM_200));
         testComments.add(new DetailsCommentCardViewUiState("Potato3", getString(R.string.app_name), 0.0F, "40-60zł", LOREM_IPSUM_200 + LOREM_IPSUM_200));
@@ -159,7 +155,8 @@ public class DetailsFragment extends Fragment
             ((TextView) requireView().findViewById(R.id.PubRatingCount)).setText("(" + pubDetailsUiState.getRatings().getRatingsCount() + ")");
         }
         //set up pub's price
-        //if(pubDetailsUiState.get)
+        if(PriceType.getById(Math.toIntExact(pubDetailsUiState.getId())) != null)
+            ((TextView)requireView().findViewById(R.id.PubPrice)).setText(PriceType.getById(Math.toIntExact(pubDetailsUiState.getId())).getIcon() + " • ");
         //distance
         if(pubDetailsUiState.getDistance()!=null){
             ((TextView)requireView().findViewById(R.id.PubDistance)).setText(" "+String.valueOf(pubDetailsUiState.getDistance())+"km");
@@ -227,9 +224,9 @@ public class DetailsFragment extends Fragment
         }
 
         //tags
-        for(var tag:testTags){
+        for(var tag:pubDetailsUiState.getTags()){
             Chip chip = new Chip(requireContext());
-            chip.setText(tag);
+            chip.setText(tag.getName());
             chip.setPadding(16, 0, 16, 0);
             chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
             chip.setChipBackgroundColorResource(R.color.secondary_container);
@@ -245,6 +242,21 @@ public class DetailsFragment extends Fragment
         //Comments List
         adapter = new DetailsCommentsAdapter(testComments);
         ((RecyclerView)requireView().findViewById(R.id.commentsRecyclerView)).setAdapter(adapter);
+
+        //pub's open time info
+        Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
+        if(!(viewModel.getUiState().getValue().getOpeningHours().isEmpty()))
+        {
+            for (int i = 0; i <= 6; i++) {
+                if (i + Today > 7) {
+                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today - 7).getNormal());
+                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 8)).getTimeOpen() + "-" + (viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 8)).getTimeClose());
+                } else {
+                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today).getNormal());
+                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 1)).getTimeOpen() + "-" + (viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 1)).getTimeClose());
+                }
+            }
+        }
     }
 
 
@@ -371,22 +383,6 @@ public class DetailsFragment extends Fragment
         constraintSet.applyTo(constraintLayout);
     }
 
-
-    private void setUpTime(){
-        Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
-        if(!(viewModel.getUiState().getValue().getOpeningHours().isEmpty()))
-        {
-            for (int i = 0; i <= 6; i++) {
-                if (i + Today > 7) {
-                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today - 7).getNormal());
-                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 8)).getTimeOpen() + "-" + (viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 8)).getTimeClose());
-                } else {
-                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today).getNormal());
-                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 1)).getTimeOpen() + "-" + (viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 1)).getTimeClose());
-                }
-            }
-        }
-    }
 
     private void setUpListener(){
 
@@ -540,6 +536,54 @@ public class DetailsFragment extends Fragment
                     expandableView.setLayoutParams(layoutParams);
                 }
             }
+        });
+
+        requireView().findViewById(R.id.cardViewGuideExpandable).setOnClickListener(v->{
+            Uri adress = Uri.parse("geo:0,0?q="+viewModel.getUiState().getValue().getAddress());
+            Intent intent = new Intent(Intent.ACTION_VIEW, adress);
+            intent.setPackage("com.google.android.apps.maps");
+            try {
+                startActivity(intent);
+            }catch (ActivityNotFoundException e) {
+                Log.e(TAG,"Activity not found ");
+            }
+        });
+
+        requireView().findViewById(R.id.chipCallExpandable).setOnClickListener(v->{
+            if(viewModel.getUiState().getValue().getPhoneNumber()!=null) {
+                String uri = "tel:" + viewModel.getUiState().getValue().getPhoneNumber();
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse(uri));
+                startActivity(intent);
+            }
+        });
+
+        requireView().findViewById(R.id.chipRateExpandable).setOnClickListener(v->{
+            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
+        });
+
+        requireView().findViewById(R.id.chipEditExpandable).setOnClickListener(v->{
+            View bottomSheetView = getLayoutInflater().inflate(R.layout.details_bottom_sheet_edit, null);
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
+                bottomSheetDialog.hide();
+                NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
+            });
+            bottomSheetDialog.show();
+        });
+
+        requireView().findViewById(R.id.chipShareExpandable).setOnClickListener(v->{
+            String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + viewModel.getUiState().getValue().getCity() + "/" +  viewModel.getUiState().getValue().getId().toString();
+
+            Intent shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
+                    .setType("text/plain")
+                    .setText(link)
+                    .getIntent();
+            if(shareIntent.resolveActivity(requireContext().getPackageManager()) != null){
+                startActivity(shareIntent);
+            }
+
         });
     }
 

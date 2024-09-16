@@ -175,6 +175,7 @@
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_destination"
+        app:tint = "@color/on_secondary"
         app:layout_anchor="@id/constraintLayout"
         app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end"

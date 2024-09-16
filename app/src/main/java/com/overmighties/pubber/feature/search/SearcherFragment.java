@@ -1,53 +1,44 @@
 package com.overmighties.pubber.feature.search;
 
 
-import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.MAP_FRAGMENT;
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.PLACE_CHOICE_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.content.Context;
-
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.Pair;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.PopupMenu;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Constraints;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.PubberApp;
@@ -73,14 +64,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         super(R.layout.fragment_searcher);
     }
 
-
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,"onViewCreated");
-        recyclerView = requireView().findViewById(R.id.Publista);
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
+
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
@@ -90,6 +77,19 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         if (displayMetrics.xdpi <= 380){
             pubListViewModel.setChipTag("Small");
         }
+        if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.i(TAG,"onViewCreated");
+        recyclerView = requireView().findViewById(R.id.Publista);
+        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
+
         if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
                 pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
             pubListViewModel.fetchPubsFromRepo(0);
@@ -100,20 +100,12 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             pubListViewModel.fetchPubsFromRepo(REFRESH_MIN_TIME_MS);
         });
 
-        setUpTopAppBar();
-
         //gives me null pointer exception
         //actionOnLocationAvailable(null);
         swipeRefreshLayout.setRefreshing(true);
         adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getChipTag());
         recyclerView.setAdapter(adapter);
-        //Setting listener to departure to FiltrationScreen
-        requireView().findViewById(R.id.Filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
-        if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
-//        getString(R.string.page_title,getString(R.string.searcher_title));
-        initSearchView();
-        sortButtonsListeners();
+
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recyclerView.setVisibility(View.GONE);
@@ -124,14 +116,20 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             }
             swipeRefreshLayout.setRefreshing(false);
         });
+
+        if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+
+
+        setUpTopAppBar();
+        initSearchView();
+        setUpListeners();
+
+        //switch navigation checks
         if(appContainer.getAccountDataSource().currentUser()==null){
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,SPLASH_FRAGMENT));
         }
-        requireActivity().findViewById(R.id.fab_map).setOnClickListener(v -> {
-            navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
-        });
 
-        //switch navigation checks
         if ((requireActivity().getIntent().hasExtra("openSettings") && requireActivity().getIntent().getBooleanExtra("openSettings", false))) {
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT, SETTINGS_FRAGMENT));
             requireActivity().getIntent().removeExtra("city");
@@ -154,6 +152,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 Log.e(TAG, "App Link got invalid Pub Id for city");
             }
         }
+
     }
     private void setUpTopAppBar(){
         MaterialToolbar topAppBar = requireView().findViewById(R.id.top_app_bar_view);
@@ -176,72 +175,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         topAppBar.setNavigationOnClickListener(v->{
             navController.popBackStack();
         });
-    }
-    private void sortButtonsListeners()
-    {
-        requireView().findViewById(R.id.textViewSortType_searcher).setOnClickListener(v -> showPopUpSortWindow());
-        requireView().findViewById(R.id.sort_image).setOnClickListener(v -> showPopUpSortWindow());
-    }
-    private void showPopUpSortWindow(){
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
-        View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.sort_pop_up, null);
-        final PopupWindow sortPubsPopUpWindow = new PopupWindow(popUpView,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT, true);
-        buttonsListenersForSortPopUpWindow(sortPubsPopUpWindow, popUpView);
-        checkCurrentSortRadioButtons(popUpView);
-        (requireActivity().findViewById(R.id.SearcherFragment))
-                .post(() -> sortPubsPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.SearcherFragment), Gravity.BOTTOM, 0, 0));
-    }
-    private void checkCurrentSortRadioButtons(View popupView) {
-        String word = ((TextView) requireActivity().findViewById(R.id.textViewSortType_searcher)).getText().toString();
-        if(getString(R.string.sort_relevance).equals(word)) {
-            ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(true);
-        }
-        if(getString(R.string.sort_rating).equals(word)) {
-            ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(true);
-        }
-        if(getString(R.string.sort_alphabetical).equals(word)) {
-            ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(true);
-        }
-        if(getString(R.string.sort_distance).equals(word)) {
-            ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(true);
-        }
-
-    }
-    private void buttonsListenersForSortPopUpWindow(PopupWindow popupWindow, View popupView) {
-        popupWindow.setOnDismissListener(() -> {
-            TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
-            if (((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
-                text.setText( requireActivity().getString(R.string.sort_relevance));
-                pubListViewModel.sort(SortPubsBy.RELEVANCE);
-            } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).isChecked()) {
-                text.setText(getString(R.string.sort_rating));
-                pubListViewModel.sort(SortPubsBy.RATING);
-            } else if (((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
-                text.setText(getString(R.string.sort_alphabetical));
-                pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
-            } else{
-                text.setText(getString(R.string.sort_distance));
-                pubListViewModel.sort(SortPubsBy.DISTANCE);
-            }
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
-        });
-        popupView.findViewById(R.id.dismiss).setOnClickListener(v -> popupWindow.dismiss());
-
-        for (var id : SORT_POP_UP_IDS) {
-            popupView.findViewById(id).setOnClickListener(v -> {
-                if (((RadioButton) popupView.findViewById(id)).isChecked()) {
-                    ((RadioButton) popupView.findViewById(R.id.radio_butt_rating)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.radio_butt_distance)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.radio_butt_alphabetical)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(R.id.radio_butt_relevance)).setChecked(false);
-                    ((RadioButton) popupView.findViewById(id)).setChecked(true);
-                }
-            });
-        }
-
-
     }
     private void initSearchView()
     {
@@ -294,6 +227,63 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             }
             return false;
         });
+    }
+
+    private void setUpListeners()
+    {
+        requireView().findViewById(R.id.textViewSortType_searcher).setOnClickListener(v -> showSortBottomSheer());
+        requireView().findViewById(R.id.sort_image).setOnClickListener(v -> showSortBottomSheer());
+        requireView().findViewById(R.id.Filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
+
+        requireActivity().findViewById(R.id.fab_map).setOnClickListener(v -> {
+            navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
+        });
+    }
+    private void showSortBottomSheer(){
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.fragment_searcher_sort_bottom_sheet, null);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
+        bottomSheetDialog.setContentView(bottomSheetView);
+        buttonsListenersForSortPopUpWindow(bottomSheetDialog, bottomSheetView);
+        checkCurrentSortRadioButtons(bottomSheetView);
+        bottomSheetDialog.show();
+    }
+    private void checkCurrentSortRadioButtons(View bottomSheetView) {
+        String word = ((TextView) requireView().findViewById(R.id.textViewSortType_searcher)).getText().toString();
+        if(getString(R.string.sort_relevance).equals(word)) {
+            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_relevance)).setChecked(true);
+        }
+        if(getString(R.string.sort_rating).equals(word)) {
+            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_rating)).setChecked(true);
+        }
+        if(getString(R.string.sort_alphabetical).equals(word)) {
+            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_alphabetical)).setChecked(true);
+        }
+        if(getString(R.string.sort_distance).equals(word)) {
+            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_distance)).setChecked(true);
+        }
+
+    }
+    private void buttonsListenersForSortPopUpWindow(BottomSheetDialog bottomSheetDialog, View bottomSheetView) {
+        bottomSheetDialog.setOnDismissListener((v) -> {
+            TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
+            if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                text.setText( requireActivity().getString(R.string.sort_relevance));
+                pubListViewModel.sort(SortPubsBy.RELEVANCE);
+            } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                text.setText(getString(R.string.sort_rating));
+                pubListViewModel.sort(SortPubsBy.RATING);
+            } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                text.setText(getString(R.string.sort_alphabetical));
+                pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
+            } else{
+                text.setText(getString(R.string.sort_distance));
+                pubListViewModel.sort(SortPubsBy.DISTANCE);
+            }
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        });
+
+
     }
 
 

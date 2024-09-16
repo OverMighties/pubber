@@ -95,11 +95,13 @@
 
             <ImageView
                 android:id="@+id/heart"
-                android:layout_width="64dp"
-                android:layout_height="54dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/hearth_full" />
+                app:srcCompat="@drawable/ic_heart_full" />
 
             <TextView
                 android:id="@+id/PRating"

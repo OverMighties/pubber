@@ -48,10 +48,18 @@
             app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/action_detailsFragment_to_detailsEditFragment"
-            app:destination="@id/detailsEditFragment" />
+            app:destination="@id/detailsEditFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/action_detailsFragment_to_detailsRatingsFragment"
-            app:destination="@id/detailsRatingsFragment" />
+            app:destination="@id/detailsRatingsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -96,10 +104,18 @@
         android:label="DetailsEditFragment" >
         <action
             android:id="@+id/action_detailsEditFragment_to_detailsEditAlcoholsSelectFragment"
-            app:destination="@id/detailsEditAlcoholsSelectFragment" />
+            app:destination="@id/detailsEditAlcoholsSelectFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/action_detailsEditFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/detailsEditAlcoholsSelectFragment"
@@ -107,7 +123,11 @@
         android:label="DetailsEditAlcoholsSelectFragment" >
         <action
             android:id="@+id/action_detailsEditAlcoholsSelectFragment_self"
-            app:destination="@id/detailsEditAlcoholsSelectFragment" />
+            app:destination="@id/detailsEditAlcoholsSelectFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/action_detailsEditAlcoholsSelectFragment_to_detailsEditFragment"
             app:destination="@id/detailsEditFragment" />
