@@ -5,6 +5,7 @@ import static com.overmighties.pubber.app.Constants.FILTER_FRAGMENT_BEER_WIDGETS
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_TEXT_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_IDS;
+import static com.overmighties.pubber.app.Constants.POP_UP_TIME_PAIRS;
 import static com.overmighties.pubber.app.Constants.POP_UP_TIME_TEXT_IDS;
 
 
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import androidx.core.util.Pair;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -23,7 +25,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
-import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -43,12 +44,14 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.filterselect.FilterSelectViewModel;
+import com.overmighties.pubber.feature.search.stateholders.FilterFragmentUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.ParticularBeersCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PriceType;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.ResourceUtil;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -71,11 +74,6 @@ public class FilterFragment extends Fragment {
     private View popUpView;
     private PopupWindow popupWindow;
     private ListParticularBeersAdapter listParticularBeersAdapter = null;
-
-    //timePopUpState[0] = 1 none is checked = 0 from is visible
-    //timePopUpState[1] = n n determines id of from TextView
-    //timePopUpState[2] = n n determines id of to TextView
-    private final int[] timePopUpState =new int[]{1,0,0};
     private NavController navController;
     private TextView fromTV;
     private TextView toTV;
@@ -375,7 +373,7 @@ public class FilterFragment extends Fragment {
             //Listeners For popup time in filtrarion screen
             listenersmenutime();
             //cheking which one is selected to highlight it
-            whichOneCheckedTime();
+            //whichOneCheckedTime();
             setUpNextDayTV();
             popupWindow.showAsDropDown(requireView().findViewById(R.id.Timeview),0,0,Gravity.BOTTOM);
             ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
@@ -383,131 +381,108 @@ public class FilterFragment extends Fragment {
         });
     }
 
-    private void whichOneCheckedTime() {
-        if(((TextView) (requireView().findViewById(R.id.textView18))).getText().toString().equals(getString(R.string.anytime)))
-        {
-            popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-        }
-        else{
-            popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[1]]).performClick();
-            popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]).performClick();
-            popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]).getParent().requestChildFocus(popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]),
-                    popUpView.findViewById(POP_UP_TIME_IDS[timePopUpState[2]-1]));
-        }
+    private void listenersmenutime(){
+        int n=0;
+        for(var ids: POP_UP_TIME_PAIRS){
+            int index = n;
+            popUpView.findViewById(ids.first).setOnClickListener(v->{
+                Pair<Integer, Integer> pairIndex = pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds();
+                if(index == 0){
+                    pubListViewModel.getFilterFragmentUiState().getValue().setPopUpTimeIds(new Pair<>(-1, -1));
+                } else if (pairIndex.first == -1) {
+                    pubListViewModel.getFilterFragmentUiState().getValue().setPopUpTimeIds(new Pair<>(index, -1));
+                } else if (pairIndex.second == -1 && index>pairIndex.first){
+                    pubListViewModel.getFilterFragmentUiState().getValue().setPopUpTimeIds(new Pair<>(pairIndex.first , index));
+                } else {
+                    pubListViewModel.getFilterFragmentUiState().getValue().setPopUpTimeIds( new Pair<>(index, -1));
+                }
+                checkTime(ids.first, ids.second);
+                if(index==55)
+                    popUpView.findViewById(R.id.constraintLayout5).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_down_highlight);
 
+            });
+            n+=1;
+        }
+        popupWindow.setOnDismissListener(()->{
+            requireView().findViewById(R.id.Timeview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
+            ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second != -1){
+                String text = getString(R.string.from)+" "+
+                        ((TextView)popUpView.findViewById(POP_UP_TIME_TEXT_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first])).getText().toString()
+                                + " " + getString(R.string.to) + " " + ((TextView)popUpView.findViewById(POP_UP_TIME_TEXT_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second])).getText().toString();
+                ((TextView)requireView().findViewById(R.id.textView18)).setText(text);
+            } else if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first == -1 ){
+                ((TextView)requireView().findViewById(R.id.textView18)).setText(getString(R.string.anytime));
+            }
+        });
     }
 
-
-    private void checkTime(Integer n) {
-        if (n - 1 == 55) {
-            uncheckTime(popUpView, true);
-            popUpView.findViewById(POP_UP_TIME_IDS[55]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-            String text = (((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[55])).getText().toString());
-            ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
-        }
-        else {
-            if (timePopUpState[1] != 0 && timePopUpState[2] != 0){
-                uncheckTime(popUpView, true);
-            }
-            if (timePopUpState[0] == 1) {
-                uncheckTime(popUpView, false);
-                popUpView.findViewById(POP_UP_TIME_IDS[n - 1]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+    private void checkTime(Integer backgroundId, Integer textViewId) {
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second == -1){
+            unCheckAll();
+            popUpView.findViewById(backgroundId).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+            ((TextView)popUpView.findViewById(textViewId)).setTextColor(R.color.on_surface);
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first != -1) {
                 fromTV = new TextView(requireContext());
                 fromTV.setText(getString(R.string.from));
                 fromTV.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface_variant));
                 fromTV.setTextSize(16);
                 fromTV.setId(View.generateViewId());
-                ((ConstraintLayout) popUpView.findViewById(POP_UP_TIME_IDS[n - 1])).addView(fromTV);
-                setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1]), true, popUpView.findViewById(POP_UP_TIME_IDS[n - 1]));
-                String text = getString(R.string.from) + " " +(((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[n - 1])).getText().toString());
-                ((TextView) (requireView().findViewById(R.id.textView18))).setText(text);
-                timePopUpState[0] = 0;
-                timePopUpState[1] = n - 1;
-
+                ((ConstraintLayout) popUpView.findViewById(backgroundId)).addView(fromTV);
+                setMargins(popUpView.findViewById(textViewId), popUpView.findViewById(backgroundId), true);
             }
-            else {
-                for (int h = timePopUpState[1]; h < n; h++) {
-                    if (h != n - 1) {
-                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                    }
-                    else {
-                        toTV = new TextView(requireContext());
-                        toTV.setText(getString(R.string.to));
-                        toTV.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface_variant));
-                        toTV.setTextSize(16);
-                        toTV.setId(View.generateViewId());
-                        ((ConstraintLayout) popUpView.findViewById(POP_UP_TIME_IDS[h])).addView(toTV);
-                        setMargins(popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h]), true, popUpView.findViewById(POP_UP_TIME_IDS[h]));
-                        popUpView.findViewById(POP_UP_TIME_IDS[h]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-                        ((TextView) (requireView().findViewById(R.id.textView18))).setText(((TextView) (requireView().findViewById(R.id.textView18))).getText()
-                                + " " +getString(R.string.to) + " " + ((TextView) popUpView.findViewById(POP_UP_TIME_TEXT_IDS[h])).getText());
-                        ((TextView) (requireView().findViewById(R.id.textView18))).setTextSize(14);
-                    }
-
-                }
-                if (timePopUpState[1] >= n){
-                    uncheckTime(popUpView, true);
-                }
-                else{
-                    timePopUpState[2] = n;
-                }
+            else{
+                popUpView.findViewById(R.id.constraintLayout2).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up_highlight);
             }
         }
-    }
-    private void listenersmenutime() {
-        ArrayList <Integer>numbers=new ArrayList<>();
-        Integer number=1;
-        for(int i=1;i<57;i++)
-            numbers.add(i);
-        for (var id : POP_UP_TIME_IDS) {
-            for(Integer n:numbers) {
-                popUpView.findViewById(id).setOnClickListener(v -> {
-                    checkTime(n);
-                });
-                break;
+        else{
+            for(int i=pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first;
+                i<=pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second;i++){
+                Pair<Integer, Integer> ids = POP_UP_TIME_PAIRS[i];
+                popUpView.findViewById(ids.first).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
+                ((TextView)popUpView.findViewById(ids.second)).setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface_variant));
             }
-            numbers.remove(number);
-            number=number+1;
-        }
-
-        popupWindow.setOnDismissListener(() -> {
-            requireView().findViewById(R.id.Timeview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
-            ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
-        });
-
-    }
-
-    private void uncheckTime(View popUpView, boolean uncheck_all) {
-        for (var id : POP_UP_TIME_IDS) {
-            popUpView.findViewById(id).setBackgroundResource(R.drawable.menu_drop_down_days_shape);
-        }
-        int n = 0;
-        for (var id : POP_UP_TIME_TEXT_IDS) {
-            setMargins(popUpView.findViewById(id), false, popUpView.findViewById(POP_UP_TIME_IDS[n]));
-            n += 1;
-        }
-        if (uncheck_all){
-            if (fromTV != null)
-                ((ConstraintLayout)fromTV.getParent()).removeView(fromTV);
-                fromTV = null;
-            if (toTV != null)
-                ((ConstraintLayout)toTV.getParent()).removeView(toTV);
-                toTV = null;
-            timePopUpState[1] = 0;
-            timePopUpState[2] = 0;
-            timePopUpState[0] = 1;
+            toTV = new TextView(requireContext());
+            toTV.setText(getString(R.string.to));
+            toTV.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface_variant));
+            toTV.setTextSize(16);
+            toTV.setId(View.generateViewId());
+            ((ConstraintLayout) popUpView.findViewById(backgroundId)).addView(toTV);
+            setMargins(popUpView.findViewById(textViewId),  popUpView.findViewById(backgroundId), true);
         }
     }
 
-    public void setMargins (TextView Time, boolean checked, ConstraintLayout constraintLayout) {
+    private void unCheckAll() {
+        for(var ids: POP_UP_TIME_PAIRS) {
+             popUpView.findViewById(ids.first).setBackgroundResource(R.drawable.menu_drop_down_days_shape);
+             ((TextView)popUpView.findViewById(ids.second)).setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface));
+             setMargins(popUpView.findViewById(ids.second),  popUpView.findViewById(ids.first), false);
+        }
+        popUpView.findViewById(POP_UP_TIME_PAIRS[0].first).setBackground(null);
+        popUpView.findViewById(POP_UP_TIME_PAIRS[55].first).setBackground(null);
+        popUpView.findViewById(R.id.constraintLayout2).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up);
+        popUpView.findViewById(R.id.constraintLayout5).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_down);
+        if (fromTV != null)
+            ((ConstraintLayout)fromTV.getParent()).removeView(fromTV);
+            fromTV = null;
+        if (toTV != null)
+            ((ConstraintLayout)toTV.getParent()).removeView(toTV);
+            toTV = null;
+    }
+
+    public void setMargins (TextView Time, ConstraintLayout constraintLayout, boolean checked) {
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
         if (checked){
             TextView TV = new TextView(requireContext());
-            if (toTV == null){TV = fromTV;}
-            else{TV = toTV;}
-            constraintSet.connect(TV.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-            constraintSet.connect(TV.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
+            if (toTV == null){
+                TV = fromTV;
+            }
+            else{
+                TV = toTV;
+            }
+            constraintSet.connect(TV.getId(), ConstraintSet.TOP, Time.getId(), ConstraintSet.TOP);
+            constraintSet.connect(TV.getId(), ConstraintSet.BOTTOM, Time.getId(), ConstraintSet.BOTTOM);
             constraintSet.connect(TV.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(requireContext(), 8));
             constraintSet.applyTo(constraintLayout);
             constraintSet = new ConstraintSet();
@@ -525,6 +500,25 @@ public class FilterFragment extends Fragment {
         }
 
     }
+
+    private void setUpNextDayTV() {
+        for(int n = 50; n <= 55; n++){
+            TextView nextday = new TextView(requireContext());
+            nextday.setText(getString(R.string.next_day));
+            nextday.setTextSize(10);
+            nextday.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface_variant));
+            nextday.setId(View.generateViewId());
+            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n])).addView(nextday);
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n]));
+            constraintSet.connect(nextday.getId(), ConstraintSet.START, POP_UP_TIME_TEXT_IDS[n], ConstraintSet.END, (int) DimensionsConverter.pxFromDp(requireContext(), 4));
+            constraintSet.connect(nextday.getId(), ConstraintSet.TOP, POP_UP_TIME_IDS[n], ConstraintSet.TOP);
+            constraintSet.connect(nextday.getId(), ConstraintSet.BOTTOM, POP_UP_TIME_IDS[n], ConstraintSet.BOTTOM);
+            constraintSet.applyTo((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n]));
+        }
+    }
+
+
 
     //method for highlight checked constrainlayout when pop_up starts
     private void whichOneCheckedDays(View popUpView) {
@@ -600,23 +594,6 @@ public class FilterFragment extends Fragment {
                 return String.format(Locale.US, "%.1f", value) + " km";
             }
         });
-    }
-
-    private void setUpNextDayTV() {
-        for(int n = 49; n < 55; n++){
-            TextView nextday = new TextView(requireContext());
-            nextday.setText(getString(R.string.next_day));
-            nextday.setTextSize(10);
-            nextday.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface_variant));
-            nextday.setId(View.generateViewId());
-            ((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n])).addView(nextday);
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n]));
-            constraintSet.connect(nextday.getId(), ConstraintSet.START, POP_UP_TIME_TEXT_IDS[n], ConstraintSet.END, (int) DimensionsConverter.pxFromDp(requireContext(), 4));
-            constraintSet.connect(nextday.getId(), ConstraintSet.TOP, POP_UP_TIME_IDS[n], ConstraintSet.TOP);
-            constraintSet.connect(nextday.getId(), ConstraintSet.BOTTOM, POP_UP_TIME_IDS[n], ConstraintSet.BOTTOM);
-            constraintSet.applyTo((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n]));
-        }
     }
     public void prepareChips(){
         ChipGroup breweriesGroup = requireView().findViewById(R.id.BeerListChG);

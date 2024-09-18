@@ -182,6 +182,7 @@ public class Constants {
 
     };
     public static final int[] POP_UP_TIME_IDS = {
+            R.id.gdowolne,
             R.id.g0000,
             R.id.g0030,
             R.id.g0100,
@@ -237,9 +238,9 @@ public class Constants {
             R.id.tg0200,
             R.id.tg0230,
             R.id.tg0300,
-            R.id.gdowolne
     };
     public static final int[] POP_UP_TIME_TEXT_IDS = {
+            R.id.textgdowolne,
             R.id.textg0000,
             R.id.textg0030,
             R.id.textg0100,
@@ -295,8 +296,15 @@ public class Constants {
             R.id.texttg0200,
             R.id.texttg0230,
             R.id.texttg0300,
-            R.id.textgdowolne
     };
+
+    public static final Pair<Integer, Integer>[] POP_UP_TIME_PAIRS = new Pair[POP_UP_TIME_IDS.length];
+
+    static {
+        for (int i = 0; i < POP_UP_TIME_IDS.length; i++) {
+            POP_UP_TIME_PAIRS[i] = new Pair<>(POP_UP_TIME_IDS[i], POP_UP_TIME_TEXT_IDS[i]);
+        }
+    }
 
     public static final int[] TAB_OVERVIEW_TEXTVIEW_DAY_IDS = {
             R.id.OvTvDay1,
