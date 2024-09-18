@@ -113,7 +113,7 @@ public class FilterFragment extends Fragment {
     {
         requireView().findViewById(R.id.MoreBeers).setOnClickListener(buttView->moreBeers(requireView()));
         requireView().findViewById(R.id.IVrating).setOnClickListener(v -> {
-            if (requireView().findViewById(R.id.RatingSlider).isShown()) {
+            if (pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(0)) {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(0, false);
                 requireView().findViewById(R.id.RatingSlider).setVisibility(View.GONE);
                 ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_more_primary);
@@ -125,7 +125,7 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IVdistance).setOnClickListener(v -> {
-            if(requireView().findViewById(R.id.DistanceSlider).isShown()) {
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(1)) {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(1, false);
                 requireView().findViewById(R.id.DistanceSlider).setVisibility(View.GONE);
                 ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_more_primary);
@@ -137,7 +137,7 @@ public class FilterFragment extends Fragment {
             }
         });
         requireView().findViewById(R.id.IVprice).setOnClickListener(v -> {
-            if(requireView().findViewById(R.id.PriceChG).isShown())
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(2))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(2, false);
                 requireView().findViewById(R.id.PriceChG).setVisibility(View.GONE);
@@ -153,7 +153,7 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IVtime).setOnClickListener(v -> {
-            if(requireView().findViewById(R.id.Chip_anytime).isShown())
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(3))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(3, false);
                 ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_more_primary);
@@ -204,7 +204,7 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IVbeer).setOnClickListener(v -> {
-            if(requireView().findViewById(R.id.IVBreweries).isShown()){
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(4)){
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(4, false);
                 for(var id: FILTER_FRAGMENT_BEER_WIDGETS_IDS){
                     requireView().findViewById(id).setVisibility(View.GONE);
@@ -226,7 +226,7 @@ public class FilterFragment extends Fragment {
             }
         });
         requireView().findViewById(R.id.IVBreweries).setOnClickListener(v->{
-            if(requireView().findViewById(R.id.BeerListChG).isShown())
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(5))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(5, false);
                 requireView().findViewById(R.id.BeerListChG).setVisibility(View.GONE);
@@ -242,7 +242,7 @@ public class FilterFragment extends Fragment {
             }
         });
         requireView().findViewById(R.id.IVStyles).setOnClickListener(v->{
-            if(requireView().findViewById(R.id.StylesListChG).isShown()){
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(6)){
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(6, false);
                 requireView().findViewById(R.id.StylesListChG).setVisibility(View.GONE);
                 ((ImageView)requireView().findViewById(R.id.IVStyles)).setImageResource(R.drawable.ic_expand_more_secondary);
@@ -254,7 +254,7 @@ public class FilterFragment extends Fragment {
             }
         });
         requireView().findViewById(R.id.IVParticularBeers).setOnClickListener(v->{
-            if(requireView().findViewById(R.id.ParticularBeersList).isShown()){
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(7)){
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(7, false);
                 requireView().findViewById(R.id.choose_brewery_cardview).setVisibility(View.GONE);
                 requireView().findViewById(R.id.choose_style_cardview).setVisibility(View.GONE);
@@ -301,7 +301,7 @@ public class FilterFragment extends Fragment {
             }
         });
         requireView().findViewById(R.id.IVdrinks).setOnClickListener(v -> {
-            if(requireView().findViewById(R.id.DrinksChG).isShown())
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(8))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(8, false);
                 requireView().findViewById(R.id.DrinksChG).setVisibility(View.GONE);
@@ -318,7 +318,7 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.IVTags).setOnClickListener(v -> {
-            if(requireView().findViewById(R.id.TagsChG).isShown())
+            if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(9))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(9, false);
                 requireView().findViewById(R.id.TagsChG).setVisibility(View.GONE);
