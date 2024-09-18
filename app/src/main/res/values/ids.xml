@@ -59,4 +59,29 @@
     <item name="PinaColada" type="id"/>
     <item name="SexOnTheBeach" type="id"/>
     <item name="TequilaSunrise" type="id"/>
+    <!-- styles-->
+    <item name="Lager" type="id"/>
+    <item name="Pilsner" type="id"/>
+    <item name="Ipa" type="id"/>
+    <item name="Apa" type="id"/>
+    <item name="Witbier" type="id"/>
+    <item name="Porter" type="id"/>
+    <item name="Stout" type="id"/>
+    <item name="Ale" type="id"/>
+    <item name="Wheatbeer" type="id"/>
+    <item name="Darkbeer" type="id"/>
+    <item name="Lightbeer" type="id"/>
+    <item name= "Pszeniczne" type="id"/>
+    <item name= "Ciemne" type="id"/>
+    <item name= "Jasne" type="id"/>
+    <!--tags-->
+    <item name="Whiskey" type="id"/>
+    <item name="Wino" type="id"/>
+    <item name="Shoty" type="id"/>
+    <item name="Piwakraftowe" type="id"/>
+    <item name="Piwakoncernowe" type="id"/>
+    <item name="Gryplanszowe" type="id"/>
+    <item name="Karaoke" type="id"/>
+    <item name="Muzykanazywo" type="id"/>
+    <item name="Taniepiwo" type="id"/>
 </resources>

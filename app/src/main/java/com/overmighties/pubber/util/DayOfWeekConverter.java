@@ -99,6 +99,20 @@ public enum DayOfWeekConverter {
                 return SATURDAY;
             case "Sunday":
                 return SUNDAY;
+            case "Poniedziałek":
+                return MONDAY;
+            case "Wtorek":
+                return TUESDAY;
+            case "Środa":
+                return WEDNESDAY;
+            case "Czwartek":
+                return THURSDAY;
+            case "Piątek":
+                return FRIDAY;
+            case "Sobota":
+                return SATURDAY;
+            case "Niedziela":
+                return SUNDAY;
             default:
                 return NONE;
         }

@@ -32,7 +32,7 @@ public class PubDataMapper {
                 pub.getId(),
                 pub.getName(),
                 pub.getAddress(),
-                DateTimeConverter.getToString(pub.getFetchTime()),
+                DateTimeConverter.getToStringDate(pub.getFetchTime()),
                 pub.getCity(),
                 pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),

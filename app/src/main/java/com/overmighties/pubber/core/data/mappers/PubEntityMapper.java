@@ -31,7 +31,7 @@ public class PubEntityMapper {
                 pubEntity.getPubId(),
                 pubEntity.getName(),
                 pubEntity.getAddress(),
-                DateTimeConverter.getFromString(pubEntity.getFetchTime()),
+                DateTimeConverter.getFromStringDate(pubEntity.getFetchTime()),
                 pubEntity.getCity(),
                 pubEntity.getPhoneNumber(),
                 pubEntity.getWebsiteUrl(),

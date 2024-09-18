@@ -259,12 +259,11 @@
                 style="@style/FilterChipTime"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
                 android:checked="true"
                 android:text="@string/anytime"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/TVtime"
                 app:layout_constraintTop_toBottomOf="@+id/TVtime"
                 app:shapeAppearance="@style/CustomChipSortLeft" />
 
@@ -292,7 +291,7 @@
                     android:id="@+id/Dayview"
                     android:layout_width="150dp"
                     android:layout_height="32dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="12dp"
                     android:background="@drawable/menu_drop_out_list_shape"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -303,7 +302,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/monday"
+                    android:text="@string/today"
                     android:textColor="@color/on_surface_variant"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/Dayview"
@@ -636,6 +635,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/choose_brewery_cardview" />
+
+            <TextView
+                android:id="@+id/TVTags"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="@string/tags"
+                android:textColor="@color/on_surface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/TVdrinks"
+                app:layout_constraintTop_toBottomOf="@+id/DrinksChG" />
+
+            <ImageView
+                android:id="@+id/IVTags"
+                android:layout_width="28dp"
+                android:layout_height="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/TVTags"
+                app:layout_constraintStart_toEndOf="@+id/TVTags"
+                app:layout_constraintTop_toTopOf="@+id/TVTags"
+                app:srcCompat="@drawable/ic_expand_more_primary" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/TagsChG"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.66"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVTags">
+
+            </com.google.android.material.chip.ChipGroup>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

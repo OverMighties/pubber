@@ -18,6 +18,7 @@ import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
+import com.overmighties.pubber.feature.search.stateholders.FilterFragmentUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
@@ -85,6 +86,8 @@ public class PubListViewModel extends ViewModel {
     private final MutableLiveData<PubsCardViewUiState> sortedAndFilteredPubsUiState =new MutableLiveData<>(new PubsCardViewUiState());
     @Getter
     private final MutableLiveData<FilterUiState> filterUiState=new MutableLiveData<>();
+    @Getter
+    private final MutableLiveData<FilterFragmentUiState> filterFragmentUiState = new MutableLiveData<>(new FilterFragmentUiState());
     @Getter
     private final CompositeDisposable disposables = new CompositeDisposable();
     public static final ViewModelInitializer<PubListViewModel> initializer = new ViewModelInitializer<>(

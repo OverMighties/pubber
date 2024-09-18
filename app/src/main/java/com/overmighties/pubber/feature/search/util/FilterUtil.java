@@ -8,6 +8,8 @@ import static com.overmighties.pubber.feature.search.data.FilterConstants.BASE_U
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
+import com.overmighties.pubber.util.DateTimeConverter;
+import com.overmighties.pubber.util.DayOfWeekConverter;
 
 
 import java.time.LocalDateTime;
@@ -40,8 +42,9 @@ public class FilterUtil {
         return ratingFilter()
                 .drinksFilter()
                 .priceFilter()
+                .tagsFilter()
                 .cityFilter()
-                .isOpenFilter();
+                .isTimeFilter();
     }
     public FilterUtil ratingFilter()
     {
@@ -75,6 +78,29 @@ public class FilterUtil {
         return this;
     }
 
+    public FilterUtil tagsFilter(){
+        List<Pub> filteredNow=new ArrayList<>();
+
+        if(filterUiState.getTags() == null||(filterUiState.getTags() != null && filterUiState.getTags().isEmpty()))
+            return this;
+
+        for(var pubData:filteredPubs){
+            tonext:
+            if(pubData.getTags() != null) {
+                for (var tagPub : pubData.getTags()) {
+                    for (var tagFilter : Objects.requireNonNull(filterUiState.getTags())) {
+                        if (tagPub.getName().equals(tagFilter)) {
+                            filteredNow.add(pubData);
+                            break tonext;
+                        }
+                    }
+                }
+            }
+        }
+        filteredPubs = filteredNow;
+        return this;
+    }
+
     public FilterUtil drinksFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
@@ -85,33 +111,35 @@ public class FilterUtil {
         }
         for(var pubData: filteredPubs) {
             tonext:
-            for( var drinkPub:pubData.getDrinks()) {
-                for( var drinkFilter: Objects.requireNonNull(filterUiState.getBeers())) {
-                    if (drinkPub.getName().equals(drinkFilter) ) {
-                        filteredNow.add(pubData);
-                        break tonext;
-                    }
-                }
-                for( var drinkFilter: Objects.requireNonNull(filterUiState.getOtherDrinks())) {
-                    if (drinkPub.getName().equals(drinkFilter) ) {
-                        filteredNow.add(pubData);
-                        break tonext;
-                    }
-                }
-                for(var drinkFilter: Objects.requireNonNull(filterUiState.getStyles())){
-                    for(var drinkType: Objects.requireNonNull(drinkPub.getDrinkStyles())){
-                        if(drinkType.getName().equals(drinkFilter)){
+            if(pubData.getDrinks()!=null){
+                for( var drinkPub:pubData.getDrinks()) {
+                    for (var drinkFilter : Objects.requireNonNull(filterUiState.getBeers())) {
+                        if (drinkPub.getName().equals(drinkFilter)) {
                             filteredNow.add(pubData);
                             break tonext;
                         }
                     }
-                }
-                for(var drinkFilter: Objects.requireNonNull(filterUiState.getParticularBeers())){
-                    if(drinkFilter.first.equals(drinkPub.getName())){
-                        for(var drinkType:Objects.requireNonNull(drinkPub.getDrinkStyles())){
-                            if(drinkType.getName().equals(drinkFilter.second)){
+                    for (var drinkFilter : Objects.requireNonNull(filterUiState.getOtherDrinks())) {
+                        if (drinkPub.getName().equals(drinkFilter)) {
+                            filteredNow.add(pubData);
+                            break tonext;
+                        }
+                    }
+                    for (var drinkFilter : Objects.requireNonNull(filterUiState.getStyles())) {
+                        for (var drinkType : Objects.requireNonNull(drinkPub.getDrinkStyles())) {
+                            if (drinkType.getName().equals(drinkFilter)) {
                                 filteredNow.add(pubData);
                                 break tonext;
+                            }
+                        }
+                    }
+                    for (var drinkFilter : Objects.requireNonNull(filterUiState.getParticularBeers())) {
+                        if (drinkFilter.first.equals(drinkPub.getName())) {
+                            for (var drinkType : Objects.requireNonNull(drinkPub.getDrinkStyles())) {
+                                if (drinkType.getName().equals(drinkFilter.second)) {
+                                    filteredNow.add(pubData);
+                                    break tonext;
+                                }
                             }
                         }
                     }
@@ -137,21 +165,73 @@ public class FilterUtil {
         filteredPubs=filteredNow;
         return this;
     }
-    public FilterUtil isOpenFilter()
+    public FilterUtil isTimeFilter()
     {
         List<Pub> filteredNow=new ArrayList<>();
-        if( filterUiState.getOpenNow()==null || !filterUiState.getOpenNow() ) {
-            return this;
-        }
-        Integer dayOfWeekNow=LocalDateTime.now(). getDayOfWeek().getValue();
-        LocalTime timeNow=LocalTime.now();
-        for(var pubData: filteredPubs) {
-            for (var time: pubData.getOpeningHours()) {
-                if(time.getDayOfWeekConverter().getNumeric().equals(dayOfWeekNow) &&
-                        timeNow.isAfter(time.getLocalTimeOpen()) &&
-                       time.getLocalTimeClose().isAfter(timeNow) )
-                    filteredNow.add(pubData);
+        Integer dayOfWeekNow=LocalDateTime.now().getDayOfWeek().getValue();
+        if((filterUiState.getOpenNow()!=null && filterUiState.getOpenNow())){
+            LocalTime timeNow=LocalTime.now();
+            for(var pubData: filteredPubs) {
+                if(pubData.getOpeningHours() != null) {
+                    for (var time: pubData.getOpeningHours()) {
+                        if(time.getDayOfWeekConverter().getNumeric().equals(dayOfWeekNow) &&
+                                timeNow.isAfter(time.getLocalTimeOpen()) &&
+                                time.getLocalTimeClose().isAfter(timeNow) )
+                            filteredNow.add(pubData);
+                    }
+                }
             }
+        } else if (filterUiState.getCustomOpeningHours().getWeekDay() != null) {
+            Integer dayIndex = DayOfWeekConverter.getByCamelCase(filterUiState.getCustomOpeningHours().getWeekDay()).getNumeric();
+            if(dayIndex == null)
+                dayIndex = dayOfWeekNow;
+
+            if(filterUiState.getCustomOpeningHours().getFromTime() == null && filterUiState.getCustomOpeningHours().getToTime() == null){
+                for(var pubData: filteredPubs){
+                    if(pubData.getOpeningHours() != null) {
+                        for (var time : pubData.getOpeningHours()) {
+                            if (time.getDayOfWeekConverter().getNumeric().equals(dayIndex) &&
+                                    pubData.getOpeningHours().get(dayIndex) != null) {
+                                filteredNow.add(pubData);
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else {
+                LocalDateTime fromTime = DateTimeConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getFromTime());
+                LocalDateTime toTime =  DateTimeConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getToTime());
+                for (var pubData : filteredPubs) {
+                    tonext:
+                    if(pubData.getOpeningHours() != null) {
+                        for (var time : pubData.getOpeningHours()) {
+                            if (time.getDayOfWeekConverter().getNumeric().equals(dayIndex)) {
+                                LocalDateTime timeOpen =  DateTimeConverter.stringToLocalDateTime(time.getTimeOpen());
+                                LocalDateTime timeClose = DateTimeConverter.stringToLocalDateTime(time.getTimeClose());
+                                if(timeOpen.isAfter(DateTimeConverter.stringToLocalDateTime("00:00"))){
+                                    if(fromTime.isAfter(DateTimeConverter.stringToLocalDateTime("00:00"))){
+                                        if(fromTime.isAfter(timeOpen) && toTime.isBefore(timeClose))
+                                            filteredNow.add(pubData);
+                                    }
+                                    else{
+                                        break tonext;
+                                    }
+                                }
+                                if(fromTime.isAfter(toTime))
+                                    toTime = toTime.plusDays(1);
+                                if(timeOpen.isAfter(timeClose))
+                                    timeClose = timeClose.plusDays(1);
+                                if(fromTime.isAfter(timeOpen) && toTime.isBefore(timeClose))
+                                    filteredNow.add(pubData);
+                                break tonext;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            return this;
         }
 
         filteredPubs=filteredNow;

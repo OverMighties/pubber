@@ -148,6 +148,7 @@ public class Constants {
     };
 
     public static final int[] POP_UP_DAYS_IDS = {
+            R.id.cl_today,
             R.id.cl_mon,
             R.id.cl_tue,
             R.id.cl_wen,
@@ -162,6 +163,7 @@ public class Constants {
 
 
     public static final int[] POP_UP_DAYS_TEXT_IDS = {
+            R.id.tv_today,
             R.id.tv_mon,
             R.id.tv_tue,
             R.id.tv_wen,

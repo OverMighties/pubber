@@ -135,7 +135,7 @@
         <item>APA</item>
         <item>Witbier</item>
         <item>Porter</item>
-        <item>Scout</item>
+        <item>Stout</item>
         <item>Ale</item>
         <item>Wheat beer</item>
         <item>Dark beer</item>
@@ -155,6 +155,19 @@
         <item>Wheat beer</item>
         <item>Dark beer</item>
         <item>Light beer</item>
+    </string-array>
+
+    <!--pub's tags-->
+    <string-array name="pub_tags">
+        <item>Whiskey</item>
+        <item>Wino</item>
+        <item>Shoty</item>
+        <item>Piwa kraftowe</item>
+        <item>Piwa koncernowe</item>
+        <item>Gry planszowe</item>
+        <item>Karaoke</item>
+        <item>Muzyka na żywo</item>
+        <item>Tanie piwo</item>
     </string-array>
 
 
@@ -446,14 +459,14 @@
     <string name="time_2300">23:00</string>
     <string name="time_2330">23:30</string>
     <string name="time_2400">24:00</string>
-
-    <string name="monday">monday</string>
-    <string name="tuesday">tuesday</string>
-    <string name="wednesday">wednesday</string>
-    <string name="thursday">thursday</string>
-    <string name="friday">friday</string>
-    <string name="saturday">saturday</string>
-    <string name="sunday">sunday</string>
+    <string name="today">Today</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
 
     <!-- Signing up password-->
     <string name="weak_password">Weak</string>

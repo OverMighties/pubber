@@ -1,6 +1,7 @@
 package com.overmighties.pubber.feature.search;
 
 
+import static com.overmighties.pubber.app.Constants.SORT_POP_UP_IDS;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.MAP_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
@@ -9,6 +10,7 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAG
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -116,10 +119,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             }
             swipeRefreshLayout.setRefreshing(false);
         });
-
-        if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
-
 
         setUpTopAppBar();
         initSearchView();
@@ -240,7 +239,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         });
     }
     private void showSortBottomSheer(){
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        ((ImageView)requireView().findViewById(R.id.sort_image)).setImageResource(R.drawable.ic_expand_less_primary);
         View bottomSheetView = getLayoutInflater().inflate(R.layout.fragment_searcher_sort_bottom_sheet, null);
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -265,25 +264,35 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     }
     private void buttonsListenersForSortPopUpWindow(BottomSheetDialog bottomSheetDialog, View bottomSheetView) {
-        bottomSheetDialog.setOnDismissListener((v) -> {
-            TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
-            if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
-                text.setText( requireActivity().getString(R.string.sort_relevance));
-                pubListViewModel.sort(SortPubsBy.RELEVANCE);
-            } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_rating)).isChecked()) {
-                text.setText(getString(R.string.sort_rating));
-                pubListViewModel.sort(SortPubsBy.RATING);
-            } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
-                text.setText(getString(R.string.sort_alphabetical));
-                pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
-            } else{
-                text.setText(getString(R.string.sort_distance));
-                pubListViewModel.sort(SortPubsBy.DISTANCE);
+
+        for(var radioButtonId:SORT_POP_UP_IDS){
+            bottomSheetView.findViewById(radioButtonId).setOnClickListener(v->{
+                for(var id: SORT_POP_UP_IDS){
+                    ((RadioButton)bottomSheetView.findViewById(id)).setChecked(false);
+                }
+                ((RadioButton)v).setChecked(true);
+            });
+        }
+        bottomSheetDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                ((ImageView)requireView().findViewById(R.id.sort_image)).setImageResource(R.drawable.ic_expand_more_primary);
+                TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
+                if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                    text.setText( requireActivity().getString(R.string.sort_relevance));
+                    pubListViewModel.sort(SortPubsBy.RELEVANCE);
+                } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                    text.setText(getString(R.string.sort_rating));
+                    pubListViewModel.sort(SortPubsBy.RATING);
+                } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                    text.setText(getString(R.string.sort_alphabetical));
+                    pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
+                } else{
+                    text.setText(getString(R.string.sort_distance));
+                    pubListViewModel.sort(SortPubsBy.DISTANCE);
+                }
             }
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
         });
-
-
     }
 
 

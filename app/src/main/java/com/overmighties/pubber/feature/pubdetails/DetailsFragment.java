@@ -87,8 +87,7 @@ public class DetailsFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
-        pubListViewModel = new ViewModelProvider(this,
-                ViewModelProvider.Factory.from(PubListViewModel.initializer))
+        pubListViewModel = new ViewModelProvider(requireActivity())
                 .get(PubListViewModel.class);
         viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
