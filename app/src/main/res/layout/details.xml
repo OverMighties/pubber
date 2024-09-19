@@ -102,16 +102,6 @@
                     android:background="@color/surface" />
             </HorizontalScrollView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ClDetailsInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/constraint_layout_margin_down_dim"
-                android:paddingBottom="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
-
 
                 <TextView
                     android:id="@+id/PubRating"
@@ -124,7 +114,7 @@
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
 
                 <TextView
                     android:id="@+id/PubWalkDistance"
@@ -160,22 +150,16 @@
                     app:layout_constraintBottom_toBottomOf="@+id/PubRating"
                     app:layout_constraintStart_toEndOf="@+id/PubRatingIV" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/expandRatingCardView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:cardBackgroundColor="@color/surface"
-                    app:layout_constraintBottom_toBottomOf="@id/PubRatingCount"
-                    app:layout_constraintStart_toEndOf="@id/PubRatingCount"
-                    app:layout_constraintTop_toTopOf="@id/PubRatingCount"
-                    app:strokeWidth="0dp">
 
                     <ImageView
+                        android:id="@+id/ExpandRatingImageView"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
+                        app:layout_constraintBottom_toBottomOf="@id/PubRatingCount"
+                        app:layout_constraintStart_toEndOf="@id/PubRatingCount"
+                        app:layout_constraintTop_toTopOf="@id/PubRatingCount"
                         android:src="@drawable/ic_right_expand" />
-                </com.google.android.material.card.MaterialCardView>
 
                 <ImageView
                     android:id="@+id/imageView6"
@@ -239,7 +223,7 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/drinks_present"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
@@ -292,7 +276,7 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/tags_present"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
@@ -308,63 +292,52 @@
                     app:layout_constraintStart_toStartOf="@id/textView15"
                     app:layout_constraintTop_toBottomOf="@id/textView15" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/DetailsDividerInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/outline"
+                    app:layout_constraintTop_toBottomOf="@id/chipGroupTags" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/OvClTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/constraint_layout_margin_down_dim"
-                android:paddingTop="7.5dp"
-                android:paddingBottom="7.5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+
+
+            <ImageView
+                android:id="@+id/OvIVTime"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_clock_filled_on_surface"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ClDetailsInfo">
+                app:layout_constraintTop_toBottomOf="@+id/DetailsDividerInfo" />
 
-                <ImageView
-                    android:id="@+id/OvIVTime"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_clock_filled_on_surface"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/OvTVTime"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|start"
+                android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/roboto"
+                android:text="@string/time_open"
+                android:textColor="@color/on_surface"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/OvIVTime"
+                app:layout_constraintStart_toEndOf="@+id/OvIVTime"
+                app:layout_constraintTop_toTopOf="@+id/OvIVTime" />
 
-                <TextView
-                    android:id="@+id/OvTVTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/time_open"
-                    android:textColor="@color/on_surface"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/OvIVTime"
-                    app:layout_constraintStart_toEndOf="@+id/OvIVTime"
-                    app:layout_constraintTop_toTopOf="@+id/OvIVTime" />
-
-                <ImageView
-                    android:id="@+id/OvUnFoldTime"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_expand_more_on_surface_variation"
-
-                    app:layout_constraintBottom_toBottomOf="@+id/OvTVTime"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/OvTVTime" />
-
-                <TextView
-                    android:id="@+id/WrapContentHolder2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text=""
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/OvTvDay7" />
+            <ImageView
+                android:id="@+id/OvUnFoldTime"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_expand_more_on_surface_variation"
+                app:layout_constraintBottom_toBottomOf="@+id/OvTVTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/OvTVTime" />
 
                 <TextView
                     android:id="@+id/OvTvDay1"
@@ -553,117 +526,118 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/OvTvTime6" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/OvClAdress"
+            <View
+                android:id="@+id/DetailsDividerTime"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/constraint_layout_margin_down_dim"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/OvClTime">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/outline"
+                app:layout_constraintTop_toBottomOf="@+id/OvTvTime7" />
 
                 <ImageView
                     android:id="@+id/OvIVAdress"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/ic_location_on_surface"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/DetailsDividerTime"/>
 
                 <TextView
                     android:id="@+id/OvTVAdress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/roboto"
                     android:text="Polna 30a, Warszawa"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/OvIVAdress"
                     app:layout_constraintStart_toEndOf="@+id/OvIVAdress"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/OvClPhone"
+                    app:layout_constraintTop_toTopOf="@+id/OvIVAdress" />
+            <View
+                android:id="@+id/DetailsDividerAdress"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/constraint_layout_margin_down_dim"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClAdress">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/outline"
+                app:layout_constraintTop_toBottomOf="@+id/OvIVAdress" />
 
                 <ImageView
                     android:id="@+id/OvIVPhone"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/ic_phone_on_surface"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/DetailsDividerAdress" />
 
                 <TextView
                     android:id="@+id/OvTVPhoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/roboto"
-                    android:text="+48 790-338-700"
+                    android:text="+48 790448700"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/OvIVPhone"
                     app:layout_constraintStart_toEndOf="@+id/OvIVPhone"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/OvClSite"
+                    app:layout_constraintTop_toTopOf="@+id/OvIVPhone" />
+            <View
+                android:id="@+id/DetailsDividerPhone"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/constraint_layout_margin_down_dim"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClPhone">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/outline"
+                app:layout_constraintTop_toBottomOf="@+id/OvIVPhone" />
 
                 <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/IVWebsiteAdress"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:src="@drawable/ic_earth_on_surface"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/DetailsDividerPhone" />
 
                 <TextView
                     android:id="@+id/OvTVWebsiteAdress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/roboto"
                     android:text="https://www.facebook.com/K20PUB"
                     android:textColor="@color/on_surface"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/profile_image"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+                    app:layout_constraintBottom_toBottomOf="@+id/IVWebsiteAdress"
+                    app:layout_constraintStart_toEndOf="@+id/IVWebsiteAdress"
+                    app:layout_constraintTop_toTopOf="@+id/IVWebsiteAdress" />
+            <View
+                android:id="@+id/DetailsDividerWebsiteAdress"
                 android:layout_width="0dp"
-                android:paddingBottom="48dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OvClSite" >
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/outline"
+                app:layout_constraintTop_toBottomOf="@+id/IVWebsiteAdress" />
+
                 <TextView
                     android:id="@+id/textViewOpinion"
                     android:layout_width="wrap_content"
@@ -672,19 +646,19 @@
                     android:textSize="20sp"
                     android:textColor="@color/on_surface"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/DetailsDividerWebsiteAdress"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commentsRecyclerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="48dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textViewOpinion"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <HorizontalScrollView
@@ -698,7 +672,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.chip.ChipGroup
@@ -756,27 +730,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/detailsExpandableView"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="-48dp"
-        android:background="@drawable/constraint_layout_variant_outline_up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
         <HorizontalScrollView
             android:id="@+id/horizontalScrollViewChipsExpandable"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginBottom="-48dp"
+            android:background="@drawable/constraint_layout_variant_outline_up"
             android:fillViewport="true"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
@@ -792,21 +759,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <ImageView
+                            android:layout_gravity="center"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:src="@drawable/ic_directions_on_secondary_cotainer"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:src="@drawable/ic_directions_on_secondary_cotainer" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.chip.ChipGroup
@@ -851,8 +809,6 @@
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </HorizontalScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/blur"

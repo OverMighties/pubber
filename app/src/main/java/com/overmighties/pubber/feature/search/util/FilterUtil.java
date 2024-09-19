@@ -169,6 +169,7 @@ public class FilterUtil {
     {
         List<Pub> filteredNow=new ArrayList<>();
         Integer dayOfWeekNow=LocalDateTime.now().getDayOfWeek().getValue();
+
         if((filterUiState.getOpenNow()!=null && filterUiState.getOpenNow())){
             LocalTime timeNow=LocalTime.now();
             for(var pubData: filteredPubs) {
@@ -181,7 +182,10 @@ public class FilterUtil {
                     }
                 }
             }
-        } else if (filterUiState.getCustomOpeningHours().getWeekDay() != null) {
+        }
+        if(filterUiState.getCustomOpeningHours() != null)
+            return this;
+        if ( filterUiState.getCustomOpeningHours().getWeekDay() != null) {
             Integer dayIndex = DayOfWeekConverter.getByCamelCase(filterUiState.getCustomOpeningHours().getWeekDay()).getNumeric();
             if(dayIndex == null)
                 dayIndex = dayOfWeekNow;

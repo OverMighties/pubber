@@ -48,24 +48,23 @@ public class NotificationHandler {
 
     }
     public static void createNotificationChannels(Context context){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager notificationManagerGroup =
-                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannelGroup generalGroup = new NotificationChannelGroup(CHANNEL_GENERAL_GROUP_ID, context.getString(R.string.general_group));
-            notificationManagerGroup.createNotificationChannelGroup(generalGroup);
+        NotificationManager notificationManagerGroup =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannelGroup generalGroup = new NotificationChannelGroup(CHANNEL_GENERAL_GROUP_ID, context.getString(R.string.general_group));
+        notificationManagerGroup.createNotificationChannelGroup(generalGroup);
 
-            NotificationChannel channelRate = new NotificationChannel(CHANNEL_GENERAL_GROUP_ID, context.getString(R.string.notifications_rating), NotificationManager.IMPORTANCE_DEFAULT);
-            channelRate.setGroup(CHANNEL_GENERAL_GROUP_ID);
+        NotificationChannel channelRate = new NotificationChannel(CHANNEL_GENERAL_GROUP_ID, context.getString(R.string.notifications_rating), NotificationManager.IMPORTANCE_DEFAULT);
+        channelRate.setGroup(CHANNEL_GENERAL_GROUP_ID);
 
-            NotificationChannel channelRemind = new NotificationChannel(CHANNEL_ID_REMIND, context.getString(R.string.notifications_from_app), NotificationManager.IMPORTANCE_DEFAULT);
-            channelRemind.setGroup(CHANNEL_GENERAL_GROUP_ID);
+        NotificationChannel channelRemind = new NotificationChannel(CHANNEL_ID_REMIND, context.getString(R.string.notifications_from_app), NotificationManager.IMPORTANCE_DEFAULT);
+        channelRemind.setGroup(CHANNEL_GENERAL_GROUP_ID);
 
-            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channelRemind);
-            notificationManager.createNotificationChannel(channelRate);
+        NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channelRemind);
+        notificationManager.createNotificationChannel(channelRate);
             
-            Log.i(TAG, "chanels created");
-        }
+        Log.i(TAG, "chanels created");
+
     }
 
 }

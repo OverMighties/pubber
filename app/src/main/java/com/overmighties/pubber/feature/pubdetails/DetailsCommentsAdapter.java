@@ -146,16 +146,16 @@ public class DetailsCommentsAdapter extends RecyclerView.Adapter<DetailsComments
         hiddenPart = content.substring(n, content.length()-1);
         textView.setOnClickListener(v->{
             if(expanded){
-                SpannableStringBuilder builder = new SpannableStringBuilder(content);
-                builder.append(shownPart);
+                SpannableStringBuilder builder = new SpannableStringBuilder(shownPart);
+                builder.append(" ");
                 builder.append(more);
                 textView.setText(builder);
                 expanded = false;
             }
             else{
-                SpannableStringBuilder builder = new SpannableStringBuilder(content);
-                builder.append(shownPart);
+                SpannableStringBuilder builder = new SpannableStringBuilder(shownPart);
                 builder.append(hiddenPart);
+                builder.append(" ");
                 SpannableString less = new SpannableString(context.getString(R.string.less));
                 less.setSpan(new TextAppearanceSpan(context, R.style.Pubber_highlight), 0, context.getString(R.string.less).length(), 0);
                 less.setSpan(new UnderlineSpan(),0, context.getString(R.string.less).length(), 0 );

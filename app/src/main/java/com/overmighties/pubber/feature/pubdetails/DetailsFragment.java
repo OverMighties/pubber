@@ -19,6 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -48,6 +50,7 @@ import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
+import com.overmighties.pubber.app.util.PermissionHandler;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsDrinkListAdapter;
 import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
@@ -106,8 +109,6 @@ public class DetailsFragment extends Fragment
         setUpPubData(pubDetailsUiState);
         setUpImageSlider();
         setUpListener();
-        setUpBottomExpandableLayout();
-
     }
 
     private void prepareFakeData(){
@@ -388,23 +389,11 @@ public class DetailsFragment extends Fragment
         requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
         requireView().findViewById(R.id.chipGuide).setOnClickListener(v->{
-            Uri adress = Uri.parse("geo:0,0?q="+viewModel.getUiState().getValue().getAddress());
-            Intent intent = new Intent(Intent.ACTION_VIEW, adress);
-            intent.setPackage("com.google.android.apps.maps");
-            try {
-                startActivity(intent);
-            }catch (ActivityNotFoundException e) {
-                Log.e(TAG,"Activity not found ");
-            }
+            guide();
         });
 
         requireView().findViewById(R.id.chipCall).setOnClickListener(v->{
-            if(viewModel.getUiState().getValue().getPhoneNumber()!=null) {
-                String uri = "tel:" + viewModel.getUiState().getValue().getPhoneNumber();
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse(uri));
-                startActivity(intent);
-            }
+            call();
         });
 
         requireView().findViewById(R.id.chipRate).setOnClickListener(v->{
@@ -412,30 +401,14 @@ public class DetailsFragment extends Fragment
         });
 
         requireView().findViewById(R.id.chipEdit).setOnClickListener(v->{
-            View bottomSheetView = getLayoutInflater().inflate(R.layout.details_bottom_sheet_edit, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
-            bottomSheetDialog.setContentView(bottomSheetView);
-            bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
-                bottomSheetDialog.hide();
-                NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
-            });
-            bottomSheetDialog.show();
+            showBottomSheetEdit();
         });
 
         requireView().findViewById(R.id.chipShare).setOnClickListener(v->{
-            String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + viewModel.getUiState().getValue().getCity() + "/" +  viewModel.getUiState().getValue().getId().toString();
-
-            Intent shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
-                    .setType("text/plain")
-                    .setText(link)
-                    .getIntent();
-            if(shareIntent.resolveActivity(requireContext().getPackageManager()) != null){
-                startActivity(shareIntent);
-            }
-
+            shareLink();
         });
 
-        requireView().findViewById(R.id.expandRatingCardView).setOnClickListener(v->{
+        requireView().findViewById(R.id.ExpandRatingImageView).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
         });
 
@@ -485,6 +458,92 @@ public class DetailsFragment extends Fragment
             return  false;
         });
 
+        HorizontalScrollView expandableView = requireView().findViewById(R.id.horizontalScrollViewChipsExpandable);
+        ((ScrollView)requireView().findViewById(R.id.detailsScrollView)).setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(DimensionsConverter.dpFromPx(requireContext(), scrollY)<=48F){
+                    ViewGroup.MarginLayoutParams layoutParams =
+                            (ViewGroup.MarginLayoutParams) expandableView.getLayoutParams();
+                    layoutParams.bottomMargin = (int) -DimensionsConverter.pxFromDp(requireContext(), 48)+scrollY;
+                    expandableView.setLayoutParams(layoutParams);
+                }
+                else{
+                    ViewGroup.MarginLayoutParams layoutParams =
+                            (ViewGroup.MarginLayoutParams) expandableView.getLayoutParams();
+                    layoutParams.bottomMargin = 0;
+                    expandableView.setLayoutParams(layoutParams);
+                }
+            }
+        });
+
+        requireView().findViewById(R.id.cardViewGuideExpandable).setOnClickListener(v->{
+            guide();
+        });
+
+        requireView().findViewById(R.id.chipCallExpandable).setOnClickListener(v->{
+            call();
+        });
+
+        requireView().findViewById(R.id.chipRateExpandable).setOnClickListener(v->{
+            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
+        });
+
+        requireView().findViewById(R.id.chipEditExpandable).setOnClickListener(v->{
+            showBottomSheetEdit();
+        });
+
+        requireView().findViewById(R.id.chipShareExpandable).setOnClickListener(v->{
+            shareLink();
+        });
+
+    }
+
+    private void guide(){
+        Uri adress = Uri.parse("geo:0,0?q="+viewModel.getUiState().getValue().getAddress());
+        Intent intent = new Intent(Intent.ACTION_VIEW, adress);
+        intent.setPackage("com.google.android.apps.maps");
+        try {
+            startActivity(intent);
+        }catch (ActivityNotFoundException e) {
+            Log.e(TAG,"Guide intent: Activity not found ");
+        }
+    }
+
+    private void call(){
+        if(viewModel.getUiState().getValue().getPhoneNumber()!=null) {
+            String uri = "tel:" + viewModel.getUiState().getValue().getPhoneNumber();
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse(uri));
+            try{
+                startActivity(intent);
+            }catch (ActivityNotFoundException e){
+                Log.e(TAG,"Call intent: Activity not found");
+            }
+        }
+    }
+
+    private void showBottomSheetEdit(){
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.details_bottom_sheet_edit, null);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
+            bottomSheetDialog.hide();
+            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
+        });
+        bottomSheetDialog.show();
+    }
+
+    private void shareLink(){
+        String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + viewModel.getUiState().getValue().getCity() + "/" +  viewModel.getUiState().getValue().getId().toString();
+
+        Intent shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
+                .setType("text/plain")
+                .setText(link)
+                .getIntent();
+        if(shareIntent.resolveActivity(requireContext().getPackageManager()) != null){
+            startActivity(shareIntent);
+        }
     }
 
     private void UnFoldTime(){
@@ -517,74 +576,6 @@ public class DetailsFragment extends Fragment
         }
     }
 
-    private void setUpBottomExpandableLayout(){
-        ConstraintLayout expandableView = requireView().findViewById(R.id.detailsExpandableView);
-        ((ScrollView)requireView().findViewById(R.id.detailsScrollView)).setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if(DimensionsConverter.dpFromPx(requireContext(), scrollY)<=48F){
-                    ConstraintLayout.LayoutParams layoutParams =
-                            (ConstraintLayout.LayoutParams) expandableView.getLayoutParams();
-                    layoutParams.bottomMargin = (int) -DimensionsConverter.pxFromDp(requireContext(), 48)+scrollY;
-                    expandableView.setLayoutParams(layoutParams);
-                }
-                else{
-                    ConstraintLayout.LayoutParams layoutParams =
-                            (ConstraintLayout.LayoutParams) expandableView.getLayoutParams();
-                    layoutParams.bottomMargin = 0;
-                    expandableView.setLayoutParams(layoutParams);
-                }
-            }
-        });
-
-        requireView().findViewById(R.id.cardViewGuideExpandable).setOnClickListener(v->{
-            Uri adress = Uri.parse("geo:0,0?q="+viewModel.getUiState().getValue().getAddress());
-            Intent intent = new Intent(Intent.ACTION_VIEW, adress);
-            intent.setPackage("com.google.android.apps.maps");
-            try {
-                startActivity(intent);
-            }catch (ActivityNotFoundException e) {
-                Log.e(TAG,"Activity not found ");
-            }
-        });
-
-        requireView().findViewById(R.id.chipCallExpandable).setOnClickListener(v->{
-            if(viewModel.getUiState().getValue().getPhoneNumber()!=null) {
-                String uri = "tel:" + viewModel.getUiState().getValue().getPhoneNumber();
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse(uri));
-                startActivity(intent);
-            }
-        });
-
-        requireView().findViewById(R.id.chipRateExpandable).setOnClickListener(v->{
-            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
-        });
-
-        requireView().findViewById(R.id.chipEditExpandable).setOnClickListener(v->{
-            View bottomSheetView = getLayoutInflater().inflate(R.layout.details_bottom_sheet_edit, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
-            bottomSheetDialog.setContentView(bottomSheetView);
-            bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
-                bottomSheetDialog.hide();
-                NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
-            });
-            bottomSheetDialog.show();
-        });
-
-        requireView().findViewById(R.id.chipShareExpandable).setOnClickListener(v->{
-            String link = "https://pubber-4e5c8.firebaseapp.com/pub/" + viewModel.getUiState().getValue().getCity() + "/" +  viewModel.getUiState().getValue().getId().toString();
-
-            Intent shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
-                    .setType("text/plain")
-                    .setText(link)
-                    .getIntent();
-            if(shareIntent.resolveActivity(requireContext().getPackageManager()) != null){
-                startActivity(shareIntent);
-            }
-
-        });
-    }
 
 
 }

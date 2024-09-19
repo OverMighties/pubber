@@ -305,9 +305,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
             NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
 
-        if(detailsViewModel.getOpenedPubPosition() != null)
+        if(detailsViewModel.getOpenedPubPosition() != null) {
             recyclerView.scrollToPosition(detailsViewModel.getOpenedPubPosition());
             detailsViewModel.setOpenedPubPosition(null);
+        }
 
     }
 
@@ -338,6 +339,11 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.constraintLayout, ConstraintSet.TOP,
                  location[1]-layoutLocation[1]);
         constraintSet.applyTo(constraintLayout);
+        view.setZ(2);
+        requireView().findViewById(R.id.filtrationCardView).setZ(1);
+        requireView().findViewById(R.id.searchViewCardView).setZ(1);
+        requireView().findViewById(R.id.fab_map).setVisibility(View.INVISIBLE);
+
 
 
 
@@ -355,7 +361,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                         1f, scaleX+1, 1f, scaleY+1,
                         ScaleAnimation.RELATIVE_TO_SELF, DimensionsConverter.pxFromDp(requireContext(), 25)/screenWidth,
                         ScaleAnimation.RELATIVE_TO_SELF, (float)location[1]/(float)screenHeight);
-                scaleAnimation.setDuration(300-(int)(300*((float)location[1]/(float)screenHeight)));
+                scaleAnimation.setDuration(300);
                 scaleAnimation.setFillAfter(true);
                 scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
                     @Override

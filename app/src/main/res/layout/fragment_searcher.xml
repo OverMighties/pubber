@@ -5,7 +5,6 @@
     android:id="@+id/SearcherFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface"
     tools:context=".feature.search.SearcherFragment">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/top_app_bar_layout"
@@ -39,14 +38,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toBottomOf="@id/top_app_bar_layout">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/searchConstraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/searchViewCardView"
@@ -92,7 +83,6 @@
                 android:text="@string/sort_based_on"
                 android:textColor="@color/on_surface"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchViewCardView" />
 
@@ -118,44 +108,41 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_expand_more_primary"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewSortType_searcher"
                 app:layout_constraintStart_toEndOf="@+id/textViewSortType_searcher"
-                app:layout_constraintTop_toBottomOf="@+id/searchViewCardView" />
+                app:layout_constraintTop_toTopOf="@id/textViewSortType_searcher" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="12dp"
-                android:backgroundTint="@color/secondary_container"
-                app:cardCornerRadius="50dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewSortBy_searcher"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/filtrationCardView"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="@color/secondary_container"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSortBy_searcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSortBy_searcher">
+
+
+            <ImageView
+                android:id="@+id/Filtration"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_filtration_on_surface"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textViewSortBy_searcher">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/Filtration"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_filtration_on_surface"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </androidx.cardview.widget.CardView>
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:isScrollContainer="false"
-            app:layout_constraintTop_toBottomOf="@id/searchConstraintLayout"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/filtrationCardView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -166,8 +153,8 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_map"

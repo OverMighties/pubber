@@ -35,7 +35,7 @@
             android:src="@drawable/ic_alcohol" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
@@ -68,7 +68,7 @@
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_label"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/on_surface"
             android:text="@string/tags"

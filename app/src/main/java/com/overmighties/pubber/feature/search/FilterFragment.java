@@ -373,7 +373,7 @@ public class FilterFragment extends Fragment {
             //Listeners For popup time in filtrarion screen
             listenersmenutime();
             //cheking which one is selected to highlight it
-            //whichOneCheckedTime();
+            whichOneCheckedTime();
             setUpNextDayTV();
             popupWindow.showAsDropDown(requireView().findViewById(R.id.Timeview),0,0,Gravity.BOTTOM);
             ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
@@ -421,7 +421,7 @@ public class FilterFragment extends Fragment {
         if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second == -1){
             unCheckAll();
             popUpView.findViewById(backgroundId).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
-            ((TextView)popUpView.findViewById(textViewId)).setTextColor(R.color.on_surface);
+            ((TextView)popUpView.findViewById(textViewId)).setTextColor(ContextCompat.getColor(requireContext(), R.color.on_surface));
             if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first != -1) {
                 fromTV = new TextView(requireContext());
                 fromTV.setText(getString(R.string.from));
@@ -462,12 +462,14 @@ public class FilterFragment extends Fragment {
         popUpView.findViewById(POP_UP_TIME_PAIRS[55].first).setBackground(null);
         popUpView.findViewById(R.id.constraintLayout2).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up);
         popUpView.findViewById(R.id.constraintLayout5).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_down);
-        if (fromTV != null)
-            ((ConstraintLayout)fromTV.getParent()).removeView(fromTV);
+        if (fromTV != null) {
+            ((ConstraintLayout) fromTV.getParent()).removeView(fromTV);
             fromTV = null;
-        if (toTV != null)
-            ((ConstraintLayout)toTV.getParent()).removeView(toTV);
+        }
+        if (toTV != null) {
+            ((ConstraintLayout) toTV.getParent()).removeView(toTV);
             toTV = null;
+        }
     }
 
     public void setMargins (TextView Time, ConstraintLayout constraintLayout, boolean checked) {
@@ -515,6 +517,16 @@ public class FilterFragment extends Fragment {
             constraintSet.connect(nextday.getId(), ConstraintSet.TOP, POP_UP_TIME_IDS[n], ConstraintSet.TOP);
             constraintSet.connect(nextday.getId(), ConstraintSet.BOTTOM, POP_UP_TIME_IDS[n], ConstraintSet.BOTTOM);
             constraintSet.applyTo((ConstraintLayout)popUpView.findViewById(POP_UP_TIME_IDS[n]));
+        }
+    }
+
+    private void whichOneCheckedTime(){
+        if(((TextView)requireView().findViewById(R.id.textView18)).getText().toString().equals(R.string.anytime)) {
+            popUpView.findViewById(POP_UP_TIME_IDS[0]).performClick();
+        }
+        else {
+            popUpView.findViewById(POP_UP_TIME_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first]).performClick();
+            popUpView.findViewById(POP_UP_TIME_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second]).performClick();
         }
     }
 
@@ -701,6 +713,7 @@ public class FilterFragment extends Fragment {
                 ((TextView)requireView().findViewById(R.id.textView18)).setText(
                         getString(R.string.from)+" "+ pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getFromTime() +
                                 " "+getString(R.string.to)+" "+pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getToTime());
+
             }
         } else{
             requireView().findViewById(R.id.Chip_anytime).performClick();
