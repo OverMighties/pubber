@@ -924,26 +924,46 @@ public class FilterFragment extends Fragment {
     }
 
     private void checkVisibility(){
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(0))
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(0)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(0, false);
             requireView().findViewById(R.id.IVrating).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(1))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(1)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(1, false);
             requireView().findViewById(R.id.IVdistance).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(2))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(2)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(2, false);
             requireView().findViewById(R.id.IVprice).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(3))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(3)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(3, false);
             requireView().findViewById(R.id.IVtime).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(4))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(4)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(4, false);
             requireView().findViewById(R.id.IVbeer).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(5))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(5)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(5, false);
             requireView().findViewById(R.id.IVBreweries).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(6))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(6)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(6, false);
             requireView().findViewById(R.id.IVStyles).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(7))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(7)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(7, false);
             requireView().findViewById(R.id.IVParticularBeers).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(8))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(8)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(8, false);
             requireView().findViewById(R.id.IVdrinks).performClick();
-        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(9))
+        }
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(9)) {
+            pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(9, false);
             requireView().findViewById(R.id.IVTags).performClick();
+        }
     }
 
 
