@@ -1,193 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pub_recycler_view_row"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="15dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginBottom="15dp">
+    android:layout_height="100dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/surface_container"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="4dp"
+    app:strokeColor="#251c15"
+    app:strokeWidth="1dp">
 
-    <com.google.android.material.card.MaterialCardView
-
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/surface_container"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="4dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#251c15"
-        app:strokeWidth="1dp">
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/PWalkDis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*.*km"
+            android:textColor="@color/on_surface_container_secondary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/PRatingCount" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/PubImage"
+            android:layout_width="84dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="true"
+            android:clickable="false"
+            android:contentDescription="Przykładowe zdjęcie pubu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:srcCompat="@drawable/pub_icon" />
+
+        <TextView
+            android:id="@+id/PName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:maxLines="1"
+            android:minLines="0"
+            android:text="Pub Name"
+            android:textColor="@color/on_surface_container"
+            android:textIsSelectable="true"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/heart"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/PubImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.04" />
+
+        <TextView
+            android:id="@+id/timeOpenToday_card_view_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundstyle"
+            android:gravity="center"
+            android:text="Open"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/PName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.317" />
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_heart_full" />
+
+        <TextView
+            android:id="@+id/PRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*.*"
+            android:textColor="@color/on_surface_container_secondary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/PName"
+            app:layout_constraintTop_toBottomOf="@+id/timeOpenToday_card_view_row" />
+        <TextView
+            android:id="@+id/PRatingCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text="(****)"
+            android:textColor="@color/on_surface_container_secondary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/PRating"
+            app:layout_constraintTop_toTopOf="@+id/PRating" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="19dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/PRatingCount"
+            app:layout_constraintStart_toEndOf="@+id/PRatingCount"
+            app:layout_constraintTop_toTopOf="@+id/PRatingCount"
+            app:srcCompat="@drawable/ic_walking_on_sureface_con_sec" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:id="@+id/PWalkDis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*.*km"
-                android:textColor="@color/on_surface_container_secondary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/PRatingCount" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/PubImage"
-                android:layout_width="84dp"
-                android:layout_height="0dp"
-                android:layout_margin="10dp"
-                android:adjustViewBounds="true"
-                android:clickable="false"
-                android:contentDescription="Przykładowe zdjęcie pubu"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                app:srcCompat="@drawable/pub_icon" />
-
-            <TextView
-                android:id="@+id/PName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:maxLines="1"
-                android:minLines="0"
-                android:text="Pub Name"
-                android:textColor="@color/on_surface_container"
-                android:textIsSelectable="true"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/heart"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/PubImage"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.04" />
-
-            <TextView
-                android:id="@+id/timeOpenToday_card_view_row"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/roundstyle"
-                android:gravity="center"
-                android:text="Open"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/PName"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.317" />
-
-            <ImageView
-                android:id="@+id/heart"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="6dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_heart_full" />
-
-            <TextView
-                android:id="@+id/PRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*.*"
-                android:textColor="@color/on_surface_container_secondary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/PName"
-                app:layout_constraintTop_toBottomOf="@+id/timeOpenToday_card_view_row" />
-
-            <TextView
-                android:id="@+id/PRatingCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:text="(****)"
-                android:textColor="@color/on_surface_container_secondary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/PRating"
-                app:layout_constraintTop_toTopOf="@+id/PRating" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="19dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/PRatingCount"
-                app:layout_constraintStart_toEndOf="@+id/PRatingCount"
-                app:layout_constraintTop_toTopOf="@+id/PRatingCount"
-                app:srcCompat="@drawable/ic_walking_on_sureface_con_sec" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/PClRatingImage"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="2dp"
-                app:layout_constraintBottom_toBottomOf="@+id/PRating"
-                app:layout_constraintEnd_toStartOf="@+id/PRatingCount"
-                app:layout_constraintStart_toEndOf="@+id/PRating"
-                app:layout_constraintTop_toTopOf="@+id/PRating">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/MapChip"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_marginTop="-5dp"
-                android:elevation="1dp"
-                android:text="@string/guide"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="14sp"
-                app:chipBackgroundColor="@color/secondary_container"
-                app:chipCornerRadius="40dp"
-                app:chipIcon="@drawable/ic_directions_on_surface_container"
-                app:chipIconSize="25dp"
-                app:chipStrokeColor="#4F3C27"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintStart_toStartOf="@+id/PRating"
-                app:layout_constraintTop_toBottomOf="@+id/PRating" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/AlcoholChip"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_marginLeft="7dp"
-                android:elevation="1dp"
-                android:text="@string/alcohols"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="14sp"
-                app:chipBackgroundColor="@color/secondary_container"
-                app:chipCornerRadius="40dp"
-                app:chipIcon="@drawable/beer_full_black_chip"
-                app:chipIconSize="18dp"
-                app:chipIconTint="@color/on_secondary_container"
-                app:chipStartPadding="8dp"
-                app:chipStrokeColor="#4F3C27"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintStart_toEndOf="@+id/MapChip"
-                app:layout_constraintTop_toTopOf="@+id/MapChip"
-                app:textStartPadding="8dp" />
-
+            android:id="@+id/PClRatingImage"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/PRating"
+            app:layout_constraintEnd_toStartOf="@+id/PRatingCount"
+            app:layout_constraintStart_toEndOf="@+id/PRating"
+            app:layout_constraintTop_toTopOf="@+id/PRating">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/MapChip"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="-5dp"
+            android:elevation="1dp"
+            android:text="@string/guide"
+            android:textColor="@color/on_secondary_container"
+            android:textSize="14sp"
+            app:chipBackgroundColor="@color/secondary_container"
+            app:chipCornerRadius="40dp"
+            app:chipIcon="@drawable/ic_directions_on_surface_container"
+            app:chipIconSize="25dp"
+            app:chipStrokeColor="#4F3C27"
+            app:chipStrokeWidth="0.5dp"
+            app:layout_constraintStart_toStartOf="@+id/PRating"
+            app:layout_constraintTop_toBottomOf="@+id/PRating" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/AlcoholChip"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="7dp"
+            android:elevation="1dp"
+            android:text="@string/alcohols"
+            android:textColor="@color/on_secondary_container"
+            android:textSize="14sp"
+            app:chipBackgroundColor="@color/secondary_container"
+            app:chipCornerRadius="40dp"
+            app:chipIcon="@drawable/beer_full_black_chip"
+            app:chipIconSize="18dp"
+            app:chipIconTint="@color/on_secondary_container"
+            app:chipStartPadding="8dp"
+            app:chipStrokeColor="#4F3C27"
+            app:chipStrokeWidth="0.5dp"
+            app:layout_constraintStart_toEndOf="@+id/MapChip"
+            app:layout_constraintTop_toTopOf="@+id/MapChip"
+            app:textStartPadding="8dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
