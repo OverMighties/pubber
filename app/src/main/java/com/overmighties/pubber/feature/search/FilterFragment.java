@@ -613,8 +613,8 @@ public class FilterFragment extends Fragment {
         ChipGroup drinksGroup = requireView().findViewById(R.id.DrinksChG);
         ChipGroup tagsGroup = requireView().findViewById(R.id.TagsChG);
         //breweries chips
-        for(var brewery:getContext().getResources().getStringArray(R.array.all_breweries)){
-            Chip chip = new Chip(getContext());
+        for(var brewery:requireContext().getResources().getStringArray(R.array.all_breweries)){
+            Chip chip = new Chip(requireContext());
             chip.setText(brewery);
             chip.setId(ResourceUtil.getResourceIdByName(requireContext(), brewery.replace(" ", "")));
             styleChip(chip);
@@ -622,7 +622,7 @@ public class FilterFragment extends Fragment {
             breweriesGroup.addView(chip);
         }
         //make visible the most commonly known breweries
-        for(var breweryId:getContext().getResources().getStringArray(R.array.first_to_show_breweries)){
+        for(var breweryId:requireContext().getResources().getStringArray(R.array.first_to_show_breweries)){
             try {
                 int field = R.id.class.getField(breweryId.replace(" ", "")).getInt(0);
                 ((Chip)requireView().findViewById(field)).setVisibility(View.VISIBLE);
@@ -632,24 +632,24 @@ public class FilterFragment extends Fragment {
 
         }
         //styles
-        for(var style: getContext().getResources().getStringArray(R.array.beer_styles)){
-            Chip chip = new Chip(getContext());
+        for(var style: requireContext().getResources().getStringArray(R.array.beer_styles)){
+            Chip chip = new Chip(requireContext());
             chip.setText(style);
             chip.setId(ResourceUtil.getResourceIdByName(requireContext(), style.replace(" ", "")));
             styleChip(chip);
             stylesGroup.addView(chip);
         }
         //drinks
-        for(var cocktail:getContext().getResources().getStringArray(R.array.cocktails)){
-            Chip chip = new Chip(getContext());
+        for(var cocktail:requireContext().getResources().getStringArray(R.array.cocktails)){
+            Chip chip = new Chip(requireContext());
             chip.setText(cocktail);
             chip.setId(ResourceUtil.getResourceIdByName(requireContext(), cocktail.replace(" ", "")));
             styleChip(chip);
             drinksGroup.addView(chip);
         }
         //tags
-        for(var tag:getContext().getResources().getStringArray(R.array.pub_tags)){
-            Chip chip = new Chip(getContext());
+        for(var tag:requireContext().getResources().getStringArray(R.array.pub_tags)){
+            Chip chip = new Chip(requireContext());
             chip.setText(tag);
             chip.setId(ResourceUtil.getResourceIdByName(requireContext(), tag.replace(" ", "")));
             styleChip(chip);

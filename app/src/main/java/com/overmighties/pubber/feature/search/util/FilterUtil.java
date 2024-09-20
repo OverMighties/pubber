@@ -183,7 +183,7 @@ public class FilterUtil {
                 }
             }
         }
-        if(filterUiState.getCustomOpeningHours() != null)
+        if(filterUiState.getCustomOpeningHours() == null)
             return this;
         if ( filterUiState.getCustomOpeningHours().getWeekDay() != null) {
             Integer dayIndex = DayOfWeekConverter.getByCamelCase(filterUiState.getCustomOpeningHours().getWeekDay()).getNumeric();

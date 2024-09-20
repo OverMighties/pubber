@@ -60,6 +60,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsEditTagsFragment"
+            app:destination="@id/detailsEditTagsFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -136,5 +139,9 @@
         android:id="@+id/detailsRatingsFragment"
         android:name="com.overmighties.pubber.feature.pubdetails.DetailsRatingsFragment"
         android:label="DetailsRatingsFragment" />
+    <fragment
+        android:id="@+id/detailsEditTagsFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditTagsFragment"
+        android:label="DetailsEditTagsFragment" />
 
 </navigation>

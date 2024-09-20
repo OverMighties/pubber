@@ -1,4 +1,4 @@
-package com.overmighties.pubber.feature.pubdetails.chipsfragments;
+package com.overmighties.pubber.feature.pubdetails.chipsfragments.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;

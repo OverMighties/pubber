@@ -1,7 +1,6 @@
-package com.overmighties.pubber.feature.pubdetails.chipsfragments;
+package com.overmighties.pubber.feature.pubdetails.chipsfragments.adapters;
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.chip.Chip;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.core.model.Drink;
+import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditViewModel;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.ChangeAlcoholCardViewUiState;
 
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ import java.util.List;
 import lombok.Getter;
 
 public class ChangeAlcoholListAdapter extends RecyclerView.Adapter<ChangeAlcoholListAdapter.ViewHolder>{
-    public static final String TAG = "ListParticularBeersAdapter";
+    public static final String TAG = "ChangeAlcoholListAdapter";
     private final List<ChangeAlcoholCardViewUiState> dataList;
-    private final DetailsEditAlcoholsViewModel viewModel;
+    private final DetailsEditViewModel viewModel;
     private final boolean isRemove;
     private final boolean isDrink;
 
@@ -42,7 +42,7 @@ public class ChangeAlcoholListAdapter extends RecyclerView.Adapter<ChangeAlcohol
         }
     }
 
-    public ChangeAlcoholListAdapter(List<ChangeAlcoholCardViewUiState> dataList, boolean isRemove, boolean isDrink, DetailsEditAlcoholsViewModel viewModel){
+    public ChangeAlcoholListAdapter(List<ChangeAlcoholCardViewUiState> dataList, boolean isRemove, boolean isDrink, DetailsEditViewModel viewModel){
         this.dataList = new ArrayList<>(dataList); this.isRemove = isRemove; this.isDrink = isDrink; this.viewModel = viewModel;
     }
 
@@ -90,10 +90,10 @@ public class ChangeAlcoholListAdapter extends RecyclerView.Adapter<ChangeAlcohol
     public void removeAlcohol(int pos){
         List<Drink> data = new ArrayList<>();
         if(!isDrink){
-            data = viewModel.getUiState().getValue().getRemoveBeerListName();
+            data = viewModel.getAlcoholUiState().getValue().getRemoveBeerListName();
         }
         else{
-            data = viewModel.getUiState().getValue().getRemoveDrinkListName();
+            data = viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName();
         }
         data.remove(pos);
     }

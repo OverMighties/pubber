@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.feature.pubdetails.chipsfragments.adapters.ChangeAlcoholListAdapter;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsEditAlcoholsUiState;
+import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsEditTagsUiState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +20,19 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class DetailsEditAlcoholsViewModel extends ViewModel {
+public class DetailsEditViewModel extends ViewModel {
 
-    private final MutableLiveData<DetailsEditAlcoholsUiState> uiState=
+    private final MutableLiveData<DetailsEditAlcoholsUiState> alcoholUiState=
             new MutableLiveData<> (new DetailsEditAlcoholsUiState());
-    public LiveData<DetailsEditAlcoholsUiState> getUiState(){return uiState;}
+    public LiveData<DetailsEditAlcoholsUiState> getAlcoholUiState(){return alcoholUiState;}
+
+    private final MutableLiveData<DetailsEditTagsUiState> tagsUiState=
+            new MutableLiveData<> (new DetailsEditTagsUiState());
+    public LiveData<DetailsEditTagsUiState> getTagsUiState(){return tagsUiState;}
 
     @Getter
     @Setter
-    private DetailsEditAlcoholsViewModel.listDataType dataType;
+    private DetailsEditViewModel.listDataType dataType;
     @Getter
     @Setter
     private String choosenBrewery = null;
@@ -51,17 +57,17 @@ public class DetailsEditAlcoholsViewModel extends ViewModel {
         Drinks
     }
 
-    public static final ViewModelInitializer<DetailsEditAlcoholsViewModel> initializer = new ViewModelInitializer<>(
-            DetailsEditAlcoholsViewModel.class,
+    public static final ViewModelInitializer<DetailsEditViewModel> initializer = new ViewModelInitializer<>(
+            DetailsEditViewModel.class,
             creationExtras -> {
                 PubberApp app = (PubberApp) creationExtras.get(APPLICATION_KEY);
                 assert app != null;
                 SavedStateHandle savedStateHandle = createSavedStateHandle(creationExtras);
 
-                return new DetailsEditAlcoholsViewModel(savedStateHandle);
+                return new DetailsEditViewModel(savedStateHandle);
 
             }
     );
 
-    public DetailsEditAlcoholsViewModel(SavedStateHandle savedStateHandle){}
+    public DetailsEditViewModel(SavedStateHandle savedStateHandle){}
 }

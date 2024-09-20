@@ -19,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,8 +49,6 @@ import com.overmighties.pubber.R;
 
 import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
-import com.overmighties.pubber.app.util.PermissionHandler;
-import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsDrinkListAdapter;
 import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.PubListViewModel;
@@ -63,10 +60,6 @@ import com.overmighties.pubber.util.RatingToIVConverter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 public class DetailsFragment extends Fragment
@@ -209,7 +202,7 @@ public class DetailsFragment extends Fragment
                     chip.setText(alcohol.getName());
                     chip.setPadding(16, 0, 16, 0);
                     chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
-                    chip.setChipBackgroundColorResource(R.color.surface_container_highest);
+                    chip.setChipBackgroundColorResource(R.color.surface_container_low);
                     chip.setTextColor(requireContext().getResources().getColor(R.color.on_surface_variant));
                     chip.setTextSize(14);
                     chip.setChipStrokeColorResource(R.color.outline);
@@ -530,6 +523,10 @@ public class DetailsFragment extends Fragment
         bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
             bottomSheetDialog.hide();
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
+        });
+        bottomSheetDialog.findViewById(R.id.linear_layout_tags).setOnClickListener(v1->{
+            bottomSheetDialog.hide();
+            NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditTagsFragment());
         });
         bottomSheetDialog.show();
     }

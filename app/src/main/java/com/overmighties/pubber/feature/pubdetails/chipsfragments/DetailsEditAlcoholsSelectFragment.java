@@ -10,19 +10,15 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.feature.pubdetails.chipsfragments.adapters.DetailsDrinkListAdapter;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsDrinkCardViewUiState;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsSelectListener;
-import com.overmighties.pubber.feature.search.filterselect.DrinkListAdapter;
-import com.overmighties.pubber.feature.search.filterselect.FilterSelectViewModel;
-import com.overmighties.pubber.feature.search.filterselect.stateholders.FilterSelectDrinkCardViewUiState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +29,7 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
 
     public DetailsEditAlcoholsSelectFragment() {super(R.layout.details_edit_alcohols_select);}
 
-    private DetailsEditAlcoholsViewModel viewModel;
+    private DetailsEditViewModel viewModel;
 
     private DetailsDrinkListAdapter adapter;
     private List<DetailsDrinkCardViewUiState> list = new ArrayList<>();
@@ -42,17 +38,17 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(DetailsEditAlcoholsViewModel.initializer)).get(DetailsEditAlcoholsViewModel.class);
+                ViewModelProvider.Factory.from(DetailsEditViewModel.initializer)).get(DetailsEditViewModel.class);
 
         prepareData();
         setUpListeners();
     }
 
     private void prepareData(){
-        if(viewModel.getDataType() == DetailsEditAlcoholsViewModel.listDataType.Breweries){
+        if(viewModel.getDataType() == DetailsEditViewModel.listDataType.Breweries){
             names = requireContext().getResources().getStringArray(R.array.all_breweries);
         }
-        else if(viewModel.getDataType() == DetailsEditAlcoholsViewModel.listDataType.Styles){
+        else if(viewModel.getDataType() == DetailsEditViewModel.listDataType.Styles){
             names = requireContext().getResources().getStringArray(R.array.beer_styles_unkown);
         }
         else{
@@ -122,11 +118,11 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
 
     @Override
     public void onItemClicked(int position) {
-        if(viewModel.getDataType() == DetailsEditAlcoholsViewModel.listDataType.Breweries){
+        if(viewModel.getDataType() == DetailsEditViewModel.listDataType.Breweries){
             viewModel.setChoosenBrewery(names[position]);
-            viewModel.setDataType(DetailsEditAlcoholsViewModel.listDataType.Styles);
+            viewModel.setDataType(DetailsEditViewModel.listDataType.Styles);
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsSelectFragmentDirections.actionDetailsEditAlcoholsSelectFragmentSelf());
-        } else if (viewModel.getDataType() == DetailsEditAlcoholsViewModel.listDataType.Styles) {
+        } else if (viewModel.getDataType() == DetailsEditViewModel.listDataType.Styles) {
             viewModel.setChoosenStyle(names[position]);
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsSelectFragmentDirections.actionDetailsEditAlcoholsSelectFragmentToDetailsEditFragment());
         }

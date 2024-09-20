@@ -6,7 +6,6 @@ import static com.overmighties.pubber.app.Constants.DETAILS_ALCOHOL_EDIT_DRINKS_
 import android.app.AlertDialog;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.DrinkStyle;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
+import com.overmighties.pubber.feature.pubdetails.chipsfragments.adapters.ChangeAlcoholListAdapter;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.ChangeAlcoholCardViewUiState;
-import com.overmighties.pubber.feature.search.ListParticularBeersAdapter;
-import com.overmighties.pubber.feature.search.filterselect.FilterSelectViewModel;
-import com.overmighties.pubber.feature.search.stateholders.ParticularBeersCardViewUiState;
 import com.overmighties.pubber.util.DimensionsConverter;
 
 import java.util.ArrayList;
@@ -44,18 +40,17 @@ public class DetailsEditAlcoholsFragment extends Fragment {
     public DetailsEditAlcoholsFragment() {super(R.layout.details_edit_alcohols);}
 
     private DetailsViewModel detailsViewModel;
-    private DetailsEditAlcoholsViewModel viewModel;
+    private DetailsEditViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(DetailsEditAlcoholsViewModel.initializer)).get(DetailsEditAlcoholsViewModel.class);
-        detailsViewModel=new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
+                ViewModelProvider.Factory.from(DetailsEditViewModel.initializer)).get(DetailsEditViewModel.class);
+        detailsViewModel=new ViewModelProvider(requireActivity()).get(DetailsViewModel.class);
         //prepare visibility state list
-        viewModel.getUiState().getValue().getVisibilityState().add(false);
-        viewModel.getUiState().getValue().getVisibilityState().add(false);
+        viewModel.getAlcoholUiState().getValue().getVisibilityState().add(false);
+        viewModel.getAlcoholUiState().getValue().getVisibilityState().add(false);
         //prepare adapter list
         for (int i = 0; i < 4; i++) {
             viewModel.getAdapterList().add(null);
@@ -78,15 +73,15 @@ public class DetailsEditAlcoholsFragment extends Fragment {
         requireView().findViewById(R.id.imageView4).setOnClickListener(v->{
             Integer state = 0;
             Integer drawableId = 0;
-            if(viewModel.getUiState().getValue().getVisibilityState().get(0)){
+            if(viewModel.getAlcoholUiState().getValue().getVisibilityState().get(0)){
                 drawableId = R.drawable.ic_expand_more_secondary;
                 state = View.GONE;
-                viewModel.getUiState().getValue().getVisibilityState().set(0, false);
+                viewModel.getAlcoholUiState().getValue().getVisibilityState().set(0, false);
             }
             else{
                 drawableId = R.drawable.ic_expand_less_secondary;
                 state = View.VISIBLE;
-                viewModel.getUiState().getValue().getVisibilityState().set(0, true);
+                viewModel.getAlcoholUiState().getValue().getVisibilityState().set(0, true);
             }
             ((ImageView)requireView().findViewById(R.id.imageView4)).setImageDrawable(requireContext().getDrawable(drawableId));
             for(var id:  DETAILS_ALCOHOL_EDIT_BEERS_WIDGETS_IDS){
@@ -95,7 +90,7 @@ public class DetailsEditAlcoholsFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.buttonAddBeer).setOnClickListener(v->{
-            viewModel.setDataType(DetailsEditAlcoholsViewModel.listDataType.Breweries);
+            viewModel.setDataType(DetailsEditViewModel.listDataType.Breweries);
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsFragmentDirections.actionDetailsEditFragmentToDetailsEditAlcoholsSelectFragment());
         });
         requireView().findViewById(R.id.buttonRemoveBeer).setOnClickListener(v-> {
@@ -105,15 +100,15 @@ public class DetailsEditAlcoholsFragment extends Fragment {
         requireView().findViewById(R.id.imageView10).setOnClickListener(v->{
             Integer state = 0;
             Integer drawableId = 0;
-            if(viewModel.getUiState().getValue().getVisibilityState().get(1)){
+            if(viewModel.getAlcoholUiState().getValue().getVisibilityState().get(1)){
                 drawableId = R.drawable.ic_expand_more_secondary;
                 state = View.GONE;
-                viewModel.getUiState().getValue().getVisibilityState().set(1, false);
+                viewModel.getAlcoholUiState().getValue().getVisibilityState().set(1, false);
             }
             else{
                 drawableId = R.drawable.ic_expand_less_secondary;
                 state = View.VISIBLE;
-                viewModel.getUiState().getValue().getVisibilityState().set(1, true);
+                viewModel.getAlcoholUiState().getValue().getVisibilityState().set(1, true);
             }
             ((ImageView)requireView().findViewById(R.id.imageView10)).setImageDrawable(requireContext().getDrawable(drawableId));
             for(var id:  DETAILS_ALCOHOL_EDIT_DRINKS_WIDGETS_IDS){
@@ -122,43 +117,32 @@ public class DetailsEditAlcoholsFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.buttonAddDrink).setOnClickListener(v->{
-            viewModel.setDataType(DetailsEditAlcoholsViewModel.listDataType.Drinks);
+            viewModel.setDataType(DetailsEditViewModel.listDataType.Drinks);
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsFragmentDirections.actionDetailsEditFragmentToDetailsEditAlcoholsSelectFragment());
         });
 
         requireView().findViewById(R.id.buttonRemoveDrink).setOnClickListener(v->{
             showDialogBoxDrinks();
         });
+
+        requireView().findViewById(R.id.buttonSubmitAlcoholChange).setOnClickListener(v->{
+            //TODO submiting data to online database for change
+        });
     }
 
     private void showDialogBoxBeer(){
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomDialog);
         LayoutInflater inflater = LayoutInflater.from(requireContext());
-        FlexboxLayout dialogView = (FlexboxLayout) inflater.inflate(R.layout.layout_alcohol_chips_container, null);
+        FlexboxLayout dialogView = (FlexboxLayout) inflater.inflate(R.layout.alcohol_chips_container, null);
 
         if (detailsViewModel.getUiState().getValue().getDrinks() != null) {
             for (var alcohol : detailsViewModel.getUiState().getValue().getDrinks()) {
                 if(alcohol.getType() == "Beer")
                 {
                     View alcoholChipView = inflater.inflate(R.layout.alcohol_view_chip, dialogView, false);
-
                     Chip chip = alcoholChipView.findViewById(R.id.chipAlcohol);
                     chip.setText(alcohol.getName());
-                    chip.setPadding(16, 0, 16, 0);
-                    chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
-                    chip.setChipBackgroundColorResource(R.color.chip_remove_background_color);
-                    chip.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.chip_remove_text_color));
-                    chip.setTextSize(14);
-                    chip.setChipStrokeColorResource(R.color.outline);
-                    chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(requireContext(), 0.7F));
-                    chip.setCheckedIconVisible(true);
-                    chip.setCheckedIconTint(ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.error)));
-                    chip.setCheckedIcon(requireContext().getDrawable(R.drawable.ic_close_on_surface));
-                    chip.setCheckable(true);
-                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-                    chip.setLayoutParams(params);
-
+                    styleChip(chip);
                     if(alcohol.getDrinkStyles() != null && !alcohol.getDrinkStyles().isEmpty()){
                         String styles="";
                         for(var style: alcohol.getDrinkStyles()){
@@ -174,10 +158,8 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                     else{
                         alcoholChipView.findViewById(R.id.textViewAlcoholStyles).setVisibility(View.GONE);
                     }
-                    if(!viewModel.getUiState().getValue().getRemoveBeerListName().isEmpty() && viewModel.getUiState().getValue().getRemoveBeerListName().stream().map(Drink::getName).collect(Collectors.toList()).contains(alcohol.getName()))
+                    if(!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().isEmpty() && viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().stream().map(Drink::getName).collect(Collectors.toList()).contains(alcohol.getName()))
                         chip.setChecked(true);
-
-
                     dialogView.addView(alcoholChipView);
                 }
 
@@ -198,18 +180,17 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                             null,
                             drinkStyleList);
                     if(((Chip)alcoholChipView.findViewById(R.id.chipAlcohol)).isChecked()) {
-                        if(!viewModel.getUiState().getValue().getRemoveBeerListName().contains(checkDrink))
-                            viewModel.getUiState().getValue().getRemoveBeerListName().add(checkDrink);
+                        if(!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().contains(checkDrink))
+                            viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().add(checkDrink);
                     }
                     else{
-                        if(viewModel.getUiState().getValue().getRemoveBeerListName().contains(checkDrink))
-                            viewModel.getUiState().getValue().getRemoveBeerListName().remove(checkDrink);
+                        if(viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().contains(checkDrink))
+                            viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().remove(checkDrink);
                     }
-
                 }
-                if(!viewModel.getUiState().getValue().getRemoveBeerListName().isEmpty()){
+                if(!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().isEmpty()){
                     List<ChangeAlcoholCardViewUiState> list = new ArrayList<>();
-                    for(var drink: viewModel.getUiState().getValue().getRemoveBeerListName()){
+                    for(var drink: viewModel.getAlcoholUiState().getValue().getRemoveBeerListName()){
                         String styles = null;
                         if(drink.getDrinkStyles() != null && !drink.getDrinkStyles().isEmpty()){
                             styles="";
@@ -240,36 +221,19 @@ public class DetailsEditAlcoholsFragment extends Fragment {
     private void showDialogBoxDrinks(){
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomDialog);
         LayoutInflater inflater = LayoutInflater.from(requireContext());
-        FlexboxLayout dialogView = (FlexboxLayout) inflater.inflate(R.layout.layout_alcohol_chips_container, null);
+        FlexboxLayout dialogView = (FlexboxLayout) inflater.inflate(R.layout.alcohol_chips_container, null);
 
         if (detailsViewModel.getUiState().getValue().getDrinks() != null) {
             for (var alcohol : detailsViewModel.getUiState().getValue().getDrinks()) {
                 if(!alcohol.getType().equals("Beer"))
                 {
                     View alcoholChipView = inflater.inflate(R.layout.alcohol_view_chip, dialogView, false);
-
                     Chip chip = alcoholChipView.findViewById(R.id.chipAlcohol);
                     chip.setText(alcohol.getName());
-                    chip.setPadding(16, 0, 16, 0);
-                    chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
-                    chip.setChipBackgroundColorResource(R.color.chip_remove_background_color);
-                    chip.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.chip_remove_text_color));
-                    chip.setTextSize(14);
-                    chip.setChipStrokeColorResource(R.color.outline);
-                    chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(requireContext(), 0.7F));
-                    chip.setCheckedIconVisible(true);
-                    chip.setCheckedIconTint(ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.error)));
-                    chip.setCheckedIcon(requireContext().getDrawable(R.drawable.ic_close_on_surface));
-                    chip.setCheckable(true);
-                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-                    chip.setLayoutParams(params);
+                    styleChip(chip);
                     alcoholChipView.findViewById(R.id.textViewAlcoholStyles).setVisibility(View.GONE);
-
-                    if(!viewModel.getUiState().getValue().getRemoveDrinkListName().isEmpty() && viewModel.getUiState().getValue().getRemoveDrinkListName().stream().map(Drink::getName).collect(Collectors.toList()).contains(alcohol.getName()))
+                    if(!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().isEmpty() && viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().stream().map(Drink::getName).collect(Collectors.toList()).contains(alcohol.getName()))
                         chip.setChecked(true);
-
-
                     dialogView.addView(alcoholChipView);
                 }
 
@@ -288,18 +252,17 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                             null,
                             null);
                     if(((Chip)alcoholChipView.findViewById(R.id.chipAlcohol)).isChecked()) {
-                        if(!viewModel.getUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
-                            viewModel.getUiState().getValue().getRemoveDrinkListName().add(checkDrink);
+                        if(!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
+                            viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().add(checkDrink);
                     }
                     else{
-                        if(viewModel.getUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
-                            viewModel.getUiState().getValue().getRemoveDrinkListName().remove(checkDrink);
+                        if(viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
+                            viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().remove(checkDrink);
                     }
-
                 }
-                if(!viewModel.getUiState().getValue().getRemoveDrinkListName().isEmpty()){
+                if(!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().isEmpty()){
                     List<ChangeAlcoholCardViewUiState> list = new ArrayList<>();
-                    for(var drink: viewModel.getUiState().getValue().getRemoveDrinkListName()){
+                    for(var drink: viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName()){
                         list.add(new ChangeAlcoholCardViewUiState(drink.getName(), null));
                     }
                     viewModel.getAdapterList().set(3, new ChangeAlcoholListAdapter(list, true, true, viewModel));
@@ -360,15 +323,15 @@ public class DetailsEditAlcoholsFragment extends Fragment {
         Integer state = 0;
         Integer drawableId = 0;
 
-        if(!viewModel.getUiState().getValue().getVisibilityState().get(0)){
+        if(!viewModel.getAlcoholUiState().getValue().getVisibilityState().get(0)){
             drawableId = R.drawable.ic_expand_more_secondary;
             state = View.GONE;
-            viewModel.getUiState().getValue().getVisibilityState().set(0, false);
+            viewModel.getAlcoholUiState().getValue().getVisibilityState().set(0, false);
         }
         else{
             drawableId = R.drawable.ic_expand_less_secondary;
             state = View.VISIBLE;
-            viewModel.getUiState().getValue().getVisibilityState().set(0, true);
+            viewModel.getAlcoholUiState().getValue().getVisibilityState().set(0, true);
         }
 
         ((ImageView)requireView().findViewById(R.id.imageView4)).setImageDrawable(requireContext().getDrawable(drawableId));
@@ -376,15 +339,15 @@ public class DetailsEditAlcoholsFragment extends Fragment {
             requireView().findViewById(id).setVisibility(state);
         }
 
-        if(!viewModel.getUiState().getValue().getVisibilityState().get(1)){
+        if(!viewModel.getAlcoholUiState().getValue().getVisibilityState().get(1)){
             drawableId = R.drawable.ic_expand_more_secondary;
             state = View.GONE;
-            viewModel.getUiState().getValue().getVisibilityState().set(1, false);
+            viewModel.getAlcoholUiState().getValue().getVisibilityState().set(1, false);
         }
         else{
             drawableId = R.drawable.ic_expand_less_secondary;
             state = View.VISIBLE;
-            viewModel.getUiState().getValue().getVisibilityState().set(1, true);
+            viewModel.getAlcoholUiState().getValue().getVisibilityState().set(1, true);
         }
 
         ((ImageView)requireView().findViewById(R.id.imageView10)).setImageDrawable(requireContext().getDrawable(drawableId));
@@ -392,8 +355,23 @@ public class DetailsEditAlcoholsFragment extends Fragment {
             requireView().findViewById(id).setVisibility(state);
         }
 
+    }
 
-
+    private void styleChip(Chip chip){
+        chip.setPadding(16, 0, 16, 0);
+        chip.setChipCornerRadius(DimensionsConverter.pxFromDp(requireContext(), 8));
+        chip.setChipBackgroundColorResource(R.color.chip_remove_background_color);
+        chip.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.chip_remove_text_color));
+        chip.setTextSize(14);
+        chip.setChipStrokeColorResource(R.color.outline);
+        chip.setChipStrokeWidth(DimensionsConverter.pxFromDp(requireContext(), 0.7F));
+        chip.setCheckedIconVisible(true);
+        chip.setCheckedIconTint(ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.error)));
+        chip.setCheckedIcon(requireContext().getDrawable(R.drawable.ic_close_on_surface));
+        chip.setCheckable(true);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        chip.setLayoutParams(params);
     }
 
 }

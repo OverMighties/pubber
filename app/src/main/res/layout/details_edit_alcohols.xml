@@ -171,7 +171,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSubmitAlcoholChange"
         android:layout_width="0dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"

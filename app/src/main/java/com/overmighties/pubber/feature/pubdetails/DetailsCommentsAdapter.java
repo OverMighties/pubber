@@ -14,12 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsDrinkListAdapter;
-import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsDrinkCardViewUiState;
-import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsSelectListener;
 import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
