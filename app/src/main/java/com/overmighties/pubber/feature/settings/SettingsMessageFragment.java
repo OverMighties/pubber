@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.NavigationBar;
 
 public class SettingsMessageFragment extends Fragment {
 
@@ -37,7 +36,7 @@ public class SettingsMessageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
 
     }
 

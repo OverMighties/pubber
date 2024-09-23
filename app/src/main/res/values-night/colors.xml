@@ -30,6 +30,7 @@
     <color name="opposing_surface">#d9e2e9</color>
     <color name="opposing_surface_variant_secondary">#c6d1d8</color>
     <color name="opposing_on_surface">#111f2b</color>
+    <color name="opposing_on_surface_variant">#2b3b4a</color>
     <color name="opposing_surface_container">#c4ccd3</color>
     <color name="opposing_on_secondary_container">#022242</color>
     <color name="opposing_outline">#62717e</color>

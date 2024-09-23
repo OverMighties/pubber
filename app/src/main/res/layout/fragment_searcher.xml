@@ -2,27 +2,27 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/SearcherFragment"
+    android:id="@+id/searcher_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".feature.search.SearcherFragment">
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/top_app_bar_layout"
+        android:id="@+id/searcher_topAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liftOnScroll="true"
 
-        app:liftOnScrollTargetViewId="@id/Publista"
+        app:liftOnScrollTargetViewId="@id/searcher_recyclerView_pubList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/top_app_bar_view"
+            android:id="@+id/searcher_topAppBarView"
             app:layout_scrollEffect="compress"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="64dp"
             android:background="@color/surface"
             app:menu="@menu/top_app_bar"
             app:titleTextColor="@color/on_surface"
@@ -32,15 +32,15 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/searcher_cl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@id/top_app_bar_layout">
+        app:layout_constraintTop_toBottomOf="@id/searcher_topAppBarLayout">
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/searchViewCardView"
+                android:id="@+id/searcher_cardView_search"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="25dp"
@@ -51,29 +51,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <android.widget.SearchView
+                    android:layout_gravity="center"
+                    android:id="@+id/searchView"
+                    style="@style/CustomSearchView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/searchview_shape"
+                    android:closeIcon="@drawable/ic_close_on_surface"
+                    android:textAlignment="center"
+                    android:theme="@style/AppTheme.Toolbar"/>
 
-                    <android.widget.SearchView
-                        android:id="@+id/searchView"
-                        style="@style/CustomSearchView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/searchview_shape"
-                        android:closeIcon="@drawable/ic_close_on_surface"
-                        android:textAlignment="center"
-                        android:theme="@style/AppTheme.Toolbar"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/textViewSortBy_searcher"
+                android:id="@+id/searcher_text_sortInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -84,10 +76,10 @@
                 android:textColor="@color/on_surface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchViewCardView" />
+                app:layout_constraintTop_toBottomOf="@+id/searcher_cardView_search" />
 
             <TextView
-                android:id="@+id/textViewSortType_searcher"
+                android:id="@+id/searcher_text_sortBy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -99,33 +91,33 @@
                 android:text="@string/sort_relevance"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewSortBy_searcher"
-                app:layout_constraintStart_toEndOf="@+id/textViewSortBy_searcher"
-                app:layout_constraintTop_toTopOf="@+id/textViewSortBy_searcher" />
+                app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortInfo"
+                app:layout_constraintStart_toEndOf="@+id/searcher_text_sortInfo"
+                app:layout_constraintTop_toTopOf="@+id/searcher_text_sortInfo" />
 
             <ImageView
-                android:id="@+id/sort_image"
+                android:id="@+id/searcher_image_sortBy"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_expand_more_primary"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewSortType_searcher"
-                app:layout_constraintStart_toEndOf="@+id/textViewSortType_searcher"
-                app:layout_constraintTop_toTopOf="@id/textViewSortType_searcher" />
+                app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortBy"
+                app:layout_constraintStart_toEndOf="@+id/searcher_text_sortBy"
+                app:layout_constraintTop_toTopOf="@id/searcher_text_sortBy" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/filtrationCardView"
+            android:id="@+id/searcher_cardView_filtration"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginEnd="12dp"
             android:backgroundTint="@color/secondary_container"
             app:cardCornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewSortBy_searcher"
+            app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortInfo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textViewSortBy_searcher">
+            app:layout_constraintTop_toTopOf="@+id/searcher_text_sortInfo">
 
 
             <ImageView
-                android:id="@+id/Filtration"
+                android:id="@+id/searcher_image_filtration"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
@@ -137,18 +129,18 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefresh"
+            android:id="@+id/searcher_swipeRefresh_pubList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:isScrollContainer="false"
             android:layout_marginTop="4dp"
-            app:layout_constraintTop_toBottomOf="@id/filtrationCardView"
+            app:layout_constraintTop_toBottomOf="@id/searcher_cardView_filtration"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/Publista"
+                android:id="@+id/searcher_recyclerView_pubList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
@@ -157,13 +149,13 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_map"
+        android:id="@+id/searcher_FAB_map"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_destination"
         app:tint = "@color/on_secondary"
-        app:layout_anchor="@id/constraintLayout"
+        app:layout_anchor="@id/searcher_cl_content"
         app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end"
         app:backgroundTint="@color/secondary" />

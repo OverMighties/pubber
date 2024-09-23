@@ -74,6 +74,8 @@
     <!--Top app bar-->
     <string name="ic_settings_title">Ustawienia</string>
     <string name="edit">edytuj</string>
+    <!-- new user details-->
+    <string name="your_nickname">Twoja nazwa</string>
     <!--Account details-->
     <string name="list">Lista</string>
     <string name="favorite">Ulubione</string>
@@ -124,12 +126,13 @@
     <string name="log_out">Wyloguj</string>,
 
     <!-- first time fragments strings -->
-    <string name="welcome_in_pubber">Witaj w Pubberze !</string>
-    <string name="first_time_info">Mamy nadzieję, że pozwolimy ci znaleźć odpowiednie dla Ciebie puby i zostaniesz z nami jak najdłużesz.</string>
+    <string name="welcome_in_pubber">Witaj w Pubberze!</string>
+    <string name="first_time_info">Mamy nadzieję ci pomóc znaleźć odpowiednie dla Ciebie puby i zostaniesz z nami jak najdłużesz.</string>
     <string name="next">Dalej</string>
-    <string name="choose_language">Język aplikacji</string>
-    <string name="choose_theme">Motyw aplikacji</string>
-    <string name="theme">Motyw aplikacji</string>
+    <string name="back">Powrót</string>
+    <string name="choose_language">Wybierz swój język:</string>
+    <string name="choose_theme">Wybierz motyw aplikacji:</string>
+    <string name="theme">Domyślny</string>
     <string name="light">Jasny</string>
     <string name="dark">Ciemny</string>
     <string name="polish">Polski</string>

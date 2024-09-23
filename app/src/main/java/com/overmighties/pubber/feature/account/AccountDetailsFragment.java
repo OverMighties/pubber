@@ -40,13 +40,13 @@ public class AccountDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.VISIBLE);
-        accountDetailsRecyclerView = requireView().findViewById(R.id.account_details_recycler_view);
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> accountViewModel.onSignOutClick(
+        requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
+        accountDetailsRecyclerView = requireView().findViewById(R.id.accountDetails_recyclerView_info);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.accountDetails_button_signOut).setOnClickListener(v-> accountViewModel.onSignOutClick(
                 (from,to)-> navController.navigate(getNavDirections(from,to)),
                 (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes)));
-        requireView().findViewById(R.id.delete_button).setOnClickListener(v->{
+        requireView().findViewById(R.id.accountDetails_button_delete).setOnClickListener(v->{
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomDialog);
             builder.setNeutralButton(getString(R.string.cancel), null);
             builder.setPositiveButton(getString(R.string.yes), (((dialog, which) -> {
@@ -56,7 +56,7 @@ public class AccountDetailsFragment extends Fragment {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         });
-        profileImage=requireView().findViewById(R.id.profile_image);
+        profileImage=requireView().findViewById(R.id.accountDetails_image_profile);
         accountDetailsAdapter = new AccountDetailsAdapter(accountViewModel.getUserData().getValue(), accountViewModel);
         accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
         accountViewModel.getUserData().observe(getViewLifecycleOwner(), userData -> {

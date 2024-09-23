@@ -29,7 +29,7 @@ public class DrinkListAdapter extends RecyclerView.Adapter<DrinkListAdapter.View
 
         public ViewHolder(@NonNull View itemView, FilterSelectListener filterSelectListener) {
             super(itemView);
-            name = itemView.findViewById(R.id.TV_name);
+            name = itemView.findViewById(R.id.filterSelectRVR_text_name);
             itemView.setOnClickListener(v->{
                 if(filterSelectListener != null){
                     int pos=getBindingAdapterPosition();

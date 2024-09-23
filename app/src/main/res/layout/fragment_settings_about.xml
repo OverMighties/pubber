@@ -2,31 +2,36 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settingsAbout_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
+        android:id="@+id/settingsAbout_scroll"
         android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settingsAbout_cl_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView30"
+                android:id="@+id/settingsAbout_text_question1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="@string/question1"
                 android:textColor="@color/on_surface"
                 android:textSize="20sp"
-                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView31"
+                android:id="@+id/settingsAbout_text_answer1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -34,23 +39,24 @@
                 android:textColor="@color/on_surface"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
+                app:layout_constraintStart_toStartOf="@+id/settingsAbout_text_question1"
+                app:layout_constraintTop_toBottomOf="@+id/settingsAbout_text_question1" />
+
             <TextView
-                android:id="@+id/textView50"
+                android:id="@+id/settingsAbout_text_question2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/on_surface"
                 android:fontFamily="@font/roboto_bold"
-                android:textSize="20sp"
                 android:text="@string/question2"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+                app:layout_constraintTop_toBottomOf="@+id/settingsAbout_text_answer1" />
 
             <TextView
-                android:id="@+id/textView51"
+                android:id="@+id/settingsAbout_text_answer2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -58,23 +64,24 @@
                 android:textColor="@color/on_surface"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/textView50" />
+                app:layout_constraintStart_toStartOf="@+id/settingsAbout_text_question1"
+                app:layout_constraintTop_toBottomOf="@+id/settingsAbout_text_question2" />
+
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/settingsAbout_text_question3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/on_surface"
                 android:fontFamily="@font/roboto_bold"
-                android:textSize="20sp"
                 android:text="@string/question3"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView51" />
+                app:layout_constraintTop_toBottomOf="@id/settingsAbout_text_answer2" />
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/settingsAbout_text_answer3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -82,23 +89,24 @@
                 android:textColor="@color/on_surface"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/textView52" />
+                app:layout_constraintStart_toStartOf="@+id/settingsAbout_text_question1"
+                app:layout_constraintTop_toBottomOf="@+id/settingsAbout_text_question3" />
+
             <TextView
-                android:id="@+id/textView54"
+                android:id="@+id/settingsAbout_text_question4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/on_surface"
                 android:fontFamily="@font/roboto_bold"
-                android:textSize="20sp"
                 android:text="@string/question1"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView53" />
+                app:layout_constraintTop_toBottomOf="@id/settingsAbout_text_answer3" />
 
             <TextView
-                android:id="@+id/textView55"
+                android:id="@+id/settingsAbout_text_answer4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -106,8 +114,8 @@
                 android:textColor="@color/on_surface"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+                app:layout_constraintStart_toStartOf="@+id/settingsAbout_text_question1"
+                app:layout_constraintTop_toBottomOf="@+id/settingsAbout_text_question4" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

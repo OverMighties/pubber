@@ -1,5 +1,6 @@
 package com.overmighties.pubber.app.settings;
 
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -60,6 +61,15 @@ public class SettingsHandler {
 
         public static void saveTheme(Context context, String theme) {
             savePreference(context, theme, context.getString(R.string.theme_key));
+        }
+
+        public static String getDefaultTheme(Context context){
+            UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+            if (uiModeManager != null) {
+                int mode = uiModeManager.getNightMode();
+                return (mode == UiModeManager.MODE_NIGHT_YES)?THEME_DARK:THEME_LIGHT;
+            }
+            return THEME_DARK;
         }
 
         public static String getSavedTheme(Context context) {

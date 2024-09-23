@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pub_recycler_view_row"
+    android:id="@+id/pub_recyclerViewRow"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginStart="16dp"
@@ -16,6 +16,7 @@
     app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pubRVR_cl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,17 +26,17 @@
 
 
         <TextView
-            android:id="@+id/PWalkDis"
+            android:id="@+id/pubRVR_text_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*.*km"
             android:textColor="@color/on_surface_container_secondary"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/PRatingCount" />
+            app:layout_constraintStart_toEndOf="@+id/pubRVR_image_distance"
+            app:layout_constraintTop_toTopOf="@+id/pubRVR_text_ratingCount" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/PubImage"
+            android:id="@+id/pubRVR_image"
             android:layout_width="84dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -49,7 +50,7 @@
             app:srcCompat="@drawable/pub_icon" />
 
         <TextView
-            android:id="@+id/PName"
+            android:id="@+id/pubRVR_text_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -63,14 +64,14 @@
             android:textIsSelectable="true"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/heart"
+            app:layout_constraintEnd_toStartOf="@id/pubRVR_image_favourite"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/PubImage"
+            app:layout_constraintStart_toEndOf="@+id/pubRVR_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.04" />
 
         <TextView
-            android:id="@+id/timeOpenToday_card_view_row"
+            android:id="@+id/pubRVR_text_timeOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/roundstyle"
@@ -79,64 +80,65 @@
             android:textColor="#FFFFFF"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/PName"
+            app:layout_constraintStart_toStartOf="@+id/pubRVR_text_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.317" />
 
         <ImageView
-            android:id="@+id/heart"
+            android:id="@+id/pubRVR_image_favourite"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:layout_marginEnd="12dp"
             android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_heart_full" />
 
         <TextView
-            android:id="@+id/PRating"
+            android:id="@+id/pubRVR_text_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*.*"
             android:textColor="@color/on_surface_container_secondary"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/PName"
-            app:layout_constraintTop_toBottomOf="@+id/timeOpenToday_card_view_row" />
+            app:layout_constraintStart_toStartOf="@+id/pubRVR_text_name"
+            app:layout_constraintTop_toBottomOf="@+id/pubRVR_text_timeOpen" />
+
         <TextView
-            android:id="@+id/PRatingCount"
+            android:id="@+id/pubRVR_text_ratingCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:text="(****)"
             android:textColor="@color/on_surface_container_secondary"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/PRating"
-            app:layout_constraintTop_toTopOf="@+id/PRating" />
+            app:layout_constraintStart_toEndOf="@+id/pubRVR_text_rating"
+            app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/pubRVR_image_distance"
             android:layout_width="19dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/PRatingCount"
-            app:layout_constraintStart_toEndOf="@+id/PRatingCount"
-            app:layout_constraintTop_toTopOf="@+id/PRatingCount"
+            app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_ratingCount"
+            app:layout_constraintStart_toEndOf="@+id/pubRVR_text_ratingCount"
+            app:layout_constraintTop_toTopOf="@+id/pubRVR_text_ratingCount"
             app:srcCompat="@drawable/ic_walking_on_sureface_con_sec" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/PClRatingImage"
+            android:id="@+id/pubRVR_cl_ratingContainer"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginEnd="2dp"
-            app:layout_constraintBottom_toBottomOf="@+id/PRating"
-            app:layout_constraintEnd_toStartOf="@+id/PRatingCount"
-            app:layout_constraintStart_toEndOf="@+id/PRating"
-            app:layout_constraintTop_toTopOf="@+id/PRating">
+            app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_rating"
+            app:layout_constraintEnd_toStartOf="@+id/pubRVR_text_ratingCount"
+            app:layout_constraintStart_toEndOf="@+id/pubRVR_text_rating"
+            app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/MapChip"
+            android:id="@+id/pubRVR_chip_guide"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginTop="-5dp"
@@ -150,11 +152,11 @@
             app:chipIconSize="25dp"
             app:chipStrokeColor="#4F3C27"
             app:chipStrokeWidth="0.5dp"
-            app:layout_constraintStart_toStartOf="@+id/PRating"
-            app:layout_constraintTop_toBottomOf="@+id/PRating" />
+            app:layout_constraintStart_toStartOf="@+id/pubRVR_text_rating"
+            app:layout_constraintTop_toBottomOf="@+id/pubRVR_text_rating" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/AlcoholChip"
+            android:id="@+id/pubRVR_chip_alcohol"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginLeft="7dp"
@@ -170,8 +172,8 @@
             app:chipStartPadding="8dp"
             app:chipStrokeColor="#4F3C27"
             app:chipStrokeWidth="0.5dp"
-            app:layout_constraintStart_toEndOf="@+id/MapChip"
-            app:layout_constraintTop_toTopOf="@+id/MapChip"
+            app:layout_constraintStart_toEndOf="@+id/pubRVR_chip_guide"
+            app:layout_constraintTop_toTopOf="@+id/pubRVR_chip_guide"
             app:textStartPadding="8dp" />
 
 

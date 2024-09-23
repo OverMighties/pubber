@@ -61,27 +61,27 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
-        NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
-        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.GONE);
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.main_bottomNavView), 200);
+        requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.button_sign_in_splash).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
-        requireView().findViewById(R.id.button_sing_up_splash).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
+        requireView().findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
 
         //Sign in launcher calls firebase api from viewmodel
         signInLauncher= registerForActivityResult(
                 new ActivityResultContracts.StartIntentSenderForResult(),
                 result -> viewModel.handleSignInResult(
                         result.getData(), signInClient,
-                        (from, to)-> Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(getNavDirections(from,to)),
+                        (from, to)-> Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container).navigate(getNavDirections(from,to)),
                         (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes))
         );
 
-        requireView().findViewById(R.id.IV_google_button).setOnClickListener(v-> signInWithGoogle());
+        requireView().findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
 
         int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
-        ((ImageView)requireView().findViewById(R.id.IV_google_button)).setImageResource(google_button_id);
+        ((ImageView)requireView().findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
 
         new Handler(
                 Looper.getMainLooper())
@@ -107,7 +107,7 @@ public class SplashFragment extends Fragment {
                         public void onResult(GetCredentialResponse credentialResponse) {
                             viewModel.handleSignInResult(
                                     credentialResponse,
-                                    (from, to) -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(getNavDirections(from, to)),
+                                    (from, to) -> Navigation.findNavController(requireActivity(), R.id.main_navHostFragment_container).navigate(getNavDirections(from, to)),
                                     (snackbarType, uiText, logMes) -> showSnackbar(requireView(), snackbarType, (UIText.ResourceString) uiText, logMes));
                         }
                         @Override

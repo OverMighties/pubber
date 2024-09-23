@@ -59,18 +59,18 @@ public class DetailsEditTagsFragment extends Fragment {
     }
 
     private void setUpListeners(){
-        requireView().findViewById(R.id.CloseButtonEditTags).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditT_image_back).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).popBackStack();
         });
 
-        requireView().findViewById(R.id.buttonAddTags).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditT_chip_addTag).setOnClickListener(v->{
             showDialogBox(dialogBoxDataType.Add);
         });
-        requireView().findViewById(R.id.buttonRemoveTags).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditT_chip_removeTag).setOnClickListener(v->{
             showDialogBox(dialogBoxDataType.Remove);
         });
 
-        requireView().findViewById(R.id.buttonSubmitTagsChange).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditT_button_submit).setOnClickListener(v->{
             //TODO submiting data to online database for change
         });
     }
@@ -82,14 +82,14 @@ public class DetailsEditTagsFragment extends Fragment {
         List<DetailsEditTagsCardViewUiState> checked;
         String title;
         if(dialogBoxDataType == DetailsEditTagsFragment.dialogBoxDataType.Add){
-            recyclerView = requireView().findViewById(R.id.addTagsRecyclerView);
+            recyclerView = requireView().findViewById(R.id.detailsEditT_recyclerView_addTags);
             tags = Arrays.stream(requireContext().getResources().getStringArray(R.array.pub_tags))
                     .map(DetailsEditTagsCardViewUiState::new).collect(Collectors.toList());
             checked = viewModel.getTagsUiState().getValue().getAddTagsListName();
             title = getString(R.string.select_tags_add);
         }
         else{
-            recyclerView = requireView().findViewById(R.id.removeTagsRecyclerView);
+            recyclerView = requireView().findViewById(R.id.detailsEditT_recyclerView_removeTags);
             if(detailsViewModel.getUiState().getValue().getTags() != null && !detailsViewModel.getUiState().getValue().getTags().isEmpty())
                 tags = detailsViewModel.getUiState().getValue().getTags().stream()
                         .map(Tag::getName).map(DetailsEditTagsCardViewUiState::new)

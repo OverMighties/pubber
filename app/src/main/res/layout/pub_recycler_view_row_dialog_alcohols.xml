@@ -1,58 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/pubRVR_dialogAlcohols"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_rounded"
-    >
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/pubDA_text_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/on_surface"
-        android:textSize="20sp"
+        android:text="@string/available_alcohols"
         android:textAlignment="center"
-        android:text="@string/available_alcohols" />
+        android:textColor="@color/on_surface"
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/pubDA_text_beers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/beers_present"
         android:textColor="@color/on_surface_variant"
-        android:textSize="18sp"
-        android:text="@string/beers_present" />
+        android:textSize="18sp" />
 
 
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/dialog_beers_CHG"
+        android:id="@+id/pubDA_chipGroup_beers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
 
     </com.google.android.material.chip.ChipGroup>
+
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/pubDA_text_drinks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/drinks_present"
         android:textColor="@color/on_surface_variant"
-        android:textSize="18sp"
-        android:text="@string/drinks_present"  />
+        android:textSize="18sp" />
 
 
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/dialog_drinks_CHG"
+        android:id="@+id/pubDA_chipGroup_drinks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
 
     </com.google.android.material.chip.ChipGroup>
+
     <TextView
-        android:id="@+id/dialog_go_back"
+        android:id="@+id/pubDA_text_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/go_back"
         android:textAlignment="viewEnd"
-        android:textSize="18sp"
         android:textColor="@color/primary"
-        android:text="@string/go_back" />
+        android:textSize="18sp" />
 </LinearLayout>

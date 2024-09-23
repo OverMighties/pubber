@@ -49,11 +49,11 @@ public class SignInFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.emailSignInButton).setOnClickListener(v->{
-            EditText email=requireView().findViewById(R.id.edit_field_email_sing_in);
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.signIn_button_sign).setOnClickListener(v->{
+            EditText email=requireView().findViewById(R.id.signIn_editText_email);
             viewModel.updateEmail(email.getText().toString());
-            EditText password=requireView().findViewById(R.id.edit_field_password_sing_in);
+            EditText password=requireView().findViewById(R.id.signIn_editText_password);
             viewModel.updatePassword(password.getText().toString());
 
             viewModel.onSignInClick(
@@ -69,11 +69,11 @@ public class SignInFragment extends Fragment {
                     });
         });
 
-        requireView().findViewById(R.id.IV_goback_sign_in).setOnClickListener(v-> navController.popBackStack());
+        requireView().findViewById(R.id.signIn_button_back).setOnClickListener(v-> navController.popBackStack());
 
-        requireView().findViewById(R.id.sign_up_5).setOnClickListener(v-> navController.navigate(getNavDirections(SIGN_IN_FRAGMENT,SIGN_UP_FRAGMENT)));
+        requireView().findViewById(R.id.signIn_botton_signUp).setOnClickListener(v-> navController.navigate(getNavDirections(SIGN_IN_FRAGMENT,SIGN_UP_FRAGMENT)));
 
-        requireView().findViewById(R.id.SignInFragment).setOnClickListener(v->{
+        requireView().findViewById(R.id.signIn_fragment).setOnClickListener(v->{
             for(var id: SIGN_IN_TEXT_FIELDS_IDS)
             {
                 TextInputEditText EditText= requireView().findViewById(id);
@@ -113,12 +113,12 @@ public class SignInFragment extends Fragment {
         }
     }
     private void underlineEmail(String errMess) {
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmailSignIn)).setErrorEnabled(true);
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmailSignIn)).setError(errMess);
+        ((TextInputLayout)requireView().findViewById(R.id.signIn_inputLayout_email)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.signIn_inputLayout_email)).setError(errMess);
     }
     private void underlinePassword(String errMess){
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPasswordSignIn)).setErrorEnabled(true);
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPasswordSignIn)).setError(errMess);
+        ((TextInputLayout)requireView().findViewById(R.id.signIn_inputLayout_password)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.signIn_inputLayout_password)).setError(errMess);
 
     }
     private String getErrorMess(ErrorSigningUITypes type, @Nullable UIText.ResourceString authRes, String logMes) {

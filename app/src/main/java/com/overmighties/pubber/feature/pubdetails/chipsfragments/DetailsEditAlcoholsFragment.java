@@ -66,11 +66,11 @@ public class DetailsEditAlcoholsFragment extends Fragment {
 
     private void setUpListeners(){
 
-        requireView().findViewById(R.id.CloseButtonEdit).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_image_back).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsFragmentDirections.actionDetailsEditFragmentToDetailsFragment());
         });
 
-        requireView().findViewById(R.id.imageView4).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_image_beer).setOnClickListener(v->{
             Integer state = 0;
             Integer drawableId = 0;
             if(viewModel.getAlcoholUiState().getValue().getVisibilityState().get(0)){
@@ -83,21 +83,21 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 state = View.VISIBLE;
                 viewModel.getAlcoholUiState().getValue().getVisibilityState().set(0, true);
             }
-            ((ImageView)requireView().findViewById(R.id.imageView4)).setImageDrawable(requireContext().getDrawable(drawableId));
+            ((ImageView)requireView().findViewById(R.id.detailsEditA_image_beer)).setImageDrawable(requireContext().getDrawable(drawableId));
             for(var id:  DETAILS_ALCOHOL_EDIT_BEERS_WIDGETS_IDS){
                 requireView().findViewById(id).setVisibility(state);
             }
         });
 
-        requireView().findViewById(R.id.buttonAddBeer).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_chip_addBeer).setOnClickListener(v->{
             viewModel.setDataType(DetailsEditViewModel.listDataType.Breweries);
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsFragmentDirections.actionDetailsEditFragmentToDetailsEditAlcoholsSelectFragment());
         });
-        requireView().findViewById(R.id.buttonRemoveBeer).setOnClickListener(v-> {
+        requireView().findViewById(R.id.detailsEditA_chip_removeBeer).setOnClickListener(v-> {
             showDialogBoxBeer();
         });
 
-        requireView().findViewById(R.id.imageView10).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_image_drinks).setOnClickListener(v->{
             Integer state = 0;
             Integer drawableId = 0;
             if(viewModel.getAlcoholUiState().getValue().getVisibilityState().get(1)){
@@ -110,22 +110,22 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 state = View.VISIBLE;
                 viewModel.getAlcoholUiState().getValue().getVisibilityState().set(1, true);
             }
-            ((ImageView)requireView().findViewById(R.id.imageView10)).setImageDrawable(requireContext().getDrawable(drawableId));
+            ((ImageView)requireView().findViewById(R.id.detailsEditA_image_drinks)).setImageDrawable(requireContext().getDrawable(drawableId));
             for(var id:  DETAILS_ALCOHOL_EDIT_DRINKS_WIDGETS_IDS){
                 requireView().findViewById(id).setVisibility(state);
             }
         });
 
-        requireView().findViewById(R.id.buttonAddDrink).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_chip_addDrink).setOnClickListener(v->{
             viewModel.setDataType(DetailsEditViewModel.listDataType.Drinks);
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsEditAlcoholsFragmentDirections.actionDetailsEditFragmentToDetailsEditAlcoholsSelectFragment());
         });
 
-        requireView().findViewById(R.id.buttonRemoveDrink).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_chip_removeDrink).setOnClickListener(v->{
             showDialogBoxDrinks();
         });
 
-        requireView().findViewById(R.id.buttonSubmitAlcoholChange).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditA_button_submit).setOnClickListener(v->{
             //TODO submiting data to online database for change
         });
     }
@@ -140,7 +140,7 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 if(alcohol.getType() == "Beer")
                 {
                     View alcoholChipView = inflater.inflate(R.layout.alcohol_view_chip, dialogView, false);
-                    Chip chip = alcoholChipView.findViewById(R.id.chipAlcohol);
+                    Chip chip = alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol);
                     chip.setText(alcohol.getName());
                     styleChip(chip);
                     if(alcohol.getDrinkStyles() != null && !alcohol.getDrinkStyles().isEmpty()){
@@ -153,10 +153,10 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                                 styles = styles + style.getName() + ", ";
                             }
                         }
-                        ((TextView)alcoholChipView.findViewById(R.id.textViewAlcoholStyles)).setText(styles);
+                        ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setText(styles);
                     }
                     else{
-                        alcoholChipView.findViewById(R.id.textViewAlcoholStyles).setVisibility(View.GONE);
+                        alcoholChipView.findViewById(R.id.detailsEditACV_text_styles).setVisibility(View.GONE);
                     }
                     if(!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().isEmpty() && viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().stream().map(Drink::getName).collect(Collectors.toList()).contains(alcohol.getName()))
                         chip.setChecked(true);
@@ -173,13 +173,13 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 for(int i=0; i<dialogView.getChildCount(); i++){
                     View alcoholChipView = dialogView.getChildAt(i);
                     List<DrinkStyle> drinkStyleList = new ArrayList<>();
-                    drinkStyleList.add(new DrinkStyle(((TextView) alcoholChipView.findViewById(R.id.textViewAlcoholStyles)).getText().toString()));
+                    drinkStyleList.add(new DrinkStyle(((TextView) alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).getText().toString()));
                     Drink checkDrink = new Drink(
-                            ((Chip) alcoholChipView.findViewById(R.id.chipAlcohol)).getText().toString(),
+                            ((Chip) alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).getText().toString(),
                             "Beer",
                             null,
                             drinkStyleList);
-                    if(((Chip)alcoholChipView.findViewById(R.id.chipAlcohol)).isChecked()) {
+                    if(((Chip)alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).isChecked()) {
                         if(!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().contains(checkDrink))
                             viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().add(checkDrink);
                     }
@@ -206,10 +206,10 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                         list.add(new ChangeAlcoholCardViewUiState(drink.getName(), styles));
                     }
                     viewModel.getAdapterList().set(1, new ChangeAlcoholListAdapter(list, true, false, viewModel));
-                    ((RecyclerView) requireView().findViewById(R.id.removeBeerRecyclerView)).setAdapter(viewModel.getAdapterList().get(1));
+                    ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_removeBeer)).setAdapter(viewModel.getAdapterList().get(1));
                 }
                 else {
-                    ((RecyclerView) requireView().findViewById(R.id.removeBeerRecyclerView)).setAdapter(null);
+                    ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_removeBeer)).setAdapter(null);
                 }
             }
         }));
@@ -228,10 +228,10 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 if(!alcohol.getType().equals("Beer"))
                 {
                     View alcoholChipView = inflater.inflate(R.layout.alcohol_view_chip, dialogView, false);
-                    Chip chip = alcoholChipView.findViewById(R.id.chipAlcohol);
+                    Chip chip = alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol);
                     chip.setText(alcohol.getName());
                     styleChip(chip);
-                    alcoholChipView.findViewById(R.id.textViewAlcoholStyles).setVisibility(View.GONE);
+                    alcoholChipView.findViewById(R.id.detailsEditACV_text_styles).setVisibility(View.GONE);
                     if(!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().isEmpty() && viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().stream().map(Drink::getName).collect(Collectors.toList()).contains(alcohol.getName()))
                         chip.setChecked(true);
                     dialogView.addView(alcoholChipView);
@@ -247,11 +247,11 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 for(int i=0; i<dialogView.getChildCount(); i++){
                     View alcoholChipView = dialogView.getChildAt(i);
                     Drink checkDrink = new Drink(
-                            ((Chip) alcoholChipView.findViewById(R.id.chipAlcohol)).getText().toString(),
+                            ((Chip) alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).getText().toString(),
                             "Drink",
                             null,
                             null);
-                    if(((Chip)alcoholChipView.findViewById(R.id.chipAlcohol)).isChecked()) {
+                    if(((Chip)alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).isChecked()) {
                         if(!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
                             viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().add(checkDrink);
                     }
@@ -266,10 +266,10 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                         list.add(new ChangeAlcoholCardViewUiState(drink.getName(), null));
                     }
                     viewModel.getAdapterList().set(3, new ChangeAlcoholListAdapter(list, true, true, viewModel));
-                    ((RecyclerView) requireView().findViewById(R.id.removeDrinkRecyclerView)).setAdapter(viewModel.getAdapterList().get(3));
+                    ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_removeDrink)).setAdapter(viewModel.getAdapterList().get(3));
                 }
                 else {
-                    ((RecyclerView) requireView().findViewById(R.id.removeDrinkRecyclerView)).setAdapter(null);
+                    ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_removeDrink)).setAdapter(null);
                 }
             }
         }));
@@ -282,16 +282,16 @@ public class DetailsEditAlcoholsFragment extends Fragment {
     public void onResume(){
         super.onResume();
         if(viewModel.getAdapterList().get(0) != null)
-            ((RecyclerView) requireView().findViewById(R.id.addBeerRecyclerView)).setAdapter(viewModel.getAdapterList().get(0));
+            ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_addBeer)).setAdapter(viewModel.getAdapterList().get(0));
 
         if(viewModel.getAdapterList().get(1) != null)
-            ((RecyclerView) requireView().findViewById(R.id.removeBeerRecyclerView)).setAdapter(viewModel.getAdapterList().get(1));
+            ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_removeBeer)).setAdapter(viewModel.getAdapterList().get(1));
 
         if(viewModel.getAdapterList().get(2) != null)
-            ((RecyclerView) requireView().findViewById(R.id.addDrinkRecyclerView)).setAdapter(viewModel.getAdapterList().get(2));
+            ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_addDrink)).setAdapter(viewModel.getAdapterList().get(2));
 
         if(viewModel.getAdapterList().get(3) != null)
-            ((RecyclerView) requireView().findViewById(R.id.removeDrinkRecyclerView)).setAdapter(viewModel.getAdapterList().get(3));
+            ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_removeDrink)).setAdapter(viewModel.getAdapterList().get(3));
 
         if(viewModel.getChoosenBrewery() != null){
             if(viewModel.getAdapterList().get(0) != null){
@@ -301,7 +301,7 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 List<ChangeAlcoholCardViewUiState> list = new ArrayList<>();
                 list.add(new ChangeAlcoholCardViewUiState(viewModel.getChoosenBrewery(), viewModel.getChoosenStyle()));
                 viewModel.getAdapterList().set(0, new ChangeAlcoholListAdapter(list, false, false, viewModel));
-                ((RecyclerView) requireView().findViewById(R.id.addBeerRecyclerView)).setAdapter(viewModel.getAdapterList().get(0));
+                ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_addBeer)).setAdapter(viewModel.getAdapterList().get(0));
             }
             viewModel.setChoosenBrewery(null);
             viewModel.setChoosenStyle(null);
@@ -315,7 +315,7 @@ public class DetailsEditAlcoholsFragment extends Fragment {
                 List<ChangeAlcoholCardViewUiState> list = new ArrayList<>();
                 list.add(new ChangeAlcoholCardViewUiState(viewModel.getChoosenDrink(), null));
                 viewModel.getAdapterList().set(2, new ChangeAlcoholListAdapter(list, false, true, viewModel));
-                ((RecyclerView) requireView().findViewById(R.id.addDrinkRecyclerView)).setAdapter(viewModel.getAdapterList().get(2));
+                ((RecyclerView) requireView().findViewById(R.id.detailsEditA_recyclerView_addDrink)).setAdapter(viewModel.getAdapterList().get(2));
             }
             viewModel.setChoosenDrink(null);
         }
@@ -334,7 +334,7 @@ public class DetailsEditAlcoholsFragment extends Fragment {
             viewModel.getAlcoholUiState().getValue().getVisibilityState().set(0, true);
         }
 
-        ((ImageView)requireView().findViewById(R.id.imageView4)).setImageDrawable(requireContext().getDrawable(drawableId));
+        ((ImageView)requireView().findViewById(R.id.detailsEditA_image_beer)).setImageDrawable(requireContext().getDrawable(drawableId));
         for(var id:  DETAILS_ALCOHOL_EDIT_BEERS_WIDGETS_IDS){
             requireView().findViewById(id).setVisibility(state);
         }
@@ -350,7 +350,7 @@ public class DetailsEditAlcoholsFragment extends Fragment {
             viewModel.getAlcoholUiState().getValue().getVisibilityState().set(1, true);
         }
 
-        ((ImageView)requireView().findViewById(R.id.imageView10)).setImageDrawable(requireContext().getDrawable(drawableId));
+        ((ImageView)requireView().findViewById(R.id.detailsEditA_image_drinks)).setImageDrawable(requireContext().getDrawable(drawableId));
         for(var id:  DETAILS_ALCOHOL_EDIT_DRINKS_WIDGETS_IDS){
             requireView().findViewById(id).setVisibility(state);
         }

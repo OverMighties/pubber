@@ -47,8 +47,8 @@ public class NewUserDetailsFragment extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        editText=requireView().findViewById(R.id.edit_field_display_name);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        editText=requireView().findViewById(R.id.newUserDetails_editText_name);
         setUpSelectSex();
         setUpDisplayName();
         requireView().findViewById(R.id.button_confirm_display_name).setOnClickListener(v -> {
@@ -71,7 +71,7 @@ public class NewUserDetailsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                TextInputLayout inputLayout = requireView().findViewById(R.id.textInputLayoutDisplayName);
+                TextInputLayout inputLayout = requireView().findViewById(R.id.newUserDetails_inputLayout_name);
                 if(checkDisplayNameValidity(s.toString())){
                     inputLayout.setBoxStrokeColor(ContextCompat.getColor(requireActivity(), R.color.green_dark));
                     inputLayout.setError(null);
@@ -87,14 +87,14 @@ public class NewUserDetailsFragment extends Fragment {
         });
     }
     private void setUpSelectSex(){
-        RadioGroup radioGroup = requireActivity().findViewById(R.id.sex_radio_group);
+        RadioGroup radioGroup = requireActivity().findViewById(R.id.newUserDetails_radioGroup_sex);
         int selectedId = radioGroup.getCheckedRadioButtonId();
 
-        if(selectedId == R.id.male_radio_button) {
+        if(selectedId == R.id.newUserDetails_radioButton_male) {
             // Male is selected
-        } else if(selectedId == R.id.female_radio_button) {
+        } else if(selectedId == R.id.newUserDetails_radioButton_female) {
             // Female is selected
-        } else if(selectedId == R.id.other_radio_button) {
+        } else if(selectedId == R.id.newUserDetails_radioButton_other) {
             // Other is selected
         }
     }

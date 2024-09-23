@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsEditT_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout18"
+        android:id="@+id/detailsEditT_cl_topBar"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="64dp"
         android:background="@color/surface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/CloseButtonEditTags"
+            android:id="@+id/detailsEditT_image_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
@@ -25,20 +26,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/detailsEditT_text_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tags"
             android:textColor="@color/on_surface"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/CloseButtonEditTags"
+            app:layout_constraintBottom_toBottomOf="@+id/detailsEditT_image_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/CloseButtonEditTags" />
+            app:layout_constraintTop_toTopOf="@+id/detailsEditT_image_back" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/buttonAddTags"
+        android:id="@+id/detailsEditT_chip_addTag"
         style="@style/ActionChip"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -46,45 +47,46 @@
         android:text="@string/add"
         app:chipIcon="@drawable/ic_add"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout18" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditT_cl_topBar" />
+
     <com.google.android.material.chip.Chip
-        android:id="@+id/buttonRemoveTags"
+        android:id="@+id/detailsEditT_chip_removeTag"
         style="@style/ActionChip"
-        android:layout_marginStart="80dp"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginStart="80dp"
         android:text="@string/remove"
         app:chipIcon="@drawable/ic_close_on_secondary_container"
-        app:layout_constraintStart_toEndOf="@id/buttonAddTags"
-        app:layout_constraintTop_toTopOf="@+id/buttonAddTags" />
+        app:layout_constraintStart_toEndOf="@id/detailsEditT_chip_addTag"
+        app:layout_constraintTop_toTopOf="@+id/detailsEditT_chip_addTag" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/addTagsRecyclerView"
+        android:id="@+id/detailsEditT_recyclerView_addTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="@+id/buttonAddTags"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddTags" />
+        app:layout_constraintStart_toStartOf="@+id/detailsEditT_chip_addTag"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditT_chip_addTag" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/removeTagsRecyclerView"
+        android:id="@+id/detailsEditT_recyclerView_removeTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="@+id/buttonRemoveTags"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRemoveTags" />
+        app:layout_constraintStart_toStartOf="@+id/detailsEditT_chip_removeTag"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditT_chip_removeTag" />
 
     <Button
-        android:id="@+id/buttonSubmitTagsChange"
+        android:id="@+id/detailsEditT_button_submit"
         android:layout_width="0dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="12dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/button_shape_secondary"
-        app:backgroundTint="@null"
-        android:textColor="@color/on_secondary_container"
         android:text="@string/submit"
+        android:textColor="@color/on_secondary_container"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

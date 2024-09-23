@@ -1,7 +1,5 @@
 package com.overmighties.pubber.feature.search.filterselect;
 
-import static com.overmighties.pubber.app.Constants.BREWERIES_VIEW_ID_LIST;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -45,7 +43,7 @@ public class FilterSelectFragment   extends Fragment implements FilterSelectList
                 .get(FilterSelectViewModel.class);
         pubListViewModel = new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(PubListViewModel.initializer)).get(PubListViewModel.class);
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
 
         prepareData();
         setUpListeners();
@@ -62,17 +60,17 @@ public class FilterSelectFragment   extends Fragment implements FilterSelectList
             list.add(new FilterSelectDrinkCardViewUiState(names[i]));
         }
         adapter = new DrinkListAdapter(list,this);
-        ((RecyclerView)requireView().findViewById(R.id.search_list)).setAdapter(adapter);
+        ((RecyclerView)requireView().findViewById(R.id.filterSelect_recyclerView_search)).setAdapter(adapter);
     }
 
     private void setUpListeners(){
-        EditText editText = ((EditText)requireView().findViewById(R.id.edit_text_search));
+        EditText editText = ((EditText)requireView().findViewById(R.id.filterSelect_editText_search));
 
-        requireView().findViewById(R.id.search_list).setOnClickListener(v->{
+        requireView().findViewById(R.id.filterSelect_recyclerView_search).setOnClickListener(v->{
             unFocus(editText);
         });
 
-        requireView().findViewById(R.id.filter_select_fragment).setOnClickListener(v->{
+        requireView().findViewById(R.id.filterSelect_fragment).setOnClickListener(v->{
             unFocus(editText);
         });
 
@@ -95,12 +93,12 @@ public class FilterSelectFragment   extends Fragment implements FilterSelectList
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
                     if(editText.getText().toString().equals(""))
-                        ((TextInputLayout)requireView().findViewById(R.id.text_input_layout_search)).setHint(null);
+                        ((TextInputLayout)requireView().findViewById(R.id.filterSelect_inputLayout_search)).setHint(null);
 
                 }
                 else{
                     if(editText.getText().toString().equals(""))
-                        ((TextInputLayout)requireView().findViewById(R.id.text_input_layout_search)).setHint(getString(R.string.searchview_hint));
+                        ((TextInputLayout)requireView().findViewById(R.id.filterSelect_inputLayout_search)).setHint(getString(R.string.searchview_hint));
                 }
             }
         });

@@ -8,14 +8,12 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,7 +22,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.UIText;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,17 +54,17 @@ public class MainActivity extends SettingsBasicActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment))).getNavController();
+                .findFragmentById(R.id.main_navHostFragment_container))).getNavController();
 
         setConnectivityManager();
 
-        BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav_view);
+        BottomNavigationView bottomNavView = findViewById(R.id.main_bottomNavView);
 //      AppBarConfiguration  bottomNavConfiguration =
 //                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
 //        NavigationUI.setupWithNavController(topAppBar,navController);
-        findViewById(R.id.top_app_bar_layout_back).setVisibility(View.GONE);
-        ((MaterialToolbar)findViewById(R.id.top_app_bar_view_back)).setNavigationOnClickListener(v->{navController.popBackStack();});
+        findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
+        ((MaterialToolbar)findViewById(R.id.main_topAppBarView_back)).setNavigationOnClickListener(v->{navController.popBackStack();});
 
 
         Intent intent = getIntent();
@@ -136,13 +133,13 @@ public class MainActivity extends SettingsBasicActivity {
     }
     @Override
     public boolean onSupportNavigateUp() {
-        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
+        return Navigation.findNavController(this, R.id.main_navHostFragment_container).navigateUp()
                 || super.onSupportNavigateUp();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        NavController navController = ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment) ).getNavController();
+        NavController navController = ( (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.main_navHostFragment_container) ).getNavController();
         return NavigationUI.onNavDestinationSelected(item, navController)
                 || super.onOptionsItemSelected(item);
     }

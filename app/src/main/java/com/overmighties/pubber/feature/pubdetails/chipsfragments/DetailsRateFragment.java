@@ -22,14 +22,14 @@ public class DetailsRateFragment extends Fragment {
     //TODO make details_rate.xml ratebar better as soon as new graphics will be made
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState) {
-        requireView().findViewById(R.id.CloseButtonEdit).setOnClickListener(v1->{
+        requireView().findViewById(R.id.detailsRate_image_back).setOnClickListener(v1->{
             NavHostFragment.findNavController(getParentFragment()).popBackStack();
         });
 
 
-        requireView().findViewById(R.id.buttonPublish).setOnClickListener(v1->{
-            Float rating = ((RatingBar)requireView().findViewById(R.id.ratingBar)).getRating();
-            String comment = ((EditText)requireView().findViewById(R.id.edit_field_rating)).getText().toString();
+        requireView().findViewById(R.id.detailsRate_button_publish).setOnClickListener(v1->{
+            Float rating = ((RatingBar)requireView().findViewById(R.id.detailsRate_ratingBar)).getRating();
+            String comment = ((EditText)requireView().findViewById(R.id.detailsRate_editText_rating)).getText().toString();
             if(rating!=0) {
                 //TODO make comment be published
                 NavHostFragment.findNavController(getParentFragment()).popBackStack();

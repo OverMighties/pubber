@@ -107,7 +107,7 @@
         android:label="DetailsEditFragment" >
         <action
             android:id="@+id/action_detailsEditFragment_to_detailsEditAlcoholsSelectFragment"
-            app:destination="@id/detailsEditAlcoholsSelectFragment"
+            app:destination="@id/detailsEditAS_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
@@ -121,12 +121,12 @@
             app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
-        android:id="@+id/detailsEditAlcoholsSelectFragment"
+        android:id="@+id/detailsEditAS_fragment"
         android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditAlcoholsSelectFragment"
         android:label="DetailsEditAlcoholsSelectFragment" >
         <action
             android:id="@+id/action_detailsEditAlcoholsSelectFragment_self"
-            app:destination="@id/detailsEditAlcoholsSelectFragment"
+            app:destination="@id/detailsEditAS_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"

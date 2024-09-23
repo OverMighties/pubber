@@ -132,19 +132,28 @@ public class Constants {
     };
 
 
-
+    public static final int[] LANGUAGE_FRAGMENT_RADIO_BUTTONS_IDS = {
+        R.id.language_radioButton_polish,
+        R.id.language_radioButton_english,
+        R.id.language_radioButton_ukrainian
+    };
+    public static final int[] THEME_FRAGMENT_RADIO_BUTTONS_IDS = {
+            R.id.theme_radioButton_phone,
+            R.id.theme_radioButton_dark,
+            R.id.theme_radioButton_light
+    };
     public static final int[] SPLASH_FRAGMENT_BUTTONS_IDS = {
-            R.id.button_sign_in_splash,
-            R.id.button_sing_up_splash,
+            R.id.splash_button_signIn,
+            R.id.splash_button_signUp,
     };
 
     public static final int[] FILTER_FRAGMENT_BEER_WIDGETS_IDS={
-            R.id.TVBreweries,
-            R.id.IVBreweries,
-            R.id.TVStyles,
-            R.id.IVStyles,
-            R.id.TVParticularBeers,
-            R.id.IVParticularBeers
+            R.id.filtration_text_breweries,
+            R.id.filtration_image_breweries,
+            R.id.filtration_text_styles,
+            R.id.filtration_image_styles,
+            R.id.filtration_text_particularBeers,
+            R.id.filtration_image_particularBeers
     };
 
     public static final int[] POP_UP_DAYS_IDS = {
@@ -175,10 +184,10 @@ public class Constants {
 
 
     public static final int[] SORT_POP_UP_IDS = {
-            R.id.radio_butt_relevance,
-            R.id.radio_butt_alphabetical,
-            R.id.radio_butt_rating,
-            R.id.radio_butt_distance
+            R.id.searcherBSh_radioButton_relevance,
+            R.id.searcherBSh_radioButton_alphabetical,
+            R.id.searcherBSh_radioButton_rating,
+            R.id.searcherBSh_radioButton_distance
 
     };
     public static final int[] POP_UP_TIME_IDS = {
@@ -307,56 +316,56 @@ public class Constants {
     }
 
     public static final int[] TAB_OVERVIEW_TEXTVIEW_DAY_IDS = {
-            R.id.OvTvDay1,
-            R.id.OvTvDay2,
-            R.id.OvTvDay3,
-            R.id.OvTvDay4,
-            R.id.OvTvDay5,
-            R.id.OvTvDay6,
-            R.id.OvTvDay7
+            R.id.details_text_day1,
+            R.id.details_text_day2,
+            R.id.details_text_day3,
+            R.id.details_text_day4,
+            R.id.details_text_day5,
+            R.id.details_text_day6,
+            R.id.details_text_day7
     };
     public static final int[] TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS = {
-            R.id.OvTvTime1,
-            R.id.OvTvTime2,
-            R.id.OvTvTime3,
-            R.id.OvTvTime4,
-            R.id.OvTvTime5,
-            R.id.OvTvTime6,
-            R.id.OvTvTime7
+            R.id.details_text_day1Time,
+            R.id.details_text_day2Time,
+            R.id.details_text_day3Time,
+            R.id.details_text_day4Time,
+            R.id.details_text_day5Time,
+            R.id.details_text_day6Time,
+            R.id.details_text_day7Time
     };
 
     public static final int[] SIGN_IN_TEXT_FIELDS_IDS = {
-            R.id.edit_field_email_sing_in,
-            R.id.edit_field_password_sing_in,
+            R.id.signIn_editText_email,
+            R.id.signIn_editText_password,
     };
     public static final int[] SIGN_IN_INPUT_LAYOUTS_IDS = {
-            R.id.textInputLayoutEmailSignIn,
-            R.id.textInputLayoutPasswordSignIn,
+            R.id.signIn_inputLayout_email,
+            R.id.signIn_inputLayout_password,
     };
 
 
     public static final int[] SIGN_UP_TEXT_FIELDS_IDS = {
-            R.id.edit_field_email_sing_up,
-            R.id.edit_filed_password_sing_up,
-            R.id.edit_field_confirm_password_sign_up
+            R.id.signUp_editText_email,
+            R.id.signUp_editText_password,
+            R.id.signUp_editText_confirmPassword
     };
     public static final int[] SIGN_UP_INPUT_LAYOUTS_IDS = {
-            R.id.textInputLayoutEmailSignUp,
-            R.id.textInputLayoutPasswordSignUp,
-            R.id.textInputLayoutConfirmPasswordSignUp
+            R.id.signUp_inputLayout_email,
+            R.id.signUp_inputLayout_password,
+            R.id.signUp_inputLayout_confirmPassword
     };
 
     public static final int[] DETAILS_ALCOHOL_EDIT_BEERS_WIDGETS_IDS = {
-            R.id.buttonAddBeer,
-            R.id.addBeerRecyclerView,
-            R.id.buttonRemoveBeer,
-            R.id.removeBeerRecyclerView
+            R.id.detailsEditA_chip_addBeer,
+            R.id.detailsEditA_recyclerView_addBeer,
+            R.id.detailsEditA_chip_removeBeer,
+            R.id.detailsEditA_recyclerView_removeBeer
     };
 
     public static final int[] DETAILS_ALCOHOL_EDIT_DRINKS_WIDGETS_IDS = {
-            R.id.buttonAddDrink,
-            R.id.addDrinkRecyclerView,
-            R.id.buttonRemoveDrink,
-            R.id.removeDrinkRecyclerView
+            R.id.detailsEditA_chip_addDrink,
+            R.id.detailsEditA_recyclerView_addDrink,
+            R.id.detailsEditA_chip_removeDrink,
+            R.id.detailsEditA_recyclerView_removeDrink
     };
 }

@@ -27,18 +27,18 @@ public class PlaceChoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
-        requireView().findViewById(R.id.city1).setOnClickListener(v->{
-            pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.city1)).getText().toString());
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireActivity().findViewById(R.id.main_bottomNavView).setVisibility(View.GONE);
+        requireView().findViewById(R.id.placeChoice_button_cracow).setOnClickListener(v->{
+            pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.placeChoice_button_cracow)).getText().toString());
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         });
-        requireView().findViewById(R.id.city2).setOnClickListener(v->{
-            pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.city2)).getText().toString());
+        requireView().findViewById(R.id.placeChoice_button_warsaw).setOnClickListener(v->{
+            pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.placeChoice_button_warsaw)).getText().toString());
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         });
-        requireView().findViewById(R.id.city3).setOnClickListener(v->{
-            pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.city3)).getText().toString());
+        requireView().findViewById(R.id.placeChoice_button_rzeszow).setOnClickListener(v->{
+            pubListViewModel.setCityConstraint(  ((Button) requireView().findViewById(R.id.placeChoice_button_rzeszow)).getText().toString());
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         });
 

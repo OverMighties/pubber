@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import android.view.View;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.NavigationBar;
 
 public class SettingsAboutFragment extends Fragment {
 
@@ -29,7 +28,7 @@ public class SettingsAboutFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
 
     }
 

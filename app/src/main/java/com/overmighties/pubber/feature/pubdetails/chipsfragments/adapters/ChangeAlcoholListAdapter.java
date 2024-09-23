@@ -36,9 +36,9 @@ public class ChangeAlcoholListAdapter extends RecyclerView.Adapter<ChangeAlcohol
         private final ImageView delete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            alcohol = itemView.findViewById(R.id.chipAlcohol);
-            style = itemView.findViewById(R.id.textViewAlcoholStyles);
-            delete = itemView.findViewById(R.id.imageViewDeleteChange);
+            alcohol = itemView.findViewById(R.id.detailsEditACV_chip_alcohol);
+            style = itemView.findViewById(R.id.detailsEditACV_text_styles);
+            delete = itemView.findViewById(R.id.detailsEditACV_image_delete);
         }
     }
 

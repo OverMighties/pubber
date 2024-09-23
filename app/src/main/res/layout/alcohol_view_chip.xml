@@ -10,7 +10,7 @@
     android:paddingTop="8dp">
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chipAlcohol"
+        android:id="@+id/detailsEditACV_chip_alcohol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alcohols"
@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewAlcoholStyles"
+        android:id="@+id/detailsEditACV_text_styles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:layout_marginTop="-8dp"
         android:textColor="@color/on_surface_variant"
-        app:layout_constraintEnd_toEndOf="@+id/chipAlcohol"
-        app:layout_constraintStart_toStartOf="@+id/chipAlcohol"
-        app:layout_constraintTop_toBottomOf="@+id/chipAlcohol" />
+        app:layout_constraintEnd_toEndOf="@+id/detailsEditACV_chip_alcohol"
+        app:layout_constraintStart_toStartOf="@+id/detailsEditACV_chip_alcohol"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditACV_chip_alcohol" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

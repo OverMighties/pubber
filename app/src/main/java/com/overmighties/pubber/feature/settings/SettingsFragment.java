@@ -7,7 +7,6 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirec
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -19,18 +18,13 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.google.android.material.appbar.MaterialToolbar;
-import android.Manifest;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
-import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.designsystem.UIText;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.app.util.PermissionHandler;
-import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.feature.account.AccountViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
-import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     public static final String TAG="SettingsFragment";
@@ -52,9 +46,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         pubListViewModel = pubListViewModel = new ViewModelProvider(requireActivity())
                 .get(PubListViewModel.class);
 
-        requireActivity().requireViewById(R.id.top_app_bar_layout_back).setVisibility(View.VISIBLE);
+        requireActivity().requireViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
 
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
 
         SwitchPreferenceCompat notificationPref = findPreference(getString(R.string.notifications_key));
         if(notificationPref!=null){
@@ -147,8 +141,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onResume() {
         super.onResume();
-        requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
-        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.VISIBLE);
+        requireActivity().findViewById(R.id.main_bottomNavView).setVisibility(View.GONE);
+        requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
 
     }
 }

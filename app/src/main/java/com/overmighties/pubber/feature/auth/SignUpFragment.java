@@ -55,13 +55,13 @@ public class SignUpFragment  extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPassword)).setError("Błąd");
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.button_create_account_sign_up).setOnClickListener(v->{
-            EditText email=requireView().findViewById(R.id.edit_field_email_sing_up);
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.signUp_button_createAccount).setOnClickListener(v->{
+            EditText email=requireView().findViewById(R.id.signUp_editText_email);
             viewModel.updateEmail(email.getText().toString());
-            EditText password=requireView().findViewById(R.id.edit_filed_password_sing_up);
+            EditText password=requireView().findViewById(R.id.signUp_editText_password);
             viewModel.updatePassword(password.getText().toString());
-            EditText confirmPassword=requireView().findViewById(R.id.edit_field_confirm_password_sign_up);
+            EditText confirmPassword=requireView().findViewById(R.id.signUp_editText_confirmPassword);
             viewModel.updateConfirmPassword(confirmPassword.getText().toString());
             viewModel.onSignUpClick(
                     (from,to)-> navController.navigate(getNavDirections(from,to)),
@@ -80,11 +80,11 @@ public class SignUpFragment  extends Fragment {
             );
         });
 
-        requireView().findViewById(R.id.IV_goback_sign_up).setOnClickListener(v-> navController.popBackStack());
+        requireView().findViewById(R.id.signUp_image_back).setOnClickListener(v-> navController.popBackStack());
 
-        progressBarPassword = requireView().findViewById(R.id.progressBarPassword);
+        progressBarPassword = requireView().findViewById(R.id.signUp_progressBar_Password);
         setUpTextFields();
-        ((EditText)requireView().findViewById(R.id.edit_filed_password_sing_up)).addTextChangedListener(new TextWatcher() {
+        ((EditText)requireView().findViewById(R.id.signUp_editText_password)).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -92,8 +92,8 @@ public class SignUpFragment  extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 progressBarPassword.setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.progressTV).setVisibility(View.VISIBLE);
-                ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPasswordSignUp)).setErrorEnabled(false);
+                requireView().findViewById(R.id.signUp_text_progress).setVisibility(View.VISIBLE);
+                ((TextInputLayout)requireView().findViewById(R.id.signUp_inputLayout_password)).setErrorEnabled(false);
                 String password = String.valueOf(s);
 
                 int strength=getPasswordStrength(password);
@@ -118,7 +118,7 @@ public class SignUpFragment  extends Fragment {
 
     }
     private void setUpTextFields(){
-        requireView().findViewById(R.id.SignUpFragment).setOnClickListener(v->{
+        requireView().findViewById(R.id.signUp_fragment).setOnClickListener(v->{
             for(var id: SIGN_UP_TEXT_FIELDS_IDS)
             {
                 TextInputEditText EditText= requireView().findViewById(id);
@@ -155,7 +155,7 @@ public class SignUpFragment  extends Fragment {
     }
     private void setGonePasswordUnderlineView(){
         progressBarPassword.setVisibility(View.GONE);
-        requireView().findViewById(R.id.progressTV).setVisibility(View.GONE);
+        requireView().findViewById(R.id.signUp_text_progress).setVisibility(View.GONE);
     }
     private void setWeakPasswordUnderlineView(){
         //weak
@@ -164,8 +164,8 @@ public class SignUpFragment  extends Fragment {
         progressBarPassword.setProgressTintList(progressTintList);
         ColorStateList progressBackgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.red_dark));
         progressBarPassword.setProgressBackgroundTintList(progressBackgroundTintList);
-        ((TextView)requireView().findViewById(R.id.progressTV)).setTextColor(ContextCompat.getColor(requireContext(),R.color.red_bright));
-        ((TextView)requireView().findViewById(R.id.progressTV)).setText(getText(R.string.weak_password));
+        ((TextView)requireView().findViewById(R.id.signUp_text_progress)).setTextColor(ContextCompat.getColor(requireContext(),R.color.red_bright));
+        ((TextView)requireView().findViewById(R.id.signUp_text_progress)).setText(getText(R.string.weak_password));
     }
     private void setAveragePasswordUnderlineView(){
         //fair
@@ -174,8 +174,8 @@ public class SignUpFragment  extends Fragment {
         progressBarPassword.setProgressTintList(progressTintList);
         ColorStateList progressBackgroundTintList =  ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.yellow_dark));
         progressBarPassword.setProgressBackgroundTintList(progressBackgroundTintList);
-        ((TextView)requireView().findViewById(R.id.progressTV)).setTextColor(ContextCompat.getColor(requireContext(),R.color.yellow_bright));
-        ((TextView)requireView().findViewById(R.id.progressTV)).setText(getText(R.string.average_password));
+        ((TextView)requireView().findViewById(R.id.signUp_text_progress)).setTextColor(ContextCompat.getColor(requireContext(),R.color.yellow_bright));
+        ((TextView)requireView().findViewById(R.id.signUp_text_progress)).setText(getText(R.string.average_password));
     }
     private void setStrongPasswordUnderlineView(){
         //strong
@@ -184,8 +184,8 @@ public class SignUpFragment  extends Fragment {
         progressBarPassword.setProgressTintList(progressTintList);
         ColorStateList progressBackgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.green_dark));
         progressBarPassword.setProgressBackgroundTintList(progressBackgroundTintList);
-        ((TextView)requireView().findViewById(R.id.progressTV)).setTextColor(ContextCompat.getColor(requireContext(),R.color.green_bright));
-        ((TextView)requireView().findViewById(R.id.progressTV)).setText(getText(R.string.strong_password));
+        ((TextView)requireView().findViewById(R.id.signUp_text_progress)).setTextColor(ContextCompat.getColor(requireContext(),R.color.green_bright));
+        ((TextView)requireView().findViewById(R.id.signUp_text_progress)).setText(getText(R.string.strong_password));
     }
     private int getPasswordStrength(String password){
         boolean hasLowercase = LOWERCASE_PATTERN.matcher(password).find();
@@ -208,17 +208,17 @@ public class SignUpFragment  extends Fragment {
         return strength;
     }
     private void underlineEmail(String errMess) {
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutEmailSignUp)).setError(errMess);
+        ((TextInputLayout)requireView().findViewById(R.id.signUp_inputLayout_email)).setError(errMess);
     }
     private void underlinePassword(String errMess){
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPasswordSignUp)).setErrorEnabled(true);
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutPasswordSignUp)).setError(errMess);
-        requireView().findViewById(R.id.progressTV).setVisibility(View.GONE);
-        requireView().findViewById(R.id.progressBarPassword).setVisibility(View.GONE);
+        ((TextInputLayout)requireView().findViewById(R.id.signUp_inputLayout_password)).setErrorEnabled(true);
+        ((TextInputLayout)requireView().findViewById(R.id.signUp_inputLayout_password)).setError(errMess);
+        requireView().findViewById(R.id.signUp_text_progress).setVisibility(View.GONE);
+        requireView().findViewById(R.id.signUp_progressBar_Password).setVisibility(View.GONE);
 
     }
     private void underlineConfirmPassword(String errMess) {
-        ((TextInputLayout)requireView().findViewById(R.id.textInputLayoutConfirmPasswordSignUp)).setError(errMess);
+        ((TextInputLayout)requireView().findViewById(R.id.signUp_inputLayout_confirmPassword)).setError(errMess);
     }
 
 }

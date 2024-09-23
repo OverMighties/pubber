@@ -1,6 +1,5 @@
 package com.overmighties.pubber.feature.search;
 
-import static com.overmighties.pubber.app.Constants.DAY_OF_WEEK;
 import static com.overmighties.pubber.app.Constants.FILTER_FRAGMENT_BEER_WIDGETS_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_IDS;
 import static com.overmighties.pubber.app.Constants.POP_UP_DAYS_TEXT_IDS;
@@ -44,16 +43,13 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.overmighties.pubber.feature.search.filterselect.FilterSelectViewModel;
-import com.overmighties.pubber.feature.search.stateholders.FilterFragmentUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.ParticularBeersCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PriceType;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.ResourceUtil;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,8 +81,8 @@ public class FilterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        var nav_bar=requireActivity().findViewById(R.id.bottom_nav_view);
-        requireView().findViewById(R.id.buttonfiltr).setOnClickListener(v->{
+        var nav_bar=requireActivity().findViewById(R.id.main_bottomNavView);
+        requireView().findViewById(R.id.filtration_button_filtr).setOnClickListener(v->{
             filtration(requireView());
             Navigation.findNavController(v).navigate(FilterFragmentDirections.actionFilterToSearcher());
         });
@@ -96,193 +92,193 @@ public class FilterFragment extends Fragment {
         filterSelectViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(FilterSelectViewModel.initializer)).get(FilterSelectViewModel.class);
         NavigationBar.smoothHide(nav_bar, 200);
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
         arrowExpandersListeners();
         dropDownMenusListener();
         setUpRangeSliders();
         prepareChips();
         if(pubListViewModel.getFilterUiState().getValue() != null)
             bringBackFilterSettings();
-        requireView().findViewById(R.id.close_filter).setOnClickListener(v -> navController.navigate(FilterFragmentDirections.actionFilterToSearcher()));
+        requireView().findViewById(R.id.filtration_image_close).setOnClickListener(v -> navController.navigate(FilterFragmentDirections.actionFilterToSearcher()));
     }
 
 
     private void arrowExpandersListeners()
     {
-        requireView().findViewById(R.id.MoreBeers).setOnClickListener(buttView->moreBeers(requireView()));
-        requireView().findViewById(R.id.IVrating).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_text_moreBreweries).setOnClickListener(buttView->moreBeers(requireView()));
+        requireView().findViewById(R.id.filtation_image_rating).setOnClickListener(v -> {
             if (pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(0)) {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(0, false);
-                requireView().findViewById(R.id.RatingSlider).setVisibility(View.GONE);
-                ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_more_primary);
+                requireView().findViewById(R.id.filtration_rangeSlider_rating).setVisibility(View.GONE);
+                ((ImageView) requireView().findViewById(R.id.filtation_image_rating)).setImageResource(R.drawable.ic_expand_more_primary);
             } else {
-                requireView().findViewById(R.id.RatingSlider).setVisibility(View.VISIBLE);
-                ((ImageView) requireView().findViewById(R.id.IVrating)).setImageResource(R.drawable.ic_expand_less_primary);
+                requireView().findViewById(R.id.filtration_rangeSlider_rating).setVisibility(View.VISIBLE);
+                ((ImageView) requireView().findViewById(R.id.filtation_image_rating)).setImageResource(R.drawable.ic_expand_less_primary);
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(0, true);
             }
         });
 
-        requireView().findViewById(R.id.IVdistance).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_image_distance).setOnClickListener(v -> {
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(1)) {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(1, false);
-                requireView().findViewById(R.id.DistanceSlider).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_more_primary);
+                requireView().findViewById(R.id.filtration_slider_distance).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_distance)).setImageResource(R.drawable.ic_expand_more_primary);
             }
             else {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(1, true);
-                requireView().findViewById(R.id.DistanceSlider).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVdistance)).setImageResource(R.drawable.ic_expand_less_primary);
+                requireView().findViewById(R.id.filtration_slider_distance).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_distance)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
-        requireView().findViewById(R.id.IVprice).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_image_price).setOnClickListener(v -> {
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(2))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(2, false);
-                requireView().findViewById(R.id.PriceChG).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_more_primary);
+                requireView().findViewById(R.id.filtration_chipGroup_price).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_price)).setImageResource(R.drawable.ic_expand_more_primary);
 
             }
             else
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(2, true);
-                requireView().findViewById(R.id.PriceChG).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVprice)).setImageResource(R.drawable.ic_expand_less_primary);
+                requireView().findViewById(R.id.filtration_chipGroup_price).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_price)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
 
-        requireView().findViewById(R.id.IVtime).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_image_time).setOnClickListener(v -> {
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(3))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(3, false);
-                ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_more_primary);
-                requireView().findViewById(R.id.Chip_anytime).setVisibility(View.GONE);
-                requireView().findViewById(R.id.Chip_custom).setVisibility(View.GONE);
-                requireView().findViewById(R.id.Chip_open_now).setVisibility(View.GONE);
-                requireView().findViewById(R.id.Layout_custom).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_time)).setImageResource(R.drawable.ic_expand_more_primary);
+                requireView().findViewById(R.id.filtration_chip_anytime).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_chip_customTime).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_chip_openNow).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_cl_customTime).setVisibility(View.GONE);
 
             }
             else
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(3, true);
-                ((ImageView)requireView().findViewById(R.id.IVtime)).setImageResource(R.drawable.ic_expand_less_primary);
-                requireView().findViewById(R.id.Chip_anytime).setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.Chip_open_now).setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.Chip_custom).setVisibility(View.VISIBLE);
-                if(((Chip)requireView().findViewById(R.id.Chip_custom)).isChecked()){
-                    ((ConstraintLayout)requireView().findViewById(R.id.Layout_custom)).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_time)).setImageResource(R.drawable.ic_expand_less_primary);
+                requireView().findViewById(R.id.filtration_chip_anytime).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.filtration_chip_openNow).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.filtration_chip_customTime).setVisibility(View.VISIBLE);
+                if(((Chip)requireView().findViewById(R.id.filtration_chip_customTime)).isChecked()){
+                    ((ConstraintLayout)requireView().findViewById(R.id.filtration_cl_customTime)).setVisibility(View.VISIBLE);
                 }
             }
         });
-        requireView().findViewById(R.id.Chip_custom).setOnClickListener(v -> {
-            if(((Chip)requireView().findViewById(R.id.Chip_custom)).isChecked())
+        requireView().findViewById(R.id.filtration_chip_customTime).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.filtration_chip_customTime)).isChecked())
             {
-                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
-                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
-                requireView().findViewById(R.id.Layout_custom).setVisibility(View.VISIBLE);
+                ((Chip)requireView().findViewById(R.id.filtration_chip_openNow)).setChecked(false);
+                ((Chip)requireView().findViewById(R.id.filtration_chip_anytime)).setChecked(false);
+                requireView().findViewById(R.id.filtration_cl_customTime).setVisibility(View.VISIBLE);
             }
-            else {((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(true);}
+            else {((Chip)requireView().findViewById(R.id.filtration_chip_customTime)).setChecked(true);}
         });
-        requireView().findViewById(R.id.Chip_open_now).setOnClickListener(v -> {
-            if(((Chip)requireView().findViewById(R.id.Chip_open_now)).isChecked())
+        requireView().findViewById(R.id.filtration_chip_openNow).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.filtration_chip_openNow)).isChecked())
             {
-                ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
-                ((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(false);
-                requireView().findViewById(R.id.Layout_custom).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.filtration_chip_customTime)).setChecked(false);
+                ((Chip)requireView().findViewById(R.id.filtration_chip_anytime)).setChecked(false);
+                requireView().findViewById(R.id.filtration_cl_customTime).setVisibility(View.GONE);
             }
-            else {((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(true);}
+            else {((Chip)requireView().findViewById(R.id.filtration_chip_openNow)).setChecked(true);}
         });
-        requireView().findViewById(R.id.Chip_anytime).setOnClickListener(v -> {
-            if(((Chip)requireView().findViewById(R.id.Chip_anytime)).isChecked())
+        requireView().findViewById(R.id.filtration_chip_anytime).setOnClickListener(v -> {
+            if(((Chip)requireView().findViewById(R.id.filtration_chip_anytime)).isChecked())
             {
-                ((Chip)requireView().findViewById(R.id.Chip_custom)).setChecked(false);
-                ((Chip)requireView().findViewById(R.id.Chip_open_now)).setChecked(false);
-                requireView().findViewById(R.id.Layout_custom).setVisibility(View.GONE);
+                ((Chip)requireView().findViewById(R.id.filtration_chip_customTime)).setChecked(false);
+                ((Chip)requireView().findViewById(R.id.filtration_chip_openNow)).setChecked(false);
+                requireView().findViewById(R.id.filtration_cl_customTime).setVisibility(View.GONE);
             }
-            else {((Chip)requireView().findViewById(R.id.Chip_anytime)).setChecked(true);}
+            else {((Chip)requireView().findViewById(R.id.filtration_chip_anytime)).setChecked(true);}
         });
 
-        requireView().findViewById(R.id.IVbeer).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_image_beer).setOnClickListener(v -> {
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(4)){
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(4, false);
                 for(var id: FILTER_FRAGMENT_BEER_WIDGETS_IDS){
                     requireView().findViewById(id).setVisibility(View.GONE);
                 }
-                if (requireView().findViewById(R.id.BeerListChG).isShown())
-                    requireView().findViewById(R.id.IVBreweries).performClick();
-                if (requireView().findViewById(R.id.StylesListChG).isShown())
-                    requireView().findViewById(R.id.IVStyles).performClick();
-                if (requireView().findViewById(R.id.ParticularBeersList).isShown())
-                    requireView().findViewById(R.id.IVParticularBeers).performClick();
-                ((ImageView)requireView().findViewById(R.id.IVbeer)).setImageResource(R.drawable.ic_expand_more_primary);
+                if (requireView().findViewById(R.id.filtration_chipGroup_breweries).isShown())
+                    requireView().findViewById(R.id.filtration_image_breweries).performClick();
+                if (requireView().findViewById(R.id.filtration_chipGroup_styles).isShown())
+                    requireView().findViewById(R.id.filtration_image_styles).performClick();
+                if (requireView().findViewById(R.id.filtration_recyclerView_particularBeers).isShown())
+                    requireView().findViewById(R.id.filtration_image_particularBeers).performClick();
+                ((ImageView)requireView().findViewById(R.id.filtration_image_beer)).setImageResource(R.drawable.ic_expand_more_primary);
             }
             else {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(4, true);
                 for(var id: FILTER_FRAGMENT_BEER_WIDGETS_IDS){
                     requireView().findViewById(id).setVisibility(View.VISIBLE);
                 }
-                ((ImageView)requireView().findViewById(R.id.IVbeer)).setImageResource(R.drawable.ic_expand_less_primary);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_beer)).setImageResource(R.drawable.ic_expand_less_primary);
             }
         });
-        requireView().findViewById(R.id.IVBreweries).setOnClickListener(v->{
+        requireView().findViewById(R.id.filtration_image_breweries).setOnClickListener(v->{
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(5))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(5, false);
-                requireView().findViewById(R.id.BeerListChG).setVisibility(View.GONE);
-                requireView().findViewById(R.id.MoreBeers).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVBreweries)).setImageResource(R.drawable.ic_expand_more_secondary);
+                requireView().findViewById(R.id.filtration_chipGroup_breweries).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_text_moreBreweries).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_breweries)).setImageResource(R.drawable.ic_expand_more_secondary);
             }
             else
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(5, true);
-                requireView().findViewById(R.id.BeerListChG).setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.MoreBeers).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVBreweries)).setImageResource(R.drawable.ic_expand_less_secondary);
+                requireView().findViewById(R.id.filtration_chipGroup_breweries).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.filtration_text_moreBreweries).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_breweries)).setImageResource(R.drawable.ic_expand_less_secondary);
             }
         });
-        requireView().findViewById(R.id.IVStyles).setOnClickListener(v->{
+        requireView().findViewById(R.id.filtration_image_styles).setOnClickListener(v->{
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(6)){
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(6, false);
-                requireView().findViewById(R.id.StylesListChG).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVStyles)).setImageResource(R.drawable.ic_expand_more_secondary);
+                requireView().findViewById(R.id.filtration_chipGroup_styles).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_styles)).setImageResource(R.drawable.ic_expand_more_secondary);
             }
             else{
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(6, true);
-                requireView().findViewById(R.id.StylesListChG).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVStyles)).setImageResource(R.drawable.ic_expand_less_secondary);
+                requireView().findViewById(R.id.filtration_chipGroup_styles).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_styles)).setImageResource(R.drawable.ic_expand_less_secondary);
             }
         });
-        requireView().findViewById(R.id.IVParticularBeers).setOnClickListener(v->{
+        requireView().findViewById(R.id.filtration_image_particularBeers).setOnClickListener(v->{
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(7)){
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(7, false);
-                requireView().findViewById(R.id.choose_brewery_cardview).setVisibility(View.GONE);
-                requireView().findViewById(R.id.choose_style_cardview).setVisibility(View.GONE);
-                requireView().findViewById(R.id.add_cardview).setVisibility(View.GONE);
-                requireView().findViewById(R.id.ParticularBeersList).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVParticularBeers)).setImageResource(R.drawable.ic_expand_more_secondary);
+                requireView().findViewById(R.id.filtration_cardView_chooseBrewery).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_cardView_chooseStyle).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_cardView_addParticularBeer).setVisibility(View.GONE);
+                requireView().findViewById(R.id.filtration_recyclerView_particularBeers).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_particularBeers)).setImageResource(R.drawable.ic_expand_more_secondary);
             }
             else{
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(7, true);
-                requireView().findViewById(R.id.choose_brewery_cardview).setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.choose_style_cardview).setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.add_cardview).setVisibility(View.VISIBLE);
-                requireView().findViewById(R.id.ParticularBeersList).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVParticularBeers)).setImageResource(R.drawable.ic_expand_less_secondary);
+                requireView().findViewById(R.id.filtration_cardView_chooseBrewery).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.filtration_cardView_chooseStyle).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.filtration_cardView_addParticularBeer).setVisibility(View.VISIBLE);
+                requireView().findViewById(R.id.filtration_recyclerView_particularBeers).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_particularBeers)).setImageResource(R.drawable.ic_expand_less_secondary);
             }
         });
 
-        requireView().findViewById(R.id.choose_brewery_cardview).setOnClickListener(v->{
+        requireView().findViewById(R.id.filtration_cardView_chooseBrewery).setOnClickListener(v->{
             pubListViewModel.setBrewery_textview(null);
             filterSelectViewModel.setDataType(FilterSelectViewModel.listDataType.Breweries);
             NavHostFragment.findNavController(this).navigate(FilterFragmentDirections.actionFilterFragmentToFilterSelectFragment());
         });
-        requireView().findViewById(R.id.choose_style_cardview).setOnClickListener(v->{
+        requireView().findViewById(R.id.filtration_cardView_chooseStyle).setOnClickListener(v->{
             pubListViewModel.setStyle_textview(null);
             filterSelectViewModel.setDataType(FilterSelectViewModel.listDataType.Styles);
             NavHostFragment.findNavController(this).navigate(FilterFragmentDirections.actionFilterFragmentToFilterSelectFragment());
         });
-        requireView().findViewById(R.id.add_cardview).setOnClickListener(v->{
-            TextView brewery_tv = requireView().findViewById(R.id.choose_brewery_textview);
-            TextView style_tv = requireView().findViewById(R.id.choose_style_textview);
+        requireView().findViewById(R.id.filtration_cardView_addParticularBeer).setOnClickListener(v->{
+            TextView brewery_tv = requireView().findViewById(R.id.filtration_text_chooseBrewery);
+            TextView style_tv = requireView().findViewById(R.id.filtration_text_chooseStyle);
             if(brewery_tv.getText().toString() != getString(R.string.choose_brewery) && style_tv.getText().toString() != getString(R.string.choose_style)) {
                 if (listParticularBeersAdapter != null) {
                     listParticularBeersAdapter.addNextBeer(new ParticularBeersCardViewUiState(brewery_tv.getText().toString(), style_tv.getText().toString()));
@@ -290,7 +286,7 @@ public class FilterFragment extends Fragment {
                     List<ParticularBeersCardViewUiState> list = new ArrayList<>();
                     list.add(new ParticularBeersCardViewUiState(brewery_tv.getText().toString(), style_tv.getText().toString()));
                     listParticularBeersAdapter = new ListParticularBeersAdapter(list);
-                    ((RecyclerView) requireView().findViewById(R.id.ParticularBeersList)).setAdapter(listParticularBeersAdapter);
+                    ((RecyclerView) requireView().findViewById(R.id.filtration_recyclerView_particularBeers)).setAdapter(listParticularBeersAdapter);
                 }
                 pubListViewModel.setStyle_textview(null);
                 pubListViewModel.setBrewery_textview(null);
@@ -298,48 +294,48 @@ public class FilterFragment extends Fragment {
                 style_tv.setText(getString(R.string.choose_style));
             }
         });
-        requireView().findViewById(R.id.IVdrinks).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_image_drinks).setOnClickListener(v -> {
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(8))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(8, false);
-                requireView().findViewById(R.id.DrinksChG).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVdrinks)).setImageResource(R.drawable.ic_expand_more_primary);
+                requireView().findViewById(R.id.filtration_chipGroup_drinks).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_drinks)).setImageResource(R.drawable.ic_expand_more_primary);
 
             }
             else
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(8, true);
-                requireView().findViewById(R.id.DrinksChG).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVdrinks)).setImageResource(R.drawable.ic_expand_less_primary);
+                requireView().findViewById(R.id.filtration_chipGroup_drinks).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_drinks)).setImageResource(R.drawable.ic_expand_less_primary);
 
             }
         });
 
-        requireView().findViewById(R.id.IVTags).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_image_tags).setOnClickListener(v -> {
             if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(9))
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(9, false);
-                requireView().findViewById(R.id.TagsChG).setVisibility(View.GONE);
-                ((ImageView)requireView().findViewById(R.id.IVTags)).setImageResource(R.drawable.ic_expand_more_primary);
+                requireView().findViewById(R.id.filtration_chipGroup_tags).setVisibility(View.GONE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_tags)).setImageResource(R.drawable.ic_expand_more_primary);
 
             }
             else
             {
                 pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(9, true);
-                requireView().findViewById(R.id.TagsChG).setVisibility(View.VISIBLE);
-                ((ImageView)requireView().findViewById(R.id.IVTags)).setImageResource(R.drawable.ic_expand_less_primary);
+                requireView().findViewById(R.id.filtration_chipGroup_tags).setVisibility(View.VISIBLE);
+                ((ImageView)requireView().findViewById(R.id.filtration_image_tags)).setImageResource(R.drawable.ic_expand_less_primary);
 
             }
         });
 
-        requireView().findViewById(R.id.buttonreset).setOnClickListener(v -> {
-            ((ChipGroup)requireView().findViewById(R.id.DrinksChG)).clearCheck();
-            ((ChipGroup)requireView().findViewById(R.id.PriceChG)).clearCheck();
-            ((ChipGroup)requireView().findViewById(R.id.BeerListChG)).clearCheck();
-            ((ChipGroup)requireView().findViewById(R.id.TagsChG)).clearCheck();
-            requireView().findViewById(R.id.Chip_anytime).performClick();
-            ((RangeSlider)requireView().findViewById(R.id.RatingSlider)).setValues(0f,10f);
-            ((Slider)requireView().findViewById(R.id.DistanceSlider)).setValue(10f);
+        requireView().findViewById(R.id.filtration_button_clear).setOnClickListener(v -> {
+            ((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_drinks)).clearCheck();
+            ((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_price)).clearCheck();
+            ((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_breweries)).clearCheck();
+            ((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_tags)).clearCheck();
+            requireView().findViewById(R.id.filtration_chip_anytime).performClick();
+            ((RangeSlider)requireView().findViewById(R.id.filtration_rangeSlider_rating)).setValues(0f,10f);
+            ((Slider)requireView().findViewById(R.id.filtration_slider_distance)).setValue(10f);
             pubListViewModel.filter(new FilterUiState());
         });
 
@@ -351,7 +347,7 @@ public class FilterFragment extends Fragment {
     private void dropDownMenusListener()
     {
 
-        requireView().findViewById(R.id.Dayview).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_view_customDay).setOnClickListener(v -> {
             //Down Menus days in FilterFragment
             popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_days, null);
             popupWindow = new PopupWindow(popUpView,
@@ -361,11 +357,11 @@ public class FilterFragment extends Fragment {
             listenersMenuDays(popupWindow, popUpView);
             //cheking which one is selected to highlight it
             whichOneCheckedDays(popUpView);
-            popupWindow.showAsDropDown(requireView().findViewById(R.id.Dayview),0,0,Gravity.BOTTOM);
-            requireView().findViewById(R.id.Dayview).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
-            ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
+            popupWindow.showAsDropDown(requireView().findViewById(R.id.filtration_view_customDay),0,0,Gravity.BOTTOM);
+            requireView().findViewById(R.id.filtration_view_customDay).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
+            ((ImageView)requireView().findViewById(R.id.filtration_image_customDay)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
         });
-        requireView().findViewById(R.id.Timeview).setOnClickListener(v -> {
+        requireView().findViewById(R.id.filtration_view_time).setOnClickListener(v -> {
             popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_pop_up_time, null);
             popupWindow = new PopupWindow(popUpView,
                     WindowManager.LayoutParams.WRAP_CONTENT,
@@ -375,9 +371,9 @@ public class FilterFragment extends Fragment {
             //cheking which one is selected to highlight it
             whichOneCheckedTime();
             setUpNextDayTV();
-            popupWindow.showAsDropDown(requireView().findViewById(R.id.Timeview),0,0,Gravity.BOTTOM);
-            ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
-            ((View)requireView().findViewById(R.id.Timeview)).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
+            popupWindow.showAsDropDown(requireView().findViewById(R.id.filtration_view_time),0,0,Gravity.BOTTOM);
+            ((ImageView)requireView().findViewById(R.id.filtration_image_customTime)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
+            ((View)requireView().findViewById(R.id.filtration_view_time)).setBackgroundResource(R.drawable.menu_drop_out_list_highlight);
         });
     }
 
@@ -404,15 +400,15 @@ public class FilterFragment extends Fragment {
             n+=1;
         }
         popupWindow.setOnDismissListener(()->{
-            requireView().findViewById(R.id.Timeview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
-            ((ImageView)requireView().findViewById(R.id.imageView8)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
+            requireView().findViewById(R.id.filtration_view_time).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
+            ((ImageView)requireView().findViewById(R.id.filtration_image_customTime)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
             if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second != -1){
                 String text = getString(R.string.from)+" "+
                         ((TextView)popUpView.findViewById(POP_UP_TIME_TEXT_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first])).getText().toString()
                                 + " " + getString(R.string.to) + " " + ((TextView)popUpView.findViewById(POP_UP_TIME_TEXT_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second])).getText().toString();
-                ((TextView)requireView().findViewById(R.id.textView18)).setText(text);
+                ((TextView)requireView().findViewById(R.id.filtration_text_customTime)).setText(text);
             } else if(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first == -1 ){
-                ((TextView)requireView().findViewById(R.id.textView18)).setText(getString(R.string.anytime));
+                ((TextView)requireView().findViewById(R.id.filtration_text_customTime)).setText(getString(R.string.anytime));
             }
         });
     }
@@ -432,7 +428,7 @@ public class FilterFragment extends Fragment {
                 setMargins(popUpView.findViewById(textViewId), popUpView.findViewById(backgroundId), true);
             }
             else{
-                popUpView.findViewById(R.id.constraintLayout2).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up_highlight);
+                popUpView.findViewById(R.id.main_cl_container).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up_highlight);
             }
         }
         else{
@@ -460,7 +456,7 @@ public class FilterFragment extends Fragment {
         }
         popUpView.findViewById(POP_UP_TIME_PAIRS[0].first).setBackground(null);
         popUpView.findViewById(POP_UP_TIME_PAIRS[55].first).setBackground(null);
-        popUpView.findViewById(R.id.constraintLayout2).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up);
+        popUpView.findViewById(R.id.main_cl_container).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_up);
         popUpView.findViewById(R.id.constraintLayout5).setBackgroundResource(R.drawable.menu_drop_out_list_shape_scrollview_down);
         if (fromTV != null) {
             ((ConstraintLayout) fromTV.getParent()).removeView(fromTV);
@@ -521,7 +517,7 @@ public class FilterFragment extends Fragment {
     }
 
     private void whichOneCheckedTime(){
-        if(((TextView)requireView().findViewById(R.id.textView18)).getText().toString().equals(R.string.anytime)) {
+        if(((TextView)requireView().findViewById(R.id.filtration_text_customTime)).getText().toString().equals(R.string.anytime)) {
             popUpView.findViewById(POP_UP_TIME_IDS[0]).performClick();
         }
         else {
@@ -536,7 +532,7 @@ public class FilterFragment extends Fragment {
     private void whichOneCheckedDays(View popUpView) {
         int i=0;
         for(var id:POP_UP_DAYS_TEXT_IDS){
-            if(((TextView)requireView().findViewById(R.id.textView17)).getText().toString().equals(((TextView)popUpView.findViewById(id)).getText().toString())) {
+            if(((TextView)requireView().findViewById(R.id.filtration_text_customDay)).getText().toString().equals(((TextView)popUpView.findViewById(id)).getText().toString())) {
                 ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.on_surface_variant));
                 popUpView.findViewById(POP_UP_DAYS_IDS[i]).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
                 if(i==0){popUpView.findViewById(R.id.cl_today).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
@@ -550,8 +546,8 @@ public class FilterFragment extends Fragment {
     private void listenersMenuDays(PopupWindow popupWindow, View popUpView) {
 
         popupWindow.setOnDismissListener(() -> {
-            requireView().findViewById(R.id.Dayview).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
-            ((ImageView)requireView().findViewById(R.id.imageView7)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
+            requireView().findViewById(R.id.filtration_view_customDay).setBackgroundResource(R.drawable.menu_drop_out_list_shape);
+            ((ImageView)requireView().findViewById(R.id.filtration_image_customDay)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
         });
 
         for (var id : POP_UP_DAYS_IDS) {
@@ -573,7 +569,7 @@ public class FilterFragment extends Fragment {
         for(var id:POP_UP_DAYS_TEXT_IDS) {
             ((TextView) popUpView.findViewById(id)).setTextColor(getResources().getColor(R.color.on_surface_variant));
         }
-        ((TextView)(requireView().findViewById(R.id.textView17))).setText(((TextView)popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checkedIndex])).getText().toString());
+        ((TextView)(requireView().findViewById(R.id.filtration_text_customDay))).setText(((TextView)popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checkedIndex])).getText().toString());
         ((TextView) popUpView.findViewById(POP_UP_DAYS_TEXT_IDS[checkedIndex])).setTextColor(getResources().getColor(R.color.on_surface_variant));
         popUpView.findViewById(checkedId).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight);
         if(checkedIndex==0){popUpView.findViewById(R.id.cl_today).setBackgroundResource(R.drawable.menu_drop_out_list_shape_highlight_up);}
@@ -583,7 +579,7 @@ public class FilterFragment extends Fragment {
 
     private void setUpRangeSliders()
     {
-        RangeSlider ratingslider = requireView().findViewById(R.id.RatingSlider);
+        RangeSlider ratingslider = requireView().findViewById(R.id.filtration_rangeSlider_rating);
         ratingslider.setLabelFormatter(new LabelFormatter() {
             @NonNull
             @Override
@@ -595,7 +591,7 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        Slider distanceslider = requireView().findViewById(R.id.DistanceSlider);
+        Slider distanceslider = requireView().findViewById(R.id.filtration_slider_distance);
         distanceslider.setLabelFormatter(new LabelFormatter() {
             @NonNull
             @Override
@@ -608,10 +604,10 @@ public class FilterFragment extends Fragment {
         });
     }
     public void prepareChips(){
-        ChipGroup breweriesGroup = requireView().findViewById(R.id.BeerListChG);
-        ChipGroup stylesGroup = requireView().findViewById(R.id.StylesListChG);
-        ChipGroup drinksGroup = requireView().findViewById(R.id.DrinksChG);
-        ChipGroup tagsGroup = requireView().findViewById(R.id.TagsChG);
+        ChipGroup breweriesGroup = requireView().findViewById(R.id.filtration_chipGroup_breweries);
+        ChipGroup stylesGroup = requireView().findViewById(R.id.filtration_chipGroup_styles);
+        ChipGroup drinksGroup = requireView().findViewById(R.id.filtration_chipGroup_drinks);
+        ChipGroup tagsGroup = requireView().findViewById(R.id.filtration_chipGroup_tags);
         //breweries chips
         for(var brewery:requireContext().getResources().getStringArray(R.array.all_breweries)){
             Chip chip = new Chip(requireContext());
@@ -682,61 +678,61 @@ public class FilterFragment extends Fragment {
             bottomAverageRating = pubListViewModel.getFilterUiState().getValue().getBottomAverageRating();
         if(pubListViewModel.getFilterUiState().getValue().getUpperAverageRating() != uppperverageRating)
             uppperverageRating = pubListViewModel.getFilterUiState().getValue().getUpperAverageRating();
-        ((RangeSlider)requireView().findViewById(R.id.RatingSlider)).setValues(bottomAverageRating*2, uppperverageRating*2);
+        ((RangeSlider)requireView().findViewById(R.id.filtration_rangeSlider_rating)).setValues(bottomAverageRating*2, uppperverageRating*2);
         //distance
         if(pubListViewModel.getFilterUiState().getValue().getDistance() != null ||
                 pubListViewModel.getFilterUiState().getValue().getDistance() != FilterUiState.NONE_DISTANCE)
-            ((Slider)requireView().findViewById(R.id.DistanceSlider)).setValue(
+            ((Slider)requireView().findViewById(R.id.filtration_slider_distance)).setValue(
                     pubListViewModel.getFilterUiState().getValue().getDistance()*2);
         //price
         if(pubListViewModel.getFilterUiState().getValue().getPriceType()!=null ||
                 !pubListViewModel.getFilterUiState().getValue().getPriceType().equals(FilterConstants.NONE_PRICE)) {
             if (pubListViewModel.getFilterUiState().getValue().getPriceType().equals(PriceType.SUPER_CHEAP)) {
-                ((Chip) requireView().findViewById(R.id.malo)).setChecked(true);
+                ((Chip) requireView().findViewById(R.id.filtration_chip_cheap)).setChecked(true);
             } else if (pubListViewModel.getFilterUiState().getValue().getPriceType().equals(PriceType.CHEAP)) {
-                ((Chip) requireView().findViewById(R.id.srednio)).setChecked(true);
+                ((Chip) requireView().findViewById(R.id.filtration_chip_average)).setChecked(true);
             } else if (pubListViewModel.getFilterUiState().getValue().getPriceType().equals(PriceType.AVERAGE)) {
-                ((Chip) requireView().findViewById(R.id.duzo)).setChecked(true);
+                ((Chip) requireView().findViewById(R.id.filtration_chip_expensive)).setChecked(true);
             }
         }
         //time
         if(pubListViewModel.getFilterUiState().getValue().getOpenNow()){
-            requireView().findViewById(R.id.Chip_open_now).performClick();
+            requireView().findViewById(R.id.filtration_chip_openNow).performClick();
         } else if (pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours() != null) {
-            requireView().findViewById(R.id.Chip_custom).performClick();
-            requireView().findViewById(R.id.Layout_custom).setVisibility(View.GONE);
+            requireView().findViewById(R.id.filtration_chip_customTime).performClick();
+            requireView().findViewById(R.id.filtration_cl_customTime).setVisibility(View.GONE);
             if(pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getWeekDay() != null){
-                ((TextView)requireView().findViewById(R.id.textView17)).setText(pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getWeekDay());
+                ((TextView)requireView().findViewById(R.id.filtration_text_customDay)).setText(pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getWeekDay());
             }
             if(pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getFromTime() != null &&
                     pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getToTime() != null){
-                ((TextView)requireView().findViewById(R.id.textView18)).setText(
+                ((TextView)requireView().findViewById(R.id.filtration_text_customTime)).setText(
                         getString(R.string.from)+" "+ pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getFromTime() +
                                 " "+getString(R.string.to)+" "+pubListViewModel.getFilterUiState().getValue().getCustomOpeningHours().getToTime());
 
             }
         } else{
-            requireView().findViewById(R.id.Chip_anytime).performClick();
+            requireView().findViewById(R.id.filtration_chip_anytime).performClick();
         }
 
         //breweries
         if(pubListViewModel.getFilterUiState().getValue().getBeers()!=null){
             List<String> beers = new ArrayList<>();
-            for(int n=0; n<((ChipGroup)requireView().findViewById(R.id.BeerListChG)).getChildCount(); n++){
-                beers.add(((Chip)((ChipGroup)requireView().findViewById(R.id.BeerListChG)).getChildAt(n)).getText().toString());
+            for(int n = 0; n<((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_breweries)).getChildCount(); n++){
+                beers.add(((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_breweries)).getChildAt(n)).getText().toString());
             }
             for(var beer:pubListViewModel.getFilterUiState().getValue().getBeers()){
-                ((Chip)((ChipGroup)requireView().findViewById(R.id.BeerListChG)).getChildAt(beers.indexOf(beer))).setChecked(true);
+                ((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_breweries)).getChildAt(beers.indexOf(beer))).setChecked(true);
             }
         }
         //styles
         if(pubListViewModel.getFilterUiState().getValue().getStyles() != null){
             List<String> styles = new ArrayList<>();
-            for(int n=0; n<((ChipGroup)requireView().findViewById(R.id.StylesListChG)).getChildCount(); n++){
-                styles.add(((Chip)((ChipGroup)requireView().findViewById(R.id.StylesListChG)).getChildAt(n)).getText().toString());
+            for(int n = 0; n<((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_styles)).getChildCount(); n++){
+                styles.add(((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_styles)).getChildAt(n)).getText().toString());
             }
             for(var style:pubListViewModel.getFilterUiState().getValue().getStyles()){
-                ((Chip)((ChipGroup)requireView().findViewById(R.id.StylesListChG)).getChildAt(styles.indexOf(style))).setChecked(true);
+                ((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_styles)).getChildAt(styles.indexOf(style))).setChecked(true);
             }
         }
         //particular beers
@@ -747,27 +743,27 @@ public class FilterFragment extends Fragment {
             }
             if(listParticularBeersAdapter == null){
                 listParticularBeersAdapter = new ListParticularBeersAdapter(particularBeers);
-                ((RecyclerView) requireView().findViewById(R.id.ParticularBeersList)).setAdapter(listParticularBeersAdapter);
+                ((RecyclerView) requireView().findViewById(R.id.filtration_recyclerView_particularBeers)).setAdapter(listParticularBeersAdapter);
             }
         }
         //drinks
         if(pubListViewModel.getFilterUiState().getValue().getOtherDrinks() != null){
             List<String> drinks = new ArrayList<>();
-            for(int n=0; n<((ChipGroup)requireView().findViewById(R.id.DrinksChG)).getChildCount(); n++){
-                drinks.add(((Chip)((ChipGroup)requireView().findViewById(R.id.DrinksChG)).getChildAt(n)).getText().toString());
+            for(int n = 0; n<((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_drinks)).getChildCount(); n++){
+                drinks.add(((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_drinks)).getChildAt(n)).getText().toString());
             }
             for(var drink:pubListViewModel.getFilterUiState().getValue().getOtherDrinks()){
-                ((Chip)((ChipGroup)requireView().findViewById(R.id.DrinksChG)).getChildAt(drinks.indexOf(drink))).setChecked(true);
+                ((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_drinks)).getChildAt(drinks.indexOf(drink))).setChecked(true);
             }
         }
         //tags
         if(pubListViewModel.getFilterUiState().getValue().getTags() != null){
             List<String> tags = new ArrayList<>();
-            for(int n=0; n<((ChipGroup)requireView().findViewById(R.id.TagsChG)).getChildCount(); n++){
-                tags.add(((Chip)((ChipGroup)requireView().findViewById(R.id.TagsChG)).getChildAt(n)).getText().toString());
+            for(int n = 0; n<((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_tags)).getChildCount(); n++){
+                tags.add(((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_tags)).getChildAt(n)).getText().toString());
             }
             for(var tag:pubListViewModel.getFilterUiState().getValue().getTags()){
-                ((Chip)((ChipGroup)requireView().findViewById(R.id.TagsChG)).getChildAt(tags.indexOf(tag))).setChecked(true);
+                ((Chip)((ChipGroup)requireView().findViewById(R.id.filtration_chipGroup_tags)).getChildAt(tags.indexOf(tag))).setChecked(true);
             }
         }
     }
@@ -775,12 +771,12 @@ public class FilterFragment extends Fragment {
     public void filtration(View view)
     {
 
-        RangeSlider averageRatingSlider=view.findViewById(R.id.RatingSlider);
+        RangeSlider averageRatingSlider=view.findViewById(R.id.filtration_rangeSlider_rating);
         float upAvgRating = Math.round(averageRatingSlider.getValues().get(1));
         upAvgRating = upAvgRating/2;
         float bottomAvgRating = Math.round(averageRatingSlider.getValues().get(0));
         bottomAvgRating = bottomAvgRating/2;
-        Slider distanceSlider=view.findViewById(R.id.DistanceSlider);
+        Slider distanceSlider=view.findViewById(R.id.filtration_slider_distance);
         float distance = Math.round(distanceSlider.getValue());
         distance = distance/2;
 
@@ -800,20 +796,20 @@ public class FilterFragment extends Fragment {
 
 
     public void timeCheck(View v) {
-        open = ((Chip) v.findViewById(R.id.Chip_open_now)).isChecked();
+        open = ((Chip) v.findViewById(R.id.filtration_chip_openNow)).isChecked();
         customOpeningHours = new FilterUiState.CustomOpeningHours(null, null, null);
-        if(((Chip)requireView().findViewById(R.id.Chip_custom)).isChecked()){
-            String[] time = String.valueOf(((TextView)requireView().findViewById(R.id.textView18)).getText()).toString().split(" ");
+        if(((Chip)requireView().findViewById(R.id.filtration_chip_customTime)).isChecked()){
+            String[] time = String.valueOf(((TextView)requireView().findViewById(R.id.filtration_text_customTime)).getText()).toString().split(" ");
             if(time.length >= 4){
                 customOpeningHours = new FilterUiState.CustomOpeningHours(
-                        ((TextView)requireView().findViewById(R.id.textView17)).getText().toString(),
+                        ((TextView)requireView().findViewById(R.id.filtration_text_customDay)).getText().toString(),
                         time[1],
                         time[3]
                 );
             }
-            if((((TextView)requireView().findViewById(R.id.textView18)).getText()).toString().equals(getString(R.string.anytime))){
+            if((((TextView)requireView().findViewById(R.id.filtration_text_customTime)).getText()).toString().equals(getString(R.string.anytime))){
                 customOpeningHours = new FilterUiState.CustomOpeningHours(
-                        ((TextView)requireView().findViewById(R.id.textView17)).getText().toString(),
+                        ((TextView)requireView().findViewById(R.id.filtration_text_customDay)).getText().toString(),
                         null,
                         null
                 );
@@ -822,11 +818,11 @@ public class FilterFragment extends Fragment {
     }
 
     private void priceCheck(View v){
-        if(((Chip) v.findViewById(R.id.malo)).isChecked())
+        if(((Chip) v.findViewById(R.id.filtration_chip_cheap)).isChecked())
             price= FilterConstants.MALO;
-        if(((Chip) v.findViewById(R.id.srednio)).isChecked())
+        if(((Chip) v.findViewById(R.id.filtration_chip_average)).isChecked())
             price= FilterConstants.SREDNIO;
-        if(((Chip) v.findViewById(R.id.duzo)).isChecked())
+        if(((Chip) v.findViewById(R.id.filtration_chip_expensive)).isChecked())
             price= FilterConstants.DUZO;
     }
 
@@ -862,11 +858,11 @@ public class FilterFragment extends Fragment {
                 Log.e(TAG, "drinksCheck: Such View Field doesn't exit");
             }
         }
-        RecyclerView particularBeerList = requireView().findViewById(R.id.ParticularBeersList);
+        RecyclerView particularBeerList = requireView().findViewById(R.id.filtration_recyclerView_particularBeers);
         for (int i = 0; i < particularBeerList.getChildCount(); i++) {
             View childView = particularBeerList.getChildAt(i);
-            String brewery_name = ((TextView)childView.findViewById(R.id.brewery_textview)).getText().toString();
-            String style = ((TextView)childView.findViewById(R.id.style_textview)).getText().toString();
+            String brewery_name = ((TextView)childView.findViewById(R.id.filtrationPB_text_brewery)).getText().toString();
+            String style = ((TextView)childView.findViewById(R.id.filtrationPB_text_style)).getText().toString();
             particularBeers.add(new Pair<>(brewery_name, style));
         }
     }
@@ -885,7 +881,7 @@ public class FilterFragment extends Fragment {
 
     public void moreBeers(View v)  {
         if (!moreBeers) {
-            ((TextView)v.findViewById(R.id.MoreBeers)).setText("Mniej");
+            ((TextView)v.findViewById(R.id.filtration_text_moreBreweries)).setText("Mniej");
             try{
                 for(var sid: requireContext().getResources().getStringArray(R.array.second_to_show_breweries)) {
                     int field = R.id.class.getField(sid.replace(" ", "")).getInt(0);
@@ -897,7 +893,7 @@ public class FilterFragment extends Fragment {
             moreBeers = true;
         }
         else {
-            ((TextView)v.findViewById(R.id.MoreBeers)).setText("Więcej");
+            ((TextView)v.findViewById(R.id.filtration_text_moreBreweries)).setText("Więcej");
             try {
                 for (var sid : requireContext().getResources().getStringArray(R.array.second_to_show_breweries)) {
                     int field = R.id.class.getField(sid.replace(" ", "")).getInt(0);
@@ -916,53 +912,53 @@ public class FilterFragment extends Fragment {
         if(pubListViewModel.getFilterFragmentUiState().getValue() != null)
             checkVisibility();
         if(listParticularBeersAdapter != null)
-            ((RecyclerView) requireView().findViewById(R.id.ParticularBeersList)).setAdapter(listParticularBeersAdapter);
+            ((RecyclerView) requireView().findViewById(R.id.filtration_recyclerView_particularBeers)).setAdapter(listParticularBeersAdapter);
         if(pubListViewModel.getBrewery_textview() != null)
-            ((TextView)requireView().findViewById(R.id.choose_brewery_textview)).setText(pubListViewModel.getBrewery_textview());
+            ((TextView)requireView().findViewById(R.id.filtration_text_chooseBrewery)).setText(pubListViewModel.getBrewery_textview());
         if(pubListViewModel.getStyle_textview() != null)
-            ((TextView)requireView().findViewById(R.id.choose_style_textview)).setText(pubListViewModel.getStyle_textview());
+            ((TextView)requireView().findViewById(R.id.filtration_text_chooseStyle)).setText(pubListViewModel.getStyle_textview());
     }
 
     private void checkVisibility(){
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(0)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(0, false);
-            requireView().findViewById(R.id.IVrating).performClick();
+            requireView().findViewById(R.id.filtation_image_rating).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(1)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(1, false);
-            requireView().findViewById(R.id.IVdistance).performClick();
+            requireView().findViewById(R.id.filtration_image_distance).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(2)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(2, false);
-            requireView().findViewById(R.id.IVprice).performClick();
+            requireView().findViewById(R.id.filtration_image_price).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(3)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(3, false);
-            requireView().findViewById(R.id.IVtime).performClick();
+            requireView().findViewById(R.id.filtration_image_time).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(4)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(4, false);
-            requireView().findViewById(R.id.IVbeer).performClick();
+            requireView().findViewById(R.id.filtration_image_beer).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(5)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(5, false);
-            requireView().findViewById(R.id.IVBreweries).performClick();
+            requireView().findViewById(R.id.filtration_image_breweries).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(6)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(6, false);
-            requireView().findViewById(R.id.IVStyles).performClick();
+            requireView().findViewById(R.id.filtration_image_styles).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(7)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(7, false);
-            requireView().findViewById(R.id.IVParticularBeers).performClick();
+            requireView().findViewById(R.id.filtration_image_particularBeers).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(8)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(8, false);
-            requireView().findViewById(R.id.IVdrinks).performClick();
+            requireView().findViewById(R.id.filtration_image_drinks).performClick();
         }
         if(pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().get(9)) {
             pubListViewModel.getFilterFragmentUiState().getValue().getExpandVisibilyStateList().set(9, false);
-            requireView().findViewById(R.id.IVTags).performClick();
+            requireView().findViewById(R.id.filtration_image_tags).performClick();
         }
     }
 

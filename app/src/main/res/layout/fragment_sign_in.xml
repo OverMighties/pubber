@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/SignInFragment"
+    android:id="@+id/signIn_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/IV_goback_sign_in"
+        android:id="@+id/signIn_button_back"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/ic_arrow_back" />
 
     <Button
-        android:id="@+id/emailSignInButton"
+        android:id="@+id/signIn_button_sign"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_container"
@@ -32,7 +32,7 @@
 
 
     <Button
-        android:id="@+id/sign_up_5"
+        android:id="@+id/signIn_botton_signUp"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_container"
@@ -42,10 +42,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/emailSignInButton" />
+        app:layout_constraintTop_toTopOf="@id/signIn_button_sign" />
 
     <ImageView
-        android:id="@+id/icon_sign_in"
+        android:id="@+id/signUp_image_pubberIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/desc_firebase_lockup"
@@ -57,7 +57,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEmailSignIn"
+        android:id="@+id/signIn_inputLayout_email"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -67,17 +67,17 @@
         android:hint="@string/hint_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon_sign_in">
+        app:layout_constraintTop_toBottomOf="@id/signUp_image_pubberIcon">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_field_email_sing_in"
+            android:id="@+id/signIn_editText_email"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPasswordSignIn"
+        android:id="@+id/signIn_inputLayout_password"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -89,10 +89,10 @@
         android:hint="@string/hint_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmailSignIn">
+        app:layout_constraintTop_toBottomOf="@+id/signIn_inputLayout_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_field_password_sing_in"
+            android:id="@+id/signIn_editText_password"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:inputType="textPassword"

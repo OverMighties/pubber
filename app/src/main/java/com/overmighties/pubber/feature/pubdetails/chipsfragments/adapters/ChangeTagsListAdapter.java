@@ -1,6 +1,5 @@
 package com.overmighties.pubber.feature.pubdetails.chipsfragments.adapters;
 
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.overmighties.pubber.R;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditTagsFragment;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditViewModel;
 import com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders.DetailsEditTagsCardViewUiState;
-import com.overmighties.pubber.util.DimensionsConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +36,8 @@ public class ChangeTagsListAdapter extends RecyclerView.Adapter<ChangeTagsListAd
     
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tag = itemView.findViewById(R.id.detailsTagsCardView);
-            removeButton = itemView.findViewById(R.id.imageViewTagDeleteChange);
+            tag = itemView.findViewById(R.id.detailsEditTCV_chip_tag);
+            removeButton = itemView.findViewById(R.id.detailsEditTCV_image_deleteTag);
         }
     }
 

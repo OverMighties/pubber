@@ -4,7 +4,6 @@ package com.overmighties.pubber.feature.account;
 import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import lombok.Getter;
 
@@ -35,9 +33,9 @@ public class AccountDetailsAdapter extends RecyclerView.Adapter<AccountDetailsAd
         private final TextView contentEditTextView;
         public ViewHolder(View view) {
             super(view);
-            contentInfoImageView = view.findViewById(R.id.content_info_imageview);
-            contentTextView = view.findViewById(R.id.content_textView);
-            contentEditTextView = view.findViewById(R.id.content_edit_textView);
+            contentInfoImageView = view.findViewById(R.id.accountDetailsRVR_image_contentInfo);
+            contentTextView = view.findViewById(R.id.accountDetailsRVR_text_content);
+            contentEditTextView = view.findViewById(R.id.accountDetailsRVR_text_edit);
         }
 
     }
@@ -114,7 +112,7 @@ public class AccountDetailsAdapter extends RecyclerView.Adapter<AccountDetailsAd
             View finalDialogView = dialogView;
             builder.setPositiveButton(holder.itemView.getContext().getString(R.string.accept), ((dialog, which) -> {
                 if(position!=2)
-                    new_data[0] = ((EditText) finalDialogView.findViewById(R.id.edit_field_change_content)).getText().toString();
+                    new_data[0] = ((EditText) finalDialogView.findViewById(R.id.accountDetailsRVRDI_ET_changeContent)).getText().toString();
                 if(finalListener_consumer != null)
                     finalListener_consumer.accept(new_data[0]);
             }));

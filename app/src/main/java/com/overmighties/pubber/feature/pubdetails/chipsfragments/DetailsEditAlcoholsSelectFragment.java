@@ -58,21 +58,21 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
             list.add(new DetailsDrinkCardViewUiState(names[i]));
         }
         adapter = new DetailsDrinkListAdapter(list,this);
-        ((RecyclerView)requireView().findViewById(R.id.details_search_list)).setAdapter(adapter);
+        ((RecyclerView)requireView().findViewById(R.id.detailsEditAS_recyclerView_searchList)).setAdapter(adapter);
     }
 
     private void setUpListeners(){
-        EditText editText = ((EditText)requireView().findViewById(R.id.detials_edit_text_search));
+        EditText editText = ((EditText)requireView().findViewById(R.id.detailsEditAS_editText_search));
 
-        requireView().findViewById(R.id.details_search_list).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditAS_recyclerView_searchList).setOnClickListener(v->{
             unFocus(editText);
         });
 
-        requireView().findViewById(R.id.detailsEditAlcoholsSelectFragment).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditAS_fragment).setOnClickListener(v->{
             unFocus(editText);
         });
 
-        requireView().findViewById(R.id.CloseButtonSelect).setOnClickListener(v->{
+        requireView().findViewById(R.id.detailsEditAS_image_back).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).popBackStack();
         });
 
@@ -95,12 +95,12 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
                     if(editText.getText().toString().equals(""))
-                        ((TextInputLayout)requireView().findViewById(R.id.details_text_input_layout_search)).setHint(null);
+                        ((TextInputLayout)requireView().findViewById(R.id.detailsEditAS_inputLayout_search)).setHint(null);
 
                 }
                 else{
                     if(editText.getText().toString().equals(""))
-                        ((TextInputLayout)requireView().findViewById(R.id.details_text_input_layout_search)).setHint(getString(R.string.searchview_hint));
+                        ((TextInputLayout)requireView().findViewById(R.id.detailsEditAS_inputLayout_search)).setHint(getString(R.string.searchview_hint));
                 }
             }
         });

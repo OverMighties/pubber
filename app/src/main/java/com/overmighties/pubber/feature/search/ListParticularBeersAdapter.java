@@ -28,9 +28,9 @@ public class ListParticularBeersAdapter extends RecyclerView.Adapter<ListParticu
         private final CardView delete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            brewery = itemView.findViewById(R.id.brewery_textview);
-            style = itemView.findViewById(R.id.style_textview);
-            delete = itemView.findViewById(R.id.delete);
+            brewery = itemView.findViewById(R.id.filtrationPB_text_brewery);
+            style = itemView.findViewById(R.id.filtrationPB_text_style);
+            delete = itemView.findViewById(R.id.filtrationPB_cardView_delete);
         }
     }
 

@@ -62,16 +62,16 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
        public PubViewHolder(@NonNull View itemView, PubListSelectListener pubListSelectListener) {
             super(itemView);
             this.itemView=itemView;
-            name= itemView.findViewById(R.id.PName);
-            qualityRating = itemView.findViewById(R.id.PRating);
+            name= itemView.findViewById(R.id.pubRVR_text_name);
+            qualityRating = itemView.findViewById(R.id.pubRVR_text_rating);
             //costRating =(TextView) itemView.findViewById(R.id.ocenaKoszty);
-            timeOpenToday = itemView.findViewById(R.id.timeOpenToday_card_view_row);
-            pubIcon = itemView.findViewById(R.id.PubImage);
-            walkDistance = itemView.findViewById(R.id.PWalkDis);
-            ratingCount = itemView.findViewById(R.id.PRatingCount);
-            ratingImage = itemView.findViewById(R.id.PClRatingImage);
-            mapChip = itemView.findViewById(R.id.MapChip);
-            alcoholChip  = itemView.findViewById(R.id.AlcoholChip);
+            timeOpenToday = itemView.findViewById(R.id.pubRVR_text_timeOpen);
+            pubIcon = itemView.findViewById(R.id.pubRVR_image);
+            walkDistance = itemView.findViewById(R.id.pubRVR_text_distance);
+            ratingCount = itemView.findViewById(R.id.pubRVR_text_ratingCount);
+            ratingImage = itemView.findViewById(R.id.pubRVR_cl_ratingContainer);
+            mapChip = itemView.findViewById(R.id.pubRVR_chip_guide);
+            alcoholChip  = itemView.findViewById(R.id.pubRVR_chip_alcohol);
             /*
             imageSaveButt =(ImageButton)itemView.findViewById(R.id.heart);
             imageSaveButt.setTag(R.drawable.heartempty);
@@ -187,8 +187,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomDialog);
             LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
             View dialogView = inflater.inflate(R.layout.pub_recycler_view_row_dialog_alcohols, null);
-            ChipGroup beerChipGroup = dialogView.findViewById(R.id.dialog_beers_CHG);
-            ChipGroup drinkChipGroup = dialogView.findViewById(R.id.dialog_drinks_CHG);
+            ChipGroup beerChipGroup = dialogView.findViewById(R.id.pubDA_chipGroup_beers);
+            ChipGroup drinkChipGroup = dialogView.findViewById(R.id.pubDA_chipGroup_drinks);
             if (pubCardView.getAlcohol() != null) {
                 for (var alcohol : pubCardView.getAlcohol()) {
                     Chip chip = new Chip(holder.itemView.getContext());
@@ -215,7 +215,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
             builder.setView(dialogView);
             AlertDialog alertDialog = builder.create();
-            dialogView.findViewById(R.id.dialog_go_back).setOnClickListener(view->{
+            dialogView.findViewById(R.id.pubDA_text_back).setOnClickListener(view->{
                 alertDialog.dismiss();
             });
             alertDialog.show();

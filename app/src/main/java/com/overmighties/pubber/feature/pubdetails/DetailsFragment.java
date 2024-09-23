@@ -88,15 +88,15 @@ public class DetailsFragment extends Fragment
         viewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
 
-        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility() == View.INVISIBLE || requireActivity().findViewById(R.id.bottom_nav_view).getVisibility() == View.VISIBLE)
-            requireActivity().findViewById(R.id.bottom_nav_view).setVisibility(View.GONE);
+        if(requireActivity().findViewById(R.id.main_bottomNavView).getVisibility() == View.INVISIBLE || requireActivity().findViewById(R.id.main_bottomNavView).getVisibility() == View.VISIBLE)
+            requireActivity().findViewById(R.id.main_bottomNavView).setVisibility(View.GONE);
 
         PubDetailsUiState pubDetailsUiState= DetailsViewModel.getPubDetails().getValue();
         viewModel.setUiState(pubDetailsUiState);
         //test data
         prepareFakeData();
-        BlurImageView=requireView().findViewById(R.id.blur);
-        layout= requireView().findViewById(R.id.detail);
+        BlurImageView=requireView().findViewById(R.id.details_image_blur);
+        layout= requireView().findViewById(R.id.details_fragment);
 
 
         setUpPubData(pubDetailsUiState);
@@ -119,54 +119,54 @@ public class DetailsFragment extends Fragment
 
     private void setUpPubData(PubDetailsUiState pubDetailsUiState) {
         if(pubDetailsUiState.getName()!=null)
-            ((TextView)requireView().findViewById(R.id.name)).setText(pubDetailsUiState.getName());
+            ((TextView)requireView().findViewById(R.id.details_text_name)).setText(pubDetailsUiState.getName());
         //setting open today info parameters
         if(pubDetailsUiState.getTimeOpenToday()!=null){
-            if(pubDetailsUiState.getTimeOpenToday().charAt(0) == 'O'){ ((TextView)requireView().findViewById(R.id.OvTVTime))
+            if(pubDetailsUiState.getTimeOpenToday().charAt(0) == 'O'){ ((TextView)requireView().findViewById(R.id.details_text_time))
                     .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_open));
-                ((TextView)requireView().findViewById(R.id.OvTVTime)).setShadowLayer(1,0.5f,0.5f,
+                ((TextView)requireView().findViewById(R.id.details_text_time)).setShadowLayer(1,0.5f,0.5f,
                         ContextCompat.getColor(getContext(), R.color.highlight_open));
             }else{
-                ((TextView)requireView().findViewById(R.id.OvTVTime))
+                ((TextView)requireView().findViewById(R.id.details_text_time))
                         .setTextColor( ContextCompat.getColor(getContext(), R.color.highlight_close));
-                ((TextView)requireView().findViewById(R.id.OvTVTime)).setShadowLayer(1,0.5f,0.5f,
+                ((TextView)requireView().findViewById(R.id.details_text_time)).setShadowLayer(1,0.5f,0.5f,
                         ContextCompat.getColor(getContext(), R.color.highlight_close));
             }
-            ((TextView)requireView().findViewById(R.id.OvTVTime)).setText(pubDetailsUiState.getTimeOpenToday());
+            ((TextView)requireView().findViewById(R.id.details_text_time)).setText(pubDetailsUiState.getTimeOpenToday());
         }
         //set up rating and rating's iv
         if(pubDetailsUiState.getRatings() != null) {
-            ((TextView) requireView().findViewById(R.id.PubRating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
+            ((TextView) requireView().findViewById(R.id.details_text_rating)).setText(pubDetailsUiState.getRatings().getAverageRating().toString());
             List<ImageView> imageViews = new ArrayList<>();
             imageViews.add(new ImageView(getContext()));
             imageViews.add(new ImageView(getContext()));
             imageViews.add(new ImageView(getContext()));
             imageViews.add(new ImageView(getContext()));
             imageViews.add(new ImageView(getContext()));
-            new RatingToIVConverter().convert(imageViews, 32, requireView().findViewById(R.id.PubRatingIV),
+            new RatingToIVConverter().convert(imageViews, 32, requireView().findViewById(R.id.details_cl_ratingImageContainer),
                     pubDetailsUiState.getRatings().getAverageRating(), 11, 17);
-            ((TextView) requireView().findViewById(R.id.PubRatingCount)).setText("(" + pubDetailsUiState.getRatings().getRatingsCount() + ")");
+            ((TextView) requireView().findViewById(R.id.details_text_ratingCount)).setText("(" + pubDetailsUiState.getRatings().getRatingsCount() + ")");
         }
         //set up pub's price
         if(PriceType.getById(Math.toIntExact(pubDetailsUiState.getId())) != null)
-            ((TextView)requireView().findViewById(R.id.PubPrice)).setText(PriceType.getById(Math.toIntExact(pubDetailsUiState.getId())).getIcon() + " • ");
+            ((TextView)requireView().findViewById(R.id.details_text_price)).setText(PriceType.getById(Math.toIntExact(pubDetailsUiState.getId())).getIcon() + " • ");
         //distance
         if(pubDetailsUiState.getDistance()!=null){
-            ((TextView)requireView().findViewById(R.id.PubDistance)).setText(" "+String.valueOf(pubDetailsUiState.getDistance())+"km");
+            ((TextView)requireView().findViewById(R.id.details_text_distance)).setText(" "+String.valueOf(pubDetailsUiState.getDistance())+"km");
         }
         else{
-            ((TextView)requireView().findViewById(R.id.PubDistance)).setText(getString(R.string.not_calculated));
-            ((TextView)requireView().findViewById(R.id.PubDistance)).setTextColor(ContextCompat.getColor(requireContext(), R.color.primary));
+            ((TextView)requireView().findViewById(R.id.details_text_distance)).setText(getString(R.string.not_calculated));
+            ((TextView)requireView().findViewById(R.id.details_text_distance)).setTextColor(ContextCompat.getColor(requireContext(), R.color.primary));
         }
         //additiona info
         if(pubDetailsUiState.getReservable() != null && pubDetailsUiState.getReservable()){
-            ((TextView)requireView().findViewById(R.id.PubReserve)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_open));
-            ((TextView)requireView().findViewById(R.id.PubReserve)).setShadowLayer(1,0.5f,0.5f,
+            ((TextView)requireView().findViewById(R.id.details_text_reservable)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_open));
+            ((TextView)requireView().findViewById(R.id.details_text_reservable)).setShadowLayer(1,0.5f,0.5f,
                     ContextCompat.getColor(getContext(), R.color.highlight_open));;
         }
         else{
-            ((TextView)requireView().findViewById(R.id.PubReserve)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_close));
-            ((TextView)requireView().findViewById(R.id.PubReserve)).setShadowLayer(1,0.5f,0.5f,
+            ((TextView)requireView().findViewById(R.id.details_text_reservable)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_close));
+            ((TextView)requireView().findViewById(R.id.details_text_reservable)).setShadowLayer(1,0.5f,0.5f,
                     ContextCompat.getColor(getContext(), R.color.highlight_close));;
         }
 
@@ -175,10 +175,10 @@ public class DetailsFragment extends Fragment
         if (pubDetailsUiState.getDrinks() != null) {
             for (var alcohol : pubDetailsUiState.getDrinks()) {
                 if(alcohol.getType().equals("Beer")){
-                    FlexboxLayout beerLayout = ((FlexboxLayout)requireView().findViewById(R.id.chipGroupBeersLayout));
+                    FlexboxLayout beerLayout = ((FlexboxLayout)requireView().findViewById(R.id.details_FbL_beers));
                     View alcoholChipView =  LayoutInflater.from(requireContext()).inflate(R.layout.alcohol_view_chip, beerLayout, false);
 
-                    ((Chip) alcoholChipView.findViewById(R.id.chipAlcohol)).setText(alcohol.getName());
+                    ((Chip) alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).setText(alcohol.getName());
                     String styles = null;
                     if(alcohol.getDrinkStyles() != null && !alcohol.getDrinkStyles().isEmpty()){
                         styles="";
@@ -190,10 +190,10 @@ public class DetailsFragment extends Fragment
                                 styles = styles + style.getName() + ", ";
                             }
                         }
-                        ((TextView)alcoholChipView.findViewById(R.id.textViewAlcoholStyles)).setText(styles);
+                        ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setText(styles);
                     }
                     else{
-                        ((TextView)alcoholChipView.findViewById(R.id.textViewAlcoholStyles)).setVisibility(View.GONE);
+                        ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setVisibility(View.GONE);
                     }
                     beerLayout.addView(alcoholChipView);
                 }
@@ -210,7 +210,7 @@ public class DetailsFragment extends Fragment
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
                     chip.setLayoutParams(params);
-                    ((ChipGroup)requireView().findViewById(R.id.chipGroupDrinks)).addView(chip);
+                    ((ChipGroup)requireView().findViewById(R.id.details_chipGroup_drinks)).addView(chip);
                 };
 
             }
@@ -229,12 +229,12 @@ public class DetailsFragment extends Fragment
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             chip.setLayoutParams(params);
-            ((ChipGroup)requireView().findViewById(R.id.chipGroupTags)).addView(chip);
+            ((ChipGroup)requireView().findViewById(R.id.details_chipGroup_tags)).addView(chip);
         }
         
         //Comments List
         adapter = new DetailsCommentsAdapter(testComments);
-        ((RecyclerView)requireView().findViewById(R.id.commentsRecyclerView)).setAdapter(adapter);
+        ((RecyclerView)requireView().findViewById(R.id.details_recyclerView_comments)).setAdapter(adapter);
 
         //pub's open time info
         Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
@@ -256,7 +256,7 @@ public class DetailsFragment extends Fragment
     private void setUpImageSlider()
     {
         View popUpView = LayoutInflater.from(requireActivity()).inflate(R.layout.detail_image_pop_up, null);
-        viewPager=popUpView.findViewById(R.id.viewPager);
+        viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
         viewPager.setAdapter(new ViewPagerSliderAdapter(testPhotos));
         viewPager.setPageTransformer(true,new ViewPagerSlideTransformer());
 
@@ -264,9 +264,9 @@ public class DetailsFragment extends Fragment
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
         DetailImageViewPopUpWindow.setOnDismissListener(() -> BlurImageView.setVisibility(View.GONE));
-        popUpView.findViewById(R.id.dismissButton).setOnClickListener(v -> DetailImageViewPopUpWindow.dismiss());
+        popUpView.findViewById(R.id.detailsImage_image_dismiss).setOnClickListener(v -> DetailImageViewPopUpWindow.dismiss());
 
-        ConstraintLayout constraintLayout= requireView().findViewById(R.id.ImageSlider);
+        ConstraintLayout constraintLayout= requireView().findViewById(R.id.details_cl_imageSlider);
         ShapeAppearanceModel shapeAppearanceModel=new ShapeAppearanceModel()
                 .toBuilder()
                 .setAllCorners(CornerFamily.ROUNDED,30)
@@ -284,9 +284,9 @@ public class DetailsFragment extends Fragment
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (requireActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
-                    viewPager=popUpView.findViewById(R.id.viewPager);
+                    (requireActivity().findViewById(R.id.details_fragment))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
+                    viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
                     int n=0;
                     for(Integer photoId:testPhotos)
                     {
@@ -315,9 +315,9 @@ public class DetailsFragment extends Fragment
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (requireActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
-                    viewPager=popUpView.findViewById(R.id.viewPager);
+                    (requireActivity().findViewById(R.id.details_fragment))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
+                    viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
 
                     int n=0;
                     for(int fotka:testPhotos)
@@ -346,9 +346,9 @@ public class DetailsFragment extends Fragment
                     BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
                     BlurImageView.setVisibility(View.VISIBLE);
 
-                    (requireActivity().findViewById(R.id.detail))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.detail), Gravity.BOTTOM, 0, 0));
-                    viewPager=popUpView.findViewById(R.id.viewPager);
+                    (requireActivity().findViewById(R.id.details_fragment))
+                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
+                    viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
 
                     int n=0;
                     for(int fotka:testPhotos)
@@ -379,80 +379,80 @@ public class DetailsFragment extends Fragment
 
     private void setUpListener(){
 
-        requireView().findViewById(R.id.CloseButton).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
+        requireView().findViewById(R.id.details_image_back).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
-        requireView().findViewById(R.id.chipGuide).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_guide).setOnClickListener(v->{
             guide();
         });
 
-        requireView().findViewById(R.id.chipCall).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_call).setOnClickListener(v->{
             call();
         });
 
-        requireView().findViewById(R.id.chipRate).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_rate).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
         });
 
-        requireView().findViewById(R.id.chipEdit).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_edit).setOnClickListener(v->{
             showBottomSheetEdit();
         });
 
-        requireView().findViewById(R.id.chipShare).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_share).setOnClickListener(v->{
             shareLink();
         });
 
-        requireView().findViewById(R.id.ExpandRatingImageView).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_image_expandRating).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
         });
 
-        requireView().findViewById(R.id.PubDistance).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_text_distance).setOnClickListener(v->{
             if(viewModel.getUiState().getValue().getDistance()==null){
                 //TODO show ad and then calculate distance to that pub
             }
         });
 
 
-        requireView().findViewById(R.id.OvUnFoldTime).setOnClickListener(v-> UnFoldTime());
+        requireView().findViewById(R.id.details_image_expandTime).setOnClickListener(v-> UnFoldTime());
 
-        requireView().findViewById(R.id.OvTVAdress).setOnLongClickListener(v->{
-            setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.OvTVAdress)).getText().toString());
+        requireView().findViewById(R.id.details_text_adress).setOnLongClickListener(v->{
+            setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.details_text_adress)).getText().toString());
             return false;
         });
 
-        requireView().findViewById(R.id.OvTVPhoneNumber).setOnClickListener(v-> {
-                if (((TextView)requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString().length() == 11) {
-                    String uri = "tel:" + ((TextView)requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString() ;
+        requireView().findViewById(R.id.details_text_phoneNumber).setOnClickListener(v-> {
+                if (((TextView)requireView().findViewById(R.id.details_text_phoneNumber)).getText().toString().length() == 11) {
+                    String uri = "tel:" + ((TextView)requireView().findViewById(R.id.details_text_phoneNumber)).getText().toString() ;
                     Intent intent = new Intent(Intent.ACTION_CALL);
                     intent.setData(Uri.parse(uri));
                     startActivity(intent);
                 }
         });
 
-        requireView().findViewById(R.id.OvTVPhoneNumber).setOnLongClickListener(v->{
-            if (((TextView)requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString().length() == 11) {
-                setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.OvTVPhoneNumber)).getText().toString());
+        requireView().findViewById(R.id.details_text_phoneNumber).setOnLongClickListener(v->{
+            if (((TextView)requireView().findViewById(R.id.details_text_phoneNumber)).getText().toString().length() == 11) {
+                setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.details_text_phoneNumber)).getText().toString());
             }
             return  false;
         });
 
-        requireView().findViewById((R.id.OvTVWebsiteAdress)).setOnClickListener(v->{
+        requireView().findViewById((R.id.details_text_websiteAdress)).setOnClickListener(v->{
             if (viewModel.getUiState().getValue().getWebsiteUrl() != null) {
                 Intent viewIntent =
                         new Intent("android.intent.action.VIEW",
-                                Uri.parse(((TextView) requireView().findViewById(R.id.OvTVWebsiteAdress)).getText().toString()));
+                                Uri.parse(((TextView) requireView().findViewById(R.id.details_text_websiteAdress)).getText().toString()));
                 startActivity(viewIntent);
             }
         });
 
-        requireView().findViewById(R.id.OvTVWebsiteAdress).setOnLongClickListener(v->{
+        requireView().findViewById(R.id.details_text_websiteAdress).setOnLongClickListener(v->{
             if (viewModel.getUiState().getValue().getWebsiteUrl() != null) {
-                setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.OvTVWebsiteAdress)).getText().toString());
+                setClipboard(getContext(), ((TextView) requireView().findViewById(R.id.details_text_websiteAdress)).getText().toString());
             }
             return  false;
         });
 
-        HorizontalScrollView expandableView = requireView().findViewById(R.id.horizontalScrollViewChipsExpandable);
-        ((ScrollView)requireView().findViewById(R.id.detailsScrollView)).setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        HorizontalScrollView expandableView = requireView().findViewById(R.id.details_horizontalSV_chipsExpandable);
+        ((ScrollView)requireView().findViewById(R.id.details_scrollView)).setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 if(DimensionsConverter.dpFromPx(requireContext(), scrollY)<=48F){
@@ -470,23 +470,23 @@ public class DetailsFragment extends Fragment
             }
         });
 
-        requireView().findViewById(R.id.cardViewGuideExpandable).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_cardView_guideExpandable).setOnClickListener(v->{
             guide();
         });
 
-        requireView().findViewById(R.id.chipCallExpandable).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_callExpandable).setOnClickListener(v->{
             call();
         });
 
-        requireView().findViewById(R.id.chipRateExpandable).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_rateExpandable).setOnClickListener(v->{
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsRateFragment());
         });
 
-        requireView().findViewById(R.id.chipEditExpandable).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_editExpandable).setOnClickListener(v->{
             showBottomSheetEdit();
         });
 
-        requireView().findViewById(R.id.chipShareExpandable).setOnClickListener(v->{
+        requireView().findViewById(R.id.details_chip_shareExpandable).setOnClickListener(v->{
             shareLink();
         });
 
@@ -520,13 +520,16 @@ public class DetailsFragment extends Fragment
         View bottomSheetView = getLayoutInflater().inflate(R.layout.details_bottom_sheet_edit, null);
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
         bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.findViewById(R.id.linear_layout_alcohols).setOnClickListener(v1->{
-            bottomSheetDialog.hide();
+        bottomSheetDialog.findViewById(R.id.detailsBSh_ll_alcohols).setOnClickListener(v->{
+            bottomSheetDialog.cancel();
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditFragment());
         });
-        bottomSheetDialog.findViewById(R.id.linear_layout_tags).setOnClickListener(v1->{
-            bottomSheetDialog.hide();
+        bottomSheetDialog.findViewById(R.id.detailsBSh_ll_tags).setOnClickListener(v->{
+            bottomSheetDialog.cancel();
             NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsFragmentToDetailsEditTagsFragment());
+        });
+        bottomSheetView.findViewById(R.id.detailsBSh_button_cancel).setOnClickListener(v->{
+            bottomSheetDialog.cancel();
         });
         bottomSheetDialog.show();
     }
@@ -544,15 +547,15 @@ public class DetailsFragment extends Fragment
     }
 
     private void UnFoldTime(){
-        if(requireView().findViewById(R.id.OvTvDay1).getVisibility() == View.VISIBLE){
-            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
+        if(requireView().findViewById(R.id.details_text_day1).getVisibility() == View.VISIBLE){
+            ((ImageView)requireView().findViewById(R.id.details_image_expandTime)).setImageResource(R.drawable.ic_expand_more_on_surface_variation);
             for(int i=0;i<=6;i++){
                 requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i]).setVisibility(View.GONE);
                 requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i]).setVisibility(View.GONE);
             }
         }
         else{
-            ((ImageView)requireView().findViewById(R.id.OvUnFoldTime)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
+            ((ImageView)requireView().findViewById(R.id.details_image_expandTime)).setImageResource(R.drawable.ic_expand_less_on_surface_variation);
             for(int i=0;i<=6;i++){
                 requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i]).setVisibility(View.VISIBLE);
                 requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i]).setVisibility(View.VISIBLE);

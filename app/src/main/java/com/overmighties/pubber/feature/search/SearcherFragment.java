@@ -80,8 +80,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         if (displayMetrics.xdpi <= 380){
             pubListViewModel.setChipTag("Small");
         }
-        if(!requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        if(!requireActivity().findViewById(R.id.main_bottomNavView).isShown())
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.main_bottomNavView), 200);
     }
 
 
@@ -89,15 +89,15 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG,"onViewCreated");
-        recyclerView = requireView().findViewById(R.id.Publista);
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
+        recyclerView = requireView().findViewById(R.id.searcher_recyclerView_pubList);
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
         AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
 
         if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
                 pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
             pubListViewModel.fetchPubsFromRepo(0);
         }
-        swipeRefreshLayout = requireActivity().findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout = requireActivity().findViewById(R.id.searcher_swipeRefresh_pubList);
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.fetchPubsFromRepo(REFRESH_MIN_TIME_MS);
@@ -154,17 +154,17 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     }
     private void setUpTopAppBar(){
-        MaterialToolbar topAppBar = requireView().findViewById(R.id.top_app_bar_view);
+        MaterialToolbar topAppBar = requireView().findViewById(R.id.searcher_topAppBarView);
         topAppBar.setOnMenuItemClickListener(menuItem->{
             if(menuItem.getItemId()==R.id.account_item){
-                if(requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-                    NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+                if(requireActivity().findViewById(R.id.main_bottomNavView).isShown())
+                    NavigationBar.smoothHide(requireActivity().findViewById(R.id.main_bottomNavView), 200);
                 navController.navigate(getNavDirections(SEARCHER_FRAGMENT,ACCOUNT_DETAILS_FRAGMENT));
                 return true;
             }
             if(menuItem.getItemId()==R.id.settings_item){
-                if(requireActivity().findViewById(R.id.bottom_nav_view).isShown())
-                    NavigationBar.smoothHide(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+                if(requireActivity().findViewById(R.id.main_bottomNavView).isShown())
+                    NavigationBar.smoothHide(requireActivity().findViewById(R.id.main_bottomNavView), 200);
                 navController.navigate(getNavDirections(SEARCHER_FRAGMENT,SETTINGS_FRAGMENT));
                 return true;
             }
@@ -202,7 +202,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             }
         });
 
-        requireView().findViewById(R.id.constraintLayout).setOnClickListener(v->{
+        requireView().findViewById(R.id.searcher_cl_content).setOnClickListener(v->{
             if (!searchview.isIconified()){
                 searchview.setIconified(true);
                 InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -230,16 +230,16 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     private void setUpListeners()
     {
-        requireView().findViewById(R.id.textViewSortType_searcher).setOnClickListener(v -> showSortBottomSheer());
-        requireView().findViewById(R.id.sort_image).setOnClickListener(v -> showSortBottomSheer());
-        requireView().findViewById(R.id.Filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
+        requireView().findViewById(R.id.searcher_text_sortBy).setOnClickListener(v -> showSortBottomSheer());
+        requireView().findViewById(R.id.searcher_image_sortBy).setOnClickListener(v -> showSortBottomSheer());
+        requireView().findViewById(R.id.searcher_image_filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
 
-        requireActivity().findViewById(R.id.fab_map).setOnClickListener(v -> {
+        requireActivity().findViewById(R.id.searcher_FAB_map).setOnClickListener(v -> {
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
         });
     }
     private void showSortBottomSheer(){
-        ((ImageView)requireView().findViewById(R.id.sort_image)).setImageResource(R.drawable.ic_expand_less_primary);
+        ((ImageView)requireView().findViewById(R.id.searcher_image_sortBy)).setImageResource(R.drawable.ic_expand_less_primary);
         View bottomSheetView = getLayoutInflater().inflate(R.layout.fragment_searcher_sort_bottom_sheet, null);
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -248,18 +248,18 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         bottomSheetDialog.show();
     }
     private void checkCurrentSortRadioButtons(View bottomSheetView) {
-        String word = ((TextView) requireView().findViewById(R.id.textViewSortType_searcher)).getText().toString();
+        String word = ((TextView) requireView().findViewById(R.id.searcher_text_sortBy)).getText().toString();
         if(getString(R.string.sort_relevance).equals(word)) {
-            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_relevance)).setChecked(true);
+            ((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_relevance)).setChecked(true);
         }
         if(getString(R.string.sort_rating).equals(word)) {
-            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_rating)).setChecked(true);
+            ((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_rating)).setChecked(true);
         }
         if(getString(R.string.sort_alphabetical).equals(word)) {
-            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_alphabetical)).setChecked(true);
+            ((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_alphabetical)).setChecked(true);
         }
         if(getString(R.string.sort_distance).equals(word)) {
-            ((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_distance)).setChecked(true);
+            ((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_distance)).setChecked(true);
         }
 
     }
@@ -276,15 +276,15 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         bottomSheetDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                ((ImageView)requireView().findViewById(R.id.sort_image)).setImageResource(R.drawable.ic_expand_more_primary);
-                TextView text = requireActivity().findViewById(R.id.textViewSortType_searcher);
-                if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_relevance)).isChecked()) {
+                ((ImageView)requireView().findViewById(R.id.searcher_image_sortBy)).setImageResource(R.drawable.ic_expand_more_primary);
+                TextView text = requireActivity().findViewById(R.id.searcher_text_sortBy);
+                if (((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_relevance)).isChecked()) {
                     text.setText( requireActivity().getString(R.string.sort_relevance));
                     pubListViewModel.sort(SortPubsBy.RELEVANCE);
-                } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_rating)).isChecked()) {
+                } else if (((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_rating)).isChecked()) {
                     text.setText(getString(R.string.sort_rating));
                     pubListViewModel.sort(SortPubsBy.RATING);
-                } else if (((RadioButton) bottomSheetView.findViewById(R.id.radio_butt_alphabetical)).isChecked()) {
+                } else if (((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_alphabetical)).isChecked()) {
                     text.setText(getString(R.string.sort_alphabetical));
                     pubListViewModel.sort(SortPubsBy.ALPHABETICAL);
                 } else{
@@ -300,10 +300,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     @Override
     public void onResume() {
         super.onResume();
-        requireActivity().findViewById(R.id.top_app_bar_layout_back).setVisibility(View.GONE);
+        requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
 
-        if(requireActivity().findViewById(R.id.bottom_nav_view).getVisibility()==View.GONE)
-            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.bottom_nav_view), 200);
+        if(requireActivity().findViewById(R.id.main_bottomNavView).getVisibility()==View.GONE)
+            NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.main_bottomNavView), 200);
 
         if(detailsViewModel.getOpenedPubPosition() != null) {
             recyclerView.scrollToPosition(detailsViewModel.getOpenedPubPosition());
@@ -317,10 +317,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     @Override
     public void onItemClicked(int position) {
-        View imageView = recyclerView.getChildAt(position).findViewById(R.id.PubImage);
+        View imageView = recyclerView.getChildAt(position).findViewById(R.id.pubRVR_image);
         int[] location = new int[2];
         imageView.getLocationOnScreen(location);
-        ConstraintLayout constraintLayout = requireView().findViewById(R.id.constraintLayout);
+        ConstraintLayout constraintLayout = requireView().findViewById(R.id.searcher_cl_content);
         int[] layoutLocation = new int[2];
         constraintLayout.getLocationOnScreen(layoutLocation);
 
@@ -334,15 +334,15 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         constraintLayout.addView(view);
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(view.getId(), ConstraintSet.START, R.id.constraintLayout, ConstraintSet.START,
+        constraintSet.connect(view.getId(), ConstraintSet.START, R.id.searcher_cl_content, ConstraintSet.START,
                 (int)DimensionsConverter.pxFromDp(requireContext(), 25));
-        constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.constraintLayout, ConstraintSet.TOP,
+        constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.searcher_cl_content, ConstraintSet.TOP,
                  location[1]-layoutLocation[1]);
         constraintSet.applyTo(constraintLayout);
         view.setZ(2);
-        requireView().findViewById(R.id.filtrationCardView).setZ(1);
-        requireView().findViewById(R.id.searchViewCardView).setZ(1);
-        requireView().findViewById(R.id.fab_map).setVisibility(View.INVISIBLE);
+        requireView().findViewById(R.id.searcher_cardView_filtration).setZ(1);
+        requireView().findViewById(R.id.searcher_cardView_search).setZ(1);
+        requireView().findViewById(R.id.searcher_FAB_map).setVisibility(View.INVISIBLE);
 
 
 
@@ -369,7 +369,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        NavigationBar.hideTransitionTopAndBottomBar(requireView().findViewById(R.id.top_app_bar_layout), requireView().findViewById(R.id.top_app_bar_view), requireActivity().findViewById(R.id.bottom_nav_view),(int)(300*((float)location[1]/(float)screenHeight)));
+                        NavigationBar.hideTransitionTopAndBottomBar(requireView().findViewById(R.id.searcher_topAppBarLayout), requireView().findViewById(R.id.searcher_topAppBarView), requireActivity().findViewById(R.id.main_bottomNavView),(int)(300*((float)location[1]/(float)screenHeight)));
                         view.postDelayed(new Runnable() {
                             @Override
                             public void run() {

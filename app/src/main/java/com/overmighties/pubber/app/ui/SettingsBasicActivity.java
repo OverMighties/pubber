@@ -50,9 +50,7 @@ public class SettingsBasicActivity extends AppCompatActivity {
 
     private Pair<Integer, Integer> getSunsetTime(TimeZone timeZone) {
         Location location = new Location(String.valueOf(WarsawLatitude), String.valueOf(WarsawLongitude));
-
         SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, timeZone);
-
         Calendar sunset = calculator.getOfficialSunsetCalendarForDate(Calendar.getInstance());
 
         return new Pair<> (sunset.get(Calendar.HOUR_OF_DAY), sunset.get(Calendar.MINUTE));

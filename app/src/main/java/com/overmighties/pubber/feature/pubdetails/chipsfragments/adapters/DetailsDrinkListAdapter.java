@@ -30,7 +30,7 @@ public class DetailsDrinkListAdapter extends RecyclerView.Adapter<DetailsDrinkLi
 
         public ViewHolder(@NonNull View itemView, DetailsSelectListener detailsSelectListener) {
             super(itemView);
-            name = itemView.findViewById(R.id.TV_name);
+            name = itemView.findViewById(R.id.filterSelectRVR_text_name);
             itemView.setOnClickListener(v->{
                 if(detailsSelectListener != null){
                     int pos=getBindingAdapterPosition();

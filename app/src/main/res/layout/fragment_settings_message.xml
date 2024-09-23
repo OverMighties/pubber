@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settingsMess_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/settingsMess_inputLayout_mess"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="300dp"
@@ -19,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_field_email_sing_in"
+            android:id="@+id/settings_editText_mess"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top|start"
@@ -27,18 +28,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/settingsMess_text_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:textColor="@color/on_surface"
         android:text="@string/send_message_adnotation"
+        android:textColor="@color/on_surface"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintStart_toStartOf="@+id/settingsMess_inputLayout_mess"
+        app:layout_constraintTop_toBottomOf="@+id/settingsMess_inputLayout_mess" />
 
     <Button
+        android:id="@+id/settingsMess_button_send"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
@@ -48,6 +50,6 @@
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/settingsMess_text_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -243,7 +243,8 @@
     <string name="list">List</string>
     <string name="favorite">Favourite</string>
     <string name="settings">Settings</string>
-
+    <!-- new user details-->
+    <string name="your_nickname">Your nickname</string>
     <!--Account details-->
     <string name="sex_title">Sex: </string>
     <string name="email_title">Email: </string>
@@ -291,16 +292,18 @@
     <string name="log_out">Log Out</string>
 
     <!-- first time fragments strings -->
-    <string name="welcome_in_pubber">Welcome in Pubber !</string>
+    <string name="welcome_in_pubber">Welcome in Pubber!</string>
     <string name="first_time_info">We hope to help you find pubs that match your taste and to stay by your side as long as possible.</string>
     <string name="next">Next</string>
-    <string name="choose_language">App\'s language</string>
-    <string name="choose_theme">App\'s theme</string>
-    <string name="theme">App\'s theme</string>
+    <string name="back">Back</string>
+    <string name="choose_language">Choose your language:</string>
+    <string name="choose_theme">Choose app\'s theme:</string>
+    <string name="theme">Phone\'s theme</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="polish">Polski</string>
     <string name="english">English</string>
+    <string name="ukrainian">Український</string>
     <string name="con">Continue</string>
     <string name="example_button">Button example</string>
     <string name="text">Text</string>

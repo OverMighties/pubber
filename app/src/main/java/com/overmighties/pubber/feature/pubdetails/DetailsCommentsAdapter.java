@@ -36,11 +36,11 @@ public class DetailsCommentsAdapter extends RecyclerView.Adapter<DetailsComments
         private final TextView content;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nickName = itemView.findViewById(R.id.comTVNickname);
-            origin = itemView.findViewById(R.id.comTVOrigin);
-            rating = itemView.findViewById(R.id.comTVRating);
-            priceRange = itemView.findViewById(R.id.comTVPrice);
-            content = itemView.findViewById(R.id.comTVContent);
+            nickName = itemView.findViewById(R.id.detailsCom_text_nickname);
+            origin = itemView.findViewById(R.id.detailsCom_text_origin);
+            rating = itemView.findViewById(R.id.detailsCom_text_rating);
+            priceRange = itemView.findViewById(R.id.detailsCom_text_price);
+            content = itemView.findViewById(R.id.detailsCom_text_content);
 
         }
     }
