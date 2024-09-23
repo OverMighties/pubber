@@ -349,6 +349,7 @@
     <string name="price_point">Price point •\ </string>
     <string name="not_calculated">Calculate distance</string>
     <string name="reservable">Reservable</string>
+    <string name="takeout">Takeout</string>
     <string name="tags">Tags</string>
     <string name="propose_change">Propose a change</string>
     <string name="add">Add</string>

@@ -4,15 +4,23 @@ import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAYTIM
 import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_IDS;
 import static com.overmighties.pubber.core.data_test.TestRepoPubsDataSet.LOREM_IPSUM_20;
 import static com.overmighties.pubber.core.data_test.TestRepoPubsDataSet.LOREM_IPSUM_200;
-import static com.overmighties.pubber.feature.pubdetails.DetailsViewModel.dpToPx;
 
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RenderEffect;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,6 +39,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -60,6 +69,7 @@ import com.overmighties.pubber.util.RatingToIVConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class DetailsFragment extends Fragment
@@ -260,11 +270,11 @@ public class DetailsFragment extends Fragment
         viewPager.setAdapter(new ViewPagerSliderAdapter(testPhotos));
         viewPager.setPageTransformer(true,new ViewPagerSlideTransformer());
 
-        final PopupWindow DetailImageViewPopUpWindow = new PopupWindow(popUpView,
+        final PopupWindow imagePopUpWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT, true);
-        DetailImageViewPopUpWindow.setOnDismissListener(() -> BlurImageView.setVisibility(View.GONE));
-        popUpView.findViewById(R.id.detailsImage_image_dismiss).setOnClickListener(v -> DetailImageViewPopUpWindow.dismiss());
+        imagePopUpWindow.setOnDismissListener(() -> BlurImageView.setVisibility(View.GONE));
+        popUpView.findViewById(R.id.detailsImage_image_dismiss).setOnClickListener(v -> imagePopUpWindow.dismiss());
 
         ConstraintLayout constraintLayout= requireView().findViewById(R.id.details_cl_imageSlider);
         ShapeAppearanceModel shapeAppearanceModel=new ShapeAppearanceModel()
@@ -274,112 +284,59 @@ public class DetailsFragment extends Fragment
         //set params
         for(int i=0;i< testPhotos.size();i+=3) {
             shapeableImageView = new ShapeableImageView(requireContext());
-            shapeableImageView = viewModel.CustomingBigShapeableImageView(shapeableImageView,constraintLayout, testPhotos.get(i),shapeAppearanceModel,i, getContext());
-            //listner for popup
-            shapeableImageView.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("MissingInflatedId")
-                @Override
-                public void onClick(View v) {
-                    viewModel.takeScreenShot(layout,getContext());
-                    BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
-                    BlurImageView.setVisibility(View.VISIBLE);
-
-                    (requireActivity().findViewById(R.id.details_fragment))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
-                    viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
-                    int n=0;
-                    for(Integer photoId:testPhotos)
-                    {
-                        if( ContextCompat.getDrawable(requireContext(), photoId).getConstantState()==v.getBackground().getConstantState()){
-                            break;
-                        }
-                        n++;
-                    }
-
-                    viewPager.setCurrentItem(n,false);
-
-
-
-                }
+            shapeableImageView = viewModel.CustomingBigShapeableImageView(
+                    shapeableImageView,constraintLayout, testPhotos.get(i),shapeAppearanceModel,(int) DimensionsConverter.pxFromDp(requireContext(),8 + i*100));
+            shapeableImageView.setOnClickListener((v)->{
+                showImagePopUp(imagePopUpWindow, popUpView, v);
             });
             //next ImageView
-            shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, testPhotos.get(i+1),
-                    shapeAppearanceModel,i+1, getContext());
-            //listener for popup
-            shapeableImageView.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("MissingInflatedId")
-                @Override
-                public void onClick(View v) {
-                    viewModel.takeScreenShot(layout,getContext());
-                    BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
-                    BlurImageView.setVisibility(View.VISIBLE);
-
-                    (requireActivity().findViewById(R.id.details_fragment))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
-                    viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
-
-                    int n=0;
-                    for(int fotka:testPhotos)
-                    {
-                        if(getResources().getDrawable(fotka).getConstantState()==v.getBackground().getConstantState()){
-                            break;
-                        }
-                        n++;
-                    }
-
-                    viewPager.setCurrentItem(n,false);
-
-                }
+            shapeableImageView = new ShapeableImageView(requireContext());
+            shapeableImageView=viewModel.CustomingSmallShapeableImageView(
+                    shapeableImageView,constraintLayout, testPhotos.get(i+1),
+                    shapeAppearanceModel,0, (int) DimensionsConverter.pxFromDp(requireContext(),192+i*(100)));
+            shapeableImageView.setOnClickListener((v)->{
+                showImagePopUp(imagePopUpWindow, popUpView, v);
             });
             //nextImageView
-            shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView = new ShapeableImageView(getContext());
-            shapeableImageView=viewModel.CustomingSmallShapeableImageView(shapeableImageView,constraintLayout, testPhotos.get(i+2),
-                    shapeAppearanceModel,i+2, getContext());
-            //listener for popup
-            shapeableImageView.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("MissingInflatedId")
-                @Override
-                public void onClick(View v) {
-                    viewModel.takeScreenShot(layout,getContext());
-                    BlurImageView.setBackground(new BitmapDrawable(getResources(), DetailsViewModel.getPubDetails().getValue().getCurrentScreen()));
-                    BlurImageView.setVisibility(View.VISIBLE);
-
-                    (requireActivity().findViewById(R.id.details_fragment))
-                            .post(() -> DetailImageViewPopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
-                    viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
-
-                    int n=0;
-                    for(int fotka:testPhotos)
-                    {
-                        if(getResources().getDrawable(fotka).getConstantState()==v.getBackground().getConstantState()){
-                            break;
-                        }
-                        n++;
-                    }
-
-                    viewPager.setCurrentItem(n,false);
-
-                }
+            shapeableImageView = new ShapeableImageView(requireContext());
+            shapeableImageView=viewModel.CustomingSmallShapeableImageView(
+                    shapeableImageView,constraintLayout, testPhotos.get(i+2),
+                    shapeAppearanceModel,(int)DimensionsConverter.pxFromDp(requireContext(), 140), (int) DimensionsConverter.pxFromDp(requireContext(),192+i*(100)));
+            shapeableImageView.setOnClickListener((v)->{
+                showImagePopUp(imagePopUpWindow, popUpView, v);
             });
         }
-        shapeableImageView = new ShapeableImageView(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpToPx(170), dpToPx(270));
+        shapeableImageView = new ShapeableImageView(requireContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)DimensionsConverter.pxFromDp(requireContext(), 170), (int)DimensionsConverter.pxFromDp(requireContext(), 270));
         shapeableImageView.setLayoutParams(params);
         shapeableImageView.setId(View.generateViewId());
         constraintLayout.addView(shapeableImageView);
         ConstraintSet constraintSet=new ConstraintSet();
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 480+(testPhotos.size()-3)*(280));
-        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, dpToPx(140));
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, 300+(testPhotos.size()-3)*(280));
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, (int)DimensionsConverter.pxFromDp(requireContext(), 140));
         constraintSet.applyTo(constraintLayout);
     }
 
+    public void showImagePopUp(PopupWindow imagePopUpWindow, View popUpView, View clickedView){
+        (requireActivity().findViewById(R.id.details_fragment))
+                .post(() -> imagePopUpWindow.showAtLocation(requireActivity().findViewById(R.id.details_fragment), Gravity.BOTTOM, 0, 0));
+        viewPager=popUpView.findViewById(R.id.detailsImage_viewPager);
+        int n=0;
+        for(int fotka:testPhotos)
+        {
+            if(ResourcesCompat.getDrawable(getResources(),fotka, null).getConstantState()
+                    ==clickedView.getBackground().getConstantState()){
+                break;
+            }
+            n++;
+        }
+        viewPager.setCurrentItem(n,false);
+    }
 
     private void setUpListener(){
 
-        requireView().findViewById(R.id.details_image_back).setOnClickListener(v1 -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
+        requireView().findViewById(R.id.details_image_back).setOnClickListener(v -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
         requireView().findViewById(R.id.details_chip_guide).setOnClickListener(v->{
             guide();

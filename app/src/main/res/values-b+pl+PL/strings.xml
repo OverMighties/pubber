@@ -188,12 +188,10 @@
     <string name="price_point">$$ • </string>
     <string name="not_calculated">\ Oblicz dystans</string>
     <string name="reservable">Możliwość rezerwacji</string>
-
     <string name="share_rating">Podziel się swoimi wrażeniami</string>
     <string name="rating_error">Ocena nie może być mniejsza niż 1</string>
     <string name="publish">Opublikuj</string>
-
-
+    <string name="opinions">Opinie</string>
     <string name="google">Google</string>
     <string name="tripadvisor">Tripadvisor</string>
     <string name="facebook">Facebook</string>

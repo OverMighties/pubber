@@ -82,7 +82,7 @@ public class DetailsViewModel extends ViewModel {
     public DetailsViewModel(SavedStateHandle savedStateHandle){}
 
 
-    public static int dpToPx(int dp)
+    private static int dpToPx(int dp)
     {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
@@ -91,46 +91,8 @@ public class DetailsViewModel extends ViewModel {
         pubDetails.setValue(pubDetailsUiState);
     }
 
-    public void takeScreenShot(View view,Context context) {
-
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-
-        Bitmap screen = BlurImage(bitmap, context);
-        Objects.requireNonNull(pubDetails.getValue()).setCurrentScreen(screen);
-
-    }
-    @SuppressLint("NewApi")
-    public Bitmap BlurImage (Bitmap input, Context context)
-    {
-        try
-        {
-            RenderScript rsScript = RenderScript.create(context);
-            Allocation alloc = Allocation.createFromBitmap(rsScript, input);
-
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rsScript,   Element.U8_4(rsScript));
-            blur.setRadius(12);
-            blur.setInput(alloc);
-
-            Bitmap result = Bitmap.createBitmap(input.getWidth(), input.getHeight(), Bitmap.Config.ARGB_8888);
-            Allocation outAlloc = Allocation.createFromBitmap(rsScript, result);
-
-            blur.forEach(outAlloc);
-            outAlloc.copyTo(result);
-
-            rsScript.destroy();
-
-            return result;
-        }
-        catch (Exception e) {
-            return input;
-        }
-
-    }
-
     public ShapeableImageView CustomingBigShapeableImageView(ShapeableImageView shapeableImageView, ConstraintLayout constraintLayout,int Pictureid,
-                                                             ShapeAppearanceModel shapeAppearanceModel,int number, Context context){
+                                                             ShapeAppearanceModel shapeAppearanceModel,int margin){
         int bigwidth=dpToPx(170);
         int bigheight=dpToPx(270);
 
@@ -142,7 +104,7 @@ public class DetailsViewModel extends ViewModel {
         constraintLayout.addView(shapeableImageView);
         //setting up constraintset
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,8 + number*100));
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, margin);
         constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
         constraintSet.applyTo(constraintLayout);
         //Setting up Image and shape
@@ -153,7 +115,7 @@ public class DetailsViewModel extends ViewModel {
         return shapeableImageView;
     }
     public ShapeableImageView CustomingSmallShapeableImageView(ShapeableImageView shapeableImageView, ConstraintLayout constraintLayout,int Pictureid,
-                                                             ShapeAppearanceModel shapeAppearanceModel,int number, Context context){
+                                                             ShapeAppearanceModel shapeAppearanceModel,int marginTop, int marginStart){
         int smallwidth=dpToPx(100);
         int smallheight=dpToPx(130);
 
@@ -164,18 +126,11 @@ public class DetailsViewModel extends ViewModel {
         shapeableImageView.setId(View.generateViewId());
         constraintLayout.addView(shapeableImageView);
         //setting up constraintset
-        if(number%3==1){
-            constraintSet.clone(constraintLayout);
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,192+(number-1)*(100)));
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-            constraintSet.applyTo(constraintLayout);
-        }
-        else {
-            constraintSet.clone(constraintLayout);
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,192+(number-2)*(100)));
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP,dpToPx(140));
-            constraintSet.applyTo(constraintLayout);
-        }
+        constraintSet.clone(constraintLayout);
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, marginStart);
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, marginTop);
+        constraintSet.applyTo(constraintLayout);
+
 
         //Setting up Image and shape
         shapeableImageView.setBackgroundResource(Pictureid);
