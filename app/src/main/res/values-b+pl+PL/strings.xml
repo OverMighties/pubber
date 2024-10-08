@@ -178,6 +178,8 @@
     <string name="sort_rating">Najwyżej oceniane</string>
     <string name="sort_alphabetical">Alfabetycznie</string>`
     <string name="sort_distance">Najmniejsza odległość</string>
+    <string name="imperfect">Nieidealne dopasowania</string>
+
 
     <!-- details-->
     <string name="pub_name">Nazwa Pubu</string>

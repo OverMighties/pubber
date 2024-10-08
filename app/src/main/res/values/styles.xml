@@ -6,9 +6,7 @@
 
 
     <style name="AppTheme.Toolbar" parent="AppTheme">
-        <!--This line changes the color of text in Toolbar-->
         <item name="android:textColorPrimary">@color/on_surface_variant</item>
-        <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
         <item name="android:textColorSecondary">@color/on_surface</item>
     </style>
 
@@ -204,6 +202,12 @@
     <style name="CustomPreferenceTextStyle" parent="Preference">
         <item name="android:titleTextColor">@color/error</item>
         <item name="iconTint">@color/error</item>
+    </style>
+
+    <style name="CustomPopupMenu" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@null</item>
+        <item name="popupMenuBackground">@drawable/popup_menu</item>
+        <item name="android:textColor">@color/on_surface</item>
     </style>
 
 

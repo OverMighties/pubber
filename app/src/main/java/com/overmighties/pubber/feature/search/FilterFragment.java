@@ -267,12 +267,12 @@ public class FilterFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.filtration_cardView_chooseBrewery).setOnClickListener(v->{
-            pubListViewModel.setBrewery_textview(null);
+            pubListViewModel.getFilterFragmentUiState().getValue().setBreweryTextview(null);
             filterSelectViewModel.setDataType(FilterSelectViewModel.listDataType.Breweries);
             NavHostFragment.findNavController(this).navigate(FilterFragmentDirections.actionFilterFragmentToFilterSelectFragment());
         });
         requireView().findViewById(R.id.filtration_cardView_chooseStyle).setOnClickListener(v->{
-            pubListViewModel.setStyle_textview(null);
+            pubListViewModel.getFilterFragmentUiState().getValue().setStyleTextview(null);
             filterSelectViewModel.setDataType(FilterSelectViewModel.listDataType.Styles);
             NavHostFragment.findNavController(this).navigate(FilterFragmentDirections.actionFilterFragmentToFilterSelectFragment());
         });
@@ -288,8 +288,8 @@ public class FilterFragment extends Fragment {
                     listParticularBeersAdapter = new ListParticularBeersAdapter(list);
                     ((RecyclerView) requireView().findViewById(R.id.filtration_recyclerView_particularBeers)).setAdapter(listParticularBeersAdapter);
                 }
-                pubListViewModel.setStyle_textview(null);
-                pubListViewModel.setBrewery_textview(null);
+                pubListViewModel.getFilterFragmentUiState().getValue().setBreweryTextview(null);
+                pubListViewModel.getFilterFragmentUiState().getValue().setStyleTextview(null);
                 brewery_tv.setText(getString(R.string.choose_brewery));
                 style_tv.setText(getString(R.string.choose_style));
             }
@@ -913,10 +913,10 @@ public class FilterFragment extends Fragment {
             checkVisibility();
         if(listParticularBeersAdapter != null)
             ((RecyclerView) requireView().findViewById(R.id.filtration_recyclerView_particularBeers)).setAdapter(listParticularBeersAdapter);
-        if(pubListViewModel.getBrewery_textview() != null)
-            ((TextView)requireView().findViewById(R.id.filtration_text_chooseBrewery)).setText(pubListViewModel.getBrewery_textview());
-        if(pubListViewModel.getStyle_textview() != null)
-            ((TextView)requireView().findViewById(R.id.filtration_text_chooseStyle)).setText(pubListViewModel.getStyle_textview());
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getBreweryTextview() != null)
+            ((TextView)requireView().findViewById(R.id.filtration_text_chooseBrewery)).setText(pubListViewModel.getFilterFragmentUiState().getValue().getBreweryTextview());
+        if(pubListViewModel.getFilterFragmentUiState().getValue().getStyleTextview() != null)
+            ((TextView)requireView().findViewById(R.id.filtration_text_chooseStyle)).setText(pubListViewModel.getFilterFragmentUiState().getValue().getStyleTextview());
     }
 
     private void checkVisibility(){

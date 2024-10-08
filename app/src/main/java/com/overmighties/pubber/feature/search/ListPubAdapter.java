@@ -5,9 +5,14 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +32,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
+import com.overmighties.pubber.feature.search.util.PubFiltrationState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
@@ -41,10 +47,14 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     private final PubsCardViewUiState pubData;
     public final PubListSelectListener pubListSelectListener;
     private final String chiptag;
+    private boolean isFirstImperfectShown = false;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
 
+        private final View divider;
+        private final TextView dividerText;
         private final TextView name;
+        private final TextView compatibility;
         private final TextView timeOpenToday;
         private final TextView walkDistance;
         private final TextView qualityRating;
@@ -59,10 +69,14 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private final Chip alcoholChip;
 
 
+
        public PubViewHolder(@NonNull View itemView, PubListSelectListener pubListSelectListener) {
             super(itemView);
             this.itemView=itemView;
+            divider = itemView.findViewById(R.id.pubRVR_view_imprefectDivider);
+            dividerText = itemView.findViewById(R.id.pubRVR_text_imperfect);
             name= itemView.findViewById(R.id.pubRVR_text_name);
+            compatibility = itemView.findViewById(R.id.pubRVR_text_compatibility);
             qualityRating = itemView.findViewById(R.id.pubRVR_text_rating);
             //costRating =(TextView) itemView.findViewById(R.id.ocenaKoszty);
             timeOpenToday = itemView.findViewById(R.id.pubRVR_text_timeOpen);
@@ -102,7 +116,28 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PubViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position);
+        PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position).first;
+        PubFiltrationState pubCardViewFiltrationState = pubData.getPubItems().get(position).second;
+        if(isFirstImperfectShown && pubCardViewFiltrationState.getCompatibility() != -1 && pubCardViewFiltrationState.getAllCompatibility() != -1) {
+            setUpCompatibilityTextView(holder.compatibility, pubCardViewFiltrationState.getCompatibility(), pubCardViewFiltrationState.getAllCompatibility(), holder.itemView.getContext());
+        }
+        if(!isFirstImperfectShown && position != pubData.getPubItems().size()-1) {
+            PubFiltrationState nextpubCardViewFiltrationState = pubData.getPubItems().get(position + 1).second;
+            if (!isFirstImperfectShown && nextpubCardViewFiltrationState.getCompatibility() != nextpubCardViewFiltrationState.getAllCompatibility()) {
+                if (position == 0) {
+                    if(pubCardViewFiltrationState.getCompatibility() == pubCardViewFiltrationState.getCompatibility()) {
+                        holder.divider.setVisibility(View.VISIBLE);
+                        holder.dividerText.setVisibility(View.VISIBLE);
+                    } else{
+                        setUpCompatibilityTextView(holder.compatibility, pubCardViewFiltrationState.getCompatibility(), pubCardViewFiltrationState.getAllCompatibility(),holder.itemView.getContext());
+                    }
+                } else{
+                    holder.divider.setVisibility(View.VISIBLE);
+                    holder.dividerText.setVisibility(View.VISIBLE);
+                }
+                isFirstImperfectShown = true;
+            }
+        }
         if(pubCardView.getName()!=null)
             if(pubCardView.getName().length()>20){
                 if(pubCardView.getName().substring(19,20).equals(" ")){
@@ -122,7 +157,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             imageViews.add(new ImageView(holder.itemView.getContext()));
             imageViews.add(new ImageView(holder.itemView.getContext()));
 
-            new RatingToIVConverter().convert(imageViews, 35, holder.ratingImage, pubCardView.getQualityRating(), 0,17);
+            new RatingToIVConverter().convert(imageViews, 35, holder.ratingImage, pubCardView.getQualityRating(), 0,17, true);
         }
      //   if(pubCardView.getCostRating()!=null)
     //        holder.costRating.setText(pubData.getPubItems().get(position).getCostRating());
@@ -140,15 +175,11 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         else{
             holder.timeOpenToday.setText(holder.itemView.getContext().getString(R.string.nodata));
         }
-     //   if(pubCardView.getAverageRatingFromServices()!=null)
-     //       holder.averageRatingFromServices.setText(pubData.getPubItems().get(position).getAverageRatingFromServices().toString());
         if(pubCardView.getWalkDistance()!=null) {
             holder.walkDistance.setText(pubCardView.getWalkDistance().toString());
         }
-        //if(pubCardView.getRatingCount()!=null)
-       // {
         holder.ratingCount.setText("("+ pubCardView.getRatingCount() +")");
-       // }
+
 
         Glide.with(holder.getItemView())
                 .load(pubCardView.getIconUrl())
@@ -232,6 +263,21 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
     }
 
+    private void setUpCompatibilityTextView(TextView textView, Integer compatibility,  Integer allCompatibility, Context context) {
+        textView.setText(
+                String.valueOf(compatibility) + "/" + String.valueOf(allCompatibility));
+        Float fraction = (float)compatibility/allCompatibility;
+        fraction = fraction + 0.75f*fraction;
+        Float textViewWidth = textView.getPaint().measureText(textView.getText().toString());
+        int[] colors = {ContextCompat.getColor(context, R.color.primary),
+                ContextCompat.getColor(context, R.color.on_surface)};
+        LinearGradient linearGradient = new LinearGradient(
+                0, 0, textViewWidth*fraction, 0,
+                colors, null,
+                Shader.TileMode.CLAMP);
+        textView.getPaint().setShader(linearGradient);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary));
+    }
 
 
     @Override

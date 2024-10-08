@@ -286,7 +286,7 @@ public class TestRepoPubsDataSet {
                 .build());
 
         drinksDataSet1.add(DrinkDto.builder()
-                .name("Sexonthebeach")
+                .name("Sex on the beach")
                 .type("Cocktail")
                 .build());
 

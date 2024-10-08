@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_searcherFragment_to_accountDetailsFragment"
             app:destination="@id/accountDetailsFragment" />
+        <action
+            android:id="@+id/action_searcherFragment_to_dictionaryFragment"
+            app:destination="@id/dictionaryFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -143,5 +146,17 @@
         android:id="@+id/detailsEditTagsFragment"
         android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditTagsFragment"
         android:label="DetailsEditTagsFragment" />
+    <fragment
+        android:id="@+id/dictionaryFragment"
+        android:name="com.overmighties.pubber.feature.dictionary.DictionaryFragment"
+        android:label="DictionaryFragment" >
+        <action
+            android:id="@+id/action_dictionaryFragment_to_dictionarySearchFragment"
+            app:destination="@id/dictionarySearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dictionarySearchFragment"
+        android:name="com.overmighties.pubber.feature.dictionary.DictionarySearchFragment"
+        android:label="DictionarySearchFragment" />
 
 </navigation>

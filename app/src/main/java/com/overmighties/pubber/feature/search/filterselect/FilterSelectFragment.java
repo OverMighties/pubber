@@ -117,10 +117,10 @@ public class FilterSelectFragment   extends Fragment implements FilterSelectList
     @Override
     public void onItemClicked(int position) {
         if(viewModel.getDataType() == FilterSelectViewModel.listDataType.Breweries){
-            pubListViewModel.setBrewery_textview(names[position]);
+            pubListViewModel.getFilterFragmentUiState().getValue().setBreweryTextview(names[position]);
         }
         else{
-            pubListViewModel.setStyle_textview(names[position]);
+            pubListViewModel.getFilterFragmentUiState().getValue().setStyleTextview(names[position]);
 
         }
         navController.popBackStack();

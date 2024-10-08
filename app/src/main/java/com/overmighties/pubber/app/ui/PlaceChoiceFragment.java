@@ -42,7 +42,7 @@ public class PlaceChoiceFragment extends Fragment {
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         });
 
-        if(pubListViewModel.getLinkPubId() != null){
+        if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() != null){
             navController.navigate(getNavDirections(PLACE_CHOICE_FRAGMENT,SEARCHER_FRAGMENT));
         }
 

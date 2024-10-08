@@ -5,9 +5,12 @@ import static com.overmighties.pubber.feature.search.data.FilterConstants.BASE_D
 import static com.overmighties.pubber.feature.search.data.FilterConstants.NONE_PRICE;
 import static com.overmighties.pubber.feature.search.data.FilterConstants.BASE_UPPER_RATING;
 
+import android.util.Pair;
+
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
+import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.util.DateTimeConverter;
 import com.overmighties.pubber.util.DayOfWeekConverter;
 
@@ -28,12 +31,16 @@ public class FilterUtil {
     private final String city;
     private final Float distance;
     @Getter
-    private List<Pub> filteredPubs;
+    private List<Pair<Pub, PubFiltrationState>> filteredPubs = new ArrayList<>();
+    @Getter
+    private Integer allConditions = 0;
 
     public FilterUtil(@NonNull FilterUiState filter, @NonNull List<Pub> filteredPubs, Float distance, String city)
     {
         this.filterUiState =filter;
-        this.filteredPubs=filteredPubs;
+        for(var pub: filteredPubs){
+            this.filteredPubs.add(new Pair<>(pub, new PubFiltrationState(0, null, null)));
+        }
         this.city=city;
         this.distance=distance;
     }
@@ -44,7 +51,9 @@ public class FilterUtil {
                 .priceFilter()
                 .tagsFilter()
                 .cityFilter()
-                .isTimeFilter();
+                .isTimeFilter()
+                .hasAnyCondition()
+                .setAllConditions();
     }
     public FilterUtil ratingFilter()
     {
@@ -52,15 +61,17 @@ public class FilterUtil {
         if(filterUiState.getBottomAverageRating()==null || (filterUiState.getBottomAverageRating()==BASE_BOTTOM_RATING && filterUiState.getUpperAverageRating()==BASE_UPPER_RATING)) {
             return this;
         }
+        int n = 0;
         for(var pubData: filteredPubs)
         {
-            Ratings ratings=pubData.getRatings();
+            Ratings ratings=pubData.first.getRatings();
             Float average = ratings.getAverageRating();
             if (average==null || (filterUiState.getBottomAverageRating() <= average && filterUiState.getUpperAverageRating() >= average)) {
-                filteredNow.add(pubData);
+                conditionPlusOne(n, pubData.first);
             }
+            n+=1;
         }
-        filteredPubs=filteredNow;
+        allConditions+=1;
         return this;
     }
     public FilterUtil distanceFilter()
@@ -71,10 +82,10 @@ public class FilterUtil {
         }
         for(var pubData: filteredPubs) {
             if (filterUiState.getDistance() >=distance) {
-                filteredNow.add(pubData);
+               // filteredNow.add(pubData);
             }
         }
-        filteredPubs=filteredNow;
+        //filteredPubs=filteredNow;
         return this;
     }
 
@@ -84,20 +95,21 @@ public class FilterUtil {
         if(filterUiState.getTags() == null||(filterUiState.getTags() != null && filterUiState.getTags().isEmpty()))
             return this;
 
+        int n=0;
         for(var pubData:filteredPubs){
-            tonext:
-            if(pubData.getTags() != null) {
-                for (var tagPub : pubData.getTags()) {
+            if(pubData.first.getTags() != null) {
+                for (var tagPub : pubData.first.getTags()) {
                     for (var tagFilter : Objects.requireNonNull(filterUiState.getTags())) {
                         if (tagPub.getName().equals(tagFilter)) {
-                            filteredNow.add(pubData);
-                            break tonext;
+                            conditionPlusOne(n, pubData.first);
                         }
                     }
                 }
             }
+            n+=1;
         }
-        filteredPubs = filteredNow;
+        if(filterUiState.getTags() != null)
+            allConditions += filterUiState.getTags().size();
         return this;
     }
 
@@ -109,27 +121,24 @@ public class FilterUtil {
                 (filterUiState.getBeers()== null && filterUiState.getOtherDrinks()== null)) {
             return this;
         }
+        int n = 0;
         for(var pubData: filteredPubs) {
-            tonext:
-            if(pubData.getDrinks()!=null){
-                for( var drinkPub:pubData.getDrinks()) {
+            if(pubData.first.getDrinks()!=null){
+                for( var drinkPub:pubData.first.getDrinks()) {
                     for (var drinkFilter : Objects.requireNonNull(filterUiState.getBeers())) {
                         if (drinkPub.getName().equals(drinkFilter)) {
-                            filteredNow.add(pubData);
-                            break tonext;
+                            conditionPlusOne(n, pubData.first);
                         }
                     }
                     for (var drinkFilter : Objects.requireNonNull(filterUiState.getOtherDrinks())) {
                         if (drinkPub.getName().equals(drinkFilter)) {
-                            filteredNow.add(pubData);
-                            break tonext;
+                            conditionPlusOne(n, pubData.first);
                         }
                     }
                     for (var drinkFilter : Objects.requireNonNull(filterUiState.getStyles())) {
                         for (var drinkType : Objects.requireNonNull(drinkPub.getDrinkStyles())) {
                             if (drinkType.getName().equals(drinkFilter)) {
-                                filteredNow.add(pubData);
-                                break tonext;
+                                conditionPlusOne(n, pubData.first);
                             }
                         }
                     }
@@ -137,17 +146,23 @@ public class FilterUtil {
                         if (drinkFilter.first.equals(drinkPub.getName())) {
                             for (var drinkType : Objects.requireNonNull(drinkPub.getDrinkStyles())) {
                                 if (drinkType.getName().equals(drinkFilter.second)) {
-                                    filteredNow.add(pubData);
-                                    break tonext;
+                                    conditionPlusOne(n, pubData.first);
                                 }
                             }
                         }
                     }
                 }
             }
-
+            n+=1;
         }
-        filteredPubs=filteredNow;
+        if(filterUiState.getBeers() != null)
+            allConditions += filterUiState.getBeers().size();
+        if(filterUiState.getOtherDrinks() != null)
+            allConditions += filterUiState.getOtherDrinks().size();
+        if(filterUiState.getStyles() != null)
+            allConditions += filterUiState.getStyles().size();
+        if(filterUiState.getStyles() != null)
+            allConditions += filterUiState.getStyles().size();
         return this;
     }
     public FilterUtil priceFilter()
@@ -156,69 +171,79 @@ public class FilterUtil {
         if(filterUiState.getPriceType()==null || filterUiState.getPriceType().getIcon().equals(NONE_PRICE)) {
             return this;
         }
+        int n = 0;
         for(var pubData: filteredPubs) {
             if (filterUiState.getPriceType().getId()
-                    .equals(pubData.getRatings().getOurCost())) {
-                filteredNow.add(pubData);
+                    .equals(pubData.first.getRatings().getOurCost())) {
+                conditionPlusOne(n, pubData.first);
             }
+            n += 1;
         }
-        filteredPubs=filteredNow;
+        allConditions += 1;
         return this;
     }
     public FilterUtil isTimeFilter()
     {
-        List<Pub> filteredNow=new ArrayList<>();
+        List<Pair<Pub, PubFiltrationState>> filteredNow=new ArrayList<>();
         Integer dayOfWeekNow=LocalDateTime.now().getDayOfWeek().getValue();
 
         if((filterUiState.getOpenNow()!=null && filterUiState.getOpenNow())){
             LocalTime timeNow=LocalTime.now();
+            int n = 0;
+            allConditions += 1;
             for(var pubData: filteredPubs) {
-                if(pubData.getOpeningHours() != null) {
-                    for (var time: pubData.getOpeningHours()) {
-                        if(time.getDayOfWeekConverter().getNumeric().equals(dayOfWeekNow) &&
-                                timeNow.isAfter(time.getLocalTimeOpen()) &&
-                                time.getLocalTimeClose().isAfter(timeNow) )
-                            filteredNow.add(pubData);
+                changeDoesTimeFit(n, pubData.first, false);
+                if(pubData.first.getOpeningHours() != null) {
+                    for (var time: pubData.first.getOpeningHours()) {
+                        if(time.getDayOfWeekConverter().getNumeric().equals(dayOfWeekNow) && timeNow.isAfter(time.getLocalTimeOpen()) &&
+                                time.getLocalTimeClose().isAfter(timeNow)) {
+                            changeDoesTimeFit(n, pubData.first, true);
+                        }
                     }
                 }
+                n+=1;
             }
         }
         if(filterUiState.getCustomOpeningHours() == null)
             return this;
         if ( filterUiState.getCustomOpeningHours().getWeekDay() != null) {
+            allConditions += 1;
             Integer dayIndex = DayOfWeekConverter.getByCamelCase(filterUiState.getCustomOpeningHours().getWeekDay()).getNumeric();
             if(dayIndex == null)
                 dayIndex = dayOfWeekNow;
-
             if(filterUiState.getCustomOpeningHours().getFromTime() == null && filterUiState.getCustomOpeningHours().getToTime() == null){
+                int n = 0;
                 for(var pubData: filteredPubs){
-                    if(pubData.getOpeningHours() != null) {
-                        for (var time : pubData.getOpeningHours()) {
+                    changeDoesTimeFit(n, pubData.first, false);
+                    if(pubData.first.getOpeningHours() != null) {
+                        for (var time : pubData.first.getOpeningHours()) {
                             if (time.getDayOfWeekConverter().getNumeric().equals(dayIndex) &&
-                                    pubData.getOpeningHours().get(dayIndex) != null) {
-                                filteredNow.add(pubData);
+                                    pubData.first.getOpeningHours().get(dayIndex-1) != null) {
+                                changeDoesTimeFit(n, pubData.first, true);
                                 break;
                             }
                         }
                     }
+                    n+=1;
                 }
             } else {
                 LocalDateTime fromTime = DateTimeConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getFromTime());
                 LocalDateTime toTime =  DateTimeConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getToTime());
+                int n =0;
                 for (var pubData : filteredPubs) {
-                    tonext:
-                    if(pubData.getOpeningHours() != null) {
-                        for (var time : pubData.getOpeningHours()) {
+                    changeDoesTimeFit(n, pubData.first, false);
+                    if(pubData.first.getOpeningHours() != null) {
+                        for (var time : pubData.first.getOpeningHours()) {
                             if (time.getDayOfWeekConverter().getNumeric().equals(dayIndex)) {
                                 LocalDateTime timeOpen =  DateTimeConverter.stringToLocalDateTime(time.getTimeOpen());
                                 LocalDateTime timeClose = DateTimeConverter.stringToLocalDateTime(time.getTimeClose());
                                 if(timeOpen.isAfter(DateTimeConverter.stringToLocalDateTime("00:00"))){
                                     if(fromTime.isAfter(DateTimeConverter.stringToLocalDateTime("00:00"))){
                                         if(fromTime.isAfter(timeOpen) && toTime.isBefore(timeClose))
-                                            filteredNow.add(pubData);
+                                            changeDoesTimeFit(n, pubData.first, true);
                                     }
                                     else{
-                                        break tonext;
+                                        break;
                                     }
                                 }
                                 if(fromTime.isAfter(toTime))
@@ -226,15 +251,15 @@ public class FilterUtil {
                                 if(timeOpen.isAfter(timeClose))
                                     timeClose = timeClose.plusDays(1);
                                 if(fromTime.isAfter(timeOpen) && toTime.isBefore(timeClose))
-                                    filteredNow.add(pubData);
-                                break tonext;
+                                    changeDoesTimeFit(n, pubData.first, true);
+                                break;
                             }
                         }
                     }
+                    n+=1;
                 }
             }
-        }
-        else{
+        } else{
             return this;
         }
 
@@ -243,18 +268,64 @@ public class FilterUtil {
     }
     public FilterUtil cityFilter()
     {
-        List<Pub> filteredNow=new ArrayList<>();
+        List<Pair<Pub, PubFiltrationState>> filteredNow=new ArrayList<>();
         if( city==null ) {
             return this;
         }
         for(var pubData: filteredPubs) {
-            if(pubData.getCity()==null || pubData.getCity().equals(city))
+            if(pubData.first.getCity()==null || pubData.first.getCity().equals(city))
             {
                 filteredNow.add(pubData);
             }
         }
 
         filteredPubs=filteredNow;
+        return this;
+    }
+
+    private FilterUtil hasAnyCondition(){
+        List<Pair<Pub, PubFiltrationState>> filteredNow=new ArrayList<>();
+        for(var pubData: filteredPubs){
+            if(pubData.second.getCompatibility() != 0)
+                filteredNow.add(pubData);
+
+        }
+        filteredPubs = filteredNow;
+        return this;
+    }
+
+    private void conditionPlusOne(Integer n, Pub pubData){
+        filteredPubs.set(n, new Pair<>(pubData,
+                new PubFiltrationState(
+                        filteredPubs.get(n).second.getCompatibility() + 1,
+                            filteredPubs.get(n).second.getDoesTimeFit(),
+                            filteredPubs.get(n).second.getDoesDistancefit()
+                )));
+    }
+
+    private void changeDoesTimeFit(Integer n, Pub pubData, Boolean state){
+        filteredPubs.set(n, new Pair<>(pubData,
+                new PubFiltrationState(
+                        filteredPubs.get(n).second.getCompatibility(),
+                        state,
+                        filteredPubs.get(n).second.getDoesDistancefit()
+                )));
+    }
+
+    private void changeDoesDistanceFit(Integer n, Pub pubData, Boolean state){
+        filteredPubs.set(n, new Pair<>(
+                pubData,
+                new PubFiltrationState(
+                        filteredPubs.get(n).second.getCompatibility(),
+                        filteredPubs.get(n).second.getDoesTimeFit(),
+                        state
+                )));
+    }
+
+    private FilterUtil setAllConditions(){
+        for(var pubData: filteredPubs){
+            pubData.second.setAllCompatibility(allConditions);
+        }
         return this;
     }
 

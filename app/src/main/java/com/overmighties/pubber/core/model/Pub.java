@@ -11,7 +11,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-
 public class Pub {
     @NonNull
     private Long id;

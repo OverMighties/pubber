@@ -120,7 +120,7 @@
         <item>Martini</item>
         <item>Mojito</item>
         <item>Pina Colada</item>
-        <item>Sex On The Beach</item>
+        <item>Sex on the beach</item>
         <item>Tequila Sunrise</item>
     </string-array>
 
@@ -218,7 +218,7 @@
         <item>5-7%</item>
         <item>4-5%</item>
     </string-array>
-
+    <string name="short_des">Short description</string>
 
     <!--beer styles short description-->
 
@@ -238,6 +238,8 @@
     <string name="no_navigation_message">No navigation</string>
     <!--Top app bar-->
     <string name="ic_settings_title">Settings</string>
+    <string name="ic_expand_title">More</string>
+    <string name="dictionary">Alcohol dictionary</string>
     <string name="edit">edit</string>
     <!--Bottom app bar-->
     <string name="list">List</string>
@@ -338,6 +340,7 @@
     <string name="sort_rating">Highest Rating</string>
     <string name="sort_alphabetical">Alphabetical</string>`
     <string name="sort_distance">Closest</string>
+    <string name="imperfect">Imperfect matches</string>
     
 
     <!-- details-->

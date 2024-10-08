@@ -31,7 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:numStars="5"
-
         android:progressDrawable="@drawable/rating_bar_items"
         android:stepSize="1"
         app:layout_constraintStart_toStartOf="parent"

@@ -24,7 +24,20 @@ public class DateType {
         if(time.charAt(time.length() - 1) == '0'){
             time = (time.substring(0,time.length()-2));
         }
-        if(type){time="Otwarte jeszcze "+time+" godzin"+ending;}
-        else {time="Zamknięte jeszcze "+time+" godzin"+ending;}
+        if(type){
+            time="Otwarte jeszcze "+time+" godzin"+ending;
+        }
+        else {
+            time="Zamknięte jeszcze "+time+" godzin"+ending;
+        }
+    }
+
+    public void convertToEnglish(){
+        if(type){
+            time = "Closing in "+time+" hours";
+        }
+        else{
+            time = "Opening in "+time+" hours";
+        }
     }
 }

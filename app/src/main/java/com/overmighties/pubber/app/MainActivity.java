@@ -26,6 +26,7 @@ import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.overmighties.pubber.feature.account.AccountViewModel;
+import com.overmighties.pubber.feature.alcohol.AlcoholViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.app.ui.SettingsBasicActivity;
 
@@ -50,6 +51,10 @@ public class MainActivity extends SettingsBasicActivity {
         accountViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(AccountViewModel.initializer))
                 .get(AccountViewModel.class);
+        //just to initialize alcoholFragment's ViewModel in app
+        new ViewModelProvider(this,
+                ViewModelProvider.Factory.from(AlcoholViewModel.initializer))
+                .get(AlcoholViewModel.class);
         pubListViewModel.fetchPubsFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -78,12 +83,13 @@ public class MainActivity extends SettingsBasicActivity {
                 String pubId = splitted[3];
                 try {
                     Long id = Long.parseLong(pubId);
-                    pubListViewModel.setLinkPubId(id);
+                    pubListViewModel.getSearcherUiState().getValue().setLinkPubId(id);
                 }catch (NumberFormatException e){
                     Log.e(TAG, "Invalid Link");
                 }
             }
         }
+
     }
 
 

@@ -11,6 +11,7 @@
 
     <style name="Theme.Pubber.Dark" parent="Base.Theme.Pubber.Dark" >
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
+        <item name="android:itemBackground">@drawable/popup_menu</item>
         <item name="android:windowBackground">@color/surface</item>
     </style>
 

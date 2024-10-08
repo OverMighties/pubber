@@ -19,6 +19,7 @@ public final class PubberNavRoutes {
     public static final String SIGN_UP_FRAGMENT="SignUpFragment";
     public static final String ACCOUNT_DETAILS_FRAGMENT ="AccountDetailsFragment";
     public static final String SETTINGS_FRAGMENT="SettingsFragment";
+    public static final String DICTIONARY_FRAGMENT="DictionaryFragment";
     public static final String PLACE_CHOICE_FRAGMENT="PlaceChoiceFragment";
     public static final String NEW_USER_DETAILS_FRAGMENT="NewUserDetailsFragment";
     public static final String MAP_FRAGMENT="MapFragment";
@@ -55,6 +56,8 @@ public final class PubberNavRoutes {
                         return SearcherFragmentDirections.actionSearcherFragmentToAccountDetailsFragment();
                     case SETTINGS_FRAGMENT:
                         return SearcherFragmentDirections.actionSearcherFragmentToSettingsGraph();
+                    case DICTIONARY_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToDictionaryFragment();
                     default:
                         return SearcherFragmentDirections.actionSearcherFragmentToLoginGraph();
                 }
