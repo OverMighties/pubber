@@ -20,8 +20,10 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
@@ -37,6 +39,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Constraints;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -52,7 +55,9 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.app.settings.SettingsHandler;
+import com.overmighties.pubber.databinding.FragmentSearcherBinding;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
+import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
 import com.overmighties.pubber.util.DimensionsConverter;
@@ -65,15 +70,12 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     public static final String TAG = "SearcherFragment";
     public static final int REFRESH_MIN_TIME_MS=1500;
     private RecyclerView recycler;
-    private ListPubAdapter adapter;
     private NavController navController;
     private SearchView searchview;
     private PubListViewModel pubListViewModel;
     private DetailsViewModel detailsViewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
-    public SearcherFragment() {
-        super(R.layout.fragment_searcher);
-    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,27 +96,35 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         pubListViewModel.getFilterFragmentUiState().getValue().setLanguage(SettingsHandler.LanguageHelper.getLanguage(requireContext()));
     }
 
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+        Log.i(TAG, "OnCreateView");
+        if(pubListViewModel.getSearcherUiState().getValue().getBinding() == null){
+            pubListViewModel.getSearcherUiState().getValue().setBinding(FragmentSearcherBinding.inflate(inflater, container, false));
+            return pubListViewModel.getSearcherUiState().getValue().getBinding().getRoot();
+        }
+        return pubListViewModel.getSearcherUiState().getValue().getBinding().getRoot();
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG,"onViewCreated");
-        recycler = requireView().findViewById(R.id.searcher_recyclerView_pubList);
-        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
-        swipeRefreshLayout = requireActivity().findViewById(R.id.searcher_swipeRefresh_pubList);
         AppContainer appContainer = ((PubberApp) requireActivity().getApplication()).appContainer;
-
-        if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
-                pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
-            pubListViewModel.fetchPubsFromRepo(0);
-        }
 
         //gives me null pointer exception
         //actionOnLocationAvailable(null);
+        recycler = requireView().findViewById(R.id.searcher_recyclerView_pubList);
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        swipeRefreshLayout = requireActivity().findViewById(R.id.searcher_swipeRefresh_pubList);
+        pubListViewModel.getSearcherUiState().getValue().setFirstTime(true);
         setUpRecyclerViews();
         setUpTopAppBar();
         initSearchView();
         setUpListeners();
+
+
 
         //switch navigation checks
         if(appContainer.getAccountDataSource().currentUser()==null){
@@ -147,46 +157,43 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     }
 
     private void setUpRecyclerViews(){
+        if(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter() == null) {
+            PubsCardViewUiState pubs = new PubsCardViewUiState();
+            pubListViewModel.getSearcherUiState().getValue().setListPubAdapter(new ListPubAdapter(pubs, this, pubListViewModel.getSearcherUiState().getValue().getChipTag()));
+        }
+
+        if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
+                pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
+            pubListViewModel.fetchPubsFromRepo(0);
+        }
+
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.fetchPubsFromRepo(REFRESH_MIN_TIME_MS);
-            if(pubListViewModel.getSearcherUiState().getValue().getSearchedPubs().getValue() != null)
+            if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
                 pubListViewModel.sort(pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().getValue());
         });
-
-        swipeRefreshLayout.setRefreshing(true);
-        adapter = new ListPubAdapter(pubListViewModel.getSortedAndFilteredPubsUiState().getValue(),this, pubListViewModel.getSearcherUiState().getValue().getChipTag());
-        recycler.setAdapter(adapter);
 
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recycler.setVisibility(View.GONE);
             else {
-                adapter = new ListPubAdapter(pubs,this, pubListViewModel.getSearcherUiState().getValue().getChipTag());
-                recycler.setAdapter(adapter);
+                pubListViewModel.getSearcherUiState().getValue().getListPubAdapter().setPubData(pubs);
+                recycler.setAdapter(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter());
                 recycler.setVisibility(View.VISIBLE);
-                pubListViewModel.getSearcherUiState().getValue().getSearchedPubs().setValue(new Pair<>(pubs, false));
             }
             swipeRefreshLayout.setRefreshing(false);
         });
-        pubListViewModel.getSearcherUiState().getValue().getSearchedPubs().observe(getViewLifecycleOwner(), pubs -> {
-            if(pubs.second) {
-                if (pubs == null || pubs.first.getPubItems() == null || pubs.first.getPubItems().isEmpty())
-                    recycler.setVisibility(View.GONE);
-                else {
-                    adapter = new ListPubAdapter(pubs.first, this, pubListViewModel.getSearcherUiState().getValue().getChipTag());
-                    recycler.setAdapter(adapter);
-                    recycler.setVisibility(View.VISIBLE);
-                }
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
 
         pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().observe(getViewLifecycleOwner(), type->{
-            if(pubListViewModel.getSearcherUiState().getValue().getSearchedPubs().getValue() != null)
+            if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null
+                    && pubListViewModel.getSearcherUiState().getValue().getLastSortPubsBy() != type) {
+                pubListViewModel.getSearcherUiState().getValue().setLastSortPubsBy(type);
                 pubListViewModel.sort(type);
+            }
         });
     }
+
 
     private void setUpTopAppBar(){
         MaterialToolbar topAppBar = requireView().findViewById(R.id.searcher_topAppBarView);
@@ -268,17 +275,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             {
                 pubListViewModel.search(s);
                 return false;
-            }
-        });
-
-        requireView().findViewById(R.id.searcher_cl_content).setOnClickListener(v->{
-            if (!searchview.isIconified()){
-                searchview.setIconified(true);
-                InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm != null) {
-                    imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
-                }
-                searchview.clearFocus();
             }
         });
 
@@ -389,7 +385,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     public void onResume() {
         super.onResume();
         requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
-        if(pubListViewModel.getSearcherUiState().getValue().getSearchedPubs().getValue() != null)
+        if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
             setSortTextView(pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().getValue());
         if(requireActivity().findViewById(R.id.main_bottomNavView).getVisibility()==View.GONE)
             NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.main_bottomNavView), 200);
@@ -409,7 +405,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         View imageView = recycler.getChildAt(position).findViewById(R.id.pubRVR_image);
         int[] location = new int[2];
         imageView.getLocationOnScreen(location);
-        ConstraintLayout constraintLayout = requireView().findViewById(R.id.searcher_cl_content);
+        ConstraintLayout constraintLayout = requireView().findViewById(R.id.searcher_fragment);
         int[] layoutLocation = new int[2];
         constraintLayout.getLocationOnScreen(layoutLocation);
 
@@ -423,9 +419,9 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         constraintLayout.addView(view);
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(view.getId(), ConstraintSet.START, R.id.searcher_cl_content, ConstraintSet.START,
+        constraintSet.connect(view.getId(), ConstraintSet.START, R.id.searcher_fragment, ConstraintSet.START,
                 (int)DimensionsConverter.pxFromDp(requireContext(), 25));
-        constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.searcher_cl_content, ConstraintSet.TOP,
+        constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.searcher_fragment, ConstraintSet.TOP,
                  location[1]-layoutLocation[1]);
         constraintSet.applyTo(constraintLayout);
         view.setZ(2);
@@ -481,6 +477,12 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         });
         detailsViewModel.setOpenedPubPosition(position);
         pubListViewModel.setPubDetails(position,detailsViewModel);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        pubListViewModel.getSearcherUiState().getValue().setBinding(null);
     }
 
 }

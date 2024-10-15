@@ -44,6 +44,7 @@ public class PubDtoMapper {
                 mapFromDtoDrinks(pub.getDrinks()),
                 mapFromDtoPhotos(pub.getPhotos()),
                 mapFromDtoTags(pub.getTags()),
+                null,
                 null
         );
     }

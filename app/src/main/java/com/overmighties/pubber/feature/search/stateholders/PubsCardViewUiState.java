@@ -15,7 +15,7 @@ import lombok.Data;
 public class PubsCardViewUiState {
     private Boolean isLoading;
     private String message;
-    private List<Pair<PubItemCardViewUiState, PubFiltrationState>> pubItems;
+    private List<PubItemCardViewUiState> pubItems;
     public PubsCardViewUiState()
     {
         isLoading=true;

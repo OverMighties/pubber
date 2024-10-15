@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/searcher_fragment"
@@ -31,13 +31,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searcher_cl_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@id/searcher_topAppBarLayout">
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/searcher_cardView_search"
@@ -48,9 +41,10 @@
                 android:layout_marginRight="25dp"
                 android:backgroundTint="@color/surface"
                 app:cardCornerRadius="90dp"
+                android:elevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/searcher_topAppBarLayout">
                 <android.widget.SearchView
                     android:layout_gravity="center"
                     android:id="@+id/searchView"
@@ -144,7 +138,6 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -153,10 +146,9 @@
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_destination"
-        app:tint = "@color/on_secondary"
-        app:layout_anchor="@id/searcher_cl_content"
-        app:layout_anchorGravity="bottom|end"
-        android:layout_gravity="bottom|end"
-        app:backgroundTint="@color/secondary" />
+        app:backgroundTint="@color/secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/on_secondary" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

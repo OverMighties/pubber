@@ -329,5 +329,10 @@
     <string name="account">Zarządzaj</string>
     <string name="account_log_out">Wyloguj się</string>
 
+    <!--particular alcohol dialog-->
+    <string name="seperated_hopiness">- Chmielowość</string>
+    <string name="seperated_maltiness">- Słodowość</string>
+    <string name="seperated_alcohol_percentage">- Zawartość alkoholu</string>
+
 
 </resources>

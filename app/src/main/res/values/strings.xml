@@ -311,8 +311,8 @@
     <string name="text">Text</string>
     <!-- general string used in more than one layout-->
     <string name="go_back">go back</string>
-    <string name="more">more</string>
-    <string name="less">less</string>
+    <string name="more">More</string>
+    <string name="less">Less</string>
     <string name="rating">Rating</string>
     <string name="distance">Distance</string>
     <string name="price">Price</string>
@@ -523,6 +523,11 @@
     <string name="account">Manage</string>
     <string name="account_log_out_key">logout</string>
     <string name="account_log_out">Log out</string>
+
+    <!--particular alcohol dialog-->
+    <string name="hopiness">- Hopiness</string>
+    <string name="maltiness">- Maltiness</string>
+    <string name="alcohol_percentage">Alcohol percentage</string>
 
 
 </resources>

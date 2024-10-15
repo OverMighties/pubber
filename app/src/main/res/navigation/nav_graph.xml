@@ -25,11 +25,6 @@
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/savedFragment"
-        android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
-        android:label="fragment_saved"
-        tools:layout="@layout/fragment_saved" />
-    <fragment
         android:id="@+id/detailsFragment"
         android:name="com.overmighties.pubber.feature.pubdetails.DetailsFragment"
         android:label="DetailsFragment" />

@@ -19,7 +19,7 @@ public class SortUtil
 {
     private static SortUtilState sortUtilState = new SortUtilState();
 
-    public static List<Pair<PubItemCardViewUiState, PubFiltrationState>> sortingPubData(List<Pair<PubItemCardViewUiState, PubFiltrationState>> pubList, SortPubsBy sortingBy)
+    public static List<Pair<Pub, PubFiltrationState>> sortingPubData(List<Pair<Pub, PubFiltrationState>> pubList, SortPubsBy sortingBy)
     {
         if(pubList.stream().allMatch(pair->pair.second.getAllCompatibility()!=0 && pair.second.getAllCompatibility() != -1))
             divideList(pubList);
@@ -34,7 +34,7 @@ public class SortUtil
                 pubList.addAll(0, sortUtilState.getAllConditionsPubList());
 
         } else {
-            List<Pair<PubItemCardViewUiState, PubFiltrationState>> newData = new ArrayList<>();
+            List<Pair<Pub, PubFiltrationState>> newData = new ArrayList<>();
             if(sortUtilState.getDivided()){
                 if(!sortUtilState.getOtherPubList().isEmpty()){
                     switch (sortingBy) {
@@ -84,7 +84,7 @@ public class SortUtil
         return pubList;
     }
 
-    public static void divideList(List<Pair<PubItemCardViewUiState, PubFiltrationState>> pubList){
+    public static void divideList(List<Pair<Pub, PubFiltrationState>> pubList){
         sortUtilState.setDivided(true);
         for(var pubData:pubList){
             if(pubData.second.getCompatibility() == pubData.second.getAllCompatibility()){
@@ -96,7 +96,7 @@ public class SortUtil
     }
 
     public static void prepareFiltrationPriorityLists(){
-        List<Pair<Pair<PubItemCardViewUiState, PubFiltrationState>, Float>> newData=  new ArrayList<>();
+        List<Pair<Pair<Pub, PubFiltrationState>, Float>> newData=  new ArrayList<>();
         for(var pubData:sortUtilState.getOtherPubList()) {
             Float priority = 0f;
             if (pubData.second.getDoesTimeFit() != null && pubData.second.getDoesTimeFit())
@@ -111,16 +111,16 @@ public class SortUtil
         sortUtilState.setOtherPubList(newData.stream().map(pair->pair.first).collect(Collectors.toList()));
     }
 
-    public static  void sortByRatingsDesc( @NonNull List<Pair<PubItemCardViewUiState, PubFiltrationState>> list)
+    public static  void sortByRatingsDesc( @NonNull List<Pair<Pub, PubFiltrationState>> list)
     {
-        list.sort(Comparator.comparingDouble(pair->pair.first.getQualityRating()));
+        list.sort(Comparator.comparingDouble(pair->pair.first.getRatings().getAverageRating()));
         Collections.reverse(list);
     }
-    public static void sortByDistanceAsc(@NonNull List<Pair<PubItemCardViewUiState, PubFiltrationState>> list)
+    public static void sortByDistanceAsc(@NonNull List<Pair<Pub, PubFiltrationState>> list)
     {
-        list.sort(Comparator.comparingDouble(pair->pair.first.getWalkDistance()));
+        list.sort(Comparator.comparingDouble(pair->pair.first.getWalkingDistance()));
     }
-    public static void sortByPubNameAlphabetical(@NonNull List<Pair<PubItemCardViewUiState, PubFiltrationState>> list)
+    public static void sortByPubNameAlphabetical(@NonNull List<Pair<Pub, PubFiltrationState>> list)
     {
         list.sort(Comparator.comparing(pair -> pair.first.getName().toLowerCase()));
     }

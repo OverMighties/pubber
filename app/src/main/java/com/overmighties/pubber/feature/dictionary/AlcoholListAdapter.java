@@ -7,16 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog;
-import com.overmighties.pubber.feature.search.ListParticularBeersAdapter;
-import com.overmighties.pubber.feature.search.stateholders.ParticularBeersCardViewUiState;
-import com.overmighties.pubber.util.TriConsumer;
+import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
+import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,11 +55,13 @@ public class AlcoholListAdapter extends RecyclerView.Adapter<AlcoholListAdapter.
             if(dataList.get(position).getShort_des() != null)
                 holder.short_des.setText(dataList.get(position).getShort_des());
             List<Float> list = new ArrayList<>();
+            list.add(4.2f);
+            list.add(3.7f);
             holder.layout.setOnClickListener(v->{
                 AlcoholAlertDialog.show(
-                        holder.itemView.getContext(), dataList.get(position).getName(),
+                        holder.itemView.getContext(), new AlcoholAlertDialogUiState(dataList.get(position).getName(),
                         dataList.get(position).getShort_des(), dataList.get(position).getLong_des(),
-                        dataList.get(position).getPhoto_path(), list);
+                        dataList.get(position).getPhoto_path(), list));
 
             });
         }

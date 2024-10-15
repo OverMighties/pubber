@@ -21,9 +21,6 @@ public class BaseFragmentWithPermission extends Fragment {
     private Runnable onLocationAvailable;
     public static final String TAG="BaseFragmentWithPermission";
 
-    protected BaseFragmentWithPermission(@LayoutRes int id){
-        super(id);
-    }
     protected ActivityResultLauncher<String[]> locationPermissionRequest =
             registerForActivityResult(new ActivityResultContracts
                             .RequestMultiplePermissions(), result -> {

@@ -1,0 +1,22 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- First Layer: Black fragment at the top (16dp height) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" /> <!-- Black color -->
+            <size android:height="26dp" /> <!-- Fragment height: 16dp -->
+        </shape>
+    </item>
+
+    <!-- Second Layer: Rounded rectangle with 30dp radius and 1dp stroke -->
+    <item android:top="26dp" android:left="16dp" android:right="16dp"> <!-- The rectangle is positioned after the black fragment -->
+        <shape android:shape="rectangle">
+            <solid android:color="@color/surface_container" /> <!-- Fill color for the rectangle -->
+            <corners android:radius="30dp" /> <!-- Rounded corners with radius 30dp -->
+            <stroke
+                android:width="1dp"
+                android:color="@color/outline" /> <!-- 1dp stroke color (black) -->
+        </shape>
+    </item>
+
+</layer-list>

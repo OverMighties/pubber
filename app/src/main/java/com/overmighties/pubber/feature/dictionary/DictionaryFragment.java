@@ -30,8 +30,6 @@ public class DictionaryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState){
         navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
-        //if(!requireActivity().findViewById(R.id.main_topAppBarLayout_back).isShown())
-          //  requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
         requireView().findViewById(R.id.dictionary_image_beers).setOnClickListener(v1->{
             prepareBeerData();
             navController.navigate(DictionaryFragmentDirections.actionDictionaryFragmentToDictionarySearchFragment());

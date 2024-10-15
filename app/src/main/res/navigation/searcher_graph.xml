@@ -22,7 +22,11 @@
             app:destination="@id/login_graph" />
         <action
             android:id="@+id/action_searcherFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/action_searcherFragment_to_settings_graph"
             app:destination="@id/settings_graph" />
@@ -158,5 +162,10 @@
         android:id="@+id/dictionarySearchFragment"
         android:name="com.overmighties.pubber.feature.dictionary.DictionarySearchFragment"
         android:label="DictionarySearchFragment" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
 
 </navigation>

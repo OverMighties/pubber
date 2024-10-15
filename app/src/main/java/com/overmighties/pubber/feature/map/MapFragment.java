@@ -34,9 +34,6 @@ public class MapFragment extends BaseFragmentWithPermission implements OnMapRead
     private PubListViewModel pubListViewModel;
     private DetailsViewModel detailsViewModel;
 
-    public MapFragment(){
-        super(R.layout.fragment_map);
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

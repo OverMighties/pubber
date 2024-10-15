@@ -35,4 +35,5 @@ public class Pub {
     private List<Photo> photos;
     private List<Tag> tags;
     private String timeOpenToday;
+    private Float walkingDistance;
 }

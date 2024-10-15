@@ -44,7 +44,7 @@ import lombok.Getter;
 public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewHolder> {
 
     public static final String TAG="ListPubAdapter";
-    private final PubsCardViewUiState pubData;
+    private PubsCardViewUiState pubData;
     public final PubListSelectListener pubListSelectListener;
     private final String chiptag;
     private boolean isFirstImperfectShown = false;
@@ -116,38 +116,17 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PubViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position).first;
-        PubFiltrationState pubCardViewFiltrationState = pubData.getPubItems().get(position).second;
-        if(isFirstImperfectShown && pubCardViewFiltrationState.getCompatibility() != -1 && pubCardViewFiltrationState.getAllCompatibility() != -1) {
-            setUpCompatibilityTextView(holder.compatibility, pubCardViewFiltrationState.getCompatibility(), pubCardViewFiltrationState.getAllCompatibility(), holder.itemView.getContext());
+        PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position);
+        if(pubCardView.getIsBreakThrough() == null)
+            setUpCompatibilityTextView(holder.compatibility, pubCardView.getCompatibility().first, pubCardView.getCompatibility().second,holder.itemView.getContext());
+        if(pubCardView.getIsBreakThrough() != null && pubCardView.getIsBreakThrough() == true){
+            holder.divider.setVisibility(View.VISIBLE);
+            holder.dividerText.setVisibility(View.VISIBLE);
         }
-        if(!isFirstImperfectShown && position != pubData.getPubItems().size()-1) {
-            PubFiltrationState nextpubCardViewFiltrationState = pubData.getPubItems().get(position + 1).second;
-            if (!isFirstImperfectShown && nextpubCardViewFiltrationState.getCompatibility() != nextpubCardViewFiltrationState.getAllCompatibility()) {
-                if (position == 0) {
-                    if(pubCardViewFiltrationState.getCompatibility() == pubCardViewFiltrationState.getCompatibility()) {
-                        holder.divider.setVisibility(View.VISIBLE);
-                        holder.dividerText.setVisibility(View.VISIBLE);
-                    } else{
-                        setUpCompatibilityTextView(holder.compatibility, pubCardViewFiltrationState.getCompatibility(), pubCardViewFiltrationState.getAllCompatibility(),holder.itemView.getContext());
-                    }
-                } else{
-                    holder.divider.setVisibility(View.VISIBLE);
-                    holder.dividerText.setVisibility(View.VISIBLE);
-                }
-                isFirstImperfectShown = true;
-            }
-        }
+
         if(pubCardView.getName()!=null)
-            if(pubCardView.getName().length()>20){
-                if(pubCardView.getName().substring(19,20).equals(" ")){
-                    holder.name.setText(pubCardView.getName().substring(0,19)+"...");
-                }else{
-                    holder.name.setText(pubCardView.getName().substring(0,20)+"...");
-                }
-            }else{
-                holder.name.setText(pubCardView.getName());
-            }
+            holder.name.setText(pubCardView.getName());
+
         if(pubCardView.getQualityRating()!=null) {
             holder.qualityRating.setText(pubCardView.getQualityRating().toString());
             ArrayList<ImageView> imageViews = new ArrayList<>();
@@ -159,8 +138,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
             new RatingToIVConverter().convert(imageViews, 35, holder.ratingImage, pubCardView.getQualityRating(), 0,17, true);
         }
-     //   if(pubCardView.getCostRating()!=null)
-    //        holder.costRating.setText(pubData.getPubItems().get(position).getCostRating());
+
         if(pubCardView.getTimeOpenToday()!=null){
             holder.timeOpenToday.setText(pubCardView.getTimeOpenToday());
             if(pubCardView.getIsOpenNow()) {
@@ -182,8 +160,9 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
 
         Glide.with(holder.getItemView())
-                .load(pubCardView.getIconUrl())
-                .placeholder(R.drawable.bar_beer_icon)
+                //.load(pubCardView.getIconUrl())
+                .load("https://cdn-icons-png.freepik.com/512/1748/1748110.png")
+                .placeholder(R.drawable.pub_icon_256)
                 .fallback(R.drawable.bar_beer_icon)
                 //.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT))
                 .centerCrop()
@@ -277,6 +256,11 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
                 Shader.TileMode.CLAMP);
         textView.getPaint().setShader(linearGradient);
         textView.setTextColor(ContextCompat.getColor(context, R.color.primary));
+    }
+
+    public void setPubData(PubsCardViewUiState pubData) {
+        this.pubData = pubData;
+        notifyDataSetChanged();
     }
 
 
