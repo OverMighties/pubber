@@ -30,6 +30,7 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.databinding.PubRecyclerViewRowBinding;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubFiltrationState;
@@ -72,6 +73,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
        public PubViewHolder(@NonNull View itemView, PubListSelectListener pubListSelectListener) {
             super(itemView);
+
             this.itemView=itemView;
             divider = itemView.findViewById(R.id.pubRVR_view_imprefectDivider);
             dividerText = itemView.findViewById(R.id.pubRVR_text_imperfect);
@@ -181,6 +183,8 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         });
 
          */
+
+
         holder.mapChip.setOnClickListener(v -> {
             Uri adress = Uri.parse("geo:0,0?q="+pubCardView.getAddress());
             Intent intent = new Intent(Intent.ACTION_VIEW, adress);

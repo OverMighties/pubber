@@ -4,12 +4,12 @@
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@android:color/transparent" /> <!-- Black color -->
-            <size android:height="26dp" /> <!-- Fragment height: 16dp -->
+            <size android:height="20dp" /> <!-- Fragment height: 16dp -->
         </shape>
     </item>
 
     <!-- Second Layer: Rounded rectangle with 30dp radius and 1dp stroke -->
-    <item android:top="26dp" android:left="16dp" android:right="16dp"> <!-- The rectangle is positioned after the black fragment -->
+    <item android:top="20dp" android:left="16dp" android:right="16dp"> <!-- The rectangle is positioned after the black fragment -->
         <shape android:shape="rectangle">
             <solid android:color="@color/surface_container" /> <!-- Fill color for the rectangle -->
             <corners android:radius="30dp" /> <!-- Rounded corners with radius 30dp -->
