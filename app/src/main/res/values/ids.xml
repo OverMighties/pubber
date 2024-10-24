@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="TrasitionImageView" type="id"/>
+    <!--breweries-->
     <item name="AleBrowar" type="id"/>
     <item name="Amber" type="id"/>
     <item name="Artezan" type="id"/>

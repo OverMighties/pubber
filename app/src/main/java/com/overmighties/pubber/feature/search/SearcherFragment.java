@@ -10,6 +10,7 @@ import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SETTINGS_FR
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -55,15 +56,25 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.app.settings.SettingsHandler;
+import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.databinding.FragmentSearcherBinding;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
+import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
 import com.overmighties.pubber.util.DimensionsConverter;
+import com.overmighties.pubber.util.ResourceUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SearcherFragment extends BaseFragmentWithPermission implements PubListSelectListener {
 
@@ -101,7 +112,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         Log.i(TAG, "OnCreateView");
         if(pubListViewModel.getSearcherUiState().getValue().getBinding() == null){
             pubListViewModel.getSearcherUiState().getValue().setBinding(FragmentSearcherBinding.inflate(inflater, container, false));
-            return pubListViewModel.getSearcherUiState().getValue().getBinding().getRoot();
         }
         return pubListViewModel.getSearcherUiState().getValue().getBinding().getRoot();
     }
@@ -116,7 +126,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         //gives me null pointer exception
         //actionOnLocationAvailable(null);
         recycler = requireView().findViewById(R.id.searcher_recyclerView_pubList);
-        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        navController=Navigation.findNavController(pubListViewModel.getSearcherUiState().getValue().getBinding().getRoot());
         swipeRefreshLayout = requireActivity().findViewById(R.id.searcher_swipeRefresh_pubList);
         pubListViewModel.getSearcherUiState().getValue().setFirstTime(true);
         setUpRecyclerViews();
@@ -161,7 +171,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             PubsCardViewUiState pubs = new PubsCardViewUiState();
             pubListViewModel.getSearcherUiState().getValue().setListPubAdapter(new ListPubAdapter(pubs, this, pubListViewModel.getSearcherUiState().getValue().getChipTag()));
         }
-
+        recycler.setAdapter(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter());
         if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
                 pubListViewModel.getSortedAndFilteredPubsUiState().getValue().getIsLoading()){
             pubListViewModel.fetchPubsFromRepo(0);
@@ -170,16 +180,18 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.fetchPubsFromRepo(REFRESH_MIN_TIME_MS);
-            if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
-                pubListViewModel.sort(pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().getValue());
+            //if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
+                //pubListViewModel.sort(pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().getValue());
         });
 
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recycler.setVisibility(View.GONE);
             else {
+
                 pubListViewModel.getSearcherUiState().getValue().getListPubAdapter().setPubData(pubs);
-                recycler.setAdapter(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter());
+                //if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
+                //    pubListViewModel.getSearcherUiState().getValue().setLastSortedPubs(pubListViewModel.getSearcherUiState().getValue().getPubs().stream().map(pair->pair.first).collect(Collectors.toList()));
                 recycler.setVisibility(View.VISIBLE);
             }
             swipeRefreshLayout.setRefreshing(false);
@@ -402,63 +414,58 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     @Override
     public void onItemClicked(int position) {
-        View imageView = recycler.getChildAt(position).findViewById(R.id.pubRVR_image);
+        FragmentSearcherBinding binding = pubListViewModel.getSearcherUiState().getValue().getBinding();
+        Context context = binding.searcherFragment.getContext();
+        View imageView = binding.searcherRecyclerViewPubList.getChildAt(position).findViewById(R.id.pubRVR_image);
         int[] location = new int[2];
         imageView.getLocationOnScreen(location);
-        ConstraintLayout constraintLayout = requireView().findViewById(R.id.searcher_fragment);
-        int[] layoutLocation = new int[2];
-        constraintLayout.getLocationOnScreen(layoutLocation);
-
-        ConstraintLayout view = new ConstraintLayout(requireContext());
-        view.setId(View.generateViewId());
-        view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.surface));
+        ConstraintLayout constraintLayout = binding.getRoot();
+        ConstraintLayout view = new ConstraintLayout(context);
+        view.setId(ResourceUtil.getResourceIdByName(context, "TrasitionImageView"));
+        view.setBackgroundColor(ContextCompat.getColor(context, R.color.surface));
         view.setLayoutParams( new Constraints.LayoutParams(
-                (int)DimensionsConverter.pxFromDp(requireContext(), 84),
-                (int)DimensionsConverter.pxFromDp(requireContext(), 82)
+                (int)DimensionsConverter.pxFromDp(context, 84),
+                (int)DimensionsConverter.pxFromDp(context, 82)
         ));
         constraintLayout.addView(view);
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(view.getId(), ConstraintSet.START, R.id.searcher_fragment, ConstraintSet.START,
-                (int)DimensionsConverter.pxFromDp(requireContext(), 25));
-        constraintSet.connect(view.getId(), ConstraintSet.TOP, R.id.searcher_fragment, ConstraintSet.TOP,
-                 location[1]-layoutLocation[1]);
+        constraintSet.connect(view.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START,
+                (int)DimensionsConverter.pxFromDp(context, 25));
+        constraintSet.connect(view.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP,
+                 location[1]-(int)DimensionsConverter.pxFromDp(context, 42f));
         constraintSet.applyTo(constraintLayout);
         view.setZ(2);
-        requireView().findViewById(R.id.searcher_cardView_filtration).setZ(1);
-        requireView().findViewById(R.id.searcher_cardView_search).setZ(1);
-        requireView().findViewById(R.id.searcher_FAB_map).setVisibility(View.INVISIBLE);
-
+        binding.searcherCardViewFiltration.setZ(1);
+        binding.searcherCardViewSearch.setZ(1);
+        binding.searcherFABMap.setVisibility(View.INVISIBLE);
 
 
 
         view.post(new Runnable() {
             @Override
             public void run() {
-
-                int screenWidth = getResources().getDisplayMetrics().widthPixels;
-                int screenHeight = getResources().getDisplayMetrics().heightPixels;
+                int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
+                int screenHeight = context.getResources().getDisplayMetrics().heightPixels;
                 float scaleX = (float) screenWidth / view.getWidth();
                 float scaleY = (float) screenHeight / view.getHeight();
-
-
                 ScaleAnimation scaleAnimation = new ScaleAnimation(
                         1f, scaleX+1, 1f, scaleY+1,
-                        ScaleAnimation.RELATIVE_TO_SELF, DimensionsConverter.pxFromDp(requireContext(), 25)/screenWidth,
+                        ScaleAnimation.RELATIVE_TO_SELF, DimensionsConverter.pxFromDp(context, 25)/screenWidth,
                         ScaleAnimation.RELATIVE_TO_SELF, (float)location[1]/(float)screenHeight);
-                scaleAnimation.setDuration(300);
+                scaleAnimation.setDuration((int)(300-300*((float)location[1]/(float)screenHeight)));
                 scaleAnimation.setFillAfter(true);
                 scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {}
-
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        NavigationBar.hideTransitionTopAndBottomBar(requireView().findViewById(R.id.searcher_topAppBarLayout), requireView().findViewById(R.id.searcher_topAppBarView), requireActivity().findViewById(R.id.main_bottomNavView),(int)(300*((float)location[1]/(float)screenHeight)));
+                        Activity activity = (context instanceof Activity) ? (Activity) context : null;
+                        NavigationBar.smoothHide(activity.findViewById(R.id.main_bottomNavView), (int)(300*((float)location[1]/(float)screenHeight)));
                         view.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
+                                Navigation.findNavController(binding.getRoot()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
                             }
                         }, (int)(300*((float)location[1]/(float)screenHeight)));
                     }
@@ -466,11 +473,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                     @Override
                     public void onAnimationRepeat(Animation animation) {}
                 });
-
-
                 view.startAnimation(scaleAnimation);
-
-
             }
 
 
@@ -478,6 +481,14 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         detailsViewModel.setOpenedPubPosition(position);
         pubListViewModel.setPubDetails(position,detailsViewModel);
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(requireView().findViewById(ResourceUtil.getResourceIdByName(requireContext(), "TrasitionImageView"))!=null)
+            pubListViewModel.getSearcherUiState().getValue().getBinding().searcherFragment.removeView(requireView().findViewById(ResourceUtil.getResourceIdByName(requireContext(), "TrasitionImageView")));
+    }
+
 
     @Override
     public void onDestroy() {

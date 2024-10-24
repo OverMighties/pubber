@@ -32,6 +32,7 @@ public class SearcherUiState {
     private SortPubsBy lastSortPubsBy;
     private MutableLiveData<SortPubsBy> sortPubsBy = new MutableLiveData<>();
     private List<Pair<Pub, PubFiltrationState>> Pubs;
+    private List<Pub> lastSortedPubs = new ArrayList<>();
 
     public SearcherUiState(){
         ChipTag = "Normal";
