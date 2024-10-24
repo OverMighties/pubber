@@ -1,5 +1,6 @@
 package com.overmighties.pubber.core.data_test;
 
+import com.overmighties.pubber.core.network.model.BeerDto;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.OpeningHoursDto;
 import com.overmighties.pubber.core.network.model.PhotoDto;
@@ -85,7 +86,7 @@ public class TestRepoPubsDataSet {
         dataSet = new ArrayList<>();
 
         dataSet.add(PubDto.builder()
-                .id(1L)
+                .pubId(1L)
                 .name("Pewex Pub")
                 .address("Rynek 18, 35-064 Rzeszów, Poland")
                 .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
@@ -106,7 +107,7 @@ public class TestRepoPubsDataSet {
                 .build());
 
         dataSet.add(PubDto.builder()
-                .id(2L)
+                .pubId(2L)
                 .name("Rambla Cocktail&Music Pub")
                 .address("Jana Matejki 16, 35-064 Rzeszów, Poland")
                 .placeId("ChIJF-VPDAL7PEcRE5pnPMUZVAw")
@@ -130,7 +131,7 @@ public class TestRepoPubsDataSet {
                 .build());
 
         dataSet.add(PubDto.builder()
-                .id(3L)
+                .pubId(3L)
                 .name("Pub K20")
                 .address("Mikołaja Kopernika 4, 35-002 Rzeszów, Poland")
                 .placeId("ChIJ79jBNQL7PEcRAJ0TSKs0Bic")
@@ -162,7 +163,7 @@ public class TestRepoPubsDataSet {
                 .build());
 
         dataSet.add(PubDto.builder()
-                .id(4L)
+                .pubId(4L)
                 .name("Corner Pub Mała Graciarnia Rzeszów")
                 .address("Przesmyk 2, 35-065 Rzeszów, Poland")
                 .placeId("ChIJGcTVBwL7PEcRTflMy_gvdhI")
@@ -188,7 +189,7 @@ public class TestRepoPubsDataSet {
                 .build());
 
         dataSet.add(PubDto.builder()
-                .id(5L)
+                .pubId(5L)
                 .name("Jameson Pub")
                 .address("Stanisława Moniuszki 4, 35-015 Rzeszów, Poland")
                 .placeId("ChIJlxM_5QP7PEcRuKMUGawHRgs")
@@ -213,7 +214,7 @@ public class TestRepoPubsDataSet {
                 .build());
 
         dataSet.add(PubDto.builder()
-                .id(6L)
+                .pubId(6L)
                 .name("Pub Underground")
                 .address("Jana Matejki 10, 35-001 Rzeszów, Poland")
                 .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
@@ -230,7 +231,7 @@ public class TestRepoPubsDataSet {
                 .tags(tagsDataSet6)
                 .build());
         dataSet.add(PubDto.builder()
-                .id(7L)
+                .pubId(7L)
                 .name("Pub Underground")
                 .address("Jana Matejki 10, 35-001 Rzeszów, Poland")
                 .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
@@ -247,7 +248,7 @@ public class TestRepoPubsDataSet {
                 .tags(tagsDataSet6)
                 .build());
         dataSet.add(PubDto.builder()
-                .id(8L)
+                .pubId(8L)
                 .name("Pub Underground")
                 .address("Jana Matejki 10, 35-001 Rzeszów, Poland")
                 .placeId("ChIJS3sKMwL7PEcRurd9BXet-fw")
@@ -272,17 +273,35 @@ public class TestRepoPubsDataSet {
         photosDataSet1 = new ArrayList<>();
         tagsDataSet1 = new ArrayList<>();
         drinksDataSet1.add(DrinkDto.builder()
-                .name("AleBrowar")
+                .name("Lager Delight")
                 .type("Beer")
+                .beer(BeerDto.builder()
+                        .beerId(1L)
+                        .longDescription("A light and crisp lager with a smooth finish.")
+                        .shortDescription("Crisp lager")
+                        .photoUrl("/images/lager.jpg")
+                        .maltiness("Low")
+                        .blg("12")
+                        .alcoholContent("5%")
+                        .build())
                 .build());
 
         drinksDataSet1.add(DrinkDto.builder()
-                .name("Amber")
+                .name("Stout Supreme")
                 .type("Beer")
                 .drinkStyles(Collections.singletonList(
                         DrinkStyleDto.builder()
                                 .styleName("Pilsner")
                                 .build()))
+                .beer(BeerDto.builder()
+                        .beerId(2L)
+                        .longDescription("A rich and creamy stout with deep chocolate undertones.")
+                        .shortDescription("Creamy stout")
+                        .photoUrl("/images/stout.jpg")
+                        .maltiness("High")
+                        .blg("20")
+                        .alcoholContent("7%")
+                        .build())
                 .build());
 
         drinksDataSet1.add(DrinkDto.builder()

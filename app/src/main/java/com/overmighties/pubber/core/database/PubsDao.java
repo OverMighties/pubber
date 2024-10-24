@@ -6,22 +6,19 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
+import com.overmighties.pubber.core.database.entities.BeerEntity;
 import com.overmighties.pubber.core.database.entities.DrinkEntity;
 import com.overmighties.pubber.core.database.entities.DrinkStyleDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.entities.DrinkStyleEntity;
-import com.overmighties.pubber.core.database.entities.DrinkWithDrinkStyleEntity;
+import com.overmighties.pubber.core.database.entities.DrinkWithAllEntities;
 import com.overmighties.pubber.core.database.entities.PhotoEntity;
 import com.overmighties.pubber.core.database.entities.PubDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.entities.PubEntity;
 import com.overmighties.pubber.core.database.entities.PubWithAllEntities;
 import com.overmighties.pubber.core.database.entities.RatingsEntity;
 import com.overmighties.pubber.core.database.entities.TagEntity;
-import com.overmighties.pubber.core.model.Drink;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
@@ -46,11 +43,11 @@ public abstract class PubsDao {
 
     @Transaction
     @Query("SELECT * FROM drinks WHERE :name=name")
-    abstract Single<DrinkWithDrinkStyleEntity> getDrinkByName(String name);
+    abstract Single<DrinkWithAllEntities> getDrinkByName(String name);
 
     @Transaction
     @Query("SELECT * FROM styles WHERE :name=style_name")
-    abstract Single<DrinkWithDrinkStyleEntity> getDrinkStyleByName(String name);
+    abstract Single<DrinkWithAllEntities> getDrinkStyleByName(String name);
 
     @Transaction
     public synchronized void insertAll(List<PubWithAllEntities> pubs) {
@@ -67,16 +64,16 @@ public abstract class PubsDao {
                         .collect(Collectors.toList());
                 insertDrinks(drinkEntities);
 
-                for (DrinkWithDrinkStyleEntity drinkWithDrinkStyleEntity : pubWithAllEntities.drinks) {
+                for (DrinkWithAllEntities drinkWithAllEntities : pubWithAllEntities.drinks) {
 
                     PubDrinkCrossRefEntity crossRef = new PubDrinkCrossRefEntity();
                     crossRef.pubId = pubWithAllEntities.pub.pubId;
-                    crossRef.drinkId = drinkWithDrinkStyleEntity.drink.drinkId;
+                    crossRef.drinkId = drinkWithAllEntities.drink.drinkId;
                     insertPubDrinkCrossRef(crossRef);
 
-                    if ( drinkWithDrinkStyleEntity.drinkStyles != null) {
+                    if ( drinkWithAllEntities.drinkStyles != null) {
 
-                        List<DrinkStyleEntity> drinkStyleEntities = drinkWithDrinkStyleEntity.drinkStyles;
+                        List<DrinkStyleEntity> drinkStyleEntities = drinkWithAllEntities.drinkStyles;
                         insertDrinkStyles(drinkStyleEntities);
 
                         for (DrinkStyleEntity drinkStyleEntity : drinkStyleEntities) {
@@ -87,6 +84,10 @@ public abstract class PubsDao {
 
                             insertDrinkStylesCrossRef(drinkStyleDrinkCrossRefEntity);
                         }
+                    }
+
+                    if (drinkWithAllEntities.beer != null){
+                        insertBeer(drinkWithAllEntities.beer);
                     }
                 }
             }
@@ -132,4 +133,8 @@ public abstract class PubsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract void insertTags(List<TagEntity> tags);
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract void insertBeer(BeerEntity beer);
 }

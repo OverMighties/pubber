@@ -22,7 +22,6 @@ public class DrinkEntity {
     public static final Long ID_NONE =null;
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="drink_id")
-   // @NonNull
     public Long drinkId;
     public String name;
     public String type;

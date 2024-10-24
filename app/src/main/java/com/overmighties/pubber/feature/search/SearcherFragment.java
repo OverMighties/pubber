@@ -140,7 +140,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() != null){
             int n = 0;
             for(var pub:pubListViewModel.get_originalPubData().getValue()){
-                if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() == pub.getId()){
+                if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() == pub.getPubId()){
                     pubListViewModel.getSearcherUiState().getValue().setLinkPubId(null);
                     pubListViewModel.setPubDetails(n, detailsViewModel);
                     NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());

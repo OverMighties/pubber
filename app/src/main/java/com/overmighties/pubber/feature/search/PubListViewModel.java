@@ -203,7 +203,7 @@ public class PubListViewModel extends ViewModel {
             }
         }
 
-        return new PubItemCardViewUiState(pub.first.getId(),TEMPORARY_BOOKMARK, pubName,pub.first.getIconPath(),
+        return new PubItemCardViewUiState(pub.first.getPubId(),TEMPORARY_BOOKMARK, pubName,pub.first.getIconPath(),
                 openInfo.getTime(), openInfo.isType(), TEMPORARY_DISTANCE,
                 PriceType.getById(pub.first.getRatings().getOurCost()).getIcon(),
                 pub.first.getRatings().getAverageRating(),
@@ -236,7 +236,7 @@ public class PubListViewModel extends ViewModel {
 
     public void setPubDetails(int position, DetailsViewModel detailsViewModel){
         Pub pub= Objects.requireNonNull(_originalPubData.getValue()).get(position);
-        PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), cityConstraint.getValue(),pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
+        PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getPubId(), cityConstraint.getValue(),pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
                 pub.getDrinks(),pub.getPhotos(),null,pub.getTags(),pub.getTimeOpenToday(), null, null, null);
         detailsViewModel.setPubDetails(pubDetailsUiState);

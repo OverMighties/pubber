@@ -17,6 +17,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DrinkDto {
+    @SerializedName("drinkId")
+    private Long drinkId;
     @SerializedName("name")
     private String name;
     @SerializedName("type")
@@ -25,4 +27,6 @@ public class DrinkDto {
     private String description;
     @SerializedName("drinkStyles")
     private List<DrinkStyleDto> drinkStyles;
+    @SerializedName("beer")
+    private BeerDto beer;
 }

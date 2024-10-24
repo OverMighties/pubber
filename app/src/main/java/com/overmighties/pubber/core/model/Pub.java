@@ -13,7 +13,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Pub {
     @NonNull
-    private Long id;
+    private Long pubId;
     @NonNull
     private String name;
     @NonNull

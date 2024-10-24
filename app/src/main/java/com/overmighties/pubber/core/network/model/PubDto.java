@@ -16,8 +16,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PubDto {
-    @SerializedName("id")
-    private Long id;
+    @SerializedName("pubId")
+    private Long pubId;
     @SerializedName("name")
     private String name;
     @SerializedName("address")
