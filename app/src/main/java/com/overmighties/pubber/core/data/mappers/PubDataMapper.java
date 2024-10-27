@@ -58,8 +58,7 @@ public class PubDataMapper {
                         pub.getPubId()
                 ),
                 mapToEntityDrinks(
-                        pub.getDrinks(),
-                        pub.getPubId()
+                        pub.getDrinks()
                 ),
                 mapToEntityPhotos(
                         pub.getPhotos(),
@@ -103,7 +102,7 @@ public class PubDataMapper {
                 beer.getAlcoholContent()
         );
     }
-    public static List<DrinkWithAllEntities> mapToEntityDrinks(List<Drink> drinks, Long pubId) {
+    public static List<DrinkWithAllEntities> mapToEntityDrinks(List<Drink> drinks) {
         return drinks == null ? null : drinks.stream()
                 .map(data -> new DrinkWithAllEntities(
                                 new DrinkEntity(

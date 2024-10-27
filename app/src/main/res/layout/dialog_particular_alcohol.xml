@@ -40,11 +40,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
-    <TextView
+    <EditText
         android:id="@+id/particularAlcoholD_text_hopinessRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rating"
+        android:inputType="numberDecimal"
+        android:cursorVisible="false"
+        android:enabled="false"
+        android:background="@null"
         android:textColor="@color/on_surface"
         android:textSize="16sp"
         android:layout_marginTop="12dp"
@@ -74,12 +78,16 @@
         app:layout_constraintTop_toTopOf="@+id/particularAlcoholD_text_hopinessRating"
         app:layout_constraintBottom_toBottomOf="@+id/particularAlcoholD_text_hopinessRating" />
 
-    <TextView
+    <EditText
         android:id="@+id/particularAlcoholD_text_maltinessRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/rating"
+        android:enabled="false"
+        android:cursorVisible="false"
+        android:inputType="numberDecimal"
+        android:background="@null"
         android:textColor="@color/on_surface"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/particularAlcoholD_text_hopinessRating"
@@ -110,18 +118,30 @@
         app:layout_constraintBottom_toBottomOf="@+id/particularAlcoholD_text_maltinessRating"/>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/particularAlcoholD_text_alcoholPercantage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/alcohol_percentage"
         android:textColor="@color/on_surface"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/particularAlcoholD_text_alcoholPercantageInfo"
+        app:layout_constraintStart_toEndOf="@+id/particularAlcoholD_text_alcoholPercantageInfo" />
+
+    <EditText
+        android:id="@+id/particularAlcoholD_text_alcoholPercantageInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:textColor="@color/on_surface"
+        android:textSize="16sp"
+        android:cursorVisible="false"
+        android:enabled="false"
+        android:background="@null"
         app:layout_constraintStart_toStartOf="@+id/particularAlcoholD_text_maltinessRating"
         app:layout_constraintTop_toBottomOf="@+id/particularAlcoholD_text_maltinessRating" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/particularAlcoholD_button_edit"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_container"
@@ -132,10 +152,10 @@
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/particularAlcoholD_text_alcoholPercantage" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/particularAlcoholD_button_more"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_primary"
@@ -143,10 +163,28 @@
         android:textColor="@color/on_primary"
         app:backgroundTint="@null"
         app:layout_constraintHorizontal_bias="0.90"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/particularAlcoholD_button_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="@+id/particularAlcoholD_button_edit" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/ic_info_on_surface_variant" />
+
+    <ViewStub
+        android:id="@+id/particularAlcoholD_viewStub_informationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/information_layout_viewStub"
+        android:layout="@layout/information_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

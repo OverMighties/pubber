@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DetailsEditAlcoholsFragment extends Fragment {
+public class  DetailsEditAlcoholsFragment extends Fragment {
 
     public static final String TAG = "DetailsEditFragment";
 

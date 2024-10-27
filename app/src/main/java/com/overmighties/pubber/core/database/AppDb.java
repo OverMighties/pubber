@@ -17,4 +17,5 @@ import com.overmighties.pubber.core.database.entities.TagEntity;
 @Database(entities = {PubEntity.class, DrinkEntity.class, DrinkStyleEntity.class, PubDrinkCrossRefEntity.class, DrinkStyleDrinkCrossRefEntity.class, OpeningHoursEntity.class, PhotoEntity.class, RatingsEntity.class, TagEntity.class, BeerEntity.class},version=1,exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
     public abstract PubsDao pubsDao();
+    public abstract DrinksDao drinksDao();
 }

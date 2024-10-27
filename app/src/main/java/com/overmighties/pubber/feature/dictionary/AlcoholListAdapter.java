@@ -57,6 +57,8 @@ public class AlcoholListAdapter extends RecyclerView.Adapter<AlcoholListAdapter.
             List<Float> list = new ArrayList<>();
             list.add(4.2f);
             list.add(3.7f);
+            list.add(5.3f);
+            /*
             holder.layout.setOnClickListener(v->{
                 AlcoholAlertDialog.show(
                         holder.itemView.getContext(), new AlcoholAlertDialogUiState(dataList.get(position).getName(),
@@ -64,6 +66,8 @@ public class AlcoholListAdapter extends RecyclerView.Adapter<AlcoholListAdapter.
                         dataList.get(position).getPhoto_path(), list));
 
             });
+
+             */
         }
     }
 

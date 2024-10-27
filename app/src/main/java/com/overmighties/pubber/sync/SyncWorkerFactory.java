@@ -9,6 +9,7 @@ import androidx.work.WorkerFactory;
 import androidx.work.WorkerParameters;
 
 import com.overmighties.pubber.app.notifications.NotificationWorker;
+import com.overmighties.pubber.core.data.DrinksRepository;
 import com.overmighties.pubber.core.data.PubsRepository;
 
 import lombok.AllArgsConstructor;
@@ -17,12 +18,13 @@ import lombok.AllArgsConstructor;
 public class SyncWorkerFactory extends WorkerFactory {
 
     private final PubsRepository pubsRepository;
+    private final DrinksRepository drinksRepository;
     @Nullable
     @Override
     public ListenableWorker createWorker(@NonNull Context appContext, @NonNull String workerClassName, @NonNull WorkerParameters workerParameters) {
         if (workerClassName.equals(NotificationWorker.class.getName())) {
             return new NotificationWorker(appContext, workerParameters);
         }
-        return new SyncWorker(appContext, workerParameters, pubsRepository);
+        return new SyncWorker(appContext, workerParameters, pubsRepository, drinksRepository);
     }
 }

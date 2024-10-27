@@ -525,9 +525,11 @@
     <string name="account_log_out">Log out</string>
 
     <!--particular alcohol dialog-->
+    <string name="basic_description"></string>
     <string name="hopiness">- Hopiness</string>
     <string name="maltiness">- Maltiness</string>
-    <string name="alcohol_percentage">Alcohol percentage</string>
+    <string name="alcohol_percentage">- Alcohol percentage</string>
+    <string name="alcohol_percantage_symbol_estimate">~</string>
 
 
 </resources>

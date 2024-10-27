@@ -54,6 +54,7 @@ import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
+import com.overmighties.pubber.app.designsystem.LoadingPopUp;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.core.model.Pub;
@@ -76,6 +77,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+
 public class SearcherFragment extends BaseFragmentWithPermission implements PubListSelectListener {
 
     public static final String TAG = "SearcherFragment";
@@ -91,7 +94,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        LoadingPopUp.show(requireActivity(), 2000);
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);

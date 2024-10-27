@@ -19,8 +19,8 @@ public class Constants {
     public static final Pattern SPECIAL_CHAR_PATTERN = Pattern.compile(
             "[!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~]");
 
-    public static final String EXTRA_CITY_CONSTRAINT="com.pubber.EXTRA_CITY";
-    public static final String [] STRING_RES_NAMES = {
+    public static final String EXTRA_CITY_CONSTRAINT = "com.pubber.EXTRA_CITY";
+    public static final String[] STRING_RES_NAMES = {
             "app_name",
             "nazwa_aplikacji",
             "AleBrowar",
@@ -85,7 +85,7 @@ public class Constants {
 
     };
 
-    public static final String [] BREWERIES_VIEW_ID_LIST = {
+    public static final String[] BREWERIES_VIEW_ID_LIST = {
             "AleBrowar",
             "Amber",
             "Artezan",
@@ -108,7 +108,7 @@ public class Constants {
             "Zatecky",
             "Zamiastem"
     };
-    public static final String [] DRINKS_VIEW_ID_LIST = {
+    public static final String[] DRINKS_VIEW_ID_LIST = {
             "BlackRussian",
             "B52",
             "Cosmopolitan",
@@ -125,7 +125,7 @@ public class Constants {
             "TequilaSunrise"
     };
 
-    public static final String [] PRICE_VIEW_ID_LIST = {
+    public static final String[] PRICE_VIEW_ID_LIST = {
             "malo",
             "srednio",
             "duzo",
@@ -133,9 +133,9 @@ public class Constants {
 
 
     public static final int[] LANGUAGE_FRAGMENT_RADIO_BUTTONS_IDS = {
-        R.id.language_radioButton_polish,
-        R.id.language_radioButton_english,
-        R.id.language_radioButton_ukrainian
+            R.id.language_radioButton_polish,
+            R.id.language_radioButton_english,
+            R.id.language_radioButton_ukrainian
     };
     public static final int[] THEME_FRAGMENT_RADIO_BUTTONS_IDS = {
             R.id.theme_radioButton_phone,
@@ -147,7 +147,7 @@ public class Constants {
             R.id.splash_button_signUp,
     };
 
-    public static final int[] FILTER_FRAGMENT_BEER_WIDGETS_IDS={
+    public static final int[] FILTER_FRAGMENT_BEER_WIDGETS_IDS = {
             R.id.filtration_text_breweries,
             R.id.filtration_image_breweries,
             R.id.filtration_text_styles,
@@ -167,7 +167,7 @@ public class Constants {
             R.id.cl_sun
     };
     public static final Integer[] DAY_OF_WEEK = {
-            1,2,3,4,5,6,7
+            1, 2, 3, 4, 5, 6, 7
     };
 
 
@@ -367,5 +367,18 @@ public class Constants {
             R.id.detailsEditA_recyclerView_addDrink,
             R.id.detailsEditA_chip_removeDrink,
             R.id.detailsEditA_recyclerView_removeDrink
+    };
+
+    public static final int[] PARTICULAR_ALCOHOL_DIALOG_VIEWS_TOINVISIBLE_IDS = {
+            R.id.particularAlcoholD_cl_hopiness,
+            R.id.particularAlcoholD_text_hopiness,
+            R.id.particularAlcoholD_cl_maltiness,
+            R.id.particularAlcoholD_text_maltiness,
+            R.id.particularAlcoholD_text_alcoholPercantage
+    };
+
+    public static final int[] PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS = {
+            R.id.particularAlcoholD_text_hopinessRating,
+            R.id.particularAlcoholD_text_maltinessRating,
     };
 }

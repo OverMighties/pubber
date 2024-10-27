@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.feature.search.PubListViewModel;
 
 public class DictionaryFragment extends Fragment {
 
@@ -18,6 +19,7 @@ public class DictionaryFragment extends Fragment {
     public DictionaryFragment() {super(R.layout.fragment_dictionary);}
 
     private DictionaryViewModel viewModel;
+    private PubListViewModel pubListViewModel;
     private NavController navController;
 
     @Override
@@ -25,6 +27,8 @@ public class DictionaryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DictionaryViewModel.initializer)).get(DictionaryViewModel.class);
+        pubListViewModel = new ViewModelProvider(requireActivity())
+                .get(PubListViewModel.class);
     }
 
     @Override
@@ -32,10 +36,14 @@ public class DictionaryFragment extends Fragment {
         navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
         requireView().findViewById(R.id.dictionary_image_beers).setOnClickListener(v1->{
             prepareBeerData();
-            navController.navigate(DictionaryFragmentDirections.actionDictionaryFragmentToDictionarySearchFragment());
+        });
+        requireView().findViewById(R.id.dictionary_text_beers).setOnClickListener(v1->{
+            prepareBeerData();
         });
     }
 
     private void prepareBeerData() {
+
+        navController.navigate(DictionaryFragmentDirections.actionDictionaryFragmentToDictionarySearchFragment());
     }
 }

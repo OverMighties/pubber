@@ -53,7 +53,7 @@ public class NotificationsBroadcastReceiver extends BroadcastReceiver {
                 .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
                 .build();
         PeriodicWorkRequest notificationRequest = new PeriodicWorkRequest.Builder(
-                NotificationWorker.class, 1, TimeUnit.DAYS)
+                NotificationWorker.class, 1, TimeUnit.HOURS)
                 .setConstraints(constraints)
                 .setInitialDelay(delay_ms, TimeUnit.MILLISECONDS)
                 .build();

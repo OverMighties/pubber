@@ -64,7 +64,7 @@ public class PubberApp extends Application implements Configuration.Provider{
                 .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
                 .build();
         PeriodicWorkRequest notificationRequest = new PeriodicWorkRequest.Builder(
-                NotificationWorker.class, 1, TimeUnit.DAYS)
+                NotificationWorker.class, 1L, TimeUnit.HOURS)
                 .setConstraints(constraints)
                 .setInitialDelay(delay_ms, TimeUnit.MILLISECONDS)
                 .build();
@@ -93,7 +93,7 @@ public class PubberApp extends Application implements Configuration.Provider{
     public Configuration getWorkManagerConfiguration() {
         return new Configuration.Builder()
                 .setMinimumLoggingLevel(android.util.Log.INFO)
-                .setWorkerFactory(new SyncWorkerFactory(appContainer.getPubsRepository()))
+                .setWorkerFactory(new SyncWorkerFactory(appContainer.getPubsRepository(), appContainer.getDrinksRepository()))
                 .build();
 
     }

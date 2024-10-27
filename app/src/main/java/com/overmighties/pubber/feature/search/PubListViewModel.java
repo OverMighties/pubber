@@ -15,7 +15,9 @@ import android.util.Pair;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.settings.SettingsHandler;
+import com.overmighties.pubber.core.data.DrinksRepository;
 import com.overmighties.pubber.core.data.PubsRepository;
+import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
@@ -61,6 +63,7 @@ public class PubListViewModel extends ViewModel {
     public static final String CONTENT_PROVIDED ="Content provided";
     public static final String DETAILS_TRANSITION_NAME = "details_transition";
     private final PubsRepository pubsRepository;
+    private final DrinksRepository drinksRepository;
     //if -3 that means that first imperfect after filtration is shown, if -2 then it is first pub to be mapped.,
     private Integer lastCompatibility = -2;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
@@ -89,12 +92,13 @@ public class PubListViewModel extends ViewModel {
                 assert app != null;
                 SavedStateHandle savedStateHandle = createSavedStateHandle(creationExtras);
 
-                return new PubListViewModel(app.appContainer.getPubsRepository(),  savedStateHandle);
+                return new PubListViewModel(app.appContainer.getPubsRepository(),  app.appContainer.getDrinksRepository(), savedStateHandle);
             }
     );
 
-    public PubListViewModel(PubsRepository pubsRepository, SavedStateHandle savedStateHandle) {
+    public PubListViewModel(PubsRepository pubsRepository, DrinksRepository drinksRepository, SavedStateHandle savedStateHandle) {
         this.pubsRepository=pubsRepository;
+        this.drinksRepository = drinksRepository;
     }
 
     public void fetchPubsFromRepo(final int DELAY_TIME_MS)
