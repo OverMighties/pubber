@@ -66,6 +66,9 @@ public class PubListViewModel extends ViewModel {
     private final DrinksRepository drinksRepository;
     //if -3 that means that first imperfect after filtration is shown, if -2 then it is first pub to be mapped.,
     private Integer lastCompatibility = -2;
+    private final MutableLiveData<List<Drink>> originalDrinksData=new MutableLiveData<>(null);
+    @Getter
+    private final LiveData<List<Drink>> _originalDrinksData=originalDrinksData;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
     @Getter
     private final LiveData<List<Pub>> _originalPubData=originalPubData;
@@ -99,6 +102,18 @@ public class PubListViewModel extends ViewModel {
     public PubListViewModel(PubsRepository pubsRepository, DrinksRepository drinksRepository, SavedStateHandle savedStateHandle) {
         this.pubsRepository=pubsRepository;
         this.drinksRepository = drinksRepository;
+    }
+
+    public void fetchDrinksFromRepo(final int DELAY_TIME_MS){
+        Disposable d = Objects.requireNonNull(drinksRepository).getDrinks()
+                .delay(DELAY_TIME_MS, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(drinks->{
+                    originalDrinksData.setValue(drinks);
+                    },
+                    err-> Log.e(TAG, "fetchDrinksFromRepo can't get drinks due to" + err.getLocalizedMessage())
+                );
+        disposables.add(d);
     }
 
     public void fetchPubsFromRepo(final int DELAY_TIME_MS)

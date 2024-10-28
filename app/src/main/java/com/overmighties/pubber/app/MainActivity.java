@@ -56,6 +56,7 @@ public class MainActivity extends SettingsBasicActivity {
                 ViewModelProvider.Factory.from(AlcoholViewModel.initializer))
                 .get(AlcoholViewModel.class);
         pubListViewModel.fetchPubsFromRepo(0);
+        pubListViewModel.fetchDrinksFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager()

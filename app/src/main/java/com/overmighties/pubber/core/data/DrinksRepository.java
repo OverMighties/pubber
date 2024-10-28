@@ -29,7 +29,6 @@ public class DrinksRepository {
     //TODO get all drinks from PubsDataSource and update DrinksRepository from them
     public Result<DbResponse> sync() throws RuntimeException
     {
-
         try {
             localDataSource.updateDrinks(offlineDataSource.getDrinks()
                             .observeOn(AndroidSchedulers.mainThread())
