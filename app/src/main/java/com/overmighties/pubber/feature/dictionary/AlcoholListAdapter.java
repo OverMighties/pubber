@@ -1,5 +1,6 @@
 package com.overmighties.pubber.feature.dictionary;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
 import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
+import com.overmighties.pubber.feature.alcohol.AlcoholViewModel;
+import com.overmighties.pubber.feature.dictionary.stateholders.AlcoholCardViewUiState;
+import com.overmighties.pubber.feature.dictionary.util.AlcoholSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +26,9 @@ import java.util.List;
 import lombok.Getter;
 
 public class AlcoholListAdapter extends RecyclerView.Adapter<AlcoholListAdapter.ViewHolder>{
-    public static final String TAG = "ListParticularBeersAdapter";
+    public static final String TAG = "AlcoholListAdapter";
     private final List<AlcoholCardViewUiState> dataList;
+    private final AlcoholSelectListener alcoholSelectListener;
 
     @Getter
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -29,23 +36,35 @@ public class AlcoholListAdapter extends RecyclerView.Adapter<AlcoholListAdapter.
         private final TextView name;
         private final TextView short_des;
         private final ImageView image;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, AlcoholSelectListener alcoholSelectListener) {
             super(itemView);
             layout = itemView.findViewById(R.id.dictionaryAlcohol_cardView);
             name = itemView.findViewById(R.id.dictionaryAlcoholCV_text_alcoholName);
             short_des = itemView.findViewById(R.id.dictionaryAlcoholCV_text_alcoholDes);
             image = itemView.findViewById(R.id.dictionaryAlcoholCV_image_alcohol);
+            itemView.setOnClickListener(v->{
+                if(alcoholSelectListener !=null)
+                {
+                    int pos=getBindingAdapterPosition();
+
+                    if(pos!=RecyclerView.NO_POSITION)
+                    {
+                        alcoholSelectListener.onItemClicked(pos);
+                    }
+                }
+            });
         }
     }
 
-    public AlcoholListAdapter(List<AlcoholCardViewUiState> dataList){
+    public AlcoholListAdapter(List<AlcoholCardViewUiState> dataList, AlcoholSelectListener alcoholSelectListener){
         this.dataList = new ArrayList<>(dataList);
+        this.alcoholSelectListener = alcoholSelectListener;
     }
 
     @NonNull
     @Override
     public AlcoholListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new AlcoholListAdapter.ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_dictionary_alcohol_cardview,viewGroup,false));
+        return new AlcoholListAdapter.ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_dictionary_alcohol_cardview,viewGroup,false), alcoholSelectListener);
     }
 
     @Override
@@ -54,20 +73,11 @@ public class AlcoholListAdapter extends RecyclerView.Adapter<AlcoholListAdapter.
             holder.name.setText(dataList.get(position).getName());
             if(dataList.get(position).getShort_des() != null)
                 holder.short_des.setText(dataList.get(position).getShort_des());
-            List<Float> list = new ArrayList<>();
-            list.add(4.2f);
-            list.add(3.7f);
-            list.add(5.3f);
-            /*
-            holder.layout.setOnClickListener(v->{
-                AlcoholAlertDialog.show(
-                        holder.itemView.getContext(), new AlcoholAlertDialogUiState(dataList.get(position).getName(),
-                        dataList.get(position).getShort_des(), dataList.get(position).getLong_des(),
-                        dataList.get(position).getPhoto_path(), list));
+            Glide.with(holder.itemView.getContext())
+                    .load(dataList.get(position).getPhoto_path())
+                    .centerCrop()
+                    .into(holder.image);
 
-            });
-
-             */
         }
     }
 

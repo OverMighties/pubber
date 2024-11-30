@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.feature.dictionary.stateholders.DictionaryUiState;
 
 
 public class DictionaryViewModel extends ViewModel {

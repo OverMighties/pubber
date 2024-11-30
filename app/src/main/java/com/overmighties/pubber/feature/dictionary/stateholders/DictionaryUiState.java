@@ -1,6 +1,5 @@
-package com.overmighties.pubber.feature.dictionary;
+package com.overmighties.pubber.feature.dictionary.stateholders;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;

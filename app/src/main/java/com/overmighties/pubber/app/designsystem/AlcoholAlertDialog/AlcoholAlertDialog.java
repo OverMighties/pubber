@@ -32,11 +32,11 @@ import com.overmighties.pubber.util.RatingToIVConverter;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO make constraintlayout with rating aligne and edit mode for alcohol
+
 public class AlcoholAlertDialog {
 
     private static final String TAG = "AlcoholAlertDialog";
-
-    private static final String exampleURL = "https://trzechkumpli.pl/wp-content/uploads/LagerNiemiecki_medalion.png";
 
     private static AlcoholAlertDialogUiState uiState;
 
@@ -48,10 +48,20 @@ public class AlcoholAlertDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.CustomDialog);
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.dialog_particular_alcohol, null);
-        ((TextView)dialogView.findViewById(R.id.textView)).setText(uiState.getName());
+        setUpData(dialogView, context);
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        setUpListeners(dialogView, navController, alertDialog, actionId);
+        alertDialog.show();
+    }
+
+    private static void setUpData(View dialogView, Context context) {
+        //Name + alcohol content
+        ((TextView)dialogView.findViewById(R.id.textView)).setText(uiState.getName() + " ~ "+uiState.getParameters().get(2)+"%");
+        //Short desciption
         ((TextView)dialogView.findViewById(R.id.textView2)).setText(uiState.getShort_des());
         Glide.with(context)
-                .load(exampleURL)
+                .load(uiState.getPhotoPath())
                 .centerCrop()
                 .into((ImageView) dialogView.findViewById(R.id.imageView));
         //hopiness
@@ -69,29 +79,27 @@ public class AlcoholAlertDialog {
         new RatingToIVConverter().convert(list, 17,
                 dialogView.findViewById(R.id.particularAlcoholD_cl_maltiness),
                 uiState.getParameters().get(1), 10, 16, false);
-        //alcohol
-        ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_alcoholPercantageInfo)).setText(uiState.getParameters().get(2)+"% ");
-        //buttons
-        //dialogView.findViewById(R.id.imageView3).setOnClickListener(v->{
-        //    InfoLayout.show(dialogView.getContext(), ((Activity)dialogView.getContext()).findViewById(R.id.particularAlcoholD_viewStub_informationLayout), v, "test");
-        //});
+    }
+
+    private static void setUpListeners(View dialogView, NavController navController, AlertDialog alertDialog, Integer actionId) {
         dialogView.findViewById(R.id.particularAlcoholD_button_edit).setOnClickListener(v->{
             if(isEditMode){
                 setUpNormalMode(dialogView);
+                isEditMode = false;
             } else {
                 setUpEditMode(dialogView);
             }
         });
         dialogView.findViewById(R.id.particularAlcoholD_button_more).setOnClickListener(v->{
             if(isEditMode){
+                setUpNormalMode(dialogView);
+                isEditMode = false;
                 //TODO send to server proposed changes
             } else {
                 navController.navigate(actionId);
+                alertDialog.dismiss();
             }
         });
-        builder.setView(dialogView);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     private static void setUpEditMode(View dialogView) {
@@ -100,8 +108,6 @@ public class AlcoholAlertDialog {
         for(var id:PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS){
             setUpRatingEditText(dialogView, id);
         }
-        setUpAlcoholEditText(dialogView, R.id.particularAlcoholD_text_alcoholPercantageInfo);
-        //TODO alcohol description editText when shown description is default one
         //hide views
         for(var id:PARTICULAR_ALCOHOL_DIALOG_VIEWS_TOINVISIBLE_IDS){
             dialogView.findViewById(id).setVisibility(View.INVISIBLE);
@@ -124,15 +130,16 @@ public class AlcoholAlertDialog {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 editText.removeTextChangedListener(this);
                 String newNumber = findDiffrenceString(s.toString(), oldText);
-                if(newNumber != null){
-                    try {
+                try {
+                    if(newNumber != null){
                         if(pointer == 0){
-                            if (Float.valueOf(newNumber) <= 5) {
+                            if (Float.valueOf(newNumber) < 5) {
                                 editText.setText(newNumber + "./5");
                                 pointer++;
-
                             } else if (Float.valueOf(newNumber) > 5){
                                 editText.setText(oldText);
+                            } else if (Float.valueOf(newNumber) == 5){
+                                editText.setText(newNumber + "/5");
                             } else {
                                 editText.setText(newNumber+"/5");
                             }
@@ -144,10 +151,13 @@ public class AlcoholAlertDialog {
                             }
                             pointer = 0;
                         }
-                    } catch (Exception e) {
+                    } else {
+                        pointer = 0;
                         editText.setText(oldText);
-                        Log.e(TAG, "RatingChange: Parsed character isn't numer");
                     }
+                } catch (Exception e) {
+                    editText.setText(oldText);
+                    Log.e(TAG, "RatingChange: Parsed character isn't numer");
                 }
                 editText.addTextChangedListener(this);
             }
@@ -225,7 +235,6 @@ public class AlcoholAlertDialog {
     }
 
     private static void setUpEditModeButtons(View dialogView) {
-        isEditMode = false;
         ((Button)dialogView.findViewById(R.id.particularAlcoholD_button_edit)).setText(dialogView.getContext().getString(R.string.cancel));
         ((Button)dialogView.findViewById(R.id.particularAlcoholD_button_edit)).setTextColor(ContextCompat.getColor(dialogView.getContext(), R.color.error));
         dialogView.findViewById(R.id.particularAlcoholD_button_edit).setBackgroundResource(R.drawable.button_shape_negative);
@@ -249,8 +258,11 @@ public class AlcoholAlertDialog {
                 .setText(uiState.getParameters().get(0)+"/5");
         ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_maltinessRating))
                 .setText(uiState.getParameters().get(1)+"/5");
-        ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_alcoholPercantageInfo)).setText(uiState.getParameters().get(2)+"% ");
-
+        for(var id:PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS){
+            dialogView.findViewById(id).setEnabled(false);
+            dialogView.findViewById(id).setBackground(null);
+            dialogView.findViewById(id).setOnFocusChangeListener((v, hasFocus)->{});
+        }
     }
 
     private static String findDiffrenceString(String cs1, String cs2) {
@@ -259,6 +271,10 @@ public class AlcoholAlertDialog {
                 return String.valueOf(cs1.charAt(i));
             }
         }
+        if(cs1.length()  < cs2.length())
+            return String.valueOf(cs2.charAt(cs1.length()));
+        if(cs1.length()  > cs2.length())
+            return String.valueOf(cs1.charAt(cs2.length()));
         return null;
     }
 

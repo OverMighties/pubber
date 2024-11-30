@@ -10,8 +10,16 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
+import com.overmighties.pubber.feature.search.PubListViewModel;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import lombok.Getter;
 
 public class AlcoholViewModel extends ViewModel {
 
@@ -21,7 +29,12 @@ public class AlcoholViewModel extends ViewModel {
     public LiveData<AlcoholUiState> getUiState(){
         return uiState;
     }
+    @Getter
+    private List<Drink> drinkList;
 
+    private final ExecutorService executorService;
+
+    private boolean taskDone;
 
     public static final ViewModelInitializer<AlcoholViewModel> initializer=new ViewModelInitializer<>(
             AlcoholViewModel.class,
@@ -34,5 +47,54 @@ public class AlcoholViewModel extends ViewModel {
             }
     );
 
-    public AlcoholViewModel(SavedStateHandle savedStateHandle){}
+    public AlcoholViewModel(SavedStateHandle savedStateHandle){
+        executorService = Executors.newSingleThreadExecutor();
+
+    }
+
+    public void setAlcoholData(List<Drink> list){
+        drinkList = list;
+    }
+
+    public void checkBackBroundTask(){
+        if(!taskDone)
+            setUiStateData();
+        else
+            taskDone = false;
+
+    }
+
+    public void setUiStateDataBackground(){
+        executorService.submit(()->{
+           setUiStateData();
+           taskDone = true;
+        });
+    }
+
+    private void  setUiStateData(){
+        for(var drink:drinkList){
+            if(uiState.getValue().getDrink_id() == drink.getDrinkId()){
+                uiState.getValue().changeAllData(
+                        drink.getName(),
+                        //drink.getBeer().getBrewery
+                        "temporary Brewery",
+                        drink.getBeer().getShortDescription(),
+                        drink.getBeer().getLongDescription(),
+                        //drink.getBeer().getBreweryDes,
+                        "temporary Brewery description",
+                        drink.getBeer().getPhotoUrl(),
+                        //drink.getBeer().getHopiness()
+                        "4.7",
+                        "2.3",
+                        "5.6"
+                );
+            }
+        }
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        executorService.shutdown();
+    }
 }

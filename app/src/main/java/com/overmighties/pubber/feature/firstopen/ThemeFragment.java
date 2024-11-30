@@ -29,15 +29,11 @@ public class ThemeFragment extends Fragment {
 
 
     public static final String TAG="ThemeFragment";
-    private Theme activityTheme;
+
     private NavController navController;
 
     private FirstOpenViewModel viewModel;
 
-    private enum Theme{
-        dark,
-        light
-    }
 
     public ThemeFragment(){super(R.layout.fragment_theme);}
 

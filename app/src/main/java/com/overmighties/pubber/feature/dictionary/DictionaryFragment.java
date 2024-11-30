@@ -10,7 +10,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.feature.dictionary.stateholders.AlcoholCardViewUiState;
 import com.overmighties.pubber.feature.search.PubListViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class DictionaryFragment extends Fragment {
 
@@ -43,7 +48,22 @@ public class DictionaryFragment extends Fragment {
     }
 
     private void prepareBeerData() {
-
+        List<AlcoholCardViewUiState> list = new ArrayList<>();
+        for(var drink: Objects.requireNonNull(pubListViewModel.get_originalDrinksData().getValue())){
+            List<String> parametrs = new ArrayList<>();
+            parametrs.add("4.2");//parametrs.add(drink.getBeer().getHopiness());
+            parametrs.add(drink.getBeer().getMaltiness());
+            parametrs.add(drink.getBeer().getAlcoholContent());
+            list.add(new AlcoholCardViewUiState(
+                    drink.getDrinkId(),
+                    drink.getName(),
+                    drink.getBeer().getShortDescription(),
+                    drink.getBeer().getLongDescription(),
+                    drink.getBeer().getPhotoUrl(),
+                    parametrs
+            ));
+        }
+        viewModel.UiState().getValue().setAlcoholDataList(list);
         navController.navigate(DictionaryFragmentDirections.actionDictionaryFragmentToDictionarySearchFragment());
     }
 }

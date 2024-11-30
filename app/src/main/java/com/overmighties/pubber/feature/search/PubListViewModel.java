@@ -10,6 +10,8 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 
+import static com.overmighties.pubber.core.data.mappers.PubDtoMapper.mapFromDtoDrinks;
+
 import android.util.Log;
 import android.util.Pair;
 
@@ -17,6 +19,7 @@ import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.core.data.DrinksRepository;
 import com.overmighties.pubber.core.data.PubsRepository;
+import com.overmighties.pubber.core.drinksdataset.DrinksDataSet;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
@@ -105,6 +108,7 @@ public class PubListViewModel extends ViewModel {
     }
 
     public void fetchDrinksFromRepo(final int DELAY_TIME_MS){
+        /*
         Disposable d = Objects.requireNonNull(drinksRepository).getDrinks()
                 .delay(DELAY_TIME_MS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -114,6 +118,12 @@ public class PubListViewModel extends ViewModel {
                     err-> Log.e(TAG, "fetchDrinksFromRepo can't get drinks due to" + err.getLocalizedMessage())
                 );
         disposables.add(d);
+         */
+        temFetchDrinkFromRepo();
+    }
+    //temporary solution cause drinkRepository doesn't work properly
+    private void temFetchDrinkFromRepo(){
+        originalDrinksData.setValue(mapFromDtoDrinks(DrinksDataSet.getInstance().getDataSet()));
     }
 
     public void fetchPubsFromRepo(final int DELAY_TIME_MS)

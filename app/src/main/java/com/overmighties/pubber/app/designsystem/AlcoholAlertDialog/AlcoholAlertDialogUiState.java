@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class AlcoholAlertDialogUiState {
+    private Long drink_id;
     private String name;
     private String short_des;
     private String long_des;

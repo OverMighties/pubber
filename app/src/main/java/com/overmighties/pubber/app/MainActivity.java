@@ -39,6 +39,7 @@ public class MainActivity extends SettingsBasicActivity {
     private ActivityMainBinding binding;
     private PubListViewModel pubListViewModel;
     private AccountViewModel accountViewModel;
+    private AlcoholViewModel alcoholViewModel;
     private NavController navController;
     private ConnectivityManager connectivityManager;
     private Network currentNetwork;
@@ -51,10 +52,12 @@ public class MainActivity extends SettingsBasicActivity {
         accountViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(AccountViewModel.initializer))
                 .get(AccountViewModel.class);
-        //just to initialize alcoholFragment's ViewModel in app
-        new ViewModelProvider(this,
+        alcoholViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(AlcoholViewModel.initializer))
                 .get(AlcoholViewModel.class);
+        pubListViewModel.get_originalDrinksData().observe(this, dataList->{
+            alcoholViewModel.setAlcoholData(dataList);
+        });
         pubListViewModel.fetchPubsFromRepo(0);
         pubListViewModel.fetchDrinksFromRepo(0);
         binding = ActivityMainBinding.inflate(getLayoutInflater());

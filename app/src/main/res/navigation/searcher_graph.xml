@@ -167,5 +167,12 @@
         android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" />
+    <fragment
+        android:id="@+id/alcoholFragment"
+        android:name="com.overmighties.pubber.feature.alcohol.AlcoholFragment"
+        android:label="AlcoholFragment" />
+    <action
+        android:id="@+id/action_seartcherFragment_to_alcoholFragment"
+        app:destination="@id/alcoholFragment" />
 
 </navigation>

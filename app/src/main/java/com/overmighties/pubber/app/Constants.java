@@ -374,7 +374,6 @@ public class Constants {
             R.id.particularAlcoholD_text_hopiness,
             R.id.particularAlcoholD_cl_maltiness,
             R.id.particularAlcoholD_text_maltiness,
-            R.id.particularAlcoholD_text_alcoholPercantage
     };
 
     public static final int[] PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS = {

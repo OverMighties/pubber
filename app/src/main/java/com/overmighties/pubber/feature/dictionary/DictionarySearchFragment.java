@@ -1,19 +1,28 @@
 package com.overmighties.pubber.feature.dictionary;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.R;
+import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
+import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
+import com.overmighties.pubber.feature.alcohol.AlcoholViewModel;
+import com.overmighties.pubber.feature.dictionary.stateholders.AlcoholCardViewUiState;
+import com.overmighties.pubber.feature.dictionary.util.AlcoholSelectListener;
+import com.overmighties.pubber.feature.search.PubListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DictionarySearchFragment extends Fragment {
+public class DictionarySearchFragment extends Fragment implements AlcoholSelectListener {
 
     public static final String TAG = "DictionaryFragment";
 
@@ -21,21 +30,48 @@ public class DictionarySearchFragment extends Fragment {
 
     private DictionaryViewModel viewModel;
 
+    private AlcoholViewModel alcoholViewModel;
+
+    private NavController navController;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(DictionaryViewModel.initializer)).get(DictionaryViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity())
+                .get(DictionaryViewModel.class);
+        alcoholViewModel = new ViewModelProvider(requireActivity())
+                .get(AlcoholViewModel.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState){
-        List<AlcoholCardViewUiState> data = new ArrayList<>();
-        data.add(new AlcoholCardViewUiState("Trzech Kumpli Lager Niemiecki",
-                "mega goated",
-                "Piwowarska klasyka na najlepszych składnikach zza Odry, czyli bardzo jasnych słodach jęczmiennych oraz trzech odmianach chmielu: Spalt Select, Polaris i Saphir. Po tym “dolniaku” spodziewać się można jasnego koloru, obowiązkowego klaru, słodkich aromatów słodu pilzneńskiego oraz ziołowo-ziemistych nut szlachetnych chmieli. Piwo ma także solidną, ale nieprzesadzoną gorycz.\n"
-                ,"link"));
-        AlcoholListAdapter adapter = new AlcoholListAdapter(data);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        AlcoholListAdapter adapter = new AlcoholListAdapter(
+                viewModel.UiState().getValue().getAlcoholDataList(),
+                this);
         ((RecyclerView)requireView().findViewById(R.id.dictionarySelect_recyclerView_search)).setAdapter(adapter);
+    }
+    @Override
+    public void onItemClicked(int position) {
+        AlcoholCardViewUiState data = viewModel.UiState().getValue().getAlcoholDataList().get(position);
+        List<Float> list = new ArrayList<>();
+        for(var par:data.getParametrs()) {
+            try {
+                list.add(Float.valueOf(par));
+            } catch (Exception exception) {
+                Log.i(TAG, "Can't transform pub's parametr into Float");
+            }
+        }
+        alcoholViewModel.getUiState().getValue().setDrink_id(data.getDrink_id());
+        alcoholViewModel.setUiStateDataBackground();
+        AlcoholAlertDialog.show(
+                requireContext(),
+                new AlcoholAlertDialogUiState(
+                        data.getDrink_id(),
+                        data.getName(),
+                        data.getShort_des(), data.getLong_des(),
+                        data.getPhoto_path(), list),
+                navController,
+                DictionarySearchFragmentDirections.actionSeartcherFragmentToAlcoholFragment().getActionId());
     }
 }
