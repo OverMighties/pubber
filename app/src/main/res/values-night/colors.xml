@@ -24,6 +24,7 @@
     <color name="surface_container_highest">#3b332c</color>
     <color name="on_surface_container">#d4c4b5</color>
     <color name="on_surface_container_secondary">#9c8e81</color>
+    <color name="teritary">#bbcd9e</color>
     <color name="outline">#9d8e81</color>
     <color name="outline_bright_variant">#cac0b5</color>
     <color name="opposing_primary">#455e91</color>

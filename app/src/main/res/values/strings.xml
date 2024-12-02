@@ -248,9 +248,7 @@
     <!-- new user details-->
     <string name="your_nickname">Your nickname</string>
     <!--Account details-->
-    <string name="sex_title">Sex: </string>
-    <string name="email_title">Email: </string>
-    <string name="username_title">Username: </string>
+    <string name="sex">Sex</string>
     <string name="edit_content">Edit</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
@@ -258,6 +256,8 @@
     <string name="yes">Yes</string>
     <string name="new_email">New email:</string>
     <string name="new_username">New username:</string>
+    <string name="user_account">User\'s account</string>
+    <string name="join_info">Join date</string>
     <!--Auth messages-->
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>

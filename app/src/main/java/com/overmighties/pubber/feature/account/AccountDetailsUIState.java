@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDetailsUIState {
+    public boolean emailVisible;
     public static final String UNKNOWN_SEX ="Unknown sex";
     public static final String UNKNOWN ="Unknown";
     public static final Integer NUMBER_OF_FIELDS=4;

@@ -7,25 +7,95 @@
     android:id="@+id/accountDetails_fragment"
     tools:context=".feature.account.AccountDetailsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/accountDetails_recyclerView_info"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/accountDetails_cl_topBar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountDetails_image_profile"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        android:layout_height="64dp"
+        android:background="@color/surface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/accountDetails_image_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/accountDetails_image_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/accountDetails_text_topBarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_account"
+            android:textSize="16sp"
+            android:textColor="@color/on_surface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/accountDetails_image_profile"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:contentDescription="@string/content_description_profile_image"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_account_primary_dark" />
+        app:layout_constraintTop_toBottomOf="@id/accountDetails_cl_topBar"
+        tools:srcCompat="@drawable/ic_account_teritary" />
+    <View
+        android:id="@+id/accountDetails_view_addPhotoBackGround"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/layout_rounded_surface"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="-2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountDetails_image_profile"
+        app:layout_constraintEnd_toEndOf="@+id/accountDetails_image_profile"/>
+
+    <View
+        android:id="@+id/accountDetails_view_addPhoto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/layout_rounded_color"
+        app:layout_constraintTop_toTopOf="@+id/accountDetails_view_addPhotoBackGround"
+        app:layout_constraintBottom_toBottomOf="@+id/accountDetails_view_addPhotoBackGround"
+        app:layout_constraintStart_toStartOf="@+id/accountDetails_view_addPhotoBackGround"
+        app:layout_constraintEnd_toEndOf="@+id/accountDetails_view_addPhotoBackGround" />
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_photo_add"
+        app:layout_constraintTop_toTopOf="@+id/accountDetails_view_addPhoto"
+        app:layout_constraintBottom_toBottomOf="@+id/accountDetails_view_addPhoto"
+        app:layout_constraintStart_toStartOf="@+id/accountDetails_view_addPhoto"
+        app:layout_constraintEnd_toEndOf="@+id/accountDetails_view_addPhoto"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/accountDetails_recyclerView_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails_image_profile"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
 
     <Button
         android:id="@+id/accountDetails_button_signOut"
@@ -35,8 +105,7 @@
         android:text="@string/sign_out"
         android:background="@drawable/button_shape_container"
         app:backgroundTint="@null"
-        android:textColor="@color/on_secondary_container"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/on_secondary_container" app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,4 +124,52 @@
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         />
+
+    <TextView
+        android:id="@+id/accountDetails_text_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nickname"
+        android:textSize="20sp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/on_surface"
+        app:layout_constraintStart_toEndOf="@+id/accountDetails_image_profile"
+        app:layout_constraintTop_toTopOf="@+id/accountDetails_image_profile" />
+
+    <TextView
+        android:id="@+id/accountDetails_text_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_email"
+        android:textColor="@color/on_surface_variant"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/accountDetails_text_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails_text_nickname" />
+    <View
+        android:id="@+id/accountDetails_view_showEmailContainer"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountDetails_text_email"
+        app:layout_constraintStart_toEndOf="@+id/accountDetails_text_email"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails_text_nickname">
+    </View>
+    <ImageView
+        android:id="@+id/accountDetails_button_showEmail"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_visibility_off"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountDetails_text_email"
+        app:layout_constraintStart_toEndOf="@+id/accountDetails_text_email"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails_text_nickname"/>
+
+    <TextView
+        android:id="@+id/accountDetails_text_timeJoined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/on_surface_variant"
+        android:text="@string/join_info"
+        app:layout_constraintStart_toStartOf="@+id/accountDetails_text_email"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails_text_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.overmighties.pubber.app.designsystem.AlcoholAlertDialog;
 import static com.overmighties.pubber.app.Constants.PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS;
 import static com.overmighties.pubber.app.Constants.PARTICULAR_ALCOHOL_DIALOG_VIEWS_TOINVISIBLE_IDS;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.text.Editable;
@@ -11,10 +10,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,7 +21,6 @@ import androidx.navigation.NavController;
 
 import com.bumptech.glide.Glide;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.InfoLayout;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 import java.util.ArrayList;
@@ -57,13 +51,13 @@ public class AlcoholAlertDialog {
 
     private static void setUpData(View dialogView, Context context) {
         //Name + alcohol content
-        ((TextView)dialogView.findViewById(R.id.textView)).setText(uiState.getName() + " ~ "+uiState.getParameters().get(2)+"%");
+        ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_alcoholName)).setText(uiState.getName() + " ~ "+uiState.getParameters().get(2)+"%");
         //Short desciption
-        ((TextView)dialogView.findViewById(R.id.textView2)).setText(uiState.getShort_des());
+        ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_shortDes)).setText(uiState.getShort_des());
         Glide.with(context)
                 .load(uiState.getPhotoPath())
                 .centerCrop()
-                .into((ImageView) dialogView.findViewById(R.id.imageView));
+                .into((ImageView) dialogView.findViewById(R.id.particularAlcoholD_image_alcohol));
         //hopiness
         ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_hopinessRating))
                 .setText(uiState.getParameters().get(0)+"/5");

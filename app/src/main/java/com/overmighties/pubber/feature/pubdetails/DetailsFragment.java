@@ -42,6 +42,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -56,8 +58,11 @@ import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.overmighties.pubber.R;
 
+import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
+import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
 import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
+import com.overmighties.pubber.feature.dictionary.DictionarySearchFragmentDirections;
 import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.PubListViewModel;
@@ -76,23 +81,27 @@ public class DetailsFragment extends Fragment
 {
     public static final String TAG = "DetailsFragment";
 
-    private ImageView BlurImageView;
-    private final List<Integer> testPhotos =new ArrayList<>();
-    private final static List<DetailsCommentCardViewUiState> testComments = new ArrayList<>();
+    public DetailsFragment() {super(R.layout.details);}
+
+    private NavController navController;
     private DetailsViewModel viewModel;
     private PubListViewModel pubListViewModel;
 
-    public DetailsFragment() {super(R.layout.details);}
     private final List<Integer> idList=new ArrayList<>();
 
     public ViewPager viewPager;
+    private ImageView BlurImageView;
     private ConstraintLayout layout;
     private ShapeableImageView shapeableImageView;
     private DetailsCommentsAdapter adapter;
 
+    private final List<Integer> testPhotos =new ArrayList<>();
+    private final static List<DetailsCommentCardViewUiState> testComments = new ArrayList<>();
+
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState)
     {
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
         pubListViewModel = new ViewModelProvider(requireActivity())
                 .get(PubListViewModel.class);
         viewModel=new ViewModelProvider(requireActivity(),
@@ -187,7 +196,6 @@ public class DetailsFragment extends Fragment
                 if(alcohol.getType().equals("Beer")){
                     FlexboxLayout beerLayout = ((FlexboxLayout)requireView().findViewById(R.id.details_FbL_beers));
                     View alcoholChipView =  LayoutInflater.from(requireContext()).inflate(R.layout.alcohol_view_chip, beerLayout, false);
-
                     ((Chip) alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).setText(alcohol.getName());
                     String styles = null;
                     if(alcohol.getDrinkStyles() != null && !alcohol.getDrinkStyles().isEmpty()){
@@ -195,19 +203,17 @@ public class DetailsFragment extends Fragment
                         for(var style: alcohol.getDrinkStyles()){
                             if(alcohol.getDrinkStyles().get(alcohol.getDrinkStyles().size()-1).getName().equals(style.getName())) {
                                 styles = styles + style.getName();
-                            }
-                            else{
+                            } else {
                                 styles = styles + style.getName() + ", ";
                             }
                         }
                         ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setText(styles);
-                    }
-                    else{
+                    } else {
                         ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setVisibility(View.GONE);
                     }
+                    //TODO add dialog showing
                     beerLayout.addView(alcoholChipView);
-                }
-                else{
+                } else{
                     Chip chip = new Chip(requireContext());
                     chip.setText(alcohol.getName());
                     chip.setPadding(16, 0, 16, 0);
@@ -220,6 +226,7 @@ public class DetailsFragment extends Fragment
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
                     chip.setLayoutParams(params);
+                    //TODO add dialog showing
                     ((ChipGroup)requireView().findViewById(R.id.details_chipGroup_drinks)).addView(chip);
                 };
 
@@ -239,6 +246,7 @@ public class DetailsFragment extends Fragment
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             chip.setLayoutParams(params);
+
             ((ChipGroup)requireView().findViewById(R.id.details_chipGroup_tags)).addView(chip);
         }
         

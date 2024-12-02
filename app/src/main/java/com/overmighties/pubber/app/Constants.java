@@ -373,11 +373,16 @@ public class Constants {
             R.id.particularAlcoholD_cl_hopiness,
             R.id.particularAlcoholD_text_hopiness,
             R.id.particularAlcoholD_cl_maltiness,
-            R.id.particularAlcoholD_text_maltiness,
+            R.id.particularAlcoholD_text_maltiness
     };
 
     public static final int[] PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS = {
             R.id.particularAlcoholD_text_hopinessRating,
-            R.id.particularAlcoholD_text_maltinessRating,
+            R.id.particularAlcoholD_text_maltinessRating
+    };
+
+    public static final int[] ACCOUNT_DETAILS_EDIT_EDITTEXT_IDS = {
+            R.id.accountDetailsEdit_editText_nickname,
+            R.id.accountDetailsEdit_editText_email
     };
 }

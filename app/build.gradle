@@ -136,6 +136,9 @@ dependencies {
     //Glide image loader
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+    //Glide image transformation
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+
 
     // Jetpack Annotations
     implementation 'androidx.annotation:annotation:1.8.0'
@@ -156,6 +159,8 @@ dependencies {
     //layout that automaticaly verticaly and horizontaly position views
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
+    //croping user's added images
+    implementation 'com.github.yalantis:ucrop:2.2.8'
 
 
 

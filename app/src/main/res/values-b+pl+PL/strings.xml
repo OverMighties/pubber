@@ -80,7 +80,7 @@
     <string name="list">Lista</string>
     <string name="favorite">Ulubione</string>
     <string name="settings">Ustawienia</string>
-    <string name="sex_title">Płeć: </string>
+    <string name="sex">Płeć</string>
     <string name="email_title">Email: </string>
     <string name="username_title">Nazwa użytkownika: </string>
     <string name="edit_content">Edytuj</string>
@@ -90,6 +90,7 @@
     <string name="yes">Tak</string>
     <string name="new_email">Nowy email:</string>
     <string name="new_username">Nowa nazwa użytkownika:</string>
+    <string name="user_account">Konto użytkownika</string>
     <!--Auth messages-->
     <string name="hint_user_id">ID użytkownika</string>
     <string name="get_custom_token">Get Token</string>

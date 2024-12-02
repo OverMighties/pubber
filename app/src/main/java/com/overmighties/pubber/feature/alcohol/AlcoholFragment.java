@@ -1,7 +1,6 @@
 package com.overmighties.pubber.feature.alcohol;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 import java.util.ArrayList;
@@ -42,12 +40,12 @@ public class AlcoholFragment  extends Fragment {
     }
 
     private void setUpData() {
-        ((TextView)requireView().findViewById(R.id.textView3)).setText(viewModel.getUiState().getValue().getName() + " ~ " +
+        ((TextView)requireView().findViewById(R.id.alcoholFragment_text_alcoholName)).setText(viewModel.getUiState().getValue().getName() + " ~ " +
                 viewModel.getUiState().getValue().getAlcoholContent()+"%");
         Glide.with(requireContext())
                 .load(viewModel.getUiState().getValue().getPhoto_path())
                 .centerCrop()
-                .into((ImageView) requireView().findViewById(R.id.imageView5));
+                .into((ImageView) requireView().findViewById(R.id.alcoholFragment_image_alcohol));
         //hopiness
         ((TextView)requireView().findViewById(R.id.alcoholFragment_text_hopinessRating))
                 .setText(viewModel.getUiState().getValue().getHopiness()+"/5");

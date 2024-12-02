@@ -46,6 +46,9 @@ public class DictionarySearchFragment extends Fragment implements AlcoholSelectL
     @Override
     public void onViewCreated(@NonNull View v, Bundle savedInstanceState){
         navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.dictionarySelect_image_back).setOnClickListener(v1->{
+            navController.popBackStack();
+        });
         AlcoholListAdapter adapter = new AlcoholListAdapter(
                 viewModel.UiState().getValue().getAlcoholDataList(),
                 this);

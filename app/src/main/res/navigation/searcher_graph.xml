@@ -103,6 +103,13 @@
         <action
             android:id="@+id/action_accountDetailsFragment_to_login_graph"
             app:destination="@id/login_graph" />
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_accountDetailsEditFragment"
+            app:destination="@id/accountDetailsEditFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/detailsRateFragment"
@@ -174,5 +181,10 @@
     <action
         android:id="@+id/action_seartcherFragment_to_alcoholFragment"
         app:destination="@id/alcoholFragment" />
+    <fragment
+        android:id="@+id/accountDetailsEditFragment"
+        android:name="com.overmighties.pubber.feature.account.AccountDetailsEditFragment"
+        android:label="AccountDetailsEditFragment" >
+    </fragment>
 
 </navigation>

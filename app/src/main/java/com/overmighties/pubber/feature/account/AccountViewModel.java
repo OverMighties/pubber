@@ -99,6 +99,7 @@ public class AccountViewModel extends PubberAppViewModel {
     public static AccountDetailsUIState mapToUIState(UserData userData){
         Log.i(TAG,userData.getUserId()+userData.getEmail()+userData.getUsername());
         return new AccountDetailsUIState(
+                false,
                 userData.getUsername()==null ||  userData.getUsername().isBlank()?AccountDetailsUIState.UNKNOWN:userData.getUsername(),
                 userData.getEmail()==null ||  userData.getEmail().isBlank()?AccountDetailsUIState.UNKNOWN:userData.getEmail(),
                 AccountDetailsUIState.UNKNOWN_SEX,
