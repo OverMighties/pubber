@@ -22,6 +22,7 @@
             android:layout_height="64dp"
             android:background="@color/surface"
             app:layout_scrollEffect="compress"
+            app:titleCentered="true"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/on_surface"

@@ -508,6 +508,11 @@
         <item>Український</item>
     </string-array>
     <string name="theme_key">theme</string>
+    <string-array name="theme_list_display">
+        <item>Phone\'s theme</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
     <string-array name="theme_list">
         <item>Phone\'s theme</item>
         <item>Light</item>
@@ -519,7 +524,7 @@
     <string name="send_feedback_key">feedback</string>
     <string name="send_feedback">Send feedback</string>
     <string name="send_feedback_summary">Report technical issues or suggest new features!</string>
-    <string name="account_key">account</string>
+    <string name="account_key">Account</string>
     <string name="account">Manage</string>
     <string name="account_log_out_key">logout</string>
     <string name="account_log_out">Log out</string>

@@ -18,6 +18,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
 import com.overmighties.pubber.app.designsystem.UIText;
@@ -47,6 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 .get(PubListViewModel.class);
 
         requireActivity().requireViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
+        ((MaterialToolbar)requireActivity().requireViewById(R.id.main_topAppBarView_back)).setTitle("Ustawienia");
 
         navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
 
@@ -130,6 +132,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void resetActivity(){
+        //TODO when I reset activity context in CustomListPreference doesn't update so that it shows it in previours theme possible sollution is to restart activity with recrate and pass data in viewmodel or in sharedpreference. To be decided how to fix it
         Intent intent = new Intent(requireActivity(), MainActivity.class);
         intent.putExtra("openSettings", true);
         intent.putExtra("city", pubListViewModel.getCityConstraint().getValue());
@@ -144,5 +147,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         requireActivity().findViewById(R.id.main_bottomNavView).setVisibility(View.GONE);
         requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
 
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        ((MaterialToolbar)requireActivity().requireViewById(R.id.main_topAppBarView_back)).setTitle(null);
     }
 }

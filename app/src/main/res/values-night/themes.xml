@@ -6,13 +6,13 @@
         <item name="android:ambientShadowAlpha">0.2</item>
         <item name="android:spotShadowAlpha">0.2</item>
         <item name="android:statusBarColor">@color/status_bar</item>
-
     </style>
 
     <style name="Theme.Pubber.Dark" parent="Base.Theme.Pubber.Dark" >
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
         <item name="android:itemBackground">@drawable/popup_menu</item>
         <item name="android:windowBackground">@color/surface</item>
+        <item name="colorPrimary">@color/primary</item>
     </style>
 
 

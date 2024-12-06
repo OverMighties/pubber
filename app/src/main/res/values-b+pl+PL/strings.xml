@@ -81,8 +81,6 @@
     <string name="favorite">Ulubione</string>
     <string name="settings">Ustawienia</string>
     <string name="sex">Płeć</string>
-    <string name="email_title">Email: </string>
-    <string name="username_title">Nazwa użytkownika: </string>
     <string name="edit_content">Edytuj</string>
     <string name="accept">Akceptuj</string>
     <string name="cancel">Anuluj</string>
@@ -320,20 +318,24 @@
     <string name="location_alert_dialog_negative">Nie, dziękuję</string>
 
     <!--preferencescreen settings -->
+    <string-array name="theme_list_display">
+        <item>Motyw urządzenia</item>
+        <item>Jasny</item>
+        <item>Ciemny</item>
+    </string-array>
     <string name="general_category">Ogólne</string>
     <string name="enable_notifications">Otrzymuj powiadomienia</string>
     <string name="enable_localization">Dostęp do lokalizacji</string>
     <string name="information_category">Informacje</string>
-    <string name="about_us_summary">Inofrmacje o aplikacji i jej początkach</string>
+    <string name="about_us_summary">Informacje o aplikacji i jej początkach</string>
     <string name="send_feedback">Wyślij wiadomość</string>
     <string name="send_feedback_summary">Wyślij wiadomość na temat problemu technicznego lub sugestji zmiany aplikacji</string>
+    <string name="account_key">Konto użytkownika</string>
     <string name="account">Zarządzaj</string>
     <string name="account_log_out">Wyloguj się</string>
 
     <!--particular alcohol dialog-->
-    <string name="seperated_hopiness">- Chmielowość</string>
-    <string name="seperated_maltiness">- Słodowość</string>
-    <string name="seperated_alcohol_percentage">- Zawartość alkoholu</string>
+
 
 
 </resources>

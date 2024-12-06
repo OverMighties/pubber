@@ -68,7 +68,7 @@ public class SplashFragment extends Fragment {
         navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
         requireView().findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
         requireView().findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
-
+        //TODO fix when applying new language the app crashes because of navigtion problems
         //Sign in launcher calls firebase api from viewmodel
         signInLauncher= registerForActivityResult(
                 new ActivityResultContracts.StartIntentSenderForResult(),
