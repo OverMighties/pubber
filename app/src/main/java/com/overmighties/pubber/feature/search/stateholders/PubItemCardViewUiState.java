@@ -28,6 +28,7 @@ public class PubItemCardViewUiState {
     private List<Drink> alcohol;
     private Boolean isBreakThrough;
     private Pair<Integer, Integer> compatibility;
+    private boolean isFavourite;
     public boolean getIsOpenNow() {
         return isOpenNow;
     }

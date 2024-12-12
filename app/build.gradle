@@ -5,6 +5,9 @@ plugins {
     id 'com.google.gms.google-services'
     //For api keys
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    //ofline data store
+    id "com.google.protobuf" version "0.9.4"
+
 
 }
 secrets {
@@ -162,7 +165,23 @@ dependencies {
     //croping user's added images
     implementation 'com.github.yalantis:ucrop:2.2.8'
 
+    // offline data store
+    implementation "androidx.datastore:datastore:1.1.1"
+    implementation "androidx.datastore:datastore-rxjava3:1.1.1"
+    implementation  "com.google.protobuf:protobuf-javalite:4.29.0"
+}
 
-
-
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.8.0'
+    }
+    generateProtoTasks {
+        all().configureEach { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
 }

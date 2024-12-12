@@ -172,7 +172,14 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     private void setUpRecyclerViews(){
         if(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter() == null) {
             PubsCardViewUiState pubs = new PubsCardViewUiState();
-            pubListViewModel.getSearcherUiState().getValue().setListPubAdapter(new ListPubAdapter(pubs, this, pubListViewModel.getSearcherUiState().getValue().getChipTag()));
+            pubListViewModel.getSearcherUiState().getValue().setListPubAdapter(
+                    new ListPubAdapter(
+                            pubs,
+                            this,
+                            pubListViewModel.getSearcherUiState().getValue().getChipTag(),
+                            pubListViewModel.getFavouritePubState()
+                    )
+            );
         }
         recycler.setAdapter(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter());
         if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
@@ -207,6 +214,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 pubListViewModel.sort(type);
             }
         });
+
     }
 
 
@@ -483,6 +491,12 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         });
         detailsViewModel.setOpenedPubPosition(position);
         pubListViewModel.setPubDetails(position,detailsViewModel);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
     }
 
     @Override

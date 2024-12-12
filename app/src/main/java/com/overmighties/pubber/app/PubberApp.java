@@ -37,7 +37,7 @@ public class PubberApp extends Application implements Configuration.Provider{
         AppDb db = Room.databaseBuilder(getApplicationContext(), AppDb.class, "db-pubber").build();
         appContainer=new AppContainer(db);
         appContainer.setLocationRepository(getApplicationContext());
-
+        appContainer.setSavedPubsDataStore(getApplicationContext());
         WorkManager.initialize(this, getWorkManagerConfiguration());
         scheduleNotification();
         syncDataRepos();

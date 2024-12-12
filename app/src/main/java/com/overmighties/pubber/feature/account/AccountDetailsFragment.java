@@ -130,6 +130,10 @@ public class AccountDetailsFragment extends Fragment {
 
     private void setUpListeners(){
 
+        requireView().findViewById(R.id.accountDetails_image_back).setOnClickListener(v->{
+            navController.popBackStack();
+        });
+
         requireView().findViewById(R.id.accountDetails_image_edit).setOnClickListener(v->{
             navController.navigate(AccountDetailsFragmentDirections.actionAccountDetailsFragmentToAccountDetailsEditFragment());
         });

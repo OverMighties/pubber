@@ -85,7 +85,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="-4dp"
                 app:layout_constraintTop_toTopOf="@+id/pubRVR_image"
-                app:srcCompat="@drawable/ic_heart_full" />
+                app:srcCompat="@drawable/ic_heart_empty" />
 
             <TextView
                 android:id="@+id/pubRVR_text_rating"

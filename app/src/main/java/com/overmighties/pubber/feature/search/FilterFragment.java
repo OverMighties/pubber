@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import androidx.core.util.Pair;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -517,12 +518,17 @@ public class FilterFragment extends Fragment {
     }
 
     private void whichOneCheckedTime(){
-        if(((TextView)requireView().findViewById(R.id.filtration_text_customTime)).getText().toString().equals(R.string.anytime)) {
+        if(((TextView)requireView().findViewById(R.id.filtration_text_customTime)).getText().toString().equals(getString(R.string.anytime))) {
             popUpView.findViewById(POP_UP_TIME_IDS[0]).performClick();
         }
         else {
-            popUpView.findViewById(POP_UP_TIME_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first]).performClick();
-            popUpView.findViewById(POP_UP_TIME_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second]).performClick();
+            int secondIndexNumber = pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().second;
+            pubListViewModel.getFilterFragmentUiState().getValue().setPopUpTimeIds(new Pair<>(pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first , -1));
+            popUpView.findViewById(POP_UP_TIME_IDS[secondIndexNumber]).performClick();
+            ScrollView scrollView = popUpView.findViewById(R.id.PopUpScrollView);
+            scrollView.post(()->{
+                scrollView.smoothScrollTo(0, popUpView.findViewById(POP_UP_TIME_IDS[pubListViewModel.getFilterFragmentUiState().getValue().getPopUpTimeIds().first]).getTop());
+            });
         }
     }
 

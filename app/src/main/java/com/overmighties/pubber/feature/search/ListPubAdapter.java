@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
@@ -23,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
@@ -30,10 +30,9 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.databinding.PubRecyclerViewRowBinding;
+import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
-import com.overmighties.pubber.feature.search.util.PubFiltrationState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
@@ -49,6 +48,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     public final PubListSelectListener pubListSelectListener;
     private final String chiptag;
     private boolean isFirstImperfectShown = false;
+    private MutableLiveData<Pair<Long, Boolean>> favouritePubState;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
 
@@ -63,7 +63,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private final ConstraintLayout ratingImage;
         //private final TextView costRating;
         //private final TextView averageRatingFromServices;
-        //private final ImageButton imageSaveButt;
+        private final ImageView imageFavourite;
         private final ShapeableImageView pubIcon;
         private final View itemView;
         private final Chip mapChip;
@@ -88,11 +88,11 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             ratingImage = itemView.findViewById(R.id.pubRVR_cl_ratingContainer);
             mapChip = itemView.findViewById(R.id.pubRVR_chip_guide);
             alcoholChip  = itemView.findViewById(R.id.pubRVR_chip_alcohol);
-            /*
-            imageSaveButt =(ImageButton)itemView.findViewById(R.id.heart);
-            imageSaveButt.setTag(R.drawable.heartempty);
 
-             */
+            imageFavourite = itemView.findViewById(R.id.pubRVR_image_favourite);
+            imageFavourite.setTag(R.drawable.ic_heart_empty);
+
+
            itemView.setOnClickListener(view -> {
                if(pubListSelectListener !=null)
                {
@@ -106,9 +106,9 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
            });
        }
     }
-    public ListPubAdapter(PubsCardViewUiState pubData, PubListSelectListener pubListSelectListener, String ChipTag) {
+    public ListPubAdapter(PubsCardViewUiState pubData, PubListSelectListener pubListSelectListener, String ChipTag, MutableLiveData<Pair<Long, Boolean>> favouritePubState) {
 
-        this.pubData=pubData;this.pubListSelectListener = pubListSelectListener; this.chiptag=ChipTag;}
+        this.pubData=pubData;this.pubListSelectListener = pubListSelectListener; this.chiptag=ChipTag; this.favouritePubState = favouritePubState;}
     @NonNull
     @Override
     public PubViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -169,20 +169,25 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
                 //.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT))
                 .centerCrop()
                 .into(holder.pubIcon);
-        //holder.imageIcon.setImageResource(pubData.getPubItems().get(position).getIconUrl());
-        /*
-        holder.imageSaveButt.setOnClickListener(v -> {
-            String  load;
-            if((Integer)holder.imageSaveButt.getTag()==R.drawable.heartempty) {
-                holder.imageSaveButt.setImageResource(R.drawable.heartfull);
-                holder.imageSaveButt.setTag(R.drawable.heartfull);
-            }else {
-                holder.imageSaveButt.setImageResource(R.drawable.heartempty);
-                holder.imageSaveButt.setTag(R.drawable.heartempty);
+        if(pubCardView.isFavourite()){
+            holder.imageFavourite.setImageResource(R.drawable.ic_heart_full);
+            holder.imageFavourite.setTag(R.drawable.ic_heart_full);
+        } else {
+            holder.imageFavourite.setImageResource(R.drawable.ic_heart_empty);
+            holder.imageFavourite.setTag(R.drawable.ic_heart_empty);
+        }
+        holder.imageFavourite.setOnClickListener(v -> {
+            if((Integer)holder.imageFavourite.getTag()==R.drawable.ic_heart_empty) {
+                holder.imageFavourite.setImageResource(R.drawable.ic_heart_full);
+                holder.imageFavourite.setTag(R.drawable.ic_heart_full);
+                favouritePubState.setValue(new Pair<>(pubCardView.getPubId(), true));
+            } else {
+                holder.imageFavourite.setImageResource(R.drawable.ic_heart_empty);
+                holder.imageFavourite.setTag(R.drawable.ic_heart_empty);
+                favouritePubState.setValue(new Pair<>(pubCardView.getPubId(), false));
             }
         });
 
-         */
 
 
         holder.mapChip.setOnClickListener(v -> {
@@ -270,8 +275,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
     @Override
     public int getItemCount() {
-        if(pubData.getPubItems()==null)
-        {
+        if(pubData.getPubItems()==null) {
             return 0;
         }
         return pubData.getPubItems().size();

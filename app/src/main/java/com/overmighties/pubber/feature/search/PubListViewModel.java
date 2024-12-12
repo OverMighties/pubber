@@ -23,6 +23,7 @@ import com.overmighties.pubber.core.drinksdataset.DrinksDataSet;
 import com.overmighties.pubber.core.model.Drink;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
+import com.overmighties.pubber.core.savedpubs.SavedPubsHandler;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterFragmentUiState;
@@ -46,8 +47,11 @@ import java.util.Date;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -67,8 +71,15 @@ public class PubListViewModel extends ViewModel {
     public static final String DETAILS_TRANSITION_NAME = "details_transition";
     private final PubsRepository pubsRepository;
     private final DrinksRepository drinksRepository;
+    private final SavedPubsHandler savedPubsHandler;
     //if -3 that means that first imperfect after filtration is shown, if -2 then it is first pub to be mapped.,
     private Integer lastCompatibility = -2;
+    @Getter
+    private MutableLiveData<Pair<Long, Boolean>> favouritePubState = new MutableLiveData<>(new Pair<>(-1l, null));
+    //@Getter
+    //private MutableLiveData<List<Pub>>
+    @Getter
+    private MutableLiveData<Boolean> isSavedDataRetrived = new MutableLiveData<>();
     private final MutableLiveData<List<Drink>> originalDrinksData=new MutableLiveData<>(null);
     @Getter
     private final LiveData<List<Drink>> _originalDrinksData=originalDrinksData;
@@ -98,13 +109,15 @@ public class PubListViewModel extends ViewModel {
                 assert app != null;
                 SavedStateHandle savedStateHandle = createSavedStateHandle(creationExtras);
 
-                return new PubListViewModel(app.appContainer.getPubsRepository(),  app.appContainer.getDrinksRepository(), savedStateHandle);
+                return new PubListViewModel(app.appContainer.getPubsRepository(),  app.appContainer.getDrinksRepository(), app.appContainer.getSavedPubsDataStore(),savedStateHandle);
             }
     );
 
-    public PubListViewModel(PubsRepository pubsRepository, DrinksRepository drinksRepository, SavedStateHandle savedStateHandle) {
+    public PubListViewModel(PubsRepository pubsRepository, DrinksRepository drinksRepository, SavedPubsHandler savedPubsHandler,SavedStateHandle savedStateHandle) {
         this.pubsRepository=pubsRepository;
         this.drinksRepository = drinksRepository;
+        this.savedPubsHandler = savedPubsHandler;
+        this.isSavedDataRetrived = savedPubsHandler.getIsDataFetched();
     }
 
     public void fetchDrinksFromRepo(final int DELAY_TIME_MS){
@@ -190,7 +203,7 @@ public class PubListViewModel extends ViewModel {
         try {
             if(pub.first.getOpeningHours()!= null){
                 if(!pub.first.getOpeningHours().isEmpty()){
-                    openInfo=getPubTimeOpenToday(pub.first);
+                    openInfo=getPubTimeOpenToday(pub.first.getOpeningHours());
                     pub.first.setTimeOpenToday(openInfo.getTime());
                 }
             }
@@ -237,12 +250,12 @@ public class PubListViewModel extends ViewModel {
                 PriceType.getById(pub.first.getRatings().getOurCost()).getIcon(),
                 pub.first.getRatings().getAverageRating(),
                 pub.first.getRatings().getRatingsCount(), pub.first.getAddress(),
-                pub.first.getDrinks(), isFirstImperfect, new Pair<>(pub.second.getCompatibility(), pub.second.getAllCompatibility()));
+                pub.first.getDrinks(), isFirstImperfect,
+                new Pair<>(pub.second.getCompatibility(), pub.second.getAllCompatibility()), pub.first.isFavourite());
     }
-    public DateType getPubTimeOpenToday(Pub pub) throws ParseException {
+    public DateType getPubTimeOpenToday(List<OpeningHours> open_hours) throws ParseException {
         //initialazing dates
         SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
-        List<OpeningHours> open_hours = pub.getOpeningHours();
         Date timeOpenToday=parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric()-1)).getTimeOpen());
         Date timeCloseToday=parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric()-1)).getTimeClose());
         Date timeOpenYesterday;
@@ -267,10 +280,39 @@ public class PubListViewModel extends ViewModel {
         Pub pub= Objects.requireNonNull(_originalPubData.getValue()).get(position);
         PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getPubId(), cityConstraint.getValue(),pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
-                pub.getDrinks(),pub.getPhotos(),null,pub.getTags(),pub.getTimeOpenToday(), null, null, null);
+                pub.getDrinks(),pub.getPhotos(),null,pub.getTags(),pub.getTimeOpenToday(), null, null, null, pub.isFavourite());
         detailsViewModel.setPubDetails(pubDetailsUiState);
     }
 
+    public void retrivePubData(){
+        savedPubsHandler.retriveSavedPubs();
+    }
+    public void savePub(Optional<Pub> pub){
+        pub.ifPresentOrElse(
+                p->{
+                    if(!getSavedData().stream().filter(pubData-> pubData.getPubId() == p.getPubId()).findFirst().isPresent()) {
+                        getSavedData().add(p);
+                        savedPubsHandler.addPub(p);
+                    }
+                    },
+                () -> Log.e(TAG, "Save Pub: Pub not found")
+        );
+    }
+
+    public void deletePub(Long pubId){
+        List<Pub> list = savedPubsHandler.getSavedPubsList();
+        OptionalInt index = IntStream.range(0, list.size())
+                .filter(i -> list.get(i).getPubId() == pubId)
+                .findFirst();
+        if(index.isPresent()){
+            savedPubsHandler.getSavedPubsList().remove(index.getAsInt());
+            savedPubsHandler.deletePub(pubId);
+        }
+    }
+
+    public List<Pub> getSavedData(){
+        return savedPubsHandler.getSavedPubsList();
+    }
 
     @Override
     protected void onCleared() {

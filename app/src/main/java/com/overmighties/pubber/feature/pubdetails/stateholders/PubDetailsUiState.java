@@ -21,13 +21,9 @@ public class PubDetailsUiState {
     private Long id;
     private String city;
     private String name;
-
     private String address;
-
     private String phoneNumber;
-
     private String websiteUrl;
-
     private String iconPath;
     private String description;
     private Boolean reservable;
@@ -42,4 +38,5 @@ public class PubDetailsUiState {
     private List <Integer> idsOfBeerChips;
     private List <Integer> idsOfDrinkChips;
     private Float distance;
+    private boolean isFavourite;
 }

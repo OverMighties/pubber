@@ -75,7 +75,21 @@ public class MainActivity extends SettingsBasicActivity {
         findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
         ((MaterialToolbar)findViewById(R.id.main_topAppBarView_back)).setNavigationOnClickListener(v->{navController.popBackStack();});
 
-
+        //set up observer for saving pubs accross whole app
+        pubListViewModel.getFavouritePubState().observe(this, pair->{
+            if(pubListViewModel.getFavouritePubState().getValue().first != -1) {
+                if (pubListViewModel.getFavouritePubState().getValue().second) {
+                    pubListViewModel.savePub(pubListViewModel.get_originalPubData()
+                            .getValue()
+                            .stream()
+                            .filter(pub -> pub.getPubId() == pubListViewModel.getFavouritePubState().getValue().first)
+                            .findFirst());
+                } else {
+                    pubListViewModel.deletePub(pubListViewModel.getFavouritePubState().getValue().first);
+                }
+            }
+        });
+        //get url to pub intent
         Intent intent = getIntent();
         Uri data = intent.getData();
         if (data != null) {

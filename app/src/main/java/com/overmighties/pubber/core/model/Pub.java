@@ -36,4 +36,5 @@ public class Pub {
     private List<Tag> tags;
     private String timeOpenToday;
     private Float walkingDistance;
+    private boolean isFavourite;
 }

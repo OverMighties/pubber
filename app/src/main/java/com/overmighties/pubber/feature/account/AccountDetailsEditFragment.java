@@ -68,7 +68,7 @@ public class AccountDetailsEditFragment extends Fragment {
             };
             int checked_pos = Arrays.asList(sex_choices)
                     .indexOf(((EditText)requireView().findViewById(R.id.accountDetailsEdit_editText_sex)).getText());
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomDialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomRadioButtonDialog);
             builder.setTitle(null)
                     .setSingleChoiceItems(sex_choices, checked_pos, (dialog, which) -> {
                         selectedItem[0] = which;

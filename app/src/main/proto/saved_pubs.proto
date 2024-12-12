@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+option java_package = "com.overmighties.pubber.app.core.savedpubs";
+option java_multiple_files = true;
+
+message RatingsProto {
+    float google = 1;
+    int32 google_count = 2;
+    float facebook = 3;
+    int32 facebook_reviews_count = 4;
+    float tripadvisor = 5;
+    int32 tripadvisor_count = 6;
+    float untappd = 7;
+    int32 untappd_count = 8;
+    float our_drinks_quality = 9;
+    float our_service_quality = 10;
+    int32 our_cost = 11;
+}
+
+message OpeningHoursProto {
+    string weekday = 1;
+    string time_open = 2;
+    string time_close = 3;
+}
+
+message PhotoProto {
+    string title = 1;
+    string photo_path = 2;
+}
+
+message TagProto {
+    string name = 1;
+}
+
+message DrinkStyleProto {
+    string name = 1;
+}
+
+message BeerProto {
+    int64 beer_id = 1;
+    string long_description = 2;
+    string short_description = 3;
+    string photo_url = 4;
+    string maltiness = 5;
+    string blg = 6;
+    string alcohol_content = 7;
+}
+
+message DrinkProto {
+    int64 drink_id = 1;
+    string name = 2;
+    string type = 3;
+    string description = 4;
+    repeated DrinkStyleProto drink_styles = 5;
+    BeerProto beer = 6;
+}
+
+message PubProto {
+    int64 pub_id = 1;
+    string name = 2;
+    string address = 3;
+    string fetch_time = 4;
+    string city = 5;
+    string phone_number = 6;
+    string website_url = 7;
+    string icon_path = 8;
+    string description = 9;
+    bool reservable = 10;
+    bool takeout = 11;
+    double latitude = 12;
+    double longitude = 13;
+    RatingsProto ratings = 14;
+    repeated OpeningHoursProto opening_hours = 15;
+    repeated DrinkProto drinks = 16;
+    repeated PhotoProto photos = 17;
+    repeated TagProto tags = 18;
+    string time_open_today = 19;
+}
+
+message PubProtoList{
+    repeated PubProto pubs = 1;
+}

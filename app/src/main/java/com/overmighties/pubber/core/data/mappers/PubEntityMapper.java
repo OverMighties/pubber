@@ -51,7 +51,8 @@ public class PubEntityMapper {
                 mapFromEntityPhotos(pubWithAllEntities.getPhotos()),
                 mapFromEntityTags(pubWithAllEntities.getTags()),
                 null,
-                null
+                null,
+                false
         );
     }
 

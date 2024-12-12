@@ -22,6 +22,7 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -137,6 +138,12 @@ public class DetailsFragment extends Fragment
 
 
     private void setUpPubData(PubDetailsUiState pubDetailsUiState) {
+        ((ImageView) requireView().findViewById(R.id.details_image_favourite)).setTag(R.drawable.ic_heart_empty);
+        if(pubDetailsUiState.isFavourite()) {
+            ((ImageView) requireView().findViewById(R.id.details_image_favourite)).setImageResource(R.drawable.ic_heart_full);
+            ((ImageView) requireView().findViewById(R.id.details_image_favourite)).setTag(R.drawable.ic_heart_full);
+        }
+
         if(pubDetailsUiState.getName()!=null)
             ((TextView)requireView().findViewById(R.id.details_text_name)).setText(pubDetailsUiState.getName());
         //setting open today info parameters
@@ -343,6 +350,18 @@ public class DetailsFragment extends Fragment
     }
 
     private void setUpListener(){
+        requireView().findViewById(R.id.details_image_favourite).setOnClickListener(v->{
+            ImageView heart =  requireView().findViewById(R.id.details_image_favourite);
+            if((Integer)heart.getTag()==R.drawable.ic_heart_empty) {
+                heart.setImageResource(R.drawable.ic_heart_full);
+                heart.setTag(R.drawable.ic_heart_full);
+                pubListViewModel.getFavouritePubState().setValue(new Pair<>(viewModel.getUiState().getValue().getId(), true));
+            } else {
+                heart.setImageResource(R.drawable.ic_heart_empty);
+                heart.setTag(R.drawable.ic_heart_empty);
+                pubListViewModel.getFavouritePubState().setValue(new Pair<>(viewModel.getUiState().getValue().getId(), false));
+            }
+        });
 
         requireView().findViewById(R.id.details_image_back).setOnClickListener(v -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 

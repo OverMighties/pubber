@@ -4,6 +4,11 @@ package com.overmighties.pubber.app;
 
 import android.content.Context;
 
+import androidx.datastore.rxjava3.RxDataStore;
+import androidx.datastore.rxjava3.RxDataStoreBuilder;
+
+import com.overmighties.pubber.app.core.savedpubs.PubProto;
+import com.overmighties.pubber.app.core.savedpubs.PubProtoList;
 import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccountFirebaseDataSource;
 import com.overmighties.pubber.core.data.DrinksRepository;
@@ -23,6 +28,8 @@ import com.overmighties.pubber.core.network.PubberNetworkApi;
 import com.overmighties.pubber.core.network.fake.FakePubsNetworkDataSource;
 import com.overmighties.pubber.core.database.fake.FakeLocalRepository;
 import com.overmighties.pubber.core.network.retrofit.PubsRetrofitDataSource;
+import com.overmighties.pubber.core.savedpubs.SavedPubSerializes;
+import com.overmighties.pubber.core.savedpubs.SavedPubsHandler;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -42,9 +49,9 @@ public final class AppContainer {
     private final AccountApi accountDataSource;
     @Getter
     private LocationRepository locationRepository;
-    public void setLocationRepository(Context context){
-        this.locationRepository=new LocationRepositoryImpl(new UserLocationDataSource(context));
-    }
+    @Getter
+    private SavedPubsHandler savedPubsDataStore;
+
     public AppContainer(AppDb localDb)
     {
         this.localDb=localDb;
@@ -59,6 +66,16 @@ public final class AppContainer {
         this.drinksRepository = new DrinksRepository(drinksDataSource, drinkOfflineDataSource);
     }
 
+
+    public void setLocationRepository(Context context){
+        this.locationRepository=new LocationRepositoryImpl(new UserLocationDataSource(context));
+    }
+    public void setSavedPubsDataStore(Context context){
+        savedPubsDataStore = new SavedPubsHandler(
+                new RxDataStoreBuilder<PubProtoList>(
+                        context, "favouritepubs.pb", new SavedPubSerializes()).build());
+        savedPubsDataStore.retriveSavedPubs();
+    }
 
 
 }
