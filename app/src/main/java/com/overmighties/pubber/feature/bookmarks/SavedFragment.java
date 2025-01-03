@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.databinding.FragmentSearcherBinding;
+import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.ListPubAdapter;
 import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
@@ -42,6 +43,7 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
 
     private SavedViewModel viewModel;
     private PubListViewModel pubListViewModel;
+    private DetailsViewModel detailsViewModel;
     private NavController navController;
     public SavedFragment(){super(R.layout.fragment_saved);}
 
@@ -53,6 +55,8 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
         viewModel= new ViewModelProvider(this).get(SavedViewModel.class);
         pubListViewModel = new ViewModelProvider(requireActivity())
                 .get(PubListViewModel.class);
+        detailsViewModel = new ViewModelProvider(requireActivity())
+                .get(DetailsViewModel.class);
         setup();
     }
 
@@ -72,13 +76,12 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
 
     @Override
     public void onItemClicked(int position) {
-        /*
-        FragmentSearcherBinding binding = pubListViewModel.getSearcherUiState().getValue().getBinding();
-        Context context = binding.searcherFragment.getContext();
-        View imageView = binding.searcherRecyclerViewPubList.getChildAt(position).findViewById(R.id.pubRVR_image);
+
+        Context context = requireContext();
+        View imageView = ((RecyclerView)requireView().findViewById(R.id.savelist)).getChildAt(position).findViewById(R.id.pubRVR_image);
         int[] location = new int[2];
         imageView.getLocationOnScreen(location);
-        ConstraintLayout constraintLayout = binding.getRoot();
+        ConstraintLayout constraintLayout = requireView().findViewById(R.id.SavedFragment);
         ConstraintLayout view = new ConstraintLayout(context);
         view.setId(ResourceUtil.getResourceIdByName(context, "TrasitionImageView"));
         view.setBackgroundColor(ContextCompat.getColor(context, R.color.surface));
@@ -94,10 +97,6 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
         constraintSet.connect(view.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP,
                 location[1]-(int)DimensionsConverter.pxFromDp(context, 42f));
         constraintSet.applyTo(constraintLayout);
-        view.setZ(2);
-        binding.searcherCardViewFiltration.setZ(1);
-        binding.searcherCardViewSearch.setZ(1);
-        binding.searcherFABMap.setVisibility(View.INVISIBLE);
 
 
 
@@ -124,8 +123,9 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
                         view.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Navigation.findNavController(binding.getRoot()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
-                            }
+                                detailsViewModel.setOpenedPubPosition(position);
+                                pubListViewModel.setPubDetails(position,detailsViewModel);
+                                navController.navigate(SavedFragmentDirections.actionSavedFragmentToDetailsFragment());                            }
                         }, (int)(300*((float)location[1]/(float)screenHeight)));
                     }
 
@@ -137,11 +137,6 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
 
 
         });
-
-         */
-        //detailsViewModel.setOpenedPubPosition(position);
-        //pubListViewModel.setPubDetails(position,detailsViewModel);
-        //navController.navigate(SearcherFragmentDirections.actionSearcherToDetails());
 
     }
 

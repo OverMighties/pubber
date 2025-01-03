@@ -28,9 +28,11 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -45,9 +47,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.overmighties.pubber.R;
@@ -94,7 +98,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LoadingPopUp.show(requireActivity(), 2000);
+        //LoadingPopUp.show(requireActivity(), 2000);
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
@@ -151,22 +155,34 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         }
 
         if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() != null){
-            int n = 0;
-            for(var pub:pubListViewModel.get_originalPubData().getValue()){
-                if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() == pub.getPubId()){
-                    pubListViewModel.getSearcherUiState().getValue().setLinkPubId(null);
-                    pubListViewModel.setPubDetails(n, detailsViewModel);
-                    NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
-                    break;
-                }
-                n+=1;
-            }
-            if(pubListViewModel.get_originalPubData().getValue().size() == n){
-                pubListViewModel.getSearcherUiState().getValue().setLinkPubId(null);
-                Log.e(TAG, "App Link got invalid Pub Id for city");
+
+            if(pubListViewModel.getIsSavedDataRetrived().getValue()){
+                navigateToDetails();
+            } else {
+                pubListViewModel.getIsSavedDataRetrived().observe(getViewLifecycleOwner(), b->{
+                    if(b)
+                        navigateToDetails();
+                });
             }
         }
 
+    }
+
+    private void navigateToDetails(){
+        int n = 0;
+        for(var pub:pubListViewModel.get_originalPubData().getValue()){
+            if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() == pub.getPubId()){
+                pubListViewModel.getSearcherUiState().getValue().setLinkPubId(null);
+                pubListViewModel.setPubDetails(n, detailsViewModel);
+                NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
+                break;
+            }
+            n+=1;
+        }
+        if(pubListViewModel.get_originalPubData().getValue().size() == n){
+            pubListViewModel.getSearcherUiState().getValue().setLinkPubId(null);
+            Log.e(TAG, "App Link got invalid Pub Id for city");
+        }
     }
 
     private void setUpRecyclerViews(){
@@ -180,6 +196,9 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                             pubListViewModel.getFavouritePubState()
                     )
             );
+            pubListViewModel.getSearcherUiState().getValue().getListPubAdapter()
+                    .setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY);
+
         }
         recycler.setAdapter(pubListViewModel.getSearcherUiState().getValue().getListPubAdapter());
         if(pubListViewModel.getSortedAndFilteredPubsUiState().getValue()==null ||
@@ -255,6 +274,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         topAppBar.setNavigationOnClickListener(v->{
             navController.popBackStack();
         });
+
     }
 
     private void enablePopupMenuIcons(PopupMenu popupMenu) {
@@ -417,6 +437,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             recycler.scrollToPosition(detailsViewModel.getOpenedPubPosition());
             detailsViewModel.setOpenedPubPosition(null);
         }
+        requireView().findViewById(R.id.searcher_topAppBarLayout).setVisibility(View.VISIBLE);
 
     }
 
@@ -430,7 +451,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         View imageView = binding.searcherRecyclerViewPubList.getChildAt(position).findViewById(R.id.pubRVR_image);
         int[] location = new int[2];
         imageView.getLocationOnScreen(location);
-        ConstraintLayout constraintLayout = binding.getRoot();
+        int recyclerViewScrolledHeight = binding.searcherRecyclerViewPubList.computeHorizontalScrollOffset();
+        ConstraintLayout constraintLayout = binding.getRoot().findViewById(R.id.searcher_cl_content);
         ConstraintLayout view = new ConstraintLayout(context);
         view.setId(ResourceUtil.getResourceIdByName(context, "TrasitionImageView"));
         view.setBackgroundColor(ContextCompat.getColor(context, R.color.surface));
@@ -444,13 +466,13 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         constraintSet.connect(view.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START,
                 (int)DimensionsConverter.pxFromDp(context, 25));
         constraintSet.connect(view.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP,
-                 location[1]-(int)DimensionsConverter.pxFromDp(context, 42f));
+                (location[1]-recyclerViewScrolledHeight)-(int)DimensionsConverter.pxFromDp(context, 42f));
         constraintSet.applyTo(constraintLayout);
         view.setZ(2);
         binding.searcherCardViewFiltration.setZ(1);
         binding.searcherCardViewSearch.setZ(1);
         binding.searcherFABMap.setVisibility(View.INVISIBLE);
-
+        binding.searcherTopAppBarLayout.setVisibility(View.INVISIBLE);
 
 
         view.post(new Runnable() {
@@ -463,8 +485,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 ScaleAnimation scaleAnimation = new ScaleAnimation(
                         1f, scaleX+1, 1f, scaleY+1,
                         ScaleAnimation.RELATIVE_TO_SELF, DimensionsConverter.pxFromDp(context, 25)/screenWidth,
-                        ScaleAnimation.RELATIVE_TO_SELF, (float)location[1]/(float)screenHeight);
-                scaleAnimation.setDuration((int)(300-300*((float)location[1]/(float)screenHeight)));
+                        ScaleAnimation.RELATIVE_TO_SELF, (float)(location[1]-recyclerViewScrolledHeight)/(float)screenHeight);
+                scaleAnimation.setDuration((int)250);
                 scaleAnimation.setFillAfter(true);
                 scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -472,13 +494,13 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         Activity activity = (context instanceof Activity) ? (Activity) context : null;
-                        NavigationBar.smoothHide(activity.findViewById(R.id.main_bottomNavView), (int)(300*((float)location[1]/(float)screenHeight)));
+                        NavigationBar.smoothHide(activity.findViewById(R.id.main_bottomNavView), 50);
                         view.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 Navigation.findNavController(binding.getRoot()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
                             }
-                        }, (int)(300*((float)location[1]/(float)screenHeight)));
+                        }, 50);
                     }
 
                     @Override
@@ -503,7 +525,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     public void onDestroyView() {
         super.onDestroyView();
         if(requireView().findViewById(ResourceUtil.getResourceIdByName(requireContext(), "TrasitionImageView"))!=null)
-            pubListViewModel.getSearcherUiState().getValue().getBinding().searcherFragment.removeView(requireView().findViewById(ResourceUtil.getResourceIdByName(requireContext(), "TrasitionImageView")));
+            pubListViewModel.getSearcherUiState().getValue().getBinding().searcherClContent.removeView(requireView().findViewById(ResourceUtil.getResourceIdByName(requireContext(), "TrasitionImageView")));
     }
 
 

@@ -56,6 +56,7 @@ import java.util.stream.IntStream;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import kotlin.collections.BooleanIterator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -86,6 +87,8 @@ public class PubListViewModel extends ViewModel {
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
     @Getter
     private final LiveData<List<Pub>> _originalPubData=originalPubData;
+    @Getter
+    private final MutableLiveData<Boolean> pubDataLoaded = new MutableLiveData<>(false);
     @Getter
     private final MutableLiveData<String> cityConstraint=new MutableLiveData<>();
     @Getter
@@ -148,6 +151,7 @@ public class PubListViewModel extends ViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(pubs->{
                     originalPubData.setValue(pubs);
+                    pubDataLoaded.setValue(true);
                     sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
                             pubs.stream().map(pub ->new Pair<>(pub, new PubFiltrationState(-1, null, null))).map(this::mapPubToUiState).collect(Collectors.toList())));
                     searcherUiState.getValue().setPubs(pubs.stream().map(pub ->new Pair<>(pub, new PubFiltrationState(-1, null, null))).collect(Collectors.toList()));

@@ -6,57 +6,24 @@
     android:layout_height="match_parent"
     android:id="@+id/SplashFragment">
 
-    <Button
-        android:id="@+id/splash_button_signIn"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/button_shape_container"
-        android:text="@string/label_email_sign_in"
-        android:textColor="@color/on_secondary_container"
-        android:textAppearance="@style/ButtonTextApperance"
-        app:backgroundTint="@null"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/splash_button_signUp"
-        app:layout_constraintEnd_toEndOf="@+id/splash_image_googleButton"
-        app:layout_constraintStart_toStartOf="@+id/splash_image_googleButton" />
+   <ViewStub
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/splash_viewStub_accountLayout"
+       android:inflatedId="@+id/splash_accoutnLayout"
+       android:layout="@layout/fragment_splash_account"/>
 
-
-    <ImageView
-        android:id="@+id/splash_image_googleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_google_sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
-
-
-    <Button
-        android:id="@+id/splash_button_signUp"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/button_shape_container"
-        android:text="@string/label_email_sign_up"
-        android:textAppearance="@style/ButtonTextApperance"
-        android:textColor="@color/on_secondary_container"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@+id/splash_image_googleButton"
-        app:layout_constraintEnd_toEndOf="@+id/splash_image_googleButton"
-        app:layout_constraintStart_toStartOf="@+id/splash_image_googleButton" />
-
-    <TextView
-        android:id="@+id/RTvAvg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="135dp"
-        android:text="Hello in Pubber"
-        app:layout_constraintBottom_toTopOf="@+id/splash_button_signIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <com.google.android.material.progressindicator.CircularProgressIndicator
+       android:id="@+id/splash_progress_loading"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:indeterminate="true"
+       app:indicatorColor="@color/primary"
+       app:trackColor="@color/secondary_container"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

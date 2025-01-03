@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -66,32 +67,42 @@ public class SplashFragment extends Fragment {
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
         navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
-        requireView().findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
-        requireView().findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
         //TODO fix when applying new language the app crashes because of navigtion problems
         //Sign in launcher calls firebase api from viewmodel
         signInLauncher= registerForActivityResult(
                 new ActivityResultContracts.StartIntentSenderForResult(),
                 result -> viewModel.handleSignInResult(
                         result.getData(), signInClient,
-                        (from, to)-> Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container).navigate(getNavDirections(from,to)),
+                        (from, to)-> {
+                            if(from != null && to != null)
+                                Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container).navigate(getNavDirections(from,to));
+                            else
+                                loadView();
+                        },
                         (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes))
         );
-
-        requireView().findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
-
-        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
-        ((ImageView)requireView().findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
-
         new Handler(
                 Looper.getMainLooper())
-                .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation
-                        .findNavController(view)
-                        .navigate(getNavDirections(from,to))),
-                        SPLASH_DELAY
+                .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)->
+                        Navigation
+                                .findNavController(view)
+                                .navigate(getNavDirections(from,to))
+                    ), SPLASH_DELAY
                 );
-
     }
+
+    private void loadView()
+    {
+        requireView().findViewById(R.id.splash_progress_loading).setVisibility(View.GONE);
+        ViewStub stub = requireView().findViewById(R.id.splash_viewStub_accountLayout);
+        View inflated = stub.inflate();
+        inflated.findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
+        inflated.findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
+        inflated.findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
+        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
+        ((ImageView)inflated.findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
+    }
+
     private void signInWithGoogle() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             Log.i(TAG,"New sign in request");

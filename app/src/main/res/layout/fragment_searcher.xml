@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/searcher_fragment"
@@ -31,72 +31,78 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searcher_cl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@id/searcher_topAppBarLayout">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/searcher_cardView_search"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="25dp"
-                android:backgroundTint="@color/surface"
-                app:cardCornerRadius="90dp"
-                android:elevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searcher_topAppBarLayout">
-                <android.widget.SearchView
-                    android:layout_gravity="center"
-                    android:id="@+id/searchView"
-                    style="@style/CustomSearchView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/searchview_shape"
-                    android:closeIcon="@drawable/ic_close_on_surface"
-                    android:textAlignment="center"
-                    android:theme="@style/AppTheme.Toolbar"/>
 
-            </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/searcher_cardView_search"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/surface"
+            app:cardCornerRadius="90dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <android.widget.SearchView
+                android:layout_gravity="center"
+                android:id="@+id/searchView"
+                style="@style/CustomSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/searchview_shape"
+                android:closeIcon="@drawable/ic_close_on_surface"
+                android:textAlignment="center"
+                android:theme="@style/AppTheme.Toolbar"/>
 
-            <TextView
-                android:id="@+id/searcher_text_sortInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/sort_based_on"
-                android:textColor="@color/on_surface"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searcher_cardView_search" />
+        </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/searcher_text_sortBy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/roboto_bold"
-                android:shadowColor="@color/primary"
-                android:shadowDx="1.8"
-                android:shadowDy="1.3"
-                android:shadowRadius="3"
-                android:text="@string/sort_relevance"
-                android:textColor="@color/primary"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortInfo"
-                app:layout_constraintStart_toEndOf="@+id/searcher_text_sortInfo"
-                app:layout_constraintTop_toTopOf="@+id/searcher_text_sortInfo" />
+        <TextView
+            android:id="@+id/searcher_text_sortInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/sort_based_on"
+            android:textColor="@color/on_surface"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searcher_cardView_search" />
 
-            <ImageView
-                android:id="@+id/searcher_image_sortBy"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_expand_more_primary"
-                app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortBy"
-                app:layout_constraintStart_toEndOf="@+id/searcher_text_sortBy"
-                app:layout_constraintTop_toTopOf="@id/searcher_text_sortBy" />
+        <TextView
+            android:id="@+id/searcher_text_sortBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/roboto_bold"
+            android:shadowColor="@color/primary"
+            android:shadowDx="1.8"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="@string/sort_relevance"
+            android:textColor="@color/primary"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortInfo"
+            app:layout_constraintStart_toEndOf="@+id/searcher_text_sortInfo"
+            app:layout_constraintTop_toTopOf="@+id/searcher_text_sortInfo" />
+
+        <ImageView
+            android:id="@+id/searcher_image_sortBy"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_expand_more_primary"
+            app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortBy"
+            app:layout_constraintStart_toEndOf="@+id/searcher_text_sortBy"
+            app:layout_constraintTop_toTopOf="@id/searcher_text_sortBy" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/searcher_cardView_filtration"
@@ -138,6 +144,7 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -146,9 +153,10 @@
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_destination"
-        app:backgroundTint="@color/secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/on_secondary" />
+        app:tint = "@color/on_secondary"
+        app:layout_anchor="@id/searcher_cl_content"
+        app:layout_anchorGravity="bottom|end"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/secondary" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

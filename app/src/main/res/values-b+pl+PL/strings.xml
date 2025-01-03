@@ -196,6 +196,8 @@
     <string name="google">Google</string>
     <string name="tripadvisor">Tripadvisor</string>
     <string name="facebook">Facebook</string>
+    <string name="propose_change">Zaproponuj zmianę</string>
+    <string name="tags">Tagi</string>
 
 
     <!--settings fragment-->

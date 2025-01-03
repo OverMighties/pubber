@@ -58,6 +58,8 @@ public class SplashViewModel extends PubberAppViewModel {
                 Log.i(TAG, "User needs to fill data about yourself");
                 openAndPopUp.accept(PubberNavRoutes.SPLASH_FRAGMENT, PubberNavRoutes.NEW_USER_DETAILS_FRAGMENT);
             }
+        } else {
+            openAndPopUp.accept(null, null);
         }
     }
     //To api<14
