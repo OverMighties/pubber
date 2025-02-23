@@ -3,7 +3,7 @@ package com.overmighties.pubber.feature.auth;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SEARCHER_FRAGMENT;
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.PLACE_CHOICE_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SIGN_IN_FRAGMENT;
 
 import androidx.lifecycle.LiveData;
@@ -13,12 +13,11 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
-import com.overmighties.pubber.app.navigation.PubberNavRoutes;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
-import com.overmighties.pubber.util.SnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.function.BiConsumer;
 
@@ -26,8 +25,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class SignInViewModel extends PubberAppViewModel {
     private static final String TAG="SignInViewModel";
-    private final AccountDataSource accountDataSource;
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private final AccountApi accountApi;
     public static final ViewModelInitializer<SignInViewModel> initializer = new ViewModelInitializer<>(
             SignInViewModel.class,
             creationExtras -> {
@@ -38,8 +36,8 @@ public class SignInViewModel extends PubberAppViewModel {
                 return new SignInViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
             }
     );
-    public SignInViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
-        this.accountDataSource=accountDataSource;
+    public SignInViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
+        this.accountApi = accountApi;
     }
     private final MutableLiveData<String> email=new MutableLiveData<>();
     public LiveData<String> getEmail(){
@@ -56,17 +54,23 @@ public class SignInViewModel extends PubberAppViewModel {
     public void updatePassword(String newPassword){
         password.setValue(newPassword);
     }
-    public void onSignInClick(BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError){
+    public void onSignInClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSigningUITypes, UIText,String> responseOnError){
         singleAction(TAG,
-                accountDataSource.signIn(email.getValue(),password.getValue()),
-                ()-> openAndPopUp.accept(SIGN_IN_FRAGMENT,SEARCHER_FRAGMENT),
+                accountApi.signIn(email.getValue(),password.getValue()),
+                ()-> openAndPopUp.accept(SIGN_IN_FRAGMENT,PLACE_CHOICE_FRAGMENT),
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
-                    else if(err instanceof AccFirebaseDSError)
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),"");
+                        responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                    else if(err instanceof AccFirebaseDSError){
+                        if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.EMAIL)
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_EMAIL_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
+                        else if (((AccFirebaseDSError) err).getType() == AccFirebaseDSError.Type.PASSWORD)
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_PASSWORD_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
+                        else
+                            responseOnError.accept(ErrorSigningUITypes.FIREBASE_AUTH_BASIC_ERROR, ((AccFirebaseDSError) err).getUserMsg(), null);
+                    }
                     else
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
+                        responseOnError.accept(ErrorSigningUITypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
                 }
         );
     }

@@ -22,9 +22,13 @@ render.experimental.xml
 *.jks
 *.keystore
 
+#Keys
+secrets.properties
+
 # Gradle
 .gradle/
 **/.gradle/
 /gradle/
 /.idea/
 /.gradle/
+/.firebase/hosting.cHVibGlj.cache

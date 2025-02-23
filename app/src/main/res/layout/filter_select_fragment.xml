@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filterSelect_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filterSelect_inputLayout_search"
+        style="@style/Widget.Design.TextInputLayout"
+        app:hintEnabled="true"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:boxBackgroundColor="@color/surface_container_low"
+        app:cursorColor="@color/primary"
+        app:boxBackgroundMode="outline"
+        android:textColorHint="@color/on_surface"
+        android:hint="@string/searchview_hint"
+        app:endIconTint="@color/on_surface"
+        app:startIconTint="@color/on_surface_variant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_searchview_on_surface_variant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/filterSelect_editText_search"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/outline"
+            android:paddingStart="46dp"
+            android:maxLines="1"
+            android:inputType="textFilter"
+            android:textColor="@color/on_surface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filterSelect_recyclerView_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterSelect_inputLayout_search" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

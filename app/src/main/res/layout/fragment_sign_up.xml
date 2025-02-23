@@ -4,108 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/SignUpFragment">
+    android:id="@+id/signUp_fragment">
+
+    <ImageView
+        android:id="@+id/signUp_image_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/signUp_inputLayout_email"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="150dp"
         android:layout_marginRight="30dp"
-        android:hint="Email"
+        android:background="@null"
+        android:hint="@string/hint_email"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/error"
+        app:errorIconTint="@color/error"
+        app:boxStrokeErrorColor="@color/error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_field_email_sing_up"
+            android:id="@+id/signUp_editText_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayouPassword"
+        android:id="@+id/signUp_inputLayout_password"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="60dp"
-        android:hint="Password"
+        android:hint="@string/hint_password"
+        app:errorEnabled="false"
+        app:errorTextColor="@color/error"
+        app:errorIconTint="@color/error"
+        app:boxStrokeErrorColor="@color/error"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/signUp_inputLayout_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_filed_password_sing_up"
+            android:id="@+id/signUp_editText_password"
             android:background="@null"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:inputType="textPassword"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUp_inputLayout_confirmPassword"
         style="@style/CustomTextInputLayout"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
         android:background="@null"
-        android:hint="Confirm Password"
+        android:hint="@string/hint_confirm_password"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textfield_icon_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayouPassword" >
+        app:layout_constraintTop_toBottomOf="@+id/signUp_inputLayout_password">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_field_confirm_password_sign_up"
+            android:id="@+id/signUp_editText_confirmPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:inputType="textPassword"
             android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button_create_account_sign_up"
+        android:id="@+id/signUp_button_createAccount"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape_container"
         android:textColor="@color/on_secondary_container"
         android:text="@string/create_account"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/error"
+        app:errorIconTint="@color/error"
+        app:boxStrokeErrorColor="@color/error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.661"
+        app:backgroundTint="@null"
+        />
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/signUp_progressBar_Password"
         style="?android:attr/progressBarStyleHorizontal"
         android:visibility="invisible"
         android:layout_marginStart="4dp"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayouPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayouPassword" />
+        app:layout_constraintStart_toStartOf="@+id/signUp_inputLayout_password"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_inputLayout_password" />
 
     <TextView
         android:visibility="invisible"
-        android:id="@+id/progressTV"
+        android:id="@+id/signUp_text_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Słabe"
+        android:text="@string/weak_password"
         android:layout_marginBottom="2dp"
         android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
-        app:layout_constraintStart_toEndOf="@+id/progressBar2"
-        app:layout_constraintTop_toTopOf="@+id/progressBar2" />
+        app:layout_constraintBottom_toBottomOf="@+id/signUp_progressBar_Password"
+        app:layout_constraintStart_toEndOf="@+id/signUp_progressBar_Password"
+        app:layout_constraintTop_toTopOf="@+id/signUp_progressBar_Password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

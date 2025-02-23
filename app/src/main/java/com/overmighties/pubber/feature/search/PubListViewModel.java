@@ -10,27 +10,29 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 
-import static java.lang.Math.ceil;
-
-import android.content.res.Resources;
 import android.util.Log;
+import android.util.Pair;
 
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.core.data.PubsRepository;
 import com.overmighties.pubber.core.model.OpeningHours;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.pubdetails.PubDetailsUiState;
+import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
+import com.overmighties.pubber.feature.search.stateholders.FilterFragmentUiState;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
-import com.overmighties.pubber.util.DateTimetoCurrentTimeComparator;
+import com.overmighties.pubber.feature.search.stateholders.SearcherUiState;
+import com.overmighties.pubber.feature.search.util.FilterUtil;
+import com.overmighties.pubber.feature.search.util.PriceType;
+import com.overmighties.pubber.feature.search.util.PubFiltrationState;
+import com.overmighties.pubber.util.DateTimeToCurrentTimeComparator;
 import com.overmighties.pubber.util.DateType;
 import com.overmighties.pubber.util.DayOfWeekConverter;
-import com.overmighties.pubber.util.FilterUtil;
-import com.overmighties.pubber.util.PriceType;
-import com.overmighties.pubber.util.SortPubsBy;
-import com.overmighties.pubber.util.SortUtil;
+import com.overmighties.pubber.feature.search.util.SortPubsBy;
+import com.overmighties.pubber.feature.search.util.SortUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,11 +59,12 @@ public class PubListViewModel extends ViewModel {
     public static final String TEMPORARY_OPEN ="Open";
     public static final String CLOSED="Closed";
     public static final String CONTENT_PROVIDED ="Content provided";
-    @Setter
-    @Getter
-    public String ChipTag = "Normal";
+    public static final String DETAILS_TRANSITION_NAME = "details_transition";
     private final PubsRepository pubsRepository;
+    //if -3 that means that first imperfect after filtration is shown, if -2 then it is first pub to be mapped.,
+    private Integer lastCompatibility = -2;
     private final MutableLiveData<List<Pub>> originalPubData=new MutableLiveData<>(null);
+    @Getter
     private final LiveData<List<Pub>> _originalPubData=originalPubData;
     @Getter
     private final MutableLiveData<String> cityConstraint=new MutableLiveData<>();
@@ -73,6 +76,10 @@ public class PubListViewModel extends ViewModel {
     private final MutableLiveData<PubsCardViewUiState> sortedAndFilteredPubsUiState =new MutableLiveData<>(new PubsCardViewUiState());
     @Getter
     private final MutableLiveData<FilterUiState> filterUiState=new MutableLiveData<>();
+    @Getter
+    private final MutableLiveData<FilterFragmentUiState> filterFragmentUiState = new MutableLiveData<>(new FilterFragmentUiState());
+    @Getter
+    private final MutableLiveData<SearcherUiState> searcherUiState = new MutableLiveData<>(new SearcherUiState());
     @Getter
     private final CompositeDisposable disposables = new CompositeDisposable();
     public static final ViewModelInitializer<PubListViewModel> initializer = new ViewModelInitializer<>(
@@ -90,21 +97,22 @@ public class PubListViewModel extends ViewModel {
         this.pubsRepository=pubsRepository;
     }
 
-    public void getPubsFromRepo(final int DELAY_TIME_MS)
+    public void fetchPubsFromRepo(final int DELAY_TIME_MS)
     {
         if(pubsRepository==null)
-            Log.e(TAG, "getPubsFromRepo returned null: PubsRepository didn't return anything" );
+            Log.e(TAG, "fetchPubsFromRepo returned null: PubsRepository didn't return anything" );
         Disposable d = Objects.requireNonNull(pubsRepository).getPubs()
                 .delay(DELAY_TIME_MS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(pubs->{
                     originalPubData.setValue(pubs);
                     sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
-                            pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
+                            pubs.stream().map(pub ->new Pair<>(pub, new PubFiltrationState(-1, null, null))).map(this::mapPubToUiState).collect(Collectors.toList())));
+                    searcherUiState.getValue().setPubs(pubs.stream().map(pub ->new Pair<>(pub, new PubFiltrationState(-1, null, null))).collect(Collectors.toList()));
                     if(filterUiState.getValue()!=null)
                         filter(filterUiState.getValue());
                     },
-                    err -> Log.e(TAG, "getPubs: Can't get pubs due to->" + err.getLocalizedMessage())
+                    err -> Log.e(TAG, "fetchPubsFromRepo can't get pubs due to :" + err.getLocalizedMessage())
                 );
         disposables.add(d);
     }
@@ -114,49 +122,47 @@ public class PubListViewModel extends ViewModel {
     }
     public void search(String prompt)
     {
-        setSearchText( prompt);
-        List<PubItemCardViewUiState> pubs=new ArrayList<>();
-        for(Pub pub: Objects.requireNonNull(_originalPubData.getValue())) {
-            if(pub.getName().toLowerCase().contains(prompt.toLowerCase()))
-                pubs.add(mapPubToUiState(pub));
+        List<Pair<Pub, PubFiltrationState>> pubs=new ArrayList<>();
+        for(Pair<Pub, PubFiltrationState> pubUiState: Objects.requireNonNull(searcherUiState.getValue().getPubs())) {
+            if(pubUiState.first.getName().toLowerCase().contains(prompt.toLowerCase()))
+                pubs.add(pubUiState);
         }
-        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,pubs));
+        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED, pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
+        setSearchText(prompt);
+
     }
     private void setSearchText(String prompt)
     {
         searchText.setValue(prompt);
-        filter(new FilterUiState());
         sort(SortPubsBy.RELEVANCE);
     }
     public void filter(FilterUiState filter)
     {
         filterUiState.setValue(filter);
-        List<PubItemCardViewUiState> filteredPubs=new FilterUtil(filter, Objects.requireNonNull(_originalPubData.getValue()),TEMPORARY_DISTANCE, cityConstraint.getValue())
-                .filterByAll()
-                .getFilteredPubs().stream()
-                .map(this::mapPubToUiState)
-                .collect(Collectors.toList());
+        FilterUtil sorted = new FilterUtil(
+                filter,
+                Objects.requireNonNull(_originalPubData.getValue()),TEMPORARY_DISTANCE, cityConstraint.getValue())
+                .filterByAll();
+        searcherUiState.getValue().setPubs(sorted.getFilteredPubs());
+        List<PubItemCardViewUiState> filteredPubs= sorted.getFilteredPubs()
+                .stream().map(this::mapPubToUiState).collect(Collectors.toList());
         sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,filteredPubs));
 
     }
     public void sort(SortPubsBy sort)
     {
-        sortType.setValue(sort);
-        List<PubItemCardViewUiState> pubs =_originalPubData.getValue().stream()
-                .map(this::mapPubToUiState)
-                .collect(Collectors.toList());
-        SortUtil.sortingPubData(pubs,sort);
-        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,pubs));
+        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
+                SortUtil.sortingPubData(searcherUiState.getValue().getPubs(), sort).stream().map(this::mapPubToUiState).collect(Collectors.toList())));
     }
     //Temporary objects means that it will be changed in feature and now they are only in testing purpose
-    public PubItemCardViewUiState mapPubToUiState(Pub pub)
+    public PubItemCardViewUiState mapPubToUiState(Pair<Pub, PubFiltrationState> pub)
     {
-        DateType openInfo = null;
+        DateType openInfo = DateType.NONE;
         try {
-            if(pub.getOpeningHours()!= null){
-                if(!pub.getOpeningHours().isEmpty()){
-                    openInfo=getPubTimeOpenToday(pub);
-                    pub.setTimeOpenToday(openInfo.getTime());
+            if(pub.first.getOpeningHours()!= null){
+                if(!pub.first.getOpeningHours().isEmpty()){
+                    openInfo=getPubTimeOpenToday(pub.first);
+                    pub.first.setTimeOpenToday(openInfo.getTime());
                 }
             }
             else
@@ -164,11 +170,45 @@ public class PubListViewModel extends ViewModel {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        return new PubItemCardViewUiState(pub.getId(),TEMPORARY_BOOKMARK,pub.getName(),pub.getIconPath(),
-                openInfo.getTime(), openInfo.isType(),
-                TEMPORARY_DISTANCE,
-                PriceType.getById(pub.getRatings().getOurCost()).getIcon(),
-                pub.getRatings().getAverageRating(), pub.getRatings().getRatingsCount(), pub.getAddress(), pub.getDrinks());
+        //name
+        String pubName = null;
+        if(pub.first.getName().length()>20) {
+            if (pub.first.getName().substring(19, 20).equals(" "))
+                pubName = pub.first.getName().substring(0, 19) + "...";
+            else
+                pubName = pub.first.getName().substring(0, 20) + "...";
+        } else {
+            pubName = pub.first.getName();
+        }
+        //determing whether compatibility and divider should be shown. True divider and compatibility, null only compatibility
+        Boolean isFirstImperfect = false;
+        if (pub.second.getCompatibility() == -1 && pub.second.getAllCompatibility() == -1) {
+            lastCompatibility = -3;
+        } else if (lastCompatibility == -3) {
+            if (pub.second.getCompatibility() != -1 && pub.second.getAllCompatibility() != -1)
+                isFirstImperfect = null;
+        } else if (lastCompatibility == -2) {
+            if (pub.second.getCompatibility() == pub.second.getAllCompatibility()) {
+                lastCompatibility = pub.second.getCompatibility();
+            } else {
+                lastCompatibility = -3;
+                isFirstImperfect = null;
+            }
+        } else {
+            if (pub.second.getCompatibility() != pub.second.getAllCompatibility()) {
+                isFirstImperfect = true;
+                lastCompatibility = -3;
+            } else {
+                lastCompatibility = pub.second.getCompatibility();
+            }
+        }
+
+        return new PubItemCardViewUiState(pub.first.getPubId(),TEMPORARY_BOOKMARK, pubName,pub.first.getIconPath(),
+                openInfo.getTime(), openInfo.isType(), TEMPORARY_DISTANCE,
+                PriceType.getById(pub.first.getRatings().getOurCost()).getIcon(),
+                pub.first.getRatings().getAverageRating(),
+                pub.first.getRatings().getRatingsCount(), pub.first.getAddress(),
+                pub.first.getDrinks(), isFirstImperfect, new Pair<>(pub.second.getCompatibility(), pub.second.getAllCompatibility()));
     }
     public DateType getPubTimeOpenToday(Pub pub) throws ParseException {
         //initialazing dates
@@ -188,7 +228,7 @@ public class PubListViewModel extends ViewModel {
             timeCloseYesterday = parser.parse((open_hours.get(DayOfWeekConverter.getByCurrentDay().getNumeric() - 2)).getTimeClose());
         }
 
-        DateType time=(new DateTimetoCurrentTimeComparator()).dateTimetoCurrentTimeComparator(timeOpenToday,timeCloseToday,timeOpenYesterday,timeCloseYesterday);
+        DateType time= DateTimeToCurrentTimeComparator.dateTimeToCurrentTimeComparator(timeOpenToday,timeCloseToday,timeOpenYesterday,timeCloseYesterday);
         time.convertToPolish();
 
         return time;
@@ -196,15 +236,12 @@ public class PubListViewModel extends ViewModel {
 
     public void setPubDetails(int position, DetailsViewModel detailsViewModel){
         Pub pub= Objects.requireNonNull(_originalPubData.getValue()).get(position);
-        PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getId(), pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
+        PubDetailsUiState pubDetailsUiState=new PubDetailsUiState(pub.getPubId(), cityConstraint.getValue(),pub.getName(), pub.getAddress(),pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),pub.getIconPath(),pub.getDescription(),pub.getReservable(),pub.getTakeout(),pub.getRatings(),pub.getOpeningHours(),
-                pub.getDrinks(),pub.getPhotos(),null,pub.getTimeOpenToday());
+                pub.getDrinks(),pub.getPhotos(),null,pub.getTags(),pub.getTimeOpenToday(), null, null, null);
         detailsViewModel.setPubDetails(pubDetailsUiState);
     }
-    public static int dpToPx(int dp)
-    {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
-    }
+
 
     @Override
     protected void onCleared() {

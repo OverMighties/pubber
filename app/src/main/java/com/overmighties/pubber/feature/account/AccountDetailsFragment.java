@@ -1,8 +1,9 @@
 package com.overmighties.pubber.feature.account;
 
+import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,12 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 public class AccountDetailsFragment extends Fragment {
     public static final String TAG="AccountDetailsFragment";
-    private AccountViewModel viewModel;
+    private AccountViewModel accountViewModel;
     private NavController navController;
     private RecyclerView accountDetailsRecyclerView;
     private  ShapeableImageView profileImage;
@@ -34,37 +34,43 @@ public class AccountDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,"on create");
-        viewModel = new ViewModelProvider(requireActivity(),
-                ViewModelProvider.Factory.from(AccountViewModel.initializer))
+        accountViewModel = new ViewModelProvider(requireActivity())
                 .get(AccountViewModel.class);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        accountDetailsRecyclerView = (RecyclerView) requireView().findViewById(R.id.account_details_recycler_view);
-        navController= Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        Log.i(TAG,"View created");
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
-        requireView().findViewById(R.id.sign_out_button).setOnClickListener(v-> {
-            viewModel.onSignOutClick(
-                    (from,to)-> navController.navigate(getNavDirections(from,to)),
-                    (snackbarType, uiText,logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes));
+        requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
+        accountDetailsRecyclerView = requireView().findViewById(R.id.accountDetails_recyclerView_info);
+        navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.accountDetails_button_signOut).setOnClickListener(v-> accountViewModel.onSignOutClick(
+                (from,to)-> navController.navigate(getNavDirections(from,to)),
+                (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes)));
+        requireView().findViewById(R.id.accountDetails_button_delete).setOnClickListener(v->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.CustomDialog);
+            builder.setNeutralButton(getString(R.string.cancel), null);
+            builder.setPositiveButton(getString(R.string.yes), (((dialog, which) -> {
+                //TODO delete account function
+                Log.i(TAG, "Account Deleted");
+            })));
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         });
-        profileImage=requireView().findViewById(R.id.profile_image);
-        accountDetailsAdapter = new AccountDetailsAdapter(viewModel.getUserData().getValue());
+        profileImage=requireView().findViewById(R.id.accountDetails_image_profile);
+        accountDetailsAdapter = new AccountDetailsAdapter(accountViewModel.getUserData().getValue(), accountViewModel);
         accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
-        viewModel.getUserData().observe(getViewLifecycleOwner(), userData -> {
+        accountViewModel.getUserData().observe(getViewLifecycleOwner(), userData -> {
             Glide.with(this)
                     .load(userData.getPhotoUrl())
-                    .placeholder(R.drawable.account_circle_24px)
-                    .fallback(R.drawable.account_circle_24px)
+                    .placeholder(R.drawable.ic_account_primary_dark)
+                    .fallback(R.drawable.ic_account_primary_dark)
                     .centerCrop()
                     .into(profileImage);
-            accountDetailsAdapter = new AccountDetailsAdapter(userData);
+            accountDetailsAdapter = new AccountDetailsAdapter(userData, accountViewModel);
             accountDetailsRecyclerView.setAdapter(accountDetailsAdapter);
         });
-        viewModel.getCurrentUser();
+        accountViewModel.getCurrentUser();
+
 
     }
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsEditA_cardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/detailsEditACV_chip_alcohol"
+        style="@style/FilterChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="false"
+        android:text="@string/alcohols"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detailsEditACV_text_styles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:text="@string/styles"
+        android:textColor="@color/on_surface_variant"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/detailsEditACV_chip_alcohol"
+        app:layout_constraintStart_toStartOf="@+id/detailsEditACV_chip_alcohol"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditACV_chip_alcohol" />
+
+    <ImageView
+        android:id="@+id/detailsEditACV_image_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/detailsEditACV_chip_alcohol"
+        app:layout_constraintStart_toEndOf="@+id/detailsEditACV_chip_alcohol"
+        app:layout_constraintTop_toTopOf="@+id/detailsEditACV_chip_alcohol"
+        app:srcCompat="@drawable/ic_close_on_surface"
+        app:tint="@color/on_secondary_container" />
+</androidx.constraintlayout.widget.ConstraintLayout>

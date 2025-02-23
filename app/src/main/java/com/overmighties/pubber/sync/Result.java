@@ -4,7 +4,7 @@ public abstract class Result<T> {
     private Result() {}
 
     public static final class Success<T> extends Result<T> {
-        public T data;
+        public final T data;
 
         public Success(T data) {
             this.data = data;
@@ -12,8 +12,8 @@ public abstract class Result<T> {
     }
 
     public static final class Error<T> extends Result<T> {
-        public Exception exception;
-        public String message;
+        public final Exception exception;
+        public final String message;
 
         public Error(Exception exception,String message) {
             this.exception = exception;

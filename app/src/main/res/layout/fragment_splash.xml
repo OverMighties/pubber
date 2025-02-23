@@ -7,55 +7,45 @@
     android:id="@+id/SplashFragment">
 
     <Button
-        android:id="@+id/button_sign_in_splash"
+        android:id="@+id/splash_button_signIn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginBottom="12dp"
         android:background="@drawable/button_shape_container"
         android:text="@string/label_email_sign_in"
         android:textColor="@color/on_secondary_container"
-        app:layout_constraintBottom_toTopOf="@+id/button_sign_in_google_splash"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAppearance="@style/ButtonTextApperance"
+        app:backgroundTint="@null"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/splash_button_signUp"
+        app:layout_constraintEnd_toEndOf="@+id/splash_image_googleButton"
+        app:layout_constraintStart_toStartOf="@+id/splash_image_googleButton" />
 
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/button_sign_in_google_splash"
-        android:layout_width="189dp"
-        android:layout_height="40dp"
-        android:visibility="invisible"
-        android:text="@string/label_google_sign_in"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_sing_up_splash"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/IV_google_button"
+        android:id="@+id/splash_image_googleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/google_button_dark"
-        app:layout_constraintBottom_toTopOf="@+id/button_sing_up_splash"
+        android:text="@string/label_google_sign_in"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
 
 
     <Button
-        android:id="@+id/button_sing_up_splash"
+        android:id="@+id/splash_button_signUp"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/button_shape_container"
+        android:text="@string/label_email_sign_up"
+        android:textAppearance="@style/ButtonTextApperance"
         android:textColor="@color/on_secondary_container"
-        android:text="@string/label_email_sign_up_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/splash_image_googleButton"
+        app:layout_constraintEnd_toEndOf="@+id/splash_image_googleButton"
+        app:layout_constraintStart_toStartOf="@+id/splash_image_googleButton" />
 
     <TextView
         android:id="@+id/RTvAvg"
@@ -63,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="135dp"
         android:text="Hello in Pubber"
-        app:layout_constraintBottom_toTopOf="@+id/button_sign_in_splash"
+        app:layout_constraintBottom_toTopOf="@+id/splash_button_signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

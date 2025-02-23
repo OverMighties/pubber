@@ -10,10 +10,22 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.overmighties.pubber.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RatingToIVConverter {
-    public void Convert(ArrayList<ImageView> ImageViewArraylist, Integer size, ConstraintLayout constraintLayout, Float raiting, Integer marginTop,Integer distance){
+    public void convert(List<ImageView> ImageViewArraylist, Integer size, ConstraintLayout constraintLayout, Float rating, Integer marginTop, Integer distance, boolean isRating){
+        Integer fullId;
+        Integer halfFullId;
+        Integer emptyId;
+        if(isRating){
+            fullId = R.drawable.beer_full;
+            halfFullId = R.drawable.beer_half_full;
+            emptyId = R.drawable.beer_empty;
+        } else{
+            fullId = R.drawable.ic_progress_indicator_full;
+            halfFullId = R.drawable.ic_proggres_indicator_half;
+            emptyId = R.drawable.ic_progress_indicator_empty;
+        }
         for(int n = 0; n<5;n++){
             ConstraintSet constraintSet = new ConstraintSet();
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dpToPx(size),dpToPx(size));
@@ -27,15 +39,15 @@ public class RatingToIVConverter {
             constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, dpToPx(marginTop));
             constraintSet.applyTo(constraintLayout);
 
-            if (raiting >= n+0.75){
-                ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_full);
+            if (rating >= n+0.75){
+                ImageViewArraylist.get(n).setBackgroundResource(fullId);
             }
             else{
-                if (raiting >= (float)(n+0.25)){
-                    ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_half_full);
+                if (rating >= (float)(n+0.25)){
+                    ImageViewArraylist.get(n).setBackgroundResource(halfFullId);
                 }
                 else{
-                    ImageViewArraylist.get(n).setBackgroundResource(R.drawable.beer_empty);
+                    ImageViewArraylist.get(n).setBackgroundResource(emptyId);
                 }
             }
 

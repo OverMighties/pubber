@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.overmighties.pubber",
+      "sha256_cert_fingerprints": [
+        "4E:21:13:D6:8A:43:62:64:6F:FC:98:88:00:CD:7E:57:D0:EE:43:B3:87:15:6A:FE:47:F5:3A:05:5C:BA:EF:BF"
+      ]
+    }
+  }
+]

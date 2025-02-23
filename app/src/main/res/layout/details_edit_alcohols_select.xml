@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsEditAS_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsEditAS_cl_topBar"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@color/surface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/detailsEditAS_image_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailsEditAS_text_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_brewery"
+            android:textSize="20sp"
+            android:textColor="@color/on_surface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/detailsEditAS_inputLayout_search"
+        style="@style/Widget.Design.TextInputLayout"
+        app:hintEnabled="true"
+        android:layout_marginTop="-12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:boxBackgroundColor="@color/surface_container_low"
+        app:cursorColor="@color/primary"
+        app:boxBackgroundMode="outline"
+        android:textColorHint="@color/on_surface"
+        android:hint="@string/searchview_hint"
+        app:endIconTint="@color/on_surface"
+        app:startIconTint="@color/on_surface_variant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailsEditAS_cl_topBar"
+        app:startIconDrawable="@drawable/ic_searchview_on_surface_variant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/detailsEditAS_editText_search"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="46dp"
+            android:backgroundTint="@color/outline"
+            android:maxLines="1"
+            android:inputType="textFilter"
+            android:textColor="@color/on_surface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detailsEditAS_recyclerView_searchList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditAS_inputLayout_search" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

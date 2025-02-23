@@ -2,23 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/placeChoice_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface"
     tools:context=".app.ui.PlaceChoiceFragment">
 
     <Button
-        android:id="@+id/city1"
+        android:id="@+id/placeChoice_button_cracow"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:text="Kraków"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city2" />
+        app:layout_constraintTop_toBottomOf="@+id/placeChoice_button_warsaw" />
 
     <Button
-        android:id="@+id/city2"
+        android:id="@+id/placeChoice_button_warsaw"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:text="Warszawa"
@@ -28,18 +28,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/city3"
+        android:id="@+id/placeChoice_button_rzeszow"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:text="Rzeszów"
         android:layout_centerInParent="true"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/city2"
+        android:text="Rzeszów"
+        app:layout_constraintBottom_toTopOf="@+id/placeChoice_button_warsaw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

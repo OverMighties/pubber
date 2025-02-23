@@ -3,7 +3,8 @@ package com.overmighties.pubber.feature.account;
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
-import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_FRAGMENT;
+
+import static com.overmighties.pubber.app.navigation.PubberNavRoutes.ACCOUNT_DETAILS_FRAGMENT;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.SPLASH_FRAGMENT;
 
 import android.net.Uri;
@@ -16,12 +17,12 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.basic.PubberAppViewModel;
-import com.overmighties.pubber.core.auth.AccountDataSource;
+import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
+import com.overmighties.pubber.core.auth.AccountApi;
 import com.overmighties.pubber.core.auth.firebase.AccFirebaseDSError;
 import com.overmighties.pubber.core.auth.model.UserData;
-import com.overmighties.pubber.util.SnackbarUI;
 import com.overmighties.pubber.util.TriConsumer;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -30,9 +31,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
-    private final AccountDataSource accountDataSource;
-    private final CompositeDisposable disposables = new CompositeDisposable();
-    private final MutableLiveData<AccountDetailsUIState> userData=new MutableLiveData<>(new AccountDetailsUIState());
+    private final AccountApi accountApi;
+    private final MutableLiveData<AccountDetailsUIState> userData;
     public LiveData<AccountDetailsUIState> getUserData(){
         return userData;
     }
@@ -49,34 +49,54 @@ public class AccountViewModel extends PubberAppViewModel {
                 return new AccountViewModel(app.appContainer.getAccountDataSource(),  savedStateHandle);
             }
     );
-    public AccountViewModel(AccountDataSource accountDataSource, SavedStateHandle savedStateHandle){
-        this.accountDataSource=accountDataSource;
+    public AccountViewModel(AccountApi accountApi, SavedStateHandle savedStateHandle){
+        this.accountApi = accountApi;
+        userData = new MutableLiveData<>(new AccountDetailsUIState());
     }
-    public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<SnackbarUI.SnackbarTypes, UIText,String> snackbarOnError) {
+    public void onSignOutClick(BiConsumer<String,String> openAndPopUp, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError) {
         disposables.add(completableAction(TAG,
-                accountDataSource::signOut,
-                ()->{
-                    openAndPopUp.accept(ACCOUNT_FRAGMENT,SPLASH_FRAGMENT);
-                },
+                accountApi::signOut,
+                ()-> openAndPopUp.accept(ACCOUNT_DETAILS_FRAGMENT,SPLASH_FRAGMENT),
                 (err)->{
                     if(err instanceof AccFirebaseDSError.DifferentInternalError){
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
+                        snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),((AccFirebaseDSError) err).getLogMessage());
                     }
                     else if(err instanceof AccFirebaseDSError){
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.FIREBASE_AUTH_ERROR,((AccFirebaseDSError) err).getUserMsg(),"");
+                        snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.FIREBASE_AUTH,((AccFirebaseDSError) err).getUserMsg(),"");
                     } else{
-                        snackbarOnError.accept(SnackbarUI.SnackbarTypes.BASIC_AUTH_ERROR,null, err.getLocalizedMessage());
+                        snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.UNKNOWN_ERROR,null, err.getLocalizedMessage());
                     }
                 }
         ));
     }
-    public void getCurrentUser() {
+    public void updateEmail(String email,TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError){
         singleAction(TAG,
-                accountDataSource.currentUser(),
-                el->updateUserData(mapToUIState(el)),
-                (err)-> Log.e(TAG,"User data can't be retrieved because:"+err.getLocalizedMessage()));
+                accountApi.updateUserEmail(email),
+                el->userData.getValue().setEmail(email),
+                (err)->{
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,null, err.getLocalizedMessage());
+                    Log.e(TAG,"User email can't be updated because:"+err.getLocalizedMessage());
+                });
     }
-    public AccountDetailsUIState mapToUIState(UserData userData){
+    public void updateDisplayName(String displayName, TriConsumer<ErrorSnackbarUI.ErrorTypes, UIText, String> snackbarOnError, Runnable onComplete){
+        singleAction(TAG,
+                accountApi.updateUserProfile(new UserData(null,userData.getValue().getEmail()
+                        ,displayName,userData.getValue().getPhotoUrl())),
+                el-> {
+                    userData.getValue().setUsername(displayName);
+                    onComplete.run();
+                },
+                (err)->{
+                    snackbarOnError.accept(ErrorSnackbarUI.ErrorTypes.USER_ACCOUNT,null, err.getLocalizedMessage());
+                    Log.e(TAG,"User display name can't be updated because: "+err.getLocalizedMessage());
+                });
+    }
+    public void getCurrentUser() {
+        UserData userData= accountApi.currentUser();
+        if(userData!=null)
+            updateUserData(mapToUIState(accountApi.currentUser()));
+    }
+    public static AccountDetailsUIState mapToUIState(UserData userData){
         Log.i(TAG,userData.getUserId()+userData.getEmail()+userData.getUsername());
         return new AccountDetailsUIState(
                 userData.getUsername()==null ||  userData.getUsername().isBlank()?AccountDetailsUIState.UNKNOWN:userData.getUsername(),
@@ -85,12 +105,6 @@ public class AccountViewModel extends PubberAppViewModel {
                 userData.getPhotoUrl()==null? Uri.EMPTY:userData.getPhotoUrl());
     }
     public void onDeleteAccountClick() {
-        disposables.add(completableAction(TAG, accountDataSource::deleteAccount));
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        disposables.clear();
+        disposables.add(completableAction(TAG, accountApi::deleteAccount));
     }
 }

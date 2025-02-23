@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class DateType {
+    public static final DateType NONE=new DateType("",false);
     @Setter
     private String time;
     private final boolean type;
@@ -16,14 +17,27 @@ public class DateType {
     public void convertToPolish()
     {
         String ending ="";
-        if(Float.valueOf(time)==1){ending="a";}
-        else if (Float.valueOf(time)<=4.5 || (Float.valueOf(time)>=5 && ceil(Float.valueOf(time))!=Float.valueOf(time))) {
+        if(Float.parseFloat(time)==1){ending="a";}
+        else if (Float.parseFloat(time)<=4.5 || (Float.parseFloat(time)>=5 && ceil(Float.parseFloat(time))!=Float.parseFloat(time))) {
             ending="y";
         }
-        if(time.substring(time.length()-1,time.length()).equals("0")){
+        if(time.charAt(time.length() - 1) == '0'){
             time = (time.substring(0,time.length()-2));
         }
-        if(type){time="Otwarte jeszcze "+time+" godzin"+ending;}
-        else {time="Zamknięte jeszcze "+time+" godzin"+ending;}
+        if(type){
+            time="Otwarte jeszcze "+time+" godzin"+ending;
+        }
+        else {
+            time="Zamknięte jeszcze "+time+" godzin"+ending;
+        }
+    }
+
+    public void convertToEnglish(){
+        if(type){
+            time = "Closing in "+time+" hours";
+        }
+        else{
+            time = "Opening in "+time+" hours";
+        }
     }
 }

@@ -1,8 +1,8 @@
 package com.overmighties.pubber.feature.auth;
 
 
+import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 import static com.overmighties.pubber.app.navigation.PubberNavRoutes.getNavDirections;
-import static com.overmighties.pubber.util.SnackbarUI.showSnackbar;
 
 import android.app.PendingIntent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
@@ -27,19 +28,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.common.SignInButton;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
 import com.overmighties.pubber.R;
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
-import com.overmighties.pubber.app.ui.NavigationBar;
-import com.overmighties.pubber.util.UIText;
+import com.overmighties.pubber.app.designsystem.NavigationBar;
+import com.overmighties.pubber.app.settings.SettingsHandler;
+import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.concurrent.Executors;
 
 public class SplashFragment extends Fragment {
-    private static final Integer SPLASH_DELAY=1000;
+    private static final Integer SPLASH_DELAY=1;
     public static final String TAG="SplashFragment";
     private SplashViewModel viewModel;
     private SignInClient signInClient;
@@ -60,36 +61,35 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
-        ((SignInButton)requireView().findViewById(R.id.button_sign_in_google_splash)).setColorScheme(0);
-        NavigationBar.smoothHide(getActivity().findViewById(R.id.bottom_nav_view));
+        NavigationBar.smoothHide(requireActivity().findViewById(R.id.main_bottomNavView), 200);
+        requireActivity().findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
         signInClient = Identity.getSignInClient(requireContext());
         credentialManager = CredentialManager.create(requireContext());
-        navController=Navigation.findNavController(requireActivity(),R.id.nav_host_fragment);
-        requireView().findViewById(R.id.button_sign_in_splash).setOnClickListener(v->{
-            navController.navigate(R.id.action_splashFragment_to_signInFragment,null);
-        });
-        requireView().findViewById(R.id.button_sing_up_splash).setOnClickListener(v->{
-            navController.navigate(R.id.action_splashFragment_to_signUpFragment,null);
-        });
+        navController=Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
+        requireView().findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
+        requireView().findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
 
         //Sign in launcher calls firebase api from viewmodel
         signInLauncher= registerForActivityResult(
                 new ActivityResultContracts.StartIntentSenderForResult(),
                 result -> viewModel.handleSignInResult(
                         result.getData(), signInClient,
-                        (from, to)-> Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(getNavDirections(from,to)),
-                        (snackbarType, uiText,logMes) -> showSnackbar(view,snackbarType,(UIText.ResourceString)uiText,logMes))
+                        (from, to)-> Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container).navigate(getNavDirections(from,to)),
+                        (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes))
         );
-        requireView().findViewById(R.id.button_sign_in_google_splash).setOnClickListener(v->{
-            signInWithGoogle();
-        });
-        requireView().findViewById(R.id.IV_google_button).setOnClickListener(v->{
-            requireView().findViewById(R.id.button_sign_in_google_splash).performClick();
-        });
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            viewModel.onAppStart((from, to)-> Navigation.findNavController(view)
-                    .navigate(getNavDirections(from,to)));
-        }, SPLASH_DELAY);
+
+        requireView().findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
+
+        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
+        ((ImageView)requireView().findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
+
+        new Handler(
+                Looper.getMainLooper())
+                .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> Navigation
+                        .findNavController(view)
+                        .navigate(getNavDirections(from,to))),
+                        SPLASH_DELAY
+                );
 
     }
     private void signInWithGoogle() {
@@ -107,7 +107,7 @@ public class SplashFragment extends Fragment {
                         public void onResult(GetCredentialResponse credentialResponse) {
                             viewModel.handleSignInResult(
                                     credentialResponse,
-                                    (from, to) -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(getNavDirections(from, to)),
+                                    (from, to) -> Navigation.findNavController(requireActivity(), R.id.main_navHostFragment_container).navigate(getNavDirections(from, to)),
                                     (snackbarType, uiText, logMes) -> showSnackbar(requireView(), snackbarType, (UIText.ResourceString) uiText, logMes));
                         }
                         @Override

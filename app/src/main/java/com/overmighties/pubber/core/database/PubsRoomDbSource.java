@@ -2,8 +2,8 @@ package com.overmighties.pubber.core.database;
 
 import android.util.Log;
 
-import com.overmighties.pubber.core.data.PubDataMapper;
-import com.overmighties.pubber.core.data.PubEntityMapper;
+import com.overmighties.pubber.core.data.mappers.PubDataMapper;
+import com.overmighties.pubber.core.data.mappers.PubEntityMapper;
 import com.overmighties.pubber.core.model.Pub;
 
 import java.util.List;
@@ -13,21 +13,26 @@ import io.reactivex.rxjava3.core.Single;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class PubsRoomDbSource implements PubberLocalDataSource{
+public class PubsRoomDbSource implements PubberLocalApi {
     private final AppDb appDb;
     public static final String TAG="PubsRoomDbSource";
     @Override
     public Single<List<Pub>> getPubs() {
         return appDb.pubsDao().getPubsWithEntities()
                 .map(list->{
-                    Log.i(TAG, "getPubs: fetched pubs from db in number "+list.size());
+                    Log.i(TAG, "getPubs: fetched pubs from db in number of "+list.size());
                     return list.stream()
                         .map(PubEntityMapper::mapFromEntity)
-                        .collect(Collectors.toList());});
+                        .collect(Collectors.toList());
+                });
     }
 
     @Override
     public void updatePubs(List<Pub> pubs) throws RuntimeException {
-        appDb.pubsDao().insertAll(pubs.stream().map(PubDataMapper::mapToEntity).collect(Collectors.toList()));
+        appDb.pubsDao()
+                .insertAll(pubs.stream()
+                        .map(PubDataMapper::mapToEntity)
+                        .collect(Collectors.toList())
+                );
     }
 }

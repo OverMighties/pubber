@@ -2,49 +2,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface"
     tools:context=".app.MainActivity">
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_topAppBarLayout_back"
         android:layout_width="match_parent"
-        app:elevation="70dp"
-        app:itemIconSize="24dp"
-        android:layout_height="80dp"
-        android:background="@color/surface_variant_secondary"
-        app:itemActiveIndicatorStyle="@style/NavigationBarColor"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" >
-
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/main_topAppBarView_back"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="64dp"
             android:background="@color/surface"
-            android:fadingEdge=""
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph"
-            tools:layout_editor_absoluteX="0dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_scrollEffect="compress"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/on_surface"
+            app:titleTextColor="@color/on_surface" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bottomNavView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/surface_variant_secondary"
+        app:elevation="70dp"
+        app:itemActiveIndicatorStyle="@style/NavigationBarColor"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@color/on_secondary_container"
+        app:itemTextColor="@color/on_surface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu">
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_navHostFragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/surface"
+        android:fadingEdge=""
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
+        app:layout_constraintBottom_toTopOf="@+id/main_bottomNavView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_topAppBarLayout_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

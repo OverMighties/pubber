@@ -3,6 +3,17 @@ plugins {
     id 'androidx.navigation.safeargs'
     //For firebase
     id 'com.google.gms.google-services'
+    //For api keys
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+
+}
+secrets {
+    propertiesFileName = "secrets.properties"
+
+    defaultPropertiesFileName = "local.defaults.properties"
+
+    ignoreList.add("keyToIgnore") // Ignore the key "keyToIgnore"
+    ignoreList.add("sdk.*")       // Ignore all keys matching the regexp "sdk.*"
 }
 
 android {
@@ -18,11 +29,12 @@ android {
     }
     defaultConfig {
         applicationId 'com.overmighties.pubber'
-        minSdk 29
+        minSdk 31
         targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resourceConfigurations += ["en", "b+pl+PL"]
     }
     buildTypes {
         release {
@@ -37,11 +49,14 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
+        buildConfig true
     }
 }
 apply plugin: "androidx.navigation.safeargs"
 dependencies {
 
+    implementation "androidx.core:core-splashscreen:1.0.0"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -49,9 +64,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.5.1'//Can't upgrade version
     implementation 'androidx.navigation:navigation-fragment:2.7.7'
     implementation 'androidx.navigation:navigation-ui:2.7.7'
+    implementation 'androidx.fragment:fragment-ktx:1.8.3'
     implementation 'org.slf4j:slf4j-simple:2.0.7'
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.test.espresso:espresso-core:3.5.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -111,13 +128,36 @@ dependencies {
     implementation "androidx.datastore:datastore-rxjava3:1.1.1"//proto
 
     //Lombok to shortening code
-    compileOnly 'org.projectlombok:lombok:1.18.28'
-    annotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testCompileOnly 'org.projectlombok:lombok:1.18.28'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
 
     //Glide image loader
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+
+    // Jetpack Annotations
+    implementation 'androidx.annotation:annotation:1.8.0'
+
+    //Google location
+    implementation 'com.google.maps:google-maps-services:2.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+
+    //sunrise calculator
+    implementation 'com.luckycatlabs:SunriseSunsetCalculator:1.2'
+
+    // Maps SDK for Android
+    implementation 'com.google.android.gms:play-services-maps:19.0.0'
+
+    // Preference Screen
+    implementation "androidx.preference:preference-ktx:1.2.0"
+
+    //layout that automaticaly verticaly and horizontaly position views
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+
+
+
 
 }

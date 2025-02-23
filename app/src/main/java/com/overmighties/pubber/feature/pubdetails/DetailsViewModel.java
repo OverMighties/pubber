@@ -9,17 +9,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.util.Log;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.TextAppearanceSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,10 +31,19 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.ShapeAppearanceModel;
+import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
+import com.overmighties.pubber.core.network.model.DrinkDto;
+import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.util.DimensionsConverter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -55,6 +63,9 @@ public class DetailsViewModel extends ViewModel {
     public void setUiState(PubDetailsUiState ui){
         uiState.setValue(ui);
     }
+    @Getter
+    @Setter
+    private Integer openedPubPosition = null;
 
 
     public static final ViewModelInitializer<DetailsViewModel> initializer=new ViewModelInitializer<>(
@@ -68,11 +79,10 @@ public class DetailsViewModel extends ViewModel {
             }
     );
 
-    public DetailsViewModel(SavedStateHandle savedStateHandle){
-    }
+    public DetailsViewModel(SavedStateHandle savedStateHandle){}
 
 
-    public static int dpToPx(int dp)
+    private static int dpToPx(int dp)
     {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
@@ -81,52 +91,8 @@ public class DetailsViewModel extends ViewModel {
         pubDetails.setValue(pubDetailsUiState);
     }
 
-    public void takeScreenShot(View view,Context context) {
-
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-
-        Bitmap snapshot = bitmap;
-
-        if (snapshot == null) {
-            pubDetails.getValue().setCurrentScreen(null);
-        } else {
-            Bitmap screen = BlurImage(snapshot, context);
-            pubDetails.getValue().setCurrentScreen(screen);
-        }
-
-    }
-    @SuppressLint("NewApi")
-    public Bitmap BlurImage (Bitmap input, Context context)
-    {
-        try
-        {
-            RenderScript rsScript = RenderScript.create(context);
-            Allocation alloc = Allocation.createFromBitmap(rsScript, input);
-
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rsScript,   Element.U8_4(rsScript));
-            blur.setRadius(12);
-            blur.setInput(alloc);
-
-            Bitmap result = Bitmap.createBitmap(input.getWidth(), input.getHeight(), Bitmap.Config.ARGB_8888);
-            Allocation outAlloc = Allocation.createFromBitmap(rsScript, result);
-
-            blur.forEach(outAlloc);
-            outAlloc.copyTo(result);
-
-            rsScript.destroy();
-
-            return result;
-        }
-        catch (Exception e) {
-            return input;
-        }
-
-    }
-
     public ShapeableImageView CustomingBigShapeableImageView(ShapeableImageView shapeableImageView, ConstraintLayout constraintLayout,int Pictureid,
-                                                             ShapeAppearanceModel shapeAppearanceModel,int number, Context context){
+                                                             ShapeAppearanceModel shapeAppearanceModel,int margin){
         int bigwidth=dpToPx(170);
         int bigheight=dpToPx(270);
 
@@ -138,7 +104,7 @@ public class DetailsViewModel extends ViewModel {
         constraintLayout.addView(shapeableImageView);
         //setting up constraintset
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,8 + number*100));
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, margin);
         constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
         constraintSet.applyTo(constraintLayout);
         //Setting up Image and shape
@@ -149,7 +115,7 @@ public class DetailsViewModel extends ViewModel {
         return shapeableImageView;
     }
     public ShapeableImageView CustomingSmallShapeableImageView(ShapeableImageView shapeableImageView, ConstraintLayout constraintLayout,int Pictureid,
-                                                             ShapeAppearanceModel shapeAppearanceModel,int number, Context context){
+                                                             ShapeAppearanceModel shapeAppearanceModel,int marginTop, int marginStart){
         int smallwidth=dpToPx(100);
         int smallheight=dpToPx(130);
 
@@ -160,18 +126,11 @@ public class DetailsViewModel extends ViewModel {
         shapeableImageView.setId(View.generateViewId());
         constraintLayout.addView(shapeableImageView);
         //setting up constraintset
-        if(number%3==1){
-            constraintSet.clone(constraintLayout);
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,192+(number-1)*(100)));
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-            constraintSet.applyTo(constraintLayout);
-        }
-        else {
-            constraintSet.clone(constraintLayout);
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, (int) DimensionsConverter.pxFromDp(context,192+(number-2)*(100)));
-            constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP,dpToPx(140));
-            constraintSet.applyTo(constraintLayout);
-        }
+        constraintSet.clone(constraintLayout);
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START, marginStart);
+        constraintSet.connect(shapeableImageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, marginTop);
+        constraintSet.applyTo(constraintLayout);
+
 
         //Setting up Image and shape
         shapeableImageView.setBackgroundResource(Pictureid);
@@ -180,6 +139,50 @@ public class DetailsViewModel extends ViewModel {
 
         return shapeableImageView;
     }
+
+    public void setCheckedChipsIds(ChipGroup beerChipGroup, ChipGroup drinkChipGroup, List<DrinkDto> drinksDataSet1){
+        List<Integer> IdsBeer = new ArrayList<>();
+        List<Integer> IdsDrink = new ArrayList<>();
+
+        for (DrinkDto allDrinks:drinksDataSet1){
+            if(allDrinks.getType().equals("Beer")){
+                for(int i=0;i<beerChipGroup.getChildCount();i++){
+                    if(((Chip)beerChipGroup.getChildAt(i)).getText().toString().toLowerCase().replaceAll("\\s+","").
+                            equals(allDrinks.getName().toLowerCase().replaceAll("\\s+",""))){
+                        IdsBeer.add(beerChipGroup.getChildAt(i).getId());
+                    }
+                }
+            }
+            else{
+                for(int i=0;i<drinkChipGroup.getChildCount();i++){
+                    if(((Chip)drinkChipGroup.getChildAt(i)).getText().toString().toLowerCase().replaceAll("\\s+","").
+                            equals(allDrinks.getName().toLowerCase().replaceAll("\\s+",""))){
+                        IdsDrink.add(drinkChipGroup.getChildAt(i).getId());
+                    }
+                }
+            }
+        }
+        getUiState().getValue().setIdsOfBeerChips(IdsBeer);
+        getUiState().getValue().setIdsOfDrinkChips(IdsDrink);
+
+    }
+    public void addUnderLineLink(TextView textView,int color) {
+        if (textView != null) {
+            SpannableString content = new SpannableString(textView.getText().toString());
+            UnderlineSpan us=new UnderlineSpan();
+            TextPaint tp=new TextPaint();
+            tp.setColor(color);
+            us.updateDrawState(tp);
+            content.setSpan(us, 0, textView.getText().toString().length(), 0);
+            textView.setText(content);
+        }
+    }
+
+    public int stringToIntRatingConverter(String rating){
+        return Integer.parseInt(rating.replace(",","."));
+    }
+
+
 
 
 }

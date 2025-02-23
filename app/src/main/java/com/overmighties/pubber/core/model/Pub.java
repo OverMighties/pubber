@@ -11,10 +11,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-
 public class Pub {
     @NonNull
-    private Long id;
+    private Long pubId;
     @NonNull
     private String name;
     @NonNull
@@ -22,18 +21,19 @@ public class Pub {
     @NonNull
     private LocalDateTime fetchTime;
     private String city;
-
     private String phoneNumber;
-
     private String websiteUrl;
-
     private String iconPath;
     private String description;
     private Boolean reservable;
     private Boolean takeout;
+    private Double latitude;
+    private Double longitude;
     private Ratings ratings;
     private List<OpeningHours> openingHours;
     private List<Drink> drinks;
     private List<Photo> photos;
+    private List<Tag> tags;
     private String timeOpenToday;
+    private Float walkingDistance;
 }

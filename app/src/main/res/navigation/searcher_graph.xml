@@ -3,42 +3,169 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/searcher_graph"
-    app:startDestination="@id/searcher_nav_dir">
+    app:startDestination="@id/searcherFragment">
     <include app:graph="@navigation/login_graph"/>
-    <include app:graph="@navigation/account_graph"/>
     <fragment
-        android:id="@+id/searcher_nav_dir"
+        android:id="@+id/searcherFragment"
         android:name="com.overmighties.pubber.feature.search.SearcherFragment"
         android:label="Searcher"
         tools:layout="@layout/fragment_searcher">
         <action
-            android:id="@+id/action_searcher_to_account"
-            app:destination="@id/account_graph" />
-        <action
             android:id="@+id/action_searcher_to_details"
-            app:destination="@id/details_nav_dir" />
+            app:destination="@id/detailsFragment"
+            app:popExitAnim="@anim/scale_down" />
         <action
             android:id="@+id/action_searcher_to_filter"
-            app:destination="@id/filter_nav_dir" />
+            app:destination="@id/filterFragment" />
         <action
-            android:id="@+id/action_searcher_to_log_in_graph"
+            android:id="@+id/action_searcherFragment_to_login_graph"
             app:destination="@id/login_graph" />
+        <action
+            android:id="@+id/action_searcherFragment_to_mapFragment"
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_searcherFragment_to_settings_graph"
+            app:destination="@id/settings_graph" />
+        <action
+            android:id="@+id/action_searcherFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment" />
+        <action
+            android:id="@+id/action_searcherFragment_to_dictionaryFragment"
+            app:destination="@id/dictionaryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/details_nav_dir"
+        android:id="@+id/detailsFragment"
         android:name="com.overmighties.pubber.feature.pubdetails.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/details" >
         <action
             android:id="@+id/action_details_to_searcher"
-            app:destination="@id/searcher_nav_dir" />
+            app:destination="@id/searcherFragment"
+            app:popExitAnim="@anim/scale_down" />
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsRateFragment"
+            app:destination="@id/detailsRateFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsEditFragment"
+            app:destination="@id/detailsEditFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsRatingsFragment"
+            app:destination="@id/detailsRatingsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsFragment_to_detailsEditTagsFragment"
+            app:destination="@id/detailsEditTagsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/filter_nav_dir"
+        android:id="@+id/filterFragment"
         android:name="com.overmighties.pubber.feature.search.FilterFragment"
         android:label="Filter" >
         <action
             android:id="@+id/action_filter_to_searcher"
-            app:destination="@id/searcher_nav_dir" />
+            app:destination="@id/searcherFragment" />
+        <action
+            android:id="@+id/action_filterFragment_to_filterSelectFragment"
+            app:destination="@id/filterSelectFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/filterSelectFragment"
+        android:name="com.overmighties.pubber.feature.search.filterselect.FilterSelectFragment"
+        android:label="FilterSelectFragment" >
+        <action
+            android:id="@+id/action_filterSelectFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.overmighties.pubber.feature.map.MapFragment"
+        android:label="MapFragment" />
+    <include app:graph="@navigation/settings_graph" />
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="com.overmighties.pubber.feature.account.AccountDetailsFragment"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details" >
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_login_graph"
+            app:destination="@id/login_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsRateFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsRateFragment"
+        android:label="DetailsRateFragment" />
+    <fragment
+        android:id="@+id/detailsEditFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditAlcoholsFragment"
+        android:label="DetailsEditFragment" >
+        <action
+            android:id="@+id/action_detailsEditFragment_to_detailsEditAlcoholsSelectFragment"
+            app:destination="@id/detailsEditAS_fragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsEditFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detailsEditAS_fragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditAlcoholsSelectFragment"
+        android:label="DetailsEditAlcoholsSelectFragment" >
+        <action
+            android:id="@+id/action_detailsEditAlcoholsSelectFragment_self"
+            app:destination="@id/detailsEditAS_fragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_detailsEditAlcoholsSelectFragment_to_detailsEditFragment"
+            app:destination="@id/detailsEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsRatingsFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.DetailsRatingsFragment"
+        android:label="DetailsRatingsFragment" />
+    <fragment
+        android:id="@+id/detailsEditTagsFragment"
+        android:name="com.overmighties.pubber.feature.pubdetails.chipsfragments.DetailsEditTagsFragment"
+        android:label="DetailsEditTagsFragment" />
+    <fragment
+        android:id="@+id/dictionaryFragment"
+        android:name="com.overmighties.pubber.feature.dictionary.DictionaryFragment"
+        android:label="DictionaryFragment" >
+        <action
+            android:id="@+id/action_dictionaryFragment_to_dictionarySearchFragment"
+            app:destination="@id/dictionarySearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dictionarySearchFragment"
+        android:name="com.overmighties.pubber.feature.dictionary.DictionarySearchFragment"
+        android:label="DictionarySearchFragment" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.overmighties.pubber.feature.bookmarks.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
+
 </navigation>

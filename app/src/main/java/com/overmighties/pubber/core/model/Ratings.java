@@ -4,7 +4,6 @@ package com.overmighties.pubber.core.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 
 @Data
@@ -46,7 +45,6 @@ public class Ratings {
         if (count == 0){
             return null;
         }
-
         else{
             sum = sum/count;
             return Math.round(sum*100.f)/100.f;

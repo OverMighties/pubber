@@ -1,20 +1,29 @@
 package com.overmighties.pubber.app.navigation;
 
+import androidx.annotation.Nullable;
 import androidx.navigation.NavDirections;
 
+import com.overmighties.pubber.app.ui.PlaceChoiceFragmentDirections;
 import com.overmighties.pubber.feature.account.AccountDetailsFragmentDirections;
 import com.overmighties.pubber.feature.auth.SignInFragmentDirections;
 import com.overmighties.pubber.feature.auth.SignUpFragmentDirections;
 import com.overmighties.pubber.feature.auth.SplashFragmentDirections;
 import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
+import com.overmighties.pubber.feature.settings.SettingsFragmentDirections;
 
 
 public final class PubberNavRoutes {
     public static final String SPLASH_FRAGMENT="SplashFragment";
-    public static final String SEARCHER_FRAGMENT="searcher";
+    public static final String SEARCHER_FRAGMENT="SearcherFragment";
     public static final String SIGN_IN_FRAGMENT="SignInFragment";
     public static final String SIGN_UP_FRAGMENT="SignUpFragment";
-    public static final String ACCOUNT_FRAGMENT="AccountFragment";
+    public static final String ACCOUNT_DETAILS_FRAGMENT ="AccountDetailsFragment";
+    public static final String SETTINGS_FRAGMENT="SettingsFragment";
+    public static final String DICTIONARY_FRAGMENT="DictionaryFragment";
+    public static final String PLACE_CHOICE_FRAGMENT="PlaceChoiceFragment";
+    public static final String NEW_USER_DETAILS_FRAGMENT="NewUserDetailsFragment";
+    public static final String MAP_FRAGMENT="MapFragment";
+    @Nullable
     public static NavDirections getNavDirections(String from , String to){
         switch (from) {
             case SPLASH_FRAGMENT:
@@ -23,22 +32,41 @@ public final class PubberNavRoutes {
                         return SplashFragmentDirections.actionSplashFragmentToSignInFragment();
                     case SIGN_UP_FRAGMENT:
                         return SplashFragmentDirections.actionSplashFragmentToSignUpFragment();
-                    case SEARCHER_FRAGMENT:
-                        return SplashFragmentDirections.actionGlobalSearcher();
+                    case PLACE_CHOICE_FRAGMENT:
+                        return SplashFragmentDirections.actionGlobalPlaceChoiceFragment();
+                    case NEW_USER_DETAILS_FRAGMENT:
+                        return SplashFragmentDirections.actionSplashFragmentToNewUserDetailsFragment();
                 }
+            case PLACE_CHOICE_FRAGMENT:
+                return PlaceChoiceFragmentDirections.actionPlaceChoiceFragmentToSearcherGraph();
             case SIGN_UP_FRAGMENT:
-                return SignUpFragmentDirections.actionGlobalSearcher();
+                return SignUpFragmentDirections.actionSignInFragmentToNewUserDetailsFragment();
             case SIGN_IN_FRAGMENT:
                 switch (to) {
-                    case SEARCHER_FRAGMENT:
-                        return SignInFragmentDirections.actionGlobalSearcher();
+                    case PLACE_CHOICE_FRAGMENT:
+                        return SignInFragmentDirections.actionGlobalPlaceChoiceFragment();
                     case SIGN_UP_FRAGMENT:
                         return SignInFragmentDirections.actionSignInFragmentToSignUpFragment();
                 }
             case SEARCHER_FRAGMENT:
-                return SearcherFragmentDirections.actionSearcherToLogInGraph();
-            case ACCOUNT_FRAGMENT:
-                return AccountDetailsFragmentDirections.actionAccountDetailsToSplash();
+                switch (to) {
+                    case MAP_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToMapFragment();
+                    case ACCOUNT_DETAILS_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToAccountDetailsFragment();
+                    case SETTINGS_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToSettingsGraph();
+                    case DICTIONARY_FRAGMENT:
+                        return SearcherFragmentDirections.actionSearcherFragmentToDictionaryFragment();
+                    default:
+                        return SearcherFragmentDirections.actionSearcherFragmentToLoginGraph();
+                }
+            case ACCOUNT_DETAILS_FRAGMENT:
+                return AccountDetailsFragmentDirections.actionAccountDetailsFragmentToLoginGraph();
+            case SETTINGS_FRAGMENT:
+                return SettingsFragmentDirections.actionSettingsFragmentLoginGraph();
+            case NEW_USER_DETAILS_FRAGMENT:
+                return SignInFragmentDirections.actionGlobalPlaceChoiceFragment();
         }
         return null;
     }

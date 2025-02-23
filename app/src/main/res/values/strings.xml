@@ -5,71 +5,222 @@
         <item>0</item>
         <item>10</item>
     </string-array>
+    <!-- Notifications -->
+    <string name="general_group">POWIADOMIENIA</string>
+    <string name="notifications_from_app">Od Pubbera</string>
+    <string name="notifications_rating">Twoje opinie</string>
+    <string name="notification_from_app_remind_title">Wychodzisz dzisiaj ?</string>
+    <string name="notification_from_app_remind_description">Znajdź Pub, który idealnie do ciebie pasuje !</string>
+    <!--Beer/Drink names-->
     <string name="hello_blank_fragment">Hi There</string>
-    <string name="AleBrowar">AleBrowar</string>
-    <string name="Amber">Amber</string>
-    <string name="Artezan">Artezan</string>
-    <string name="FunkyFluids">Funky Fluids</string>
-    <string name="Grimbergen">Grimbergen</string>
-    <string name="Grodziskie">Grodzisk</string>
-    <string name="Grolsch">Grolsch</string>
-    <string name="Harnaś">Harnaś</string>
-    <string name="Kasztelan">Kasztelan</string>
-    <string name="Kingpin">Kingpin</string>
-    <string name="Komoran">Komoran</string>
-    <string name="Kozel">Kozel</string>
-    <string name="Książęce">Książęce</string>
-    <string name="Lech">Lech</string>
-    <string name="Łomża">Łomża</string>
-    <string name="Miłosław">Miłosław</string>
-    <string name="Moczybroda">Moczybroda</string>
-    <string name="NaJurze">Na Jurze</string>
-    <string name="Namysłów">Namysłów</string>
-    <string name="Nepomucen">Nepomucen</string>
-    <string name="Okocim">Okocim</string>
-    <string name="Paulaner">Paulaner</string>
-    <string name="Perła">Perła</string>
-    <string name="PilsenrUrquell">Pilsenr Urquell</string>
-    <string name="Pinta">Pinta</string>
-    <string name="Primator">Primator</string>
-    <string name="Racibórz">Racibórz</string>
-    <string name="Raduga">Raduga</string>
-    <string name="Recraft">Recraft</string>
-    <string name="Staropramen">Staropramen</string>
-    <string name="Somersby">Somersby</string>
-    <string name="TrzechKumpli">Trzech Kumpli</string>
-    <string name="Tyskie">Tyskie</string>
-    <string name="Witnica">Witnica</string>
-    <string name="Wrężel">Wrężel</string>
-    <string name="Zatecky">Zatecky</string>
-    <string name="Zamiastem">Za miastem</string>
-    <string name="Żubr">Żubr</string>
-    <string name="Żywiec">Żywiec</string>
-    <string name="wiecej">więcej</string>
-    <string name="Brokreacja">Brokreacja</string>
-    <string name="Budweiser">Budweiser</string>
-    <string name="Cieszyn">Cieszyn</string>
-    <string name="Fortuna">Fortuna</string>
-    <string name="Komes">Komes</string>
-    <string name="BlackRussian">Black Russian</string>
-    <string name="B52">B-52</string>
-    <string name="Cosmopolitan">Cosmopolitan</string>
-    <string name="CubaLibre">Cuba Libre</string>
-    <string name="Daiquiri">Daiquiri</string>
-    <string name="Kamikaze">Kamikaze</string>
-    <string name="KrwawaMary">Krwawa Mary</string>
-    <string name="LongIsland">Long Island</string>
-    <string name="Margarita">Margarita</string>
-    <string name="Martini">Martini</string>
-    <string name="Mojito">Mojito</string>
-    <string name="PinaColada">Pina Colada</string>
-    <string name="Sexonthebeach">Sex on the beach</string>
-    <string name="TequilaSunrise">Tequila Sunrise</string>
+    <string-array name="all_breweries">
+        <item>AleBrowar</item>
+        <item>Amber</item>
+        <item>Artezan</item>
+        <item>Brokreacja</item>
+        <item>Budweiser</item>
+        <item>Cieszyn</item>
+        <item>Fortuna</item>
+        <item>Funky Fluids</item>
+        <item>Grimbergen</item>
+        <item>Grodzisk</item>
+        <item>Grolsch</item>
+        <item>Harnaś</item>
+        <item>Kasztelan</item>
+        <item>Kingpin</item>
+        <item>Komes</item>
+        <item>Komoran</item>
+        <item>Kozel</item>
+        <item>Książęce</item>
+        <item>Lech</item>
+        <item>Łomża</item>
+        <item>Miłosław</item>
+        <item>Moczybroda</item>
+        <item>Na Jurze</item>
+        <item>Namysłów</item>
+        <item>Nepomucen</item>
+        <item>Okocim</item>
+        <item>Paulaner</item>
+        <item>Perła</item>
+        <item>Pilsner Urquell</item>
+        <item>Pinta</item>
+        <item>Primator</item>
+        <item>Racibórz</item>
+        <item>Raduga</item>
+        <item>Recraft</item>
+        <item>Somersby</item>
+        <item>Staropramen</item>
+        <item>Trzech Kumpli</item>
+        <item>Tyskie</item>
+        <item>Witnica</item>
+        <item>Wrężel</item>
+        <item>Za Miastem</item>
+        <item>Zatecky</item>
+        <item>Żubr</item>
+        <item>Żywiec</item>
+    </string-array>
+    <string-array name="first_to_show_breweries">
+        <item>Budweiser</item>
+        <item>Grodzisk</item>
+        <item>Grolsch</item>
+        <item>Kozel</item>
+        <item>Paulaner</item>
+        <item>Pilsner Urquell</item>
+        <item>Pinta</item>
+        <item>Trzech Kumpli</item>
+        <item>Żywiec</item>
+    </string-array>
+    <string-array name="second_to_show_breweries">
+        <item>AleBrowar</item>
+        <item>Amber</item>
+        <item>Artezan</item>
+        <item>Brokreacja</item>
+        <item>Cieszyn</item>
+        <item>Fortuna</item>
+        <item>Funky Fluids</item>
+        <item>Grimbergen</item>
+        <item>Harnaś</item>
+        <item>Kasztelan</item>
+        <item>Kingpin</item>
+        <item>Komes</item>
+        <item>Komoran</item>
+        <item>Książęce</item>
+        <item>Lech</item>
+        <item>Łomża</item>
+        <item>Miłosław</item>
+        <item>Moczybroda</item>
+        <item>Na Jurze</item>
+        <item>Namysłów</item>
+        <item>Nepomucen</item>
+        <item>Okocim</item>
+        <item>Perła</item>
+        <item>Primator</item>
+        <item>Racibórz</item>
+        <item>Raduga</item>
+        <item>Recraft</item>
+        <item>Somersby</item>
+        <item>Staropramen</item>
+        <item>Tyskie</item>
+        <item>Witnica</item>
+        <item>Wrężel</item>
+        <item>Za Miastem</item>
+        <item>Zatecky</item>
+        <item>Żubr</item>
+    </string-array>
+    <string-array name="cocktails">
+        <item>Black Russian</item>
+        <item>B-52</item>
+        <item>Cosmopolitan</item>
+        <item>Cuba Libre</item>
+        <item>Daiquiri</item>
+        <item>Kamikaze</item>
+        <item>Krwawa Mary</item>
+        <item>Long Island</item>
+        <item>Margarita</item>
+        <item>Martini</item>
+        <item>Mojito</item>
+        <item>Pina Colada</item>
+        <item>Sex on the beach</item>
+        <item>Tequila Sunrise</item>
+    </string-array>
 
-    <string name="sort_relevance">Trafność</string>
-    <string name="sort_rating">Najwyżej oceniane</string>
-    <string name="sort_alphabetical">Alfabetycznie</string>`
-    <string name="sort_distance">Najmniejsza odległość</string>
+    <string name="wiecej">więcej</string>
+
+
+    <!--beer styles-->
+    <string-array name="beer_styles">
+        <item>Lager</item>
+        <item>Pilsner</item>
+        <item>IPA</item>
+        <item>APA</item>
+        <item>Witbier</item>
+        <item>Porter</item>
+        <item>Stout</item>
+        <item>Ale</item>
+        <item>Wheat beer</item>
+        <item>Dark beer</item>
+        <item>Light beer</item>
+    </string-array>
+    <!-- string array for editing pub-->
+    <string-array name="beer_styles_unkown">
+        <item>Unknown</item>
+        <item>Lager</item>
+        <item>Pilsner</item>
+        <item>IPA</item>
+        <item>APA</item>
+        <item>Witbier</item>
+        <item>Porter</item>
+        <item>Scout</item>
+        <item>Ale</item>
+        <item>Wheat beer</item>
+        <item>Dark beer</item>
+        <item>Light beer</item>
+    </string-array>
+
+    <!--pub's tags-->
+    <string-array name="pub_tags">
+        <item>Whiskey</item>
+        <item>Wino</item>
+        <item>Shoty</item>
+        <item>Piwa kraftowe</item>
+        <item>Piwa koncernowe</item>
+        <item>Gry planszowe</item>
+        <item>Karaoke</item>
+        <item>Muzyka na żywo</item>
+        <item>Tanie piwo</item>
+    </string-array>
+
+
+    <!--beer styles long descriptiopn-->
+    <!-- TODO translate beer styles desciption to english-->
+    <string-array name="beer_styles_long_description">
+    </string-array>
+    <string-array name="beer_styles_short_description">
+    </string-array>
+    <string-array name="beer_styles_maltiness">
+        <item>2/5</item>
+        <item>2/5</item>
+        <item>3/5</item>
+        <item>3/5</item>
+        <item>2/5</item>
+        <item>4/5</item>
+        <item>4/5</item>
+        <item>3/5</item>
+        <item>3/5</item>
+        <item>4/5</item>
+        <item>2/5</item>
+    </string-array>
+
+    <string-array name="beer_styles_hoppiness">
+        <item>2/5</item>
+        <item>4/5</item>
+        <item>5/5</item>
+        <item>4/5</item>
+        <item>2/5</item>
+        <item>2/5</item>
+        <item>3/5</item>
+        <item>3/5</item>
+        <item>2/5</item>
+        <item>2/5</item>
+        <item>3/5</item>
+    </string-array>
+
+    <string-array name="beer_styles_alcohol_percentage">
+        <item>4-5%</item>
+        <item>4-5%</item>
+        <item>5-7%</item>
+        <item>4-6%</item>
+        <item>4-5%</item>
+        <item>4-6%</item>
+        <item>5-12%</item>
+        <item>4-7%</item>
+        <item>4-6%</item>
+        <item>5-7%</item>
+        <item>4-5%</item>
+    </string-array>
+    <string name="short_des">Short description</string>
+
+    <!--beer styles short description-->
 
     <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign Out</string>
@@ -78,19 +229,35 @@
     <string name="page_title">%1$s</string>
     <string name="searcher_title">Searcher</string>
     <!-- Snackbar messages-->
+    <string name="sth_went_wrong">Something went wrong …\u0020</string>
     <string name="auth_error_message">Authentication Error</string>
+    <string name="user_account_error_message">User Account Error</string>
     <string name="no_internet_connection_message">No Internet Connection</string>
     <string name="marked_as_favorite_message">Marked as Favorite</string>
     <string name="comment_added_message">Comment Added</string>
+    <string name="no_navigation_message">No navigation</string>
     <!--Top app bar-->
     <string name="ic_settings_title">Settings</string>
-    <string name="more">more</string>
+    <string name="ic_expand_title">More</string>
+    <string name="dictionary">Alcohol dictionary</string>
     <string name="edit">edit</string>
-    <string name="favorite">favourite</string>
+    <!--Bottom app bar-->
+    <string name="list">List</string>
+    <string name="favorite">Favourite</string>
+    <string name="settings">Settings</string>
+    <!-- new user details-->
+    <string name="your_nickname">Your nickname</string>
     <!--Account details-->
     <string name="sex_title">Sex: </string>
     <string name="email_title">Email: </string>
     <string name="username_title">Username: </string>
+    <string name="edit_content">Edit</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_account">Delete account</string>
+    <string name="yes">Yes</string>
+    <string name="new_email">New email:</string>
+    <string name="new_username">New username:</string>
     <!--Auth messages-->
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>
@@ -116,14 +283,251 @@
     <string name="status_verification_succeeded">Verification succeeded</string>
     <string name="status_sign_in_failed">Sign-in failed</string>
     <string name="instant_validation">(instant validation)</string>
-
-    <string name="label_google_sign_in">Sign In with Google </string>
+    <string name="label_google_sign_in">Continue with Google </string>
     <string name="label_email_sign_in">Sign In with email </string>
     <string name="label_email_sign_up">Sign Up with email </string>
-    <string name="label_email_sign_up_add"> "Sing Up ( You create account )"</string>
+    <string name="label_email_sign_up_add">Sing Up</string>
     <string name="ic_account_title">My account</string>
     <string name="content_description_profile_image">Your profile image</string>
     <string name="account_detail_title_cardview">Detail name:</string>
     <string name="account_detail_content_cardview">detail content\n</string>
+    <string name="log_out">Log Out</string>
+
+    <!-- first time fragments strings -->
+    <string name="welcome_in_pubber">Welcome in Pubber!</string>
+    <string name="first_time_info">We hope to help you find pubs that match your taste and to stay by your side as long as possible.</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="choose_language">Choose your language:</string>
+    <string name="choose_theme">Choose app\'s theme:</string>
+    <string name="theme">Phone\'s theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="polish">Polski</string>
+    <string name="english">English</string>
+    <string name="ukrainian">Український</string>
+    <string name="con">Continue</string>
+    <string name="example_button">Button example</string>
+    <string name="text">Text</string>
+    <!-- general string used in more than one layout-->
+    <string name="go_back">go back</string>
+    <string name="more">More</string>
+    <string name="less">Less</string>
+    <string name="rating">Rating</string>
+    <string name="distance">Distance</string>
+    <string name="price">Price</string>
+    <string name="time_open">Time open</string>
+    <string name="beers">Beers</string>
+    <string name="beers_present">Beers:</string>
+    <string name="drinks">Drinks</string>
+    <string name="drinks_present">Drinks:</string>
+    <string name="cheap">$</string>
+    <string name="medium_price">$$</string>
+    <string name="expensive">$$$</string>
+    <string name="available_alcohols">Available alcohols</string>
+    <string name="language">Language</string>
+    <string name="map">Map</string>
+    <string name="nodata">No data</string>
+    <string name="city_rzeszow">Rzeszów</string>
+    <string name="city_warsaw">Warsaw</string>
+    <string name="city_cracow">Cracow</string>
+
+
+    <!--searcher and it's pop ups-->
+    <string name="sort_based_on">Sort based on:</string>
+    <string name="searchview_hint">Type here…</string>
+    <string name="sort_relevance">Relevance</string>
+    <string name="sort_rating">Highest Rating</string>
+    <string name="sort_alphabetical">Alphabetical</string>`
+    <string name="sort_distance">Closest</string>
+    <string name="imperfect">Imperfect matches</string>
+    
+
+    <!-- details-->
+    <string name="pub_name">Pub\'s name</string>
+    <string name="call">Call</string>
+    <string name="rate">Rate</string>
+    <string name="share">Share</string>
+    <string name="space_symbol">•\ </string>
+    <string name="price_point">Price point •\ </string>
+    <string name="not_calculated">Calculate distance</string>
+    <string name="reservable">Reservable</string>
+    <string name="takeout">Takeout</string>
+    <string name="tags">Tags</string>
+    <string name="propose_change">Propose a change</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="unknown">Unknown</string>
+    <string name="select_beers_remove">Select beers to be removed</string>
+    <string name="select_drinks_remove">Select drinks to be removed</string>
+    <string name="select_tags_add">Select tags to be added</string>
+    <string name="select_tags_remove">Select tags to be removed</string>
+    <string name="submit">Submit</string>
+    <string name="tags_present">Tags:</string>
+    <string name="choose">Choose</string>
+    <string name="share_rating">Share your experience</string>
+    <string name="rating_error">Rating cannot be less than 1</string>
+    <string name="publish">Publish</string>
+    <string name="opinions">Opinions</string>
+    <string name="origin">Origin</string>
+    <string name="nickname">Nickname</string>
+    <string name="content">Content</string>
+    <string name="google">Google</string>
+    <string name="tripadvisor">Tripadvisor</string>
+    <string name="facebook">Facebook</string>
+
+    <!--settings fragment-->
+    <string name="dark_theme">Night Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="soon">Soon…</string>
+    <string name="game">Go to game</string>
+    <string name="send_message">Send us a message</string>
+    <string name="about_us">About us</string>
+    <string name="type_here">Type here…</string>
+    <string name="send">Send</string>
+    <string name="send_message_adnotation">We are asking for writing everything that comes to your mind. From your overall app experience to what would you like to be added in the future. Thanks in advance for all messages.\n </string>
+    <!-- about us fragment -->
+    <string name="question1">What is idea\'s origin ?</string>
+    <string name="answer1">Pretty simple answer being honest. Me and my friend wanted to give you and also us a possibility to choose a pub in simple and fast way. Myself, I love to go out for pub crawling once in a while, but after all i always struggle to decide which one I would like to visit based on Google Maps. So that\'s how idea origin and now we are here. </string>
+    <string name="question2">Who are we ?</string>
+    <string name="answer2">The writers of whole code from A to Z are 2 students. One from PW another from AGH. When it comes to graphics, there is one more student from PJATK.  </string>
+    <string name="question3">What are future plans for app\'s development ?</string>
+    <string name="answer3">We will keep this answer regularly updated so make sure to once in a while check it out. Back to the topic, firstly we are going to give you guys an possibility to fully change pubs\' drink and beers, because we aren\'t able to keep up with updating them ourselves so we will give you a platform to do so. Secondly as you might\'ve spotted already our game is coming out soon (..</string>
+    <string name="question4">Must there be ads ?</string>
+    <string name="answer4">Sadly there must, we have to pay for server and Google\'s api asks. Sorry and thanks.</string>
+
+
+
+    <!-- recycler view row -->
+    <string name="guide">Guide</string>
+    <string name="alcohols">Alcohols</string>
+
+
+    <!-- filtration screen and it's pop ups-->
+    <string name="filtration_screen">Filtration</string>
+    <string name="open_now">Open now</string>
+    <string name="custom">Custom</string>
+    <string name="filtr">Filtr</string>
+    <string name="clear">Clear</string>
+    <string name="breweries">Breweries</string>
+    <string name="styles">Styles</string>
+    <string name="combination">Particular beers</string>
+    <string name="choose_brewery">Choose brewery…</string>
+    <string name="choose_style">Choose style…</string>
+
+    <string name="anytime">Anytime</string>
+    <string name="next_day">(next day)</string>
+    <string name="from">from</string>
+    <string name="to">to</string>
+    <string name="time_0000">00:00</string>
+    <string name="time_0030">00:30</string>
+    <string name="time_0100">01:00</string>
+    <string name="time_0130">01:30</string>
+    <string name="time_0200">02:00</string>
+    <string name="time_0230">02:30</string>
+    <string name="time_0300">03:00</string>
+    <string name="time_0330">03:30</string>
+    <string name="time_0400">04:00</string>
+    <string name="time_0430">04:30</string>
+    <string name="time_0500">05:00</string>
+    <string name="time_0530">05:30</string>
+    <string name="time_0600">06:00</string>
+    <string name="time_0630">06:30</string>
+    <string name="time_0700">07:00</string>
+    <string name="time_0730">07:30</string>
+    <string name="time_0800">08:00</string>
+    <string name="time_0830">08:30</string>
+    <string name="time_0900">09:00</string>
+    <string name="time_0930">09:30</string>
+    <string name="time_1000">10:00</string>
+    <string name="time_1030">10:30</string>
+    <string name="time_1100">11:00</string>
+    <string name="time_1130">11:30</string>
+    <string name="time_1200">12:00</string>
+    <string name="time_1230">12:30</string>
+    <string name="time_1300">13:00</string>
+    <string name="time_1330">13:30</string>
+    <string name="time_1400">14:00</string>
+    <string name="time_1430">14:30</string>
+    <string name="time_1500">15:00</string>
+    <string name="time_1530">15:30</string>
+    <string name="time_1600">16:00</string>
+    <string name="time_1630">16:30</string>
+    <string name="time_1700">17:00</string>
+    <string name="time_1730">17:30</string>
+    <string name="time_1800">18:00</string>
+    <string name="time_1830">18:30</string>
+    <string name="time_1900">19:00</string>
+    <string name="time_1930">19:30</string>
+    <string name="time_2000">20:00</string>
+    <string name="time_2030">20:30</string>
+    <string name="time_2100">21:00</string>
+    <string name="time_2130">21:30</string>
+    <string name="time_2200">22:00</string>
+    <string name="time_2230">22:30</string>
+    <string name="time_2300">23:00</string>
+    <string name="time_2330">23:30</string>
+    <string name="time_2400">24:00</string>
+    <string name="today">Today</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+    <!-- Signing up password-->
+    <string name="weak_password">Weak</string>
+    <string name="average_password">Average</string>
+    <string name="strong_password">Strong</string>
+    <string name="confirm">Confirm</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+
+    <!-- Alert dialog with location permission-->
+    <string name="location_alert_dialog_title">Location Permission Needed</string>
+    <string name="location_alert_dialog_message">This app needs location permissions to calculate distances between you and pubs. Please grant location access.</string>
+    <string name="location_alert_dialog_positive">OK</string>
+    <string name="location_alert_dialog_negative">No thanks</string>
+
+
+    <string name="transition_scale_up_name">scale_up</string>
+
+    <!--preferencescreen settings -->
+    <string name="general_category">General</string>
+    <string name="notifications_key">notification</string>
+    <string name="enable_notifications">Enable notifications</string>
+    <string name="localization_key">localization</string>
+    <string name="enable_localization">Enable localization</string>
+    <string name="language_key">language</string>
+    <string-array name="language_list">
+        <item>Polski</item>
+        <item>English</item>
+        <item>Український</item>
+    </string-array>
+    <string name="theme_key">theme</string>
+    <string-array name="theme_list">
+        <item>Phone\'s theme</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string name="information_category">Informations</string>
+    <string name="about_us_key">about_us</string>
+    <string name="about_us_summary">Informations about app and it\'s origin</string>
+    <string name="send_feedback_key">feedback</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="send_feedback_summary">Report technical issues or suggest new features!</string>
+    <string name="account_key">account</string>
+    <string name="account">Manage</string>
+    <string name="account_log_out_key">logout</string>
+    <string name="account_log_out">Log out</string>
+
+    <!--particular alcohol dialog-->
+    <string name="hopiness">- Hopiness</string>
+    <string name="maltiness">- Maltiness</string>
+    <string name="alcohol_percentage">Alcohol percentage</string>
+
 
 </resources>

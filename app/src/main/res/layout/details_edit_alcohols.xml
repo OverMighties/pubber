@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsEditA_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsEditA_cl_topBar"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@color/surface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/detailsEditA_image_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsEditA_cl_beers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditA_cl_topBar">
+
+        <TextView
+            android:id="@+id/detailsEditA_test_beers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/beers"
+            android:textColor="@color/on_surface"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/detailsEditA_image_beer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/detailsEditA_test_beers"
+            app:layout_constraintStart_toEndOf="@+id/detailsEditA_test_beers"
+            app:layout_constraintTop_toTopOf="@+id/detailsEditA_test_beers"
+            app:srcCompat="@drawable/ic_expand_more_secondary" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/detailsEditA_chip_addBeer"
+            style="@style/ActionChip"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/add"
+            android:visibility="gone"
+            app:chipIcon="@drawable/ic_add"
+            app:layout_constraintStart_toStartOf="@id/detailsEditA_test_beers"
+            app:layout_constraintTop_toBottomOf="@+id/detailsEditA_test_beers" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/detailsEditA_chip_removeBeer"
+            style="@style/ActionChip"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="80dp"
+            android:text="@string/remove"
+            android:visibility="gone"
+            app:chipIcon="@drawable/ic_close_on_secondary_container"
+            app:layout_constraintStart_toEndOf="@id/detailsEditA_chip_addBeer"
+            app:layout_constraintTop_toTopOf="@+id/detailsEditA_chip_addBeer" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsEditA_recyclerView_addBeer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/detailsEditA_chip_addBeer"
+            app:layout_constraintTop_toBottomOf="@+id/detailsEditA_chip_addBeer" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsEditA_recyclerView_removeBeer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/detailsEditA_chip_removeBeer"
+            app:layout_constraintTop_toBottomOf="@+id/detailsEditA_chip_removeBeer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsEditA_cl_drinks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEditA_cl_beers">
+
+        <TextView
+            android:id="@+id/detailsEditA_text_drinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/drinks"
+            android:textColor="@color/on_surface"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/detailsEditA_image_drinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/detailsEditA_text_drinks"
+            app:layout_constraintStart_toEndOf="@+id/detailsEditA_text_drinks"
+            app:layout_constraintTop_toTopOf="@+id/detailsEditA_text_drinks"
+            app:srcCompat="@drawable/ic_expand_more_secondary" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/detailsEditA_chip_addDrink"
+            style="@style/ActionChip"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/add"
+            android:visibility="gone"
+            app:chipIcon="@drawable/ic_add"
+            app:layout_constraintStart_toStartOf="@id/detailsEditA_text_drinks"
+            app:layout_constraintTop_toBottomOf="@+id/detailsEditA_text_drinks" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/detailsEditA_chip_removeDrink"
+            style="@style/ActionChip"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="80dp"
+            android:text="@string/remove"
+            android:visibility="gone"
+            app:chipIcon="@drawable/ic_close_on_secondary_container"
+            app:layout_constraintStart_toEndOf="@id/detailsEditA_chip_addDrink"
+            app:layout_constraintTop_toTopOf="@+id/detailsEditA_chip_addDrink" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsEditA_recyclerView_addDrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/detailsEditA_chip_addDrink"
+            app:layout_constraintTop_toBottomOf="@+id/detailsEditA_chip_addDrink" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsEditA_recyclerView_removeDrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/detailsEditA_chip_removeDrink"
+            app:layout_constraintTop_toBottomOf="@+id/detailsEditA_chip_removeDrink" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/detailsEditA_button_submit"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_shape_secondary"
+        android:text="@string/submit"
+        android:textColor="@color/on_secondary_container"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

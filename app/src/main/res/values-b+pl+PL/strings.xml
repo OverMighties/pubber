@@ -1,0 +1,338 @@
+<resources>
+    <string name="app_name">Pubber</string>
+    <string name="nazwa_aplikacji">Pubber</string>
+    <string-array name="rangeRating">
+        <item>0</item>
+        <item>10</item>
+    </string-array>
+    <string name="hello_blank_fragment">Siemka</string>
+    <!-- Notifications -->
+    <string name="general_group">POWIADOMIENIA</string>
+    <string name="notifications_from_app">Od Pubbera</string>
+    <string name="notifications_rating">Twoje opinie</string>
+    <string name="notification_from_app_remind_title">Wychodzisz dzisiaj ?</string>
+    <string name="notification_from_app_remind_description">Znajdź Pub, który idealnie do ciebie pasuje !</string>
+    <!--beer styles-->
+    <string-array name="beer_styles">
+        <item>Lager</item>
+        <item>Pilsner</item>
+        <item>IPA</item>
+        <item>APA</item>
+        <item>Witbier</item>
+        <item>Porter</item>
+        <item>Scout</item>
+        <item>Ale</item>
+        <item>Pszeniczne</item>
+        <item>Ciemne</item>
+        <item>Jasne</item>
+    </string-array>
+    <!--beer styles long descriptiopn-->
+    <string-array name="beer_styles_long_description">
+        <item>Lager to jeden z najpopularniejszych stylów piwa na świecie, charakteryzujący się jasnym, złocistym kolorem i czystym, orzeźwiającym smakiem. Jest fermentowane w niskich temperaturach, co nadaje mu łagodny profil smakowy z subtelnymi nutami słodu i niską goryczką. Lagery są często spożywane zimne i idealnie pasują na ciepłe dni.</item>
+        <item>Pilsner to styl piwa pochodzący z Czech, charakteryzujący się jasnozłotym kolorem i wyraźnym, chmielowym aromatem. Pilsnery mają czysty i wyraźny profil smakowy z wyraźną, ale nie przytłaczającą goryczką. Są fermentowane w niskich temperaturach, co przyczynia się do ich świeżości i klarowności. Idealne na każdą okazję, szczególnie latem.</item>
+        <item>IPA, czyli India Pale Ale, to styl piwa charakteryzujący się wyraźnym chmielowym smakiem i aromatem, często z nutami cytrusów, sosny i kwiatów. Powstało w XIX wieku, kiedy piwo było warzone z dodatkiem dużej ilości chmielu, aby przetrwało długą podróż morską do Indii. IPA są zazwyczaj intensywne w smaku, z wyraźną goryczką i wyższym poziomem alkoholu niż większość innych piw.</item>
+        <item>American Pale Ale (APA) to styl piwa wywodzący się z USA, charakteryzujący się wyraźnym, ale bardziej zbalansowanym chmielowym smakiem w porównaniu do IPA. APA ma zazwyczaj jasną, miedzianą barwę i umiarkowaną goryczkę, z nutami cytrusów, sosny i kwiatów. Jest lżejsze od IPA, zarówno pod względem smaku, jak i zawartości alkoholu, co sprawia, że jest doskonałym wyborem na codzienne picie.</item>
+        <item>Witbier, znane również jako "białe piwo", to belgijskie piwo pszeniczne charakteryzujące się lekkim, mętnym wyglądem i orzeźwiającym smakiem. Warzone z dodatkiem skórki pomarańczowej i kolendry, ma subtelne nuty cytrusów i przypraw, które nadają mu unikalny profil smakowy. Witbier jest lekkie, orzeźwiające i idealne na gorące dni.</item>
+        <item>Porter to ciemne piwo o angielskich korzeniach, charakteryzujące się bogatym, złożonym smakiem z nutami czekolady, kawy i karmelu. Posiada pełne ciało i ciemny kolor, który zawdzięcza prażonym słodom używanym w procesie warzenia. Porter jest często gładkie i kremowe, z umiarkowaną goryczką i średnim poziomem alkoholu. Idealne do degustacji w chłodniejsze dni.</item>
+        <item>Stout to styl piwa wywodzący się z Anglii i Irlandii, znany ze swojego ciemnego koloru i bogatego, intensywnego smaku. Charakterystyczne dla stoutów są nuty palonych słodów, kawy, czekolady, a czasem nawet karmelu. Stouty mogą mieć różne odmiany, takie jak dry stout, oatmeal stout czy imperial stout, różniące się intensywnością i zawartością alkoholu. Są pełne w smaku i doskonale pasują na chłodniejsze dni.</item>
+        <item>Ale to kategoria piw górnej fermentacji, która obejmuje wiele stylów, takich jak pale ale, brown ale, czy amber ale. Ale są fermentowane w wyższych temperaturach, co prowadzi do bogatego i złożonego profilu smakowego. Mogą mieć różne kolory, od jasnego złota po głęboki bursztyn, i różne poziomy goryczki oraz chmielowości. Ale są cenione za swoją różnorodność i złożoność smaków, które zadowalają różne gusta.</item>
+        <item>Piwo pszeniczne, znane również jako weizen lub hefeweizen, to styl piwa warzonego z dużą ilością słodu pszenicznego, co nadaje mu lekką, mętną barwę i delikatny, orzeźwiający smak. Charakteryzuje się nutami bananów, goździków i czasami cytrusów, które pochodzą od specjalnych drożdży używanych w procesie fermentacji. Piwo pszeniczne jest idealne na ciepłe dni, dzięki swojej lekkiej i odświeżającej naturze.</item>
+        <item>Piwo ciemne to kategoria obejmująca różne style piw, które charakteryzują się ciemną barwą i bogatym, pełnym smakiem. Do tej kategorii należą m.in. portery i stoutu, które mają wyraźne nuty palonych słodów, kawy, czekolady i karmelu. Piwa ciemne są zazwyczaj bardziej złożone i mają pełniejsze ciało, co sprawia, że są idealne do degustacji w chłodniejsze dni.</item>
+        <item>Piwo jasne to szeroka kategoria piw, które charakteryzują się jasną barwą i lekkim, orzeźwiającym smakiem. Do tej kategorii należą m.in. lagery, pilsnery i niektóre pale ale. Piwa jasne są zazwyczaj bardziej klarowne i mają subtelniejszy profil smakowy, z delikatnymi nutami słodu i umiarkowaną goryczką. Idealne na każdą okazję, szczególnie w ciepłe dni.</item>
+    </string-array>
+
+    <string-array name="beer_styles_short_description">
+        <item>Lager to lekkie i orzeźwiające piwo o czystym smaku.</item>
+        <item>Pilsner to jasne, klarowne piwo z wyraźną goryczką i chmielowym aromatem.</item>
+        <item>IPA to intensywnie chmielone piwo z wyraźną goryczką i cytrusowym aromatem.</item>
+        <item>APA to amerykańska wersja pale ale z wyraźnym chmielowym charakterem i umiarkowaną goryczką.</item>
+        <item>Witbier to lekkie, pszeniczne piwo z nutami cytrusów i przypraw.</item>
+        <item>Porter to ciemne, pełne piwo o smakach czekolady i kawy.</item>
+        <item>Stout to ciemne piwo z intensywnymi smakami palonych słodów, kawy i czekolady.</item>
+        <item>Ale to szeroka kategoria piw górnej fermentacji o bogatym smaku i różnorodnych stylach.</item>
+        <item>Piwo pszeniczne to lekkie i orzeźwiające piwo z nutami owocowymi i przyprawowymi.</item>
+        <item>Piwo ciemne to bogate, pełne piwo z nutami kawy, czekolady i karmelu.</item>
+        <item>Piwo jasne to lekkie, orzeźwiające piwo o czystym smaku.</item>
+    </string-array>
+
+    <!--beer styles short description-->
+
+    <string name="sign_in">Zaloguj się</string>
+    <string name="sign_out">Wyloguj się</string>
+    <string name="loading">Ładowanie…</string>
+    <!-- Screens titles-->
+    <string name="page_title">%1$s</string>
+    <string name="searcher_title">Searcher</string>
+    <!-- Snackbar messages-->
+    <string name="sth_went_wrong">Coś poszło nie tak…</string>
+    <string name="auth_error_message">Błąd uwierzytelniania</string>
+    <string name="user_account_error_message">Błąd konta użytkownika</string>
+    <string name="no_internet_connection_message">Brak Internetu</string>
+    <string name="marked_as_favorite_message">Oznaczony jako ulubiony</string>
+    <string name="comment_added_message">Komentarz dodany</string>
+    <string name="no_navigation_message">Brak nawiagacji</string>
+    <!--Top app bar-->
+    <string name="ic_settings_title">Ustawienia</string>
+    <string name="edit">edytuj</string>
+    <!-- new user details-->
+    <string name="your_nickname">Twoja nazwa</string>
+    <!--Account details-->
+    <string name="list">Lista</string>
+    <string name="favorite">Ulubione</string>
+    <string name="settings">Ustawienia</string>
+    <string name="sex_title">Płeć: </string>
+    <string name="email_title">Email: </string>
+    <string name="username_title">Nazwa użytkownika: </string>
+    <string name="edit_content">Edytuj</string>
+    <string name="accept">Akceptuj</string>
+    <string name="cancel">Anuluj</string>
+    <string name="delete_account">Usuń konto</string>
+    <string name="yes">Tak</string>
+    <string name="new_email">Nowy email:</string>
+    <string name="new_username">Nowa nazwa użytkownika:</string>
+    <!--Auth messages-->
+    <string name="hint_user_id">ID użytkownika</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="create_account">Stwórz konto</string>
+    <string name="send_link">Wyślij link</string>
+    <string name="verify_email">Weryfikuj</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_in">Zalogowany</string>
+    <string name="signed_out">Wylogowany</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Hasło</string>
+    <string name="hint_confirm_password">Potwierdź hasło</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Błąd Uwierzytelniania</string>
+    <string name="start_phone_auth">Start</string>
+    <string name="verify_phone_auth">Weryfikuj</string>
+    <string name="resend_phone_auth">Wyślij ponownie</string>
+    <string name="hint_phone_number">Numer telefonu</string>
+    <string name="hint_verification_code">Kod weryfikacyjny</string>
+    <string name="status_code_sent">Kod wysłany</string>
+    <string name="status_verification_failed">Błąd Uwierzytelniania</string>
+    <string name="status_verification_succeeded">Uwierzytelnianie zakończone sukcesem</string>
+    <string name="status_sign_in_failed">Błąd logowania</string>
+    <string name="instant_validation">(instant validation)</string>
+    <string name="label_google_sign_in">Kontynuuj przez Google </string>
+    <string name="label_email_sign_in">Zaloguj się przez email </string>
+    <string name="label_email_sign_up">Zarejstruj się przez email </string>
+    <string name="label_email_sign_up_add"> "Zarejestruj się"</string>
+    <string name="ic_account_title">Moje konto</string>
+    <string name="content_description_profile_image">Twoje zdjęcie profilowe</string>
+    <string name="account_detail_title_cardview">Detail name:</string>
+    <string name="account_detail_content_cardview">detail content\n</string>
+    <string name="log_out">Wyloguj</string>,
+
+    <!-- first time fragments strings -->
+    <string name="welcome_in_pubber">Witaj w Pubberze!</string>
+    <string name="first_time_info">Mamy nadzieję ci pomóc znaleźć odpowiednie dla Ciebie puby i zostaniesz z nami jak najdłużesz.</string>
+    <string name="next">Dalej</string>
+    <string name="back">Powrót</string>
+    <string name="choose_language">Wybierz swój język:</string>
+    <string name="choose_theme">Wybierz motyw aplikacji:</string>
+    <string name="theme">Domyślny</string>
+    <string name="light">Jasny</string>
+    <string name="dark">Ciemny</string>
+    <string name="polish">Polski</string>
+    <string name="english">English</string>
+    <string name="con">Kontynuj</string>
+    <string name="example_button">Przykładowy przycisk</string>
+    <string name="text">Tekst</string>
+
+
+
+    <!-- general string used in more than one layout-->
+    <string name="go_back">Wróć</string>
+    <string name="more">Więcej</string>
+    <string name="less">Mniej</string>
+    <string name="rating">Ocena</string>
+    <string name="distance">Odległość</string>
+    <string name="price">Cena</string>
+    <string name="time_open">Godziny otwarcia</string>
+    <string name="beers">Piwa</string>
+    <string name="beers_present">Piwa:</string>
+    <string name="drinks">Drinki</string>
+    <string name="drinks_present">Drinki:</string>
+    <string name="cheap">$</string>
+    <string name="medium_price">$$</string>
+    <string name="expensive">$$$</string>
+    <string name="available_alcohols">Dostępne alkohole</string>
+    <string name="language">Język</string>
+    <string name="map">Mapa</string>
+    <string name="nodata">Brak danych</string>
+    <string name="city_rzeszow">Rzeszów</string>
+    <string name="city_warsaw">Warszawa</string>
+    <string name="city_cracow">Kraków</string>
+
+
+
+
+
+
+    <!--searcher and it's pop ups-->
+    <string name="sort_based_on">Sortuj według:</string>
+    <string name="searchview_hint">Wyszukaj tutaj…</string>
+    <string name="sort_relevance">Trafność</string>
+    <string name="sort_rating">Najwyżej oceniane</string>
+    <string name="sort_alphabetical">Alfabetycznie</string>`
+    <string name="sort_distance">Najmniejsza odległość</string>
+    <string name="imperfect">Nieidealne dopasowania</string>
+
+
+    <!-- details-->
+    <string name="pub_name">Nazwa Pubu</string>
+    <string name="call">Zadzwoń</string>
+    <string name="rate">Oceń</string>
+    <string name="share">Udostępnij</string>
+    <string name="takeout">Na wynos</string>
+    <string name="price_point">$$ • </string>
+    <string name="not_calculated">\ Oblicz dystans</string>
+    <string name="reservable">Możliwość rezerwacji</string>
+    <string name="share_rating">Podziel się swoimi wrażeniami</string>
+    <string name="rating_error">Ocena nie może być mniejsza niż 1</string>
+    <string name="publish">Opublikuj</string>
+    <string name="opinions">Opinie</string>
+    <string name="google">Google</string>
+    <string name="tripadvisor">Tripadvisor</string>
+    <string name="facebook">Facebook</string>
+
+
+    <!--settings fragment-->
+    <string name="dark_theme">Tryb nocny</string>
+    <string name="notifications">Powiadomienia</string>
+    <string name="soon">Wkrótce…</string>
+    <string name="game">Przejdź do gry</string>
+    <string name="send_message">Wyślij nam wiadomość</string>]
+    <string name="send">Wyślij</string>
+    <string name="about_us">O nas</string>
+    <string name="type_here">Pisz tutaj…</string>
+    <string name="send_message_adnotation">Prosimy o feedback, czego Wam, w naszej apliackji brakuję i ogólne wrażenia. Z góry dziękujemy bardzo za każdą wiadomość</string>
+    <!-- about us fragment -->
+    <string name="question1">Skąd pomysł ?</string>
+    <string name="answer1">Odpowiedź dość prosta, chcieliśmy dać sobie i wam możliwość prostszego wyboru Pubu do wyjścia wieczorem (albo o 12 po południu, jak kto woli). Osobiście raz na jakiś czas lubię wyjść na Puby, ale też po samym Google Maps trudno mi określić co ma jaki pub w szybki i trafny sposób, więc tu pojawił się pomysł i później sama aplikacja.</string>
+    <string name="question2">Kim jesteśmy ?</string>
+    <string name="answer2">Za cały kod od A do Z dwójka studenciaków, jeden z PW, drugi z AGH, a za wszystkie grafiki studentka z PJATK\'a.</string>
+    <string name="question3">Jakie plany na przyszłość aplikacji ?</string>
+    <string name="answer3">Ta odpowiedź stale będzie aktualizowana, więc zapraszamy do sprawdzania jej! Po pierwsze, danie wam pełnej możliwość zmieny przynależności piw i drinków do daneo pubu. Niestety my nie jesteśmy w stanie stale sprawdzać i aktualizować ich, więc liczymy, że w miarę możliwości i chęci, to wy będziecie za nas to robić, a my wam damy platformę do tego. Po drugie, dodanie gry wewnątrz aplikacji. Będzie to prosta gra na zabicie czasu, gdy w pubie znajomi wyjdą do toalety albo będziecie chcieli zabić czas w ciągu dnia. Na razie to są nasze priorytety, ale jak macie jakiś pomysł, to piszczie do nas. W zakładce ustawienia macie opcję "Wyślij wiadomość". Zachęcamy!</string>
+    <string name="question4">Czy muszą być reklamy ?</string>
+    <string name="answer4">Tak, niestety musimy opłacić serwer i zapytania przez api do Googla. Przepraszamy i dziękujęmy. </string>
+
+
+
+    <!-- recycler view row -->
+    <string name="guide">Trasa</string>
+    <string name="alcohols">Alkohole</string>
+
+    <!-- filtration screen and it's pop ups-->
+    <string name="filtration_screen">Filtry</string>
+    <string name="open_now">Otwarte teraz</string>
+    <string name="custom">Niestandardowe</string>
+    <string name="filtr">Filtruj</string>
+    <string name="clear">Wyczyść</string>
+    <string name="breweries">Browary</string>
+    <string name="styles">Style</string>
+    <string name="combination">Konkretne piwa</string>
+    <string name="choose_brewery">Wybierz browar…</string>
+    <string name="choose_style">Wybierz styl…</string>
+    
+
+    <string name="anytime">Dowolna godzina</string>
+    <string name="next_day">(następnego dnia)</string>
+    <string name="from">Od</string>
+    <string name="to">Do</string>
+    <string name="time_0000">00:00</string>
+    <string name="time_0030">00:30</string>
+    <string name="time_0100">01:00</string>
+    <string name="time_0130">01:30</string>
+    <string name="time_0200">02:00</string>
+    <string name="time_0230">02:30</string>
+    <string name="time_0300">03:00</string>
+    <string name="time_0330">03:30</string>
+    <string name="time_0400">04:00</string>
+    <string name="time_0430">04:30</string>
+    <string name="time_0500">05:00</string>
+    <string name="time_0530">05:30</string>
+    <string name="time_0600">06:00</string>
+    <string name="time_0630">06:30</string>
+    <string name="time_0700">07:00</string>
+    <string name="time_0730">07:30</string>
+    <string name="time_0800">08:00</string>
+    <string name="time_0830">08:30</string>
+    <string name="time_0900">09:00</string>
+    <string name="time_0930">09:30</string>
+    <string name="time_1000">10:00</string>
+    <string name="time_1030">10:30</string>
+    <string name="time_1100">11:00</string>
+    <string name="time_1130">11:30</string>
+    <string name="time_1200">12:00</string>
+    <string name="time_1230">12:30</string>
+    <string name="time_1300">13:00</string>
+    <string name="time_1330">13:30</string>
+    <string name="time_1400">14:00</string>
+    <string name="time_1430">14:30</string>
+    <string name="time_1500">15:00</string>
+    <string name="time_1530">15:30</string>
+    <string name="time_1600">16:00</string>
+    <string name="time_1630">16:30</string>
+    <string name="time_1700">17:00</string>
+    <string name="time_1730">17:30</string>
+    <string name="time_1800">18:00</string>
+    <string name="time_1830">18:30</string>
+    <string name="time_1900">19:00</string>
+    <string name="time_1930">19:30</string>
+    <string name="time_2000">20:00</string>
+    <string name="time_2030">20:30</string>
+    <string name="time_2100">21:00</string>
+    <string name="time_2130">21:30</string>
+    <string name="time_2200">22:00</string>
+    <string name="time_2230">22:30</string>
+    <string name="time_2300">23:00</string>
+    <string name="time_2330">23:30</string>
+    <string name="time_2400">24:00</string>
+
+    <string name="today">Dzisiaj</string>
+    <string name="monday">Poniedziałek</string>
+    <string name="tuesday">Wtorek</string>
+    <string name="wednesday">Środa</string>
+    <string name="thursday">Czwartek</string>
+    <string name="friday">Piątek</string>
+    <string name="saturday">Sobota</string>
+    <string name="sunday">Niedziela</string>
+
+    <!-- Signing up password-->
+    <string name="weak_password">Słabe</string>
+    <string name="average_password">Średnie</string>
+    <string name="strong_password">Mocne</string>
+    <string name="confirm">Potwierdź</string>
+    <string name="male">Mężczyzna</string>
+    <string name="female">Kobieta</string>
+    <string name="other">Inna</string>
+
+
+
+    <!-- Alert dialog with location permission-->
+    <string name="location_alert_dialog_title">Wymagane uprawnienia do lokalizacji</string>
+    <string name="location_alert_dialog_message">"Aplikacja wymaga uprawnień do lokalizacji, by obliczyć odległości między tobą a pubami. Prosimy o udzielenie dostępu do lokalizacji.</string>
+    <string name="location_alert_dialog_positive">Ok</string>
+    <string name="location_alert_dialog_negative">Nie, dziękuję</string>
+
+    <!--preferencescreen settings -->
+    <string name="general_category">Ogólne</string>
+    <string name="enable_notifications">Otrzymuj powiadomienia</string>
+    <string name="enable_localization">Dostęp do lokalizacji</string>
+    <string name="information_category">Informacje</string>
+    <string name="about_us_summary">Inofrmacje o aplikacji i jej początkach</string>
+    <string name="send_feedback">Wyślij wiadomość</string>
+    <string name="send_feedback_summary">Wyślij wiadomość na temat problemu technicznego lub sugestji zmiany aplikacji</string>
+    <string name="account">Zarządzaj</string>
+    <string name="account_log_out">Wyloguj się</string>
+
+    <!--particular alcohol dialog-->
+    <string name="seperated_hopiness">- Chmielowość</string>
+    <string name="seperated_maltiness">- Słodowość</string>
+    <string name="seperated_alcohol_percentage">- Zawartość alkoholu</string>
+
+
+</resources>
