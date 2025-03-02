@@ -1,7 +1,9 @@
 package com.overmighties.pubber.util;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -13,14 +15,14 @@ import com.overmighties.pubber.R;
 import java.util.List;
 
 public class RatingToIVConverter {
-    public void convert(List<ImageView> ImageViewArraylist, Integer size, ConstraintLayout constraintLayout, Float rating, Integer marginTop, Integer distance, boolean isRating){
+    public void convert(List<ImageView> ImageViewArraylist, Integer height, ConstraintLayout constraintLayout, Float rating, Integer marginTop, Integer distance, boolean isRating, Context context){
         Integer fullId;
         Integer halfFullId;
         Integer emptyId;
         if(isRating){
-            fullId = R.drawable.beer_full;
-            halfFullId = R.drawable.beer_half_full;
-            emptyId = R.drawable.beer_empty;
+            fullId = R.drawable.file;
+            halfFullId = R.drawable.v4;
+            emptyId = R.drawable.v5;
         } else{
             fullId = R.drawable.ic_progress_indicator_full;
             halfFullId = R.drawable.ic_proggres_indicator_half;
@@ -28,15 +30,17 @@ public class RatingToIVConverter {
         }
         for(int n = 0; n<5;n++){
             ConstraintSet constraintSet = new ConstraintSet();
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dpToPx(size),dpToPx(size));
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams((int) (DimensionsConverter.pxFromDp(context, height)*132/244), (int) DimensionsConverter.pxFromDp(context, height));
 
             ImageViewArraylist.get(n).setLayoutParams(layoutParams);
             ImageViewArraylist.get(n).setId(View.generateViewId());
 
             constraintLayout.addView(ImageViewArraylist.get(n));
             constraintSet.clone(constraintLayout);
-            constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START,   n *dpToPx(distance));
-            constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, dpToPx(marginTop));
+            constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START,   n *(int) DimensionsConverter.pxFromDp(context, distance));
+            constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP, 0);
+            constraintSet.connect(ImageViewArraylist.get(n).getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM, 0);
+
             constraintSet.applyTo(constraintLayout);
 
             if (rating >= n+0.75){
@@ -54,8 +58,4 @@ public class RatingToIVConverter {
         }
     }
 
-    private static int dpToPx(int dp)
-    {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
-    }
 }

@@ -31,31 +31,13 @@ public class NotificationsBroadcastReceiver extends BroadcastReceiver {
     }
 
     public void sheduleNotification(Context context){
-        Calendar time_now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Warsaw"));
-        Calendar time_target = Calendar.getInstance(TimeZone.getTimeZone("Europe/Warsaw"));
-        time_target.set(Calendar.HOUR_OF_DAY, 19);
-        time_target.set(Calendar.MINUTE, 0);
-        time_target.set(Calendar.SECOND, 0);
-
-        long delay_ms = time_target.getTimeInMillis() - time_now.getTimeInMillis();
-
-        if(delay_ms < 0){
-            time_target.add(Calendar.HOUR_OF_DAY, -1);
-            delay_ms = time_target.getTimeInMillis() - time_now.getTimeInMillis();
-            if(delay_ms <= 0){
-                time_target.add(Calendar.HOUR_OF_DAY, 24);
-                delay_ms = time_target.getTimeInMillis() - time_now.getTimeInMillis();
-            }
-
-        }
 
         Constraints constraints = new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
                 .build();
         PeriodicWorkRequest notificationRequest = new PeriodicWorkRequest.Builder(
-                NotificationWorker.class, 1, TimeUnit.HOURS)
+                NotificationWorker.class, 15, TimeUnit.MINUTES)
                 .setConstraints(constraints)
-                .setInitialDelay(delay_ms, TimeUnit.MILLISECONDS)
                 .build();
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 "sentNotification",

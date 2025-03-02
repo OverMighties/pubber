@@ -47,16 +47,17 @@
         app:layout_constraintEnd_toEndOf="@+id/splash_image_googleButton"
         app:layout_constraintStart_toStartOf="@+id/splash_image_googleButton" />
 
-    <TextView
-        android:id="@+id/RTvAvg"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="135dp"
-        android:text="Hello in Pubber"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toTopOf="@+id/splash_button_signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_pubber_dark_mode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

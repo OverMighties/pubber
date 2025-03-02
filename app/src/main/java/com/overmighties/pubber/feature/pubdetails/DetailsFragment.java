@@ -170,7 +170,7 @@ public class DetailsFragment extends Fragment
             imageViews.add(new ImageView(getContext()));
             imageViews.add(new ImageView(getContext()));
             new RatingToIVConverter().convert(imageViews, 32, requireView().findViewById(R.id.details_cl_ratingImageContainer),
-                    pubDetailsUiState.getRatings().getAverageRating(), 11, 17, true);
+                    pubDetailsUiState.getRatings().getAverageRating(), 11, 17, true, requireContext());
             ((TextView) requireView().findViewById(R.id.details_text_ratingCount)).setText("(" + pubDetailsUiState.getRatings().getRatingsCount() + ")");
         }
         //set up pub's price

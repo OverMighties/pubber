@@ -138,7 +138,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             imageViews.add(new ImageView(holder.itemView.getContext()));
             imageViews.add(new ImageView(holder.itemView.getContext()));
 
-            new RatingToIVConverter().convert(imageViews, 35, holder.ratingImage, pubCardView.getQualityRating(), 0,17, true);
+            new RatingToIVConverter().convert(imageViews, 18, holder.ratingImage, pubCardView.getQualityRating(), 0,16, true, holder.itemView.getContext());
         }
 
         if(pubCardView.getTimeOpenToday()!=null){

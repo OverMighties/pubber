@@ -122,6 +122,7 @@
                 android:id="@+id/pubRVR_cl_ratingContainer"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginEnd="2dp"
                 app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_rating"
                 app:layout_constraintEnd_toStartOf="@+id/pubRVR_text_ratingCount"

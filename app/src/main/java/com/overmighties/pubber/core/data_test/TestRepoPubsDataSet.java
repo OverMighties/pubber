@@ -96,7 +96,7 @@ public class TestRepoPubsDataSet {
                 .longitude(22.0053014)
                 .latitude(50.0377769)
                 .ratings(RatingsDto.builder()
-                        .google(4.0f)
+                        .google(2.6f)
                         .googleCount(588)
                         .ourCost(2)
                         .build())

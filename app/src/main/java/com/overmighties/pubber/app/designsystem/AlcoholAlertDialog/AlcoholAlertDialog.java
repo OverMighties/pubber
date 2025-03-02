@@ -65,14 +65,14 @@ public class AlcoholAlertDialog {
         prepareList(list, context);
         new RatingToIVConverter().convert(list, 17,
                 dialogView.findViewById(R.id.particularAlcoholD_cl_hopiness),
-                uiState.getParameters().get(0), 10, 16, false);
+                uiState.getParameters().get(0), 10, 16, false, context);
         //maltiness
         ((TextView)dialogView.findViewById(R.id.particularAlcoholD_text_maltinessRating))
                 .setText(uiState.getParameters().get(1)+"/5");
         prepareList(list, context);
         new RatingToIVConverter().convert(list, 17,
                 dialogView.findViewById(R.id.particularAlcoholD_cl_maltiness),
-                uiState.getParameters().get(1), 10, 16, false);
+                uiState.getParameters().get(1), 10, 16, false, context);
     }
 
     private static void setUpListeners(View dialogView, NavController navController, AlertDialog alertDialog, Integer actionId) {

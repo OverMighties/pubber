@@ -83,10 +83,14 @@ public class SplashFragment extends Fragment {
         );
         new Handler(
                 Looper.getMainLooper())
-                .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)->
-                        Navigation
-                                .findNavController(view)
-                                .navigate(getNavDirections(from,to))
+                .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> {
+                            if(from != null && to != null)
+                                Navigation
+                                    .findNavController(view)
+                                    .navigate(getNavDirections(from, to));
+                            else
+                                loadView();
+                        }
                     ), SPLASH_DELAY
                 );
     }

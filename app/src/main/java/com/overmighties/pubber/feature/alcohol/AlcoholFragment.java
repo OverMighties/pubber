@@ -53,14 +53,14 @@ public class AlcoholFragment  extends Fragment {
         prepareList(list);
         new RatingToIVConverter().convert(list, 17,
                 requireView().findViewById(R.id.alcoholFragment_cl_hopiness),
-                Float.valueOf(viewModel.getUiState().getValue().getHopiness()), 10, 16, false);
+                Float.valueOf(viewModel.getUiState().getValue().getHopiness()), 10, 16, false, requireContext());
         //maltiness
         ((TextView)requireView().findViewById(R.id.alcoholFragment_text_maltinessRating))
                 .setText(viewModel.getUiState().getValue().getMaltiness()+"/5");
         prepareList(list);
         new RatingToIVConverter().convert(list, 17,
                 requireView().findViewById(R.id.alcoholFragment_cl_maltiness),
-                Float.valueOf(viewModel.getUiState().getValue().getMaltiness()), 10, 16, false);
+                Float.valueOf(viewModel.getUiState().getValue().getMaltiness()), 10, 16, false, requireContext());
         //desciption
         ((TextView)requireView().findViewById(R.id.alcoholFragment_text_longDesciption)).setText(viewModel.getUiState().getValue().getLong_des());
     }
