@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="@+id/splash_image_googleButton" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/splash_image_pubber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_pubber_dark_mode" />
+        app:srcCompat="@drawable/ic_pubber_light_theme" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

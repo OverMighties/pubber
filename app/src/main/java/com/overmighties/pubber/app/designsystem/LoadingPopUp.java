@@ -2,8 +2,6 @@ package com.overmighties.pubber.app.designsystem;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +15,7 @@ public class LoadingPopUp {
     private static ProgressBar progressBar;
 
     public static void show(Activity activity, Integer estimatedDurationSec){
-        View popUpView = LayoutInflater.from(activity).inflate(R.layout.test, null);
+        View popUpView = LayoutInflater.from(activity).inflate(R.layout.fragment_loading_screen, null);
         PopupWindow popupWindow = new PopupWindow(popUpView,
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT, true);

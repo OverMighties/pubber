@@ -77,7 +77,7 @@ public class SplashFragment extends Fragment {
                             if(from != null && to != null)
                                 Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container).navigate(getNavDirections(from,to));
                             else
-                                loadView();
+                                loadView(view);
                         },
                         (errorType, uiText,logMes) -> showSnackbar(view,errorType,(UIText.ResourceString)uiText,logMes))
         );
@@ -89,22 +89,25 @@ public class SplashFragment extends Fragment {
                                     .findNavController(view)
                                     .navigate(getNavDirections(from, to));
                             else
-                                loadView();
+                                loadView(view);
                         }
                     ), SPLASH_DELAY
                 );
     }
 
-    private void loadView()
+    private void loadView(View view)
     {
-        requireView().findViewById(R.id.splash_progress_loading).setVisibility(View.GONE);
-        ViewStub stub = requireView().findViewById(R.id.splash_viewStub_accountLayout);
+        view.findViewById(R.id.splash_progress_loading).setVisibility(View.GONE);
+        ViewStub stub = view.findViewById(R.id.splash_viewStub_accountLayout);
         View inflated = stub.inflate();
         inflated.findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
         inflated.findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
         inflated.findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
         int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)inflated.findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
+        int pubber_image_id = (SettingsHandler.ThemeHelper.getSavedTheme(requireContext()).equals(SettingsHandler.ThemeHelper.THEME_LIGHT))? R.drawable.ic_pubber_light_theme : R.drawable.ic_pubber_dark_theme;
+        ((ImageView)inflated.findViewById(R.id.splash_image_pubber)).setImageResource(pubber_image_id);
+
     }
 
     private void signInWithGoogle() {

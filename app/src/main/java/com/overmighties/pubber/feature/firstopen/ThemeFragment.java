@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ public class ThemeFragment extends Fragment {
     private NavController navController;
 
     private FirstOpenViewModel viewModel;
+
+    private boolean isLight;
 
 
     public ThemeFragment(){super(R.layout.fragment_theme);}
@@ -55,13 +58,14 @@ public class ThemeFragment extends Fragment {
                 break;
             case SettingsHandler.ThemeHelper.THEME_LIGHT:
                 ((RadioButton)requireView().findViewById(R.id.theme_radioButton_light)).setChecked(true);
+                isLight = true;
                 break;
         }
-        setUpApperance();
+        setUpApperance(isLight);
         setUpListeners();
     }
 
-    private void setUpApperance() {
+    private void setUpApperance(boolean isLight) {
         //Text change
         String languageCode = viewModel.getUiState().getValue().getLanguage().getLanguageCode();
         TextView title = requireView().findViewById(R.id.theme_text_title);
@@ -70,6 +74,7 @@ public class ThemeFragment extends Fragment {
         RadioButton phone = requireView().findViewById(R.id.theme_radioButton_phone);
         RadioButton dark = requireView().findViewById(R.id.theme_radioButton_dark);
         RadioButton light = requireView().findViewById(R.id.theme_radioButton_light);
+        ImageView pubberLogo = requireView().findViewById(R.id.theme_image_logo);
         title.setText(ResourceUtil.getResStringLanguage(
                 requireContext(), R.string.choose_theme, languageCode));
         back.setText(ResourceUtil.getResStringLanguage(
@@ -91,6 +96,7 @@ public class ThemeFragment extends Fragment {
         Integer surface;
         Integer onSecondaryContainer;
         Integer buttonDrawable;
+        Integer pubberImageDrawable;
         if(!SettingsHandler.ThemeHelper.getSavedTheme(requireContext())
                 .equals(viewModel.getUiState().getValue().getTheme().getTheme())) {
             onSurfaceId = R.color.opposing_on_surface;
@@ -112,6 +118,10 @@ public class ThemeFragment extends Fragment {
             onSecondaryContainer = R.color.on_secondary_container;
             buttonDrawable = R.drawable.button_shape_square_container;
         }
+        if(isLight)
+            pubberImageDrawable = R.drawable.ic_logo_drink;
+        else
+            pubberImageDrawable = R.drawable.ic_logo_beer;
         for(var id:THEME_FRAGMENT_RADIO_BUTTONS_IDS){
             RadioButton radioButton = requireView().findViewById(id);
             if(!radioButton.isChecked()) {
@@ -132,6 +142,7 @@ public class ThemeFragment extends Fragment {
         back.setTextColor(ContextCompat.getColor(requireContext(), onSecondaryContainer));
         next.setBackground(ResourcesCompat.getDrawable(getResources(),buttonDrawable, null));
         next.setTextColor(ContextCompat.getColor(requireContext(), onSecondaryContainer));
+        pubberLogo.setImageResource(pubberImageDrawable);
     }
 
 
@@ -155,7 +166,7 @@ public class ThemeFragment extends Fragment {
                 light.setChecked(false);
                 viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme
                         .getThemeByName(SettingsHandler.ThemeHelper.getDefaultTheme(requireContext())));
-                setUpApperance();
+                setUpApperance(isLight);
             }
         }));
         dark.setOnCheckedChangeListener(((buttonView, isChecked) -> {
@@ -163,7 +174,7 @@ public class ThemeFragment extends Fragment {
                 phone.setChecked(false);
                 light.setChecked(false);
                 viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme.Dark);
-                setUpApperance();
+                setUpApperance(false);
             }
         }));
         light.setOnCheckedChangeListener(((buttonView, isChecked) -> {
@@ -171,7 +182,7 @@ public class ThemeFragment extends Fragment {
                 dark.setChecked(false);
                 phone.setChecked(false);
                 viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme.Light);
-                setUpApperance();
+                setUpApperance(true);
             }
         }));
     }

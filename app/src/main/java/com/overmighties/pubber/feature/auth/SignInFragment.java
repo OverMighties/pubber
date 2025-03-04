@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import com.overmighties.pubber.app.exception.ErrorSigningUIHandler;
 import com.overmighties.pubber.app.exception.ErrorSigningUITypes;
 import com.overmighties.pubber.app.exception.ErrorSnackbarUI;
 import com.overmighties.pubber.app.designsystem.UIText;
+import com.overmighties.pubber.app.settings.SettingsHandler;
 
 
 public class SignInFragment extends Fragment {
@@ -88,6 +90,9 @@ public class SignInFragment extends Fragment {
 
         });
         setUpEditTexts();
+        //set pubber image
+        int pubber_image_id = (SettingsHandler.ThemeHelper.getSavedTheme(requireContext()).equals(SettingsHandler.ThemeHelper.THEME_LIGHT))? R.drawable.ic_drink_pubber : R.drawable.ic_beer_pubber;
+        ((ImageView)requireView().findViewById(R.id.signUp_image_pubberIcon)).setImageResource(pubber_image_id);
 
     }
     private void setUpEditTexts(){
