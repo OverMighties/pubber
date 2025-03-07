@@ -1,12 +1,11 @@
 # Pubber
 **Find your favourite pubs in your nearby location, check ratings, drinks and more!!!**<br>
 At this moment moment app is at the beginning of development. It's addressed for Android users who love beer and pubs.
-## Features
 ## Demo
 Demo video of app flow you can see [here](docs/demo.mp4)
-### Screenshots
+## Screenshots
 In major points in the app are made screenshots which are available [here](docs/Screenshots.md)
-### Functionalities
+## Features
 The app has multiple features, some of which are still in development
 - Logging and creating user account
 - Filtering pubs by drink, beer styles, prices, distance, opening hours
