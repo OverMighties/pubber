@@ -10,11 +10,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
-import com.overmighties.pubber.feature.firstopen.FirstOpenUiState;
-import com.overmighties.pubber.feature.firstopen.FirstOpenViewModel;
-import com.overmighties.pubber.feature.search.stateholders.FilterFragmentUiState;
-
-import lombok.Getter;
 
 
 public class SavedViewModel extends ViewModel {

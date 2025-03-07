@@ -21,6 +21,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
+import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.designsystem.UIText;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.app.util.PermissionHandler;
@@ -48,7 +49,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 .get(PubListViewModel.class);
 
         requireActivity().requireViewById(R.id.main_topAppBarLayout_back).setVisibility(View.VISIBLE);
-        ((MaterialToolbar)requireActivity().requireViewById(R.id.main_topAppBarView_back)).setTitle("Ustawienia");
+        ((MaterialToolbar)requireActivity().requireViewById(R.id.main_topAppBarView_back)).setTitle(getString(R.string.settings));
 
         navController= Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container);
 
@@ -113,6 +114,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference accountInfoPref = findPreference(getString(R.string.account_key));
         if(accountInfoPref!=null){
             accountInfoPref.setOnPreferenceClickListener((v)->{
+                requireActivity().requireViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
                 navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToAccountDetailsFragment());
                 return true;
             });

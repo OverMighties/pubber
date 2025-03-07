@@ -1,4 +1,4 @@
-package com.overmighties.pubber.feature.firstopen;
+package com.overmighties.pubber.feature.open;
 
 import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;

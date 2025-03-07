@@ -121,7 +121,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position);
         if(pubCardView.getIsBreakThrough() == null)
             setUpCompatibilityTextView(holder.compatibility, pubCardView.getCompatibility().first, pubCardView.getCompatibility().second,holder.itemView.getContext());
-        if(pubCardView.getIsBreakThrough() != null && pubCardView.getIsBreakThrough() == true){
+        if(pubCardView.getIsBreakThrough() != null && pubCardView.getIsBreakThrough()){
             holder.divider.setVisibility(View.VISIBLE);
             holder.dividerText.setVisibility(View.VISIBLE);
         }
@@ -138,7 +138,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             imageViews.add(new ImageView(holder.itemView.getContext()));
             imageViews.add(new ImageView(holder.itemView.getContext()));
 
-            new RatingToIVConverter().convert(imageViews, 18, holder.ratingImage, pubCardView.getQualityRating(), 0,16, true, holder.itemView.getContext());
+            new RatingToIVConverter().convert(imageViews, 18, holder.ratingImage, pubCardView.getQualityRating(), 0,14, true, holder.itemView.getContext());
         }
 
         if(pubCardView.getTimeOpenToday()!=null){
@@ -156,7 +156,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             holder.timeOpenToday.setText(holder.itemView.getContext().getString(R.string.nodata));
         }
         if(pubCardView.getWalkDistance()!=null) {
-            holder.walkDistance.setText(pubCardView.getWalkDistance().toString());
+            holder.walkDistance.setText(pubCardView.getWalkDistance().toString()+"km");
         }
         holder.ratingCount.setText("("+ pubCardView.getRatingCount() +")");
 

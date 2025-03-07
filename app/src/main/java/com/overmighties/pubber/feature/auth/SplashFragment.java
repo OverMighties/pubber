@@ -103,9 +103,9 @@ public class SplashFragment extends Fragment {
         inflated.findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
         inflated.findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
         inflated.findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
-        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(requireContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
+        int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(view.getContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)inflated.findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
-        int pubber_image_id = (SettingsHandler.ThemeHelper.getSavedTheme(requireContext()).equals(SettingsHandler.ThemeHelper.THEME_LIGHT))? R.drawable.ic_pubber_light_theme : R.drawable.ic_pubber_dark_theme;
+        int pubber_image_id = (SettingsHandler.ThemeHelper.getSavedTheme(view.getContext()).equals(SettingsHandler.ThemeHelper.THEME_LIGHT))? R.drawable.ic_pubber_light_theme : R.drawable.ic_pubber_dark_theme;
         ((ImageView)inflated.findViewById(R.id.splash_image_pubber)).setImageResource(pubber_image_id);
 
     }

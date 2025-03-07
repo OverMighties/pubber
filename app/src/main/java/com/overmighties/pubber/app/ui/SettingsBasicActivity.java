@@ -23,8 +23,7 @@ public class SettingsBasicActivity extends AppCompatActivity {
         if(SettingsHandler.FirstTimeOpenHelper.getTimeOpened(this).equals(SettingsHandler.FirstTimeOpenHelper.NOT_FIRST_TIME)){
             SettingsHandler.ThemeHelper.applyTheme(SettingsHandler.ThemeHelper.getSavedTheme(this));
             SettingsHandler.LanguageHelper.setLanguage(SettingsHandler.LanguageHelper.getLanguage(this));
-        }
-        else{
+        } else{
             Pair<Integer, Integer> sunsetTime = getSunsetTime(TimeZone.getTimeZone("Europe/Warsaw"));
             Calendar time_now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Warsaw"));
             if(sunsetTime.first < time_now.get(Calendar.HOUR_OF_DAY)){

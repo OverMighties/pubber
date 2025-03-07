@@ -528,6 +528,7 @@
     <string name="account">Manage</string>
     <string name="account_log_out_key">logout</string>
     <string name="account_log_out">Log out</string>
+    <string name="icon_key">icon</string>"
 
     <!--particular alcohol dialog-->
     <string name="basic_description"></string>

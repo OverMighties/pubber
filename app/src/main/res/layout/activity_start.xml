@@ -20,5 +20,6 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/first_open_graph"
             tools:layout_editor_absoluteX="0dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

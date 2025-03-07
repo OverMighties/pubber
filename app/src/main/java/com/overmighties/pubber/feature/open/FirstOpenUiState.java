@@ -1,6 +1,4 @@
-package com.overmighties.pubber.feature.firstopen;
-
-import com.overmighties.pubber.app.settings.SettingsHandler;
+package com.overmighties.pubber.feature.open;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

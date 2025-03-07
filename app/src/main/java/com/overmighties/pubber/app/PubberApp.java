@@ -1,8 +1,12 @@
 package com.overmighties.pubber.app;
 
 import android.app.Application;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.room.Room;
 import androidx.work.Configuration;
 import androidx.work.Constraints;
@@ -12,9 +16,13 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.overmighties.pubber.app.basic.PubberAppLifecycleListener;
+import com.overmighties.pubber.app.basic.PubberAppLifecycleObserver;
 import com.overmighties.pubber.app.notifications.NotificationHandler;
 import com.overmighties.pubber.app.notifications.NotificationWorker;
+import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.core.database.AppDb;
 import com.overmighties.pubber.sync.SyncWorker;
 import com.overmighties.pubber.sync.SyncWorkerFactory;
@@ -23,7 +31,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-public class PubberApp extends Application implements Configuration.Provider{
+public class PubberApp extends Application implements Configuration.Provider, PubberAppLifecycleListener {
 
     public AppContainer appContainer;
 
@@ -31,6 +39,8 @@ public class PubberApp extends Application implements Configuration.Provider{
     @Override
     public void onCreate() {
         super.onCreate();
+
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new PubberAppLifecycleObserver(this));
 
         NotificationHandler.createNotificationChannels(this);
 
@@ -41,8 +51,6 @@ public class PubberApp extends Application implements Configuration.Provider{
         WorkManager.initialize(this, getWorkManagerConfiguration());
         scheduleNotification();
         syncDataRepos();
-
-
     }
 
     private void scheduleNotification() {
@@ -83,5 +91,26 @@ public class PubberApp extends Application implements Configuration.Provider{
 
     }
 
+    public void changeStartActivityAlias(){
+        PackageManager pm = getPackageManager();
+        ComponentName lightComponent = new ComponentName(this, "com.overmighties.pubber.app.aliases.StartActivityLightThemeAlias");
+        ComponentName darkComponent = new ComponentName(this, "com.overmighties.pubber.app.aliases.StartActivityDarkThemeAlias");
+        if(SettingsHandler.ThemeHelper.getSavedTheme(this).equals(SettingsHandler.ThemeHelper.THEME_DARK)) {
+            pm.setComponentEnabledSetting(lightComponent, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(darkComponent, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+        } else {
+            pm.setComponentEnabledSetting(darkComponent, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(lightComponent, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+        }
+    }
 
+    @Override
+    public void onAppForegrounded() {
+        //changeStartActivityAlias();
+    }
+
+    @Override
+    public void onAppBackgrounded() {
+        changeStartActivityAlias();
+    }
 }

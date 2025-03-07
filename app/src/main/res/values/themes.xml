@@ -13,6 +13,9 @@
         <item name="android:itemBackground">@color/surface_container</item>
         <item name="android:windowBackground">@color/surface</item>
         <item name="colorPrimary">@color/primary</item>
+
     </style>
+
+
 
 </resources>

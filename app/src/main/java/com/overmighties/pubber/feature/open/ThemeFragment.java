@@ -1,4 +1,4 @@
-package com.overmighties.pubber.feature.firstopen;
+package com.overmighties.pubber.feature.open;
 
 import static com.overmighties.pubber.app.Constants.THEME_FRAGMENT_RADIO_BUTTONS_IDS;
 

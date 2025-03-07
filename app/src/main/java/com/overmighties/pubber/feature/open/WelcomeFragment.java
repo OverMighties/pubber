@@ -1,4 +1,4 @@
-package com.overmighties.pubber.feature.firstopen;
+package com.overmighties.pubber.feature.open;
 
 import android.os.Bundle;
 

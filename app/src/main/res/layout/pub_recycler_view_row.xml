@@ -101,11 +101,10 @@
                 android:id="@+id/pubRVR_text_ratingCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
                 android:text="(****)"
                 android:textColor="@color/on_surface_container_secondary"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/pubRVR_text_rating"
+                app:layout_constraintStart_toEndOf="@+id/pubRVR_cl_ratingContainer"
                 app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating" />
 
             <ImageView
@@ -122,10 +121,10 @@
                 android:id="@+id/pubRVR_cl_ratingContainer"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
+                android:minWidth="70dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="2dp"
                 app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_rating"
-                app:layout_constraintEnd_toStartOf="@+id/pubRVR_text_ratingCount"
                 app:layout_constraintStart_toEndOf="@+id/pubRVR_text_rating"
                 app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating">
 

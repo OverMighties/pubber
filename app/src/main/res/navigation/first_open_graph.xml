@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/first_open_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/splashAnimationFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.overmighties.pubber.feature.firstopen.WelcomeFragment"
+        android:name="com.overmighties.pubber.feature.open.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/languageFragment"
-        android:name="com.overmighties.pubber.feature.firstopen.LanguageFragment"
+        android:name="com.overmighties.pubber.feature.open.LanguageFragment"
         android:label="fragment_language"
         tools:layout="@layout/fragment_language" >
         <action
@@ -33,11 +33,20 @@
     </fragment>
     <fragment
         android:id="@+id/themeFragment"
-        android:name="com.overmighties.pubber.feature.firstopen.ThemeFragment"
+        android:name="com.overmighties.pubber.feature.open.ThemeFragment"
         android:label="fragment_theme"
         tools:layout="@layout/fragment_theme"
         app:enterAnim="@anim/from_right"
         app:exitAnim="@anim/to_left"
         app:popEnterAnim="@anim/from_left"
         app:popExitAnim="@anim/to_right"/>
+    <fragment
+        android:id="@+id/splashAnimationFragment"
+        android:name="com.overmighties.pubber.feature.open.SplashAnimationFragment"
+        tools:layout="@layout/fragment_splash_animation"
+        android:label="SplashAnimationFragment" >
+        <action
+            android:id="@+id/action_splashAnimationFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
 </navigation>
