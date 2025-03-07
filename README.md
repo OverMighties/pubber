@@ -14,7 +14,7 @@ The app has multiple features, some of which are still in development
   - Contact with place
   - Post comments and rate it
   - Observe ratings
-  - ** See the beers on offer**
+  - **See the beers on offer**
   - View photos of a pub
   - Checks details about pub e.g. opening hours, address
 - Light and dark theme
@@ -32,11 +32,10 @@ The app was designed using [Material Design](https://m3.material.io/).
 - Reactive Programming: RxJava
 - Networking: Retrofit
 - Local Storage: Room, DataStore
-- Dependency Injection: Dagger/Hilt
 - UI Framework: Jetpack Compose (planned for the future)
 - Google Services: Firebase Authentication, Google Maps API
-## Other service
-In parallel to support network functionalities of the app services are developed. See [Pubber REST API](https://github.com/Sewery/pubber-rest-api) and [Pubber Services](https://github.com/Sewery/pubber-services) for more info
+## Other services
+In parallel to support network functionalities of the app services are developed. See [Pubber REST API](https://github.com/Sewery/pubber-rest-api) and [Pubber Services](https://github.com/Sewery/pubber-services) for more informations.
 ## About
 ### What is the idea's origin?
 The idea behind Pubber is quite simple. My friend and I wanted to create a app that allows both you and us to quickly and easily choose a pub. Personally, I enjoy pub crawling once in while, but I always struggle to decide which pub to visit based on Google Maps. This inspired us to develop Pubber, and now here we are!
@@ -48,4 +47,4 @@ We will keep this section regularly updated, so make sure to check it out once i
 + [Sewery](https://github.com/Sewery),
 + [RudyKarpus](https://github.com/RudyKarpus)
 ## License
-Now in Android is distributed under the terms of the GNU General Public License v3.0. See the [license](LICENSE) for more information.
+Pubber is distributed under the terms of the GNU General Public License v3.0. See the [license](LICENSE) for more information.
