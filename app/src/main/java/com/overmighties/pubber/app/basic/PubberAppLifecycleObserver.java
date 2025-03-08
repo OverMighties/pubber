@@ -16,12 +16,18 @@ public class PubberAppLifecycleObserver implements DefaultLifecycleObserver {
     @Override
     public void onStart(@NonNull LifecycleOwner owner) {
         DefaultLifecycleObserver.super.onStart(owner);
-        listener.onAppForegrounded(); // Notify that the app is in the foreground
+        listener.onAppForegrounded();
+    }
+
+    @Override
+    public void onResume(@NonNull LifecycleOwner owner) {
+        DefaultLifecycleObserver.super.onResume(owner);
+        listener.onAppResumed();
     }
 
     @Override
     public void onStop(@NonNull LifecycleOwner owner) {
         DefaultLifecycleObserver.super.onStop(owner);
-        listener.onAppBackgrounded(); // Notify that the app is in the background
+        listener.onAppBackgrounded();
     }
 }

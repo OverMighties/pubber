@@ -43,33 +43,37 @@ public class SplashAnimationFragment  extends Fragment {
             imageView.setImageResource(R.drawable.animation_dark_pubber);
 
         AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) imageView.getDrawable();
-        animatedVectorDrawable.start();
-        imageView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (SettingsHandler.FirstTimeOpenHelper.getTimeOpened(view.getContext()).equals(SettingsHandler.FirstTimeOpenHelper.NOT_FIRST_TIME)){
-                    SettingsHandler.ThemeHelper.applyTheme(SettingsHandler.ThemeHelper.getSavedTheme(view.getContext()));
-                    SettingsHandler.LanguageHelper.setLanguage(SettingsHandler.LanguageHelper.getLanguage(view.getContext()));
-                    ((StartActivity)requireActivity()).goToMainActivity();
-                }
-                viewModel = new ViewModelProvider(requireActivity(),
-                        ViewModelProvider.Factory.from(FirstOpenViewModel.initializer)).get(FirstOpenViewModel.class);
-                if (Locale.getDefault().getLanguage().equals("en")) {
-                    viewModel.getUiState().getValue().setLanguage(FirstOpenViewModel.Language.English);
-                } else if (Locale.getDefault().getLanguage().equals("uk")) {
-                    viewModel.getUiState().getValue().setLanguage(FirstOpenViewModel.Language.Ukrainian);
-                } else {
-                    viewModel.getUiState().getValue().setLanguage(FirstOpenViewModel.Language.Polish);
-                }
-                if (SettingsHandler.ThemeHelper.getSavedTheme(view.getContext()).equals(SettingsHandler.ThemeHelper.THEME_DARK)) {
-                    viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme.Dark);
-                } else {
-                    viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme.Light);
-                }
-                navController.navigate(SplashAnimationFragmentDirections.actionSplashAnimationFragmentToWelcomeFragment());
+        view.post(()->{
+            animatedVectorDrawable.start();
+            imageView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (SettingsHandler.FirstTimeOpenHelper.getTimeOpened(view.getContext()).equals(SettingsHandler.FirstTimeOpenHelper.NOT_FIRST_TIME)){
+                        SettingsHandler.ThemeHelper.applyTheme(SettingsHandler.ThemeHelper.getSavedTheme(view.getContext()));
+                        SettingsHandler.LanguageHelper.setLanguage(SettingsHandler.LanguageHelper.getLanguage(view.getContext()));
+                        ((StartActivity)requireActivity()).goToMainActivity();
+                        return;
+                    }
+                    viewModel = new ViewModelProvider(requireActivity(),
+                            ViewModelProvider.Factory.from(FirstOpenViewModel.initializer)).get(FirstOpenViewModel.class);
+                    if (Locale.getDefault().getLanguage().equals("en")) {
+                        viewModel.getUiState().getValue().setLanguage(FirstOpenViewModel.Language.English);
+                    } else if (Locale.getDefault().getLanguage().equals("uk")) {
+                        viewModel.getUiState().getValue().setLanguage(FirstOpenViewModel.Language.Ukrainian);
+                    } else {
+                        viewModel.getUiState().getValue().setLanguage(FirstOpenViewModel.Language.Polish);
+                    }
+                    if (SettingsHandler.ThemeHelper.getSavedTheme(view.getContext()).equals(SettingsHandler.ThemeHelper.THEME_DARK)) {
+                        viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme.Dark);
+                    } else {
+                        viewModel.getUiState().getValue().setTheme(FirstOpenViewModel.Theme.Light);
+                    }
+                    navController.navigate(SplashAnimationFragmentDirections.actionSplashAnimationFragmentToWelcomeFragment());
 
-            }
-        }, 850);
+                }
+            }, 850);
+        });
+
     }
 
 }

@@ -32,6 +32,8 @@ public class SettingsHandler {
     public static final class FirstTimeOpenHelper{
         private static final String KEY_TIME = "key_open";
         private static final String FILE_NAME = "open_info";
+        private static final String FILE_NAME_START_ACTIVITY = "open_info_start_activity";
+
         public static final String FIRST_TIME = "first";
         public static final String NOT_FIRST_TIME = "second";
 
@@ -67,7 +69,7 @@ public class SettingsHandler {
                 int mode = uiModeManager.getNightMode();
                 return (mode == UiModeManager.MODE_NIGHT_YES)?THEME_DARK:THEME_LIGHT;
             }
-            return THEME_DARK;
+            return THEME_LIGHT;
         }
 
         public static void saveTheme(Context context, String theme) {
@@ -75,7 +77,15 @@ public class SettingsHandler {
         }
 
         public static String getSavedTheme(Context context) {
-            return getPreference(context, THEME_DARK, context.getString(R.string.theme_key));
+            return getPreference(context, THEME_LIGHT, context.getString(R.string.theme_key));
+        }
+
+        public static void saveAppliedTheme(Context context, String theme){
+            savePreference(context, theme, context.getString(R.string.applied_theme_key));
+
+        }
+        public static String getAppliedTheme(Context context){
+            return getPreference(context, THEME_LIGHT, context.getString(R.string.applied_theme_key));
         }
     }
 
@@ -84,10 +94,6 @@ public class SettingsHandler {
             return getPreference(context, "false", context.getString(R.string.notifications_key));
         }
     }
-
-
-
-
 
     public static  final class LanguageHelper{
         public static final String LANGUAGE_POLISH = "Polski";
@@ -115,4 +121,6 @@ public class SettingsHandler {
             return getPreference(context, LANGUAGE_POLISH, context.getString(R.string.language_key));
         }
     }
+
+
 }

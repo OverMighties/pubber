@@ -166,6 +166,7 @@ public class PubListViewModel extends ViewModel {
     {
         cityConstraint.setValue(city);
     }
+
     public void search(String prompt)
     {
         List<Pair<Pub, PubFiltrationState>> pubs=new ArrayList<>();
@@ -173,14 +174,20 @@ public class PubListViewModel extends ViewModel {
             if(pubUiState.first.getName().toLowerCase().contains(prompt.toLowerCase()))
                 pubs.add(pubUiState);
         }
-        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED, pubs.stream().map(this::mapPubToUiState).collect(Collectors.toList())));
-        setSearchText(prompt);
+        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
+                SortUtil.sortingPubData(pubs, SortPubsBy.RELEVANCE)
+                        .stream()
+                        .map(this::mapPubToUiState)
+                        .collect(Collectors.toList())));
+        searchText.setValue(prompt);
+
 
     }
-    private void setSearchText(String prompt)
+
+    public void sort(SortPubsBy sort)
     {
-        searchText.setValue(prompt);
-        sort(SortPubsBy.RELEVANCE);
+        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
+                SortUtil.sortingPubData(searcherUiState.getValue().getPubs(), sort).stream().map(this::mapPubToUiState).collect(Collectors.toList())));
     }
     public void filter(FilterUiState filter)
     {
@@ -195,11 +202,7 @@ public class PubListViewModel extends ViewModel {
         sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,filteredPubs));
 
     }
-    public void sort(SortPubsBy sort)
-    {
-        sortedAndFilteredPubsUiState.setValue(new PubsCardViewUiState(false,CONTENT_PROVIDED,
-                SortUtil.sortingPubData(searcherUiState.getValue().getPubs(), sort).stream().map(this::mapPubToUiState).collect(Collectors.toList())));
-    }
+
     //Temporary objects means that it will be changed in feature and now they are only in testing purpose
     public PubItemCardViewUiState mapPubToUiState(Pair<Pub, PubFiltrationState> pub)
     {

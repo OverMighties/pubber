@@ -39,7 +39,6 @@ public class PubberApp extends Application implements Configuration.Provider, Pu
     @Override
     public void onCreate() {
         super.onCreate();
-
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new PubberAppLifecycleObserver(this));
 
         NotificationHandler.createNotificationChannels(this);
@@ -51,6 +50,7 @@ public class PubberApp extends Application implements Configuration.Provider, Pu
         WorkManager.initialize(this, getWorkManagerConfiguration());
         scheduleNotification();
         syncDataRepos();
+
     }
 
     private void scheduleNotification() {
@@ -92,25 +92,34 @@ public class PubberApp extends Application implements Configuration.Provider, Pu
     }
 
     public void changeStartActivityAlias(){
+        if(SettingsHandler.ThemeHelper.getAppliedTheme(this).equals(SettingsHandler.ThemeHelper.getSavedTheme(this)))
+            return;
         PackageManager pm = getPackageManager();
         ComponentName lightComponent = new ComponentName(this, "com.overmighties.pubber.app.aliases.StartActivityLightThemeAlias");
         ComponentName darkComponent = new ComponentName(this, "com.overmighties.pubber.app.aliases.StartActivityDarkThemeAlias");
         if(SettingsHandler.ThemeHelper.getSavedTheme(this).equals(SettingsHandler.ThemeHelper.THEME_DARK)) {
             pm.setComponentEnabledSetting(lightComponent, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             pm.setComponentEnabledSetting(darkComponent, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            SettingsHandler.ThemeHelper.saveAppliedTheme(this, SettingsHandler.ThemeHelper.THEME_DARK);
         } else {
             pm.setComponentEnabledSetting(darkComponent, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             pm.setComponentEnabledSetting(lightComponent, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            SettingsHandler.ThemeHelper.saveAppliedTheme(this, SettingsHandler.ThemeHelper.THEME_LIGHT);
+
         }
     }
 
     @Override
     public void onAppForegrounded() {
-        //changeStartActivityAlias();
+    }
+
+    @Override
+    public void onAppResumed() {
     }
 
     @Override
     public void onAppBackgrounded() {
         changeStartActivityAlias();
     }
+
 }

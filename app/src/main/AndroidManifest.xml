@@ -51,7 +51,7 @@
             android:name=".app.MainActivity"
             android:configChanges="uiMode"
             android:exported="true"
-
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -70,6 +70,8 @@
         </activity>
         <activity
             android:name=".app.StartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Pubber"
             android:exported="true"/>
         <activity-alias
             android:name=".app.aliases.StartActivityLightThemeAlias"

@@ -46,6 +46,7 @@ public class MainActivity extends SettingsBasicActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate: ");
         pubListViewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(PubListViewModel.initializer))
                 .get(PubListViewModel.class);
@@ -167,6 +168,7 @@ public class MainActivity extends SettingsBasicActivity {
         return NavigationUI.onNavDestinationSelected(item, navController)
                 || super.onOptionsItemSelected(item);
     }
+
 
 
 

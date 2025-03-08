@@ -508,6 +508,7 @@
         <item>Український</item>
     </string-array>
     <string name="theme_key">theme</string>
+    <string name="applied_theme_key">applied_theme</string>
     <string-array name="theme_list_display">
         <item>Phone\'s theme</item>
         <item>Light</item>
