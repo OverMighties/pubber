@@ -119,11 +119,16 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     @Override
     public void onBindViewHolder(@NonNull PubViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position);
-        if(pubCardView.getIsBreakThrough() == null)
+        if(pubCardView.getIsBreakThrough() != null && pubCardView.getCompatibility().first != pubCardView.getCompatibility().second)
             setUpCompatibilityTextView(holder.compatibility, pubCardView.getCompatibility().first, pubCardView.getCompatibility().second,holder.itemView.getContext());
+        else
+            holder.compatibility.setVisibility(View.GONE);
         if(pubCardView.getIsBreakThrough() != null && pubCardView.getIsBreakThrough()){
             holder.divider.setVisibility(View.VISIBLE);
             holder.dividerText.setVisibility(View.VISIBLE);
+        } else {
+            holder.divider.setVisibility(View.GONE);
+            holder.dividerText.setVisibility(View.GONE);
         }
 
         if(pubCardView.getName()!=null)

@@ -75,7 +75,7 @@ public class SplashFragment extends Fragment {
                         result.getData(), signInClient,
                         (from, to)-> {
                             if(from != null && to != null)
-                                Navigation.findNavController(requireActivity(),R.id.main_navHostFragment_container).navigate(getNavDirections(from,to));
+                                navController.navigate(getNavDirections(from,to));
                             else
                                 loadView(view);
                         },
@@ -85,9 +85,7 @@ public class SplashFragment extends Fragment {
                 Looper.getMainLooper())
                 .postDelayed(() -> viewModel.currentUserCheckOnStart((from, to)-> {
                             if(from != null && to != null)
-                                Navigation
-                                    .findNavController(view)
-                                    .navigate(getNavDirections(from, to));
+                                navController.navigate(getNavDirections(from, to));
                             else
                                 loadView(view);
                         }

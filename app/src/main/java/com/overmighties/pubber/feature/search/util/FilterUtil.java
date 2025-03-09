@@ -90,7 +90,6 @@ public class FilterUtil {
     }
 
     public FilterUtil tagsFilter(){
-        List<Pub> filteredNow=new ArrayList<>();
 
         if(filterUiState.getTags() == null||(filterUiState.getTags() != null && filterUiState.getTags().isEmpty()))
             return this;
@@ -167,7 +166,6 @@ public class FilterUtil {
     }
     public FilterUtil priceFilter()
     {
-        List<Pub> filteredNow=new ArrayList<>();
         if(filterUiState.getPriceType()==null || filterUiState.getPriceType().getIcon().equals(NONE_PRICE)) {
             return this;
         }
@@ -184,7 +182,6 @@ public class FilterUtil {
     }
     public FilterUtil isTimeFilter()
     {
-        List<Pair<Pub, PubFiltrationState>> filteredNow=new ArrayList<>();
         Integer dayOfWeekNow=LocalDateTime.now().getDayOfWeek().getValue();
 
         if((filterUiState.getOpenNow()!=null && filterUiState.getOpenNow())){
@@ -263,7 +260,6 @@ public class FilterUtil {
             return this;
         }
 
-        filteredPubs=filteredNow;
         return this;
     }
     public FilterUtil cityFilter()
