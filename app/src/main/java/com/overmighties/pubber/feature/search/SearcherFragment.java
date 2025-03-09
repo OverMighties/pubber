@@ -209,18 +209,16 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         swipeRefreshLayout.setOnRefreshListener(()->{
             swipeRefreshLayout.setRefreshing(true);
             pubListViewModel.fetchPubsFromRepo(REFRESH_MIN_TIME_MS);
-            //if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
-                //pubListViewModel.sort(pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().getValue());
         });
+
 
         pubListViewModel.getSortedAndFilteredPubsUiState().observe(getViewLifecycleOwner(), pubs-> {
             if(pubs==null || pubs.getPubItems()==null|| pubs.getPubItems().isEmpty())
                 recycler.setVisibility(View.GONE);
             else {
-
+                pubListViewModel.setFirstPub(true);
+                pubListViewModel.setImperfectFound(false);
                 pubListViewModel.getSearcherUiState().getValue().getListPubAdapter().setPubData(pubs);
-                //if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null)
-                //    pubListViewModel.getSearcherUiState().getValue().setLastSortedPubs(pubListViewModel.getSearcherUiState().getValue().getPubs().stream().map(pair->pair.first).collect(Collectors.toList()));
                 recycler.setVisibility(View.VISIBLE);
             }
             swipeRefreshLayout.setRefreshing(false);
@@ -228,7 +226,8 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
         pubListViewModel.getSearcherUiState().getValue().getSortPubsBy().observe(getViewLifecycleOwner(), type->{
             if(pubListViewModel.getSearcherUiState().getValue().getPubs() != null
-                    && pubListViewModel.getSearcherUiState().getValue().getLastSortPubsBy() != type) {
+                    && pubListViewModel.getSearcherUiState().getValue().getLastSortPubsBy() != type
+                    && !pubListViewModel.getSearcherUiState().getValue().getPubs().isEmpty()) {
                 pubListViewModel.getSearcherUiState().getValue().setLastSortPubsBy(type);
                 pubListViewModel.sort(type);
             }
