@@ -4,7 +4,7 @@ At this moment moment app is at the beginning of development. It's addressed for
 ## Demo
 Demo video of app flow you can see [here](docs/demo.mp4)
 ## Screenshots
-In major points in the app are made screenshots which are available [here](docs/Screenshots.md)
+In major points in the app are made screenshots which are available [here](docs/Screenshots.md) or scroll down below to [gifs](#gifs) section
 ## Features
 The app has multiple features, some of which are still in development
 - Logging and creating user account
@@ -42,7 +42,34 @@ The idea behind Pubber is quite simple. My friend and I wanted to create a app t
 ### Who are we?
 The entire codebase, from A to Z, has been developed by two students—one from PW and another from AGH.
 ### What are the future plans for the app's development?
-We will keep this section regularly updated, so make sure to check it out once in a while!
+We will keep this section regularly updated, so make sure to check it out once in a while!\
+<a name="gifs"></a>
+## Gifs
+**First open and sign in**
+
+<img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/first_open.gif" width="316" height="720" />
+
+
+**Serach and filtration**
+
+<img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/search_filtration.gif" width="316" height="720" />
+
+
+**Pub details page**
+
+<img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/pub_details.gif" width="316" height="720" />
+
+
+**Light and dark theme**
+
+<img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/light_to_dark_theme_change.gif" width="316" height="720" />
+
+
+**Settings**
+
+<img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/options_changing.gif" width="316" height="720" />
+
+
 ## Contributors
 + [Sewery](https://github.com/Sewery),
 + [RudyKarpus](https://github.com/RudyKarpus)
