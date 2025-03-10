@@ -74,7 +74,6 @@ public final class AppContainer {
         savedPubsDataStore = new SavedPubsHandler(
                 new RxDataStoreBuilder<PubProtoList>(
                         context, "favouritepubs.pb", new SavedPubSerializes()).build());
-        savedPubsDataStore.retriveSavedPubs();
     }
 
 

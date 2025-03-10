@@ -61,6 +61,7 @@ public class MainActivity extends SettingsBasicActivity {
         });
         pubListViewModel.fetchPubsFromRepo(0);
         pubListViewModel.fetchDrinksFromRepo(0);
+        pubListViewModel.retrivePubData();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         navController= ( (NavHostFragment) Objects.requireNonNull(getSupportFragmentManager()
@@ -69,13 +70,20 @@ public class MainActivity extends SettingsBasicActivity {
         setConnectivityManager();
 
         BottomNavigationView bottomNavView = findViewById(R.id.main_bottomNavView);
-//      AppBarConfiguration  bottomNavConfiguration =
-//                new AppBarConfiguration.Builder(R.id.SearcherFragment, R.id.SavedFragment, R.id.SettingsFragment).build();
         NavigationUI.setupWithNavController(bottomNavView, navController);
-//        NavigationUI.setupWithNavController(topAppBar,navController);
         findViewById(R.id.main_topAppBarLayout_back).setVisibility(View.GONE);
         ((MaterialToolbar)findViewById(R.id.main_topAppBarView_back)).setNavigationOnClickListener(v->{navController.popBackStack();});
-
+        //observer for synchronizing saved pubs with pubs repository
+        pubListViewModel.getSavedPubsHandler().getIsDataFetched().observe(this, isFetched->{
+            if(isFetched && pubListViewModel.getPubDataLoaded().getValue()) {
+                pubListViewModel.synchronizePubsRepositories();
+            }
+        });
+        pubListViewModel.getPubDataLoaded().observe(this, isLoaded->{
+            if(isLoaded && pubListViewModel.getSavedPubsHandler().getIsDataFetched().getValue()){
+                pubListViewModel.synchronizePubsRepositories();
+            }
+        });
         //set up observer for saving pubs accross whole app
         pubListViewModel.getFavouritePubState().observe(this, pair->{
             if(pubListViewModel.getFavouritePubState().getValue().first != -1) {

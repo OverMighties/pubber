@@ -72,6 +72,7 @@ public class PubListViewModel extends ViewModel {
     public static final String DETAILS_TRANSITION_NAME = "details_transition";
     private final PubsRepository pubsRepository;
     private final DrinksRepository drinksRepository;
+    @Getter
     private final SavedPubsHandler savedPubsHandler;
     @Setter
     private boolean isFirstPub = true;
@@ -122,7 +123,6 @@ public class PubListViewModel extends ViewModel {
         this.pubsRepository=pubsRepository;
         this.drinksRepository = drinksRepository;
         this.savedPubsHandler = savedPubsHandler;
-        this.isSavedDataRetrived = savedPubsHandler.getIsDataFetched();
     }
 
     public void fetchDrinksFromRepo(final int DELAY_TIME_MS){
@@ -160,6 +160,9 @@ public class PubListViewModel extends ViewModel {
                     err -> Log.e(TAG, "fetchPubsFromRepo can't get pubs due to :" + err.getLocalizedMessage())
                 );
         disposables.add(d);
+    }
+    public void retrivePubData(){
+        savedPubsHandler.retriveSavedPubs();
     }
     public void setCityConstraint(String city)
     {
@@ -284,9 +287,6 @@ public class PubListViewModel extends ViewModel {
         detailsViewModel.setPubDetails(pubDetailsUiState);
     }
 
-    public void retrivePubData(){
-        savedPubsHandler.retriveSavedPubs();
-    }
     public void savePub(Optional<Pub> pub){
         pub.ifPresentOrElse(
                 p->{
@@ -314,6 +314,21 @@ public class PubListViewModel extends ViewModel {
 
     public List<Pub> getSavedData(){
         return savedPubsHandler.getSavedPubsList();
+    }
+
+    public void synchronizePubsRepositories(){
+        List<Pub> pubList = originalPubData.getValue();
+        Integer size = pubList.size();
+        for(Pub pub:getSavedData()) {
+            OptionalInt index = IntStream.range(0, size)
+                    .filter(i -> pubList.get(i).getPubId() == pub.getPubId())
+                    .findFirst();
+            if (index.isPresent()) {
+                originalPubData.getValue().get(index.getAsInt()).setFavourite(true);
+            }
+        }
+        searcherUiState.getValue().setPubs(originalPubData.getValue().stream().map(pub ->new Pair<>(pub, new PubFiltrationState(-1, null, null))).collect(Collectors.toList()));
+        sort(searcherUiState.getValue().getLastSortPubsBy());
     }
 
     @Override
