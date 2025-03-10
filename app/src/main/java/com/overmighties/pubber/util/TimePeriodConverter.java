@@ -8,12 +8,12 @@ import java.util.TimeZone;
 
 //name to be changed
 
-public class DateTimeToCurrentTimeComparator {
+public class TimePeriodConverter {
     //Blocking default constructor
-    private DateTimeToCurrentTimeComparator(){
+    private TimePeriodConverter(){
         throw new AssertionError();
     }
-    public static DateType dateTimeToCurrentTimeComparator(Date openingTimeToday, Date closingTimeToday, Date openingTimeYesterday, Date closingTimeYesterday) throws ParseException {
+    public static TimePeriod createFromOpeningTimes(final Date openingTimeToday, final Date closingTimeToday, final Date openingTimeYesterday, final Date closingTimeYesterday) throws ParseException {
         //getting current time
         TimeZone Poland=TimeZone.getTimeZone("Europe/Warsaw");
         String time=Calendar.getInstance(Poland).get(Calendar.HOUR_OF_DAY)+":"+Calendar.getInstance(Poland).get(Calendar.MINUTE);
@@ -25,27 +25,27 @@ public class DateTimeToCurrentTimeComparator {
 
         if(hour24.getTime()>=closingTimeYesterday.getTime() && closingTimeYesterday.getTime()>openingTimeYesterday.getTime()){
             if(timeNow.before(openingTimeToday)){
-                return new DateType((dateComparator(openingTimeToday,timeNow)),false);
+                return new TimePeriod((createFrom(openingTimeToday,timeNow)),false);
             }
             else {
-                return new DateType((dateComparator(closingTimeToday,timeNow)),true);
+                return new TimePeriod((createFrom(closingTimeToday,timeNow)),true);
             }
         }
         else {
             if(timeNow.before(closingTimeYesterday)){
-                return new DateType((dateComparator(closingTimeYesterday,timeNow)),true);
+                return new TimePeriod((createFrom(closingTimeYesterday,timeNow)),true);
             }
             else {
                 if(timeNow.before(openingTimeToday)){
-                    return new DateType((dateComparator(openingTimeToday,timeNow)),false);
+                    return new TimePeriod((createFrom(openingTimeToday,timeNow)),false);
                 }
                 else {
-                    return new DateType((dateComparator(closingTimeToday,timeNow)),true);
+                    return new TimePeriod((createFrom(closingTimeToday,timeNow)),true);
                 }
             }
         }
     }
-    public static String dateComparator(Date laterTime, Date earlierTime){
+    public static String createFrom(Date laterTime, Date earlierTime){
         Date hour=new Date(3600000);
 
         long difference = laterTime.getTime() - earlierTime.getTime();

@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class DateTimeConverter {
+public class DateConverter {
     //Blocking default constructor
-    private DateTimeConverter(){
+    private DateConverter(){
         throw new AssertionError();
     }
-    private static final String dateTimeConstant = " 01 01 2000";
+    private static final String dateTimeConstant = "01 01 2000";
     private static final DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("HH:mm dd MM yyyy");
     private static final DateTimeFormatter hoursTimeFormatter=DateTimeFormatter.ofPattern("HH:mm");
 

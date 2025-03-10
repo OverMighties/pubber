@@ -1,6 +1,5 @@
 package com.overmighties.pubber.feature.dictionary;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
-import com.overmighties.pubber.feature.alcohol.AlcoholViewModel;
 import com.overmighties.pubber.feature.dictionary.stateholders.AlcoholCardViewUiState;
 import com.overmighties.pubber.feature.dictionary.util.AlcoholSelectListener;
 

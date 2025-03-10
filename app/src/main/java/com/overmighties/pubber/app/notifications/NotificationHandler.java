@@ -7,7 +7,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -27,8 +26,6 @@ public class NotificationHandler {
 
     public static void createNotificationRemind(Context context){
 
-        Integer id = 0;
-
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE);
@@ -44,7 +41,7 @@ public class NotificationHandler {
                 .setAutoCancel(true)
                 .build();
 
-        notificationManager.notify(id, notification);
+        notificationManager.notify(0, notification);
 
     }
     public static void createNotificationChannels(Context context){

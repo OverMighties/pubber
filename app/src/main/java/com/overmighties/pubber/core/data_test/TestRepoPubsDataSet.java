@@ -365,7 +365,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet2.add(DrinkDto.builder()
                 .name("AleBrowar")
                 .type("Beer")
-                .drinkStyles(Arrays.asList(
+                .drinkStyles(Collections.singletonList(
                         DrinkStyleDto.builder()
                                 .styleName("Lager")
                                 .build()))
@@ -374,7 +374,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet2.add(DrinkDto.builder()
                 .name("Amber")
                 .type("Beer")
-                .drinkStyles(Arrays.asList(
+                .drinkStyles(Collections.singletonList(
                         DrinkStyleDto.builder()
                                 .styleName("IPA")
                                 .build()))
@@ -383,7 +383,7 @@ public class TestRepoPubsDataSet {
         drinksDataSet2.add(DrinkDto.builder()
                 .name("Artezanr")
                 .type("Beer")
-                .drinkStyles(Arrays.asList(
+                .drinkStyles(Collections.singletonList(
                         DrinkStyleDto.builder()
                                 .styleName("APA")
                                 .build()))

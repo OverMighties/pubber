@@ -11,10 +11,6 @@ import com.overmighties.pubber.core.database.entities.DrinkEntity;
 import com.overmighties.pubber.core.database.entities.DrinkStyleDrinkCrossRefEntity;
 import com.overmighties.pubber.core.database.entities.DrinkStyleEntity;
 import com.overmighties.pubber.core.database.entities.DrinkWithAllEntities;
-import com.overmighties.pubber.core.database.entities.PubDrinkCrossRefEntity;
-import com.overmighties.pubber.core.database.entities.PubEntity;
-import com.overmighties.pubber.core.database.entities.PubWithAllEntities;
-import com.overmighties.pubber.core.model.Drink;
 
 import java.util.List;
 

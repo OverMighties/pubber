@@ -2,11 +2,9 @@ package com.overmighties.pubber.app;
 
 import android.app.Application;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.OnLifecycleEvent;
 import androidx.room.Room;
 import androidx.work.Configuration;
 import androidx.work.Constraints;
@@ -27,8 +25,6 @@ import com.overmighties.pubber.core.database.AppDb;
 import com.overmighties.pubber.sync.SyncWorker;
 import com.overmighties.pubber.sync.SyncWorkerFactory;
 
-import java.util.Calendar;
-import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class PubberApp extends Application implements Configuration.Provider, PubberAppLifecycleListener {

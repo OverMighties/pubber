@@ -1,4 +1,4 @@
-package com.overmighties.pubber.app.designsystem.AlcoholAlertDialog;
+package com.overmighties.pubber.app.designsystem.alcohol_alert_dialog;
 
 import static com.overmighties.pubber.app.Constants.PARTICULAR_ALCOHOL_DIALOG_EDITEXTS_RATING_IDS;
 import static com.overmighties.pubber.app.Constants.PARTICULAR_ALCOHOL_DIALOG_VIEWS_TOINVISIBLE_IDS;
@@ -26,7 +26,7 @@ import com.overmighties.pubber.util.RatingToIVConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO make constraintlayout with rating aligne and edit mode for alcohol
+//TODO make constraintlayout with rating alignment and edit mode for alcohol
 
 public class AlcoholAlertDialog {
 
@@ -111,7 +111,7 @@ public class AlcoholAlertDialog {
     }
 
     private static void setUpRatingEditText(View dialogView, int id) {
-        setUpEditTextApperance(dialogView, id);
+        setUpEditTextAppearance(dialogView, id);
         EditText editText = dialogView.findViewById(id);
         editText.addTextChangedListener(new TextWatcher() {
             String oldText;
@@ -161,7 +161,7 @@ public class AlcoholAlertDialog {
         });
     }
     private static void setUpAlcoholEditText(View dialogView, int id) {
-        setUpEditTextApperance(dialogView, id);
+        setUpEditTextAppearance(dialogView, id);
         EditText editText = dialogView.findViewById(id);
         editText.addTextChangedListener(new TextWatcher() {
             String oldText;
@@ -187,17 +187,12 @@ public class AlcoholAlertDialog {
                                 isDot = false;
                                 editText.setText(newNumber+"%");
                                 pointer++;
-                            } else if (pointer == 1 && isDot == false){
-                                editText.setText(oldText.substring(0, 1) + newNumber + "%");
+                            } else if (!isDot){
+                                editText.setText(oldText.charAt(0) + newNumber + "%");
                                 pointer++;
-                            } else if(pointer == 2 || isDot == true){
-                                if(isDot){
-                                    editText.setText(oldText.substring(0, pointer) + newNumber + "%");
-                                    pointer = 0;
-                                } else {
-                                    isDot = true;
-                                    editText.setText(oldText.substring(0, pointer) + "."+newNumber + "%");
-                                }
+                            } else if(isDot){
+                                editText.setText(oldText.substring(0, pointer) + newNumber + "%");
+                                pointer = 0;
                             }
                         } catch (Exception e) {
                             editText.setText(oldText);
@@ -213,7 +208,7 @@ public class AlcoholAlertDialog {
         });
     }
 
-    private static void setUpEditTextApperance(View dialogView, int id) {
+    private static void setUpEditTextAppearance(View dialogView, int id) {
         dialogView.findViewById(id).setEnabled(true);
         dialogView.findViewById(id).setBackground(ResourcesCompat.getDrawable(
                 dialogView.getResources(),R.drawable.edit_text_shape, null));

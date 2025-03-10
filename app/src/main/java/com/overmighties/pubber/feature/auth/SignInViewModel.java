@@ -21,8 +21,6 @@ import com.overmighties.pubber.app.designsystem.UIText;
 
 import java.util.function.BiConsumer;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
 public class SignInViewModel extends PubberAppViewModel {
     private static final String TAG="SignInViewModel";
     private final AccountApi accountApi;

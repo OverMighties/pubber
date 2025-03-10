@@ -8,8 +8,8 @@ import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
-public class DateType {
-    public static final DateType NONE=new DateType("",false);
+public class TimePeriod {
+    public static final TimePeriod NONE=new TimePeriod("",false);
     @Setter
     private String time;
     private final boolean type;

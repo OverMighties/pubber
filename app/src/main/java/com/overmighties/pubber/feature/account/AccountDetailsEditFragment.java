@@ -1,17 +1,11 @@
 package com.overmighties.pubber.feature.account;
 
-import static com.overmighties.pubber.app.Constants.ACCOUNT_DETAILS_EDIT_EDITTEXT_IDS;
-import static com.overmighties.pubber.app.Constants.SIGN_UP_TEXT_FIELDS_IDS;
 import static com.overmighties.pubber.app.exception.ErrorSnackbarUI.showSnackbar;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.designsystem.UIText;
 

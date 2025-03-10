@@ -10,9 +10,8 @@ import android.util.Pair;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.feature.search.stateholders.FilterUiState;
-import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
-import com.overmighties.pubber.util.DateTimeConverter;
-import com.overmighties.pubber.util.DayOfWeekConverter;
+import com.overmighties.pubber.util.DateConverter;
+import com.overmighties.pubber.util.DayOfWeek;
 
 
 import java.time.LocalDateTime;
@@ -57,7 +56,6 @@ public class FilterUtil {
     }
     public FilterUtil ratingFilter()
     {
-        List<Pub> filteredNow=new ArrayList<>();
         if(filterUiState.getBottomAverageRating()==null || (filterUiState.getBottomAverageRating()==BASE_BOTTOM_RATING && filterUiState.getUpperAverageRating()==BASE_UPPER_RATING)) {
             return this;
         }
@@ -76,7 +74,6 @@ public class FilterUtil {
     }
     public FilterUtil distanceFilter()
     {
-        List<Pub> filteredNow=new ArrayList<>();
         if(filterUiState.getDistance() == BASE_DISTANCE) {
             return this;
         }
@@ -85,13 +82,12 @@ public class FilterUtil {
                // filteredNow.add(pubData);
             }
         }
-        //filteredPubs=filteredNow;
         return this;
     }
 
     public FilterUtil tagsFilter(){
 
-        if(filterUiState.getTags() == null||(filterUiState.getTags() != null && filterUiState.getTags().isEmpty()))
+        if(filterUiState.getTags() == null || filterUiState.getTags().isEmpty())
             return this;
 
         int n=0;
@@ -114,7 +110,6 @@ public class FilterUtil {
 
     public FilterUtil drinksFilter()
     {
-        List<Pub> filteredNow=new ArrayList<>();
         if(filterUiState.getBeers()!= null && filterUiState.getBeers().isEmpty()
                 && filterUiState.getOtherDrinks()!= null && filterUiState.getOtherDrinks().isEmpty() ||
                 (filterUiState.getBeers()== null && filterUiState.getOtherDrinks()== null)) {
@@ -205,7 +200,7 @@ public class FilterUtil {
             return this;
         if ( filterUiState.getCustomOpeningHours().getWeekDay() != null) {
             allConditions += 1;
-            Integer dayIndex = DayOfWeekConverter.getByCamelCase(filterUiState.getCustomOpeningHours().getWeekDay()).getNumeric();
+            Integer dayIndex = DayOfWeek.getByCamelCase(filterUiState.getCustomOpeningHours().getWeekDay()).getNumeric();
             if(dayIndex == null)
                 dayIndex = dayOfWeekNow;
             if(filterUiState.getCustomOpeningHours().getFromTime() == null && filterUiState.getCustomOpeningHours().getToTime() == null){
@@ -224,18 +219,18 @@ public class FilterUtil {
                     n+=1;
                 }
             } else {
-                LocalDateTime fromTime = DateTimeConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getFromTime());
-                LocalDateTime toTime =  DateTimeConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getToTime());
+                LocalDateTime fromTime = DateConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getFromTime());
+                LocalDateTime toTime =  DateConverter.stringToLocalDateTime(filterUiState.getCustomOpeningHours().getToTime());
                 int n =0;
                 for (var pubData : filteredPubs) {
                     changeDoesTimeFit(n, pubData.first, false);
                     if(pubData.first.getOpeningHours() != null) {
                         for (var time : pubData.first.getOpeningHours()) {
                             if (time.getDayOfWeekConverter().getNumeric().equals(dayIndex)) {
-                                LocalDateTime timeOpen =  DateTimeConverter.stringToLocalDateTime(time.getTimeOpen());
-                                LocalDateTime timeClose = DateTimeConverter.stringToLocalDateTime(time.getTimeClose());
-                                if(timeOpen.isAfter(DateTimeConverter.stringToLocalDateTime("00:00"))){
-                                    if(fromTime.isAfter(DateTimeConverter.stringToLocalDateTime("00:00"))){
+                                LocalDateTime timeOpen =  DateConverter.stringToLocalDateTime(time.getTimeOpen());
+                                LocalDateTime timeClose = DateConverter.stringToLocalDateTime(time.getTimeClose());
+                                if(timeOpen.isAfter(DateConverter.stringToLocalDateTime("00:00"))){
+                                    if(fromTime.isAfter(DateConverter.stringToLocalDateTime("00:00"))){
                                         if(fromTime.isAfter(timeOpen) && toTime.isBefore(timeClose))
                                             changeDoesTimeFit(n, pubData.first, true);
                                     }

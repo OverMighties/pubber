@@ -27,8 +27,6 @@ import com.overmighties.pubber.app.designsystem.UIText;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
 public class AccountViewModel extends PubberAppViewModel {
     private static final String TAG="AccountViewModel";
     private final AccountApi accountApi;

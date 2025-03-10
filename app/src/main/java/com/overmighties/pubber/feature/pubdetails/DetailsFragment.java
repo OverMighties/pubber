@@ -5,22 +5,11 @@ import static com.overmighties.pubber.app.Constants.TAB_OVERVIEW_TEXTVIEW_DAY_ID
 import static com.overmighties.pubber.core.data_test.TestRepoPubsDataSet.LOREM_IPSUM_20;
 import static com.overmighties.pubber.core.data_test.TestRepoPubsDataSet.LOREM_IPSUM_200;
 
-import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RenderEffect;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Gravity;
@@ -59,23 +48,19 @@ import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.overmighties.pubber.R;
 
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
 import com.overmighties.pubber.app.designsystem.ViewPagerSlideTransformer;
 import com.overmighties.pubber.app.designsystem.ViewPagerSliderAdapter;
-import com.overmighties.pubber.feature.dictionary.DictionarySearchFragmentDirections;
 import com.overmighties.pubber.feature.pubdetails.stateholders.DetailsCommentCardViewUiState;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
 import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.feature.search.util.PriceType;
-import com.overmighties.pubber.util.DayOfWeekConverter;
+import com.overmighties.pubber.util.DayOfWeek;
 import com.overmighties.pubber.util.DimensionsConverter;
 import com.overmighties.pubber.util.RatingToIVConverter;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class DetailsFragment extends Fragment
@@ -138,10 +123,10 @@ public class DetailsFragment extends Fragment
 
 
     private void setUpPubData(PubDetailsUiState pubDetailsUiState) {
-        ((ImageView) requireView().findViewById(R.id.details_image_favourite)).setTag(R.drawable.ic_heart_empty);
+        requireView().findViewById(R.id.details_image_favourite).setTag(R.drawable.ic_heart_empty);
         if(pubDetailsUiState.isFavourite()) {
             ((ImageView) requireView().findViewById(R.id.details_image_favourite)).setImageResource(R.drawable.ic_heart_full);
-            ((ImageView) requireView().findViewById(R.id.details_image_favourite)).setTag(R.drawable.ic_heart_full);
+            requireView().findViewById(R.id.details_image_favourite).setTag(R.drawable.ic_heart_full);
         }
 
         if(pubDetailsUiState.getName()!=null)
@@ -178,7 +163,7 @@ public class DetailsFragment extends Fragment
             ((TextView)requireView().findViewById(R.id.details_text_price)).setText(PriceType.getById(Math.toIntExact(pubDetailsUiState.getId())).getIcon() + " • ");
         //distance
         if(pubDetailsUiState.getDistance()!=null){
-            ((TextView)requireView().findViewById(R.id.details_text_distance)).setText(" "+String.valueOf(pubDetailsUiState.getDistance())+"km");
+            ((TextView)requireView().findViewById(R.id.details_text_distance)).setText(" "+ pubDetailsUiState.getDistance() +"km");
         }
         else{
             ((TextView)requireView().findViewById(R.id.details_text_distance)).setText(getString(R.string.not_calculated));
@@ -188,12 +173,12 @@ public class DetailsFragment extends Fragment
         if(pubDetailsUiState.getReservable() != null && pubDetailsUiState.getReservable()){
             ((TextView)requireView().findViewById(R.id.details_text_reservable)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_open));
             ((TextView)requireView().findViewById(R.id.details_text_reservable)).setShadowLayer(1,0.5f,0.5f,
-                    ContextCompat.getColor(getContext(), R.color.highlight_open));;
+                    ContextCompat.getColor(getContext(), R.color.highlight_open));
         }
         else{
             ((TextView)requireView().findViewById(R.id.details_text_reservable)).setTextColor(ContextCompat.getColor(requireContext(), R.color.highlight_close));
             ((TextView)requireView().findViewById(R.id.details_text_reservable)).setShadowLayer(1,0.5f,0.5f,
-                    ContextCompat.getColor(getContext(), R.color.highlight_close));;
+                    ContextCompat.getColor(getContext(), R.color.highlight_close));
         }
 
 
@@ -201,7 +186,7 @@ public class DetailsFragment extends Fragment
         if (pubDetailsUiState.getDrinks() != null) {
             for (var alcohol : pubDetailsUiState.getDrinks()) {
                 if(alcohol.getType().equals("Beer")){
-                    FlexboxLayout beerLayout = ((FlexboxLayout)requireView().findViewById(R.id.details_FbL_beers));
+                    FlexboxLayout beerLayout = requireView().findViewById(R.id.details_FbL_beers);
                     View alcoholChipView =  LayoutInflater.from(requireContext()).inflate(R.layout.alcohol_view_chip, beerLayout, false);
                     ((Chip) alcoholChipView.findViewById(R.id.detailsEditACV_chip_alcohol)).setText(alcohol.getName());
                     String styles = null;
@@ -216,7 +201,7 @@ public class DetailsFragment extends Fragment
                         }
                         ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setText(styles);
                     } else {
-                        ((TextView)alcoholChipView.findViewById(R.id.detailsEditACV_text_styles)).setVisibility(View.GONE);
+                        alcoholChipView.findViewById(R.id.detailsEditACV_text_styles).setVisibility(View.GONE);
                     }
                     //TODO add dialog showing
                     beerLayout.addView(alcoholChipView);
@@ -235,7 +220,7 @@ public class DetailsFragment extends Fragment
                     chip.setLayoutParams(params);
                     //TODO add dialog showing
                     ((ChipGroup)requireView().findViewById(R.id.details_chipGroup_drinks)).addView(chip);
-                };
+                }
 
             }
         }
@@ -262,15 +247,15 @@ public class DetailsFragment extends Fragment
         ((RecyclerView)requireView().findViewById(R.id.details_recyclerView_comments)).setAdapter(adapter);
 
         //pub's open time info
-        Integer Today = DayOfWeekConverter.getByCurrentDay().getNumeric();
+        Integer Today = DayOfWeek.getByCurrentDay().getNumeric();
         if(!(viewModel.getUiState().getValue().getOpeningHours().isEmpty()))
         {
             for (int i = 0; i <= 6; i++) {
                 if (i + Today > 7) {
-                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today - 7).getNormal());
+                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeek.polishDayOfWeekConverter(i + Today - 7).getNormal());
                     ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 8)).getTimeOpen() + "-" + (viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 8)).getTimeClose());
                 } else {
-                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeekConverter.polishDayOfWeekConverter(i + Today).getNormal());
+                    ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAY_IDS[i])).setText(DayOfWeek.polishDayOfWeekConverter(i + Today).getNormal());
                     ((TextView) requireView().findViewById(TAB_OVERVIEW_TEXTVIEW_DAYTIME_IDS[i])).setText((viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 1)).getTimeOpen() + "-" + (viewModel.getUiState().getValue().getOpeningHours().get(i + Today - 1)).getTimeClose());
                 }
             }
@@ -436,7 +421,7 @@ public class DetailsFragment extends Fragment
         });
 
         HorizontalScrollView expandableView = requireView().findViewById(R.id.details_horizontalSV_chipsExpandable);
-        ((ScrollView)requireView().findViewById(R.id.details_scrollView)).setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        requireView().findViewById(R.id.details_scrollView).setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 if(DimensionsConverter.dpFromPx(requireContext(), scrollY)<=48F){

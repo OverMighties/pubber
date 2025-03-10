@@ -21,9 +21,7 @@ import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.subjects.AsyncSubject;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
-import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
 import lombok.Getter;
 
@@ -33,7 +31,7 @@ public final class UserLocationDataSource implements UserLocationApi{
     public static final String TAG = "UserLocationDataSource";
     private final Subject<LocationData> locationSubject = BehaviorSubject.create();
     @Getter
-    private Flowable<LocationData> locationFlowable;
+    private final Flowable<LocationData> locationFlowable;
     private final LocationRequest locationRequestRealTime=  new LocationRequest
             .Builder(Priority.PRIORITY_HIGH_ACCURACY,LOCATION_REQUEST_INTERVAL)
             .build();

@@ -2,17 +2,9 @@ package com.overmighties.pubber.app.designsystem;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
-import androidx.preference.PreferenceViewHolder;
 
 import com.overmighties.pubber.R;
 

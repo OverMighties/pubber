@@ -19,7 +19,6 @@ import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.Pair;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,11 +27,9 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RadioButton;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -42,29 +39,23 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Constraints;
 import androidx.core.content.ContextCompat;
-import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.PubberApp;
-import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
-import com.overmighties.pubber.app.designsystem.LoadingPopUp;
+import com.overmighties.pubber.app.basic.BaseFragmentWithLocationPermission;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
 import com.overmighties.pubber.app.settings.SettingsHandler;
-import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.databinding.FragmentSearcherBinding;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
@@ -73,17 +64,8 @@ import com.overmighties.pubber.util.ResourceUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-
-public class SearcherFragment extends BaseFragmentWithPermission implements PubListSelectListener {
+public class SearcherFragment extends BaseFragmentWithLocationPermission implements PubListSelectListener {
 
     public static final String TAG = "SearcherFragment";
     public static final int REFRESH_MIN_TIME_MS=1500;
@@ -156,10 +138,10 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
         if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() != null){
 
-            if(pubListViewModel.getIsSavedDataRetrived().getValue()){
+            if(pubListViewModel.getIsSavedDataRetrieved().getValue()){
                 navigateToDetails();
             } else {
-                pubListViewModel.getIsSavedDataRetrived().observe(getViewLifecycleOwner(), b->{
+                pubListViewModel.getIsSavedDataRetrieved().observe(getViewLifecycleOwner(), b->{
                     if(b)
                         navigateToDetails();
                 });
@@ -171,7 +153,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     private void navigateToDetails(){
         int n = 0;
         for(var pub:pubListViewModel.get_originalPubData().getValue()){
-            if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId() == pub.getPubId()){
+            if(pubListViewModel.getSearcherUiState().getValue().getLinkPubId().equals(pub.getPubId())){
                 pubListViewModel.getSearcherUiState().getValue().setLinkPubId(null);
                 pubListViewModel.setPubDetails(n, detailsViewModel);
                 NavHostFragment.findNavController(requireParentFragment()).navigate(SearcherFragmentDirections.actionSearcherToDetails());
@@ -269,7 +251,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             }
             return false;
         });
-        topAppBar.setTitle(pubListViewModel.getCityConstraint().getValue().toString());
+        topAppBar.setTitle(pubListViewModel.getCityConstraint().getValue());
         topAppBar.setNavigationOnClickListener(v->{
             navController.popBackStack();
         });
@@ -290,7 +272,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getLocalizedMessage();
         }
     }
     private void initSearchView()
@@ -485,7 +467,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                         1f, scaleX+1, 1f, scaleY+1,
                         ScaleAnimation.RELATIVE_TO_SELF, DimensionsConverter.pxFromDp(context, 25)/screenWidth,
                         ScaleAnimation.RELATIVE_TO_SELF, (float)(location[1]-recyclerViewScrolledHeight)/(float)screenHeight);
-                scaleAnimation.setDuration((int)250);
+                scaleAnimation.setDuration(250);
                 scaleAnimation.setFillAfter(true);
                 scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -512,12 +494,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         });
         detailsViewModel.setOpenedPubPosition(position);
         pubListViewModel.setPubDetails(position,detailsViewModel);
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-
     }
 
     @Override

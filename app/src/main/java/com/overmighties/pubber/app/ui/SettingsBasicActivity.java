@@ -1,18 +1,11 @@
 package com.overmighties.pubber.app.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
 
-import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
-import com.luckycatlabs.sunrisesunset.dto.Location;
 import com.overmighties.pubber.app.settings.SettingsHandler;
-
-import java.util.Calendar;
-import java.util.TimeZone;
 
 public class SettingsBasicActivity extends AppCompatActivity {
 

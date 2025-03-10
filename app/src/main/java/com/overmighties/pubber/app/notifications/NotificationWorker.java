@@ -25,6 +25,7 @@ public class NotificationWorker extends Worker {
         super(context, workerParams);
     }
 
+    @androidx.annotation.NonNull
     @Override
     public Result doWork() {
         Log.i(TAG, "Do work");

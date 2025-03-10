@@ -1,7 +1,5 @@
 package com.overmighties.pubber.app.util;
 
-import static androidx.activity.result.ActivityResultCallerKt.registerForActivityResult;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -10,7 +8,7 @@ import android.content.pm.PackageManager;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+
 public class PermissionHandler {
     public static final String[] LOCATION_PERMISSIONS ={
             Manifest.permission.ACCESS_FINE_LOCATION,

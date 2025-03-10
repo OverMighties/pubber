@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.overmighties.pubber.R;

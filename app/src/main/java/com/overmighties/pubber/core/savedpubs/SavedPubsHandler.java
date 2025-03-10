@@ -6,10 +6,8 @@ import static com.overmighties.pubber.core.savedpubs.SavedPubsMapper.MapPubToPro
 import android.util.Log;
 
 import androidx.datastore.rxjava3.RxDataStore;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.overmighties.pubber.app.core.savedpubs.PubProto;
 import com.overmighties.pubber.app.core.savedpubs.PubProtoList;
 import com.overmighties.pubber.core.model.Pub;
 
@@ -24,11 +22,11 @@ import lombok.Getter;
 public class SavedPubsHandler {
     public static final String TAG = "SavedPubsHandler";
     @Getter
-    private RxDataStore<PubProtoList> savedPubsDataStore;
+    private final RxDataStore<PubProtoList> savedPubsDataStore;
     @Getter
     private List<Pub> savedPubsList;
     @Getter
-    private MutableLiveData<Boolean> isDataFetched = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isDataFetched = new MutableLiveData<>();
 
 
     public SavedPubsHandler(RxDataStore<PubProtoList> dataStore){
@@ -80,12 +78,4 @@ public class SavedPubsHandler {
         });
     }
 
-    public void clear(){
-        /*
-        savedPubsDataStore.updateDataAsync(current->{
-            return Single.just(PubProtoList.getDefaultInstance());
-        });
-
-         */
-    }
 }

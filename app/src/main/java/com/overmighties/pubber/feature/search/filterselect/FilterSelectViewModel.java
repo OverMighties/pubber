@@ -12,10 +12,10 @@ import com.overmighties.pubber.app.PubberApp;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class FilterSelectViewModel extends ViewModel {
 
-    @Getter
-    @Setter
     private listDataType dataType;
 
     public enum listDataType{

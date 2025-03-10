@@ -1,6 +1,5 @@
 package com.overmighties.pubber.feature.map;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,20 +12,17 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.basic.BaseFragmentWithPermission;
+import com.overmighties.pubber.app.basic.BaseFragmentWithLocationPermission;
 import com.overmighties.pubber.core.model.LocationData;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.PubListViewModel;
 
-import java.util.List;
-
-public class MapFragment extends BaseFragmentWithPermission implements OnMapReadyCallback {
+public class MapFragment extends BaseFragmentWithLocationPermission implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     protected UserTrackerViewModel userTrackerViewModel;
     protected GoogleMap googleMap;

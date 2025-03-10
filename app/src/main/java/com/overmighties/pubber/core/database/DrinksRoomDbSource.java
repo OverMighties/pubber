@@ -6,13 +6,9 @@ import static com.overmighties.pubber.core.data.mappers.PubEntityMapper.mapFromE
 
 import android.util.Log;
 
-import com.overmighties.pubber.core.data.mappers.PubDataMapper;
-import com.overmighties.pubber.core.data.mappers.PubEntityMapper;
 import com.overmighties.pubber.core.model.Drink;
-import com.overmighties.pubber.core.model.Pub;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 import lombok.AllArgsConstructor;

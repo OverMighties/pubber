@@ -4,7 +4,6 @@ import androidx.core.util.Pair;
 
 import com.overmighties.pubber.feature.search.util.PriceType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;

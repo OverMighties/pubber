@@ -1,4 +1,4 @@
-package com.overmighties.pubber.app.designsystem.AlcoholAlertDialog;
+package com.overmighties.pubber.app.designsystem.alcohol_alert_dialog;
 
 
 import java.util.List;

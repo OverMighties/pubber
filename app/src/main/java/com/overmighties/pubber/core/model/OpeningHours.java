@@ -1,7 +1,7 @@
 package com.overmighties.pubber.core.model;
 
 
-import com.overmighties.pubber.util.DayOfWeekConverter;
+import com.overmighties.pubber.util.DayOfWeek;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -30,8 +30,8 @@ public class OpeningHours {
     {
         return  LocalTime.parse(timeClose,TIME_FORMATTER);
     }
-    public DayOfWeekConverter getDayOfWeekConverter()
+    public DayOfWeek getDayOfWeekConverter()
     {
-        return DayOfWeekConverter.getByUpperCase(weekday);
+        return DayOfWeek.getByUpperCase(weekday);
     }
 }

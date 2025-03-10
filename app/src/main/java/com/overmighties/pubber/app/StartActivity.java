@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.ui.SettingsBasicActivity;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.feature.open.FirstOpenViewModel;
-
-import java.util.Locale;
 
 
 public class StartActivity extends AppCompatActivity {

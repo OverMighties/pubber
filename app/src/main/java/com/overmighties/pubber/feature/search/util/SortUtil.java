@@ -5,7 +5,6 @@ package com.overmighties.pubber.feature.search.util;
 import android.util.Pair;
 
 import com.overmighties.pubber.core.model.Pub;
-import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -87,7 +86,7 @@ public class SortUtil
     public static void divideList(List<Pair<Pub, PubFiltrationState>> pubList){
         sortUtilState.setDivided(true);
         for(var pubData:pubList){
-            if(pubData.second.getCompatibility() == pubData.second.getAllCompatibility()){
+            if(pubData.second.getCompatibility().equals(pubData.second.getAllCompatibility())){
                 sortUtilState.getAllConditionsPubList().add(pubData);
             } else {
                 sortUtilState.getOtherPubList().add(pubData);

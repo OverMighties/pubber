@@ -1,16 +1,15 @@
 package com.overmighties.pubber.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import java.util.Date;
-
-public class TestDateType {
+public class TestTimePeriod {
     @Test
     public void testNone(){
-        DateType none = DateType.NONE;
+        TimePeriod none = TimePeriod.NONE;
         assertEquals(none.getTime(), "");
-        assertEquals(none.isType(), null);
+        assertNull(none.isType());
     }
 }

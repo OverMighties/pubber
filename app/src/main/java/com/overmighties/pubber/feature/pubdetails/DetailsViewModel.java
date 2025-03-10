@@ -4,20 +4,9 @@ import static androidx.lifecycle.SavedStateHandleSupport.createSavedStateHandle;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 
-
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
-import android.text.style.TextAppearanceSpan;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -35,15 +24,12 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
-import com.overmighties.pubber.util.DimensionsConverter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import lombok.Getter;
 import lombok.Setter;

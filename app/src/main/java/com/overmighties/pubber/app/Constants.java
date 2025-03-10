@@ -4,6 +4,8 @@ import androidx.core.util.Pair;
 
 import com.overmighties.pubber.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Constants {
@@ -307,11 +309,11 @@ public class Constants {
             R.id.texttg0300,
     };
 
-    public static final Pair<Integer, Integer>[] POP_UP_TIME_PAIRS = new Pair[POP_UP_TIME_IDS.length];
+    public static final List<Pair<Integer, Integer>> POP_UP_TIME_PAIRS = new ArrayList<>();
 
     static {
         for (int i = 0; i < POP_UP_TIME_IDS.length; i++) {
-            POP_UP_TIME_PAIRS[i] = new Pair<>(POP_UP_TIME_IDS[i], POP_UP_TIME_TEXT_IDS[i]);
+            POP_UP_TIME_PAIRS.add(new Pair<>(POP_UP_TIME_IDS[i], POP_UP_TIME_TEXT_IDS[i]));
         }
     }
 

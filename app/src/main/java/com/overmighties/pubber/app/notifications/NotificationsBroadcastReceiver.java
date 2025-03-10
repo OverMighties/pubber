@@ -11,8 +11,6 @@ import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
-import java.util.Calendar;
-import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class NotificationsBroadcastReceiver extends BroadcastReceiver {
@@ -21,16 +19,16 @@ public class NotificationsBroadcastReceiver extends BroadcastReceiver {
         String action = intent.getAction();
 
         if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
-            sheduleNotification(context);
+            scheduleNotification(context);
         } else if (PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED.equals(action)) {
             PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             if (!pm.isDeviceIdleMode()) {
-                sheduleNotification(context);
+                scheduleNotification(context);
             }
         }
     }
 
-    public void sheduleNotification(Context context){
+    public void scheduleNotification(Context context){
 
         Constraints constraints = new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.NOT_REQUIRED)

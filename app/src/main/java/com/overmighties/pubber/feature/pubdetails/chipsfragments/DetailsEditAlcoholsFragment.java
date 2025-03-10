@@ -184,8 +184,7 @@ public class  DetailsEditAlcoholsFragment extends Fragment {
                         if (!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().contains(checkDrink))
                             viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().add(checkDrink);
                     } else {
-                        if (viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().contains(checkDrink))
-                            viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().remove(checkDrink);
+                        viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().remove(checkDrink);
                     }
                 }
                 if (!viewModel.getAlcoholUiState().getValue().getRemoveBeerListName().isEmpty()) {
@@ -256,8 +255,7 @@ public class  DetailsEditAlcoholsFragment extends Fragment {
                         if (!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
                             viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().add(checkDrink);
                     } else {
-                        if (viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().contains(checkDrink))
-                            viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().remove(checkDrink);
+                        viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().remove(checkDrink);
                     }
                 }
                 if (!viewModel.getAlcoholUiState().getValue().getRemoveDrinkListName().isEmpty()) {

@@ -21,7 +21,6 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.MainActivity;
-import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.designsystem.UIText;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 import com.overmighties.pubber.app.util.PermissionHandler;
@@ -55,7 +54,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         SwitchPreferenceCompat notificationPref = findPreference(getString(R.string.notifications_key));
         if(notificationPref!=null){
-            notificationPref.setChecked((PermissionHandler.hasPermission(requireContext(), POST_NOTIFICATIONS)==true?true:false));
+            notificationPref.setChecked((PermissionHandler.hasPermission(requireContext(), POST_NOTIFICATIONS) ?true:false));
             notificationPref.setOnPreferenceChangeListener(((preference, newValue) -> {
                 //TODO if permission wasn't granted ask for it
                 if((boolean) newValue && !PermissionHandler.hasPermission(requireContext(), POST_NOTIFICATIONS)){
@@ -67,7 +66,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         SwitchPreferenceCompat locationPref = findPreference(getString(R.string.localization_key));
         if(locationPref!=null){
-            locationPref.setChecked(PermissionHandler.hasLocationPermission(requireContext())==true?true:false);
+            locationPref.setChecked(PermissionHandler.hasLocationPermission(requireContext()) ?true:false);
             locationPref.setOnPreferenceChangeListener(((preference, newValue) -> {
                 //TODO if permission wasn't granted ask for it
                 if((boolean) newValue && !PermissionHandler.hasLocationPermission(requireContext())){

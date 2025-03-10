@@ -1,6 +1,5 @@
 package com.overmighties.pubber.feature.open;
 
-import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.MainActivity;
 import com.overmighties.pubber.app.StartActivity;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 

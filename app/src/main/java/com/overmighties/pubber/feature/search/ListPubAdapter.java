@@ -30,7 +30,6 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
@@ -47,8 +46,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     private PubsCardViewUiState pubData;
     public final PubListSelectListener pubListSelectListener;
     private final String chiptag;
-    private boolean isFirstImperfectShown = false;
-    private MutableLiveData<Pair<Long, Boolean>> favouritePubState;
+    private final MutableLiveData<Pair<Long, Boolean>> favouritePubState;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
 
@@ -61,8 +59,6 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private final TextView qualityRating;
         private final TextView ratingCount;
         private final ConstraintLayout ratingImage;
-        //private final TextView costRating;
-        //private final TextView averageRatingFromServices;
         private final ImageView imageFavourite;
         private final ShapeableImageView pubIcon;
         private final View itemView;
@@ -119,7 +115,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     @Override
     public void onBindViewHolder(@NonNull PubViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PubItemCardViewUiState pubCardView=pubData.getPubItems().get(position);
-        if(pubCardView.getIsBreakThrough() != null && pubCardView.getCompatibility().first != pubCardView.getCompatibility().second)
+        if(pubCardView.getIsBreakThrough() != null && !pubCardView.getCompatibility().first.equals(pubCardView.getCompatibility().second))
             setUpCompatibilityTextView(holder.compatibility, pubCardView.getCompatibility().first, pubCardView.getCompatibility().second,holder.itemView.getContext());
         else
             holder.compatibility.setVisibility(View.GONE);
@@ -161,7 +157,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             holder.timeOpenToday.setText(holder.itemView.getContext().getString(R.string.nodata));
         }
         if(pubCardView.getWalkDistance()!=null) {
-            holder.walkDistance.setText(pubCardView.getWalkDistance().toString()+"km");
+            holder.walkDistance.setText(pubCardView.getWalkDistance() +"km");
         }
         holder.ratingCount.setText("("+ pubCardView.getRatingCount() +")");
 
@@ -232,7 +228,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
                     }
                     else{
                         drinkChipGroup.addView(chip);
-                    };
+                    }
                 }
             }
 
@@ -258,7 +254,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
     private void setUpCompatibilityTextView(TextView textView, Integer compatibility,  Integer allCompatibility, Context context) {
         textView.setText(
-                String.valueOf(compatibility) + "/" + String.valueOf(allCompatibility));
+                compatibility + "/" + allCompatibility);
         Float fraction = (float)compatibility/allCompatibility;
         fraction = fraction + 0.75f*fraction;
         Float textViewWidth = textView.getPaint().measureText(textView.getText().toString());

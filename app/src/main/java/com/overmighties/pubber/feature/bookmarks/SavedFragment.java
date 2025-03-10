@@ -24,11 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.designsystem.NavigationBar;
-import com.overmighties.pubber.databinding.FragmentSearcherBinding;
 import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
 import com.overmighties.pubber.feature.search.ListPubAdapter;
 import com.overmighties.pubber.feature.search.PubListViewModel;
-import com.overmighties.pubber.feature.search.SearcherFragmentDirections;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubFiltrationState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;

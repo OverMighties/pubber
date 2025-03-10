@@ -12,12 +12,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialog;
-import com.overmighties.pubber.app.designsystem.AlcoholAlertDialog.AlcoholAlertDialogUiState;
+import com.overmighties.pubber.app.designsystem.alcohol_alert_dialog.AlcoholAlertDialog;
+import com.overmighties.pubber.app.designsystem.alcohol_alert_dialog.AlcoholAlertDialogUiState;
 import com.overmighties.pubber.feature.alcohol.AlcoholViewModel;
 import com.overmighties.pubber.feature.dictionary.stateholders.AlcoholCardViewUiState;
 import com.overmighties.pubber.feature.dictionary.util.AlcoholSelectListener;
-import com.overmighties.pubber.feature.search.PubListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

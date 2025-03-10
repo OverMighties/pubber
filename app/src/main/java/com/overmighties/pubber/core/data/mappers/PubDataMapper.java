@@ -20,7 +20,7 @@ import com.overmighties.pubber.core.model.Photo;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.core.model.Tag;
-import com.overmighties.pubber.util.DateTimeConverter;
+import com.overmighties.pubber.util.DateConverter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +36,7 @@ public class PubDataMapper {
                 pub.getPubId(),
                 pub.getName(),
                 pub.getAddress(),
-                DateTimeConverter.getToStringDate(pub.getFetchTime()),
+                DateConverter.getToStringDate(pub.getFetchTime()),
                 pub.getCity(),
                 pub.getPhoneNumber(),
                 pub.getWebsiteUrl(),

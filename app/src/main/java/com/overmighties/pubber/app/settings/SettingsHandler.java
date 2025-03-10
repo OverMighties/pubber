@@ -1,11 +1,8 @@
 package com.overmighties.pubber.app.settings;
 
 import android.app.UiModeManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;

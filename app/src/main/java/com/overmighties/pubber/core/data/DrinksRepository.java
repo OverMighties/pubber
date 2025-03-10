@@ -5,15 +5,10 @@ import android.util.Log;
 import com.overmighties.pubber.core.data.mappers.PubDtoMapper;
 import com.overmighties.pubber.core.database.DbResponse;
 import com.overmighties.pubber.core.database.PubberDrinksLocalApi;
-import com.overmighties.pubber.core.database.PubberLocalApi;
 import com.overmighties.pubber.core.drinksdataset.PubberDrinkOfflineApi;
 import com.overmighties.pubber.core.model.Drink;
-import com.overmighties.pubber.core.model.Pub;
-import com.overmighties.pubber.core.network.PubberNetworkApi;
 import com.overmighties.pubber.sync.Result;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

@@ -6,7 +6,7 @@ import java.util.Date;
 import lombok.Getter;
 
 @Getter
-public enum DayOfWeekConverter {
+public enum DayOfWeek {
     NONE(null,null,null),
     MONDAY("MONDAY","Monday",1),
     TUESDAY("TUESDAY","Tuesday",2),
@@ -29,13 +29,13 @@ public enum DayOfWeekConverter {
     private final Integer numeric;
 
 
-    DayOfWeekConverter(String upperCase, String normal, Integer numeric) {
+    DayOfWeek(String upperCase, String normal, Integer numeric) {
         this.upperCase = upperCase;
         this.normal = normal;
         this.numeric = numeric;
     }
 
-    public static DayOfWeekConverter getByUpperCase(String upperCaseDayOfWeek)
+    public static DayOfWeek getByUpperCase(String upperCaseDayOfWeek)
     {
         switch (upperCaseDayOfWeek)
         {
@@ -58,7 +58,7 @@ public enum DayOfWeekConverter {
         }
     }
 
-    public static DayOfWeekConverter getByNumber(Integer numberOfDayOfWeek)
+    public static DayOfWeek getByNumber(Integer numberOfDayOfWeek)
     {
         switch (numberOfDayOfWeek)
         {
@@ -81,43 +81,36 @@ public enum DayOfWeekConverter {
 
         }
     }
-    public static DayOfWeekConverter getByCamelCase(String camelCaseDayOfWeek)
+    public static DayOfWeek getByCamelCase(String camelCaseDayOfWeek)
     {
         switch (camelCaseDayOfWeek)
         {
             case "Monday":
-                return MONDAY;
-            case "Tuesday":
-                return TUESDAY;
-            case "Wednesday":
-                return WEDNESDAY;
-            case "Thursday":
-                return THURSDAY;
-            case "Friday":
-                return FRIDAY;
-            case "Saturday":
-                return SATURDAY;
-            case "Sunday":
-                return SUNDAY;
             case "Poniedziałek":
                 return MONDAY;
+            case "Tuesday":
             case "Wtorek":
                 return TUESDAY;
+            case "Wednesday":
             case "Środa":
                 return WEDNESDAY;
+            case "Thursday":
             case "Czwartek":
                 return THURSDAY;
+            case "Friday":
             case "Piątek":
                 return FRIDAY;
+            case "Saturday":
             case "Sobota":
                 return SATURDAY;
+            case "Sunday":
             case "Niedziela":
                 return SUNDAY;
             default:
                 return NONE;
         }
     }
-    public static DayOfWeekConverter getByCurrentDay()
+    public static DayOfWeek getByCurrentDay()
     {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
@@ -141,7 +134,7 @@ public enum DayOfWeekConverter {
                 return NONE;
         }
     }
-    public static DayOfWeekConverter polishDayOfWeekConverter(Integer numberOfDayOfWeek){
+    public static DayOfWeek polishDayOfWeekConverter(Integer numberOfDayOfWeek){
         switch (numberOfDayOfWeek)
         {
             case 1:

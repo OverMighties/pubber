@@ -11,9 +11,6 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.core.model.Drink;
-import com.overmighties.pubber.feature.pubdetails.DetailsViewModel;
-import com.overmighties.pubber.feature.pubdetails.stateholders.PubDetailsUiState;
-import com.overmighties.pubber.feature.search.PubListViewModel;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -73,7 +70,7 @@ public class AlcoholViewModel extends ViewModel {
 
     private void  setUiStateData(){
         for(var drink:drinkList){
-            if(uiState.getValue().getDrink_id() == drink.getDrinkId()){
+            if(uiState.getValue().getDrink_id().equals(drink.getDrinkId())){
                 uiState.getValue().changeAllData(
                         drink.getName(),
                         //drink.getBeer().getBrewery

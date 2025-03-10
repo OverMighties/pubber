@@ -18,7 +18,7 @@ import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.core.model.Ratings;
 import com.overmighties.pubber.core.model.DrinkStyle;
 import com.overmighties.pubber.core.model.Tag;
-import com.overmighties.pubber.util.DateTimeConverter;
+import com.overmighties.pubber.util.DateConverter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class PubEntityMapper {
                 pubEntity.getPubId(),
                 pubEntity.getName(),
                 pubEntity.getAddress(),
-                DateTimeConverter.getFromStringDate(pubEntity.getFetchTime()),
+                DateConverter.getFromStringDate(pubEntity.getFetchTime()),
                 pubEntity.getCity(),
                 pubEntity.getPhoneNumber(),
                 pubEntity.getWebsiteUrl(),

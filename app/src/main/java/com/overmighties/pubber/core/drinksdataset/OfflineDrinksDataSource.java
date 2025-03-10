@@ -1,9 +1,6 @@
 package com.overmighties.pubber.core.drinksdataset;
 
-import com.overmighties.pubber.core.data_test.TestRepoPubsDataSet;
-import com.overmighties.pubber.core.network.PubberNetworkApi;
 import com.overmighties.pubber.core.network.model.DrinkDto;
-import com.overmighties.pubber.core.network.model.PubDto;
 
 import java.util.List;
 

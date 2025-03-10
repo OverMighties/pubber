@@ -1,6 +1,5 @@
 package com.overmighties.pubber.core.drinksdataset;
 
-import com.overmighties.pubber.core.model.DrinkStyle;
 import com.overmighties.pubber.core.network.model.BeerDto;
 import com.overmighties.pubber.core.network.model.DrinkDto;
 import com.overmighties.pubber.core.network.model.DrinkStyleDto;
@@ -344,7 +343,7 @@ public class DrinksDataSet {
                         .blg("12")
                         .alcoholContent("5.5")
                         .build())
-                .drinkStyles(Arrays.asList(
+                .drinkStyles(Collections.singletonList(
                         DrinkStyleDto.builder().styleName("Pilzner").build()))
                 .build());
 
@@ -381,7 +380,7 @@ public class DrinksDataSet {
                         .blg("14")
                         .alcoholContent("5.4")
                         .build())
-                .drinkStyles(Arrays.asList(
+                .drinkStyles(Collections.singletonList(
                         DrinkStyleDto.builder().styleName("Marcowe").build()))
                 .build());
         dataSet.add(DrinkDto.builder()

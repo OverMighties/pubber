@@ -32,7 +32,7 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
     private DetailsEditViewModel viewModel;
 
     private DetailsDrinkListAdapter adapter;
-    private List<DetailsDrinkCardViewUiState> list = new ArrayList<>();
+    private final List<DetailsDrinkCardViewUiState> list = new ArrayList<>();
     private String[] names;
 
     @Override
@@ -62,7 +62,7 @@ public class DetailsEditAlcoholsSelectFragment extends Fragment implements Detai
     }
 
     private void setUpListeners(){
-        EditText editText = ((EditText)requireView().findViewById(R.id.detailsEditAS_editText_search));
+        EditText editText = requireView().findViewById(R.id.detailsEditAS_editText_search);
 
         requireView().findViewById(R.id.detailsEditAS_recyclerView_searchList).setOnClickListener(v->{
             unFocus(editText);

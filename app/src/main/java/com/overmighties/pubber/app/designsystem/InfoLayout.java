@@ -1,8 +1,6 @@
 package com.overmighties.pubber.app.designsystem;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -14,11 +12,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.util.DimensionsConverter;
 
 public class InfoLayout {
 
-    private static int[] anchorScreenLocation = new int[2];
+    private static final int[] anchorScreenLocation = new int[2];
 
 
 

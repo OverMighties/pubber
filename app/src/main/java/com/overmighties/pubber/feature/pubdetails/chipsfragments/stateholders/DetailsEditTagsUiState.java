@@ -1,8 +1,5 @@
 package com.overmighties.pubber.feature.pubdetails.chipsfragments.stateholders;
 
-import com.overmighties.pubber.core.model.Drink;
-import com.overmighties.pubber.core.model.Tag;
-
 import java.util.ArrayList;
 import java.util.List;
 

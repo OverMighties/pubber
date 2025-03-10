@@ -6,20 +6,18 @@ import static com.overmighties.pubber.app.util.PermissionHandler.shouldShowRatio
 
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.overmighties.pubber.R;
 
-public class BaseFragmentWithPermission extends Fragment {
+public class BaseFragmentWithLocationPermission extends Fragment {
     private Runnable onLocationAvailable;
-    public static final String TAG="BaseFragmentWithPermission";
+    public static final String TAG="BaseFragmentWithLocationPermission";
 
     protected ActivityResultLauncher<String[]> locationPermissionRequest =
             registerForActivityResult(new ActivityResultContracts

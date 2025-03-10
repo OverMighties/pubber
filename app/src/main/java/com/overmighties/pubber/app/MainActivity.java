@@ -31,6 +31,7 @@ import com.overmighties.pubber.feature.search.PubListViewModel;
 import com.overmighties.pubber.app.ui.SettingsBasicActivity;
 
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class MainActivity extends SettingsBasicActivity {
@@ -80,10 +81,10 @@ public class MainActivity extends SettingsBasicActivity {
         pubListViewModel.getFavouritePubState().observe(this, pair->{
             if(pubListViewModel.getFavouritePubState().getValue().first != -1) {
                 if (pubListViewModel.getFavouritePubState().getValue().second) {
-                    pubListViewModel.savePub(pubListViewModel.get_originalPubData()
-                            .getValue()
+                    pubListViewModel.savePub(Objects.requireNonNull(pubListViewModel.get_originalPubData()
+                                    .getValue())
                             .stream()
-                            .filter(pub -> pub.getPubId() == pubListViewModel.getFavouritePubState().getValue().first)
+                            .filter(pub -> pub.getPubId().equals(pubListViewModel.getFavouritePubState().getValue().first))
                             .findFirst());
                 } else {
                     pubListViewModel.deletePub(pubListViewModel.getFavouritePubState().getValue().first);

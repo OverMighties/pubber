@@ -32,7 +32,7 @@ public class FilterSelectFragment   extends Fragment implements FilterSelectList
     private FilterSelectViewModel viewModel;
     private PubListViewModel pubListViewModel;
     private DrinkListAdapter adapter;
-    private List<FilterSelectDrinkCardViewUiState> list = new ArrayList<>();
+    private final List<FilterSelectDrinkCardViewUiState> list = new ArrayList<>();
     private NavController navController;
     private String[] names;
 
@@ -64,7 +64,7 @@ public class FilterSelectFragment   extends Fragment implements FilterSelectList
     }
 
     private void setUpListeners(){
-        EditText editText = ((EditText)requireView().findViewById(R.id.filterSelect_editText_search));
+        EditText editText = requireView().findViewById(R.id.filterSelect_editText_search);
 
         requireView().findViewById(R.id.filterSelect_recyclerView_search).setOnClickListener(v->{
             unFocus(editText);

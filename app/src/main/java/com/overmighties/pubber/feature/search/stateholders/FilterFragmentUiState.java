@@ -2,15 +2,11 @@ package com.overmighties.pubber.feature.search.stateholders;
 
 import androidx.core.util.Pair;
 
-import com.overmighties.pubber.app.settings.SettingsHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

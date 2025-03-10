@@ -12,6 +12,8 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 import com.overmighties.pubber.app.PubberApp;
 import com.overmighties.pubber.app.settings.SettingsHandler;
 
+import lombok.Getter;
+
 public class FirstOpenViewModel extends ViewModel {
 
     private final MutableLiveData<FirstOpenUiState> uiState=
@@ -24,8 +26,8 @@ public class FirstOpenViewModel extends ViewModel {
         Polish("pl", "Polski"),
         English("en", "English"),
         Ukrainian("uk", "Український");
-        private String languageCode;
-        private String nativeName;
+        private final String languageCode;
+        private final String nativeName;
         Language(String languageCode, String nativeName){
 
             this.languageCode = languageCode;
@@ -35,25 +37,24 @@ public class FirstOpenViewModel extends ViewModel {
             return this.languageCode;
         }
         public String getNativeName() {return this.nativeName;}
-    };
+    }
+
+    @Getter
     public enum Theme{
         Dark(SettingsHandler.ThemeHelper.THEME_DARK),
         Light(SettingsHandler.ThemeHelper.THEME_LIGHT);
-        private String theme;
+        private final String theme;
         Theme(String theme){
             this.theme = theme;
         }
 
-        public String getTheme() {
-            return this.theme;
-        }
         public static Theme getThemeByName(String name){
             if(name.equals(SettingsHandler.ThemeHelper.THEME_LIGHT)){
                 return Light;
             }
             return Dark;
         }
-    };
+    }
 
     public static final ViewModelInitializer<FirstOpenViewModel> initializer=new ViewModelInitializer<>(
             FirstOpenViewModel.class,

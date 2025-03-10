@@ -2,7 +2,6 @@ package com.overmighties.pubber.core.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode

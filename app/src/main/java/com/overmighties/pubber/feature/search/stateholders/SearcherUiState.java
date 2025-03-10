@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.databinding.FragmentSearcherBinding;
 import com.overmighties.pubber.feature.search.ListPubAdapter;
-import com.overmighties.pubber.feature.search.util.FilterUtil;
 import com.overmighties.pubber.feature.search.util.PubFiltrationState;
 import com.overmighties.pubber.feature.search.util.SortPubsBy;
 
@@ -16,9 +15,6 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor

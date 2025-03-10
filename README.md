@@ -1,10 +1,10 @@
 # Pubber
 **Find your favourite pubs in your nearby location, check ratings, drinks and more!!!**<br>
-At this moment moment app is at the beginning of development. It's addressed for Android users who love beer and pubs.
+At this moment moment the app is in early stage of development. It's addressed for Android users who love beer and pubs.
 ## Demo
-Demo video of app flow you can see [here](docs/demo.mp4)
+Watch app in action [Demo Video](docs/videos/demo.mp4)
 ## Screenshots
-In major points in the app are made screenshots which are available [here](docs/Screenshots.md) or scroll down below to [gifs](#gifs) section
+Key features of the app are presented in [Screenshots](docs/Screenshots.md) and in [GIFs](#gifs) section
 ## Features
 The app has multiple features, some of which are still in development
 - Logging and creating user account
@@ -22,11 +22,8 @@ The app has multiple features, some of which are still in development
 - View map of pubs in nearby (planned for the future)
 - Add pubs to favourites
 - Support for two languages : Polish and English (Ukrainian in future)
-## Architecture
-The Pubber app architecture follows [Android guidelines](https://developer.android.com/topic/architecture)
-It uses multiple design patterns such as MVVM, SSOT or UDF. 
-## UI
-The app was designed using [Material Design](https://m3.material.io/).
+## Architecture and UI
+The Pubber app architecture follows [Android guidelines](https://developer.android.com/topic/architecture). The App was designed using [Material Design](https://m3.material.io/).
 ## Tools and technologies
 - Programming Language: Java
 - Reactive Programming: RxJava
@@ -34,7 +31,7 @@ The app was designed using [Material Design](https://m3.material.io/).
 - Local Storage: Room, DataStore
 - UI Framework: Jetpack Compose (planned for the future)
 - Google Services: Firebase Authentication, Google Maps API
-## Other services
+## Related services
 In parallel to support network functionalities of the app services are developed. See [Pubber REST API](https://github.com/Sewery/pubber-rest-api) and [Pubber Services](https://github.com/Sewery/pubber-services) for more informations.
 ## About
 ### What is the idea's origin?
@@ -44,13 +41,13 @@ The entire codebase, from A to Z, has been developed by two students—one from 
 ### What are the future plans for the app's development?
 We will keep this section regularly updated, so make sure to check it out once in a while!\
 <a name="gifs"></a>
-## Gifs
+## GIFs
 **First open and sign in**
 
 <img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/first_open.gif" width="316" height="720" />
 
 
-**Serach and filtration**
+**Search and filtration**
 
 <img src="https://github.com/OverMighties/pubber/blob/develop%232/docs/search_filtration.gif" width="316" height="720" />
 
@@ -71,7 +68,7 @@ We will keep this section regularly updated, so make sure to check it out once i
 
 
 ## Contributors
-+ [Sewery](https://github.com/Sewery),
++ [Sewery](https://github.com/Sewery)
 + [RudyKarpus](https://github.com/RudyKarpus)
 ## License
 Pubber is distributed under the terms of the GNU General Public License v3.0. See the [license](LICENSE) for more information.

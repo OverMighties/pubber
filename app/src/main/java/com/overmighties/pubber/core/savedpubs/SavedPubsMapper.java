@@ -21,8 +21,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Flowable;
-
 public class SavedPubsMapper {
 
 
@@ -75,8 +73,8 @@ public class SavedPubsMapper {
                 .setWebsiteUrl(pub.getWebsiteUrl() == null ? "" : pub.getWebsiteUrl())
                 .setIconPath(pub.getIconPath() == null ? "" : pub.getIconPath())
                 .setDescription(pub.getDescription() == null ? "" : pub.getDescription())
-                .setReservable(pub.getReservable() == null ? false : pub.getReservable())
-                .setTakeout(pub.getTakeout() == null ? false : pub.getTakeout())
+                .setReservable(pub.getReservable() != null && pub.getReservable())
+                .setTakeout(pub.getTakeout() != null && pub.getTakeout())
                 .setLatitude(pub.getLatitude() == null ? 0 : pub.getLatitude())
                 .setLongitude(pub.getLongitude() == null ? 0 : pub.getLongitude())
                 .setRatings(RatingsProto.newBuilder()

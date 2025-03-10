@@ -120,7 +120,7 @@ public class DetailsEditTagsFragment extends Fragment {
         builder.setTitle(title);
         builder.setNeutralButton(getString(R.string.cancel), ((dialog, which) -> {}));
         builder.setNegativeButton(getString(R.string.choose), ((dialog, which) -> {
-            if(dialogView.getCheckedChipIds().size() != 0){
+            if(!dialogView.getCheckedChipIds().isEmpty()){
                 List<DetailsEditTagsCardViewUiState> dataList = new ArrayList<>();
                 for(int chipId: dialogView.getCheckedChipIds()){
                     DetailsEditTagsCardViewUiState checkTag = new DetailsEditTagsCardViewUiState(((Chip)dialogView.findViewById(chipId)).getText().toString());
