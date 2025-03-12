@@ -233,6 +233,11 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
             }
         });
 
+        pubListViewModel.getIsSavedDataSynced().observe(getViewLifecycleOwner(), isSynced->{
+            if(isSynced)
+                swipeRefreshLayout.refreshDrawableState();
+        });
+
     }
 
 

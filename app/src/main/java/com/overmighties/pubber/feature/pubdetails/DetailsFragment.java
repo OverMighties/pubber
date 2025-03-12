@@ -363,7 +363,7 @@ public class DetailsFragment extends Fragment
             }
         });
 
-        requireView().findViewById(R.id.details_image_back).setOnClickListener(v -> NavHostFragment.findNavController(getParentFragment()).popBackStack());
+        requireView().findViewById(R.id.details_image_back).setOnClickListener(v -> NavHostFragment.findNavController(getParentFragment()).navigate(DetailsFragmentDirections.actionDetailsToSearcher()));
 
         requireView().findViewById(R.id.details_chip_guide).setOnClickListener(v->{
             guide();

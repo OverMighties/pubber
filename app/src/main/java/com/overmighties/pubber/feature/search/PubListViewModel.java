@@ -80,10 +80,10 @@ public class PubListViewModel extends ViewModel {
     private boolean isImperfectFound = false;
     @Getter
     private MutableLiveData<Pair<Long, Boolean>> favouritePubState = new MutableLiveData<>(new Pair<>(-1l, null));
-    //@Getter
-    //private MutableLiveData<List<Pub>>
     @Getter
     private MutableLiveData<Boolean> isSavedDataRetrived = new MutableLiveData<>();
+    @Getter
+    private MutableLiveData<Boolean> isSavedDataSynced = new MutableLiveData<>();
     private final MutableLiveData<List<Drink>> originalDrinksData=new MutableLiveData<>(null);
     @Getter
     private final LiveData<List<Drink>> _originalDrinksData=originalDrinksData;
@@ -136,6 +136,8 @@ public class PubListViewModel extends ViewModel {
                     err-> Log.e(TAG, "fetchDrinksFromRepo can't get drinks due to" + err.getLocalizedMessage())
                 );
         disposables.add(d);
+
+
          */
         temFetchDrinkFromRepo();
     }
@@ -329,6 +331,7 @@ public class PubListViewModel extends ViewModel {
         }
         searcherUiState.getValue().setPubs(originalPubData.getValue().stream().map(pub ->new Pair<>(pub, new PubFiltrationState(-1, null, null))).collect(Collectors.toList()));
         sort(searcherUiState.getValue().getLastSortPubsBy());
+        isSavedDataSynced.setValue(true);
     }
 
     @Override
