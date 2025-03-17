@@ -23,7 +23,6 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 public class SearcherUiState {
-    private String ChipTag;
     private boolean searchviewClicked;
     private Long linkPubId;
     private FragmentSearcherBinding binding;
@@ -35,7 +34,6 @@ public class SearcherUiState {
     private List<Pub> lastSortedPubs = new ArrayList<>();
 
     public SearcherUiState(){
-        ChipTag = "Normal";
         searchviewClicked = false;
         linkPubId = null;
         binding = null;

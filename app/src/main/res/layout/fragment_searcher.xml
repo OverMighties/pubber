@@ -37,19 +37,17 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toBottomOf="@id/searcher_topAppBarLayout">
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/searcher_cardView_search"
             android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="25dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:backgroundTint="@color/surface"
             app:cardCornerRadius="90dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <android.widget.SearchView
                 android:layout_gravity="center"
@@ -64,76 +62,70 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/searcher_text_sortInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/sort_based_on"
-            android:textColor="@color/on_surface"
-            android:textSize="18sp"
+        <HorizontalScrollView
+            android:id="@+id/searcher_horizontalSV_chips"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:fillViewport="true"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/searcher_cardView_search"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searcher_cardView_search" />
+            android:scrollbars="none">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/searcher_chipGroup_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:singleLine="true">
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/searcher_chip_distance"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distance"
+                        android:textColor="@color/on_primary"
+                        app:chipBackgroundColor="@color/primary"
+                        app:chipIcon="@drawable/ic_calculate"
+                        app:chipIconTint="@color/on_primary" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/searcher_chip_filter"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter"
+                        android:textColor="@color/on_primary"
+                        app:chipBackgroundColor="@color/primary"
+                        app:chipIcon="@drawable/ic_filtration_on_surface"
+                        app:chipIconTint="@color/on_primary" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/searcher_chip_sort"
+                        style="@style/ActionChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sort_relevance"
+                        android:textColor="@color/on_secondary_container"
+                        app:chipBackgroundColor="@color/secondary_container"
+                        app:chipIcon="@drawable/ic_sort"
+                        app:chipIconTint="@color/on_secondary_container" />
 
-        <TextView
-            android:id="@+id/searcher_text_sortBy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/roboto_bold"
-            android:shadowColor="@color/primary"
-            android:shadowDx="1.8"
-            android:shadowDy="1.3"
-            android:shadowRadius="3"
-            android:text="@string/sort_relevance"
-            android:textColor="@color/primary"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortInfo"
-            app:layout_constraintStart_toEndOf="@+id/searcher_text_sortInfo"
-            app:layout_constraintTop_toTopOf="@+id/searcher_text_sortInfo" />
-
-        <ImageView
-            android:id="@+id/searcher_image_sortBy"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_expand_more_primary"
-            app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortBy"
-            app:layout_constraintStart_toEndOf="@+id/searcher_text_sortBy"
-            app:layout_constraintTop_toTopOf="@id/searcher_text_sortBy" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/searcher_cardView_filtration"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="12dp"
-            android:backgroundTint="@color/secondary_container"
-            app:cardCornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/searcher_text_sortInfo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/searcher_text_sortInfo">
+                </com.google.android.material.chip.ChipGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </HorizontalScrollView>
 
 
-            <ImageView
-                android:id="@+id/searcher_image_filtration"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_filtration_on_surface"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.cardview.widget.CardView>
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/searcher_swipeRefresh_pubList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:isScrollContainer="false"
-            app:layout_constraintTop_toBottomOf="@id/searcher_cardView_filtration"
+            app:layout_constraintTop_toBottomOf="@id/searcher_horizontalSV_chips"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -144,6 +136,7 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

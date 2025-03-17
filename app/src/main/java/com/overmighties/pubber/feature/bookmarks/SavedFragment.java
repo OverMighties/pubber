@@ -70,7 +70,6 @@ public class SavedFragment extends Fragment implements PubListSelectListener {
         savedPubsRecyclerView.setAdapter(new ListPubAdapter(
                 viewModel.getUiState().getValue().getPubItemCardViewUiState(),
                 this,
-                pubListViewModel.getSearcherUiState().getValue().getChipTag(),
                 pubListViewModel.getFavouritePubState()));
     }
 

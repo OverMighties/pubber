@@ -4,27 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pubRVR_MCV_container"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="@drawable/constraint_layout_pub_cardview_layer_list">
+    android:background="@drawable/constraint_layout_margin_down_dim"
+    android:layout_height="100dp">
 
-
-
-    <TextView
-        android:id="@+id/pubRVR_text_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="*.*km"
-        android:textColor="@color/on_surface_container_secondary"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/pubRVR_image_distance"
-        app:layout_constraintTop_toTopOf="@+id/pubRVR_text_ratingCount" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/pubRVR_image"
-        android:layout_width="76dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="16dp"
         android:adjustViewBounds="true"
         android:clickable="false"
         android:contentDescription="Przykładowe zdjęcie pubu"
@@ -39,134 +27,168 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:clickable="true"
         android:maxLines="1"
         android:minLines="0"
         android:text="Pub Name"
-        android:layout_marginTop="-13dp"
         android:textColor="@color/on_surface_container"
         android:textIsSelectable="true"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/pubRVR_image_favourite"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/pubRVR_image"
-        app:layout_constraintTop_toTopOf="@id/pubRVR_image" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/pubRVR_text_compatibility"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/on_surface"
-                android:textSize="18sp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toStartOf="@id/pubRVR_image_favourite"
-                app:layout_constraintTop_toTopOf="@id/pubRVR_text_name"
-                app:layout_constraintBottom_toBottomOf="@id/pubRVR_text_name"/>
+    <TextView
+        android:id="@+id/pubRVR_text_compatibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/on_surface"
+        android:textSize="18sp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@id/pubRVR_image_favourite"
+        app:layout_constraintTop_toTopOf="@id/pubRVR_text_name"
+        app:layout_constraintBottom_toBottomOf="@id/pubRVR_text_name"/>
 
-            <TextView
-                android:id="@+id/pubRVR_text_timeOpen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/roundstyle"
-                android:gravity="center"
-                android:text="Open"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@+id/pubRVR_text_name"
-                app:layout_constraintTop_toBottomOf="@id/pubRVR_text_name"
-                app:layout_constraintVertical_bias="0.317" />
+    <TextView
+        android:id="@+id/pubRVR_text_timeOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundstyle"
+        android:gravity="center"
+        android:text="Open"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/pubRVR_text_name"
+        app:layout_constraintTop_toBottomOf="@id/pubRVR_text_name"
+        app:layout_constraintVertical_bias="0.317" />
 
-            <ImageView
-                android:id="@+id/pubRVR_image_favourite"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="28dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="-4dp"
-                app:layout_constraintTop_toTopOf="@+id/pubRVR_image"
-                app:srcCompat="@drawable/ic_heart_empty" />
 
-            <TextView
-                android:id="@+id/pubRVR_text_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*.*"
-                android:textColor="@color/on_surface_container_secondary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/pubRVR_text_name"
-                app:layout_constraintTop_toBottomOf="@+id/pubRVR_text_timeOpen" />
+    <TextView
+        android:id="@+id/pubRVR_text_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*.*"
+        android:textColor="@color/on_surface_container_secondary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/pubRVR_text_name"
+        app:layout_constraintTop_toBottomOf="@+id/pubRVR_text_timeOpen" />
 
-            <TextView
-                android:id="@+id/pubRVR_text_ratingCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(****)"
-                android:textColor="@color/on_surface_container_secondary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/pubRVR_cl_ratingContainer"
-                app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating" />
 
-            <ImageView
-                android:id="@+id/pubRVR_image_distance"
-                android:layout_width="19dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_ratingCount"
-                app:layout_constraintStart_toEndOf="@+id/pubRVR_text_ratingCount"
-                app:layout_constraintTop_toTopOf="@+id/pubRVR_text_ratingCount"
-                app:srcCompat="@drawable/ic_walking_on_sureface_con_sec" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pubRVR_cl_ratingContainer"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:minWidth="70dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_rating"
+        app:layout_constraintStart_toEndOf="@+id/pubRVR_text_rating"
+        app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/pubRVR_cl_ratingContainer"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:minWidth="70dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="2dp"
-                app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_rating"
-                app:layout_constraintStart_toEndOf="@+id/pubRVR_text_rating"
-                app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/pubRVR_text_ratingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(****)"
+        android:textColor="@color/on_surface_container_secondary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/pubRVR_cl_ratingContainer"
+        app:layout_constraintTop_toTopOf="@+id/pubRVR_text_rating" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/pubRVR_chip_guide"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:elevation="0dp"
-                android:text="@string/guide"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="14sp"
-                app:chipBackgroundColor="@color/secondary_container"
-                app:chipCornerRadius="40dp"
-                app:chipIcon="@drawable/ic_directions_on_surface_container"
-                app:chipIconSize="25dp"
-                app:chipStrokeColor="#4F3C27"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintStart_toStartOf="@+id/pubRVR_text_rating"
-                app:layout_constraintBottom_toBottomOf="parent" />
+    <TextView
+        android:id="@+id/pubRVR_text_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*.*km"
+        android:textColor="@color/on_surface_container_secondary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/pubRVR_text_rating"
+        app:layout_constraintTop_toBottomOf="@+id/pubRVR_text_rating"
+        />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/pubRVR_chip_alcohol"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_marginLeft="7dp"
-                android:elevation="0dp"
-                android:text="@string/alcohols"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="14sp"
-                app:chipBackgroundColor="@color/secondary_container"
-                app:chipCornerRadius="40dp"
-                app:chipIcon="@drawable/beer_full_black_chip"
-                app:chipIconSize="18dp"
-                app:chipIconTint="@color/on_secondary_container"
-                app:chipStartPadding="8dp"
-                app:chipStrokeColor="#4F3C27"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintStart_toEndOf="@+id/pubRVR_chip_guide"
-                app:layout_constraintTop_toTopOf="@+id/pubRVR_chip_guide"
-                app:textStartPadding="8dp" />
+    <ImageView
+        android:id="@+id/pubRVR_image_distance"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_distance"
+        app:layout_constraintStart_toEndOf="@+id/pubRVR_text_distance"
+        app:layout_constraintTop_toTopOf="@+id/pubRVR_text_distance"
+        app:srcCompat="@drawable/ic_walking_on_sureface_con_sec" />
+
+    <TextView
+        android:id="@+id/pubRVR_text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" • $$"
+        android:textColor="@color/on_surface_container_secondary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pubRVR_text_distance"
+        app:layout_constraintStart_toEndOf="@+id/pubRVR_image_distance"
+        app:layout_constraintTop_toTopOf="@+id/pubRVR_text_distance" />
+
+    <ImageView
+        android:id="@+id/pubRVR_image_favourite"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pubRVR_text_name"
+        app:srcCompat="@drawable/ic_heart_empty" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pubRVR_cardView_guide"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:backgroundTint="@color/surface_container_highest"
+        app:cardCornerRadius="50dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/pubRVR_image">
+
+
+        <ImageView
+            android:id="@+id/searcher_image_guide"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_directions_on_surface_variant"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pubRVR_cardView_alcohol"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:backgroundTint="@color/surface_container_highest"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintEnd_toStartOf="@id/pubRVR_cardView_guide"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@id/pubRVR_cardView_guide">
+
+
+        <ImageView
+            android:id="@+id/pubRVR_image_alcohol"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_drink_on_surface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
     <View
         android:id="@+id/pubRVR_view_imprefectDivider"
         android:layout_width="0dp"
@@ -187,6 +209,7 @@
         android:text="@string/imperfect"
         app:layout_constraintTop_toTopOf="@id/pubRVR_MCV_container"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

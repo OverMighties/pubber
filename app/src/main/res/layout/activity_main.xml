@@ -33,8 +33,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottomNavView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/surface_variant_secondary"
+        android:layout_height="56dp"
+        android:background="@drawable/rounded_bottom_navigation"
         app:elevation="70dp"
         app:itemActiveIndicatorStyle="@style/NavigationBarColor"
         app:itemIconSize="24dp"

@@ -54,6 +54,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
 import com.overmighties.pubber.R;
 import com.overmighties.pubber.app.AppContainer;
 import com.overmighties.pubber.app.PubberApp;
@@ -102,12 +103,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         pubListViewModel = new ViewModelProvider(requireActivity()).get(PubListViewModel.class);
         detailsViewModel=new ViewModelProvider(requireActivity(),
                 ViewModelProvider.Factory.from(DetailsViewModel.initializer)).get(DetailsViewModel.class);
-        //check screen width to determine pubcardview's chips size
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        if (displayMetrics.xdpi <= 380){
-            pubListViewModel.getSearcherUiState().getValue().setChipTag("Small");
-        }
         if(!requireActivity().findViewById(R.id.main_bottomNavView).isShown())
             NavigationBar.smoothPopUp(requireActivity().findViewById(R.id.main_bottomNavView), 200);
         //determine used language
@@ -192,7 +187,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                     new ListPubAdapter(
                             pubs,
                             this,
-                            pubListViewModel.getSearcherUiState().getValue().getChipTag(),
                             pubListViewModel.getFavouritePubState()
                     )
             );
@@ -342,16 +336,17 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
 
     private void setUpListeners()
     {
-        requireView().findViewById(R.id.searcher_text_sortBy).setOnClickListener(v -> showSortBottomSheer());
-        requireView().findViewById(R.id.searcher_image_sortBy).setOnClickListener(v -> showSortBottomSheer());
-        requireView().findViewById(R.id.searcher_image_filtration).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
+        requireView().findViewById(R.id.searcher_chip_distance).setOnClickListener(v->{
+            //TODO show add then calculate distance
+        });
+        requireView().findViewById(R.id.searcher_chip_sort).setOnClickListener(v -> showSortBottomSheer());
+        requireView().findViewById(R.id.searcher_chip_filter).setOnClickListener(v -> navController.navigate(SearcherFragmentDirections.actionSearcherToFilter()));
 
         requireActivity().findViewById(R.id.searcher_FAB_map).setOnClickListener(v -> {
             navController.navigate(getNavDirections(SEARCHER_FRAGMENT,MAP_FRAGMENT));
         });
     }
     private void showSortBottomSheer(){
-        ((ImageView)requireView().findViewById(R.id.searcher_image_sortBy)).setImageResource(R.drawable.ic_expand_less_primary);
         View bottomSheetView = getLayoutInflater().inflate(R.layout.fragment_searcher_sort_bottom_sheet, null);
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -360,7 +355,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         bottomSheetDialog.show();
     }
     private void checkCurrentSortRadioButtons(View bottomSheetView) {
-        String word = ((TextView) requireView().findViewById(R.id.searcher_text_sortBy)).getText().toString();
+        String word = ((Chip) requireView().findViewById(R.id.searcher_chip_sort)).getText().toString();
         if(getString(R.string.sort_relevance).equals(word)) {
             ((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_relevance)).setChecked(true);
         }
@@ -388,8 +383,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
         bottomSheetDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                ((ImageView)requireView().findViewById(R.id.searcher_image_sortBy)).setImageResource(R.drawable.ic_expand_more_primary);
-                TextView text = requireActivity().findViewById(R.id.searcher_text_sortBy);
                 if (((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_relevance)).isChecked()) {
                     setSortTextView(SortPubsBy.RELEVANCE);
                 } else if (((RadioButton) bottomSheetView.findViewById(R.id.searcherBSh_radioButton_alphabetical)).isChecked()) {
@@ -404,7 +397,7 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
     }
 
     public void setSortTextView(SortPubsBy sortingBy){
-        TextView text = requireActivity().findViewById(R.id.searcher_text_sortBy);
+        Chip text = requireActivity().findViewById(R.id.searcher_chip_sort);
         switch(sortingBy) {
             case RELEVANCE:
                 text.setText( requireActivity().getString(R.string.sort_relevance));
@@ -473,7 +466,6 @@ public class SearcherFragment extends BaseFragmentWithPermission implements PubL
                 (location[1]-recyclerViewScrolledHeight)-(int)DimensionsConverter.pxFromDp(context, 42f));
         constraintSet.applyTo(constraintLayout);
         view.setZ(2);
-        binding.searcherCardViewFiltration.setZ(1);
         binding.searcherCardViewSearch.setZ(1);
         binding.searcherFABMap.setVisibility(View.INVISIBLE);
         binding.searcherTopAppBarLayout.setVisibility(View.INVISIBLE);

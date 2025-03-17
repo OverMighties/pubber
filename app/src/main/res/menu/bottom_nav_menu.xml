@@ -4,17 +4,17 @@
     <item
         android:id="@+id/searcherFragment"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/list" />
+        android:title="" />
 
 
     <item
         android:id="@+id/mapFragment"
         android:icon="@drawable/ic_map"
-        android:title="@string/map"/>
+        android:title=""/>
 
     <item
         android:id="@+id/savedFragment"
         android:icon="@drawable/hearth_full_nav"
-        android:title="@string/favorite" />
+        android:title="" />
 
 </menu>

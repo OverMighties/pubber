@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
@@ -30,7 +31,6 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.overmighties.pubber.R;
-import com.overmighties.pubber.core.model.Pub;
 import com.overmighties.pubber.feature.search.stateholders.PubItemCardViewUiState;
 import com.overmighties.pubber.feature.search.stateholders.PubsCardViewUiState;
 import com.overmighties.pubber.feature.search.util.PubListSelectListener;
@@ -46,8 +46,6 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
     public static final String TAG="ListPubAdapter";
     private PubsCardViewUiState pubData;
     public final PubListSelectListener pubListSelectListener;
-    private final String chiptag;
-    private boolean isFirstImperfectShown = false;
     private MutableLiveData<Pair<Long, Boolean>> favouritePubState;
     @Getter
     public static  class  PubViewHolder extends RecyclerView.ViewHolder{
@@ -61,37 +59,34 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         private final TextView qualityRating;
         private final TextView ratingCount;
         private final ConstraintLayout ratingImage;
-        //private final TextView costRating;
-        //private final TextView averageRatingFromServices;
+        private final TextView costRating;
         private final ImageView imageFavourite;
         private final ShapeableImageView pubIcon;
         private final View itemView;
-        private final Chip mapChip;
-        private final Chip alcoholChip;
+        private final CardView cardViewGuide;
+        private final CardView cardViewAlcohol;
 
 
 
        public PubViewHolder(@NonNull View itemView, PubListSelectListener pubListSelectListener) {
             super(itemView);
-
             this.itemView=itemView;
-            divider = itemView.findViewById(R.id.pubRVR_view_imprefectDivider);
-            dividerText = itemView.findViewById(R.id.pubRVR_text_imperfect);
+
+            pubIcon = itemView.findViewById(R.id.pubRVR_image);
             name= itemView.findViewById(R.id.pubRVR_text_name);
             compatibility = itemView.findViewById(R.id.pubRVR_text_compatibility);
             qualityRating = itemView.findViewById(R.id.pubRVR_text_rating);
-            //costRating =(TextView) itemView.findViewById(R.id.ocenaKoszty);
+            costRating = itemView.findViewById(R.id.pubRVR_text_price);
             timeOpenToday = itemView.findViewById(R.id.pubRVR_text_timeOpen);
-            pubIcon = itemView.findViewById(R.id.pubRVR_image);
             walkDistance = itemView.findViewById(R.id.pubRVR_text_distance);
             ratingCount = itemView.findViewById(R.id.pubRVR_text_ratingCount);
             ratingImage = itemView.findViewById(R.id.pubRVR_cl_ratingContainer);
-            mapChip = itemView.findViewById(R.id.pubRVR_chip_guide);
-            alcoholChip  = itemView.findViewById(R.id.pubRVR_chip_alcohol);
-
             imageFavourite = itemView.findViewById(R.id.pubRVR_image_favourite);
             imageFavourite.setTag(R.drawable.ic_heart_empty);
-
+            cardViewGuide = itemView.findViewById(R.id.pubRVR_cardView_guide);
+            cardViewAlcohol = itemView.findViewById(R.id.pubRVR_cardView_alcohol);
+            divider = itemView.findViewById(R.id.pubRVR_view_imprefectDivider);
+            dividerText = itemView.findViewById(R.id.pubRVR_text_imperfect);
 
            itemView.setOnClickListener(view -> {
                if(pubListSelectListener !=null)
@@ -106,9 +101,9 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
            });
        }
     }
-    public ListPubAdapter(PubsCardViewUiState pubData, PubListSelectListener pubListSelectListener, String ChipTag, MutableLiveData<Pair<Long, Boolean>> favouritePubState) {
+    public ListPubAdapter(PubsCardViewUiState pubData, PubListSelectListener pubListSelectListener, MutableLiveData<Pair<Long, Boolean>> favouritePubState) {
 
-        this.pubData=pubData;this.pubListSelectListener = pubListSelectListener; this.chiptag=ChipTag; this.favouritePubState = favouritePubState;}
+        this.pubData=pubData;this.pubListSelectListener = pubListSelectListener; this.favouritePubState = favouritePubState;}
     @NonNull
     @Override
     public PubViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -134,6 +129,19 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
         if(pubCardView.getName()!=null)
             holder.name.setText(pubCardView.getName());
 
+        if(pubCardView.getTimeOpenToday()!=null){
+            holder.timeOpenToday.setText(pubCardView.getTimeOpenToday());
+            if(pubCardView.getIsOpenNow()) {
+                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
+                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
+            }
+            else{
+                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
+                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
+            }
+        } else{
+            holder.timeOpenToday.setText(holder.itemView.getContext().getString(R.string.nodata));
+        }
         if(pubCardView.getQualityRating()!=null) {
             holder.qualityRating.setText(pubCardView.getQualityRating().toString());
             ArrayList<ImageView> imageViews = new ArrayList<>();
@@ -146,20 +154,9 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             new RatingToIVConverter().convert(imageViews, 18, holder.ratingImage, pubCardView.getQualityRating(), 0,14, true, holder.itemView.getContext());
         }
 
-        if(pubCardView.getTimeOpenToday()!=null){
-            holder.timeOpenToday.setText(pubCardView.getTimeOpenToday());
-            if(pubCardView.getIsOpenNow()) {
-                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
-                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_open));
-            }
-            else{
-                holder.timeOpenToday.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
-                holder.timeOpenToday.setShadowLayer(3, 1.8f, 1.3f, ContextCompat.getColor(holder.itemView.getContext(), R.color.highlight_close));
-            }
-        }
-        else{
-            holder.timeOpenToday.setText(holder.itemView.getContext().getString(R.string.nodata));
-        }
+        if(pubCardView.getCostRating() != null)
+            holder.costRating.setText(" • "+pubCardView.getCostRating());
+
         if(pubCardView.getWalkDistance()!=null) {
             holder.walkDistance.setText(pubCardView.getWalkDistance().toString()+"km");
         }
@@ -195,7 +192,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
 
 
-        holder.mapChip.setOnClickListener(v -> {
+        holder.cardViewGuide.setOnClickListener(v -> {
             Uri adress = Uri.parse("geo:0,0?q="+pubCardView.getAddress());
             Intent intent = new Intent(Intent.ACTION_VIEW, adress);
             intent.setPackage("com.google.android.apps.maps");
@@ -207,7 +204,7 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
 
         });
 
-        holder.alcoholChip.setOnClickListener(v -> {
+        holder.cardViewAlcohol.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomDialog);
             LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
             View dialogView = inflater.inflate(R.layout.pub_recycler_view_row_dialog_alcohols, null);
@@ -245,14 +242,6 @@ public class ListPubAdapter extends RecyclerView.Adapter<ListPubAdapter.PubViewH
             alertDialog.show();
         });
 
-        if (chiptag.equals("Small")){
-            holder.mapChip.setChipIconSize(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 20));
-            holder.mapChip.setTextSize(12);
-            holder.mapChip.setHeight(40);
-            holder.alcoholChip.setChipIconSize(DimensionsConverter.pxFromDp(holder.itemView.getContext(), 16));
-            holder.alcoholChip.setTextSize(12);
-            holder.alcoholChip.setHeight(40);
-        }
 
     }
 
