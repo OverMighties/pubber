@@ -24,7 +24,7 @@ import com.overmighties.pubber.feature.search.filterselect.stateholders.FilterSe
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterSelectFragment   extends Fragment implements FilterSelectListener {
+public class FilterSelectFragment extends Fragment implements FilterSelectListener {
 
     public static final String TAG = "FilterSelectFragment";
 

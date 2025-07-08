@@ -9,10 +9,15 @@ import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.TextAppearanceSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
@@ -101,10 +106,19 @@ public class SplashFragment extends Fragment {
         inflated.findViewById(R.id.splash_button_signIn).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signInFragment,null));
         inflated.findViewById(R.id.splash_button_signUp).setOnClickListener(v-> navController.navigate(R.id.action_splashFragment_to_signUpFragment,null));
         inflated.findViewById(R.id.splash_image_googleButton).setOnClickListener(v-> signInWithGoogle());
+        inflated.findViewById(R.id.splash_TV_info).setOnClickListener(v->navController.navigate(R.id.action_splash_nav_dir_to_pub_owner_graph));
+        //set up proper images
         int google_button_id = (SettingsHandler.LanguageHelper.getLanguage(view.getContext()).equals(SettingsHandler.LanguageHelper.LANGUAGE_POLISH))? R.drawable.ic_google_button_polish : R.drawable.ic_google_button_english;
         ((ImageView)inflated.findViewById(R.id.splash_image_googleButton)).setImageResource(google_button_id);
         int pubber_image_id = (SettingsHandler.ThemeHelper.getSavedTheme(view.getContext()).equals(SettingsHandler.ThemeHelper.THEME_LIGHT))? R.drawable.ic_pubber_light_theme : R.drawable.ic_pubber_dark_theme;
         ((ImageView)inflated.findViewById(R.id.splash_image_pubber)).setImageResource(pubber_image_id);
+        //set up textview highlight
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        SpannableString string = new SpannableString(getString(R.string.pub_owner_info));
+        string.setSpan(new TextAppearanceSpan(requireContext(), R.style.info_highlight), 0, string.length(), 0);
+        string.setSpan(new UnderlineSpan(), 0, string.length(), 0);
+        spannableStringBuilder.append(string);
+        ((TextView) inflated.findViewById(R.id.splash_TV_info)).setText(spannableStringBuilder);
 
     }
 

@@ -135,7 +135,7 @@ public class AccountDetailsFragment extends Fragment {
         });
 
         requireView().findViewById(R.id.accountDetails_image_edit).setOnClickListener(v->{
-            navController.navigate(AccountDetailsFragmentDirections.actionAccountDetailsFragmentToAccountDetailsEditFragment());
+            //navController.navigate(AccountDetailsFragmentDirections.actionAccountDetailsFragmentToAccountDetailsEditFragment());
         });
 
         requireView().findViewById(R.id.accountDetails_view_showEmailContainer).setOnClickListener(v->{

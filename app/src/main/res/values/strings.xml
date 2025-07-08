@@ -332,6 +332,8 @@
     <string name="city_warsaw">Warsaw</string>
     <string name="city_cracow">Cracow</string>
 
+    <!-- splash fragment -->
+    <string name="pub_owner_info">If you manage/own pub click here</string>
 
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sort based on:</string>

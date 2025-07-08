@@ -163,6 +163,12 @@
         <item name="android:shadowColor">#00af87</item>
     </style>
 
+    <style name="info_highlight" parent="">
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:textColorHighlight">@color/on_surface_variant</item>
+        <item name="android:shadowColor">@color/on_surface_variant</item>
+    </style>
+
     <style name="Pubber_highlight" parent="">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textColorHighlight">@color/primary</item>

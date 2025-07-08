@@ -179,6 +179,9 @@
     <string name="sort_distance">Najmniejsza odległość</string>
     <string name="imperfect">Nieidealne dopasowania</string>
 
+    <!-- splash fragment -->
+    <string name="pub_owner_info">Jeśli zarządzasz/posiadasz pub kliknij tutaj</string>
+
 
     <!-- details-->
     <string name="pub_name">Nazwa Pubu</string>

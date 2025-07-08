@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_splashFragment_to_newUserDetailsFragment"
             app:destination="@id/new_user_details_nav_dir" />
+        <action
+            android:id="@+id/action_splash_nav_dir_to_pub_owner_graph"
+            app:destination="@id/pub_owner_graph" />
     </fragment>
     <fragment
         android:id="@+id/sign_in_nav_dir"
@@ -41,5 +44,6 @@
         android:id="@+id/new_user_details_nav_dir"
         android:name="com.overmighties.pubber.feature.auth.NewUserDetailsFragment"
         android:label="NewUserDetailsFragment" />
+    <include app:graph="@navigation/pub_owner_graph" />
 
 </navigation>

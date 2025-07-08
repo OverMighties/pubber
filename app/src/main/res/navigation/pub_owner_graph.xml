@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pub_owner_graph"
+    app:startDestination="@id/informationFragment"
+    >
+
+    <fragment
+        android:id="@+id/adminPanel"
+        android:name="com.overmighties.pubber.feature.owner.AdminPanel"
+        android:label="AdminPanel" >
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.overmighties.pubber.feature.owner.InformationFragment"
+        android:label="InformationFragment" >
+        <action
+            android:id="@+id/action_informationFragment_to_adminPanel"
+            app:destination="@id/adminPanel" />
+    </fragment>
+</navigation>
