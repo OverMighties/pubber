@@ -182,6 +182,14 @@
     <!-- splash fragment -->
     <string name="pub_owner_info">Jeśli zarządzasz/posiadasz pub kliknij tutaj</string>
 
+    <!-- pub admin panel -->
+    <string name="collaboration_info_headline">Informację o współpracy z nami</string>
+    <string name="collaboration_info_text">Jako aplikacja do wyszukiwania pubów na podstawie dostępnych drinków i piw, chcemy dać Ci dostęp do panelu Twojego pubu.
+        Dzięki niemu będziesz mógł na bieżąco dodawać i modyfikować informacje na temat tego, jakie dokładnie piwa i drinki są dostępne w Twoim lokalu. Umożliwi to klientom przyjście do baru, wiedząc, czego chcą, pozostanie na dłużej i wyjście zadowolonym.
+        To nasz podstawowy plan, który wiąże się z opłatą w wysokości 100 zł. Jest to kwota, którą potrzebujemy, aby aplikacja działała sprawnie, szybko i spełniała zarówno nasze, Wasze i co najważniejsze użytkowników oczekiwania.
+        Jesteśmy również otwarci na szerszą współpracę — na przykład możliwość oferowania zniżek klientom, którzy odwiedzą pub z naszą aplikacją. Jesteśmy otwarci także na inne propozycje, wszystko zależy od indywidualnych ustaleń.
+    </string>
+    <string name="hint_pub_name">Nazwa pubu</string>
 
     <!-- details-->
     <string name="pub_name">Nazwa Pubu</string>

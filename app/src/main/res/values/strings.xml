@@ -335,6 +335,15 @@
     <!-- splash fragment -->
     <string name="pub_owner_info">If you manage/own pub click here</string>
 
+    <!-- pub admin panel -->
+    <string name="collaboration_info_headline">Learn about collaboration</string>
+    <string name="collaboration_info_text">
+        As an app for finding pubs based on available drinks and beers, we want to give you access to your pub’s control panel. With this panel, you\'ll be able to regularly add and update information about the exact beers and drinks available at your pub. This allows customers to come to your bar knowing what they want, stay longer, and leave satisfied.
+        This is our basic plan, which comes with a fee of 100 PLN — a price that helps us keep the app running smoothly, quickly, and meeting both your expectations and ours.
+        In addition to that, we’re open to broader collaboration — for example, offering a discount to customers who visit your bar using our app. We’re also open to other suggestions; everything depends on the agreement.
+    </string>
+    <string name="hint_pub_name">Pub name</string>
+
     <!--searcher and it's pop ups-->
     <string name="sort_based_on">Sort based on:</string>
     <string name="searchview_hint">Type here…</string>

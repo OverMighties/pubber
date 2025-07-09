@@ -385,4 +385,12 @@ public class Constants {
             R.id.accountDetailsEdit_editText_nickname,
             R.id.accountDetailsEdit_editText_email
     };
+
+    public static final int[] INFORMATION_FRAGMENT_SIGN_IN_FORM_IDS = {
+
+    };
+
+    public static final int[] INFORMATION_FRAGMENT_SIGN_UP_FORM_IDS = {
+
+    };
 }
